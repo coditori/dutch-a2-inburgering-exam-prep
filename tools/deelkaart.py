@@ -7,14 +7,16 @@ Zulke apps lezen alleen de HTML: ze voeren geen scripts uit. De regels moeten du
 met het volledige adres van de site erin. Dat adres kennen we pas bij het publiceren; daarom draait dit daar
 (.github/workflows/site.yml), op de kopie die naar de site gaat. De bestanden in git blijven zoals ze zijn.
 
-Het plaatje is shared/deelkaart.jpg (1200 × 630). De titel is de <title> van de pagina.
+Het plaatje is shared/deelkaart.jpg (1200 × 630). De titel is de <title> van de pagina, met de naam van de site erachter;
+die naam komt ook in de <title> zelf, voor wie de pagina zonder scripts leest. De naam staat in shared/thema.js.
 """
 import html
 import re
 import sys
 from pathlib import Path
 
-NAAM = "Taal Klim"
+# de naam van de site staat op één plek: shared/thema.js (window.SITE_NAAM = '...')
+NAAM_REGEL = re.compile(r"window\.SITE_NAAM = '([^']+)';")
 TEKST = ("Gratis oefenen voor het inburgeringsexamen A2: lessen vanaf nul en oefenexamens met een klok. "
          "Lezen, Luisteren, Schrijven, Spreken en KNM.")
 TITEL = re.compile(r"<title>(.*?)</title>", re.S)
@@ -25,6 +27,10 @@ def main():
         sys.exit("gebruik: deelkaart.py <adres van de site> [map]")
     basis = re.sub(r"^http://", "https://", sys.argv[1]).rstrip("/")
     map_ = Path(sys.argv[2] if len(sys.argv) > 2 else ".")
+    gevonden = NAAM_REGEL.search((map_ / "shared" / "thema.js").read_text(encoding="utf-8"))
+    if not gevonden:
+        sys.exit("de naam van de site staat niet in shared/thema.js")
+    NAAM = gevonden.group(1)
     n = 0
     for pad in sorted(map_.rglob("*.html")):
         if ".git" in pad.parts:
@@ -36,6 +42,8 @@ def main():
         titel = html.unescape(m.group(1)).strip() if m else NAAM
         if NAAM not in titel:
             titel = f"{titel} · {NAAM}"
+            if m:  # ook de <title> zelf
+                tekst = tekst[:m.start(1)] + html.escape(titel, quote=False) + tekst[m.end(1):]
         rel = pad.relative_to(map_).as_posix()
         adres = f"{basis}/" if rel == "index.html" else f"{basis}/{rel}"
         e = lambda s: html.escape(s, quote=True)
