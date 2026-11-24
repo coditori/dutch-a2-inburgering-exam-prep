@@ -10,6 +10,7 @@
 <body>
 <main>
   <section class="kaart groot-held" id="vandaag"></section>
+  <div id="accounttip"></div>
   <div class="cijfers" id="cijfers"></div>
   <h2 id="kies" data-en="the five exams">De vijf examens</h2>
   <p class="zacht klein" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
@@ -83,6 +84,30 @@
     getal(gedaan, totaal, 'lessen gehaald', 'lessons passed'),
     getal(woordenBekend, woordenTotaal, 'woorden gekend', 'words known'),
     getal(nToetsGedaan, nToetsen, 'oefenexamens gedaan', 'practice exams done'));
+
+  // ---------- inloggen met Google (als de site dat heeft, shared/account.js): het vak staat er zolang u niet bent ingelogd ----------
+  // "Niet nu" haalt het een week weg. De stip op de knop Profiel blijft.
+  const tip = document.getElementById('accounttip');
+  let wasIn = null;
+  document.addEventListener('account', () => {
+    const s = window.Account.staat, weg = App.lees('account-tip-weg', 0) > SRS.vandaag();
+    if (wasIn === false && s.gebruiker) App.toast('✔ U bent ingelogd', 'you are logged in');
+    if (s.beschikbaar) wasIn = !!s.gebruiker;
+    tip.textContent = '';
+    if (!s.beschikbaar || s.gebruiker || weg) return;
+    tip.append(el('div', { class: 'kaart acc' },
+      el('span', { class: 'ex-icoon', 'aria-hidden': 'true' }, teken('mens')),
+      el('div', {},
+        el('h3', { en: 'log in and keep your progress' }, 'Log in en bewaar uw voortgang'),
+        el('p', { class: 'zacht klein', en: 'With Google. Then you lose nothing, everything is also on your other phone, and you have your own profile for your friends.' },
+          'Met Google. Dan raakt u niets kwijt, staat alles ook op uw andere telefoon, en hebt u een eigen profiel voor uw vrienden.'),
+        s.fout ? el('p', { class: 'uitslag fout klein', en: 'Logging in did not work. Try again.' }, s.fout === 'venster' ? 'De browser hield het venster van Google tegen. Sta pop-ups toe en probeer het opnieuw.' : 'Inloggen is niet gelukt. Probeer het opnieuw.') : null),
+      el('div', { class: 'knoppen', style: 'margin:0' },
+        el('button', { type: 'button', class: 'knop', disabled: s.status === 'bezig', en: 'log in with Google', onclick: () => window.Account.login() }, 'Log in met Google'),
+        el('button', { type: 'button', class: 'knop tekst klein', en: 'not now', onclick: () => { App.schrijf('account-tip-weg', SRS.vandaag() + 7); tip.textContent = ''; } }, 'Niet nu'))));
+  });
+  // kwam er voortgang van het account (u logde in op een nieuw apparaat)? Dan de pagina opnieuw, met de nieuwe getallen.
+  document.addEventListener('account-gegevens', () => location.reload());
 
   // ---------- de vijf examens: de lessen (klik op de naam) en de oefenexamens A, B, C ... ----------
   document.getElementById('examens').append(...EXAMENS.map((x) => {

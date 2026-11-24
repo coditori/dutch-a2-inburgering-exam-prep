@@ -327,6 +327,7 @@ window.App = (() => {
       const g = window.Account && window.Account.staat.gebruiker, k = h.querySelector('.profielknop');
       if (!k) return;
       k.classList.toggle('in', !!g); k.textContent = '';
+      k.classList.toggle('tip', !g && window.Account.staat.beschikbaar); // een stip: u kunt inloggen
       k.append(g ? ((ruw('profiel', {}) || {}).naam || g.naam || g.email || '?').trim().slice(0, 1).toUpperCase() : teken('mens'));
     });
     document.head.append(el('script', { src: WORTEL + 'shared/account.js' }));
