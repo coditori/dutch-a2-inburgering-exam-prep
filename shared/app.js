@@ -11,7 +11,9 @@ window.App = (() => {
   const ruw = (k, d) => { try { const v = JSON.parse(localStorage.getItem('dutch-exam:' + k)); return v == null ? d : v; } catch (e) { return d; } };
   // Instellingen gelden voor alle examens (pagina instellingen.html). "open" = alle lessen zonder slot.
   // "door" = na een goed antwoord gaat de pagina vanzelf naar de volgende vraag.
-  const instellingen = () => Object.assign({ open: false, door: true }, ruw('instellingen', {}));
+  // Een gedeelde link (knop Delen) heeft ?deel=1: dan is die les of toets open, ook als de ontvanger de lessen ervoor niet deed. Dit wordt niet bewaard.
+  const GEDEELD = new URLSearchParams(location.search).has('deel');
+  const instellingen = () => { const i = Object.assign({ open: false, door: true }, ruw('instellingen', {})); if (GEDEELD) i.open = true; return i; };
   const lees = (k, d) => {
     const v = ruw(k, d);
     if (EXAMENS.includes(k) && v && typeof v === 'object') v.open = instellingen().open;
@@ -112,6 +114,7 @@ window.App = (() => {
     zon: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
     maan: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
     instel: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M2 14h4M10 8h4M18 16h4"/>',
+    deel: '<path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -136,6 +139,28 @@ window.App = (() => {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', zet);
     zet();
     return k;
+  }
+
+  // ---------- delen: de link van deze les of toets naar iemand sturen ----------
+  // Op een telefoon opent het deelvenster van het toestel (WhatsApp, Telegram, e-mail ...). Anders gaat de link naar het klembord.
+  function deelLink() {
+    const u = new URL(location.href);
+    u.searchParams.set('deel', '1');
+    u.hash = '';
+    return u.href;
+  }
+  function deel() {
+    const url = deelLink();
+    if (navigator.share) return navigator.share({ title: document.title, url }).catch(() => { /* de gebruiker sloot het venster */ });
+    const klaar = () => toast('✔ Link gekopieerd', 'link copied');
+    const metVeld = () => { // oude browser of geen toestemming voor het klembord
+      const v = el('input', { value: url, readonly: true, style: 'position:fixed;opacity:0' });
+      document.body.append(v); v.select();
+      try { document.execCommand('copy'); klaar(); } catch (e) { window.prompt('Kopieer deze link:', url); }
+      v.remove();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(url).then(klaar, metVeld);
+    return metVeld();
   }
 
   // ---------- de hulp kiezen: uit, Engels of Perzisch. Knop EN / FA in de kop, en de pagina Instellingen. ----------
@@ -256,6 +281,7 @@ window.App = (() => {
     const h = el('header', { class: 'kop' },
       terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : null,
       el('h1', {}, titel),
+      el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: deel }, teken('deel')),
       themaKnop(),
       el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
       taalKnop());
@@ -303,5 +329,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { VERSIE, W, lees, schrijf, kaal, el, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

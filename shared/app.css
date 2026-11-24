@@ -376,3 +376,6 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 @media (min-width: 381px) and (max-width: 800px) { body.geen-woorden .examen.twee { height: calc(100vh - 64px - 68px); height: calc(100dvh - 64px - 68px); } }
 /* laag scherm (iPhone SE): het grote plaatje boven de speler weg, zodat de knoppen in beeld staan */
 @media (max-width: 800px) and (max-height: 700px) { body.geen-woorden .examen.twee.kort > section:first-child > div[style*="3rem"] { display: none; } }
+
+/* knop Delen in de kop. Tijdens een toets (de klok loopt) is hij weg: dan is er geen plek en hoeft het niet. */
+.kop:has(> b:not(:empty)) .deel { display: none; }
