@@ -141,12 +141,26 @@ window.App = (() => {
     if (t === 'donker') r.dataset.theme = 'dark'; else if (t === 'licht') r.dataset.theme = 'light'; else delete r.dataset.theme;
     document.dispatchEvent(new CustomEvent('thema'));
   }
-  function themaKnop() {
-    const k = el('button', { class: 'rond themaknop', onclick: () => zetThema(isDonker() ? 'licht' : 'donker') });
-    const zet = () => { k.textContent = ''; k.append(teken(isDonker() ? 'zon' : 'maan')); k.title = isDonker() ? 'licht thema' : 'donker thema'; k.setAttribute('aria-label', k.title); };
-    document.addEventListener('thema', zet);
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', zet);
-    zet();
+  // ---------- het menu achter de knop Profiel in de kop: profiel, instellingen en het thema ----------
+  // Eén knop in plaats van drie: zo staan er in de kop alleen nog Delen (in een les), deze knop en de hulptaal.
+  let kopMenu = null;
+  const sluitKopMenu = () => { if (kopMenu) { kopMenu.remove(); kopMenu = null; } };
+  function profielKnop() {
+    const k = el('button', { type: 'button', class: 'rond profielknop', title: 'menu', 'aria-label': 'menu: profiel, instellingen en thema', 'aria-haspopup': 'menu', onclick: (e) => {
+      e.stopPropagation();
+      if (kopMenu) return sluitKopMenu();
+      sluitTaalMenu();
+      const A = window.Account, g = A && A.staat.gebruiker, kan = A && A.staat.beschikbaar && !g;
+      const regel = (naam, t, en) => [teken(t), el('span', { en }, naam)];
+      kopMenu = el('div', { class: 'taalmenu kopmenu', role: 'menu' },
+        el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel · log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
+        el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html' }, regel('Instellingen', 'instel', 'settings')),
+        el('button', { type: 'button', role: 'menuitem', onclick: () => { sluitKopMenu(); zetThema(isDonker() ? 'licht' : 'donker'); } },
+          isDonker() ? regel('Licht thema', 'zon', 'light theme') : regel('Donker thema', 'maan', 'dark theme')));
+      k.parentNode.append(kopMenu);
+    } }, teken('mens'));
+    document.addEventListener('click', sluitKopMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { sluitKopMenu(); sluitTaalMenu(); } });
     return k;
   }
 
@@ -199,6 +213,7 @@ window.App = (() => {
     taalKnopEl = el('button', { class: 'rond taal', title: 'taal van de hulp', 'aria-label': 'taal van de hulp: uit, Engels of Perzisch', 'aria-haspopup': 'menu', onclick: (e) => {
       e.stopPropagation();
       if (taalMenu) return sluitTaalMenu();
+      sluitKopMenu();
       const nu = !hulpAan() ? 'uit' : hulptaal();
       taalMenu = el('div', { class: 'taalmenu', role: 'menu' }, [['uit', 'Geen hulp'], ['en', 'English'], ['fa', 'فارسی']].map(([k, naam]) =>
         el('button', { type: 'button', role: 'menuitemradio', 'aria-checked': String(k === nu), class: k === nu ? 'nu' : '', onclick: () => { sluitTaalMenu(); kiesHulp(k); } }, naam)));
@@ -308,9 +323,7 @@ window.App = (() => {
       el('h1', {}, titel),
       nav(),
       el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: () => deel() }, teken('deel')),
-      themaKnop(),
-      el('a', { class: 'rond profielknop', href: WORTEL + 'profiel.html', title: 'profiel', 'aria-label': 'uw profiel' }, teken('mens')),
-      el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
+      profielKnop(),
       taalKnop());
     // de kop krijgt een schaduw zodra de pagina rolt
     const rol = () => document.body.classList.toggle('gerold', window.scrollY > 4);
