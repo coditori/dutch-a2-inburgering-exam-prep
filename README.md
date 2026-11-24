@@ -19,6 +19,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - Works on phone, tablet and desktop, with a light and a dark theme (☀ / 🌙 in the header, or automatic).
 - After a right answer the next question comes by itself; you can click back to earlier steps and questions of a lesson.
 - Start again per exam or completely on the settings page (⚙).
+- A profile card to share with friends: your name, lessons passed and best practice-exam marks (`profiel.html`). Optional login with Google keeps progress on every device; it is off until the site has a config file, see [docs/inloggen.md](docs/inloggen.md).
 - Share a lesson or a practice exam with the share button in the header. The link opens that lesson directly, also for someone who did not do the lessons before it.
 - Help in English or Persian (فارسی): with the buttons, in the explanations and behind ❗ with a word. Choose the language on the settings page; the lessons themselves stay Dutch.
 

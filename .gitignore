@@ -18,3 +18,6 @@ tools/.bouw.lock
 
 # official DUO writing practice exams (© Ministerie van SZW): not ours to publish, get them from inburgeren.nl
 schrijven/toets/*.pdf
+
+# login with Google: the Firebase settings of the live site. Not in git; see docs/inloggen.md
+shared/config.json
