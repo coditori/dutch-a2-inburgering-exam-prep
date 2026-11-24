@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KNM – instantie-trainer</title>
 <link rel="stylesheet" href="../../shared/app.css">
+<script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../knm.css">
 </head>
 <body>
@@ -41,8 +42,10 @@
       knoppen.forEach((b, i) => { b.disabled = true; if (keuzes[i] === juist) b.classList.add('goed'); });
       if (k !== juist) knoppen[keuzes.indexOf(k)].classList.add('fout'); else goed++;
       nr++;
+      const verder = el('button', { class: 'knop', en: 'next', onclick: volgende }, 'Verder');
       onder.append(el('p', { class: 'uitslag ' + (k === juist ? 'goed' : 'fout') }, k === juist ? '✔ Goed!' : '✘ Niet goed.'), el('div', { class: 'waarom' }, el('b', {}, juist.naam + ': '), juist.doet),
-        el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: volgende }, 'Verder')));
+        el('div', { class: 'knoppen' }, verder));
+      if (k === juist) App.goed(verder);
     } }, el('span', { class: 'l' }, k.beeld), el('span', {}, k.naam)));
     pagina.append(el('p', { class: 'zacht klein' }, `${nr + 1} / ${rij.length}`), el('div', { class: 'tekstvak soort-zin' }, App.woorden(item.v)),
       el('p', { class: 'v', style: 'font-weight:700;margin-top:14px', en: 'Where do you go?' }, 'Waar moet u zijn?'), el('div', {}, knoppen), onder);

@@ -14,6 +14,9 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - Word review with spaced repetition. Progress is saved in your browser, there is no account.
 - Dutch audio for every word, sentence and listening text (already included as mp3).
 - Level and vocabulary are calibrated on the official DUO practice exams.
+- Works on phone, tablet and desktop, with a light and a dark theme (☀ / 🌙 in the header, or automatic).
+- After a right answer the next question comes by itself; you can click back to earlier steps and questions of a lesson.
+- Start again per exam or completely on the settings page (⚙).
 
 The study plan and the plan per exam are in [`plans/`](plans/0-masterplan.md).
 

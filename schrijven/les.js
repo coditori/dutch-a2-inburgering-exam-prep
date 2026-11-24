@@ -26,11 +26,8 @@
   const bewaar = () => App.schrijf('schrijven-bezig', stand);
   const verder = () => { stand.stap++; bewaar(); toon(); };
 
-  function balk() {
-    const s = document.getElementById('stappen');
-    s.textContent = '';
-    stappen.forEach((_, i) => s.append(el('i', { class: i <= stand.stap ? 'aan' : '' })));
-  }
+  // de balk is klikbaar: terug naar elke stap waar u al was (stand.max)
+  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga: (i) => { stand.stap = i; bewaar(); toon(); } });
   const knopVerder = (uit) => el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', disabled: !!uit, onclick: verder }, 'Verder'));
   function metVerder(nr) {
     const rij = knopVerder(stand.uitslag[nr] == null);
@@ -61,7 +58,9 @@
   function toonOefening(s) {
     kopje(s);
     const o = s.o;
-    const { rij, af } = metVerder(s.nr);
+    const m = metVerder(s.nr);
+    const rij = m.rij;
+    const af = (goed) => { m.af(goed); if (goed) App.goed(rij.firstChild); }; // goed: melding en vanzelf verder
     const vak = el('div');
     pagina.append(vak);
     if (o.uitleg) vak.append(el('p', { en: o.en || '' }, el('b', {}, App.woorden(o.uitleg, nieuw))));
@@ -122,13 +121,13 @@
   function toonPapier(s) {
     kopje(s);
     const t = s.o.taak;
-    pagina.append(el('h2', { en: 'the exam is on paper: write it by hand' }, 'Papier'),
+    pagina.append(...[el('h2', { en: 'the exam is on paper: write it by hand' }, 'Papier'),
       el('p', { en: 'Take pen and paper. Write your answer again by hand. Then tick the list.' }, 'Pak een pen en papier. Schrijf uw antwoord nog een keer met de hand. Kijk daarna naar de lijst.'),
       Schrijven.taakKaart(t), stand.tekst[s.nr] ? el('div', { class: 'brief' }, stand.tekst[s.nr]) : null, Schrijven.vinklijst(),
       el('details', { class: 'kaart' }, el('summary', { en: 'optional: real feedback from an AI chatbot' }, 'Wilt u echte feedback?'),
         el('p', { class: 'klein', en: 'Copy this line and your text into Claude or ChatGPT.' }, 'Kopieer deze regel en uw tekst naar Claude of ChatGPT:'),
         el('p', { class: 'klein' }, el('code', {}, 'Corrigeer deze tekst op A2-niveau. Leg elke fout kort uit in simpel Nederlands.'))),
-      knopVerder(false));
+      knopVerder(false)].filter(Boolean)); // append(null) zou het woord "null" tonen
   }
   function toonSet(s) {
     const r = (Schrijven.P.toets[s.o.goed] || []).slice(-1)[0];
@@ -163,8 +162,10 @@
   function toon() {
     App.sluitPop();
     pagina.textContent = '';
+    stand.stap = Math.max(0, Math.min(stand.stap, stappen.length - 1));
+    stand.max = Math.max(stand.max || 0, stand.stap);
     balk();
-    const s = stappen[stand.stap] || stappen[stappen.length - 1];
+    const s = stappen[stand.stap];
     if (s.soort === 'begin') toonBegin();
     else if (s.soort === 'voorbeeld') toonVoorbeeld(s);
     else if (s.soort === 'bouw') toonBouw(s);

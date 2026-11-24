@@ -131,8 +131,9 @@ window.Lezen = (() => {
       o.teken(vak, rij[nr], (ok, uitleg) => {
         if (ok) goed++;
         nr++;
-        vak.append(el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Niet goed.'), uitleg || '',
-          el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: volgende }, 'Verder')));
+        const knop = el('button', { class: 'knop', en: 'next', onclick: volgende }, 'Verder');
+        vak.append(el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Niet goed.'), uitleg || '', el('div', { class: 'knoppen' }, knop));
+        if (ok) App.goed(knop);
       });
     }
     doel.append(el('div', { class: 'kaart' }, el('p', { en: o.uitlegEn }, o.uitleg),

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lezen – herhalen</title>
 <link rel="stylesheet" href="../shared/app.css">
+<script src="../shared/thema.js"></script>
 </head>
 <body>
 <main><div id="pagina"></div></main>
@@ -112,6 +113,7 @@
         el('p', {}, voor, el('span', { class: 'gatwoord' }, woord), na, ' ', el('button', { class: 'rond', onclick: () => Spraak.zeg(voor + woord + na) }, '🔊')),
         el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder')));
       uit.querySelector('.knop').focus();
+      if (ok) App.goed(uit.querySelector('.knop'));
     };
     const knop = el('button', { class: 'knop', en: 'check', onclick: () => { knop.remove(); hint.remove(); controleer(); } }, 'Controleer');
     const hint = el('button', { class: 'knop licht', en: 'first letter', onclick: () => { invoer.value = woord[0]; invoer.focus(); } }, 'Eerste letter');
