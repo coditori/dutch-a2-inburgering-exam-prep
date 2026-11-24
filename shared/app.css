@@ -550,3 +550,9 @@ body.met-nav .kop .deel { display: none; }
 #accvak:empty { display: none; }
 #accvak .kaart { min-height: 104px; margin-top: 0; }
 #accvak .kaart.acc-skelet:empty { min-height: 104px; }
+/* profiel: elke regel van de kaart is een link naar dat examen */
+a.prij { grid-template-columns: 44px minmax(0, 1fr) auto 20px; color: var(--tekst); text-decoration: none; transition: background .15s; }
+a.prij > .icoon { width: 20px; height: 20px; color: var(--zacht); transition: transform .2s, color .2s; }
+a.prij:focus-visible { outline-offset: -2px; }
+@media (hover: hover) { a.prij:hover { background: var(--vlak2); } a.prij:hover > .icoon { transform: translateX(3px); color: var(--k); } }
+@media (max-width: 560px) { a.prij { grid-template-columns: 40px minmax(0, 1fr) 20px; } a.prij > .icoon { grid-row: 1; grid-column: 3; } }
