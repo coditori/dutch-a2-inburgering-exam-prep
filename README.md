@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-donker.svg">
+    <img src="docs/logo.svg" alt="Taal Klim" width="300">
+  </picture>
+</p>
+
 # Dutch A2 inburgering exam prep
 
 Free practice site for the Dutch A2 civic integration exam (inburgeringsexamen), from almost zero to exam level.
