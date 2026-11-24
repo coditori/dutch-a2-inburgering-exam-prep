@@ -152,7 +152,8 @@ window.Account = (() => {
 
   // Verliet de leerling de pagina met nieuwe voortgang? Dan nog één keer bewaren.
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && staat.gebruiker && lees('account-afdruk') !== afdruk(alles())) sync(); });
-  document.addEventListener('gewist', () => { if (staat.gebruiker) { zet('account-wis', '1'); sync(); } });
+  let uitloggen = false; // bij uitloggen wissen we de browser, niet het account
+  document.addEventListener('gewist', () => { if (staat.gebruiker && !uitloggen) { zet('account-wis', '1'); sync(); } });
 
   const UID = /^[A-Za-z0-9_-]{4,128}$/;
   return {
@@ -165,7 +166,24 @@ window.Account = (() => {
         zetStatus('uit', code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request' ? '' : code === 'auth/popup-blocked' ? 'venster' : String((e && e.message) || e));
       }
     },
-    async loguit() { if (wolk) { await sync(); await wolk.loguit(); } }, // de voortgang blijft in deze browser staan
+    // Uitloggen: eerst alles bewaren bij het account, dan de browser leeg (voortgang én naam).
+    // Zo ziet de volgende persoon op deze computer niets van u, en komt uw voortgang niet in het account van een ander.
+    // Lukt het bewaren niet (geen verbinding), dan gebeurt er niets en is het antwoord false; met loguit(true) gaat het toch door.
+    async loguit(toch) {
+      if (!wolk || !staat.gebruiker) return true;
+      await sync();
+      if (staat.status !== 'bewaard' && !toch) return false;
+      uitloggen = true;
+      try {
+        await wolk.loguit();
+        staat.gebruiker = null;
+        window.App.wis(); // alle voortgang in deze browser; de instellingen blijven
+        for (const k of ['profiel', 'account-afdruk', 'account-kaart', 'account-wis', 'account-naam']) zet(k, null);
+      } finally { uitloggen = false; }
+      zetStatus('uit');
+      document.dispatchEvent(new CustomEvent('account-gegevens'));
+      return true;
+    },
     // alles weg bij het account (niet in deze browser), en uitloggen
     async verwijder() { const g = staat.gebruiker; if (!g || !wolk) return; await wolk.wis(g.uid); zet('account-afdruk', null); zet('account-kaart', null); await wolk.loguit(); },
     // de kaart van iemand anders, voor de link profiel.html#u=...

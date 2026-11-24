@@ -89,7 +89,17 @@
         el('span', { class: 'acc-status ' + s.status, role: 'status', en }, tekst)),
       el('div', { class: 'knoppen', style: 'margin:0' },
         s.status === 'fout' ? el('button', { type: 'button', class: 'knop licht klein', en: 'try again', onclick: () => A.sync() }, 'Opnieuw') : null,
-        el('button', { type: 'button', class: 'knop rand klein', en: 'log out', onclick: () => A.loguit() }, 'Log uit')));
+        el('button', { type: 'button', class: 'knop rand klein', en: 'log out', onclick: logUit }, 'Log uit')));
+  }
+  // Uitloggen maakt deze browser leeg: de voortgang staat bij het account en komt terug als u weer inlogt.
+  async function logUit() {
+    const A = window.Account;
+    if (!await A.loguit()) {
+      if (!await App.bevestig({ titel: 'Niet alles is bewaard', tekst: 'Er is geen verbinding met uw account. Logt u nu uit, dan bent u de voortgang van vandaag in deze browser kwijt.',
+        en: 'There is no connection with your account. If you log out now, you lose today\'s progress in this browser.', ja: 'Toch uitloggen' })) return;
+      await A.loguit(true);
+    }
+    App.toast('✔ U bent uitgelogd', 'you are logged out');
   }
   async function verwijderAccount() {
     if (!await App.bevestig({ titel: 'Gegevens bij uw account verwijderen?', tekst: 'Uw voortgang en uw kaart gaan weg bij uw account, en u bent uitgelogd. De link naar uw kaart werkt dan niet meer. Uw voortgang in deze browser blijft.',
