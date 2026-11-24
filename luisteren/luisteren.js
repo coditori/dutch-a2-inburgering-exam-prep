@@ -17,7 +17,7 @@ window.Luister = (() => {
   const sleutel = (regel, langzaam) => STEM[regel.s || 'A'] + (langzaam ? '|langzaam|' : '|') + regel.t;
 
   let loopNr = 0, audio = null;
-  function stop() { loopNr++; if (audio) audio.pause(); audio = null; if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function stop() { loopNr++; if (audio) audio.pause(); audio = null; }
 
   // speelt de regels na elkaar. opties: { langzaam, opRegel(i), opTijd(i, deel 0..1), opEinde() }
   async function speel(regels, opties) {
@@ -33,14 +33,7 @@ window.Luister = (() => {
       let tempo = 1;
       if (!url && o.langzaam) { url = await Spraak.adres(sleutel(regels[i], false)); tempo = 0.75; }
       await new Promise((af) => {
-        if (!url) { // geen mp3: de Nederlandse stem van de browser. Heeft de browser die niet, dan stil (nooit een stem in een andere taal).
-          const stem = Spraak.nlStem();
-          if (!stem) return af();
-          const u = new SpeechSynthesisUtterance(regels[i].t);
-          u.voice = stem; u.lang = stem.lang; u.rate = o.langzaam ? 0.7 : 0.95; u.onend = af; u.onerror = af;
-          speechSynthesis.speak(u);
-          return;
-        }
+        if (!url) return af(); // geen opname: stil (nooit de stem van de browser)
         audio = new Audio(url);
         audio.playbackRate = tempo;
         audio.ontimeupdate = () => { if (o.opTijd && audio && audio.duration) o.opTijd(i, audio.currentTime / audio.duration); };
