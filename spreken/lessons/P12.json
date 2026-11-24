@@ -4,7 +4,7 @@
  "titel": "Welke? Hoe lang? Ja of nee?",
  "uitleg": "U hoort een vraag. Zeg binnen 3 seconden het begin van uw antwoord. Daarna ziet u een goed antwoord.",
  "en": "You hear a question. Within 3 seconds say the START of your answer aloud. The question word tells you how to start. Then you see a model.",
- "patroon": "Welke …? → Ik vind … / Ik woon in …  ·  Hoe lang? → al … jaar  ·  Ja, ik … / Nee, ik … niet …",
+ "patroon": "Welke …? → Ik vind … / Ik woon in … / Hoe lang? → al … jaar / Ja, ik … / Nee, ik … niet …",
  "woorden": [
   {
    "nl": "het seizoen",

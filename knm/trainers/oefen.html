@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNM – trainer</title>
+<title>KNM: trainer</title>
 <link rel="stylesheet" href="../../shared/app.css">
 <script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../knm.css">
@@ -23,7 +23,7 @@
   const { el } = App;
   const id = new URLSearchParams(location.search).get('t') === 'lezen' ? 'lezen' : 'verwar';
   const data = await Lezen.json(`${id}.json`);
-  document.title = `KNM – ${data.titel}`;
+  document.title = `KNM: ${data.titel}`;
   App.kop(data.titel, '../index.html');
   const pagina = document.getElementById('pagina');
   const N = 15;

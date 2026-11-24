@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.19.0';
+  const VERSIE = '1.19.1';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -154,7 +154,7 @@ window.App = (() => {
       const A = window.Account, g = A && A.staat.gebruiker, kan = A && A.staat.beschikbaar && !g;
       const regel = (naam, t, en) => [teken(t), el('span', { en }, naam)];
       kopMenu = el('div', { class: 'taalmenu kopmenu', role: 'menu' },
-        el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel · log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
+        el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel: log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html' }, regel('Instellingen', 'instel', 'settings')),
         el('button', { type: 'button', role: 'menuitem', onclick: () => { sluitKopMenu(); zetThema(isDonker() ? 'licht' : 'donker'); } },
           isDonker() ? regel('Licht thema', 'zon', 'light theme') : regel('Donker thema', 'maan', 'dark theme')));
@@ -284,7 +284,7 @@ window.App = (() => {
   }
 
   // ---------- opnieuw beginnen ----------
-  // wis('lezen') = alles van één examen · wis('herhalen') = de woordkaarten · wis() = alle voortgang.
+  // wis('lezen') = alles van één examen, wis('herhalen') = de woordkaarten, wis() = alle voortgang.
   // De instellingen (thema, Engels, slot) blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
   // 'account-in' = deze browser is ingelogd (shared/account.js); de demo-sleutels zijn het nep-account van { "demo": true }
   const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];

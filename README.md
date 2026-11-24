@@ -19,7 +19,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 ## What is in it
 
 - 150 short lessons: Lezen 38, Luisteren 30, Schrijven 24, Spreken 26, KNM 32.
-- A ladder of 5 steps (trede 0–4). A lesson only uses words from its own step or lower; new words are marked and clickable.
+- A ladder of 5 steps (trede 0-4). A lesson only uses words from its own step or lower; new words are marked and clickable.
 - Word review with spaced repetition. Progress is saved in your browser, there is no account.
 - Dutch audio for every word, sentence and listening text (already included as mp3).
 - Level and vocabulary are calibrated on the official DUO practice exams.
@@ -32,7 +32,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 
 The study plan and the plan per exam are in [`plans/`](plans/0-masterplan.md).
 
-Not included: the three official DUO writing practice exams (the "DUO 1–3" links on the Schrijven page). They belong to the Dutch government. Download them from [inburgeren.nl](https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp) and save them as `schrijven/toets/schrijven1.pdf`, `schrijven2.pdf` and `schrijven3.pdf`.
+Not included: the three official DUO writing practice exams (the "DUO 1-3" links on the Schrijven page). They belong to the Dutch government. Download them from [inburgeren.nl](https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp) and save them as `schrijven/toets/schrijven1.pdf`, `schrijven2.pdf` and `schrijven3.pdf`.
 
 ## Run it
 
@@ -57,7 +57,7 @@ Lessons, tests, trainers, audio and word review all work there. What is differen
 | Feature | Online |
 |---------|--------|
 | Speaking check (speech to text) | Uses the browser's own speech recognition, which exists in Chrome and Edge and sends your audio to Google. In other browsers you record, listen and check yourself. The local speech server below is meant for the site on your own computer. |
-| Official DUO writing exams | Not included. The "DUO 1–3" tiles open the practice page on inburgeren.nl instead. |
+| Official DUO writing exams | Not included. The "DUO 1-3" tiles open the practice page on inburgeren.nl instead. |
 | Your progress | Saved in the browser, per address. Progress made on `localhost` does not show up online, and the other way round. Move it with "Bewaar in een bestand" and "Lees uit een bestand" on the settings page (⚙). |
 | Recording your voice | Needs microphone permission for the site. |
 

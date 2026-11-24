@@ -7,8 +7,8 @@
   let les, index;
   try { [les, index] = await Promise.all([Lezen.json(`lessons/${id}.json`), Lezen.json('lessons/index.json')]); }
   catch (e) { pagina.textContent = 'Deze les bestaat niet: ' + id; return; }
-  document.title = `Luisteren – ${les.id} ${les.titel}`;
-  App.kop(`${les.id} · ${les.titel}`, 'index.html');
+  document.title = `Luisteren: ${les.id} ${les.titel}`;
+  App.kop(`${les.id}: ${les.titel}`, 'index.html');
 
   const woorden = les.woorden || [];
   const nieuw = new Set(woorden.map((w) => App.lemmaNr(w.nl)).filter((n) => n >= 0));

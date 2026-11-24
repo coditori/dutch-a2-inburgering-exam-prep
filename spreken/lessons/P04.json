@@ -55,37 +55,37 @@
   {
    "soort": "zegna",
    "tekst": "de vakantie",
-   "beeld": "va·KAN·tie",
+   "beeld": "va-KAN-tie",
    "en": "holiday"
   },
   {
    "soort": "zegna",
    "tekst": "het station",
-   "beeld": "sta·TION",
+   "beeld": "sta-TION",
    "en": "station"
   },
   {
    "soort": "zegna",
    "tekst": "de telefoon",
-   "beeld": "te·le·FOON",
+   "beeld": "te-le-FOON",
    "en": "phone"
   },
   {
    "soort": "zegna",
    "tekst": "de supermarkt",
-   "beeld": "SU·per·markt",
+   "beeld": "SU-per-markt",
    "en": "supermarket"
   },
   {
    "soort": "zegna",
    "tekst": "de computer",
-   "beeld": "com·PU·ter",
+   "beeld": "com-PU-ter",
    "en": "computer"
   },
   {
    "soort": "zegna",
    "tekst": "het adres",
-   "beeld": "a·DRES",
+   "beeld": "a-DRES",
    "en": "address"
   }
  ]

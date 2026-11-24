@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spreken – toets</title>
+<title>Spreken: toets</title>
 <link rel="stylesheet" href="../../shared/app.css">
 <script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../../spreken/spreken.css">
@@ -32,7 +32,7 @@
   await Spraak.map('../audio/');
   let toets;
   try { toets = await Spreken.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
-  const kop = App.kop(`Spreken · ${toets.titel}`, '../index.html');
+  const kop = App.kop(`Spreken: ${toets.titel}`, '../index.html');
   const klok = el('b', { class: 'klok' });
   kop.insertBefore(klok, kop.lastChild);
   const vragen = toets.items;
@@ -53,7 +53,7 @@
       el('p', {}, `De toets heeft ${vragen.length} vragen in vier onderdelen: vragen met een video, met 1 plaatje, met 2 plaatjes en met 3 plaatjes. U mag ${MINUTEN} minuten over de toets doen.`),
       el('p', { class: 'zacht', en: 'You may listen again, record again and go back. Always answer both parts of the question. At the end you check each answer with the model.' },
         'U mag opnieuw luisteren, opnieuw opnemen en terug gaan. Geef altijd antwoord op de twee delen van de vraag. Aan het einde controleert u elk antwoord met het voorbeeld.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now(), nu: 0, gedaan: {}, goed: {} }; bewaar(); examen(); } }, 'Start')))));
   }
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Schrijven – lessen en oefenexamens</title>
+<title>Schrijven: lessen en oefenexamens</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="schrijven.css">
@@ -11,7 +11,7 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="practice exams: 4 tasks, 40 minutes, pen and paper. You can do them at any time." id="examens">Oefenexamens · 4 opdrachten, 40 minuten, pen en papier</h2>
+  <h2 data-en="practice exams: 4 tasks, 40 minutes, pen and paper. You can do them at any time." id="examens">Oefenexamens: 4 opdrachten, 40 minuten, pen en papier</h2>
   <div class="tegels" id="toetsen"></div>
   <div id="ladder"></div>
   <h2 data-en="learn by heart and practise">Uit het hoofd leren</h2>
@@ -43,7 +43,7 @@
     if (er) return;
     document.querySelectorAll('#duo a').forEach((a) => { a.href = 'https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp'; a.rel = 'noopener'; a.lastChild.textContent = 'op inburgeren.nl'; });
   });
-  const TREDE = { 1: 'Trede 1 · woorden, zinnen, uw gegevens', 2: 'Trede 2 · een zin bouwen', 3: 'Trede 3 · e-mail en korte tekst', 4: 'Trede 4 · examen op papier' };
+  const TREDE = { 1: 'Trede 1: woorden, zinnen, uw gegevens', 2: 'Trede 2: een zin bouwen', 3: 'Trede 3: e-mail en korte tekst', 4: 'Trede 4: examen op papier' };
   const [lessen, toetsen] = await Promise.all([Schrijven.json('lessons/index.json'), Schrijven.json('toets/index.json').catch(() => [])]);
   const P = Schrijven.P;
   const eerste = lessen.find((l, i) => !Schrijven.gehaald(l.id) && Schrijven.isOpen(lessen, i));
@@ -65,7 +65,7 @@
   document.getElementById('toetsen').append(...toetsen.map((t) => {
     const r = P.toets[t.id] || [];
     return el('a', { class: 'tegel' + (r.length ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
-      el('b', {}, t.titel), '4 opdrachten', el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score / (x.totaal || 1))), 1)} · ${r.length}× gedaan` : 'nog niet gedaan'));
+      el('b', {}, t.titel), '4 opdrachten', el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score / (x.totaal || 1))), 1)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

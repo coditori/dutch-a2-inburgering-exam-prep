@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNM – weetjes herhalen</title>
+<title>KNM: weetjes herhalen</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="knm.css">
@@ -60,7 +60,7 @@
       achter.hidden = false; knoppen.textContent = '';
       knoppen.append(el('button', { class: 'knop licht', onclick: () => klaar(false) }, '✘ Wist ik niet'), el('button', { class: 'knop', onclick: () => klaar(true) }, '✔ Wist ik'));
     } }, 'Toon het antwoord'));
-    pagina.append(el('p', { class: 'zacht klein' }, `nog ${rij.length + 1} · ${k.thema}`),
+    pagina.append(el('p', { class: 'zacht klein' }, `nog ${rij.length + 1}, ${k.thema}`),
       el('div', { class: 'kaart weetje' }, el('div', { class: 'kplaat' }, k.beeld || '❓'), el('div', { class: 'vraagtekst' }, App.woorden(k.v)), achter, knoppen));
   }
   begin();

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lezen – lessen en oefenexamens</title>
+<title>Lezen: lessen en oefenexamens</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 </head>
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="practice exams: 25 questions, 65 minutes. You can do them at any time." id="examens">Oefenexamens · 25 vragen, 65 minuten</h2>
+  <h2 data-en="practice exams: 25 questions, 65 minutes. You can do them at any time." id="examens">Oefenexamens: 25 vragen, 65 minuten</h2>
   <div class="tegels" id="toetsen"></div>
   <div id="ladder"></div>
   <h2 data-en="trainers">Trainers</h2>
@@ -28,11 +28,11 @@
 (async () => {
   const { el } = App;
   App.kop('Lezen', '../index.html');
-  const TREDE = { 1: 'Trede 1 · één zin', 2: 'Trede 2 · korte teksten', 3: 'Trede 3 · brief en e-mail', 4: 'Trede 4 · examen' };
+  const TREDE = { 1: 'Trede 1: één zin', 2: 'Trede 2: korte teksten', 3: 'Trede 3: brief en e-mail', 4: 'Trede 4: examen' };
   const TRAINERS = [
     { id: 'vraagwoorden', titel: 'Vraagwoorden', uitleg: 'Wanneer → een tijd', na: 'L10' },
     { id: 'snelzoeken', titel: 'Snel zoeken', uitleg: 'Vind de prijs in 20 seconden', na: 'L24' },
-    { id: 'valwoorden', titel: 'Valwoorden', uitleg: 'niet · alleen · behalve', na: 'L32' },
+    { id: 'valwoorden', titel: 'Valwoorden', uitleg: 'niet, alleen, behalve', na: 'L32' },
   ];
   const [lessen, toetsen] = await Promise.all([Lezen.json('lessons/index.json'), Lezen.json('toets/index.json').catch(() => [])]);
   const P = Lezen.P;
@@ -74,7 +74,7 @@
     const beste = r.length ? Math.max(...r.map((x) => x.score)) : null;
     return el('a', { class: 'tegel' + (beste >= 20 ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
       el('b', {}, t.titel), `${t.vragen} vragen`,
-      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(beste, t.vragen)} · ${r.length}× gedaan` : 'nog niet gedaan'));
+      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(beste, t.vragen)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

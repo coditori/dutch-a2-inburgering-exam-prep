@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNM – thema's en oefenexamens</title>
+<title>KNM: thema's en oefenexamens</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="knm.css">
@@ -11,14 +11,14 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="practice exams: 40 questions, 45 minutes. You can do them at any time." id="examens">Oefenexamens · 40 vragen, 45 minuten</h2>
+  <h2 data-en="practice exams: 40 questions, 45 minutes. You can do them at any time." id="examens">Oefenexamens: 40 vragen, 45 minuten</h2>
   <div class="tegels" id="toetsen"></div>
   <p class="zacht" data-en="Knowledge of Dutch society: 8 themes. Each theme: words, facts, situations, and more facts from your own lesson material.">Kennis van de Nederlandse Maatschappij: 8 thema's. Elk thema: woorden, weetjes, situaties en meer weetjes uit uw eigen lesmateriaal.</p>
   <div id="themas"></div>
   <h2 data-en="trainers">Trainers</h2>
   <div class="tegels" id="trainers"></div>
   <p class="zacht klein" data-en="Tests A and B are at the level of the DUO practice exams. Tests C and D are like the real exam: the answers look alike, so read every word. Ready when: 32 of 40 or better on all four tests and on both DUO practice exams.">Toets A en B zijn zo moeilijk als de oefenexamens van DUO. Toets C en D zijn zoals het echte examen: de antwoorden lijken op elkaar, dus lees elk woord. Klaar voor het examen: 32 van de 40 of meer op de vier toetsen hier én op de twee oefenexamens van DUO.</p>
-  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> · <a href="BRONNEN.md">Bronnen van de feiten</a></p>
+  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> | <a href="BRONNEN.md">Bronnen van de feiten</a></p>
   <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, help language, progress">⚙ Instellingen: alle lessen open, taal van de hulp, voortgang</a></p>
 </main>
 <script src="../shared/woorden.js"></script>
@@ -67,7 +67,7 @@
     const r = P.toets[t.id] || []; const beste = r.length ? Math.max(...r.map((x) => x.score)) : null;
     return el('a', { class: 'tegel' + (beste >= 32 ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
       el('b', {}, t.titel), `${t.vragen} vragen`,
-      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(beste, t.vragen)} · ${r.length}× gedaan` : 'nog niet gedaan'));
+      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(beste, t.vragen)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

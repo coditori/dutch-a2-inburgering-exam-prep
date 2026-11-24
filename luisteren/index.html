@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luisteren – lessen en oefenexamens</title>
+<title>Luisteren: lessen en oefenexamens</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="luisteren.css">
@@ -11,7 +11,7 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="practice exams: 25 questions, 45 minutes. You can do them at any time." id="examens">Oefenexamens · 25 vragen, 45 minuten</h2>
+  <h2 data-en="practice exams: 25 questions, 45 minutes. You can do them at any time." id="examens">Oefenexamens: 25 vragen, 45 minuten</h2>
   <div class="tegels" id="toetsen"></div>
   <div class="kaart">
     <h3 data-en="how to listen in the exam">Zo luistert u op het examen</h3>
@@ -25,7 +25,7 @@
   <h2 data-en="trainers">Trainers</h2>
   <div class="tegels" id="trainers"></div>
   <p class="zacht klein" data-en="Ready when: 19 of 25 or better on two tests here and on two DUO practice exams. From trede 3 on, also listen to real people every day: the DUO practice exams, netinnederland.nl, NOS Jeugdjournaal.">Klaar voor het examen: 19 van de 25 of meer op twee toetsen hier én op twee oefenexamens van DUO. Luister vanaf trede 3 ook elke dag naar echte mensen: de oefenexamens van DUO, netinnederland.nl, het NOS Jeugdjournaal.</p>
-  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> · <a href="https://www.netinnederland.nl" target="_blank" rel="noopener">netinnederland.nl</a></p>
+  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> | <a href="https://www.netinnederland.nl" target="_blank" rel="noopener">netinnederland.nl</a></p>
   <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, help language, progress">⚙ Instellingen: alle lessen open, taal van de hulp, voortgang</a></p>
 </main>
 <script src="../shared/woorden.js"></script>
@@ -38,7 +38,7 @@
 (async () => {
   const { el } = App;
   App.kop('Luisteren', '../index.html');
-  const TREDE = { 1: 'Trede 1 · woorden, getallen, tijden', 2: 'Trede 2 · één zin, twee zinnen', 3: 'Trede 3 · een gesprek', 4: 'Trede 4 · examen' };
+  const TREDE = { 1: 'Trede 1: woorden, getallen, tijden', 2: 'Trede 2: één zin, twee zinnen', 3: 'Trede 3: een gesprek', 4: 'Trede 4: examen' };
   const TRAINERS = [
     { id: 'getallen', titel: 'Getallen', uitleg: 'vijfenveertig → 45', na: 'U05' },
     { id: 'paren', titel: 'Bijna hetzelfde', uitleg: 'man of maan? zon of zoon?', na: 'U09' },
@@ -73,7 +73,7 @@
     const r = P.toets[t.id] || [];
     const beste = r.length ? Math.max(...r.map((x) => x.score)) : null;
     return el('a', { class: 'tegel' + (beste >= 19 ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
-      el('b', {}, t.titel), `${t.vragen} vragen`, el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(beste, t.vragen)} · ${r.length}× gedaan` : 'nog niet gedaan'));
+      el('b', {}, t.titel), `${t.vragen} vragen`, el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(beste, t.vragen)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

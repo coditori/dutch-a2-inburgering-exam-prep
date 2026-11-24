@@ -41,7 +41,7 @@ def main():
         m = TITEL.search(tekst)
         titel = html.unescape(m.group(1)).strip() if m else NAAM
         if NAAM not in titel:
-            titel = f"{titel} · {NAAM}"
+            titel = f"{titel} | {NAAM}"
             if m:  # ook de <title> zelf
                 tekst = tekst[:m.start(1)] + html.escape(titel, quote=False) + tekst[m.end(1):]
         rel = pad.relative_to(map_).as_posix()

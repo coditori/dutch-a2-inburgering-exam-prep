@@ -11,8 +11,8 @@
     pagina.textContent = 'Deze les bestaat niet: ' + id;
     return;
   }
-  document.title = `Lezen – ${les.id} ${les.titel}`;
-  App.kop(`${les.id} · ${les.titel}`, 'index.html');
+  document.title = `Lezen: ${les.id} ${les.titel}`;
+  App.kop(`${les.id}: ${les.titel}`, 'index.html');
 
   const nieuw = new Set(les.woorden.map((w) => App.lemmaNr(w.nl)).filter((n) => n >= 0));
   const vragen = les.teksten.flatMap((t, ti) => t.vragen.map((v, vi) => ({ ti, vi, v })));

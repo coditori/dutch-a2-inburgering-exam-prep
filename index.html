@@ -15,7 +15,7 @@
   <h2 id="kies" data-en="the five exams">De vijf examens</h2>
   <p class="zacht klein" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
   <div class="examens" id="examens"></div>
-  <h2 id="woorden" data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden · de ladder</h2>
+  <h2 id="woorden" data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden: de ladder</h2>
   <p class="zacht klein" data-en="Choose a step and play: five words each time. Every right answer counts, and the step fills up.">Kies een trede en speel: vijf woorden per keer. Elk goed antwoord telt mee, en de trede loopt vol.</p>
   <div class="treden" id="ladder"></div>
   <p style="margin-top:20px"><a class="knop rand" href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
@@ -64,7 +64,7 @@
   const procent = totaal ? Math.round(100 * gedaan / totaal) : 0;
   document.getElementById('vandaag').append(el('div', { class: 'held-rij' },
     el('div', {},
-      el('span', { class: 'oogje' }, 'Inburgering · A2'),
+      el('span', { class: 'oogje' }, 'Inburgering A2'),
       nieuw
         ? [el('h2', { en: 'practice for the civic integration exam' }, 'Oefen voor het inburgeringsexamen'),
           el('p', { en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.')]
@@ -128,7 +128,7 @@
         el('div', { class: 'ex-stand' }, el('div', { class: 'balk' }, el('i', { style: `width:${p}%` })), el('span', {}, `${p}%`)),
         el('span', { class: 'klein zacht', en: 'lessons passed' }, `${x.gedaan} van ${x.n} lessen gehaald`))),
       x.toetsen.length ? el('div', { class: 'ex-toets' },
-        el('span', { class: 'klein zacht', en: `practice exam: ${vragen} ${soortEn}, ${minuten} minutes` }, `Oefenexamen · ${vragen} ${soort} · ${minuten} min`),
+        el('span', { class: 'klein zacht', en: `practice exam: ${vragen} ${soortEn}, ${minuten} minutes` }, `Oefenexamen: ${vragen} ${soort}, ${minuten} min`),
         el('div', { class: 'toetsknoppen' }, x.toetsen.map((t) => {
           // het beste cijfer als u de toets al deed
           const beste = t.beste;
@@ -193,7 +193,7 @@
     lijst.addEventListener('click', (e) => { const chip = e.target.closest('.w') && e.target.closest('.wchip'); if (chip && !chip.classList.contains('gekend')) chip.classList.add('bezig'); });
     return el('div', { class: 'trap-lijst' },
       el('p', { class: 'klein zacht' }, el('span', { class: 'wchip gekend' }, 'gekend'), ' ', el('span', { class: 'wchip bezig' }, 'bezig'), ' ', el('span', { class: 'wchip' }, 'nieuw'),
-        el('span', { en: 'click a word: picture, sound and translation' }, ' · klik op een woord: plaatje, geluid en vertaling')),
+        el('span', { en: 'click a word: picture, sound and translation' }, ' Klik op een woord: plaatje, geluid en vertaling.')),
       lijst, el('div', { class: 'knoppen' }, meer));
   }
 

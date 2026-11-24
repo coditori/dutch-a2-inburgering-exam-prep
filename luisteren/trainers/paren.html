@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luisteren – bijna hetzelfde</title>
+<title>Luisteren: bijna hetzelfde</title>
 <link rel="stylesheet" href="../../shared/app.css">
 <script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../luisteren.css">
@@ -31,8 +31,8 @@
       const knoppen = item.vormen.map((w, i) => el('button', { class: 'optie', onclick: () => {
         knoppen.forEach((k, j) => { k.disabled = true; if (j === welk) k.classList.add('goed'); });
         if (i !== welk) knoppen[i].classList.add('fout');
-        const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = `, el('bdi', { hulp: item.en[0] }), ` · ${item.vormen[1]} = `, el('bdi', { hulp: item.en[1] }));
-        klaar(i === welk, el('p', {}, el('button', { class: 'rond', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, '🔊'), ` ${item.vormen[0]} – ${item.vormen[1]} `,
+        const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = `, el('bdi', { hulp: item.en[0] }), `, ${item.vormen[1]} = `, el('bdi', { hulp: item.en[1] }));
+        klaar(i === welk, el('p', {}, el('button', { class: 'rond', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, '🔊'), ` ${item.vormen[0]} / ${item.vormen[1]} `,
           el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'), en));
       } }, el('span', { class: 'l' }, 'AB'[i]), el('span', {}, w)));
       doel.append(Luister.speler(regels), el('div', { class: 'opties' }, knoppen));

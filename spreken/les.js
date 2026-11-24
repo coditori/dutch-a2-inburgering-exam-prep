@@ -1,6 +1,6 @@
 // Eén sjabloon voor alle lessen van spreken: les.html?les=P01 laadt lessons/P01.json
 // les.html?terug=1 : de vragen die eerder fout gingen en vandaag terugkomen.
-// Soorten items: zegna (luister, zeg na, vergelijk) · kaart (3 seconden: begin van het antwoord) · vraag (examenvraag met opname)
+// Soorten items: zegna (luister, zeg na, vergelijk), kaart (3 seconden: begin van het antwoord), vraag (examenvraag met opname)
 (async () => {
   const { el } = App;
   const q = new URLSearchParams(location.search);
@@ -20,8 +20,8 @@
     try { les = await Spreken.json(`lessons/${id}.json`); } catch (e) { pagina.textContent = 'Deze les bestaat niet: ' + id; return; }
     items = les.items;
   }
-  document.title = `Spreken – ${les.id} ${les.titel}`;
-  App.kop(terugModus ? les.titel : `${les.id} · ${les.titel}`, 'index.html');
+  document.title = `Spreken: ${les.id} ${les.titel}`;
+  App.kop(terugModus ? les.titel : `${les.id}: ${les.titel}`, 'index.html');
   const nieuw = new Set((les.woorden || []).map((w) => App.lemmaNr(w.nl)).filter((n) => n >= 0));
 
   // stap 0 = uitleg + woorden, stap 1..n = items, stap n+1 = klaar
@@ -114,7 +114,7 @@
       el('p', { class: 'spreekvraag' }, App.woorden(it.vraag, nieuw)));
     const hint = { 2: ['Gebruik het plaatje.', 'Use the picture.'], 3: ['Kies een van de plaatjes.', 'Choose one of the pictures.'], 4: ['Gebruik alle plaatjes.', 'Use all pictures.'] }[it.deel];
     vak.append(el('div', { class: 'kaart' },
-      el('p', { class: 'zacht klein' }, `Onderdeel ${it.deel || 1}` + (it.deel === 1 ? ' · u hoort de vraag (op het examen: een video)' : '')),
+      el('p', { class: 'zacht klein' }, `Onderdeel ${it.deel || 1}` + (it.deel === 1 ? ', u hoort de vraag (op het examen: een video)' : '')),
       Spreken.scene(it.beelden),
       tekst,
       hint ? el('p', { class: 'zacht', en: hint[1] }, hint[0]) : null,
