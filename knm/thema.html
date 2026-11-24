@@ -44,7 +44,7 @@
   function reeks(n, teken, klaar) {
     const antw = [];
     let ver = 0;
-    let max = App.vrijTot(KNM.P.lessen[les], n + 1); // deze stap haalde u al: alle kaarten en vragen zijn open
+    let max = App.vrijTot(KNM.P.lessen[les], n); // deze stap haalde u al: alle kaarten en vragen zijn open
     const ga = (i) => {
       if (i >= n) return klaar(antw.filter((a) => a && a.goed).length);
       max = Math.max(max, i);

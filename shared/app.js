@@ -396,9 +396,9 @@ window.App = (() => {
   // de knop bij een fout antwoord in een les
   const opnieuwKnop = (doe) => el('button', { type: 'button', class: 'knop licht', en: 'try again', onclick: doe }, 'Probeer opnieuw');
   // Een les die u al haalde (80% of meer) is helemaal open: in de balk kunt u naar elke stap, ook als u de les opnieuw opent.
-  // r = het bewaarde resultaat van de les ({ beste, totaal }), n = het aantal stappen. Antwoord: de verste stap die open is (de uitslag zelf niet).
+  // r = het bewaarde resultaat van de les ({ beste, totaal }), n = het aantal stappen. Antwoord: de verste stap die open is. Dat is de laatste, de uitslag: wie daarheen springt, ziet zijn beste score van eerder (App.alGehaald).
   const lesGehaald = (r) => !!r && !!r.totaal && r.beste / r.totaal >= 0.8;
-  const vrijTot = (r, n) => (lesGehaald(r) ? Math.max(0, n - 2) : 0);
+  const vrijTot = (r, n) => (lesGehaald(r) ? Math.max(0, n - 1) : 0);
   // Rondkijken in een les die u al haalde telt niet als een nieuwe poging: anders stond er "0 / 5" na een paar klikken in de balk.
   //   sprong(stand, i)   bij een klik in de balk naar stap i: onthoudt dat de leerling stappen oversloeg (stand.ver = de verste stap die gewoon bereikt is)
   //   bladert(stand, r)  bij de uitslag: sloeg de leerling stappen over in een les die al gehaald is? Dan geen nieuwe score.
