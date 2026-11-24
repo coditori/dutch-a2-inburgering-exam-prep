@@ -632,3 +632,7 @@ a.ring { color: inherit; text-decoration: none; border-radius: 50%; transition: 
   .trap-paneel { padding: 14px; } .trap-kop .knoppen { width: 100%; } .spel-woord span { font-size: 1.55rem; }
 }
 @media (prefers-reduced-motion: reduce) { .trap-trede.nu::before { animation: none; } }
+/* herhalen: het goede antwoord na een woordkaart (plaatje, woord, betekenis) */
+.kaart-antwoord { display: inline-flex; align-items: center; gap: 16px; margin: 4px auto 0; padding: 12px 20px; border-radius: var(--rond); background: var(--vlak2); text-align: left; }
+.kaart-antwoord .beeld { font-size: 2.6rem; line-height: 1; }
+.kaart-antwoord b { font-size: 1.25rem; }
