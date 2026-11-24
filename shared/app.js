@@ -2,7 +2,7 @@
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
-  const VERSIE = '1.1.0';
+  const VERSIE = '1.2.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -293,8 +293,15 @@ window.App = (() => {
     return stand;
   }
 
+  // cijfer tot 10 met één cijfer achter de komma: 30 van de 40 goed = 7,5
+  const cijfer = (goed, totaal) => (totaal ? Math.round((goed / totaal) * 100) / 10 : 0).toFixed(1).replace('.', ',');
+  // de uitslag van een toets: groot het cijfer, klein eronder hoeveel goed. wat = 'vragen goed' of 'punten'
+  const cijferBlok = (goed, totaal, wat) => [
+    el('div', { class: 'groot midden' }, cijfer(goed, totaal), el('span', { class: 'cijfer-van' }, ' / 10')),
+    el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`)];
+
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { VERSIE, W, lees, schrijf, kaal, el, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

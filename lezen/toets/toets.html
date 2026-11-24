@@ -43,7 +43,7 @@
       el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
       el('p', { class: 'zacht', en: 'Like the real exam: read the question first, then the text. No word help during the test. You see the result at the end.' },
         'Net als het echte examen: lees eerst de vraag, dan de tekst. Er is geen hulp bij woorden. De uitslag ziet u aan het einde.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum})`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join(' · ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
         stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((q) => App.schud(q.v.o.map((_, i) => i))) };
         bewaar(); examen();
@@ -71,7 +71,7 @@
     const links = el('section'), rechts = el('section');
     const vraagDoel = el('div');
     pagina.textContent = '';
-    pagina.append(el('div', { class: 'examen' }, links, rechts),
+    pagina.append(el('div', { class: 'examen twee' }, links, rechts),
       el('div', { class: 'voet' },
         el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, '‹ Vorige'),
         el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ',
@@ -125,7 +125,7 @@
       class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1))));
     pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
-      el('div', { class: 'groot midden' }, `${stand.score} / ${n}`),
+      ...App.cijferBlok(stand.score, n),
       el('p', { class: 'midden uitslag ' + (goedGenoeg ? 'goed' : 'fout'), en: goedGenoeg ? '20 or more: exam level.' : 'Goal: 20 of 25. Look at the red questions.' },
         goedGenoeg ? '✔ 20 of meer: examenniveau.' : 'Doel: 20 van de 25. Bekijk de rode vragen.'),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag en de zin met het antwoord.`),

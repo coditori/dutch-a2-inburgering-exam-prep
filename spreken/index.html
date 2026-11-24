@@ -11,10 +11,10 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
+  <h2 data-en="practice exams: 16 questions, 35 minutes. You can do them at any time." id="examens">Oefenexamens · 16 vragen, 35 minuten</h2>
+  <div class="tegels" id="toetsen"></div>
   <div class="kaart" id="techniek"></div>
   <div id="ladder"></div>
-  <h2 data-en="mock exam: 16 questions, 35 minutes">Toets · 16 vragen, 35 minuten</h2>
-  <div class="tegels" id="toetsen"></div>
   <p class="zacht klein" data-en="Ready when: 20 random part-1 questions with two correct sentences each, and a full run inside 35 minutes with both halves answered every time.">Klaar voor het examen: 20 vragen van onderdeel 1 met twee goede zinnen, en een hele toets binnen 35 minuten met op elke vraag twee antwoorden.</p>
   <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> (Chrome of Firefox)</p>
   <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, help language, progress">⚙ Instellingen: alle lessen open, taal van de hulp, voortgang</a></p>
@@ -58,12 +58,11 @@
     })));
   }
   const laatste = lessen.length ? lessen[lessen.length - 1].id : null;
-  const toetsOpen = P.open || !laatste || Spreken.gehaald(laatste);
   document.getElementById('toetsen').append(...toetsen.map((t) => {
     const r = P.toets[t.id] || [];
-    return el('a', { class: 'tegel' + (toetsOpen ? '' : ' slot'), href: `toets/toets.html?t=${t.id}` },
-      el('b', {}, t.titel + (toetsOpen ? '' : ' 🔒')), `${t.vragen} vragen`,
-      el('div', { class: 'klein zacht' }, r.length ? `beste: ${Math.max(...r.map((x) => x.score))} / ${t.vragen} · ${r.length}× gedaan` : `na les ${laatste}`));
+    return el('a', { class: 'tegel', href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, t.titel), `${t.vragen} vragen`,
+      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score)), t.vragen)} · ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

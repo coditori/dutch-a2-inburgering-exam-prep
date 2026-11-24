@@ -49,7 +49,7 @@
       el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
       el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
       el('p', { class: 'zacht', en: 'Like the real exam: questions per theme, three answers, no word help. 🔊 reads the question aloud. Result at the end.' }, 'Net als het echte examen: vragen per thema, drie antwoorden, geen hulp bij woorden. Met 🔊 hoort u de vraag. De uitslag ziet u aan het einde.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum})`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join(' · ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
         stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((v) => App.schud(v.o.map((_, i) => i))) };
         bewaar(); examen();
@@ -106,7 +106,7 @@
     const ok = stand.score >= 32;
     pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
-      el('div', { class: 'groot midden' }, `${stand.score} / ${vragen.length}`),
+      ...App.cijferBlok(stand.score, vragen.length),
       el('p', { class: 'midden uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? '32 or more: ready.' : 'Goal: 32 of 40. Look at the red questions.' }, ok ? '✔ 32 of meer: klaar voor het examen.' : 'Doel: 32 van de 40. Bekijk de rode vragen.'),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en waarom.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
