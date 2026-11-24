@@ -93,7 +93,7 @@
         Spreken.scene(it.beelden),
         it.deel === 1 ? el('div', { class: 'scene' }, el('div', { class: 'plaat' }, '🧑‍💼🎥')) : null),
       el('section', {}, tekst, hint ? el('p', { class: 'zacht' }, hint) : null,
-        el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, '🔊 Luister naar de vraag')),
+        el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, App.teken('luid'), 'Luister naar de vraag')),
         opnameVak)),
       el('div', { class: 'voet' },
         el('button', { class: 'knop', disabled: nr === 0, onclick: () => ga(nr - 1) }, 'Vorige'),
@@ -138,7 +138,7 @@
       o && o.tekst ? el('div', { class: 'gehoord' }, el('span', { class: 'zacht klein' }, 'De computer hoorde: '), o.tekst) : null,
       el('div', { class: 'lijstje' }, vakjes.map((v) => v.rij)),
       el('div', { class: 'model' }, el('p', { class: 'zacht klein', en: 'model answer' }, 'Voorbeeld:'), p.model.map((z) => el('p', {}, App.woorden(z))),
-        el('button', { class: 'knop licht klein', onclick: () => Spreken.speel(p.model) }, '🔊 Luister')),
+        el('button', { class: 'knop licht klein', onclick: () => Spreken.speel(p.model) }, App.teken('luid'), 'Luister')),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: () => {
         stand.goed[nr] = !!stand.gedaan[nr] && vakjes.every((v) => v.i.checked);
         if (!stand.goed[nr] && it.les) Spreken.terug.fout(it.les);

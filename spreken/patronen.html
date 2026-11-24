@@ -31,9 +31,9 @@
       const en = el('span', { class: 'zacht klein', hidden: true, style: 'font-style:italic' }, ' ', el('bdi', { hulp: z.en }));
       return el('tr', {}, el('td', {}, App.woorden(z.nl), en),
         el('td', { style: 'white-space:nowrap;text-align:right' },
-          el('button', { class: 'rond', title: 'luister', onclick: () => Spreken.speel(z.nl) }, '🔊'), ' ',
+          el('button', { class: 'rond', title: 'luister', onclick: () => Spreken.speel(z.nl) }, App.teken('luid')), ' ',
           el('button', { class: 'rond', title: 'langzaam', onclick: () => Spreken.speel(z.nl, 0.75) }, '🐢'), ' ',
-          el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗')));
+          el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: () => { en.hidden = !en.hidden; } }, App.teken('vertaal'))));
     })),
     el('div', { class: 'knoppen' }, el('button', { class: 'knop licht klein', en: 'play all', onclick: () => Spreken.speel(p.zinnen.map((z) => z.nl)) }, 'Speel alles')));
   pagina.append(...data.patronen.map(blok));

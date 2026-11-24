@@ -48,7 +48,7 @@
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
       el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
       el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
-      el('p', { class: 'zacht', en: 'Like the real exam: questions per theme, three answers, no word help. 🔊 reads the question aloud. Result at the end.' }, 'Net als het echte examen: vragen per thema, drie antwoorden, geen hulp bij woorden. Met 🔊 hoort u de vraag. De uitslag ziet u aan het einde.'),
+      el('p', { class: 'zacht', en: 'Like the real exam: questions per theme, three answers, no word help. The button Luister reads the question aloud. Result at the end.' }, 'Net als het echte examen: vragen per thema, drie antwoorden, geen hulp bij woorden. Met de knop Luister hoort u de vraag. De uitslag ziet u aan het einde.'),
       eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
         stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((v) => App.schud(v.o.map((_, i) => i))) };
@@ -73,7 +73,7 @@
     const v = vragen[s.nr];
     const vraagDoel = el('div');
     vak.append(el('div', { class: 'kaart' }, el('div', { class: 'kplaat' }, v.beeld || '🇳🇱'),
-      el('p', { class: 'midden' }, el('button', { class: 'knop licht klein', en: 'listen', onclick: () => Spraak.zeg(voorlezen(v)) }, '🔊 Luister')), vraagDoel));
+      el('p', { class: 'midden' }, el('button', { class: 'knop licht klein', en: 'listen', onclick: () => Spraak.zeg(voorlezen(v)) }, App.teken('luid'), 'Luister')), vraagDoel));
     const blok = Lezen.vraag(vraagDoel, v, { volgorde: stand.volgorde[s.nr], gekozen: stand.antwoorden[s.nr], op: (keuze) => { stand.antwoorden[s.nr] = keuze; bewaar(); blok.teken(keuze, false); } });
     window.scrollTo(0, 0);
   }

@@ -18,7 +18,7 @@
 <script src="../luisteren.js"></script>
 <script>
 // Bijna hetzelfde (minimale paren): u hoort één woord. Welk woord is het? Inhoud: paren.json
-// vormen: de twee woorden, en: Engels (achter ❗).
+// vormen: de twee woorden, en: Engels (achter de knop Vertaling).
 (async () => {
   const { el } = App;
   const data = await Lezen.json('paren.json');
@@ -32,8 +32,8 @@
         knoppen.forEach((k, j) => { k.disabled = true; if (j === welk) k.classList.add('goed'); });
         if (i !== welk) knoppen[i].classList.add('fout');
         const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = `, el('bdi', { hulp: item.en[0] }), `, ${item.vormen[1]} = `, el('bdi', { hulp: item.en[1] }));
-        klaar(i === welk, el('p', {}, el('button', { class: 'rond', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, '🔊'), ` ${item.vormen[0]} / ${item.vormen[1]} `,
-          el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'), en));
+        klaar(i === welk, el('p', {}, el('button', { class: 'rond', title: 'luister', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, App.teken('luid')), ` ${item.vormen[0]} / ${item.vormen[1]} `,
+          el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: () => { en.hidden = !en.hidden; } }, App.teken('vertaal')), en));
       } }, el('span', { class: 'l' }, 'AB'[i]), el('span', {}, w)));
       doel.append(Luister.speler(regels), el('div', { class: 'opties' }, knoppen));
       Luister.speel(regels);

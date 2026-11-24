@@ -82,14 +82,14 @@
       const en = el('div', { class: 'en', hidden: true, hulp: w.en });
       const k = el('div', { class: 'wkaart' }, el('div', { class: 'beeld' }, w.beeld || '💬'), el('div', { class: 'nl' }, w.nl), z, en,
         el('div', { class: 'knoppen', style: 'justify-content:center' },
-          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(z.hidden ? w.nl : zin(w)); } }, '🔊'),
-          el('button', { class: 'rond', title: 'Engels', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, '❗')));
+          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(z.hidden ? w.nl : zin(w)); } }, App.teken('luid')),
+          el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, App.teken('vertaal')), App.bewaarKnop(w.nl)));
       k.addEventListener('click', (e) => { if (e.target.closest('.w')) return; z.hidden = !z.hidden; k.classList.toggle('om', !z.hidden); });
       return k;
     });
     pagina.textContent = '';
     pagina.append(el('h2', { en: 'words of this theme' }, 'Woorden van dit thema'),
-      el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English. Then: a short test.' }, 'Klik op een kaart: u ziet een zin. ❗ = vertaling. Daarna komt een korte test.'),
+      el('p', { class: 'zacht', en: 'Click a card for a sentence. Then: a short test.' }, 'Klik op een kaart: u ziet een zin. Daarna komt een korte test.'),
       el('div', { class: 'wkaarten' }, kaarten),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: verder }, knop)));
   }
@@ -123,7 +123,7 @@
       const k = lijst[i]; const id = `${tid}:${voor}${i}`;
       KNM.Kaarten.voegToe(id);
       const en = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic', hulp: k.en });
-      const achter = el('div', { hidden: !al }, el('div', { class: 'antwoord' }, App.woorden(k.a, nieuw)), el('p', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗')), en);
+      const achter = el('div', { hidden: !al }, el('div', { class: 'antwoord' }, App.woorden(k.a, nieuw)), el('p', {}, el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: () => { en.hidden = !en.hidden; } }, App.teken('vertaal'))), en);
       const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' });
       if (al) { // terugkijken: het antwoord staat er al
         knoppen.append(el('span', { class: 'uitslag ' + (al.goed ? 'goed' : 'fout'), style: 'margin:0' }, al.goed ? '✔ Wist ik' : '✘ Wist ik niet'), el('button', { class: 'knop', en: 'next', onclick: verder }, 'Verder'));
@@ -134,7 +134,7 @@
           knoppen.append(el('button', { class: 'knop licht', en: 'I did not know', onclick: () => kies(false) }, '✘ Wist ik niet'), el('button', { class: 'knop', en: 'I knew it', onclick: () => kies(true) }, '✔ Wist ik'));
         } }, 'Toon het antwoord'));
       }
-      pagina.append(el('div', { class: 'kaart weetje' }, el('div', { class: 'kplaat' }, k.beeld || '❓'), el('div', { class: 'vraagtekst' }, App.woorden(k.v, nieuw), ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(k.v) }, '🔊')), achter, knoppen));
+      pagina.append(el('div', { class: 'kaart weetje' }, el('div', { class: 'kplaat' }, k.beeld || '❓'), el('div', { class: 'vraagtekst' }, App.woorden(k.v, nieuw), ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(k.v) }, App.teken('luid'))), achter, knoppen));
     }, klaar);
   }
 

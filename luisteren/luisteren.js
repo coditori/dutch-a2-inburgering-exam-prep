@@ -51,7 +51,7 @@ window.Luister = (() => {
     const o = opties || {};
     const bezig = el('span', { class: 'bezig' });
     let laatst = false;
-    const start = (langzaam) => { laatst = langzaam; bezig.textContent = '🔊 ...'; speel(regels, Object.assign({}, o, { langzaam, opEinde: () => { bezig.textContent = ''; } })); };
+    const start = (langzaam) => { laatst = langzaam; bezig.textContent = 'U luistert ...'; speel(regels, Object.assign({}, o, { langzaam, opEinde: () => { bezig.textContent = ''; } })); };
     return el('div', { class: 'speler' },
       el('button', { class: 'knop', title: 'luister', en: 'play', onclick: () => start(false) }, '▶'),
       o.langzaam === false ? null : el('button', { class: 'knop licht', title: 'langzaam', en: 'slow', onclick: () => start(true) }, '🐢'),
@@ -60,7 +60,7 @@ window.Luister = (() => {
       bezig);
   }
 
-  // transcript: elke regel een alinea; woorden lichten op tijdens het afspelen. Klik op een woord: pop-up (hoor het woord met 🔊).
+  // transcript: elke regel een alinea; woorden lichten op tijdens het afspelen. Klik op een woord: pop-up (hoor het woord met de knop Luister).
   function transcript(regels, nieuw) {
     const meer = new Set(regels.map((r) => r.s || 'A')).size > 1;
     const rijen = regels.map((r) => {

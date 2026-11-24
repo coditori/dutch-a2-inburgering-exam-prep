@@ -11,7 +11,7 @@ window.Account = (() => {
   const VOOR = 'dutch-exam:';
   // Dit gaat naar het account. Niet: instellingen, half gemaakte lessen en toetsen, en uw eigen gegevens voor het formulier (naam, adres).
   const EXAMENS = ['lezen', 'luisteren', 'schrijven', 'spreken', 'knm'];
-  const SLEUTELS = [...EXAMENS, 'srs', 'knm-kaarten', 'profiel'];
+  const SLEUTELS = [...EXAMENS, 'srs', 'knm-kaarten', 'profiel', 'mijn-woorden'];
   const FIREBASE = 'https://www.gstatic.com/firebasejs/10.12.2/';
   const lees = (k) => { try { return localStorage.getItem(VOOR + k); } catch (e) { return null; } };
   const zet = (k, v) => { try { if (v == null) localStorage.removeItem(VOOR + k); else localStorage.setItem(VOOR + k, v); } catch (e) { /* geen opslag */ } };
@@ -55,6 +55,11 @@ window.Account = (() => {
     if (sleutel === 'profiel') { // een naam die de leerling zelf typte (zelf) gaat voor een naam van het account; twee getypte namen: de nieuwste
       const rang = (x) => (x.naam ? (x.zelf ? 2 : 1) : 0);
       return JSON.stringify(rang(b) > rang(a) || (rang(b) === 2 && rang(a) === 2 && (b.t || 0) > (a.t || 0)) ? b : a);
+    }
+    if (sleutel === 'mijn-woorden') { // per woord de regel die het laatst veranderd is (bewaard, notitie, of van de lijst gehaald)
+      const uit = Object.assign({}, b, a);
+      for (const nl of Object.keys(b)) if (a[nl] && ((b[nl] && b[nl].t) || 0) > ((a[nl] && a[nl].t) || 0)) uit[nl] = b[nl];
+      return JSON.stringify(uit);
     }
     return JSON.stringify(kaartenSamen(a, b));
   }
@@ -161,6 +166,9 @@ window.Account = (() => {
 
   // Verliet de leerling de pagina met nieuwe voortgang? Dan nog één keer bewaren.
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && staat.gebruiker && lees('account-afdruk') !== afdruk(alles())) sync(); });
+  // Mijn woorden: een woord bewaard of een notitie geschreven? Even wachten (de leerling typt nog), dan naar het account.
+  let woordenTik = 0;
+  document.addEventListener('mijn-woorden', () => { clearTimeout(woordenTik); if (staat.gebruiker) woordenTik = setTimeout(sync, 2500); });
   let uitloggen = false; // bij uitloggen wissen we de browser, niet het account
   document.addEventListener('gewist', () => { if (staat.gebruiker && !uitloggen) { zet('account-wis', '1'); sync(); } });
 
@@ -187,7 +195,7 @@ window.Account = (() => {
         await wolk.loguit();
         staat.gebruiker = null;
         window.App.wis(); // alle voortgang in deze browser; de instellingen blijven
-        for (const k of ['profiel', 'account-afdruk', 'account-kaart', 'account-wis', 'account-naam']) zet(k, null);
+        for (const k of ['profiel', 'mijn-woorden', 'account-afdruk', 'account-kaart', 'account-wis', 'account-naam']) zet(k, null);
       } finally { uitloggen = false; }
       zetStatus('uit');
       document.dispatchEvent(new CustomEvent('account-gegevens'));

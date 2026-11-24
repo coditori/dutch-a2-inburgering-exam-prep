@@ -228,7 +228,7 @@
       } }, metBeeld ? WL[n][4] : el('span', { hulp: WL[n][2] })));
       tekenLadder(el('div', { class: 'spel' },
         stippen(),
-        el('div', { class: 'spel-woord' }, el('span', {}, r[1]), el('button', { type: 'button', class: 'rond', title: 'luister', 'aria-label': 'luister naar het woord', onclick: () => window.Spraak.zeg(r[1]) }, '🔊')),
+        el('div', { class: 'spel-woord' }, el('span', {}, r[1]), el('button', { type: 'button', class: 'rond', title: 'luister', 'aria-label': 'luister naar het woord', onclick: () => window.Spraak.zeg(r[1]) }, App.teken('luid'))),
         el('p', { class: 'zacht', en: metBeeld ? 'Which picture fits?' : 'What does it mean?' }, metBeeld ? 'Welk plaatje past?' : 'Wat betekent dit?'),
         el('div', { class: 'opties' + (metBeeld ? ' beelden' : '') }, knoppen),
         melding,

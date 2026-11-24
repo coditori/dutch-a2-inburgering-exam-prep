@@ -101,7 +101,7 @@
   const vormen = (nl) => nl.split(/\s+\/\s+|,\s+/).map(kort).filter(Boolean);
 
   // de voorbeeldzin van het woord (uit de les), met een knop om hem te horen. Geen zin? Dan niets.
-  const zinRegel = (r) => (r[6] ? el('p', { class: 'kaart-zin' }, el('span', {}, r[6]), ' ', el('button', { class: 'rond', title: 'luister naar de zin', 'aria-label': 'luister naar de zin', onclick: () => Spraak.zeg(r[6]) }, '🔊')) : null);
+  const zinRegel = (r) => (r[6] ? el('p', { class: 'kaart-zin' }, el('span', {}, r[6]), ' ', el('button', { class: 'rond', title: 'luister naar de zin', 'aria-label': 'luister naar de zin', onclick: () => Spraak.zeg(r[6]) }, App.teken('luid'))) : null);
 
   // na het antwoord: goed of fout, en altijd het woord met plaatje, betekenis en geluid
   function nakijken(k, r, ok, klaar, uit, zinStaatEr) { // zinStaatEr: de zin stond al bij de vraag
@@ -113,7 +113,7 @@
       el('div', { class: 'kaart-antwoord' },
         r[4] ? el('div', { class: 'beeld', 'aria-hidden': 'true' }, r[4]) : null,
         el('div', {},
-          el('b', {}, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+          el('b', {}, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, App.teken('luid'))),
           el('div', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
           r[5] ? el('div', { class: 'klein zacht' }, r[5]) : null)),
       zinStaatEr ? null : zinRegel(r),
@@ -131,7 +131,7 @@
       pagina.append(el('div', { class: 'kaart midden' },
         el('p', { class: 'zacht', en: 'a new word: look, listen and say it' }, 'Een nieuw woord. Kijk, luister en zeg het na.'),
         r[4] ? el('div', { class: 'beeld', style: 'font-size:3.4rem;line-height:1.2', 'aria-hidden': 'true' }, r[4]) : null,
-        el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+        el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, App.teken('luid'))),
         el('p', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
         r[5] ? el('p', { class: 'klein zacht' }, r[5]) : null,
         zinRegel(r),
@@ -170,7 +170,7 @@
     } }, metBeeld ? WL[n][4] : el('span', { hulp: WL[n][2] })));
     pagina.append(el('div', { class: 'kaart midden' },
       el('p', { class: 'zacht', en: metBeeld ? 'Which picture fits this word?' : 'What does this word mean?' }, metBeeld ? 'Welk plaatje past bij dit woord?' : 'Wat betekent dit woord?'),
-      el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+      el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, App.teken('luid'))),
       zinRegel(r), // het woord in een zin: zo ziet u hoe het gebruikt wordt
       el('div', { class: 'opties' + (metBeeld ? ' beelden' : ''), style: 'max-width:520px;margin:16px auto 0;text-align:left' }, knoppen),
       uit));
@@ -185,7 +185,7 @@
         el('button', { class: 'knop', en: 'I knew it', onclick: () => klaar(true) }, '✔ Wist ik')); } }, 'Toon'));
     pagina.append(el('div', { class: 'kaart midden' },
       el('p', { class: 'zacht', en: 'What does this word mean?' }, 'Wat betekent dit woord?'),
-      el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+      el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(k.nl) }, App.teken('luid'))),
       achter, knoppen));
   }
 
@@ -199,7 +199,7 @@
       uit.textContent = '';
       uit.append(
         el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Het goede woord: ' + woord),
-        el('p', {}, voor, el('span', { class: 'gatwoord' }, woord), na, ' ', el('button', { class: 'rond', onclick: () => Spraak.zeg(voor + woord + na) }, '🔊')),
+        el('p', {}, voor, el('span', { class: 'gatwoord' }, woord), na, ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(voor + woord + na) }, App.teken('luid'))),
         el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder')));
       uit.querySelector('.knop').focus();
       if (ok) App.goed(uit.querySelector('.knop'));

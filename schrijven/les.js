@@ -39,15 +39,15 @@
     if (les.uitleg) pagina.append(el('div', { class: 'kaart' }, el('h3', { en: 'the rule' }, 'De regel'), les.uitleg.map((u) => el('p', { en: u.en || '' }, App.woorden(u.nl, nieuw)))));
     if ((les.woorden || []).length) {
       pagina.append(el('h2', { en: 'new words' }, 'Nieuwe woorden'),
-        el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English.' }, 'Klik op een kaart: u ziet een zin. ❗ = vertaling.'),
+        el('p', { class: 'zacht', en: 'Click a card for a sentence.' }, 'Klik op een kaart: u ziet een zin.'),
         el('div', { class: 'wkaarten' }, les.woorden.map((w) => {
           SRS.voegToe('w:' + w.nl, { soort: 'w', nl: w.nl, en: w.en, beeld: w.beeld || '' });
           const zin = el('div', { class: 'zin', hidden: true }, App.woorden(w.zin || '', nieuw));
           const en = el('div', { class: 'en', hidden: true, hulp: w.en });
           const kaart = el('div', { class: 'wkaart' }, el('div', { class: 'beeld' }, w.beeld || '✏️'), el('div', { class: 'nl' }, w.nl), zin, en,
             el('div', { class: 'knoppen', style: 'justify-content:center' },
-              el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(w.nl); } }, '🔊'),
-              el('button', { class: 'rond', title: 'Engels', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, '❗')));
+              el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(w.nl); } }, App.teken('luid')),
+              el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, App.teken('vertaal')), App.bewaarKnop(w.nl)));
           kaart.addEventListener('click', (e) => { if (e.target.closest('.w')) return; zin.hidden = !zin.hidden; kaart.classList.toggle('om', !zin.hidden); });
           return kaart;
         })));
