@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.23.0';
+  const VERSIE = '1.23.1';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -395,6 +395,9 @@ window.App = (() => {
     el('div', { class: 'foutlijst-rij' }, lijst.map((x) => el('button', { type: 'button', class: 'knop klein foutknop', onclick: x.ga }, x.naam)))) : null);
   // de knop bij een fout antwoord in een les
   const opnieuwKnop = (doe) => el('button', { type: 'button', class: 'knop licht', en: 'try again', onclick: doe }, 'Probeer opnieuw');
+  // Een les die u al haalde (80% of meer) is helemaal open: in de balk kunt u naar elke stap, ook als u de les opnieuw opent.
+  // r = het bewaarde resultaat van de les ({ beste, totaal }), n = het aantal stappen. Antwoord: de verste stap die open is (de uitslag zelf niet).
+  const vrijTot = (r, n) => (r && r.totaal && r.beste / r.totaal >= 0.8 ? Math.max(0, n - 2) : 0);
   // knoppen 1 2 3 voor de vragen bij één tekst. staat(i) = 'goed' | 'fout' | null (nog niet gedaan). Klik: terugkijken.
   function vraagKnoppen(n, nu, staat, ga) {
     let eerste = 0;
@@ -584,5 +587,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, bevestig, wis };
+    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, bevestig, wis };
 })();

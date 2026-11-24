@@ -156,7 +156,7 @@
     App.sluitPop();
     pagina.textContent = '';
     stand.stap = Math.max(0, Math.min(stand.stap, stappen.length - 1));
-    stand.max = Math.max(stand.max || 0, stand.stap);
+    stand.max = Math.max(stand.max || 0, stand.stap, App.vrijTot(Lezen.P.lessen[les.id], stappen.length)); // een les die u al haalde is helemaal open
     balk();
     const s = stappen[stand.stap];
     if (s.soort === 'woorden') toonWoorden();
