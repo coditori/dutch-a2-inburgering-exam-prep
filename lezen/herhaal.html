@@ -43,7 +43,7 @@
         el('h3', {}, `Vandaag: ${nu.length} ${nu.length === 1 ? 'kaart' : 'kaarten'}`),
         el('p', { class: 'zacht', en: 'You see a word and choose what it means. Do you know a word well? Then you type it yourself. You always see the right answer.' },
           'U ziet een woord en kiest wat het betekent. Kent u een woord al goed? Dan typt u het zelf. U ziet altijd het goede antwoord.'),
-        el('p', { class: 'zacht klein', en: 'Wrong: the word comes again in this round, and tomorrow. Right: back in 2, 4, 8, 16 days.' }, 'Fout: het woord komt in deze ronde nog een keer, en morgen weer. Goed: terug over 2, 4, 8, 16 dagen.'),
+        el('p', { class: 'zacht klein uitleg', 'data-knop': 'Hoe werkt herhalen?', 'data-knop-en': 'how does reviewing work?', en: 'Wrong: the word comes again in this round, and tomorrow. Right: back in 2, 4, 8, 16 days.' }, 'Fout: het woord komt in deze ronde nog een keer, en morgen weer. Goed: terug over 2, 4, 8, 16 dagen.'),
         el('div', { class: 'knoppen' },
           el('button', { class: 'knop', disabled: !nu.length, en: 'start', onclick: () => start(nu) }, 'Begin'),
           el('button', { class: 'knop licht', en: '10 new words from the list', onclick: nieuweWoorden }, '+ 10 nieuwe woorden'),
@@ -54,6 +54,7 @@
         el('td', { style: 'width:50%' }, el('div', { class: 'balk' }, el('i', { style: `width:${s.totaal ? Math.round(100 * s.bekend / s.totaal) : 0}%` }))),
         el('td', { class: 'klein zacht' }, `${s.bekend} van ${s.totaal}, bezig met ${s.bezig}`)))),
       el('p', { class: 'klein zacht', en: 'A word counts as known after two right answers on two different days.' }, 'Een woord telt als gekend na twee goede antwoorden op twee dagen.'));
+    App.uitleg(pagina);
   }
 
   // de volgende 10 woorden van de laagste trede die nog niet in de dozen zitten
