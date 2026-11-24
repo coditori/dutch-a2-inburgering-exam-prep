@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../spreken/spreken.css">
 </head>
 <body>
-<div id="pagina"><main><p class="zacht">Even wachten…</p></main></div>
+<div id="pagina"><main><p class="zacht">Even wachten...</p></main></div>
 <script src="../../shared/woorden.js"></script>
 <script src="../../shared/srs.js"></script>
 <script src="../../shared/audio.js"></script>
@@ -72,7 +72,7 @@
     const speler = el('div', {}, opnames[nr] ? el('audio', { controls: true, src: opnames[nr].url }) : null);
     knop.addEventListener('click', async () => {
       if (rec) {
-        knop.disabled = true; status.textContent = 'even wachten…';
+        knop.disabled = true; status.textContent = 'even wachten...';
         const r = rec; rec = null;
         opnames[nr] = await r.stop();
         stand.gedaan[nr] = true; bewaar();
@@ -81,7 +81,7 @@
         return;
       }
       Spraak.stop();
-      try { rec = await Spreken.opnemer(); knop.textContent = '⏹ Stop'; knop.classList.add('rood', 'bezig'); status.textContent = 'opname loopt…'; }
+      try { rec = await Spreken.opnemer(); knop.textContent = '⏹ Stop'; knop.classList.add('rood', 'bezig'); status.textContent = 'opname loopt...'; }
       catch (e) { status.textContent = 'Geen microfoon: zeg uw antwoord hardop en klik op "Hardop gezegd".'; }
     });
     const hardop = el('button', { class: 'knop licht klein', en: 'no microphone: I said it aloud', onclick: () => { stand.gedaan[nr] = true; bewaar(); status.textContent = '✔ antwoord gegeven'; } }, 'Hardop gezegd');
@@ -96,9 +96,9 @@
         el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, '🔊 Luister naar de vraag')),
         opnameVak)),
       el('div', { class: 'voet' },
-        el('button', { class: 'knop', disabled: nr === 0, onclick: () => ga(nr - 1) }, '‹ Vorige'),
-        el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, '▦ Overzicht')),
-        nr < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(nr + 1) }, 'Volgende ›') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
+        el('button', { class: 'knop', disabled: nr === 0, onclick: () => ga(nr - 1) }, 'Vorige'),
+        el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht')),
+        nr < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(nr + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     Spreken.speel(Spreken.vraagTekst(it));
     window.scrollTo(0, 0);
   }

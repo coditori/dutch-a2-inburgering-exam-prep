@@ -59,7 +59,7 @@
    "en": "A short text has three questions. Write one whole sentence for each question. Then you have three sentences."
   },
   {
-   "nl": "Gebruik de woorden uit de vraag: Wanneer is uw verjaardag? → Mijn verjaardag is op 14 maart.",
+   "nl": "Gebruik de woorden uit de vraag: Wanneer is uw verjaardag? -> Mijn verjaardag is op 14 maart.",
    "en": "Reuse the words of the question."
   }
  ],

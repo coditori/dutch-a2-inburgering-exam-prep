@@ -198,7 +198,7 @@ window.Schrijven = (() => {
     const regels = tekst.split('\n').map((r) => r.trim()).filter(Boolean);
     if (t.aanhef && !o.voorgedrukt) {
       const ok = regels.length > 0 && /^(beste|hallo|hoi|dag|geachte)\b.*,$/i.test(regels[0]);
-      uit.push({ naam: 'aanhef (Beste … , / Hallo … ,)', ok });
+      uit.push({ naam: 'aanhef (Beste ... , / Hallo ... ,)', ok });
       if (ok) midden = midden.replace(regels[0], '');
     }
     if (t.afsluiting && !o.voorgedrukt) {

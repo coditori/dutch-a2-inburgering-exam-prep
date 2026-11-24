@@ -1,8 +1,8 @@
 {
   "firebase": {
-    "apiKey": "…",
+    "apiKey": "...",
     "authDomain": "uw-project.firebaseapp.com",
     "projectId": "uw-project",
-    "appId": "…"
+    "appId": "..."
   }
 }

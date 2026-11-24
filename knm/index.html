@@ -32,9 +32,9 @@
   const { el } = App;
   App.kop('KNM', '../index.html');
   const TRAINERS = [
-    { id: 'instantie', titel: 'Instantie-trainer', uitleg: 'Waar moet u zijn? Gemeente, UWV, DUO …', na: '5-instanties-c' },
+    { id: 'instantie', titel: 'Instantie-trainer', uitleg: 'Waar moet u zijn? Gemeente, UWV, DUO ...', na: '5-instanties-c' },
     { id: 'kaart', titel: 'Kaart-trainer', uitleg: 'Provincies, steden en buurlanden', na: '8-geschiedenis-a' },
-    { id: 'lezen', pagina: 'oefen.html?t=lezen', titel: 'De vraag lezen', uitleg: 'Kleine woorden: niet, hoeft niet, alleen als, uiterlijk …', na: null },
+    { id: 'lezen', pagina: 'oefen.html?t=lezen', titel: 'De vraag lezen', uitleg: 'Kleine woorden: niet, hoeft niet, alleen als, uiterlijk ...', na: null },
     { id: 'verwar', pagina: 'oefen.html?t=verwar', titel: 'Verwarparen', uitleg: 'WW of bijstand? Eigen risico of premie?', na: '8-geschiedenis-c' },
   ];
   const [themas, toetsen] = await Promise.all([Lezen.json('themes/index.json'), Lezen.json('toets/index.json').catch(() => [])]);

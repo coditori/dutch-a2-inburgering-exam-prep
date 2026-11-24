@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../luisteren.css">
 </head>
 <body>
-<div id="pagina"><main><p class="zacht">Even wachten…</p></main></div>
+<div id="pagina"><main><p class="zacht">Even wachten...</p></main></div>
 <script src="../../shared/woorden.js"></script>
 <script src="../../shared/srs.js"></script>
 <script src="../../shared/audio.js"></script>
@@ -62,9 +62,9 @@
     pagina.textContent = '';
     pagina.append(el('div', { class: 'examen twee kort' }, links, rechts),
       el('div', { class: 'voet' },
-        el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, '‹ Vorige'),
-        el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, '▦ Overzicht')),
-        stand.nu < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende ›') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
+        el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, 'Vorige'),
+        el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht')),
+        stand.nu < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     links.append(el('p', { class: 'intro' }, it.context),
       el('p', { class: 'lees-eerst' }, 'Lees eerst de vraag.', el('br'), 'Luister daarna naar de tekst.'),
       el('div', { style: 'font-size:3rem;text-align:center' }, it.soort === 'voicemail' ? '📞' : it.soort === 'radio' ? '📻' : it.soort === 'nieuws' ? '📺' : '🗣️'),

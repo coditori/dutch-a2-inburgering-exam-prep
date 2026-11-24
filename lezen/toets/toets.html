@@ -8,7 +8,7 @@
 <script src="../../shared/thema.js"></script>
 </head>
 <body>
-<div id="pagina"><main><p class="zacht">Even wachten…</p></main></div>
+<div id="pagina"><main><p class="zacht">Even wachten...</p></main></div>
 <script src="../../shared/woorden.js"></script>
 <script src="../../shared/srs.js"></script>
 <script src="../../shared/audio.js"></script>
@@ -73,11 +73,11 @@
     pagina.textContent = '';
     pagina.append(el('div', { class: 'examen twee' }, links, rechts),
       el('div', { class: 'voet' },
-        el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, '‹ Vorige'),
+        el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, 'Vorige'),
         el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ',
-          el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, '▦ Overzicht')),
+          el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht')),
         stand.nu < vragen.length - 1
-          ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende ›')
+          ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende')
           : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     Lezen.tekst(links, toets.teksten[q.ti], { leesEerst: true });
     rechts.append(vraagDoel);

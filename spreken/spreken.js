@@ -146,7 +146,7 @@ window.Spreken = (() => {
 
     knop.addEventListener('click', async () => {
       if (rec) {
-        knop.disabled = true; status.textContent = 'even wachten…';
+        knop.disabled = true; status.textContent = 'even wachten...';
         const r = rec; rec = null;
         laatste = await r.stop();
         knop.disabled = false; knop.classList.remove('rood', 'bezig'); status.textContent = '';
@@ -156,7 +156,7 @@ window.Spreken = (() => {
       Spraak.stop();
       try {
         rec = await opnemer();
-        knop.textContent = '⏹ Stop'; knop.classList.add('rood', 'bezig'); status.textContent = 'opname loopt…';
+        knop.textContent = '⏹ Stop'; knop.classList.add('rood', 'bezig'); status.textContent = 'opname loopt...';
       } catch (e) {
         status.textContent = 'Geen microfoon. Zeg het antwoord hardop en controleer zelf.';
         toonCheck(null);
