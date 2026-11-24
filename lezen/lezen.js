@@ -73,7 +73,7 @@ window.Lezen = (() => {
   function vraag(doel, v, opties) {
     const o = opties || {};
     const volgorde = o.volgorde || App.schud(v.o.map((_, i) => i));
-    const plaatjes = v.o.every((x) => !/[A-Za-z]/.test(x));
+    const plaatjes = v.o.every((x) => !/[A-Za-z]/.test(x.replace(/\[\[[a-z-]+\]\]/g, ''))); // [[kamer]] is een eigen tekening (App.el), geen tekst
     doel.textContent = '';
     const blok = el('div', { class: 'vraag' });
     if (v.sit) blok.append(el('p', { class: 'sit' }, App.woorden(v.sit, o.nieuw)));

@@ -40,8 +40,18 @@ window.App = (() => {
       else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
       else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
     }
-    for (const k of kinderen.flat()) if (k != null && k !== false) e.append(k);
+    for (const k of kinderen.flat()) if (k != null && k !== false) e.append(typeof k === 'string' && k.includes('[[') ? metPlaatjes(k) : k);
     return e;
+  }
+  // Eigen plaatjes. Voor een keuken, een kamer of een tafel bestaat geen emoji; daar staat in de les "[[keuken]]".
+  // Dat wordt de tekening shared/plaatjes/keuken.svg, even groot als een emoji ernaast. De rest van de tekst blijft tekst.
+  function metPlaatjes(tekst) {
+    const f = document.createDocumentFragment();
+    tekst.split(/\[\[([a-z-]+)\]\]/).forEach((stuk, i) => {
+      if (i % 2) f.append(el('img', { class: 'plaatje', src: WORTEL + 'shared/plaatjes/' + stuk + '.svg', alt: '', draggable: 'false' }));
+      else if (stuk) f.append(stuk);
+    });
+    return f;
   }
 
   // woord -> regels uit de woordenlijst

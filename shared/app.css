@@ -820,3 +820,6 @@ body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
   .kaart .ladder th { white-space: nowrap; }
 }
 @media (max-width: 380px) { .opties.beelden .optie { min-width: 80px; } }
+
+/* eigen tekeningen tussen de emoji (shared/plaatjes/, in een les geschreven als [[keuken]]): even groot als een emoji */
+.plaatje { display: inline-block; height: 1.15em; width: 1.15em; vertical-align: -0.2em; }

@@ -14,7 +14,7 @@
   {
    "nl": "de uitslag",
    "en": "result (of a test)",
-   "beeld": "📄",
+   "beeld": "📄✅",
    "zin": "De uitslag van het onderzoek is goed.",
    "thema": "gezondheid"
   },
@@ -28,7 +28,7 @@
   {
    "nl": "de verdieping",
    "en": "floor / storey",
-   "beeld": "🔢",
+   "beeld": "🏢🔢",
    "zin": "Ik woon op de tweede verdieping.",
    "thema": "wonen"
   },
