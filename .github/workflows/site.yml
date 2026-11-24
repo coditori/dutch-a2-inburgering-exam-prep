@@ -1,0 +1,47 @@
+# Publiceert de site op GitHub Pages bij elke verandering op main.
+# Waarom niet "deploy from a branch"? De instellingen voor inloggen met Google (shared/config.json) staan niet in git.
+# Deze robot schrijft dat bestand vlak voor het publiceren, uit het geheim SITE_CONFIG van deze repo
+# (Settings → Secrets and variables → Actions). Zonder dat geheim werkt de site ook: inloggen staat dan uit.
+# Uitleg: docs/inloggen.md
+name: Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# één publicatie tegelijk; een lopende publicatie wordt niet afgebroken
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publiceer:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publiceer.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Schrijf shared/config.json uit het geheim
+        env:
+          SITE_CONFIG: ${{ secrets.SITE_CONFIG }}
+        run: |
+          if [ -z "$SITE_CONFIG" ]; then
+            echo "Geen SITE_CONFIG: inloggen staat uit."
+            exit 0
+          fi
+          # alleen geldige JSON komt op de site; de inhoud komt niet in het logboek
+          printf '%s' "$SITE_CONFIG" | python3 -c "import json, sys; json.dump(json.load(sys.stdin), open('shared/config.json', 'w'))"
+          echo "shared/config.json geschreven."
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: publiceer
+        uses: actions/deploy-pages@v4
