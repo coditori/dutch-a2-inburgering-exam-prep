@@ -757,3 +757,6 @@ body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
 .spel .opties.beelden .optie { flex: 1 1 0; min-width: 0; }
 /* bij grote letters breken lange woorden op een lettergreep (inburgerings-examen), niet midden in het woord */
 #vandaag h2, #cijfers span, .keuze span { -webkit-hyphens: auto; hyphens: auto; }
+/* de drie knoppen op een woordkaart blijven op één regel, ook bij grote letters op een smalle telefoon */
+.wkaart .knoppen { flex-wrap: nowrap; gap: 6px; }
+.wkaart .rond { width: min(calc(40px * var(--schaal, 1)), 30%); height: auto; aspect-ratio: 1; flex: 0 1 auto; }
