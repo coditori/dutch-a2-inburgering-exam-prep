@@ -3,7 +3,7 @@
 Free practice site for the Dutch A2 civic integration exam (inburgeringsexamen), from almost zero to exam level.
 It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 
-![Start page: today's tasks, the ladder and the five exams](docs/screenshot-home.png)
+![Start page: what to do next, your progress and the five exams with their practice exams](docs/screenshot-home.png)
 
 ![A reading lesson: word cards with audio](docs/screenshot-les.png)
 

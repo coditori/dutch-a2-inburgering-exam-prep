@@ -9,13 +9,12 @@
 </head>
 <body>
 <main>
-  <div class="kaart" id="vandaag"></div>
-  <h2 data-en="take a practice exam now: you do not need to do the lessons first">Meteen een examen doen</h2>
-  <p class="zacht klein" data-en="Choose an exam. It is like the real exam: with a clock, and your mark (up to 10) at the end.">Kies een examen. Het is net als het echte examen: met een klok, en aan het einde uw cijfer (tot 10).</p>
-  <div class="kaart" id="oefenexamens"></div>
-  <h2 data-en="the five exams: lessons from zero to exam level">De vijf examens · lessen</h2>
-  <div class="tegels" id="examens"></div>
-  <h2 data-en="the ladder: the same 5 steps in every exam">De ladder</h2>
+  <section class="kaart groot-held" id="vandaag"></section>
+  <div class="cijfers" id="cijfers"></div>
+  <h2 id="kies" data-en="the five exams">De vijf examens</h2>
+  <p class="zacht klein" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
+  <div class="examens" id="examens"></div>
+  <h2 data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden · de ladder</h2>
   <table class="ladder" id="ladder"></table>
   <p class="klein" style="margin-top:28px"><a href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
 </main>
@@ -25,8 +24,8 @@
 <script src="shared/app.js"></script>
 <script>
 (async () => {
-  const { el } = App;
-  App.kop('Nederlands A2 · inburgering');
+  const { el, teken } = App;
+  App.kop('Nederlands A2');
   const TREDES = [
     ['groeten, de klok', 'greetings, the clock'],
     ['bouwstenen: ik / u, niet / geen, vraagwoorden', 'building blocks'],
@@ -34,57 +33,100 @@
     ["examenthema's: werk, gezondheid, school, gemeente", 'exam themes'],
     ['examentaal: de woorden uit de vragen', 'exam language'],
   ];
+  // per examen: wat u doet, en hoe lang het echte examen duurt (minuten)
+  const INFO = {
+    lezen: ['teksten, brieven en e-mails', 'texts, letters and e-mails', 65, 'vragen', 'questions'],
+    luisteren: ['gesprekken en berichten', 'conversations and messages', 45, 'vragen', 'questions'],
+    schrijven: ['een e-mail, een briefje, een formulier', 'an e-mail, a note, a form', 40, 'opdrachten', 'tasks'],
+    spreken: ['antwoord geven op een vraag', 'answer a question', 35, 'vragen', 'questions'],
+    knm: ['leven en werken in Nederland', 'living and working in the Netherlands', 45, 'vragen', 'questions'],
+  };
+  const json = (pad) => fetch(pad, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
   // een examen is klaar als de map een index.html heeft
   const EXAMENS = await Promise.all(['Lezen', 'Luisteren', 'Schrijven', 'Spreken', 'KNM'].map(async (naam) => {
     const map = naam.toLowerCase();
-    const klaar = await fetch(`${map}/index.html`, { method: 'HEAD' }).then((r) => r.ok).catch(() => false);
-    let n = 0;
     // lessen staan in lessons/ ; bij KNM in themes/ (elk thema = 4 stappen: woorden, weetjes, situaties, meer weetjes)
-    for (const [pad, keer] of [['lessons', 1], ['themes', 4]]) {
-      try { n = n || keer * (await (await fetch(`${map}/${pad}/index.json`, { cache: 'no-cache' })).json()).length; } catch (e) { /* deze map is er niet */ }
-    }
-    const gedaan = Object.values((App.lees(map, {}).lessen) || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length;
-    return { naam, map, href: `${map}/index.html`, klaar, n, gedaan, beeld: { Lezen: '📖', Luisteren: '🎧', Schrijven: '✍️', Spreken: '💬', KNM: '🏛️' }[naam] };
+    const [klaar, lessen, themas, toetsen] = await Promise.all([
+      fetch(`${map}/index.html`, { method: 'HEAD' }).then((r) => r.ok).catch(() => false),
+      json(`${map}/lessons/index.json`), json(`${map}/themes/index.json`), json(`${map}/toets/index.json`)]);
+    const P = App.lees(map, {});
+    const n = lessen.length || 4 * themas.length;
+    const gedaan = Math.min(n, Object.values(P.lessen || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length);
+    return { naam, map, href: `${map}/index.html`, klaar, n, gedaan, lessen, toetsen, toetsGedaan: P.toets || {} };
   }));
+
+  // ---------- het grote vak: wat doet u nu? ----------
+  const totaal = EXAMENS.reduce((s, x) => s + x.n, 0), gedaan = EXAMENS.reduce((s, x) => s + x.gedaan, 0);
+  const nToetsen = EXAMENS.reduce((s, x) => s + x.toetsen.length, 0);
+  const nToetsGedaan = EXAMENS.reduce((s, x) => s + x.toetsen.filter((t) => (x.toetsGedaan[t.id] || []).length).length, 0);
   const stand = App.tredeStand();
-  document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => el('tr', {},
-    el('th', {}, `Trede ${t}`),
-    el('td', { en }, nl),
-    el('td', { style: 'width:28%' }, el('div', { class: 'balk' }, el('i', { style: `width:${stand[t].totaal ? Math.round(100 * stand[t].bekend / stand[t].totaal) : 0}%` })),
-      el('span', { class: 'klein zacht' }, `${stand[t].bekend} van ${stand[t].totaal} woorden`)))));
-
-  const lezen = App.lees('lezen', { lessen: {} });
-  let lessen = [];
-  try { lessen = await (await fetch('lezen/lessons/index.json', { cache: 'no-cache' })).json(); } catch (e) { /* nog geen lessen */ }
-  const gehaald = (l) => { const r = (lezen.lessen || {})[l.id]; return r && r.beste / r.totaal >= 0.8; };
-  const volgende = lessen.find((l) => !gehaald(l));
+  const woordenTotaal = stand.reduce((s, t) => s + t.totaal, 0), woordenBekend = stand.reduce((s, t) => s + t.bekend, 0);
   const tel = SRS.tel();
-  document.getElementById('vandaag').append(
-    el('h3', { en: 'today' }, 'Vandaag'),
-    el('div', { class: 'knoppen' },
-      el('a', { class: 'knop' + (tel.nu ? '' : ' licht'), href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`),
-      volgende ? el('a', { class: 'knop', href: `lezen/les.html?les=${volgende.id}`, en: 'next reading lesson' }, `Lezen ${volgende.id}: ${volgende.titel}`) : null));
+  const nieuw = !gedaan && !nToetsGedaan && !tel.totaal; // eerste bezoek: nog niets gedaan
 
-  document.getElementById('examens').append(...EXAMENS.map((x) => x.klaar
-    ? el('a', { class: 'tegel examen-tegel', href: x.href }, el('span', { class: 'tegel-icoon' }, x.beeld), el('b', {}, x.naam),
-      el('span', { class: 'klein zacht' }, x.n ? `${x.gedaan} van ${x.n} lessen` : ''), el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` })))
-    : el('div', { class: 'tegel examen-tegel slot' }, el('span', { class: 'tegel-icoon' }, x.beeld), el('b', {}, x.naam), el('span', { class: 'klein zacht', en: 'not ready yet' }, 'nog niet klaar'))));
+  const lezen = EXAMENS[0];
+  const pLezen = (App.lees('lezen', {}).lessen) || {};
+  const volgende = lezen.lessen.find((l) => { const r = pLezen[l.id]; return !(r && r.beste / r.totaal >= 0.8); });
+  const ander = EXAMENS.find((x) => x.klaar && x.gedaan < x.n); // Lezen klaar? Dan verder met het volgende examen.
+  const verder = volgende
+    ? el('a', { class: 'knop', href: `lezen/les.html?les=${volgende.id}`, en: nieuw ? 'start with the first reading lesson' : 'next reading lesson' }, nieuw ? 'Begin met les 1' : `Lezen ${volgende.id}: ${volgende.titel}`)
+    : ander ? el('a', { class: 'knop', href: ander.href, en: 'continue' }, `Verder met ${ander.naam}`) : null;
+  const procent = totaal ? Math.round(100 * gedaan / totaal) : 0;
+  document.getElementById('vandaag').append(el('div', { class: 'held-rij' },
+    el('div', {},
+      el('span', { class: 'oogje' }, 'Inburgering · A2'),
+      nieuw
+        ? [el('h2', { en: 'practice for the civic integration exam' }, 'Oefen voor het inburgeringsexamen'),
+          el('p', { en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.')]
+        : [el('h2', { en: 'continue' }, 'Ga verder'),
+          el('p', {}, tel.nu
+            ? el('span', { en: 'cards to review today' }, `Vandaag: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'} om te herhalen.`)
+            : el('span', { en: 'no cards to review today' }, 'Vandaag zijn er geen kaarten om te herhalen.'))],
+      el('div', { class: 'knoppen' },
+        verder,
+        nieuw ? el('a', { class: 'knop licht', href: '#kies', en: 'take a practice exam' }, 'Doe een oefenexamen') : null,
+        tel.nu ? el('a', { class: 'knop licht', href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`) : null)),
+    nieuw ? null : el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` },
+      el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))));
 
-  // meteen een examen doen: per examen de toetsen (A, B, C ...) als knop, met het beste cijfer als u de toets al deed
-  const rijen = await Promise.all(EXAMENS.filter((x) => x.klaar).map(async (x) => {
-    let toetsen = [];
-    try { toetsen = await (await fetch(`${x.map}/toets/index.json`, { cache: 'no-cache' })).json(); } catch (e) { /* geen toetsen */ }
-    if (!toetsen.length) return null;
-    const gedaan = (App.lees(x.map, {}).toets) || {};
-    return el('div', { class: 'examenrij' }, el('span', { class: 'examennaam' }, el('span', { 'aria-hidden': 'true' }, x.beeld), ' ', el('b', {}, x.naam)),
-      el('div', { class: 'toetsknoppen' }, toetsen.map((t) => {
-        const r = gedaan[t.id] || [];
-        const beste = r.length ? Math.max(...r.map((y) => y.score / (y.totaal || t.vragen || 1))) : null;
-        return el('a', { class: 'toetsknop' + (r.length ? ' gedaan' : ''), href: `${x.map}/toets/toets.html?t=${t.id}`, title: t.titel, 'aria-label': `${x.naam} ${t.titel}` },
-          el('b', {}, t.id), beste == null ? null : el('span', {}, App.cijfer(beste, 1)));
-      })));
+  const getal = (n, van, tekst, en) => el('div', {}, el('b', {}, String(n), el('small', {}, ` / ${van}`)), el('span', { en }, tekst));
+  document.getElementById('cijfers').append(
+    getal(gedaan, totaal, 'lessen gehaald', 'lessons passed'),
+    getal(woordenBekend, woordenTotaal, 'woorden gekend', 'words known'),
+    getal(nToetsGedaan, nToetsen, 'oefenexamens gedaan', 'practice exams done'));
+
+  // ---------- de vijf examens: de lessen (klik op de naam) en de oefenexamens A, B, C ... ----------
+  document.getElementById('examens').append(...EXAMENS.map((x) => {
+    const [wat, watEn, minuten, soort, soortEn] = INFO[x.map];
+    if (!x.klaar) return el('div', { class: `ex slot k-${x.map}` }, el('div', { class: 'ex-kop' },
+      el('span', { class: 'ex-icoon' }, teken(x.map)), el('span', { class: 'ex-naam' }, el('b', {}, x.naam), el('span', { class: 'klein zacht', en: 'not ready yet' }, 'nog niet klaar'))));
+    const p = x.n ? Math.round(100 * x.gedaan / x.n) : 0;
+    const vragen = x.toetsen.length ? x.toetsen[0].vragen : 0;
+    return el('article', { class: `ex k-${x.map}` },
+      el('a', { class: 'ex-kop', href: x.href, 'aria-label': `${x.naam}: de lessen` },
+        el('span', { class: 'ex-icoon' }, teken(x.map)),
+        el('span', { class: 'ex-naam' }, el('b', {}, x.naam), el('span', { class: 'klein zacht', en: watEn }, wat)),
+        teken('pijl')),
+      el('div', {},
+        el('div', { class: 'ex-stand' }, el('div', { class: 'balk' }, el('i', { style: `width:${p}%` })), el('span', {}, `${p}%`)),
+        el('span', { class: 'klein zacht', en: 'lessons passed' }, `${x.gedaan} van ${x.n} lessen gehaald`)),
+      x.toetsen.length ? el('div', { class: 'ex-toets' },
+        el('span', { class: 'klein zacht', en: `practice exam: ${vragen} ${soortEn}, ${minuten} minutes` }, `Oefenexamen · ${vragen} ${soort} · ${minuten} min`),
+        el('div', { class: 'toetsknoppen' }, x.toetsen.map((t) => {
+          // het beste cijfer als u de toets al deed
+          const r = x.toetsGedaan[t.id] || [];
+          const beste = r.length ? Math.max(...r.map((y) => y.score / (y.totaal || t.vragen || 1))) : null;
+          return el('a', { class: 'toetsknop' + (r.length ? ' gedaan' : ''), href: `${x.map}/toets/toets.html?t=${t.id}`, title: t.titel, 'aria-label': `${x.naam} ${t.titel}` },
+            el('b', {}, t.id), beste == null ? null : el('span', {}, App.cijfer(beste, 1)));
+        }))) : null);
   }));
-  document.getElementById('oefenexamens').append(...rijen.filter(Boolean));
+
+  // ---------- de ladder: hoeveel woorden kent u per trede? ----------
+  document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => el('tr', {},
+    el('th', { class: stand[t].totaal && stand[t].bekend >= stand[t].totaal ? 'klaar' : '', 'aria-label': `Trede ${t}` }, el('span', { class: 'trede-nr' }, String(t))),
+    el('td', { en }, nl),
+    el('td', { style: 'width:30%' }, el('div', { class: 'balk' }, el('i', { style: `width:${stand[t].totaal ? Math.round(100 * stand[t].bekend / stand[t].totaal) : 0}%` })),
+      el('span', { class: 'klein zacht' }, `${stand[t].bekend} van ${stand[t].totaal} woorden`)))));
 })();
 </script>
 </body>

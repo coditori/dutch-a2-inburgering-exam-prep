@@ -2,7 +2,7 @@
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
-  const VERSIE = '1.3.0';
+  const VERSIE = '1.4.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -115,6 +115,14 @@ window.App = (() => {
     maan: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
     instel: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M2 14h4M10 8h4M18 16h4"/>',
     deel: '<path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
+    // de balk met examens en de startpagina
+    huis: '<path d="m3 10.5 9-7.5 9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/>',
+    lezen: '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+    luisteren: '<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+    schrijven: '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+    spreken: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    knm: '<path d="M3 21h18"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/><path d="M12 3 2.5 8.5V10h19V8.5z"/>',
+    pijl: '<path d="m9 18 6-6-6-6"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -276,11 +284,26 @@ window.App = (() => {
     } catch (e) { /* geen opslag */ }
   }
 
+  // ---------- de balk met examens: op de startpagina en op de vijf overzichten (niet in een les of toets) ----------
+  // Breed scherm: in de kop. Telefoon: vast onder aan het scherm (shared/app.css, .nav).
+  const NAV = [['', 'Start', 'home', 'huis'], ['lezen/', 'Lezen', 'reading', 'lezen'], ['luisteren/', 'Luisteren', 'listening', 'luisteren'],
+    ['schrijven/', 'Schrijven', 'writing', 'schrijven'], ['spreken/', 'Spreken', 'speaking', 'spreken'], ['knm/', 'KNM', 'Dutch society', 'knm']];
+  function nav() {
+    const hier = location.href.split(/[?#]/)[0];
+    if (!hier.startsWith(WORTEL)) return null;
+    const pad = hier.slice(WORTEL.length).replace(/index\.html$/, '');
+    if (!NAV.some(([p]) => p === pad)) return null;
+    document.body.classList.add('met-nav');
+    return el('nav', { class: 'nav', 'aria-label': 'de examens' }, NAV.map(([p, naam, en, t]) =>
+      el('a', { href: WORTEL + p + 'index.html', class: p === pad ? 'nu' : '', 'aria-current': p === pad ? 'page' : null, title: en }, teken(t), el('span', {}, naam))));
+  }
+
   // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
-      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : null,
+      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('span', { class: 'merk', 'aria-hidden': 'true' }, 'A2'),
       el('h1', {}, titel),
+      nav(),
       el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: deel }, teken('deel')),
       themaKnop(),
       el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
@@ -328,6 +351,6 @@ window.App = (() => {
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
-  return { VERSIE, W, lees, schrijf, kaal, el, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { VERSIE, W, lees, schrijf, kaal, el, teken, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     cijfer, cijferBlok, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();
