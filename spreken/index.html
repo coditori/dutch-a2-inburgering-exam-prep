@@ -60,8 +60,8 @@
   const laatste = lessen.length ? lessen[lessen.length - 1].id : null;
   document.getElementById('toetsen').append(...toetsen.map((t) => {
     const r = P.toets[t.id] || [];
-    return el('a', { class: 'tegel', href: `toets/toets.html?t=${t.id}` },
-      el('b', {}, t.titel), `${t.vragen} vragen`,
+    return el('a', { class: 'tegel' + (App.medaille(r.length ? Math.max(...r.map((x) => x.score)) / t.vragen : null) ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, App.medailleTeken(App.medaille(r.length ? Math.max(...r.map((x) => x.score)) / t.vragen : null)), ' ', t.titel), `${t.vragen} vragen`,
       el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score)), t.vragen)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();

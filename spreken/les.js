@@ -155,6 +155,7 @@
     pagina.append(el('div', { class: 'kaart midden' },
       el('div', { class: 'groot' }, `${goed} / ${totaal}`),
       el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' }, ok ? '✔ Gehaald. De volgende les is open.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      App.lesVoortgang('spreken', index.length, ok),
       el('p', { class: 'zacht klein', en: 'Questions that went wrong come back tomorrow.' }, 'Vragen die fout gingen, komen morgen terug.'),
       el('div', { class: 'knoppen', style: 'justify-content:center' },
         ok && volgende ? el('a', { class: 'knop', href: `les.html?les=${volgende.id}`, onclick: weg }, `Volgende les: ${volgende.id}`) : null,

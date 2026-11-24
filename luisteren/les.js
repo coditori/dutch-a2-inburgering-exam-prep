@@ -189,6 +189,7 @@
     pagina.append(el('div', { class: 'kaart midden' },
       el('div', { class: 'groot' }, `${goed} / ${totaal}`),
       el('p', { class: 'uitslag ' + (gehaald ? 'goed' : 'fout'), en: gehaald ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' }, gehaald ? '✔ Gehaald. De volgende les is open.' : fout.length ? 'U hebt 80% nodig. Verbeter de foute vragen, of doe de les nog een keer.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      App.lesVoortgang('luisteren', index.length, gehaald),
       App.foutKnoppen(fout),
       dictProcent != null ? el('p', { class: 'zacht' }, `Dictee: ${dictProcent}% van de woorden goed`) : null,
       el('div', { class: 'knoppen', style: 'justify-content:center' },

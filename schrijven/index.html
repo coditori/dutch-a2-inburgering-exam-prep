@@ -64,8 +64,8 @@
   }
   document.getElementById('toetsen').append(...toetsen.map((t) => {
     const r = P.toets[t.id] || [];
-    return el('a', { class: 'tegel' + (r.length ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
-      el('b', {}, t.titel), '4 opdrachten', el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score / (x.totaal || 1))), 1)}, ${r.length}× gedaan` : 'nog niet gedaan'));
+    return el('a', { class: 'tegel' + (App.medaille(r.length ? Math.max(...r.map((x) => x.score / (x.totaal || 1))) : null) ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, App.medailleTeken(App.medaille(r.length ? Math.max(...r.map((x) => x.score / (x.totaal || 1))) : null)), ' ', t.titel), '4 opdrachten', el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score / (x.totaal || 1))), 1)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

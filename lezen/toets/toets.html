@@ -112,6 +112,7 @@
     Lezen.bewaar();
     bewaar();
     uitslag();
+    App.vier(stand.score / vragen.length);
   }
 
   function uitslag(kijk) {
@@ -119,15 +120,12 @@
     clearInterval(tik);
     klok.textContent = '';
     const n = vragen.length;
-    const goedGenoeg = stand.score >= 20;
     const links = el('section'), rechts = el('section');
     const raster = el('div', { class: 'raster' }, vragen.map((_, i) => el('button', {
       class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1))));
     pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
-      ...App.cijferBlok(stand.score, n),
-      el('p', { class: 'midden uitslag ' + (goedGenoeg ? 'goed' : 'fout'), en: goedGenoeg ? '20 or more: exam level.' : 'Goal: 20 of 25. Look at the red questions.' },
-        goedGenoeg ? '✔ 20 of meer: examenniveau.' : 'Doel: 20 van de 25. Bekijk de rode vragen.'),
+      ...App.cijferBlok(stand.score, n, null, { eerder: (Lezen.P.toets[id] || []).slice(0, -1).map((r) => r.score / (r.totaal || vragen.length)) }),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag en de zin met het antwoord.`),
       raster,
       el('div', { class: 'knoppen' },
