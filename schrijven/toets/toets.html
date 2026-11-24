@@ -60,7 +60,7 @@
       el('p', {}, `U moet ${set.items.length} opdrachten maken. U hebt ${MINUTEN} minuten.`),
       el('p', { en: 'The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. The aanhef and afsluiting are already on the paper, as in the real exam.' },
         'Het echte examen is met pen en papier. Druk de opdrachten af, of lees ze hier en schrijf op uw eigen papier. De aanhef en de afsluiting staan al op het papier, net als op het echte examen.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum}, ${r.minuten} min)`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum}, ${r.minuten} min)`).join(' · ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now() }; bewaar(); werk(); } }, 'Start'))));
   }
 
@@ -88,7 +88,7 @@
     const tel = () => Object.values(stand.vinken).filter(Boolean).length;
     function tekenUitslag() {
       uitslag.textContent = '';
-      uitslag.append(el('div', { class: 'groot' }, `${tel()} / ${totaal}`),
+      uitslag.append(...App.cijferBlok(tel(), totaal, 'punten'),
         el('p', { class: 'zacht' }, `Tijd: ${stand.minuten} minuten` + (stand.minuten > MINUTEN ? ' (te lang: het examen is 40 minuten)' : '')),
         el('div', { class: 'knoppen', style: 'justify-content:center' },
           el('button', { class: 'knop', en: 'save the result', onclick: () => {

@@ -10,7 +10,10 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="the five exams">De vijf examens</h2>
+  <h2 data-en="take a practice exam now: you do not need to do the lessons first">Meteen een examen doen</h2>
+  <p class="zacht klein" data-en="Choose an exam. It is like the real exam: with a clock, and your mark (up to 10) at the end.">Kies een examen. Het is net als het echte examen: met een klok, en aan het einde uw cijfer (tot 10).</p>
+  <div class="kaart" id="oefenexamens"></div>
+  <h2 data-en="the five exams: lessons from zero to exam level">De vijf examens · lessen</h2>
   <div class="tegels" id="examens"></div>
   <h2 data-en="the ladder: the same 5 steps in every exam">De ladder</h2>
   <table class="ladder" id="ladder"></table>
@@ -41,7 +44,7 @@
       try { n = n || keer * (await (await fetch(`${map}/${pad}/index.json`, { cache: 'no-cache' })).json()).length; } catch (e) { /* deze map is er niet */ }
     }
     const gedaan = Object.values((App.lees(map, {}).lessen) || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length;
-    return { naam, href: `${map}/index.html`, klaar, n, gedaan, beeld: { Lezen: '📖', Luisteren: '🎧', Schrijven: '✍️', Spreken: '💬', KNM: '🏛️' }[naam] };
+    return { naam, map, href: `${map}/index.html`, klaar, n, gedaan, beeld: { Lezen: '📖', Luisteren: '🎧', Schrijven: '✍️', Spreken: '💬', KNM: '🏛️' }[naam] };
   }));
   const stand = App.tredeStand();
   document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => el('tr', {},
@@ -66,6 +69,22 @@
     ? el('a', { class: 'tegel examen-tegel', href: x.href }, el('span', { class: 'tegel-icoon' }, x.beeld), el('b', {}, x.naam),
       el('span', { class: 'klein zacht' }, x.n ? `${x.gedaan} van ${x.n} lessen` : ''), el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` })))
     : el('div', { class: 'tegel examen-tegel slot' }, el('span', { class: 'tegel-icoon' }, x.beeld), el('b', {}, x.naam), el('span', { class: 'klein zacht', en: 'not ready yet' }, 'nog niet klaar'))));
+
+  // meteen een examen doen: per examen de toetsen (A, B, C ...) als knop, met het beste cijfer als u de toets al deed
+  const rijen = await Promise.all(EXAMENS.filter((x) => x.klaar).map(async (x) => {
+    let toetsen = [];
+    try { toetsen = await (await fetch(`${x.map}/toets/index.json`, { cache: 'no-cache' })).json(); } catch (e) { /* geen toetsen */ }
+    if (!toetsen.length) return null;
+    const gedaan = (App.lees(x.map, {}).toets) || {};
+    return el('div', { class: 'examenrij' }, el('span', { class: 'examennaam' }, el('span', { 'aria-hidden': 'true' }, x.beeld), ' ', el('b', {}, x.naam)),
+      el('div', { class: 'toetsknoppen' }, toetsen.map((t) => {
+        const r = gedaan[t.id] || [];
+        const beste = r.length ? Math.max(...r.map((y) => y.score / (y.totaal || t.vragen || 1))) : null;
+        return el('a', { class: 'toetsknop' + (r.length ? ' gedaan' : ''), href: `${x.map}/toets/toets.html?t=${t.id}`, title: t.titel, 'aria-label': `${x.naam} ${t.titel}` },
+          el('b', {}, t.id), beste == null ? null : el('span', {}, App.cijfer(beste, 1)));
+      })));
+  }));
+  document.getElementById('oefenexamens').append(...rijen.filter(Boolean));
 })();
 </script>
 </body>

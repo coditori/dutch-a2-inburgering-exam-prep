@@ -53,7 +53,7 @@
       el('p', {}, `De toets heeft ${vragen.length} vragen in vier onderdelen: vragen met een video, met 1 plaatje, met 2 plaatjes en met 3 plaatjes. U mag ${MINUTEN} minuten over de toets doen.`),
       el('p', { class: 'zacht', en: 'You may listen again, record again and go back. Always answer both parts of the question. At the end you check each answer with the model.' },
         'U mag opnieuw luisteren, opnieuw opnemen en terug gaan. Geef altijd antwoord op de twee delen van de vraag. Aan het einde controleert u elk antwoord met het voorbeeld.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum})`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join(' · ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now(), nu: 0, gedaan: {}, goed: {} }; bewaar(); examen(); } }, 'Start')))));
   }
 
@@ -155,7 +155,7 @@
     }
     const ok = score >= 13;
     pagina.append(el('main', {}, el('div', { class: 'kaart midden' },
-      el('div', { class: 'groot' }, `${score} / ${vragen.length}`),
+      ...App.cijferBlok(score, vragen.length, 'vragen met twee goede antwoorden'),
       el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: 'Your own check against the model answers. A real examiner also judges grammar and pronunciation.' }, ok ? '✔ Op de meeste vragen gaf u twee goede antwoorden.' : 'Let op: geef op elke vraag antwoord op de twee delen.'),
       el('p', { class: 'zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Dit is uw eigen controle. Op het examen kijkt een mens ook naar grammatica en uitspraak.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: stand.goed[i] ? 'goed' : 'fout', disabled: true }, String(i + 1)))),
