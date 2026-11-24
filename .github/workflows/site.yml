@@ -21,11 +21,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publiceer:
+  # 1. de site klaarzetten en als pakket bewaren
+  bouw:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.publiceer.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Schrijf shared/config.json uit het geheim
@@ -58,5 +56,15 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
+  # 2. het pakket publiceren. Een eigen taak, na de eerste: in dezelfde taak vond de publicatie het pakket soms nog niet
+  #    ("No artifacts named github-pages were found"), omdat het een tel na het bewaren nog niet zichtbaar was.
+  publiceer:
+    needs: bouw
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publiceer.outputs.page_url }}
+    steps:
       - id: publiceer
         uses: actions/deploy-pages@v4

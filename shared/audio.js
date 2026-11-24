@@ -3,6 +3,11 @@
 // Veel computers hebben die niet: dan leest een Engelse stem het Nederlands voor, en dat is erger dan stilte. Dan dus: stil.
 window.Spraak = (() => {
   const basis = new URL('audio/', document.currentScript.src).href;
+  // UITGAVE staat achter het adres van elke mp3 (?v=2). Een browser mag een mp3 lang bewaren; de naam van een mp3 hangt alleen van de
+  // tekst af. Zijn de opnamen opnieuw gemaakt of schoongemaakt (tools/tts*.py, tools/schoon_audio.py), verhoog dit getal dan:
+  // zo haalt elke browser de nieuwe opnamen op.
+  const UITGAVE = '2';
+  const vers = (url) => url + '?v=' + UITGAVE;
   let lijst = null;
   const laad = fetch(basis + 'index.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({})).then((j) => { lijst = j; });
   let speler = null;
@@ -36,8 +41,8 @@ window.Spraak = (() => {
     // adres van de mp3 bij een sleutel (tekst, of "stem|tekst"), of null
     async adres(sleutel) {
       await laad;
-      for (const m of extra) { await m.klaar; if (m.lijst[sleutel]) return m.url + m.lijst[sleutel]; }
-      return lijst[sleutel] ? basis + lijst[sleutel] : null;
+      for (const m of extra) { await m.klaar; if (m.lijst[sleutel]) return vers(m.url + m.lijst[sleutel]); }
+      return lijst[sleutel] ? vers(basis + lijst[sleutel]) : null;
     },
     // speelt de mp3 (sleutel) of anders de browserstem (tekst). snelheid: 1 = gewoon, 0.75 = langzaam. Geeft de Audio terug (of null).
     async zeg(tekst, opties) {
