@@ -424,7 +424,7 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 @media (max-width: 380px) { .nav a { font-size: .62rem; } .nav a.nu .icoon { padding-inline: 10px; } }
 @media print { .nav { display: none; } }
 /* het merk links in de kop van de startpagina */
-.merk { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 36px; height: 36px; margin-left: 4px; border-radius: 11px; background: var(--held); color: #fff; font-size: .85rem; font-weight: 800; letter-spacing: -.02em; }
+.merk { display: block; flex: none; width: 38px; height: 38px; margin-left: 4px; }
 
 /* ---------- startpagina ---------- */
 .held-rij { display: flex; align-items: center; gap: 24px; }
