@@ -182,11 +182,12 @@
       el('div', { class: 'pnaam' }, invoer, el('button', { type: 'button', class: 'knop', en: 'share with friends', onclick: deel }, teken('deel'), 'Deel met vrienden')),
       vak,
       g
-        ? el('p', { class: 'zacht klein', en: 'Friends see this card only when you send them the link. The link always shows your newest card.' },
+        ? el('p', { class: 'zacht klein uitleg', 'data-knop': 'Wie ziet mijn kaart?', 'data-knop-en': 'who sees my card?', en: 'Friends see this card only when you send them the link. The link always shows your newest card.' },
           'Vrienden zien deze kaart alleen als u de link stuurt. De link laat altijd uw nieuwste kaart zien. ',
           el('button', { type: 'button', class: 'knop tekst klein', en: 'delete my data from my account', onclick: verwijderAccount }, 'Verwijder mijn gegevens bij het account'))
-        : el('p', { class: 'zacht klein', en: 'Your name stays in this browser. Friends see this card only when you send them the link. The link shows the card of today: after more lessons, share it again.' },
+        : el('p', { class: 'zacht klein uitleg', 'data-knop': 'Wie ziet mijn kaart?', 'data-knop-en': 'who sees my card?', en: 'Your name stays in this browser. Friends see this card only when you send them the link. The link shows the card of today: after more lessons, share it again.' },
           'Uw naam blijft in deze browser. Vrienden zien deze kaart alleen als u de link stuurt. De link laat de kaart van vandaag zien: deel hem opnieuw als u meer lessen deed.')].filter(Boolean));
+    App.uitleg(pagina);
   }
   window.addEventListener('hashchange', toon);
   // het account verandert (ingelogd, bewaard, uitgelogd) of er kwam voortgang van het account: opnieuw tekenen, maar niet terwijl u typt

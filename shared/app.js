@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.19.5';
+  const VERSIE = '1.20.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -125,6 +125,7 @@ window.App = (() => {
     knm: '<path d="M3 21h18"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/><path d="M12 3 2.5 8.5V10h19V8.5z"/>',
     pijl: '<path d="m9 18 6-6-6-6"/>',
     mens: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.01"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -317,6 +318,25 @@ window.App = (() => {
       el('a', { href: WORTEL + p + 'index.html', class: p === pad ? 'nu' : '', 'aria-current': p === pad ? 'page' : null, title: en }, teken(t), el('span', {}, naam))));
   }
 
+  // ---------- uitleg achter een knop ----------
+  // Lange uitleg staat niet open op de pagina: er staat een knop met een i. Een klik laat de uitleg zien, nog een klik haalt hem weg.
+  // Zet class="uitleg" op het element met de uitleg. Staat het direct onder een kop (h2, h3), dan komt de knop in die kop.
+  // Anders komt er een knop met een woord erbij: "Uitleg", of de tekst van data-knop (en data-knop-en voor de hulp).
+  // App.kop() doet dit voor wat al op de pagina staat; komt er later iets bij, roep dan App.uitleg(element) aan.
+  let uitlegNr = 0;
+  function uitleg(wortel) {
+    (wortel || document).querySelectorAll('.uitleg:not(.uitleg-tekst)').forEach((doel) => {
+      doel.classList.add('uitleg-tekst'); doel.hidden = true;
+      if (!doel.id) doel.id = 'uitleg-' + (++uitlegNr);
+      const vorige = doel.previousElementSibling, inKop = vorige && /^H[1-4]$/.test(vorige.tagName);
+      const naam = inKop ? '' : (doel.dataset.knop || 'Uitleg');
+      const k = el('button', { type: 'button', class: 'infoknop' + (inKop ? '' : ' met-tekst'), title: 'uitleg', 'aria-label': naam || 'uitleg', 'aria-expanded': 'false', 'aria-controls': doel.id,
+        onclick: () => { doel.hidden = !doel.hidden; k.setAttribute('aria-expanded', String(!doel.hidden)); k.classList.toggle('open', !doel.hidden); } },
+        teken('info'), naam ? el('span', { en: doel.dataset.knopEn || 'explanation' }, naam) : null);
+      if (inKop) vorige.append(' ', k); else doel.before(el('p', { class: 'uitleg-rij' }, k));
+    });
+  }
+
   // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
@@ -336,6 +356,7 @@ window.App = (() => {
       el('a', { href: 'https://github.com/coditori', target: '_blank', rel: 'noopener' }, 'GitHub'),
       el('a', { href: 'https://www.linkedin.com/in/coditori/', target: '_blank', rel: 'noopener' }, 'LinkedIn'),
       el('span', { class: 'versie', title: 'versie van de site' }, 'v' + VERSIE)));
+    uitleg();
     ververs();
     // inloggen met Google (als de site dat heeft): laadt na de pagina, en zet de eerste letter van de naam op de knop Profiel
     document.addEventListener('account', () => {
@@ -428,5 +449,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, sectieKop, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

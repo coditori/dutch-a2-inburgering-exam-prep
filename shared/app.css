@@ -643,3 +643,14 @@ a.ring { color: inherit; text-decoration: none; border-radius: 50%; transition: 
 .sectie-icoon { display: flex; align-items: center; justify-content: center; flex: none; width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.18); }
 .sectie-icoon .icoon { width: 28px; height: 28px; }
 @media (max-width: 560px) { .sectie-icoon { width: 44px; height: 44px; border-radius: 14px; } .sectie-icoon .icoon { width: 24px; height: 24px; } }
+/* ---------- uitleg achter een knop met een i (App.uitleg) ---------- */
+.infoknop { display: inline-flex; align-items: center; justify-content: center; gap: 6px; vertical-align: middle; width: 36px; height: 36px; margin: -6px 0 -6px 4px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--accent); font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; transition: background .15s; }
+.infoknop .icoon { width: 22px; height: 22px; flex: none; }
+.infoknop.met-tekst { width: auto; min-height: 40px; margin: 0; padding: 6px 14px 6px 10px; background: var(--vlak2); color: var(--tekst); }
+.infoknop.open { background: var(--accent-zacht); color: var(--op-accent-zacht); }
+@media (hover: hover) { .infoknop:hover { background: var(--accent-zacht); color: var(--op-accent-zacht); } }
+.uitleg-rij { margin: 12px 0 0; }
+.uitleg-tekst:not([hidden]) { animation: op .25s ease both; }
+p.uitleg-tekst { margin-top: 8px; padding: 12px 16px; border-radius: var(--rond); background: var(--vlak2); color: var(--tekst); }
+h2 + p.uitleg-tekst { margin-top: -4px; margin-bottom: 14px; }
+@media (prefers-reduced-motion: reduce) { .uitleg-tekst:not([hidden]) { animation: none; } }
