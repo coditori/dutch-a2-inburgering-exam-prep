@@ -39,6 +39,10 @@ jobs:
           # alleen geldige JSON komt op de site; de inhoud komt niet in het logboek
           printf '%s' "$SITE_CONFIG" | python3 -c "import json, sys; json.dump(json.load(sys.stdin), open('shared/config.json', 'w'))"
           echo "shared/config.json geschreven."
+      # Elke link naar een eigen .js of .css krijgt de versie van deze publicatie erachter (tools/cachebreker.py):
+      # zo haalt de browser na een nieuwe versie de nieuwe bestanden, ook als hij de oude lang mag bewaren.
+      - name: Verse scripts en stijl voor elke bezoeker
+        run: python3 tools/cachebreker.py "${GITHUB_SHA::8}" .
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
