@@ -19,11 +19,11 @@ window.SITE_NAAM = 'Taal Klim';
   zet('apple-touch-icon', 'icoon-180.png');
 })();
 
-// De titel in het tabblad eindigt altijd op de naam van de site: "Lezen – les · Taal Klim".
+// De titel in het tabblad eindigt altijd op de naam van de site: "Lezen: les | Taal Klim".
 // Ook als een pagina de titel later zelf zet (document.title = ...): daarom kijken we mee.
 (() => {
   const naam = window.SITE_NAAM;
-  const zet = () => { if (document.title && !document.title.includes(naam)) document.title = document.title + ' · ' + naam; };
+  const zet = () => { if (document.title && !document.title.includes(naam)) document.title = document.title + ' | ' + naam; };
   zet();
   const t = document.querySelector('title');
   if (t) new MutationObserver(zet).observe(t, { childList: true, characterData: true, subtree: true });

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNM – toets</title>
+<title>KNM: toets</title>
 <link rel="stylesheet" href="../../shared/app.css">
 <script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../knm.css">
@@ -27,7 +27,7 @@
   const pagina = document.getElementById('pagina');
   let toets;
   try { toets = await Lezen.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
-  const kop = App.kop(`KNM · ${toets.titel}`, '../index.html');
+  const kop = App.kop(`KNM: ${toets.titel}`, '../index.html');
   const klok = el('b');
   kop.insertBefore(klok, kop.lastChild);
   const vragen = toets.vragen;
@@ -49,7 +49,7 @@
       el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
       el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
       el('p', { class: 'zacht', en: 'Like the real exam: questions per theme, three answers, no word help. 🔊 reads the question aloud. Result at the end.' }, 'Net als het echte examen: vragen per thema, drie antwoorden, geen hulp bij woorden. Met 🔊 hoort u de vraag. De uitslag ziet u aan het einde.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
         stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((v) => App.schud(v.o.map((_, i) => i))) };
         bewaar(); examen();
@@ -113,7 +113,7 @@
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('knm-toets-bezig', null); welkom(); } }, 'Nog een keer'), el('a', { class: 'knop', href: '../index.html' }, 'Naar de thema\'s')))));
     if (kijk != null) {
       const v = vragen[kijk]; const doel = el('div');
-      pagina.append(el('div', { class: 'toetsvak', style: 'padding-bottom:20px' }, el('div', { class: 'kaart' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1} · ${THEMA[v.thema] || v.thema}` + (stand.antwoorden[kijk] == null ? ' · niet beantwoord' : '')), el('div', { class: 'kplaat' }, v.beeld || '🇳🇱'), doel,
+      pagina.append(el('div', { class: 'toetsvak', style: 'padding-bottom:20px' }, el('div', { class: 'kaart' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}, ${THEMA[v.thema] || v.thema}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')), el('div', { class: 'kplaat' }, v.beeld || '🇳🇱'), doel,
         el('div', { class: 'waarom' }, el('b', {}, 'Waarom? '), App.woorden(v.w || '')))));
       Lezen.vraag(doel, v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
     }

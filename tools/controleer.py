@@ -108,7 +108,7 @@ def controleer_examen(lijst, examen, basis_per_trede, toon):
             per_trede[t] |= {lijst.vind_lemma(w["nl"]) for w in nieuw} - {None}
         geleerd_na[les["id"]] = set(geleerd)
         for woord, reden in controleer_tekst(lijst, les, trede, geleerd | basis).items():
-            fouten.append(f"woord boven trede {trede}: {woord} — {reden}")
+            fouten.append(f"woord boven trede {trede}: {woord}: {reden}")
         n_vragen = "-"
         if examen == "lezen":
             vf, n_vragen = vorm_fouten(pad.name, les)
@@ -139,7 +139,7 @@ def controleer_examen(lijst, examen, basis_per_trede, toon):
                 if len(onbekend) > MAX_ONBEKEND_TOETS:
                     fouten.append(f"deel {ti + 1}: {len(onbekend)} woorden niet in de lijst (maximaal {MAX_ONBEKEND_TOETS}): {', '.join(onbekend)}")
         else:
-            fouten = [f"woord boven trede {trede}: {w} — {r}" for w, r in controleer_tekst(lijst, data, trede, bekend).items()]
+            fouten = [f"woord boven trede {trede}: {w}: {r}" for w, r in controleer_tekst(lijst, data, trede, bekend).items()]
         if examen == "lezen":
             vf, n_vragen = vorm_fouten(pad.name, data)
             fouten += vf

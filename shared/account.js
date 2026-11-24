@@ -62,7 +62,7 @@ window.Account = (() => {
   const afdruk = (o) => JSON.stringify(SLEUTELS.map((k) => o[k] || '')); // om te zien of er iets veranderd is
 
   // ---------- waar het account staat: Firebase, of (demo) deze browser ----------
-  // Elke soort heeft: start(cb) · login() · loguit() · haal(uid) · bewaar(uid, gegevens, kaart) · wis(uid) · kaart(uid)
+  // Elke soort heeft: start(cb), login(), loguit(), haal(uid), bewaar(uid, gegevens, kaart), wis(uid), kaart(uid)
   const demoWolk = () => ({
     start(cb) { this.cb = cb; cb(lees('demo-in') ? { uid: 'demo', naam: 'Sara Demo', email: 'sara@voorbeeld.nl' } : null); },
     async login() { zet('demo-in', '1'); this.start(this.cb); },

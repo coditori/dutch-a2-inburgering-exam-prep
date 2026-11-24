@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spreken – lessen en oefenexamens</title>
+<title>Spreken: lessen en oefenexamens</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="../spreken/spreken.css">
@@ -11,7 +11,7 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="practice exams: 16 questions, 35 minutes. You can do them at any time." id="examens">Oefenexamens · 16 vragen, 35 minuten</h2>
+  <h2 data-en="practice exams: 16 questions, 35 minutes. You can do them at any time." id="examens">Oefenexamens: 16 vragen, 35 minuten</h2>
   <div class="tegels" id="toetsen"></div>
   <div class="kaart" id="techniek"></div>
   <div id="ladder"></div>
@@ -28,7 +28,7 @@
 (async () => {
   const { el } = App;
   App.kop('Spreken', '../index.html');
-  const TREDE = { 1: 'Trede 1 · klanken en zinnen', 2: 'Trede 2 · vraag en antwoord', 3: 'Trede 3 · plaatjes', 4: 'Trede 4 · examen' };
+  const TREDE = { 1: 'Trede 1: klanken en zinnen', 2: 'Trede 2: vraag en antwoord', 3: 'Trede 3: plaatjes', 4: 'Trede 4: examen' };
   const [lessen, toetsen] = await Promise.all([Spreken.json('lessons/index.json'), Spreken.json('toets/index.json').catch(() => [])]);
   const P = Spreken.P;
   const eerste = lessen.find((l, i) => !Spreken.gehaald(l.id) && Spreken.isOpen(lessen, i));
@@ -62,7 +62,7 @@
     const r = P.toets[t.id] || [];
     return el('a', { class: 'tegel', href: `toets/toets.html?t=${t.id}` },
       el('b', {}, t.titel), `${t.vragen} vragen`,
-      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score)), t.vragen)} · ${r.length}× gedaan` : 'nog niet gedaan'));
+      el('div', { class: 'klein zacht' }, r.length ? `beste: ${App.cijfer(Math.max(...r.map((x) => x.score)), t.vragen)}, ${r.length}× gedaan` : 'nog niet gedaan'));
   }));
 })();
 </script>

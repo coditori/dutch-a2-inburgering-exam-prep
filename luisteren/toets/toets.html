@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luisteren – toets</title>
+<title>Luisteren: toets</title>
 <link rel="stylesheet" href="../../shared/app.css">
 <script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../luisteren.css">
@@ -26,7 +26,7 @@
   const pagina = document.getElementById('pagina');
   let toets;
   try { toets = await Lezen.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
-  const kop = App.kop(`Luisteren · ${toets.titel}`, '../index.html');
+  const kop = App.kop(`Luisteren: ${toets.titel}`, '../index.html');
   const klok = el('b', { class: 'klok' });
   kop.insertBefore(klok, kop.lastChild);
   const vragen = toets.items.flatMap((it, ii) => it.vragen.map((v) => ({ ii, v })));
@@ -44,7 +44,7 @@
       el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
       el('p', { class: 'zacht', en: 'Like the real exam: read the question first, then listen. You may listen again. No text, no slow button. You see the result at the end.' },
         'Net als het echte examen: lees eerst de vraag, luister daarna. U mag nog een keer luisteren. Er is geen tekst en geen langzame knop. De uitslag ziet u aan het einde.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
         stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((q) => App.schud(q.v.o.map((_, i) => i))) };
         bewaar(); examen();
@@ -115,7 +115,7 @@
       pagina.append(el('div', { class: 'examen', style: 'padding-bottom:20px' }, links, rechts));
       links.append(el('p', { class: 'intro' }, it.context), Luister.speler(it.regels, { opRegel: tr.opRegel, opTijd: tr.opTijd }), tr.vak);
       Lezen.vraag(rechts, q.v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
-      rechts.prepend(el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ' · niet beantwoord' : '')));
+      rechts.prepend(el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')));
     }
   }
   if (!stand) welkom(); else if (stand.klaar) uitslag(); else examen();

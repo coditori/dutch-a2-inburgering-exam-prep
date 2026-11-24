@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lezen – herhalen</title>
+<title>Lezen: herhalen</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 </head>
@@ -52,7 +52,7 @@
       el('table', { class: 'ladder' }, stand.map((s, t) => el('tr', {},
         el('td', {}, `Trede ${t}`),
         el('td', { style: 'width:50%' }, el('div', { class: 'balk' }, el('i', { style: `width:${s.totaal ? Math.round(100 * s.bekend / s.totaal) : 0}%` }))),
-        el('td', { class: 'klein zacht' }, `${s.bekend} van ${s.totaal} · bezig met ${s.bezig}`)))),
+        el('td', { class: 'klein zacht' }, `${s.bekend} van ${s.totaal}, bezig met ${s.bezig}`)))),
       el('p', { class: 'klein zacht', en: 'A word counts as known after two right answers on two different days.' }, 'Een woord telt als gekend na twee goede antwoorden op twee dagen.'));
   }
 

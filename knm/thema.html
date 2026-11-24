@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNM – thema</title>
+<title>KNM: thema</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="knm.css">
@@ -32,8 +32,8 @@
   catch (e) { pagina.textContent = 'Dit thema bestaat niet: ' + tid; return; }
   const les = `${tid}-${stap}`;
   const label = KNM.STAPPEN.find((s) => s[0] === stap);
-  document.title = `KNM – ${thema.titel} – ${label[1]}`;
-  App.kop(`${thema.titel} · ${label[1]}`, 'index.html');
+  document.title = `KNM: ${thema.titel}, ${label[1]}`;
+  App.kop(`${thema.titel}: ${label[1]}`, 'index.html');
   Spraak.map('audio/');
   const nieuw = new Set(thema.woorden.map((w) => App.lemmaNr(w.nl)).filter((n) => n >= 0));
   const rij = KNM.rij(themas);

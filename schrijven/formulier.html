@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Schrijven – formulier</title>
+<title>Schrijven: formulier</title>
 <link rel="stylesheet" href="../shared/app.css">
 <script src="../shared/thema.js"></script>
 <link rel="stylesheet" href="schrijven.css">
@@ -53,7 +53,7 @@
       pagina.append(el('p', { class: 'zacht klein' }, `Formulieren gedaan: ${t.keer + 1}. In één keer goed: ${t.goed + (eersteKeer ? 1 : 0)}.`),
         el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: oefen }, 'Volgend formulier'), el('button', { class: 'knop licht', onclick: vraagGegevens }, 'Mijn gegevens veranderen')));
     }, eigen);
-    pagina.append(el('p', { class: 'klein' }, el('a', { href: '#', onclick: (e) => { e.preventDefault(); vraagGegevens(); } }, 'Mijn gegevens veranderen'), ' · ',
+    pagina.append(el('p', { class: 'klein' }, el('a', { href: '#', onclick: (e) => { e.preventDefault(); vraagGegevens(); } }, 'Mijn gegevens veranderen'), ' | ',
       el('a', { href: '#', onclick: (e) => { e.preventDefault(); App.schrijf('schrijven-gegevens', null); eigen = null; vraagGegevens(); } }, 'Mijn gegevens weggooien')));
   }
   if (eigen) oefen(); else vraagGegevens();

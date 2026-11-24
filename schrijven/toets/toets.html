@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Schrijven – set</title>
+<title>Schrijven: set</title>
 <link rel="stylesheet" href="../../shared/app.css">
 <script src="../../shared/thema.js"></script>
 <link rel="stylesheet" href="../schrijven.css">
@@ -27,7 +27,7 @@
   const pagina = document.getElementById('pagina');
   let set;
   try { set = await Schrijven.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze set bestaat niet: ' + id; return; }
-  const kop = App.kop(`Schrijven · ${set.titel}`, '../index.html');
+  const kop = App.kop(`Schrijven: ${set.titel}`, '../index.html');
   const klok = el('b', {});
   kop.insertBefore(klok, kop.lastChild);
   let stand = App.lees('schrijven-toets-bezig', null);
@@ -60,7 +60,7 @@
       el('p', {}, `U moet ${set.items.length} opdrachten maken. U hebt ${MINUTEN} minuten.`),
       el('p', { en: 'The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. The aanhef and afsluiting are already on the paper, as in the real exam.' },
         'Het echte examen is met pen en papier. Druk de opdrachten af, of lees ze hier en schrijf op uw eigen papier. De aanhef en de afsluiting staan al op het papier, net als op het echte examen.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum}, ${r.minuten} min)`).join(' · ')) : null,
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum}, ${r.minuten} min)`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now() }; bewaar(); werk(); } }, 'Start'))));
   }
 
