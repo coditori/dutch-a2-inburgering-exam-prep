@@ -20,7 +20,7 @@
    "en": "Does the sentence start with a time or a day? Then the verb comes first and then ik."
   },
   {
-   "nl": "Ik werk morgen. → Morgen werk ik.",
+   "nl": "Ik werk morgen. -> Morgen werk ik.",
    "en": ""
   }
  ],

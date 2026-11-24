@@ -170,7 +170,7 @@
             el('p', { class: 'zacht', en }, nl),
             el('p', { class: 'klein zacht', en: 'words known' }, `${x.bekend} van ${x.totaal} woorden gekend`)),
           inhoud ? null : el('div', { class: 'knoppen' },
-            el('button', { type: 'button', class: 'knop', en: 'play: 5 words', onclick: speel }, '▶ Speel: 5 woorden'),
+            el('button', { type: 'button', class: 'knop', en: 'play: 5 words', onclick: speel }, 'Speel: 5 woorden'),
             el('button', { type: 'button', class: 'knop rand', en: lijstOpen ? 'hide the words' : 'see the words', onclick: () => { lijstOpen = !lijstOpen; tekenLadder(); } }, lijstOpen ? 'Verberg de woorden' : 'Bekijk de woorden'))),
         inhoud || null,
         lijstOpen && !inhoud ? woordenlijst() : null));
@@ -242,7 +242,7 @@
         el('p', { en: goed === rij.length ? 'All right!' : goed >= 3 ? 'Well done. The other words come back.' : 'These words come back. Try again.' },
           goed === rij.length ? 'Alles goed!' : goed >= 3 ? 'Goed gedaan. De andere woorden komen terug.' : 'Deze woorden komen terug. Probeer het nog een keer.'),
         el('div', { class: 'knoppen', style: 'justify-content:center' },
-          el('button', { type: 'button', class: 'knop', en: '5 more words', onclick: speel }, '▶ Nog 5 woorden'),
+          el('button', { type: 'button', class: 'knop', en: '5 more words', onclick: speel }, 'Nog 5 woorden'),
           el('button', { type: 'button', class: 'knop rand', en: 'done', onclick: () => tekenLadder() }, 'Klaar'))));
     }
     if (rij.length) vraag();

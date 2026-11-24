@@ -56,7 +56,7 @@ window.Luister = (() => {
     const o = opties || {};
     const bezig = el('span', { class: 'bezig' });
     let laatst = false;
-    const start = (langzaam) => { laatst = langzaam; bezig.textContent = '🔊 …'; speel(regels, Object.assign({}, o, { langzaam, opEinde: () => { bezig.textContent = ''; } })); };
+    const start = (langzaam) => { laatst = langzaam; bezig.textContent = '🔊 ...'; speel(regels, Object.assign({}, o, { langzaam, opEinde: () => { bezig.textContent = ''; } })); };
     return el('div', { class: 'speler' },
       el('button', { class: 'knop', title: 'luister', en: 'play', onclick: () => start(false) }, '▶'),
       o.langzaam === false ? null : el('button', { class: 'knop licht', title: 'langzaam', en: 'slow', onclick: () => start(true) }, '🐢'),

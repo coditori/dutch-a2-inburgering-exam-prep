@@ -256,9 +256,9 @@ window.App = (() => {
     }
     doel.append(rij);
     if (o.ga && o.n > 1) doel.append(el('div', { class: 'stappen-nav' },
-      el('button', { type: 'button', class: 'knop licht klein', en: 'previous', disabled: nu <= min, onclick: () => o.ga(nu - 1) }, '← Vorige'),
+      el('button', { type: 'button', class: 'knop licht klein', en: 'previous', disabled: nu <= min, onclick: () => o.ga(nu - 1) }, 'Vorige'),
       el('span', { class: 'zacht klein' }, `${nu + 1} / ${o.n}`),
-      el('button', { type: 'button', class: 'knop licht klein', en: 'next', disabled: nu >= max, onclick: () => o.ga(nu + 1) }, 'Volgende →')));
+      el('button', { type: 'button', class: 'knop licht klein', en: 'next', disabled: nu >= max, onclick: () => o.ga(nu + 1) }, 'Volgende')));
   }
   // knoppen 1 2 3 voor de vragen bij één tekst. staat(i) = 'goed' | 'fout' | null (nog niet gedaan). Klik: terugkijken.
   function vraagKnoppen(n, nu, staat, ga) {

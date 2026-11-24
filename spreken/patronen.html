@@ -35,7 +35,7 @@
           el('button', { class: 'rond', title: 'langzaam', onclick: () => Spreken.speel(z.nl, 0.75) }, '🐢'), ' ',
           el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗')));
     })),
-    el('div', { class: 'knoppen' }, el('button', { class: 'knop licht klein', en: 'play all', onclick: () => Spreken.speel(p.zinnen.map((z) => z.nl)) }, '▶ Alles')));
+    el('div', { class: 'knoppen' }, el('button', { class: 'knop licht klein', en: 'play all', onclick: () => Spreken.speel(p.zinnen.map((z) => z.nl)) }, 'Speel alles')));
   pagina.append(...data.patronen.map(blok));
   pagina.append(el('h2', { en: 'the 4-sentence formula' }, 'De formule van 4 zinnen'), el('p', { class: 'zacht', en: data.formule_en }, data.formule_uitleg));
   pagina.append(...data.formules.map((f) => blok({ patroon: f.titel, zinnen: f.zinnen })));
