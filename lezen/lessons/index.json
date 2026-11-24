@@ -1,0 +1,230 @@
+[
+ {
+  "id": "L01",
+  "trede": 1,
+  "titel": "De winkel en de bus",
+  "soort": "plaatje"
+ },
+ {
+  "id": "L02",
+  "trede": 1,
+  "titel": "De man en de vrouw",
+  "soort": "plaatje"
+ },
+ {
+  "id": "L03",
+  "trede": 1,
+  "titel": "Eten en drinken",
+  "soort": "plaatje"
+ },
+ {
+  "id": "L04",
+  "trede": 1,
+  "titel": "In het huis",
+  "soort": "plaatje"
+ },
+ {
+  "id": "L05",
+  "trede": 1,
+  "titel": "De dag en de week",
+  "soort": "plaatje"
+ },
+ {
+  "id": "L06",
+  "trede": 1,
+  "titel": "Kopen en betalen",
+  "soort": "plaatje"
+ },
+ {
+  "id": "L07",
+  "trede": 1,
+  "titel": "Niet en geen",
+  "soort": "tekst"
+ },
+ {
+  "id": "L08",
+  "trede": 1,
+  "titel": "Naam en adres",
+  "soort": "tekst"
+ },
+ {
+  "id": "L09",
+  "trede": 1,
+  "titel": "Wie, wat, waar, waarom",
+  "soort": "tekst"
+ },
+ {
+  "id": "L10",
+  "trede": 1,
+  "titel": "Wanneer, hoe laat, hoeveel",
+  "soort": "tekst"
+ },
+ {
+  "id": "L11",
+  "trede": 2,
+  "titel": "Bordjes lezen",
+  "soort": "tekst"
+ },
+ {
+  "id": "L12",
+  "trede": 2,
+  "titel": "Een bericht van een vriend",
+  "soort": "tekst"
+ },
+ {
+  "id": "L13",
+  "trede": 2,
+  "titel": "Een briefje op de tafel",
+  "soort": "tekst"
+ },
+ {
+  "id": "L14",
+  "trede": 2,
+  "titel": "Een briefje van school",
+  "soort": "tekst"
+ },
+ {
+  "id": "L15",
+  "trede": 2,
+  "titel": "Bij de huisarts",
+  "soort": "tekst"
+ },
+ {
+  "id": "L16",
+  "trede": 2,
+  "titel": "De buren",
+  "soort": "tekst"
+ },
+ {
+  "id": "L17",
+  "trede": 2,
+  "titel": "Met de bus en de trein",
+  "soort": "tekst"
+ },
+ {
+  "id": "L18",
+  "trede": 2,
+  "titel": "Een bericht van het werk",
+  "soort": "tekst"
+ },
+ {
+  "id": "L19",
+  "trede": 2,
+  "titel": "Openingstijden",
+  "soort": "tekst"
+ },
+ {
+  "id": "L20",
+  "trede": 2,
+  "titel": "Het rooster van de cursus",
+  "soort": "tekst"
+ },
+ {
+  "id": "L21",
+  "trede": 2,
+  "titel": "Het menu",
+  "soort": "tekst"
+ },
+ {
+  "id": "L22",
+  "trede": 2,
+  "titel": "Advertenties: te koop en te huur",
+  "soort": "tekst"
+ },
+ {
+  "id": "L23",
+  "trede": 2,
+  "titel": "De aanbieding",
+  "soort": "tekst"
+ },
+ {
+  "id": "L24",
+  "trede": 2,
+  "titel": "In het buurthuis",
+  "soort": "tekst"
+ },
+ {
+  "id": "L25",
+  "trede": 3,
+  "titel": "Een e-mail van school",
+  "soort": "tekst"
+ },
+ {
+  "id": "L26",
+  "trede": 3,
+  "titel": "Een brief van het ziekenhuis",
+  "soort": "tekst"
+ },
+ {
+  "id": "L27",
+  "trede": 3,
+  "titel": "Een brief van de gemeente",
+  "soort": "tekst"
+ },
+ {
+  "id": "L28",
+  "trede": 3,
+  "titel": "Een e-mail van het werk",
+  "soort": "tekst"
+ },
+ {
+  "id": "L29",
+  "trede": 3,
+  "titel": "Een brief van de woningcorporatie",
+  "soort": "tekst"
+ },
+ {
+  "id": "L30",
+  "trede": 3,
+  "titel": "Een e-mail over de toets",
+  "soort": "tekst"
+ },
+ {
+  "id": "L31",
+  "trede": 3,
+  "titel": "Een brief over geld",
+  "soort": "tekst"
+ },
+ {
+  "id": "L32",
+  "trede": 3,
+  "titel": "Een uitnodiging uit de buurt",
+  "soort": "tekst"
+ },
+ {
+  "id": "L33",
+  "trede": 4,
+  "titel": "De folder van het sportcentrum",
+  "soort": "tekst"
+ },
+ {
+  "id": "L34",
+  "trede": 4,
+  "titel": "Een vacature",
+  "soort": "tekst"
+ },
+ {
+  "id": "L35",
+  "trede": 4,
+  "titel": "Regels in het gebouw",
+  "soort": "tekst"
+ },
+ {
+  "id": "L36",
+  "trede": 4,
+  "titel": "Bestellen op internet",
+  "soort": "tekst"
+ },
+ {
+  "id": "L37",
+  "trede": 4,
+  "titel": "Tips: meer bewegen",
+  "soort": "tekst"
+ },
+ {
+  "id": "L38",
+  "trede": 4,
+  "titel": "Een tekst uit de krant",
+  "soort": "tekst"
+ }
+]

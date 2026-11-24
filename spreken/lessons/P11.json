@@ -1,0 +1,80 @@
+{
+ "id": "P11",
+ "trede": 2,
+ "titel": "Waarom? Hoe? Hoe vaak?",
+ "uitleg": "U hoort een vraag. Zeg binnen 3 seconden het begin van uw antwoord. Daarna ziet u een goed antwoord.",
+ "en": "You hear a question. Within 3 seconds say the START of your answer aloud. The question word tells you how to start. Then you see a model.",
+ "patroon": "Waarom? → … omdat …  ·  Hoe? → met de …  ·  Hoe vaak? → elke … / … keer per week",
+ "woorden": [
+  {
+   "nl": "de keer",
+   "en": "time (one time, two times)",
+   "beeld": "🔂",
+   "zin": "Ik sport twee keer per week.",
+   "thema": "hoeveel"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "kaart",
+   "vraag": "Waarom leert u Nederlands?",
+   "begin": "Ik leer Nederlands omdat …",
+   "model": "Ik leer Nederlands omdat ik in Nederland woon."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Waarom gaat u met de fiets?",
+   "begin": "Ik ga met de fiets omdat …",
+   "model": "Ik ga met de fiets omdat het gezond is."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Waarom doet u boodschappen op de markt?",
+   "begin": "… omdat het … is.",
+   "model": "Ik doe boodschappen op de markt omdat het goedkoop is."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Waarom vindt u de zomer leuk?",
+   "begin": "Ik vind de zomer leuk omdat …",
+   "model": "Ik vind de zomer leuk omdat het warm is."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe gaat u naar uw werk?",
+   "begin": "Ik ga met de … naar mijn werk.",
+   "model": "Ik ga met de bus naar mijn werk."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe gaat u het liefst op vakantie?",
+   "begin": "Ik ga het liefst met de …",
+   "model": "Ik ga het liefst met de trein op vakantie."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe vaak doet u boodschappen?",
+   "begin": "Ik doe … keer per week boodschappen.",
+   "model": "Ik doe twee keer per week boodschappen."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe vaak kookt u?",
+   "begin": "Ik kook elke …",
+   "model": "Ik kook elke dag."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe vaak gaat u op vakantie?",
+   "begin": "Ik ga … op vakantie.",
+   "model": "Ik ga elk jaar op vakantie."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe vaak praat u met uw buren?",
+   "begin": "Ik praat … met mijn buren.",
+   "model": "Ik praat elke week met mijn buren."
+  }
+ ]
+}

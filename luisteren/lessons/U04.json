@@ -1,0 +1,85 @@
+{
+ "id": "U04",
+ "trede": 1,
+ "titel": "Van een tot twintig",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "zeven"
+    }
+   ],
+   "typ": "7"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "twaalf"
+    }
+   ],
+   "typ": "12"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "vijftien"
+    }
+   ],
+   "typ": "15"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "negentien"
+    }
+   ],
+   "typ": "19"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "elf"
+    }
+   ],
+   "typ": "11"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "acht"
+    }
+   ],
+   "typ": "8"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "veertien"
+    }
+   ],
+   "typ": "14"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "twintig"
+    }
+   ],
+   "typ": "20"
+  }
+ ],
+ "dictee": [
+  "Het brood is twee euro.",
+  "Ik woon op nummer twaalf."
+ ]
+}

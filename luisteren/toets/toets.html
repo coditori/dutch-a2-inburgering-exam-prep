@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luisteren – toets</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../luisteren.css">
+</head>
+<body>
+<div id="pagina"><main><p class="zacht">Even wachten…</p></main></div>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../luisteren.js"></script>
+<script>
+// Toets in examen-indeling: links de situatie en het geluid, rechts één vraag. 45 minuten, uitslag aan het einde.
+// toets.html?t=A laadt A.json: { items: [{ context, soort: 'gesprek' | 'voicemail' | ..., regels: [{s, t}], vragen: [{ sit, v, o }] }] }
+(async () => {
+  const { el } = App;
+  const MINUTEN = 45;
+  const id = new URLSearchParams(location.search).get('t') || 'A';
+  const pagina = document.getElementById('pagina');
+  let toets;
+  try { toets = await Lezen.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
+  const kop = App.kop(`Luisteren · ${toets.titel}`, '../index.html');
+  const klok = el('b', { class: 'klok' });
+  kop.insertBefore(klok, kop.lastChild);
+  const vragen = toets.items.flatMap((it, ii) => it.vragen.map((v) => ({ ii, v })));
+  let stand = App.lees('luisteren-toets-bezig', null);
+  if (!stand || stand.id !== id) stand = null;
+  const bewaar = () => App.schrijf('luisteren-toets-bezig', stand);
+  let tik = null;
+
+  function welkom() {
+    Luister.stop();
+    const eerder = Luister.P.toets[id] || [];
+    pagina.textContent = '';
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
+      el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
+      el('p', { class: 'zacht', en: 'Like the real exam: read the question first, then listen. You may listen again. No text, no slow button. You see the result at the end.' },
+        'Net als het echte examen: lees eerst de vraag, luister daarna. U mag nog een keer luisteren. Er is geen tekst en geen langzame knop. De uitslag ziet u aan het einde.'),
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum})`).join(' · ')) : null,
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
+        stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((q) => App.schud(q.v.o.map((_, i) => i))) };
+        bewaar(); examen();
+      } }, 'Start')))));
+    klok.textContent = '';
+  }
+  const rest = () => Math.max(0, MINUTEN * 60 - Math.floor((Date.now() - stand.start) / 1000));
+  function tekenKlok() { const s = rest(); klok.textContent = `⏱ ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; if (s <= 0) inleveren(); }
+  function examen() { document.body.classList.add('geen-woorden'); clearInterval(tik); tik = setInterval(tekenKlok, 1000); tekenKlok(); if (stand && !stand.klaar) tekenVraag(); }
+
+  function tekenVraag() {
+    Luister.stop();
+    const q = vragen[stand.nu], it = toets.items[q.ii];
+    const links = el('section'), rechts = el('section'), vraagDoel = el('div');
+    pagina.textContent = '';
+    pagina.append(el('div', { class: 'examen' }, links, rechts),
+      el('div', { class: 'voet' },
+        el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, '‹ Vorige'),
+        el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, '▦ Overzicht')),
+        stand.nu < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende ›') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
+    links.append(el('p', { class: 'intro' }, it.context),
+      el('p', { class: 'lees-eerst' }, 'Lees eerst de vraag.', el('br'), 'Luister daarna naar de tekst.'),
+      el('div', { style: 'font-size:3rem;text-align:center' }, it.soort === 'voicemail' ? '📞' : it.soort === 'radio' ? '📻' : it.soort === 'nieuws' ? '📺' : '🗣️'),
+      Luister.speler(it.regels, { langzaam: false }));
+    rechts.append(vraagDoel);
+    const blok = Lezen.vraag(vraagDoel, q.v, { volgorde: stand.volgorde[stand.nu], gekozen: stand.antwoorden[stand.nu],
+      op: (keuze) => { stand.antwoorden[stand.nu] = keuze; bewaar(); blok.teken(keuze, false); } });
+    window.scrollTo(0, 0);
+  }
+  function ga(n) { stand.nu = n; bewaar(); tekenVraag(); }
+
+  function overzicht() {
+    Luister.stop();
+    const open = vragen.filter((_, i) => stand.antwoorden[i] == null).length;
+    pagina.textContent = '';
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('h2', { style: 'margin-top:0', en: 'overview' }, 'Overzicht'),
+      el('p', {}, open ? `U hebt ${open} ${open === 1 ? 'vraag' : 'vragen'} nog niet beantwoord.` : 'U hebt alle vragen beantwoord.'),
+      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: stand.antwoorden[i] != null ? 'af' : '', onclick: () => ga(i) }, String(i + 1)))),
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', onclick: tekenVraag }, 'Terug naar de vraag'),
+        el('button', { class: 'knop', en: 'hand in: you cannot change answers after this', onclick: inleveren }, 'Inleveren')))));
+  }
+  function inleveren() {
+    if (stand.klaar) return;
+    clearInterval(tik); Luister.stop();
+    stand.klaar = true;
+    stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000));
+    stand.score = vragen.filter((_, i) => stand.antwoorden[i] === 0).length;
+    (Luister.P.toets[id] = Luister.P.toets[id] || []).push({ score: stand.score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
+    Luister.bewaar(); bewaar(); uitslag();
+  }
+  function uitslag(kijk) {
+    document.body.classList.remove('geen-woorden');
+    clearInterval(tik); Luister.stop(); klok.textContent = '';
+    const goedGenoeg = stand.score >= 19;
+    pagina.textContent = '';
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('div', { class: 'groot midden' }, `${stand.score} / ${vragen.length}`),
+      el('p', { class: 'midden uitslag ' + (goedGenoeg ? 'goed' : 'fout'), en: goedGenoeg ? '19 or more: exam level.' : 'Goal: 19 of 25. Look at the red questions.' }, goedGenoeg ? '✔ 19 of meer: examenniveau.' : 'Doel: 19 van de 25. Bekijk de rode vragen.'),
+      el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en de tekst van het gesprek.`),
+      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('luisteren-toets-bezig', null); welkom(); } }, 'Nog een keer'),
+        el('a', { class: 'knop', href: '../index.html' }, 'Naar de lessen')))));
+    if (kijk != null) {
+      const q = vragen[kijk], it = toets.items[q.ii];
+      const links = el('section'), rechts = el('section');
+      const tr = Luister.transcript(it.regels);
+      pagina.append(el('div', { class: 'examen', style: 'padding-bottom:20px' }, links, rechts));
+      links.append(el('p', { class: 'intro' }, it.context), Luister.speler(it.regels, { opRegel: tr.opRegel, opTijd: tr.opTijd }), tr.vak);
+      Lezen.vraag(rechts, q.v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
+      rechts.prepend(el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ' · niet beantwoord' : '')));
+    }
+  }
+  if (!stand) welkom(); else if (stand.klaar) uitslag(); else examen();
+})();
+</script>
+</body>
+</html>

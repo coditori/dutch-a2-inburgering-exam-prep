@@ -1,0 +1,544 @@
+{
+ "id": "3-werk",
+ "trede": 3,
+ "titel": "Werk en inkomen",
+ "max_nieuw": 22,
+ "namen": [
+  "Peter",
+  "Sara",
+  "Tom",
+  "Lena",
+  "Karim",
+  "Noor",
+  "Daan",
+  "Mila",
+  "Fatima",
+  "Omar",
+  "UWV",
+  "WW",
+  "WW-uitkering",
+  "AOW",
+  "AOW-leeftijd",
+  "KvK",
+  "IDW",
+  "Internationale",
+  "Diplomawaardering",
+  "Koophandel",
+  "WIA",
+  "WIA-uitkering",
+  "Arbowet",
+  "EVC",
+  "EVC-certificaat",
+  "AOV",
+  "Emma",
+  "Yusuf",
+  "Sam",
+  "Lisa"
+ ],
+ "woorden": [
+  {
+   "nl": "het arbeidscontract",
+   "en": "employment contract",
+   "beeld": "📝",
+   "zin": "In het {arbeidscontract} staan uw loon en uw werktijden.",
+   "thema": "werk",
+   "vormen": [
+    "arbeidscontracten"
+   ]
+  },
+  {
+   "nl": "de proeftijd",
+   "en": "trial period",
+   "beeld": "⏱️",
+   "zin": "In de {proeftijd} kunnen u en uw werkgever meteen stoppen.",
+   "thema": "werk"
+  },
+  {
+   "nl": "vast",
+   "en": "permanent / fixed",
+   "beeld": "📌",
+   "zin": "Een {vast} contract stopt niet na een jaar.",
+   "thema": "werk",
+   "vormen": [
+    "vaste"
+   ]
+  },
+  {
+   "nl": "bruto",
+   "en": "gross (before tax)",
+   "beeld": "💰",
+   "zin": "Het {bruto} loon is het loon vóór de belasting.",
+   "thema": "werk"
+  },
+  {
+   "nl": "netto",
+   "en": "net (after tax)",
+   "beeld": "💵",
+   "zin": "Het {netto} loon krijgt u op uw rekening.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de loonstrook",
+   "en": "payslip",
+   "beeld": "🧾",
+   "zin": "Op de {loonstrook} ziet u hoeveel u verdient.",
+   "thema": "werk",
+   "vormen": [
+    "loonstroken"
+   ]
+  },
+  {
+   "nl": "de vakbond",
+   "en": "trade union",
+   "beeld": "✊",
+   "zin": "De {vakbond} helpt werknemers bij problemen met de werkgever.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de cao",
+   "en": "collective labour agreement",
+   "beeld": "📘",
+   "zin": "In de {cao} staan afspraken over loon en vrije dagen voor veel werknemers samen.",
+   "thema": "werk"
+  },
+  {
+   "nl": "het minimumloon",
+   "en": "minimum wage",
+   "beeld": "⬇️💶",
+   "zin": "Een werkgever mag niet minder betalen dan het {minimumloon}.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de ondernemingsraad",
+   "en": "works council",
+   "beeld": "🗣️🏢",
+   "zin": "In de {ondernemingsraad} praten werknemers mee over het bedrijf.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de bedrijfsarts",
+   "en": "company doctor",
+   "beeld": "🩺🏢",
+   "zin": "Bent u lang ziek? Dan praat u met de {bedrijfsarts}.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de bijstand",
+   "en": "social assistance benefit",
+   "beeld": "🆘💶",
+   "zin": "Hebt u geen werk en geen geld? Dan kunt u {bijstand} aanvragen bij de gemeente.",
+   "thema": "werk"
+  },
+  {
+   "nl": "het pensioen",
+   "en": "pension",
+   "beeld": "👵💶",
+   "zin": "Als u oud bent en stopt met werken, krijgt u {pensioen}.",
+   "thema": "werk"
+  },
+  {
+   "nl": "het ontslag",
+   "en": "dismissal",
+   "beeld": "📤",
+   "zin": "Na {ontslag} hebt u geen werk meer bij dat bedrijf.",
+   "thema": "werk"
+  },
+  {
+   "nl": "gelijk",
+   "en": "equal",
+   "beeld": "⚖️",
+   "zin": "Mannen en vrouwen krijgen {gelijk} loon voor het werk dat zij doen.",
+   "thema": "werk",
+   "vormen": [
+    "gelijke"
+   ]
+  },
+  {
+   "nl": "arbeidsongeschikt",
+   "en": "unfit for work (through illness)",
+   "beeld": "🤕💼",
+   "zin": "Wie lang ziek is en niet meer kan werken, is {arbeidsongeschikt}.",
+   "thema": "werk",
+   "meer": true
+  },
+  {
+   "nl": "het re-integratiebedrijf",
+   "en": "reintegration company",
+   "beeld": "🔄💼",
+   "zin": "Een {re-integratiebedrijf} helpt mensen om weer werk te vinden.",
+   "thema": "werk",
+   "meer": true
+  },
+  {
+   "nl": "de toestemming",
+   "en": "permission",
+   "beeld": "👍",
+   "zin": "U hebt {toestemming} nodig van het UWV.",
+   "thema": "werk",
+   "meer": true
+  },
+  {
+   "nl": "accepteren",
+   "en": "to accept",
+   "beeld": "🤝",
+   "zin": "U moet het werk {accepteren}.",
+   "thema": "werk",
+   "vormen": [
+    "accepteer",
+    "accepteert",
+    "accepteerde",
+    "geaccepteerd"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de zzp'er",
+   "en": "self-employed person without staff",
+   "beeld": "🧑‍🔧1️⃣",
+   "zin": "Een {zzp'er} werkt alleen in zijn eigen bedrijf.",
+   "thema": "werk",
+   "vormen": [
+    "zzp'ers"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "laag",
+   "en": "low",
+   "beeld": "⬇️",
+   "zin": "Met een {laag} loon betaalt u minder belasting.",
+   "thema": "werk",
+   "vormen": [
+    "lage",
+    "lager",
+    "laagste"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de verandering",
+   "en": "change",
+   "beeld": "🔀",
+   "zin": "Meld elke {verandering} bij het UWV.",
+   "thema": "werk",
+   "vormen": [
+    "veranderingen"
+   ],
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Waar vraagt u een WW-uitkering aan?",
+   "a": "Bij het UWV.",
+   "en": "Where do you apply for unemployment benefit (WW)? At the UWV.",
+   "beeld": "🏛️"
+  },
+  {
+   "v": "Wat is een WW-uitkering?",
+   "a": "Geld voor mensen die werk hadden en nu werkloos zijn. U moet wel solliciteren.",
+   "en": "What is WW? Money for people who had a job and are now unemployed. You must keep applying for jobs.",
+   "beeld": "💶"
+  },
+  {
+   "v": "Waar vraagt u bijstand aan?",
+   "a": "Bij de gemeente.",
+   "en": "Where do you apply for social assistance? At the municipality.",
+   "beeld": "🏛️"
+  },
+  {
+   "v": "Wat is de AOW?",
+   "a": "Geld van de overheid voor oudere mensen. In 2026 krijgt u het vanaf 67 jaar.",
+   "en": "What is AOW? The state pension. In 2026 it starts at age 67.",
+   "beeld": "👵"
+  },
+  {
+   "v": "Wat is het verschil tussen bruto en netto loon?",
+   "a": "Bruto is vóór de belasting. Netto krijgt u op uw rekening. Netto is minder.",
+   "en": "Gross vs net pay? Gross is before tax; net is what you receive. Net is less.",
+   "beeld": "💵"
+  },
+  {
+   "v": "Waar moet u zich inschrijven als u een eigen bedrijf begint?",
+   "a": "Bij de Kamer van Koophandel (KvK).",
+   "en": "Where must you register when you start your own business? At the Chamber of Commerce (KvK).",
+   "beeld": "🏪"
+  },
+  {
+   "v": "Waar kunt u een diploma uit een ander land laten controleren?",
+   "a": "Bij IDW: Internationale Diplomawaardering.",
+   "en": "Where can you have a foreign diploma evaluated? At IDW.",
+   "beeld": "🎓"
+  },
+  {
+   "v": "Wat doet een uitzendbureau?",
+   "a": "Het zoekt tijdelijk werk voor u bij verschillende bedrijven.",
+   "en": "What does a temp agency do? It finds temporary work for you at various companies.",
+   "beeld": "🔎"
+  },
+  {
+   "v": "Mag een werkgever een vrouw minder loon geven dan een man voor gelijk werk?",
+   "a": "Nee. Dat is verboden.",
+   "en": "May an employer pay a woman less than a man for equal work? No, that is forbidden.",
+   "beeld": "⚖️"
+  },
+  {
+   "v": "Wie betaalt uw loon als u ziek bent?",
+   "a": "Uw werkgever. U krijgt ook loon als u ziek bent.",
+   "en": "Who pays your wage when you are ill? Your employer keeps paying.",
+   "beeld": "🤒"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "De fabriek van Peter gaat dicht. Peter verliest zijn werk.",
+   "v": "Waar vraagt hij een uitkering aan?",
+   "o": [
+    "Bij het UWV.",
+    "Bij de Belastingdienst.",
+    "Bij de vakbond."
+   ],
+   "w": "De WW-uitkering vraagt u aan bij het UWV.",
+   "beeld": "🏭"
+  },
+  {
+   "sit": "Sara begint een eigen winkel in kleding.",
+   "v": "Wat moet zij doen?",
+   "o": [
+    "Zich inschrijven bij de Kamer van Koophandel.",
+    "Lid worden van een vakbond.",
+    "Een uitkering aanvragen."
+   ],
+   "w": "Elk nieuw bedrijf moet zich inschrijven bij de Kamer van Koophandel.",
+   "beeld": "🏪"
+  },
+  {
+   "sit": "Op de loonstrook van Tom staat: bruto € 2.400.",
+   "v": "Hoeveel krijgt hij op zijn rekening?",
+   "o": [
+    "Minder dan € 2.400.",
+    "Ook € 2.400.",
+    "Meer dan € 2.400."
+   ],
+   "w": "Van het bruto loon gaat belasting af. Het netto loon is dus minder.",
+   "beeld": "🧾"
+  },
+  {
+   "sit": "Lena heeft een probleem met haar baas over haar loon. Praten helpt niet.",
+   "v": "Wie kan haar helpen?",
+   "o": [
+    "De vakbond.",
+    "De huisarts.",
+    "De woningcorporatie."
+   ],
+   "w": "De vakbond helpt werknemers bij problemen met de werkgever.",
+   "beeld": "✊"
+  },
+  {
+   "sit": "Karim werkt twee weken bij een nieuw bedrijf. Hij is in zijn proeftijd. Hij vindt het werk niet leuk.",
+   "v": "Wat mag hij doen?",
+   "o": [
+    "Meteen stoppen met het werk.",
+    "Pas na een maand stoppen.",
+    "Alleen stoppen als de baas het goedvindt."
+   ],
+   "w": "In de proeftijd mogen de werknemer en de werkgever meteen stoppen.",
+   "beeld": "⏱️"
+  },
+  {
+   "sit": "Noor is al zes weken ziek thuis.",
+   "v": "Met wie praat zij over weer gaan werken?",
+   "o": [
+    "Met de bedrijfsarts.",
+    "Met de notaris.",
+    "Met de gemeente."
+   ],
+   "w": "De bedrijfsarts helpt zieke werknemers om weer te gaan werken.",
+   "beeld": "🩺"
+  },
+  {
+   "sit": "Daan krijgt een WW-uitkering.",
+   "v": "Wat moet hij doen?",
+   "o": [
+    "Solliciteren naar werk.",
+    "Niets: hij mag thuis blijven.",
+    "Elke week naar de huisarts gaan."
+   ],
+   "w": "Met een WW-uitkering bent u verplicht om werk te zoeken.",
+   "beeld": "🔎"
+  },
+  {
+   "sit": "Mila zoekt snel werk voor een paar maanden.",
+   "v": "Waar kan zij zich het beste inschrijven?",
+   "o": [
+    "Bij een uitzendbureau.",
+    "Bij de Kamer van Koophandel.",
+    "Bij de Belastingdienst."
+   ],
+   "w": "Een uitzendbureau heeft veel tijdelijk werk.",
+   "beeld": "🔎"
+  },
+  {
+   "sit": "Een bedrijf zoekt een nieuwe medewerker. Fatima solliciteert. Het bedrijf zegt: 'Wij nemen geen vrouwen.'",
+   "v": "Mag dat?",
+   "o": [
+    "Nee, dat is verboden.",
+    "Ja, het bedrijf mag zelf kiezen.",
+    "Ja, maar alleen in een fabriek."
+   ],
+   "w": "Mannen en vrouwen zijn gelijk. Dit is verboden.",
+   "beeld": "⚖️"
+  },
+  {
+   "sit": "Omar heeft geen werk, geen uitkering van het UWV en geen geld meer.",
+   "v": "Waar kan hij bijstand aanvragen?",
+   "o": [
+    "Bij de gemeente.",
+    "Bij de bank.",
+    "Bij het uitzendbureau."
+   ],
+   "w": "Bijstand is van de gemeente, voor mensen zonder werk en zonder geld.",
+   "beeld": "🆘"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Wanneer vraagt u een WW-uitkering aan?",
+    "a": "Snel: uiterlijk één week na uw eerste dag zonder werk. Dat doet u online bij het UWV.",
+    "en": "When do you apply for WW? Within one week after your first day without work, online at the UWV.",
+    "beeld": "⏱️"
+   },
+   {
+    "v": "Krijgt iedereen zonder werk een WW-uitkering?",
+    "a": "Nee. U moet eerst minstens 26 weken hebben gewerkt in de laatste 36 weken.",
+    "en": "Does everyone without work get WW? No: you must have worked at least 26 of the last 36 weeks.",
+    "beeld": "📆"
+   },
+   {
+    "v": "U hebt een uitkering en er verandert iets: werk, inkomen, samenwonen of verhuizen. Wat doet u?",
+    "a": "U meldt elke verandering: bij het UWV (WW) of bij de gemeente (bijstand).",
+    "en": "On benefits and something changes? Report it: UWV for WW, municipality for bijstand.",
+    "beeld": "📣"
+   },
+   {
+    "v": "Wat gebeurt er als u een verandering niet meldt?",
+    "a": "U krijgt een boete of een lagere uitkering. De uitkering kan ook stoppen.",
+    "en": "Not reporting a change: a fine, lower benefit, or the benefit stops.",
+    "beeld": "⚠️"
+   },
+   {
+    "v": "U hebt een uitkering en u krijgt werk aangeboden. Moet u dat accepteren?",
+    "a": "Ja, ook als het niet het werk is dat u het liefst doet.",
+    "en": "On benefits and offered a job: you must accept it, even if it is not your dream job.",
+    "beeld": "🤝"
+   },
+   {
+    "v": "Welke uitkering is er voor mensen die lang ziek zijn en niet meer kunnen werken?",
+    "a": "De WIA-uitkering van het UWV. Deze mensen zijn arbeidsongeschikt.",
+    "en": "Which benefit for people who are long-term ill and cannot work? WIA, from the UWV.",
+    "beeld": "🤕"
+   },
+   {
+    "v": "Wat staat er in de Arbowet?",
+    "a": "Regels voor veilig en gezond werken.",
+    "en": "What is in the Arbowet? Rules for safe and healthy work.",
+    "beeld": "🦺"
+   },
+   {
+    "v": "Wat gaat er van uw bruto loon af?",
+    "a": "Belasting en premies. De premies zijn voor de WW, de AOW en het pensioen.",
+    "en": "What is deducted from gross pay? Tax and contributions (for WW, AOW and pension).",
+    "beeld": "🧾"
+   },
+   {
+    "v": "Wie betaalt meer belasting: iemand met een hoog loon of iemand met een laag loon?",
+    "a": "Iemand met een hoog loon.",
+    "en": "Who pays more tax: high or low earners? High earners.",
+    "beeld": "⚖️"
+   },
+   {
+    "v": "Wat staat er nog meer in het arbeidscontract?",
+    "a": "Het vakantiegeld, de uren per week en de vrije dagen. Een hele werkweek is 36 tot 40 uur.",
+    "en": "What else is in the contract? Holiday pay, hours per week, days off. A full week is 36-40 hours.",
+    "beeld": "📝"
+   },
+   {
+    "v": "Wie maakt de afspraken in de cao?",
+    "a": "De vakbonden onderhandelen met de werkgevers. Elke sector heeft een eigen cao.",
+    "en": "Who makes the cao? Unions negotiate with employers; each sector has its own.",
+    "beeld": "✊"
+   },
+   {
+    "v": "Wat doet een re-integratiebedrijf?",
+    "a": "Het helpt mensen die lang geen werk hebben om weer werk te vinden.",
+    "en": "What does a reintegration company do? It helps long-term unemployed people back to work.",
+    "beeld": "🔄"
+   },
+   {
+    "v": "Wat laat u zien met een EVC-certificaat?",
+    "a": "Welke werkervaring u al hebt, ook zonder diploma.",
+    "en": "What does an EVC certificate show? Your work experience, even without a diploma.",
+    "beeld": "📜"
+   },
+   {
+    "v": "U hebt een uitkering en u wilt een eigen bedrijf beginnen. Wat doet u eerst?",
+    "a": "U vraagt toestemming aan het UWV of u meldt het bij de gemeente.",
+    "en": "On benefits and starting a business: first ask the UWV for permission or report it to the municipality.",
+    "beeld": "🏪"
+   },
+   {
+    "v": "Krijgt een zzp'er een uitkering als hij ziek is?",
+    "a": "Nee. Daarvoor kan hij zelf een verzekering nemen (AOV).",
+    "en": "Does a self-employed person get sick pay? No; he can take out his own insurance (AOV).",
+    "beeld": "🧑‍🔧"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "Het contract van Emma stopt op vrijdag 30 juni. Zij heeft geen nieuw werk.",
+    "v": "Wanneer vraagt zij uiterlijk een WW-uitkering aan?",
+    "o": [
+     "Binnen één week na haar eerste dag zonder werk.",
+     "Na drie maanden.",
+     "Dat hoeft niet: het gaat automatisch."
+    ],
+    "w": "Vraag de WW-uitkering op tijd aan bij het UWV, anders krijgt u minder.",
+    "beeld": "⏱️"
+   },
+   {
+    "sit": "Yusuf krijgt bijstand. Hij gaat samenwonen met zijn vriendin.",
+    "v": "Wat moet hij doen?",
+    "o": [
+     "Het melden bij de gemeente.",
+     "Niets.",
+     "Het melden bij de vakbond."
+    ],
+    "w": "Met een uitkering meldt u elke verandering.",
+    "beeld": "📣"
+   },
+   {
+    "sit": "Sam heeft een WW-uitkering. Het UWV heeft werk voor Sam in een fabriek. Sam wil liever op een kantoor werken.",
+    "v": "Wat moet Sam doen?",
+    "o": [
+     "Het werk accepteren.",
+     "Wachten op werk op een kantoor.",
+     "De uitkering houden en thuis blijven."
+    ],
+    "w": "Met een uitkering moet u werk accepteren dat u krijgt aangeboden.",
+    "beeld": "🤝"
+   },
+   {
+    "sit": "Lisa is zzp'er. Zij wordt ziek en kan twee maanden niet werken.",
+    "v": "Van wie krijgt zij geld?",
+    "o": [
+     "Alleen van haar eigen verzekering, als zij die heeft.",
+     "Van het UWV: een WW-uitkering.",
+     "Van haar werkgever."
+    ],
+    "w": "Een zzp'er heeft geen werkgever en regelt zelf een verzekering.",
+    "beeld": "🧑‍🔧"
+   }
+  ]
+ }
+}

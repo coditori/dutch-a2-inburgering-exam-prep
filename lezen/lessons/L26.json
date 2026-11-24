@@ -1,0 +1,156 @@
+{
+ "id": "L26",
+ "trede": 3,
+ "titel": "Een brief van het ziekenhuis",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het onderzoek",
+   "en": "examination / test",
+   "beeld": "🔬",
+   "zin": "Het onderzoek duurt een half uur.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de uitslag",
+   "en": "result (of a test)",
+   "beeld": "📄",
+   "zin": "De uitslag van het onderzoek is goed.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de afdeling",
+   "en": "department / ward",
+   "beeld": "🏥",
+   "zin": "Mijn moeder ligt op afdeling 24.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de verdieping",
+   "en": "floor / storey",
+   "beeld": "🔢",
+   "zin": "Ik woon op de tweede verdieping.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het gebouw",
+   "en": "building",
+   "beeld": "🏢",
+   "zin": "Het ziekenhuis is een groot gebouw.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "de receptie",
+   "en": "reception",
+   "beeld": "🛎️",
+   "zin": "U meldt zich bij de receptie.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "het identiteitsbewijs",
+   "en": "identity document (ID)",
+   "beeld": "🪪",
+   "zin": "Een paspoort is een identiteitsbewijs.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "verplicht",
+   "en": "mandatory",
+   "beeld": "❗",
+   "zin": "Een afspraak is verplicht.",
+   "thema": "lezen"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Meneer Haddou krijgt een brief van het ziekenhuis.",
+   "kop": "Uw afspraak in het ziekenhuis",
+   "soort": "tekst",
+   "tekst": [
+    "Beste meneer Haddou,",
+    "",
+    "U hebt een afspraak voor een onderzoek van uw rug.",
+    "datum | donderdag 16 mei",
+    "tijd | 14.20 uur",
+    "plaats | gebouw B, tweede verdieping, afdeling 24",
+    "",
+    "Meld u eerst bij de receptie van gebouw B. Kom tien minuten vóór uw afspraak.",
+    "Neem deze brief, uw identiteitsbewijs en de verwijzing van uw huisarts mee. Een identiteitsbewijs is verplicht.",
+    "Het onderzoek duurt ongeveer een half uur. De uitslag krijgt u na een week van uw huisarts.",
+    "Kunt u niet komen? Bel dan uiterlijk twee dagen vóór de afspraak: 030 - 555 40 40.",
+    "",
+    "Met vriendelijke groet,",
+    "Afdeling 24"
+   ],
+   "vragen": [
+    {
+     "v": "Waar meldt meneer Haddou zich eerst?",
+     "o": [
+      "bij de receptie van gebouw B",
+      "bij afdeling 24",
+      "bij zijn huisarts"
+     ],
+     "b": "Meld u eerst bij de receptie van gebouw B."
+    },
+    {
+     "v": "Van wie krijgt meneer Haddou de uitslag van het onderzoek?",
+     "o": [
+      "van zijn huisarts",
+      "van afdeling 24",
+      "van de receptie"
+     ],
+     "b": "De uitslag krijgt u na een week van uw huisarts."
+    }
+   ]
+  },
+  {
+   "intro": "In het ziekenhuis ligt een folder voor bezoekers.",
+   "kop": "Informatie voor bezoekers",
+   "soort": "tekst",
+   "tekst": [
+    "U kunt elke dag op bezoek komen van 15.00 tot 20.00 uur. Op de kinderafdeling mogen ouders de hele dag komen.",
+    "Er mogen niet meer dan twee bezoekers in de kamer zijn. Komt u met meer mensen? Dan wacht een deel van de bezoekers bij de receptie.",
+    "Bent u verkouden of hebt u koorts? Blijf dan thuis.",
+    "Parkeren kost € 2,00 per uur. Na 18.00 uur is parkeren gratis.",
+    "Op de eerste verdieping is een restaurant. Het is open tot 19.00 uur."
+   ],
+   "vragen": [
+    {
+     "sit": "Fatima wil haar moeder bezoeken. Zij komt samen met haar man en haar twee broers.",
+     "v": "Wat moeten zij doen?",
+     "o": [
+      "Twee mensen gaan naar de kamer en twee wachten bij de receptie.",
+      "Zij gaan alle vier naar de kamer.",
+      "Zij moeten op een andere dag komen."
+     ],
+     "b": "Dan wacht een deel van de bezoekers bij de receptie."
+    },
+    {
+     "sit": "Peter komt om 18.30 uur met de auto naar het ziekenhuis.",
+     "v": "Hoeveel betaalt hij voor parkeren?",
+     "o": [
+      "niets",
+      "€ 2,00",
+      "€ 4,00"
+     ],
+     "b": "Na 18.00 uur is parkeren gratis."
+    },
+    {
+     "sit": "Lisa is verkouden. Zij wil haar zieke opa bezoeken.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "thuis blijven",
+      "na 18.00 uur komen",
+      "bij de receptie wachten"
+     ],
+     "b": "Blijf dan thuis."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Een identiteitsbewijs is {verplicht}.",
+  "De {uitslag} krijgt u na een week van uw huisarts.",
+  "Meld u eerst bij de {receptie} van gebouw B."
+ ]
+}

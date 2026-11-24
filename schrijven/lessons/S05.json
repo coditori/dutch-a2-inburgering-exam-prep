@@ -1,0 +1,115 @@
+{
+ "id": "S05",
+ "trede": 1,
+ "titel": "Mijn naam en mijn adres",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "AB"
+ ],
+ "woorden": [
+  {
+   "nl": "de voornaam",
+   "en": "first name",
+   "beeld": "🙂",
+   "zin": "Mijn voornaam is Sara.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de achternaam",
+   "en": "surname",
+   "beeld": "👪",
+   "zin": "Mijn achternaam is De Vries.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de postcode",
+   "en": "postal code",
+   "beeld": "📮",
+   "zin": "Mijn postcode is 3511 AB.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de woonplaats",
+   "en": "town where you live",
+   "beeld": "🏘️",
+   "zin": "Mijn woonplaats is Utrecht.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "het huisnummer",
+   "en": "house number",
+   "beeld": "🔢",
+   "zin": "Mijn huisnummer is 12.",
+   "thema": "gegevens"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Een postcode heeft vier nummers en twee hoofdletters: 3511 AB.",
+   "en": "A postal code has four digits and two capitals."
+  },
+  {
+   "nl": "Het adres is de straat en het huisnummer: Parkstraat 12.",
+   "en": "The address is the street and the house number."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "Mijn voornaam is Sara."
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn achternaam is De Vries."
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn adres is Parkstraat 12."
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn postcode is 3511 AB.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn woonplaats is Utrecht.",
+   "geheugen": true
+  },
+  {
+   "soort": "formulier",
+   "kop": "Uw naam en uw adres",
+   "velden": [
+    {
+     "label": "Voornaam",
+     "soort": "voornaam"
+    },
+    {
+     "label": "Achternaam",
+     "soort": "achternaam"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    }
+   ],
+   "situatie": "Schrijf hier uw naam en uw adres."
+  }
+ ]
+}

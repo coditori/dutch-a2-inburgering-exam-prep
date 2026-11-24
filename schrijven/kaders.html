@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schrijven – de twee kaders</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="schrijven.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="schrijven.js"></script>
+<script>
+// De twee e-mail-kaders en de 12 vaste zinnen. Inhoud: trainers/kaders.json. Afdrukken kan met de knop.
+(async () => {
+  const { el } = App;
+  App.kop('De twee kaders', 'index.html');
+  const pagina = document.getElementById('pagina');
+  const data = await Schrijven.json('trainers/kaders.json');
+  pagina.append(el('p', { en: 'Learn these two e-mails by heart. In the exam you only fill the gaps.' }, 'Leer deze twee e-mails uit het hoofd. Op het examen vult u alleen de gaten in.'),
+    el('div', { class: 'knoppen niet-print' }, el('button', { class: 'knop licht', en: 'print', onclick: () => window.print() }, '🖨 Afdrukken')));
+  data.kaders.forEach((k) => {
+    const brief = el('div', { class: 'brief' }, k.regels.join('\n'));
+    const vak = el('textarea', { class: 'schrijfvak niet-print', hidden: true, spellcheck: 'false' });
+    const uit = el('div', { class: 'niet-print' });
+    const knop = el('button', { class: 'knop', en: 'hide it and write it from memory', onclick: () => {
+      if (vak.hidden) { vak.hidden = false; brief.hidden = true; knop.textContent = 'Controleer'; vak.focus(); uit.textContent = ''; return; }
+      const regels = k.regels.filter((r) => r && !r.includes('['));
+      const mis = regels.filter((r) => !Schrijven.los(vak.value).includes(Schrijven.los(r)));
+      brief.hidden = false; uit.textContent = '';
+      uit.append(el('p', { class: 'uitslag ' + (mis.length ? 'fout' : 'goed') }, mis.length ? `✘ ${mis.length} ${mis.length === 1 ? 'regel is' : 'regels zijn'} nog niet goed:` : '✔ Alle vaste regels zijn goed.'), ...mis.map((r) => el('p', { class: 'zacht' }, r)));
+      vak.hidden = true; knop.textContent = 'Nog een keer uit het hoofd';
+    } }, 'Verberg en schrijf uit het hoofd');
+    pagina.append(el('div', { class: 'taak' }, el('h3', {}, k.titel), el('p', { class: 'zacht' }, k.wanneer), brief, vak, el('div', { class: 'knoppen niet-print' }, knop), uit));
+  });
+  pagina.append(el('h2', { en: '12 fixed sentences' }, '12 vaste zinnen'));
+  const lijst = el('div', { class: 'taak' });
+  data.zinnen.forEach((z, i) => {
+    const en = el('span', { class: 'zacht klein', hidden: true }, ' — ' + z.en);
+    lijst.append(el('p', {}, `${i + 1}. `, el('b', {}, App.woorden(z.nl)), ' ', el('button', { class: 'rond niet-print', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'), en));
+  });
+  pagina.append(lijst);
+  // oefenen: een vaste zin uit het hoofd typen
+  const oefen = el('div', { class: 'kaart niet-print' });
+  pagina.append(el('h2', { class: 'niet-print', en: 'practise: type a sentence from memory' }, 'Oefen'), oefen);
+  let rij = [];
+  const volgende = () => {
+    oefen.textContent = '';
+    if (!rij.length) rij = App.schud(data.zinnen);
+    const z = rij.pop();
+    Schrijven.typ(oefen, { toon: z.nl, geheugen: true }, () => oefen.append(el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: volgende }, 'Volgende zin'))));
+  };
+  volgende();
+})();
+</script>
+</body>
+</html>

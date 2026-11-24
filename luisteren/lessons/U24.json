@@ -1,0 +1,156 @@
+{
+ "id": "U24",
+ "trede": 3,
+ "titel": "Op school",
+ "namen": [
+  "Yilmaz",
+  "Mila",
+  "Noor",
+  "Haddou",
+  "Utrecht",
+  "Peter"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Meneer Yilmaz praat met de juf van zijn dochter.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemiddag meneer Yilmaz. Goed dat u er bent."
+    },
+    {
+     "s": "C",
+     "t": "Goedemiddag. Hoe gaat het met Mila op school?"
+    },
+    {
+     "s": "B",
+     "t": "Goed. Zij leest heel goed en zij helpt andere kinderen."
+    },
+    {
+     "s": "C",
+     "t": "En rekenen?"
+    },
+    {
+     "s": "B",
+     "t": "Dat vindt zij moeilijk. Kunt u thuis met haar oefenen? Tien minuten per dag, meer is niet nodig."
+    },
+    {
+     "s": "C",
+     "t": "Ja, dat kan ik doen. Hebt u een boek voor mij?"
+    },
+    {
+     "s": "B",
+     "t": "Ik geef Mila morgen een boek mee."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat vindt Mila moeilijk?",
+     "o": [
+      "rekenen",
+      "lezen",
+      "andere kinderen helpen"
+     ]
+    },
+    {
+     "v": "Wat krijgt Mila morgen mee?",
+     "o": [
+      "een boek om thuis te oefenen",
+      "haar rapport",
+      "een brief voor haar vader"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Noor belt de taalschool.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Taalschool Utrecht, goedemorgen."
+    },
+    {
+     "s": "B",
+     "t": "Goedemorgen, met Noor Haddou. Ik heb vanavond les, maar ik kan niet komen. Mijn zoon is ziek."
+    },
+    {
+     "s": "A",
+     "t": "Ik vertel het aan uw docent. In welke groep zit u?"
+    },
+    {
+     "s": "B",
+     "t": "In groep twee, bij docent Peter."
+    },
+    {
+     "s": "A",
+     "t": "Goed. Het huiswerk voor volgende week staat op de website."
+    },
+    {
+     "s": "B",
+     "t": "En kan ik de les op een andere dag doen?"
+    },
+    {
+     "s": "A",
+     "t": "Ja, donderdagochtend is er ook een les. Die begint om negen uur."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom komt Noor vanavond niet naar de les?",
+     "o": [
+      "Haar zoon is ziek.",
+      "Zij moet werken.",
+      "Zij is ziek."
+     ]
+    },
+    {
+     "v": "Wanneer kan Noor de les ook doen?",
+     "o": [
+      "op donderdagochtend",
+      "vanavond",
+      "volgende week"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "De docent zegt iets aan het begin van de les.",
+   "soort": "mededeling",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Goedemorgen allemaal. Luister even."
+    },
+    {
+     "s": "C",
+     "t": "Volgende week maandag is er geen les, want de school is dan gesloten."
+    },
+    {
+     "s": "C",
+     "t": "De toets is daarom niet op maandag, maar op woensdag."
+    },
+    {
+     "s": "C",
+     "t": "Neem uw identiteitsbewijs mee. Zonder identiteitsbewijs kunt u de toets niet maken."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wanneer is de toets?",
+     "o": [
+      "op woensdag",
+      "op maandag",
+      "volgende maand"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Kunt u thuis met haar oefenen?",
+  "Volgende week maandag is er geen les."
+ ]
+}

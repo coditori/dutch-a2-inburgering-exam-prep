@@ -1,0 +1,180 @@
+{
+ "id": "A",
+ "trede": 4,
+ "na": "S22",
+ "titel": "Set A",
+ "namen": [
+  "Sara",
+  "Vries",
+  "Parkstraat",
+  "AB",
+  "Utrecht",
+  "nl",
+  "Bakker",
+  "Sam",
+  "Mila",
+  "Wit",
+  "Bos",
+  "Omar",
+  "Lisa",
+  "Maria",
+  "Anna",
+  "Tom",
+  "Karim",
+  "Turkije",
+  "Thuis",
+  "Jansen",
+  "Lindelaan",
+  "Yilmaz"
+ ],
+ "items": [
+  {
+   "soort": "email",
+   "kop": "Afspraak bij de tandarts",
+   "situatie": "U hebt vrijdag een afspraak bij de tandarts. U kunt niet komen. U schrijft een e-mail aan de assistente, mevrouw Bakker.",
+   "punten": [
+    {
+     "p": "Schrijf dat u de afspraak wilt verzetten.",
+     "model": "Ik wil mijn afspraak van vrijdag graag verzetten.",
+     "val": [
+      "verzet|andere (dag|afspraak)|nieuwe afspraak|niet .*kom"
+     ]
+    },
+    {
+     "p": "Schrijf waarom u dat wilt. Bedenk zelf waarom.",
+     "model": "Ik moet op vrijdag werken.",
+     "val": [
+      "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest"
+     ]
+    },
+    {
+     "p": "Stel een nieuwe datum voor.",
+     "model": "Kan ik op maandag 16 juni om 9.00 uur komen?",
+     "val": [
+      "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+   "aanhef": "Beste mevrouw Bakker,",
+   "afsluiting": "Vriendelijke groet,"
+  },
+  {
+   "soort": "tekst",
+   "kop": "Mijn buren",
+   "situatie": "U krijgt elke week een krant van de wijk. Iedereen uit de buurt mag iets voor deze krant schrijven. U schrijft over uw buren.",
+   "punten": [
+    {
+     "p": "Wie zijn uw buren?",
+     "model": "Mijn buren zijn een man en een vrouw met twee jonge kinderen.",
+     "val": [
+      "buren|buurman|buurvrouw"
+     ]
+    },
+    {
+     "p": "Wat doet u samen met uw buren?",
+     "model": "Wij drinken soms samen koffie in de tuin.",
+     "val": [
+      "samen|wij|we "
+     ]
+    },
+    {
+     "p": "Wat vindt u van uw buren?",
+     "model": "Ik vind mijn buren heel aardig.",
+     "val": [
+      "vind|leuk|aardig|gezellig|lawaai"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf minimaal drie zinnen op. Schrijf in hele zinnen.",
+   "begin": "Dit is mijn tekst over mijn buren:"
+  },
+  {
+   "soort": "formulier",
+   "kop": "Aanmeldformulier bibliotheek",
+   "situatie": "U wilt lid worden van de bibliotheek. U vult een formulier in.",
+   "velden": [
+    {
+     "label": "Voor- en achternaam",
+     "soort": "naam",
+     "model": "Sara de Vries"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres",
+     "model": "Parkstraat 12"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode",
+     "model": "3511 AB"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats",
+     "model": "Utrecht"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon",
+     "model": "06 12345678"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email",
+     "model": "sara@mail.nl"
+    },
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum",
+     "model": "14 maart 1990"
+    },
+    {
+     "label": "Ik wil lid worden voor:",
+     "soort": "keuze",
+     "opties": [
+      "een jaar (€ 40)",
+      "zes maanden (€ 25)"
+     ],
+     "model": "een jaar (€ 40)"
+    },
+    {
+     "label": "Welke boeken leest u graag?",
+     "soort": "open",
+     "model": "Ik lees graag boeken over koken."
+    }
+   ]
+  },
+  {
+   "soort": "email",
+   "kop": "Later op het werk",
+   "situatie": "U komt morgen later op uw werk. U schrijft een e-mail aan uw collega Sam.",
+   "punten": [
+    {
+     "p": "Schrijf dat u morgen later komt.",
+     "model": "Ik kom morgen later op het werk.",
+     "val": [
+      "later|laat"
+     ]
+    },
+    {
+     "p": "Schrijf waarom u later komt. Bedenk het zelf.",
+     "model": "Ik moet eerst met mijn dochter naar de huisarts.",
+     "val": [
+      "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|huisarts|tandarts|eerst"
+     ]
+    },
+    {
+     "p": "Schrijf hoe laat u er bent.",
+     "model": "Ik ben er om elf uur.",
+     "val": [
+      "uur|half|kwart|\\d"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+   "aanhef": "Hallo Sam,",
+   "afsluiting": "Groetjes,"
+  }
+ ]
+}

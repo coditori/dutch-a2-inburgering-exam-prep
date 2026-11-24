@@ -1,0 +1,143 @@
+{
+ "id": "U11",
+ "trede": 2,
+ "titel": "Zinnen: eten en het huis",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Ik eet brood met kaas."
+    }
+   ],
+   "o": [
+    "🍞🧀",
+    "🍞🍎",
+    "☕🧀"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Het kind drinkt melk."
+    }
+   ],
+   "o": [
+    "🧒🥛",
+    "🧒💧",
+    "👩🥛"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De vrouw drinkt thee en de man drinkt koffie."
+    }
+   ],
+   "o": [
+    "👩🍵 👨☕",
+    "👩☕ 👨🍵",
+    "👩🍵 👨🥛"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Wij kopen fruit in de supermarkt."
+    }
+   ],
+   "o": [
+    "🍎🛒",
+    "🍞🛒",
+    "🍎🚉"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Opa drinkt water en eet kaas."
+    }
+   ],
+   "o": [
+    "👴💧🧀",
+    "👵💧🧀",
+    "👴🥛🧀"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De baby slaapt in het bed."
+    }
+   ],
+   "o": [
+    "👶🛏️",
+    "👶🪑",
+    "👴🛏️"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Oma zit op een stoel in de tuin."
+    }
+   ],
+   "o": [
+    "👵🪑🌳",
+    "👵🛏️🌳",
+    "👵🪑🍳"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Het raam is open, maar de deur is dicht."
+    }
+   ],
+   "o": [
+    "🪟✅ 🚪❌",
+    "🪟❌ 🚪✅",
+    "🪟✅ 🚪✅"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De man maakt eten in de keuken."
+    }
+   ],
+   "o": [
+    "👨🍳",
+    "👨🛏️",
+    "👩🍳"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Het brood ligt op de tafel in de kamer."
+    }
+   ],
+   "o": [
+    "🍞🍽️🛋️",
+    "🧀🍽️🛋️",
+    "🍞🍽️🌳"
+   ]
+  }
+ ],
+ "dictee": [
+  "Het kind drinkt melk.",
+  "Oma zit op een stoel in de tuin."
+ ]
+}

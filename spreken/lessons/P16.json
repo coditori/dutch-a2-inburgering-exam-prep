@@ -1,0 +1,155 @@
+{
+ "id": "P16",
+ "trede": 2,
+ "titel": "Koken, kleding en het seizoen",
+ "uitleg": "U hoort twee vragen. Geef antwoord op de eerste vraag en op de tweede vraag.",
+ "en": "You hear a two-part question (on the exam: a video). Answer BOTH parts: one short sentence each. Reuse the words of the question. You may invent your answer.",
+ "woorden": [],
+ "namen": [
+  "Harry"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat vindt u leuk om te koken? Vertel ook hoe vaak u kookt.",
+   "model": [
+    "Ik vind het leuk om soep te koken.",
+    "Ik kook elke dag."
+   ],
+   "sleutel": [
+    [
+     "kook",
+     "koken"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit",
+     "dag",
+     "week"
+    ]
+   ],
+   "en": "'Ik vind het leuk om soep te koken.' Or simply: 'Ik kook graag soep.'"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wie kookt er bij u thuis? Vertel ook wat u graag eet.",
+   "model": [
+    "Mijn man kookt bij ons thuis.",
+    "Ik eet graag kip met rijst."
+   ],
+   "sleutel": [
+    [
+     "kook",
+     "kookt"
+    ],
+    [
+     "eet",
+     "graag",
+     "lekker"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Harry koopt vaak kleding online. Koopt u uw kleding online of in de winkel? Vertel ook waarom.",
+   "model": [
+    "Ik koop mijn kleding in de winkel.",
+    "Daar kan ik de kleren eerst zien."
+   ],
+   "sleutel": [
+    [
+     "online",
+     "winkel"
+    ],
+    [
+     "omdat",
+     "want",
+     "daar",
+     "dat is",
+     "makkelijk",
+     "goedkoop"
+    ]
+   ],
+   "en": "Choose one of the two and give one reason."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Welke kleren draagt u het liefst? Vertel ook waar u uw kleren koopt.",
+   "model": [
+    "Ik draag het liefst makkelijke kleren.",
+    "Ik koop mijn kleren op de markt."
+   ],
+   "sleutel": [
+    [
+     "draag",
+     "kleren",
+     "kleding",
+     "jas",
+     "schoenen"
+    ],
+    [
+     "koop",
+     "winkel",
+     "markt",
+     "online"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik vind de herfst een fijn seizoen. Wat vindt u van de herfst? Vertel ook waarom.",
+   "model": [
+    "Ik vind de herfst niet fijn.",
+    "Het regent vaak en het is koud."
+   ],
+   "sleutel": [
+    [
+     "herfst",
+     "vind"
+    ],
+    [
+     "omdat",
+     "want",
+     "regent",
+     "koud",
+     "mooi",
+     "wind"
+    ]
+   ],
+   "en": "Seasons always with 'de': de herfst, de zomer."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Welk seizoen vindt u het mooist? Vertel ook wat u dan graag doet.",
+   "model": [
+    "Ik vind de zomer het mooist.",
+    "Dan ga ik graag naar het strand."
+   ],
+   "sleutel": [
+    [
+     "zomer",
+     "winter",
+     "lente",
+     "herfst"
+    ],
+    [
+     "dan",
+     "graag",
+     "fiets",
+     "zwem",
+     "wandel"
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "id": "S10",
+ "trede": 2,
+ "titel": "Een vraag maken",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Een vraag begint met een vraagwoord (waar, wanneer, hoe laat) of met het werkwoord.",
+   "en": "A question starts with a question word or with the verb."
+  },
+  {
+   "nl": "U komt morgen. → Komt u morgen?",
+   "en": ""
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "tegels",
+   "zin": "Hoe laat begint de les morgen?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wanneer kan ik komen?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Kunt u mij morgen bellen?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Hebt u tijd op dinsdag?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wilt u mij even helpen?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Waarom is de school vandaag dicht?"
+  }
+ ]
+}

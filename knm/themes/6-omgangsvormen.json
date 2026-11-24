@@ -1,0 +1,554 @@
+{
+ "id": "6-omgangsvormen",
+ "trede": 3,
+ "titel": "Omgangsvormen, waarden en normen",
+ "max_nieuw": 23,
+ "namen": [
+  "Tom",
+  "Sara",
+  "Omar",
+  "Lena",
+  "Mila",
+  "Eva",
+  "Karim",
+  "Daan",
+  "Noor",
+  "Yusuf",
+  "Peter",
+  "Koningsdag",
+  "Sinterklaas",
+  "Nederlander",
+  "Nederlanders",
+  "muisjes",
+  "Omgangsvormen",
+  "Veilig",
+  "Thuis",
+  "Willem-Alexander",
+  "Slachtofferhulp",
+  "Kerst",
+  "Pasen",
+  "Hemelvaart",
+  "Pinksteren",
+  "Limburg",
+  "Noord-Brabant",
+  "Suikerfeest",
+  "ramadan",
+  "Keti",
+  "Koti",
+  "Suriname",
+  "carnaval",
+  "Tim"
+ ],
+ "woorden": [
+  {
+   "nl": "de waarde",
+   "en": "value",
+   "beeld": "💎",
+   "zin": "Vrijheid is in Nederland een belangrijke {waarde}.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "waarden"
+   ]
+  },
+  {
+   "nl": "de norm",
+   "en": "norm (rule of behaviour)",
+   "beeld": "📏",
+   "zin": "Op tijd komen is in Nederland een {norm}.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "normen"
+   ]
+  },
+  {
+   "nl": "de vrijheid",
+   "en": "freedom",
+   "beeld": "🕊️",
+   "zin": "Iedereen heeft de {vrijheid} om zijn mening te geven.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "gefeliciteerd",
+   "en": "congratulations",
+   "beeld": "🎉",
+   "zin": "Uw vriend heeft zijn verjaardag. U zegt: '{Gefeliciteerd}!'",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "gecondoleerd",
+   "en": "my condolences",
+   "beeld": "🖤",
+   "zin": "De moeder van uw collega is overleden. U zegt: '{Gecondoleerd}.'",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "trakteren",
+   "en": "to treat (others to something)",
+   "beeld": "🍰",
+   "zin": "Op uw verjaardag {trakteert} u uw collega's op iets lekkers.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "trakteer",
+    "trakteert",
+    "trakteerde",
+    "getrakteerd"
+   ]
+  },
+  {
+   "nl": "de kraamvisite",
+   "en": "visit to a newborn baby",
+   "beeld": "👶🎁",
+   "zin": "Als er een baby is, gaat u op {kraamvisite}.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "de beschuit",
+   "en": "rusk (Dutch crisp bread)",
+   "beeld": "🍘",
+   "zin": "Als er een baby is, krijgt het bezoek {beschuit} met muisjes.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "de traditie",
+   "en": "tradition",
+   "beeld": "🎎",
+   "zin": "Sinterklaas is een oude Nederlandse {traditie}.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "tradities"
+   ]
+  },
+  {
+   "nl": "het huwelijk",
+   "en": "marriage",
+   "beeld": "💍",
+   "zin": "Bij een {huwelijk} trouwen twee mensen met elkaar.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "het geweld",
+   "en": "violence",
+   "beeld": "🚫👊",
+   "zin": "{Geweld} is verboden, ook thuis.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "het respect",
+   "en": "respect",
+   "beeld": "🤝",
+   "zin": "Heb {respect} voor mensen met een ander geloof.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "de koning",
+   "en": "king",
+   "beeld": "👑",
+   "zin": "Op Koningsdag viert Nederland de verjaardag van de {koning}.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "de bruiloft",
+   "en": "wedding party",
+   "beeld": "🥂",
+   "zin": "Na het trouwen is er een feest: de {bruiloft}.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "direct",
+   "en": "direct / straightforward",
+   "beeld": "➡️",
+   "zin": "Nederlanders zijn {direct}: zij zeggen wat zij denken.",
+   "thema": "omgangsvormen"
+  },
+  {
+   "nl": "de ambtenaar",
+   "en": "civil servant",
+   "beeld": "🧑‍💼🏛️",
+   "zin": "Een {ambtenaar} werkt voor de gemeente of de overheid.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "ambtenaren"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het samenlevingscontract",
+   "en": "cohabitation agreement",
+   "beeld": "🏠📝",
+   "zin": "In een {samenlevingscontract} staan afspraken over het huis en het geld.",
+   "thema": "omgangsvormen",
+   "meer": true
+  },
+  {
+   "nl": "het geregistreerd partnerschap",
+   "en": "registered partnership",
+   "beeld": "💞📜",
+   "zin": "Een {geregistreerd partnerschap} regelt u bij de gemeente.",
+   "thema": "omgangsvormen",
+   "meer": true
+  },
+  {
+   "nl": "het slachtoffer",
+   "en": "victim",
+   "beeld": "🤕",
+   "zin": "Het {slachtoffer} van geweld krijgt hulp.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "slachtoffers"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het wapen",
+   "en": "weapon",
+   "beeld": "🔫🚫",
+   "zin": "Een {wapen} dragen is verboden.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "wapens"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de eerwraak",
+   "en": "honour-related violence",
+   "beeld": "🚫👪",
+   "zin": "{Eerwraak} is geweld om de naam van de familie.",
+   "thema": "omgangsvormen",
+   "meer": true
+  },
+  {
+   "nl": "de oliebol",
+   "en": "Dutch doughnut ball (New Year's Eve)",
+   "beeld": "🍩",
+   "zin": "Op 31 december eten wij een {oliebol}.",
+   "thema": "omgangsvormen",
+   "vormen": [
+    "oliebollen"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het vuurwerk",
+   "en": "fireworks",
+   "beeld": "🎆",
+   "zin": "Vroeger was er op 31 december veel {vuurwerk}.",
+   "thema": "omgangsvormen",
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Wat zegt u als iemand zijn verjaardag heeft?",
+   "a": "Gefeliciteerd!",
+   "en": "What do you say on someone's birthday? Gefeliciteerd!",
+   "beeld": "🎂"
+  },
+  {
+   "v": "Wat zegt u als iemand in de familie van een collega is overleden?",
+   "a": "Gecondoleerd.",
+   "en": "What do you say when a colleague's relative has died? Gecondoleerd.",
+   "beeld": "🖤"
+  },
+  {
+   "v": "Wanneer is Koningsdag?",
+   "a": "Op 27 april. Dan viert Nederland de verjaardag van koning Willem-Alexander.",
+   "en": "When is King's Day? 27 April, the king's birthday.",
+   "beeld": "👑"
+  },
+  {
+   "v": "Wanneer is Sinterklaas?",
+   "a": "Op 5 december. Kinderen krijgen dan cadeaus.",
+   "en": "When is Sinterklaas? 5 December; children get presents.",
+   "beeld": "🎁"
+  },
+  {
+   "v": "Mogen twee mannen of twee vrouwen met elkaar trouwen?",
+   "a": "Ja. Dat mag in Nederland al vanaf 2001.",
+   "en": "May two men or two women marry? Yes, since 2001.",
+   "beeld": "💍"
+  },
+  {
+   "v": "Mag een man zijn vrouw of kinderen pijn doen?",
+   "a": "Nee. Geweld is verboden, ook thuis. Bel de politie of Veilig Thuis: 0800 - 2000.",
+   "en": "May a man hurt his wife or children? No. Violence is forbidden, also at home. Call the police or Veilig Thuis 0800-2000.",
+   "beeld": "🚫"
+  },
+  {
+   "v": "Wat doet u als u niet op een afspraak kunt komen?",
+   "a": "U belt op tijd om de afspraak af te zeggen.",
+   "en": "What do you do when you cannot make an appointment? Call in time to cancel.",
+   "beeld": "📞"
+  },
+  {
+   "v": "Wat krijgt het bezoek als er een baby is?",
+   "a": "Beschuit met muisjes.",
+   "en": "What do visitors get when a baby is born? Rusk with aniseed sprinkles.",
+   "beeld": "🍘"
+  },
+  {
+   "v": "Mag iedereen in Nederland zijn eigen geloof kiezen?",
+   "a": "Ja. Er is vrijheid van geloof. Geen geloof hebben mag ook.",
+   "en": "May everyone choose their own religion? Yes; having no religion is fine too.",
+   "beeld": "🕊️"
+  },
+  {
+   "v": "Wat neemt u mee als u bij iemand gaat eten?",
+   "a": "Vaak een klein cadeau. En u komt op tijd.",
+   "en": "What do you bring when invited for dinner? Often a small present. And you arrive on time.",
+   "beeld": "🎁"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "Tom heeft om 10.00 uur een afspraak bij de gemeente. Hij is ziek.",
+   "v": "Wat doet hij?",
+   "o": [
+    "Hij belt om de afspraak af te zeggen.",
+    "Hij komt een uur later.",
+    "Hij doet niets."
+   ],
+   "w": "Kunt u niet komen? Zeg de afspraak dan op tijd af.",
+   "beeld": "📞"
+  },
+  {
+   "sit": "De vader van een collega van Sara is overleden.",
+   "v": "Wat zegt Sara?",
+   "o": [
+    "'Gecondoleerd.'",
+    "'Gefeliciteerd.'",
+    "'Tot ziens.'"
+   ],
+   "w": "Als iemand is overleden, zegt u 'gecondoleerd' tegen de familie.",
+   "beeld": "🖤"
+  },
+  {
+   "sit": "Omar heeft morgen zijn verjaardag. Hij werkt op een kantoor.",
+   "v": "Wat doen veel Nederlanders dan op het werk?",
+   "o": [
+    "Zij trakteren hun collega's.",
+    "Zij krijgen een dag vrij.",
+    "Zij geven de baas een cadeau."
+   ],
+   "w": "Wie zijn verjaardag heeft, trakteert zelf. Dat is een Nederlandse traditie.",
+   "beeld": "🍰"
+  },
+  {
+   "sit": "Lena is uitgenodigd voor het eten bij haar buren om 18.00 uur.",
+   "v": "Hoe laat komt zij?",
+   "o": [
+    "Om 18.00 uur.",
+    "Om 19.00 uur.",
+    "Wanneer zij wil."
+   ],
+   "w": "Op tijd komen is een belangrijke norm in Nederland.",
+   "beeld": "🕕"
+  },
+  {
+   "sit": "Mila en Eva zijn twee vrouwen. Zij willen trouwen.",
+   "v": "Mag dat in Nederland?",
+   "o": [
+    "Ja, dat mag.",
+    "Nee, dat mag niet.",
+    "Alleen als de familie het goedvindt."
+   ],
+   "w": "Twee mannen of twee vrouwen mogen in Nederland trouwen.",
+   "beeld": "💍"
+  },
+  {
+   "sit": "Karim hoort dat zijn buurman zijn vrouw pijn doet.",
+   "v": "Wat is waar?",
+   "o": [
+    "Dat is verboden: Karim kan de politie bellen.",
+    "Dat mag Karim niet melden.",
+    "Dat mag als zij getrouwd zijn."
+   ],
+   "w": "Geweld thuis is verboden. Iedereen mag het melden.",
+   "beeld": "🚫"
+  },
+  {
+   "sit": "Daan vindt een nieuwe regel van de overheid heel slecht.",
+   "v": "Mag hij dat zeggen?",
+   "o": [
+    "Ja, iedereen mag zijn mening geven.",
+    "Nee, dat is verboden.",
+    "Alleen thuis."
+   ],
+   "w": "In Nederland is er vrijheid van mening.",
+   "beeld": "🗣️"
+  },
+  {
+   "sit": "Noor krijgt een baby. Haar collega's komen op kraamvisite.",
+   "v": "Wat geeft Noor hun vaak te eten?",
+   "o": [
+    "Beschuit met muisjes.",
+    "Soep met brood.",
+    "Kaas met fruit."
+   ],
+   "w": "Beschuit met muisjes is de traditie bij een nieuwe baby.",
+   "beeld": "🍘"
+  },
+  {
+   "sit": "Een collega van Yusuf zegt: 'Ik vind jouw idee niet goed.'",
+   "v": "Wat betekent dat in Nederland?",
+   "o": [
+    "Nederlanders zijn direct: het is niet slecht bedoeld.",
+    "De collega wil niet meer met Yusuf werken.",
+    "Yusuf moet een andere baan zoeken."
+   ],
+   "w": "Nederlanders zeggen vaak direct wat zij denken. Dat is niet slecht bedoeld.",
+   "beeld": "💬"
+  },
+  {
+   "sit": "Peter wil elke week sporten en nieuwe mensen leren kennen.",
+   "v": "Wat kan hij doen?",
+   "o": [
+    "Lid worden van een vereniging.",
+    "Een vergunning aanvragen.",
+    "Naar het gemeentehuis gaan."
+   ],
+   "w": "Bij een vereniging sport u samen en leert u mensen kennen.",
+   "beeld": "⚽"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Mag een ambtenaar van de gemeente een cadeau van u aannemen?",
+    "a": "Nee. Dat mag niet.",
+    "en": "May a civil servant accept a present from you? No.",
+    "beeld": "🎁"
+   },
+   {
+    "v": "Het is druk in de winkel of bij de gemeente. Wat doet u?",
+    "a": "U wacht tot u mag. U gaat niet vóór andere mensen. Soms neemt u een nummer.",
+    "en": "It is busy in a shop or office: wait your turn, do not jump the queue; sometimes you take a number.",
+    "beeld": "🔢"
+   },
+   {
+    "v": "Wonen veel mensen in Nederland samen zonder te trouwen?",
+    "a": "Ja. Afspraken zet u in een samenlevingscontract bij de notaris.",
+    "en": "Do many people live together unmarried? Yes; you can lay down agreements in a cohabitation contract at the notary.",
+    "beeld": "🏠"
+   },
+   {
+    "v": "Wat is een geregistreerd partnerschap?",
+    "a": "U regelt het bij de gemeente. U hebt dan bijna gelijke rechten als bij een huwelijk.",
+    "en": "What is a registered partnership? Arranged at the municipality; almost the same rights as marriage.",
+    "beeld": "💞"
+   },
+   {
+    "v": "Mag eerwraak in Nederland?",
+    "a": "Nee. Alle geweld is verboden, ook in de familie. U kunt altijd de politie bellen.",
+    "en": "Is honour-related violence allowed? No. All violence is forbidden, also within the family.",
+    "beeld": "🚫"
+   },
+   {
+    "v": "Wie helpt slachtoffers van geweld of van een misdaad?",
+    "a": "Slachtofferhulp Nederland. De hulp is gratis.",
+    "en": "Who helps victims of violence or crime? Victim Support Netherlands, for free.",
+    "beeld": "🤝"
+   },
+   {
+    "v": "Mag u in Nederland een wapen dragen?",
+    "a": "Nee. Dat is verboden.",
+    "en": "May you carry a weapon in the Netherlands? No.",
+    "beeld": "🔫"
+   },
+   {
+    "v": "Mag iedereen zelf zijn kleren kiezen?",
+    "a": "Ja. Iedereen kiest zelf zijn kleren en met wie hij samen is. Ook twee mannen of twee vrouwen mogen samen over straat lopen.",
+    "en": "May everyone choose their own clothes? Yes, and who they are with; two men or two women may walk together.",
+    "beeld": "👗"
+   },
+   {
+    "v": "Blijven vrouwen werken als zij een kind hebben?",
+    "a": "De meeste vrouwen wel. Mannen en vrouwen doen samen het huishouden en zorgen samen voor de kinderen.",
+    "en": "Do women keep working after having a child? Most do. Men and women share housework and childcare.",
+    "beeld": "👩‍💼"
+   },
+   {
+    "v": "Op welke dagen is Kerst?",
+    "a": "Op 25 en 26 december. Ook met Pasen, Hemelvaart en Pinksteren zijn veel mensen vrij.",
+    "en": "When is Christmas? 25 and 26 December. Easter, Ascension and Whitsun are also days off for many.",
+    "beeld": "🎄"
+   },
+   {
+    "v": "Zijn kinderen en werknemers vrij op 5 december (Sinterklaas)?",
+    "a": "Nee. Kinderen zetten hun schoenen klaar en krijgen cadeaus.",
+    "en": "Is 5 December (Sinterklaas) a day off? No. Children put out their shoe and get presents.",
+    "beeld": "👞"
+   },
+   {
+    "v": "Wat mag iedereen doen op Koningsdag?",
+    "a": "Op straat oude kleren en boeken verkopen, zonder vergunning.",
+    "en": "What may everyone do on King's Day? Sell second-hand things in the street without a permit.",
+    "beeld": "🧡"
+   },
+   {
+    "v": "Wat eten mensen op 31 december?",
+    "a": "Oliebollen. Let op: vanaf de nacht van 31 december 2026 mag u zelf geen vuurwerk meer gebruiken.",
+    "en": "What do people eat on 31 December? Oliebollen. Note: from New Year's Eve 2026 consumer fireworks are banned.",
+    "beeld": "🍩"
+   },
+   {
+    "v": "Waar is carnaval het grootste feest?",
+    "a": "In Limburg en Noord-Brabant. Het Suikerfeest is het feest na de ramadan. Op 1 juli is het Keti Koti: dan denkt Nederland aan de tijd dat mensen in Suriname niet vrij waren.",
+    "en": "Where is carnival biggest? Limburg and Noord-Brabant. Eid follows Ramadan. Keti Koti (1 July) marks the end of slavery.",
+    "beeld": "🎭"
+   },
+   {
+    "v": "Waar moet u trouwen?",
+    "a": "Bij de gemeente. Daarna mag er ook een feest van uw geloof zijn.",
+    "en": "Where must you marry? At the municipality; afterwards a religious ceremony is possible.",
+    "beeld": "💍"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "Lena is blij met de hulp van een medewerker van de gemeente. Zij wil de medewerker een cadeau geven.",
+    "v": "Mag de ambtenaar dat aannemen?",
+    "o": [
+     "Nee, dat mag niet.",
+     "Ja, altijd.",
+     "Ja, als het goedkoop is."
+    ],
+    "w": "Ambtenaren mogen geen cadeaus aannemen.",
+    "beeld": "🎁"
+   },
+   {
+    "sit": "In de winkel staan vijf mensen te wachten. Omar heeft weinig tijd.",
+    "v": "Wat doet hij?",
+    "o": [
+     "Hij wacht tot hij mag.",
+     "Hij gaat vóór de andere mensen staan.",
+     "Hij vraagt of iedereen weggaat."
+    ],
+    "w": "In Nederland wacht iedereen tot hij mag.",
+    "beeld": "🔢"
+   },
+   {
+    "sit": "Noor en Tim wonen samen. Zij willen niet trouwen, maar wel afspraken maken over hun huis en hun geld.",
+    "v": "Wat kunnen zij doen?",
+    "o": [
+     "Een samenlevingscontract maken bij de notaris.",
+     "Een hypotheek aanvragen.",
+     "Niets: dat kan alleen als u trouwt."
+    ],
+    "w": "Afspraken over samenwonen staan in een samenlevingscontract.",
+    "beeld": "🏠"
+   },
+   {
+    "sit": "Iemand heeft Eva op straat pijn gedaan en haar tas gestolen. Zij slaapt slecht.",
+    "v": "Wie kan haar gratis helpen?",
+    "o": [
+     "Slachtofferhulp Nederland.",
+     "De Kamer van Koophandel.",
+     "De woningcorporatie."
+    ],
+    "w": "Slachtofferhulp Nederland helpt slachtoffers gratis.",
+    "beeld": "🤝"
+   }
+  ]
+ }
+}

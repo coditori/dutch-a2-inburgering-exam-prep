@@ -1,0 +1,192 @@
+{
+ "id": "S19",
+ "trede": 3,
+ "titel": "Een briefje met drie dingen",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos",
+  "hem",
+  "zo",
+  "persoon"
+ ],
+ "woorden": [
+  {
+   "nl": "het ding",
+   "en": "thing",
+   "beeld": "🔹",
+   "zin": "Ik moet vandaag drie dingen doen.",
+   "thema": "algemeen",
+   "vormen": [
+    "dingen"
+   ]
+  },
+  {
+   "nl": "het plaatje",
+   "en": "picture",
+   "beeld": "🖼️",
+   "zin": "Kijk naar het plaatje.",
+   "thema": "lezen"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Soms ziet u drie plaatjes. Schrijf bij elk plaatje één zin: wat moet de persoon doen?",
+   "en": "Sometimes you see three pictures. Write one sentence for each picture: what must the person do?"
+  },
+  {
+   "nl": "Zo kunt u het vragen: Wil je de keuken schoonmaken? of: Maak de keuken schoon.",
+   "en": "You can ask it like this."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "briefje",
+    "kop": "Een briefje voor een collega",
+    "situatie": "U werkt in een supermarkt. Straks komt uw collega Yusuf. Hij moet drie dingen doen. Kijk naar de plaatjes. Schrijf een briefje voor Yusuf.",
+    "plaatjes": [
+     "🧹",
+     "🍞",
+     "🔑"
+    ],
+    "punten": [
+     {
+      "p": "",
+      "model": "Wil je de keuken schoonmaken?",
+      "val": [
+       "schoon|keuken"
+      ]
+     },
+     {
+      "p": "",
+      "model": "Leg het nieuwe brood op de tafel bij de kassa.",
+      "val": [
+       "brood"
+      ]
+     },
+     {
+      "p": "",
+      "model": "Doe de deur dicht en geef de sleutel aan de baas.",
+      "val": [
+       "sleutel|deur|dicht"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf het briefje. Schrijf drie zinnen.",
+    "aanhef": "Hallo Yusuf,",
+    "extra": "Alvast bedankt!",
+    "afsluiting": "Groetjes,"
+   }
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "briefje",
+    "kop": "Een briefje voor de buurvrouw",
+    "situatie": "U gaat een week op vakantie. Uw buurvrouw Eva helpt u. Zij moet drie dingen doen. Kijk naar de plaatjes. Schrijf een briefje voor Eva.",
+    "plaatjes": [
+     "📬",
+     "💧🌳",
+     "🗑️"
+    ],
+    "punten": [
+     {
+      "p": "",
+      "model": "Wil je elke dag de brieven uit de brievenbus halen?",
+      "val": [
+       "brief|brieven|bus"
+      ]
+     },
+     {
+      "p": "",
+      "model": "Wil je de tuin twee keer water geven?",
+      "val": [
+       "water|tuin"
+      ]
+     },
+     {
+      "p": "",
+      "model": "Zet op woensdag de container buiten.",
+      "val": [
+       "container|afval"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf het briefje. Schrijf drie zinnen.",
+    "aanhef": "Hallo Eva,",
+    "afsluiting": "Groetjes,"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Samen zwemmen",
+    "situatie": "U wilt zaterdag gaan zwemmen met uw vriend Daan. U schrijft hem een e-mail.",
+    "punten": [
+     {
+      "p": "Vraag of Daan mee wil gaan.",
+      "model": "Ga je zaterdag mee zwemmen?",
+      "val": [
+       "mee|zwem"
+      ]
+     },
+     {
+      "p": "Schrijf hoe laat u wilt gaan.",
+      "model": "Ik wil om tien uur gaan.",
+      "val": [
+       "uur|half|kwart|\\d"
+      ]
+     },
+     {
+      "p": "Schrijf waar u elkaar ziet.",
+      "model": "Wij zien elkaar bij de ingang van het zwembad.",
+      "val": [
+       "bij |in |op |voor |ingang|station|thuis"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Hoi Daan,",
+    "afsluiting": "Groetjes,"
+   },
+   "stappen": [
+    "schrijf"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wil je de deur dicht doen?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Zet de container op woensdag buiten."
+  }
+ ]
+}

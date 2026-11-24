@@ -1,0 +1,169 @@
+{
+ "id": "U26",
+ "trede": 3,
+ "titel": "De gemeente en de woning",
+ "namen": [
+  "Karim",
+  "Lindelaan",
+  "Utrecht",
+  "Emma",
+  "Parkstraat",
+  "Yusuf",
+  "Yilmaz"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Karim is in het gemeentehuis.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemorgen. Hebt u een afspraak?"
+    },
+    {
+     "s": "C",
+     "t": "Ja, om tien uur. Ik ben verhuisd en ik wil mijn nieuwe adres doorgeven."
+    },
+    {
+     "s": "B",
+     "t": "Mag ik uw identiteitsbewijs zien? Dank u. Wat is uw nieuwe adres?"
+    },
+    {
+     "s": "C",
+     "t": "Lindelaan achttien, in Utrecht."
+    },
+    {
+     "s": "B",
+     "t": "En wanneer bent u verhuisd?"
+    },
+    {
+     "s": "C",
+     "t": "Vorige week zaterdag."
+    },
+    {
+     "s": "B",
+     "t": "Goed. Hebt u het huurcontract bij u?"
+    },
+    {
+     "s": "C",
+     "t": "Nee, dat ligt thuis."
+    },
+    {
+     "s": "B",
+     "t": "Dan kunt u morgen een kopie per e-mail sturen. Daarna is het klaar."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom is Karim in het gemeentehuis?",
+     "o": [
+      "Hij wil zijn nieuwe adres doorgeven.",
+      "Hij wil een paspoort aanvragen.",
+      "Hij zoekt een woning."
+     ]
+    },
+    {
+     "v": "Wat moet Karim morgen doen?",
+     "o": [
+      "een kopie van het huurcontract sturen",
+      "terugkomen met zijn identiteitsbewijs",
+      "een nieuwe afspraak maken"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Emma belt de gemeente over het afval.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Gemeente Utrecht, goedemiddag."
+    },
+    {
+     "s": "B",
+     "t": "Goedemiddag. Mijn container voor papier is vandaag niet opgehaald."
+    },
+    {
+     "s": "A",
+     "t": "In welke straat woont u?"
+    },
+    {
+     "s": "B",
+     "t": "In de Parkstraat."
+    },
+    {
+     "s": "A",
+     "t": "De Parkstraat. Daar halen wij het papier deze week niet op dinsdag op, maar op donderdag. Dat staat in de brief van vorige maand."
+    },
+    {
+     "s": "B",
+     "t": "O, die brief heb ik niet gelezen. Dus ik zet de container donderdag weer buiten?"
+    },
+    {
+     "s": "A",
+     "t": "Ja, vóór half acht 's ochtends."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom is de container niet opgehaald?",
+     "o": [
+      "Het papier wordt deze week op donderdag opgehaald.",
+      "Emma heeft de container te laat buiten gezet.",
+      "De container is niet van Emma."
+     ]
+    },
+    {
+     "v": "Hoe laat moet de container donderdag buiten staan?",
+     "o": [
+      "vóór half acht",
+      "vóór half negen",
+      "na acht uur"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Yusuf luistert naar een bericht van de woningcorporatie.",
+   "soort": "voicemail",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemiddag meneer Yilmaz, met de woningcorporatie."
+    },
+    {
+     "s": "B",
+     "t": "U hebt gebeld over uw verwarming."
+    },
+    {
+     "s": "B",
+     "t": "Onze monteur komt morgen niet om negen uur, maar om elf uur."
+    },
+    {
+     "s": "B",
+     "t": "Bent u dan niet thuis? Bel ons dan vandaag terug."
+    },
+    {
+     "s": "B",
+     "t": "Het nummer is nul dertig, vijf vijf vijf, twintig, twintig."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat komt de monteur?",
+     "o": [
+      "om elf uur",
+      "om negen uur",
+      "om twintig over elf"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik wil mijn nieuwe adres doorgeven.",
+  "Bel ons dan vandaag terug."
+ ]
+}

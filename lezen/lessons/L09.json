@@ -1,0 +1,156 @@
+{
+ "id": "L09",
+ "trede": 1,
+ "titel": "Wie, wat, waar, waarom",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de vraag",
+   "en": "question",
+   "beeld": "❓",
+   "zin": "Ik heb een vraag.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "het antwoord",
+   "en": "answer",
+   "beeld": "💬",
+   "zin": "Het antwoord is goed.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de tijd",
+   "en": "time",
+   "beeld": "⏰",
+   "zin": "Ik heb geen tijd.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "het weer",
+   "en": "weather",
+   "beeld": "🌦️",
+   "zin": "Het weer is slecht.",
+   "thema": "weer"
+  },
+  {
+   "nl": "de zon",
+   "en": "sun",
+   "beeld": "🌞",
+   "zin": "De zon is warm.",
+   "thema": "weer"
+  },
+  {
+   "nl": "de regen",
+   "en": "rain",
+   "beeld": "🌧️",
+   "zin": "Er komt regen.",
+   "thema": "weer"
+  },
+  {
+   "nl": "de vakantie",
+   "en": "holiday",
+   "beeld": "🏖️",
+   "zin": "Ik heb vakantie.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "het feest",
+   "en": "party",
+   "beeld": "🎉",
+   "zin": "Het feest is leuk.",
+   "thema": "vrije tijd"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "Het is mooi weer vandaag. De zon is warm."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe is het weer vandaag?",
+     "o": [
+      "mooi en warm",
+      "koud",
+      "slecht"
+     ],
+     "b": "Het is mooi weer vandaag."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Morgen komt er veel regen. Daarom neem ik de bus en niet de fiets."
+   ],
+   "vragen": [
+    {
+     "v": "Waarom neem ik morgen de bus?",
+     "o": [
+      "omdat er regen komt",
+      "omdat de fiets oud is",
+      "omdat de bus gratis is"
+     ],
+     "b": "Morgen komt er veel regen."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Tom heeft een vraag over de les. Hij weet het antwoord niet."
+   ],
+   "vragen": [
+    {
+     "v": "Wat weet Tom niet?",
+     "o": [
+      "het antwoord",
+      "de vraag",
+      "de tijd"
+     ],
+     "b": "Hij weet het antwoord niet."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Het feest is morgen om acht uur. Het is bij Sara thuis."
+   ],
+   "vragen": [
+    {
+     "v": "Waar is het feest?",
+     "o": [
+      "bij Sara thuis",
+      "op school",
+      "in de stad"
+     ],
+     "b": "Het is bij Sara thuis."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Wij hebben in de vakantie veel tijd. Wij gaan vaak naar de markt."
+   ],
+   "vragen": [
+    {
+     "v": "Wanneer hebben wij veel tijd?",
+     "o": [
+      "in de vakantie",
+      "in de nacht",
+      "op maandag"
+     ],
+     "b": "Wij hebben in de vakantie veel tijd."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Het is mooi {weer} vandaag.",
+  "Hij weet het {antwoord} niet.",
+  "Het {feest} is morgen om acht uur."
+ ]
+}

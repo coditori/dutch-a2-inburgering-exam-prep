@@ -1,0 +1,170 @@
+{
+ "id": "L35",
+ "trede": 4,
+ "titel": "Regels in het gebouw",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "gewoon",
+   "en": "just / normal(ly)",
+   "beeld": "🙂",
+   "zin": "Praat gewoon met de buren.",
+   "thema": "algemeen",
+   "vormen": [
+    "gewone"
+   ]
+  },
+  {
+   "nl": "hetzelfde",
+   "en": "the same",
+   "beeld": "🟰",
+   "zin": "Wij doen elke dag hetzelfde werk.",
+   "thema": "algemeen",
+   "vormen": [
+    "dezelfde"
+   ]
+  },
+  {
+   "nl": "steeds",
+   "en": "more and more / all the time",
+   "beeld": "📈",
+   "zin": "Het wordt steeds drukker.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de fout",
+   "en": "mistake",
+   "beeld": "❌",
+   "zin": "Ik maak een fout in de toets.",
+   "thema": "algemeen",
+   "vormen": [
+    "fouten"
+   ]
+  },
+  {
+   "nl": "het moment",
+   "en": "moment",
+   "beeld": "🕰️",
+   "zin": "Kom op een ander moment terug.",
+   "thema": "tijd",
+   "vormen": [
+    "momenten"
+   ]
+  },
+  {
+   "nl": "sommige",
+   "en": "some",
+   "beeld": "🔸",
+   "zin": "Sommige mensen werken in de nacht.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "toch",
+   "en": "still / anyway",
+   "beeld": "↩️",
+   "zin": "Het regent, maar ik ga toch fietsen.",
+   "thema": "verbinden"
+  },
+  {
+   "nl": "de last",
+   "en": "trouble / nuisance",
+   "beeld": "😣",
+   "zin": "Ik heb last van het lawaai.",
+   "thema": "wonen"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "De bewoners van een gebouw met veertig woningen krijgen een brief van de woningcorporatie.",
+   "kop": "Regels voor alle bewoners",
+   "soort": "tekst",
+   "tekst": [
+    "Beste bewoners,",
+    "",
+    "De laatste maanden krijgen wij steeds meer klachten over lawaai en afval in het gebouw. Sommige bewoners hebben er veel last van. Daarom schrijven wij de regels nog een keer op.",
+    "# Lawaai",
+    "Tussen 22.00 en 7.00 uur moet het rustig zijn. Muziek en televisie mogen dan niet te horen zijn bij de buren. Geeft u een feest? Vertel dat een paar dagen vóór het feest aan uw buren. Ook dan moet de muziek om 24.00 uur uit.",
+    "# Afval",
+    "Zet geen zakken met afval voor uw deur of bij de lift. Breng het afval meteen naar de containers beneden. Is de container dicht? Neem het afval dan weer mee en probeer het op een ander moment.",
+    "# Fietsen",
+    "Fietsen staan in de fietsenkamer beneden, niet bij de ingang. Staat uw fiets toch bij de ingang? Dan nemen wij de fiets mee. U kunt de fiets ophalen op ons kantoor en u betaalt € 20.",
+    "",
+    "Doet iemand iets fout? Praat dan gewoon eerst met elkaar. Helpt dat niet? Bel dan ons kantoor.",
+    "",
+    "Met vriendelijke groet,",
+    "Woningcorporatie Thuis"
+   ],
+   "vragen": [
+    {
+     "sit": "Sara geeft zaterdag een feest in haar woning. Zij heeft dat aan de buren verteld.",
+     "v": "Tot hoe laat mag de muziek aan zijn?",
+     "o": [
+      "tot 24.00 uur",
+      "tot 22.00 uur",
+      "tot 7.00 uur",
+      "de hele nacht"
+     ],
+     "b": "Ook dan moet de muziek om 24.00 uur uit."
+    },
+    {
+     "sit": "De fiets van Tom staat bij de ingang. De woningcorporatie neemt de fiets mee.",
+     "v": "Wat moet Tom doen om zijn fiets terug te krijgen?",
+     "o": [
+      "de fiets ophalen op het kantoor en € 20 betalen",
+      "de fiets zoeken in de fietsenkamer",
+      "een nieuwe fiets kopen"
+     ],
+     "b": "U kunt de fiets ophalen op ons kantoor en u betaalt € 20."
+    },
+    {
+     "sit": "De buren van Eva maken elke nacht lawaai.",
+     "v": "Wat moet Eva volgens de brief eerst doen?",
+     "o": [
+      "met de buren praten",
+      "het kantoor bellen",
+      "de politie bellen",
+      "een brief schrijven"
+     ],
+     "b": "Praat dan gewoon eerst met elkaar."
+    }
+   ]
+  },
+  {
+   "intro": "Bij de lift hangt een mededeling.",
+   "kop": "De monteur komt voor de verwarming",
+   "soort": "tekst",
+   "tekst": [
+    "Op woensdag 6 november controleert een monteur de verwarming in alle woningen. De monteur begint om 8.00 uur op de vierde verdieping en werkt naar beneden. Hij doet in elke woning hetzelfde werk. Dat duurt ongeveer twintig minuten.",
+    "U hoeft niet thuis te zijn, als u vóór 6 november een sleutel aan de buren of aan ons kantoor geeft.",
+    "Bent u niet thuis en hebben wij geen sleutel? Dan komt de monteur op een ander moment terug. Dat kost u € 30."
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer Visser woont op de eerste verdieping.",
+     "v": "Wanneer komt de monteur bij meneer Visser?",
+     "o": [
+      "later dan bij de bewoners van de vierde verdieping",
+      "als eerste",
+      "om 8.00 uur"
+     ],
+     "b": "De monteur begint om 8.00 uur op de vierde verdieping en werkt naar beneden."
+    },
+    {
+     "sit": "Noor moet op 6 november werken.",
+     "v": "Wat kan zij doen?",
+     "o": [
+      "vóór 6 november een sleutel aan de buren geven",
+      "€ 30 betalen voor een sleutel",
+      "de monteur vragen om 's avonds te komen"
+     ],
+     "b": "U hoeft niet thuis te zijn, als u vóór 6 november een sleutel aan de buren of aan ons kantoor geeft."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Sommige bewoners hebben er veel {last} van.",
+  "Staat uw fiets {toch} bij de ingang?",
+  "Hij doet in elke woning {hetzelfde} werk."
+ ]
+}

@@ -1,0 +1,148 @@
+{
+ "id": "L20",
+ "trede": 2,
+ "titel": "Het rooster van de cursus",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de cursus",
+   "en": "course",
+   "beeld": "🎓",
+   "zin": "Ik doe een cursus Nederlands.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de docent",
+   "en": "teacher",
+   "beeld": "👨‍🏫",
+   "zin": "De docent legt het goed uit.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de cursist",
+   "en": "course participant",
+   "beeld": "🙋",
+   "zin": "De cursisten leren Nederlands.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "het huiswerk",
+   "en": "homework",
+   "beeld": "📚✏️",
+   "zin": "Ik maak mijn huiswerk thuis.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de taal",
+   "en": "language",
+   "beeld": "🔤",
+   "zin": "Nederlands is een moeilijke taal.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "Nederlands",
+   "en": "Dutch",
+   "beeld": "🇳🇱",
+   "zin": "Ik spreek een beetje Nederlands.",
+   "thema": "onderwijs",
+   "vormen": [
+    "nederlandse"
+   ]
+  },
+  {
+   "nl": "door",
+   "en": "through / (gaat door = takes place)",
+   "beeld": "⏩",
+   "zin": "De les gaat vandaag niet door.",
+   "thema": "voorzetsel"
+  },
+  {
+   "nl": "de toets",
+   "en": "test",
+   "beeld": "📄",
+   "zin": "Morgen heb ik een toets.",
+   "thema": "onderwijs"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "De cursisten van de taalschool krijgen dit rooster.",
+   "kop": "Cursus Nederlands – rooster",
+   "soort": "tabel",
+   "tekst": [
+    "dag | tijd | lokaal | docent",
+    "maandag | 9.00 - 11.30 uur | 2 | Peter",
+    "woensdag | 9.00 - 11.30 uur | 5 | Fatima",
+    "vrijdag | 13.00 - 15.00 uur | 2 | Peter",
+    "",
+    "Op vrijdag maakt u een toets op de computer.",
+    "Neem elke les uw boek en uw huiswerk mee."
+   ],
+   "vragen": [
+    {
+     "v": "Wie is de docent op woensdag?",
+     "o": [
+      "Fatima",
+      "Peter",
+      "Peter en Fatima"
+     ],
+     "b": "woensdag | 9.00 - 11.30 uur | 5 | Fatima"
+    },
+    {
+     "v": "Wanneer is de les in de middag?",
+     "o": [
+      "op vrijdag",
+      "op maandag",
+      "op woensdag"
+     ],
+     "b": "vrijdag | 13.00 - 15.00 uur | 2 | Peter"
+    },
+    {
+     "v": "Wat doen de cursisten op vrijdag?",
+     "o": [
+      "Zij maken een toets.",
+      "Zij krijgen een nieuw boek.",
+      "Zij hebben geen les."
+     ],
+     "b": "Op vrijdag maakt u een toets op de computer."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat op de deur van lokaal 2.",
+   "soort": "bordje",
+   "tekst": [
+    "Let op, cursisten!",
+    "Docent Peter is ziek.",
+    "De les van maandag gaat niet door.",
+    "De les van vrijdag gaat wel door, met een andere docent.",
+    "Maak thuis het huiswerk van les 6."
+   ],
+   "vragen": [
+    {
+     "v": "Welke les gaat niet door?",
+     "o": [
+      "de les van maandag",
+      "de les van vrijdag",
+      "de les van woensdag"
+     ],
+     "b": "De les van maandag gaat niet door."
+    },
+    {
+     "v": "Wat doen de cursisten thuis?",
+     "o": [
+      "het huiswerk van les 6 maken",
+      "een toets maken",
+      "de docent bellen"
+     ],
+     "b": "Maak thuis het huiswerk van les 6."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De les van maandag gaat niet {door}.",
+  "Op vrijdag maakt u een {toets} op de computer.",
+  "Neem elke les uw boek en uw {huiswerk} mee."
+ ]
+}

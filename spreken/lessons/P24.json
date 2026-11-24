@@ -1,0 +1,167 @@
+{
+ "id": "P24",
+ "trede": 4,
+ "titel": "Drie plaatjes: spullen",
+ "uitleg": "U ziet drie plaatjes. Vertel iets over elk plaatje. Geef ook antwoord op het tweede deel van de vraag.",
+ "en": "Three pictures (exam part 4). Say one sentence about EACH picture: 'Ik zie ...' or what the person does. Do not skip a picture.",
+ "woorden": [
+  {
+   "nl": "de pen",
+   "en": "pen",
+   "beeld": "🖊️",
+   "zin": "Ik schrijf met een pen.",
+   "thema": "onderwijs",
+   "vormen": [
+    "pennen"
+   ]
+  }
+ ],
+ "namen": [
+  "Tom",
+  "Mila",
+  "Daan"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "📚",
+    "💻",
+    "🖊️"
+   ],
+   "sit": "Deze spullen liggen in een lokaal.",
+   "vraag": "Vertel wat voor spullen dat zijn. Vertel ook wat cursisten met de spullen kunnen doen.",
+   "model": [
+    "Ik zie boeken. De cursisten kunnen de boeken lezen.",
+    "Ik zie een computer. Daar kunnen zij op werken.",
+    "Ik zie een pen. Daar kunnen zij mee schrijven."
+   ],
+   "sleutel": [
+    [
+     "boek",
+     "boeken",
+     "lezen"
+    ],
+    [
+     "computer",
+     "werken"
+    ],
+    [
+     "pen",
+     "schrijven"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🥖",
+    "🧀",
+    "🍎"
+   ],
+   "sit": "Tom eet dit op zijn werk.",
+   "vraag": "Vertel wat Tom eet. Vertel ook wanneer u dit eet.",
+   "model": [
+    "Tom eet brood.",
+    "Hij eet ook kaas.",
+    "En hij eet een appel. Ik eet dit bij de lunch."
+   ],
+   "sleutel": [
+    [
+     "brood"
+    ],
+    [
+     "kaas"
+    ],
+    [
+     "appel",
+     "fruit"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🧥",
+    "👟",
+    "🎒"
+   ],
+   "sit": "Mila gaat naar buiten. Dit neemt zij mee.",
+   "vraag": "Vertel welke spullen dat zijn. Vertel ook waarom zij ze nodig heeft.",
+   "model": [
+    "Dit is een jas. Het is koud buiten.",
+    "Dit zijn schoenen. Mila gaat wandelen.",
+    "Dit is een tas. Daar zit haar eten in."
+   ],
+   "sleutel": [
+    [
+     "jas"
+    ],
+    [
+     "schoenen"
+    ],
+    [
+     "tas"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🔑",
+    "📱",
+    "💳"
+   ],
+   "sit": "Daan gaat naar zijn werk. Dit zit in zijn tas.",
+   "vraag": "Vertel welke spullen dat zijn. Vertel ook wat hij met de spullen doet.",
+   "model": [
+    "Ik zie een sleutel. Met de sleutel doet hij de deur dicht.",
+    "Ik zie een telefoon. Hij belt zijn collega.",
+    "Ik zie een pinpas. Hij betaalt zijn lunch."
+   ],
+   "sleutel": [
+    [
+     "sleutel"
+    ],
+    [
+     "telefoon"
+    ],
+    [
+     "pinpas",
+     "betaalt"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🍲",
+    "🥗",
+    "🍨"
+   ],
+   "sit": "Dit staat op het menu van een restaurant.",
+   "vraag": "Vertel wat u ziet. Vertel ook wat u het liefst eet.",
+   "model": [
+    "Ik zie soep.",
+    "Ik zie een salade.",
+    "Ik zie een toetje. Ik eet het liefst soep."
+   ],
+   "sleutel": [
+    [
+     "soep"
+    ],
+    [
+     "salade"
+    ],
+    [
+     "toetje"
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "id": "S24",
+ "trede": 4,
+ "titel": "Een hele set op papier: set B",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Het examen heeft vier opdrachten en duurt 40 minuten. U schrijft met een pen op papier.",
+   "en": "The exam has four tasks and takes 40 minutes. You write with a pen on paper."
+  },
+  {
+   "nl": "Lees eerst alle punten van de opdracht. Schrijf bij elk punt één zin.",
+   "en": "First read all points of the task. Write one sentence for each point."
+  },
+  {
+   "nl": "Vergeten punten kosten de meeste punten. Kijk aan het einde: hebt u alle punten?",
+   "en": "Missing points cost the most. Check at the end: are all points there?"
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "set",
+   "goed": "B",
+   "uitleg": "Maak set B op papier, in 40 minuten."
+  }
+ ]
+}

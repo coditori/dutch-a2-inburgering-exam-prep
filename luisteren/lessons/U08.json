@@ -1,0 +1,67 @@
+{
+ "id": "U08",
+ "trede": 1,
+ "titel": "Prijzen",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Het brood is twee euro vijftig."
+    }
+   ],
+   "typ": "2,50"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De jas is negenendertig euro."
+    }
+   ],
+   "typ": "39"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Een kaartje is drie euro tachtig."
+    }
+   ],
+   "typ": "3,80"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De schoenen zijn vijfenveertig euro."
+    }
+   ],
+   "typ": "45"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De koffie is twee euro tien."
+    }
+   ],
+   "typ": "2,10"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Dat is twaalf euro vijfennegentig."
+    }
+   ],
+   "typ": "12,95"
+  }
+ ],
+ "dictee": [
+  "De koffie is twee euro tien.",
+  "Een kaartje is drie euro tachtig."
+ ]
+}

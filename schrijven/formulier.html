@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schrijven – formulier</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="schrijven.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="schrijven.js"></script>
+<script>
+// Formulier-trainer met uw eigen gegevens. De gegevens blijven alleen in deze browser (localStorage). Formulieren: trainers/formulier.json
+(async () => {
+  const { el } = App;
+  App.kop('Formulier', 'index.html');
+  const pagina = document.getElementById('pagina');
+  const data = await Schrijven.json('trainers/formulier.json');
+  const EIGEN = [['voornaam', 'Voornaam'], ['achternaam', 'Achternaam'], ['adres', 'Adres (straat en huisnummer)'], ['postcode', 'Postcode'], ['woonplaats', 'Woonplaats'], ['telefoon', 'Telefoonnummer'], ['email', 'E-mail'], ['geboortedatum', 'Geboortedatum']];
+  let eigen = App.lees('schrijven-gegevens', null);
+
+  function vraagGegevens() {
+    pagina.textContent = '';
+    pagina.append(el('p', { en: 'Fill in your own data once. It stays only in this browser. Then you practise forms from memory.' }, 'Vul één keer uw eigen gegevens in. Ze blijven alleen in deze browser. Daarna oefent u formulieren uit het hoofd.'));
+    const f = { kop: 'Mijn gegevens', velden: EIGEN.map(([soort, label]) => ({ soort, label })) };
+    Schrijven.formulier(pagina, f, () => {
+      const waarden = [...pagina.querySelectorAll('.veld input')].map((i) => i.value.trim());
+      eigen = {};
+      EIGEN.forEach(([soort], i) => { eigen[soort] = waarden[i]; });
+      eigen.naam = eigen.voornaam + ' ' + eigen.achternaam;
+      App.schrijf('schrijven-gegevens', eigen);
+      pagina.append(el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: oefen }, 'Oefen een formulier')));
+    });
+    if (eigen) [...pagina.querySelectorAll('.veld input')].forEach((i, n) => { i.value = eigen[EIGEN[n][0]] || ''; });
+  }
+
+  let rij = [];
+  function oefen() {
+    pagina.textContent = '';
+    if (!rij.length) rij = App.schud(data.formulieren);
+    const f = rij.pop();
+    pagina.append(el('p', { class: 'zacht', en: 'Fill in the form with your own data, from memory. Invent the rest.' }, 'Vul het formulier in met uw eigen gegevens, uit het hoofd. De rest bedenkt u zelf.'));
+    Schrijven.formulier(pagina, f, (eersteKeer) => {
+      const t = Schrijven.P.trainers.formulier || { goed: 0, keer: 0 };
+      Schrijven.P.trainers.formulier = { goed: t.goed + (eersteKeer ? 1 : 0), keer: t.keer + 1 };
+      Schrijven.bewaar();
+      pagina.append(el('p', { class: 'zacht klein' }, `Formulieren gedaan: ${t.keer + 1}. In één keer goed: ${t.goed + (eersteKeer ? 1 : 0)}.`),
+        el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: oefen }, 'Volgend formulier'), el('button', { class: 'knop licht', onclick: vraagGegevens }, 'Mijn gegevens veranderen')));
+    }, eigen);
+    pagina.append(el('p', { class: 'klein' }, el('a', { href: '#', onclick: (e) => { e.preventDefault(); vraagGegevens(); } }, 'Mijn gegevens veranderen'), ' · ',
+      el('a', { href: '#', onclick: (e) => { e.preventDefault(); App.schrijf('schrijven-gegevens', null); eigen = null; vraagGegevens(); } }, 'Mijn gegevens weggooien')));
+  }
+  if (eigen) oefen(); else vraagGegevens();
+})();
+</script>
+</body>
+</html>

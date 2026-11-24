@@ -1,0 +1,49 @@
+{
+ "id": "S12",
+ "trede": 2,
+ "titel": "Zinnen voor een e-mail",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Deze zinnen kunt u in bijna elke e-mail gebruiken. Leer ze uit het hoofd.",
+   "en": "You can use these sentences in almost every e-mail. Learn them by heart."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "tegels",
+   "zin": "Ik wil graag een afspraak maken."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik kan vrijdag niet werken."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Kunt u mij helpen met het formulier?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik heb een vraag over de cursus."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik kom morgen om tien uur."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wilt u mij een bericht sturen?"
+  }
+ ]
+}

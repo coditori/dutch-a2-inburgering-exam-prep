@@ -1,0 +1,182 @@
+{
+ "id": "P21",
+ "trede": 3,
+ "titel": "Twee plaatjes: kies en zeg waarom",
+ "uitleg": "U ziet twee plaatjes. Kies één plaatje. Zeg wat u liever doet en vertel ook waarom.",
+ "en": "Two pictures (exam part 3). Choose ONE: 'Ik ... liever ...'. Then one reason: 'Dat is ...' or '... omdat het ... is'.",
+ "woorden": [
+  {
+   "nl": "de berg",
+   "en": "mountain",
+   "beeld": "⛰️",
+   "zin": "Wij wandelen in de bergen.",
+   "thema": "plaats",
+   "vormen": [
+    "bergen"
+   ]
+  },
+  {
+   "nl": "de taart",
+   "en": "cake",
+   "beeld": "🍰",
+   "zin": "Op mijn verjaardag eet ik taart.",
+   "thema": "eten"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🚆",
+    "🚗"
+   ],
+   "sit": "U gaat naar uw familie.",
+   "vraag": "Hoe reist u liever? Vertel ook waarom.",
+   "model": [
+    "Ik reis liever met de trein.",
+    "In de trein kan ik lezen."
+   ],
+   "sleutel": [
+    [
+     "trein",
+     "auto"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "☕",
+    "🍵"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Wat drinkt u liever? Vertel ook wanneer u dit graag drinkt.",
+   "model": [
+    "Ik drink liever thee.",
+    "Ik drink 's avonds graag thee."
+   ],
+   "sleutel": [
+    [
+     "koffie",
+     "thee"
+    ],
+    [
+     "ochtend",
+     "middag",
+     "avond",
+     "avonds",
+     "ochtends",
+     "elke",
+     "bij het"
+    ]
+   ],
+   "en": "Watch the second half: here it is 'wanneer', not 'waarom'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏖️",
+    "⛰️"
+   ],
+   "sit": "U gaat op vakantie.",
+   "vraag": "Waar gaat u liever naartoe? Vertel ook waarom.",
+   "model": [
+    "Ik ga liever naar het strand.",
+    "Ik hou van de zon."
+   ],
+   "sleutel": [
+    [
+     "strand",
+     "bergen",
+     "berg"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "hou van"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🍎",
+    "🍰"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Wat eet u liever? Vertel ook waarom.",
+   "model": [
+    "Ik eet liever fruit.",
+    "Fruit is gezond."
+   ],
+   "sleutel": [
+    [
+     "fruit",
+     "appel",
+     "taart"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "gezond",
+     "lekker"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🛒🏬",
+    "⛺🥕"
+   ],
+   "sit": "U doet boodschappen.",
+   "vraag": "Waar koopt u liever groente? Vertel ook waarom.",
+   "model": [
+    "Ik koop liever groente op de markt.",
+    "Op de markt is het goedkoop."
+   ],
+   "sleutel": [
+    [
+     "markt",
+     "supermarkt"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "goedkoop",
+     "dichtbij"
+    ]
+   ]
+  }
+ ]
+}

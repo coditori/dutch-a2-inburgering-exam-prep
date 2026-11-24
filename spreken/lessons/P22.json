@@ -1,0 +1,173 @@
+{
+ "id": "P22",
+ "trede": 3,
+ "titel": "Twee plaatjes: wonen, werken en leren",
+ "uitleg": "U ziet twee plaatjes. Kies één plaatje. Zeg wat u liever doet en vertel ook waarom.",
+ "en": "Two pictures (exam part 3). Choose ONE: 'Ik ... liever ...'. Then one reason: 'Dat is ...' or '... omdat het ... is'.",
+ "woorden": [],
+ "namen": [],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏢",
+    "🏡"
+   ],
+   "sit": "U zoekt een woning.",
+   "vraag": "Waar woont u liever? Vertel ook waarom.",
+   "model": [
+    "Ik woon liever in een huis met een tuin.",
+    "Dan kunnen de kinderen buiten spelen."
+   ],
+   "sleutel": [
+    [
+     "huis",
+     "tuin",
+     "gebouw",
+     "stad",
+     "dorp",
+     "woning"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "dan kunnen"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "👗🏬",
+    "🥖🧀🏪"
+   ],
+   "sit": "U zoekt werk in een winkel.",
+   "vraag": "In welke winkel werkt u liever? Vertel ook waarom.",
+   "model": [
+    "Ik werk liever in een kledingwinkel.",
+    "Ik hou van mooie kleren."
+   ],
+   "sleutel": [
+    [
+     "kleding",
+     "kleren",
+     "supermarkt",
+     "eten",
+     "winkel"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "hou van"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "👩‍🏫👥",
+    "💻🏠"
+   ],
+   "sit": "U leert Nederlands.",
+   "vraag": "Hoe leert u liever: in een groep of thuis op de computer? Vertel ook waarom.",
+   "model": [
+    "Ik leer liever in een groep.",
+    "Dan kan ik veel praten."
+   ],
+   "sleutel": [
+    [
+     "groep",
+     "computer",
+     "thuis",
+     "online"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🌅",
+    "🌙"
+   ],
+   "sit": "U gaat werken.",
+   "vraag": "Wanneer werkt u liever: in de ochtend of in de avond? Vertel ook waarom.",
+   "model": [
+    "Ik werk liever in de ochtend.",
+    "'s Avonds ben ik moe."
+   ],
+   "sleutel": [
+    [
+     "ochtend",
+     "avond"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "moe",
+     "dan ben"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🍳🏠",
+    "🍴🏙️"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Waar eet u liever: thuis of in een restaurant? Vertel ook waarom.",
+   "model": [
+    "Ik eet liever thuis.",
+    "Een restaurant is duur."
+   ],
+   "sleutel": [
+    [
+     "thuis",
+     "restaurant"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "duur",
+     "goedkoop",
+     "lekker",
+     "gezellig"
+    ]
+   ]
+  }
+ ]
+}

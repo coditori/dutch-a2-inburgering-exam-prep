@@ -1,0 +1,152 @@
+{
+ "id": "P19",
+ "trede": 3,
+ "titel": "Eén plaatje: een probleem",
+ "uitleg": "Kijk naar het plaatje en lees de vraag. Geef antwoord op de twee delen van de vraag.",
+ "en": "A problem picture (exam part 2): say what happened or why, then what the person must or can do: 'Hij moet ...' / 'Zij kan ...' + verb at the end.",
+ "woorden": [],
+ "namen": [
+  "Peter",
+  "Lisa",
+  "Emma",
+  "Sam",
+  "Fatima"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🚌💨🏃⌚"
+   ],
+   "sit": "Peter komt te laat op zijn werk.",
+   "vraag": "Waarom komt hij te laat? Vertel ook wat hij nu moet doen.",
+   "model": [
+    "Hij heeft de bus gemist.",
+    "Hij moet zijn baas bellen."
+   ],
+   "sleutel": [
+    [
+     "bus",
+     "gemist",
+     "laat"
+    ],
+    [
+     "bellen",
+     "baas",
+     "wachten",
+     "volgende",
+     "moet"
+    ]
+   ],
+   "en": "'Hij moet zijn baas bellen': moet + verb at the end."
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "📦💥📱"
+   ],
+   "sit": "Lisa heeft een pakje gekregen.",
+   "vraag": "Vertel wat er is gebeurd. Vertel ook wat Lisa nu kan doen.",
+   "model": [
+    "Het pakje is kapot.",
+    "Lisa kan de winkel bellen."
+   ],
+   "sleutel": [
+    [
+     "kapot",
+     "pakje"
+    ],
+    [
+     "bellen",
+     "terug",
+     "winkel",
+     "kan"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🤒🛏️🌡️"
+   ],
+   "sit": "Emma kan vandaag niet naar haar werk.",
+   "vraag": "Waarom kan zij niet werken? Vertel ook wat zij moet doen.",
+   "model": [
+    "Emma is ziek. Zij heeft koorts.",
+    "Zij moet haar baas bellen."
+   ],
+   "sleutel": [
+    [
+     "ziek",
+     "koorts"
+    ],
+    [
+     "bellen",
+     "baas",
+     "dokter",
+     "huisarts",
+     "melden",
+     "moet"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🚲🔧😟"
+   ],
+   "sit": "De fiets van Sam is kapot.",
+   "vraag": "Vertel wat Sam nu kan doen. Vertel ook hoe u naar uw werk gaat.",
+   "model": [
+    "Sam kan de fiets repareren.",
+    "Ik ga met de bus naar mijn werk."
+   ],
+   "sleutel": [
+    [
+     "repareren",
+     "fietsenwinkel",
+     "bus",
+     "lopen",
+     "kan"
+    ],
+    [
+     "ik ga",
+     "met de",
+     "ik loop",
+     "ik fiets"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🌧️☔🧍‍♀️🚏"
+   ],
+   "sit": "Fatima wacht op de bus.",
+   "vraag": "Vertel hoe het weer is. Vertel ook wat u doet als het regent.",
+   "model": [
+    "Het regent.",
+    "Als het regent, blijf ik thuis."
+   ],
+   "sleutel": [
+    [
+     "regen",
+     "regent",
+     "slecht"
+    ],
+    [
+     "blijf",
+     "thuis",
+     "jas",
+     "ik ga",
+     "ik neem"
+    ]
+   ]
+  }
+ ]
+}

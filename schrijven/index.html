@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schrijven – de ladder</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="schrijven.css">
+</head>
+<body>
+<main>
+  <div class="kaart" id="vandaag"></div>
+  <div id="ladder"></div>
+  <h2 data-en="learn by heart and practise">Uit het hoofd leren</h2>
+  <div class="tegels">
+    <a class="tegel" href="kaders.html"><b>De twee kaders</b>2 e-mails en 12 vaste zinnen</a>
+    <a class="tegel" href="formulier.html"><b>Formulier</b>uw eigen naam, adres, postcode</a>
+  </div>
+  <h2 data-en="full task sets: 4 tasks, 40 minutes, pen and paper">Sets · 4 opdrachten, 40 minuten, pen en papier</h2>
+  <div class="tegels" id="toetsen"></div>
+  <h2 data-en="the official DUO practice exams (PDF): do these last">Oefenexamens van DUO (pdf)</h2>
+  <div class="tegels">
+    <a class="tegel" href="toets/schrijven1.pdf" target="_blank"><b>DUO 1</b>pdf</a>
+    <a class="tegel" href="toets/schrijven2.pdf" target="_blank"><b>DUO 2</b>pdf</a>
+    <a class="tegel" href="toets/schrijven3.pdf" target="_blank"><b>DUO 3</b>pdf</a>
+  </div>
+  <p class="zacht klein" data-en="Ready when: both e-mail frames from memory by hand, and a full set on paper in under 35 minutes with all points answered.">Klaar voor het examen: u schrijft de twee kaders uit het hoofd met de hand, en u maakt een set op papier in 35 minuten met alle punten.</p>
+  <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, English, progress">⚙ Instellingen: alle lessen open, Engels, voortgang</a></p>
+</main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="schrijven.js"></script>
+<script>
+(async () => {
+  const { el } = App;
+  App.kop('Schrijven', '../index.html');
+  const TREDE = { 1: 'Trede 1 · woorden, zinnen, uw gegevens', 2: 'Trede 2 · een zin bouwen', 3: 'Trede 3 · e-mail en korte tekst', 4: 'Trede 4 · examen op papier' };
+  const [lessen, toetsen] = await Promise.all([Schrijven.json('lessons/index.json'), Schrijven.json('toets/index.json').catch(() => [])]);
+  const P = Schrijven.P;
+  const eerste = lessen.find((l, i) => !Schrijven.gehaald(l.id) && Schrijven.isOpen(lessen, i));
+  document.getElementById('vandaag').append(
+    el('h3', { en: 'today' }, 'Vandaag'),
+    el('p', {}, `${lessen.filter((l) => Schrijven.gehaald(l.id)).length} van ${lessen.length} lessen gehaald.`),
+    el('p', { class: 'zacht', en: 'The exam is with pen and paper. Write every answer by hand too.' }, 'Het examen is met pen en papier. Schrijf elk antwoord ook met de hand.'),
+    el('div', { class: 'knoppen' }, eerste ? el('a', { class: 'knop', href: `les.html?les=${eerste.id}`, en: 'next lesson' }, `Les ${eerste.id}: ${eerste.titel}`) : null));
+  const ladder = document.getElementById('ladder');
+  for (const t of [1, 2, 3, 4]) {
+    ladder.append(el('h2', {}, TREDE[t]), el('div', { class: 'tegels' }, lessen.map((l, i) => {
+      if (l.trede !== t) return null;
+      const r = P.lessen[l.id];
+      const open = Schrijven.isOpen(lessen, i);
+      return el('a', { class: 'tegel' + (Schrijven.gehaald(l.id) ? ' klaar' : '') + (!open ? ' slot' : '') + (eerste && eerste.id === l.id ? ' nu' : ''), href: `les.html?les=${l.id}` },
+        el('b', {}, `${l.id} ${Schrijven.gehaald(l.id) ? '✔' : open ? '' : '🔒'}`), l.titel, r ? el('div', { class: 'klein zacht' }, `${r.beste} / ${r.totaal}`) : null);
+    })));
+  }
+  document.getElementById('toetsen').append(...toetsen.map((t) => {
+    const r = P.toets[t.id] || [];
+    return el('a', { class: 'tegel' + (r.length ? ' klaar' : '') + (Schrijven.naLes('S22') ? '' : ' slot'), href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, t.titel + (Schrijven.naLes('S22') ? '' : ' 🔒')), '4 opdrachten', el('div', { class: 'klein zacht' }, r.length ? `${r.length}× gedaan` : 'na les S22'));
+  }));
+})();
+</script>
+</body>
+</html>

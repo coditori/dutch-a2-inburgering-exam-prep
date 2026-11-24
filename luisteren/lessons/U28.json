@@ -1,0 +1,146 @@
+{
+ "id": "U28",
+ "trede": 4,
+ "titel": "Examen: mensen veranderen van idee",
+ "namen": [
+  "Eva",
+  "Tom",
+  "Daan",
+  "Vries",
+  "Smit"
+ ],
+ "woorden": [
+  {
+   "nl": "de voicemail",
+   "en": "voicemail",
+   "beeld": "📞",
+   "zin": "Ik heb een bericht op mijn voicemail.",
+   "thema": "luisteren"
+  }
+ ],
+ "items": [
+  {
+   "context": "Eva en Tom maken een afspraak om samen te eten.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Tom, zullen wij deze week samen eten?"
+    },
+    {
+     "s": "A",
+     "t": "Leuk! Kun je dinsdag?"
+    },
+    {
+     "s": "B",
+     "t": "Dinsdag heb ik les tot negen uur. Woensdag dan?"
+    },
+    {
+     "s": "A",
+     "t": "Woensdag moet ik werken. Donderdag ben ik vrij."
+    },
+    {
+     "s": "B",
+     "t": "Donderdag is goed. Bij mij thuis?"
+    },
+    {
+     "s": "A",
+     "t": "Nee, ik kook wel. Kom maar naar mij."
+    },
+    {
+     "s": "B",
+     "t": "Goed. Hoe laat?"
+    },
+    {
+     "s": "A",
+     "t": "Om zes uur? O nee, wacht. Mijn zoon heeft dan sport. Half zeven is beter."
+    },
+    {
+     "s": "B",
+     "t": "Half zeven bij Tom thuis. Zal ik een toetje meenemen?"
+    },
+    {
+     "s": "A",
+     "t": "Graag!"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Op welke dag eten Eva en Tom samen?",
+     "o": [
+      "op donderdag",
+      "op dinsdag",
+      "op woensdag"
+     ]
+    },
+    {
+     "v": "Waar eten zij?",
+     "o": [
+      "bij Tom thuis",
+      "bij Eva thuis",
+      "in een restaurant"
+     ]
+    },
+    {
+     "v": "Hoe laat spreken zij af?",
+     "o": [
+      "om half zeven",
+      "om zes uur",
+      "om negen uur",
+      "om half zes"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Daan heeft een bericht op zijn voicemail van de tandarts.",
+   "soort": "voicemail",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemiddag meneer De Vries, met de assistente van tandarts Smit."
+    },
+    {
+     "s": "B",
+     "t": "U hebt morgen om half tien een afspraak. De tandarts is morgen ziek. Daarom moeten wij uw afspraak verzetten."
+    },
+    {
+     "s": "B",
+     "t": "U kunt vrijdag om twee uur komen, of volgende week maandag om half tien."
+    },
+    {
+     "s": "B",
+     "t": "Wilt u ons terugbellen en zeggen welke dag u kiest? Dat kan vandaag tot vijf uur."
+    },
+    {
+     "s": "B",
+     "t": "Belt u niet? Dan verwachten wij u op vrijdag."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom belt de assistente?",
+     "o": [
+      "De afspraak van morgen gaat niet door.",
+      "Daan is zijn afspraak vergeten.",
+      "Daan moet nog betalen."
+     ]
+    },
+    {
+     "sit": "Daan belt niet terug.",
+     "v": "Wanneer is zijn afspraak dan?",
+     "o": [
+      "vrijdag om twee uur",
+      "maandag om half tien",
+      "morgen om half tien",
+      "vandaag om vijf uur"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Half zeven is beter.",
+  "Daarom moeten wij uw afspraak verzetten."
+ ]
+}

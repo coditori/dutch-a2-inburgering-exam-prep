@@ -1,0 +1,186 @@
+{
+ "id": "P14",
+ "trede": 2,
+ "titel": "Muziek, televisie en vakantie",
+ "uitleg": "U hoort twee vragen. Geef antwoord op de eerste vraag en op de tweede vraag.",
+ "en": "You hear a two-part question (on the exam: a video). Answer BOTH parts: one short sentence each. Reuse the words of the question. You may invent your answer.",
+ "woorden": [
+  {
+   "nl": "hard",
+   "en": "loud / hard",
+   "beeld": "🔊",
+   "zin": "De muziek is te hard.",
+   "thema": "eigenschap",
+   "vormen": [
+    "harde"
+   ]
+  },
+  {
+   "nl": "het programma",
+   "en": "programme",
+   "beeld": "🎞️",
+   "zin": "Dit is een leuk programma.",
+   "thema": "vrije tijd",
+   "vormen": [
+    "programma's"
+   ]
+  },
+  {
+   "nl": "de plaats",
+   "en": "place / town",
+   "beeld": "📍",
+   "zin": "Utrecht is een mooie plaats.",
+   "thema": "plaats"
+  }
+ ],
+ "namen": [
+  "Lisa"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat vindt u leuke muziek? Vertel ook wat u geen leuke muziek vindt.",
+   "model": [
+    "Ik hou van rustige muziek.",
+    "Ik hou niet van harde muziek."
+   ],
+   "sleutel": [
+    [
+     "muziek"
+    ],
+    [
+     "niet",
+     "geen"
+    ]
+   ],
+   "en": "Second part is negative: 'Ik hou niet van ...' or 'Ik vind ... niet leuk'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik maak vaak muziek in mijn vrije tijd. Maakt u wel eens muziek? Vertel ook waarom.",
+   "model": [
+    "Nee, ik maak geen muziek.",
+    "Ik vind dat moeilijk."
+   ],
+   "sleutel": [
+    [
+     "muziek"
+    ],
+    [
+     "omdat",
+     "want",
+     "vind",
+     "moeilijk",
+     "leuk",
+     "tijd"
+    ]
+   ],
+   "en": "A yes/no question: start with 'Ja, ik ...' or 'Nee, ik ... geen/niet ...'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat vindt u een leuk programma op de televisie? Vertel ook wanneer u dit kijkt.",
+   "model": [
+    "Ik vind het nieuws een leuk programma.",
+    "Ik kijk elke avond naar het nieuws."
+   ],
+   "sleutel": [
+    [
+     "programma",
+     "nieuws",
+     "film",
+     "sport",
+     "muziek"
+    ],
+    [
+     "maandag",
+     "dinsdag",
+     "woensdag",
+     "donderdag",
+     "vrijdag",
+     "zaterdag",
+     "zondag",
+     "avond",
+     "dag",
+     "weekend",
+     "elke"
+    ]
+   ],
+   "en": "'een leuk programma' (het-word: no -e after 'een')."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Kijkt u vaak naar films? Vertel ook welke films u leuk vindt.",
+   "model": [
+    "Ja, ik kijk elk weekend een film.",
+    "Ik vind films over familie leuk."
+   ],
+   "sleutel": [
+    [
+     "film",
+     "kijk"
+    ],
+    [
+     "leuk",
+     "hou van",
+     "films over",
+     "films met"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Lisa gaat op vakantie. Hoe vaak gaat u op vakantie? Vertel ook waar u het liefst naartoe gaat.",
+   "model": [
+    "Ik ga elk jaar op vakantie.",
+    "Ik ga het liefst naar het strand."
+   ],
+   "sleutel": [
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit",
+     "jaar"
+    ],
+    [
+     "naar",
+     "liefst"
+    ]
+   ],
+   "en": "'Lisa gaat op vakantie' is only the introduction. Answer: how often + where."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat is de mooiste plaats waar u geweest bent? Vertel ook hoe vaak u daar bent geweest.",
+   "model": [
+    "Amsterdam is de mooiste plaats waar ik geweest ben.",
+    "Ik ben daar twee keer geweest."
+   ],
+   "sleutel": [
+    [
+     "mooiste",
+     "mooi",
+     "plaats"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit"
+    ]
+   ],
+   "en": "Copy the question: '... is de mooiste plaats waar ik geweest ben.'"
+  }
+ ]
+}

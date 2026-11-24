@@ -1,0 +1,177 @@
+{
+ "id": "L30",
+ "trede": 3,
+ "titel": "Een e-mail over de toets",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "inschrijven",
+   "en": "to enrol / register",
+   "beeld": "✍️",
+   "zin": "Ik schrijf mij in voor de cursus.",
+   "thema": "onderwijs",
+   "vormen": [
+    "schrijf",
+    "schrijft",
+    "in",
+    "ingeschreven",
+    "inschrijft",
+    "inschrijving"
+   ]
+  },
+  {
+   "nl": "het certificaat",
+   "en": "certificate",
+   "beeld": "📜",
+   "zin": "Na de cursus krijgt u een certificaat.",
+   "thema": "onderwijs",
+   "vormen": [
+    "certificaten"
+   ]
+  },
+  {
+   "nl": "het niveau",
+   "en": "level",
+   "beeld": "📶",
+   "zin": "Deze cursus is op niveau A2.",
+   "thema": "onderwijs",
+   "vormen": [
+    "niveaus"
+   ]
+  },
+  {
+   "nl": "het resultaat",
+   "en": "result",
+   "beeld": "📊",
+   "zin": "Het resultaat van de toets is goed.",
+   "thema": "onderwijs",
+   "vormen": [
+    "resultaten"
+   ]
+  },
+  {
+   "nl": "het onderdeel",
+   "en": "part / section",
+   "beeld": "🧩",
+   "zin": "Lezen is een onderdeel van het examen.",
+   "thema": "onderwijs",
+   "vormen": [
+    "onderdelen"
+   ]
+  },
+  {
+   "nl": "de locatie",
+   "en": "location",
+   "beeld": "📍",
+   "zin": "De toets is op een andere locatie.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "minstens",
+   "en": "at least",
+   "beeld": "🔽",
+   "zin": "U moet minstens 18 jaar zijn.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de kopie",
+   "en": "copy",
+   "beeld": "📑",
+   "zin": "Stuur een kopie van uw paspoort.",
+   "thema": "instanties",
+   "vormen": [
+    "kopieën"
+   ]
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Noor doet een cursus Nederlands. Zij krijgt een e-mail van de taalschool.",
+   "kop": "Onderwerp: toets op niveau A2",
+   "soort": "tekst",
+   "tekst": [
+    "Beste Noor,",
+    "",
+    "Op maandag 24 juni is de toets van de cursus. De toets heeft drie onderdelen: lezen, luisteren en schrijven.",
+    "De toets is niet op school, maar op een andere locatie: het buurthuis aan de Parkstraat 10. Wij beginnen om 9.30 uur. Kom op tijd, want te laat komen mag niet.",
+    "Neem uw identiteitsbewijs mee. Een telefoon mag u tijdens de toets niet gebruiken.",
+    "Het resultaat krijgt u na twee weken per e-mail. Hebt u voor elk onderdeel minstens een 6? Dan krijgt u een certificaat.",
+    "Hebt u een onderdeel niet gehaald? Dan kunt u dat onderdeel in september nog een keer doen.",
+    "",
+    "Met vriendelijke groet,",
+    "Peter de Vries, docent"
+   ],
+   "vragen": [
+    {
+     "v": "Waar is de toets?",
+     "o": [
+      "in het buurthuis",
+      "op school",
+      "bij de docent thuis"
+     ],
+     "b": "De toets is niet op school, maar op een andere locatie: het buurthuis aan de Parkstraat 10."
+    },
+    {
+     "sit": "Noor heeft een 7 voor lezen, een 6 voor luisteren en een 5 voor schrijven.",
+     "v": "Wat betekent dat?",
+     "o": [
+      "Zij doet schrijven in september nog een keer.",
+      "Zij krijgt nu een certificaat.",
+      "Zij moet alle onderdelen nog een keer doen."
+     ],
+     "b": "Dan kunt u dat onderdeel in september nog een keer doen."
+    }
+   ]
+  },
+  {
+   "intro": "Op de website van de taalschool staat deze informatie.",
+   "kop": "Inschrijven voor een nieuwe cursus",
+   "soort": "tekst",
+   "tekst": [
+    "De nieuwe cursussen beginnen op 2 september. U kunt zich inschrijven tot en met 15 augustus.",
+    "# Hoe schrijft u zich in?",
+    "- Vul het formulier op de website in.",
+    "- Stuur een kopie van uw identiteitsbewijs mee.",
+    "- Hebt u al een certificaat? Stuur daar dan ook een kopie van.",
+    "",
+    "Na uw inschrijving krijgt u een uitnodiging voor een gesprek. In dat gesprek kijken wij welk niveau bij u past.",
+    "De cursus kost € 320. Dat is met het boek. Betaalt de gemeente uw cursus? Neem dan de brief van de gemeente mee naar het gesprek."
+   ],
+   "vragen": [
+    {
+     "v": "Tot wanneer kan iemand zich inschrijven?",
+     "o": [
+      "tot en met 15 augustus",
+      "tot 2 september",
+      "tot het gesprek"
+     ],
+     "b": "U kunt zich inschrijven tot en met 15 augustus."
+    },
+    {
+     "sit": "Daan heeft al een certificaat van niveau A1.",
+     "v": "Wat stuurt hij mee met het formulier?",
+     "o": [
+      "een kopie van zijn identiteitsbewijs en van zijn certificaat",
+      "alleen een kopie van zijn certificaat",
+      "de brief van de gemeente"
+     ],
+     "b": "Stuur daar dan ook een kopie van."
+    },
+    {
+     "v": "Waarom is er een gesprek na de inschrijving?",
+     "o": [
+      "om te kijken welk niveau past",
+      "om het boek te kopen",
+      "om de toets te maken"
+     ],
+     "b": "In dat gesprek kijken wij welk niveau bij u past."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Hebt u voor elk onderdeel {minstens} een 6?",
+  "Het {resultaat} krijgt u na twee weken per e-mail.",
+  "Stuur een {kopie} van uw identiteitsbewijs mee."
+ ]
+}

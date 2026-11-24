@@ -1,0 +1,154 @@
+{
+ "id": "L16",
+ "trede": 2,
+ "titel": "De buren",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het lawaai",
+   "en": "noise",
+   "beeld": "🔊",
+   "zin": "De buren maken veel lawaai.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het pakje",
+   "en": "parcel",
+   "beeld": "📦",
+   "zin": "Er is een pakje voor u.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de trap",
+   "en": "stairs",
+   "beeld": "🪜",
+   "zin": "Ik neem de trap.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de lift",
+   "en": "lift / elevator",
+   "beeld": "🛗",
+   "zin": "De lift werkt niet.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het afval",
+   "en": "waste / rubbish",
+   "beeld": "🗑️",
+   "zin": "Het afval gaat in de container.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de container",
+   "en": "(waste) container",
+   "beeld": "♻️",
+   "zin": "De container staat buiten.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "beneden",
+   "en": "downstairs / below",
+   "beeld": "⬇️",
+   "zin": "De keuken is beneden.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "boven",
+   "en": "upstairs / above",
+   "beeld": "⬆️",
+   "zin": "De slaapkamer is boven.",
+   "thema": "plaats"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit briefje ligt bij de buren van nummer 6.",
+   "soort": "briefje",
+   "tekst": [
+    "Beste buren,",
+    "Zaterdag verhuizen wij naar nummer 8, boven u.",
+    "Wij dragen dan veel over de trap, want de lift is te klein. Dat geeft misschien lawaai.",
+    "Sorry! Om vijf uur zijn wij klaar.",
+    "Groetjes, Karim en Noor"
+   ],
+   "vragen": [
+    {
+     "v": "Waarom is er zaterdag misschien lawaai?",
+     "o": [
+      "De nieuwe buren verhuizen.",
+      "Er is een feest.",
+      "De kinderen spelen op de trap."
+     ],
+     "b": "Zaterdag verhuizen wij naar nummer 8, boven u."
+    },
+    {
+     "v": "Hoe laat zijn Karim en Noor klaar?",
+     "o": [
+      "om vijf uur",
+      "om acht uur",
+      "om twaalf uur"
+     ],
+     "b": "Om vijf uur zijn wij klaar."
+    }
+   ]
+  },
+  {
+   "intro": "De buurvrouw vindt een briefje bij haar deur.",
+   "soort": "briefje",
+   "tekst": [
+    "Dag buurvrouw,",
+    "Er is een pakje voor u gekomen.",
+    "Het ligt bij mij, op nummer 3 beneden.",
+    "U kunt het na zes uur halen. Dan ben ik thuis.",
+    "Peter"
+   ],
+   "vragen": [
+    {
+     "v": "Waar is het pakje?",
+     "o": [
+      "bij Peter op nummer 3",
+      "bij de buurvrouw boven",
+      "bij de lift"
+     ],
+     "b": "Het ligt bij mij, op nummer 3 beneden."
+    },
+    {
+     "v": "Wanneer kan de buurvrouw het pakje halen?",
+     "o": [
+      "na zes uur",
+      "vóór zes uur",
+      "morgen"
+     ],
+     "b": "U kunt het na zes uur halen."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat bij de containers.",
+   "soort": "bordje",
+   "tekst": [
+    "Afval",
+    "Zet uw afval niet naast de container.",
+    "Is de container dicht? Neem uw afval dan weer mee naar huis."
+   ],
+   "vragen": [
+    {
+     "sit": "De container is dicht.",
+     "v": "Wat doet u met uw afval?",
+     "o": [
+      "weer mee naar huis nemen",
+      "naast de container zetten",
+      "bij de buren zetten"
+     ],
+     "b": "Neem uw afval dan weer mee naar huis."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Dat geeft misschien {lawaai}.",
+  "Het ligt bij mij, op nummer 3 {beneden}.",
+  "Zet uw {afval} niet naast de container."
+ ]
+}

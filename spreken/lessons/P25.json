@@ -1,0 +1,173 @@
+{
+ "id": "P25",
+ "trede": 4,
+ "titel": "Drie plaatjes: wat doet hij of zij?",
+ "uitleg": "U ziet drie plaatjes. Vertel iets over elk plaatje. Geef ook antwoord op het tweede deel van de vraag.",
+ "en": "Three pictures that tell a story (exam part 4). One sentence per picture, in order. Link them with 'Eerst', 'Daarna', 'Dan' (verb second: 'Daarna neemt zij ...').",
+ "woorden": [],
+ "namen": [
+  "Lena",
+  "Sara",
+  "Omar",
+  "Fatima",
+  "Peter"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "⏰🛏️",
+    "🚿",
+    "🍞☕"
+   ],
+   "sit": "Dit is de ochtend van Lena. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Lena doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Lena staat om zeven uur op.",
+    "Daarna neemt zij een douche.",
+    "Dan eet zij brood en drinkt zij koffie."
+   ],
+   "sleutel": [
+    [
+     "staat",
+     "bed"
+    ],
+    [
+     "douche"
+    ],
+    [
+     "eet",
+     "brood",
+     "koffie",
+     "ontbijt"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "📝",
+    "🛒",
+    "💳"
+   ],
+   "sit": "Sara doet boodschappen. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Sara doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Sara schrijft op wat zij nodig heeft.",
+    "Zij gaat naar de supermarkt.",
+    "Zij betaalt met haar pinpas."
+   ],
+   "sleutel": [
+    [
+     "schrijft",
+     "briefje"
+    ],
+    [
+     "supermarkt",
+     "winkel",
+     "boodschappen"
+    ],
+    [
+     "betaalt",
+     "pinpas",
+     "kassa"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🚲",
+    "🚉🚆",
+    "🏢"
+   ],
+   "sit": "Omar gaat naar zijn werk. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Omar doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Omar fietst naar het station.",
+    "Daar neemt hij de trein.",
+    "Dan loopt hij naar zijn kantoor."
+   ],
+   "sleutel": [
+    [
+     "fietst",
+     "fiets"
+    ],
+    [
+     "trein",
+     "station"
+    ],
+    [
+     "kantoor",
+     "werk",
+     "loopt"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🥕🔪",
+    "🍲🔥",
+    "🍽️👨‍👩‍👧"
+   ],
+   "sit": "Fatima kookt voor haar gezin. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Fatima doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Fatima snijdt de groente.",
+    "Zij kookt soep.",
+    "Het gezin eet samen aan tafel."
+   ],
+   "sleutel": [
+    [
+     "snijdt",
+     "groente"
+    ],
+    [
+     "kookt",
+     "soep"
+    ],
+    [
+     "eet",
+     "eten",
+     "tafel",
+     "gezin"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "📞",
+    "🗓️",
+    "👨‍⚕️🩺"
+   ],
+   "sit": "Peter is ziek. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Peter doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Peter belt de huisarts.",
+    "Hij maakt een afspraak.",
+    "Hij gaat naar de huisarts."
+   ],
+   "sleutel": [
+    [
+     "belt",
+     "bellen"
+    ],
+    [
+     "afspraak"
+    ],
+    [
+     "huisarts",
+     "dokter",
+     "praktijk"
+    ]
+   ]
+  }
+ ]
+}

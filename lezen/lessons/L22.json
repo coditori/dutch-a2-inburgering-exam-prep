@@ -1,0 +1,150 @@
+{
+ "id": "L22",
+ "trede": 2,
+ "titel": "Advertenties: te koop en te huur",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de advertentie",
+   "en": "advertisement",
+   "beeld": "📰",
+   "zin": "Ik lees een advertentie voor een fiets.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de bank",
+   "en": "sofa / bank",
+   "beeld": "🛋️🏦",
+   "zin": "Wij zitten op de bank.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de kast",
+   "en": "cupboard / wardrobe",
+   "beeld": "🗄️",
+   "zin": "Mijn kleren liggen in de kast.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de wasmachine",
+   "en": "washing machine",
+   "beeld": "🧺",
+   "zin": "De wasmachine staat in de badkamer.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "ophalen",
+   "en": "to pick up / collect",
+   "beeld": "🚚",
+   "zin": "Ik kom de fiets morgen ophalen.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "bezorgen",
+   "en": "to deliver",
+   "beeld": "📦🏠",
+   "zin": "De winkel bezorgt de bank thuis.",
+   "thema": "winkelen",
+   "vormen": [
+    "bezorg",
+    "bezorgt",
+    "bezorgde",
+    "bezorgd"
+   ]
+  },
+  {
+   "nl": "verkopen",
+   "en": "to sell",
+   "beeld": "💱",
+   "zin": "Ik verkoop mijn oude auto.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "per",
+   "en": "per",
+   "beeld": "➗",
+   "zin": "De huur is 500 euro per maand.",
+   "thema": "hoeveel"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Deze advertentie staat op internet.",
+   "kop": "Te koop: bank en kast",
+   "soort": "tekst",
+   "tekst": [
+    "Wij gaan verhuizen en verkopen onze bank en een grote kast.",
+    "De bank is twee jaar oud. Prijs: € 150.",
+    "De kast is gratis.",
+    "U moet alles ophalen in Utrecht. Wij bezorgen niet.",
+    "Bel na 18.00 uur: 06 - 555 12 34."
+   ],
+   "vragen": [
+    {
+     "v": "Wat kost de kast?",
+     "o": [
+      "De kast is gratis.",
+      "€ 150",
+      "€ 18"
+     ],
+     "b": "De kast is gratis."
+    },
+    {
+     "sit": "U koopt de bank.",
+     "v": "Wat moet u doen?",
+     "o": [
+      "de bank ophalen in Utrecht",
+      "wachten tot de bank wordt bezorgd",
+      "€ 150 extra betalen"
+     ],
+     "b": "U moet alles ophalen in Utrecht."
+    },
+    {
+     "v": "Wanneer kunt u bellen?",
+     "o": [
+      "na 18.00 uur",
+      "vóór 18.00 uur",
+      "alleen in het weekend"
+     ],
+     "b": "Bel na 18.00 uur: 06 - 555 12 34."
+    }
+   ]
+  },
+  {
+   "intro": "Deze advertentie staat in de supermarkt.",
+   "kop": "Te huur: kamer",
+   "soort": "tekst",
+   "tekst": [
+    "Mooie, grote kamer in het centrum van Amsterdam.",
+    "De huur is € 550 per maand.",
+    "In de keuken staat een wasmachine. Die mag u gebruiken.",
+    "De kamer is vrij vanaf 1 maart."
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel is de huur?",
+     "o": [
+      "€ 550 per maand",
+      "€ 550 per week",
+      "€ 150 per maand"
+     ],
+     "b": "De huur is € 550 per maand."
+    },
+    {
+     "v": "Vanaf wanneer is de kamer vrij?",
+     "o": [
+      "vanaf 1 maart",
+      "vanaf morgen",
+      "vanaf 16 maart"
+     ],
+     "b": "De kamer is vrij vanaf 1 maart."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De huur is € 550 {per} maand.",
+  "Wij {bezorgen} niet.",
+  "U moet alles {ophalen} in Utrecht."
+ ]
+}

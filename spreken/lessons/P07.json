@@ -1,0 +1,84 @@
+{
+ "id": "P07",
+ "trede": 1,
+ "titel": "… omdat het … is en ik denk dat …",
+ "uitleg": "U zegt waarom. En u zegt wat u denkt. Luister en zeg het na.",
+ "en": "Give a reason: '... omdat het ___ is' (verb at the end). And guess: 'Ik denk dat ...' (verb at the end too).",
+ "patroon": "… omdat het ___ is. · Ik denk dat ___.",
+ "woorden": [
+  {
+   "nl": "interessant",
+   "en": "interesting",
+   "beeld": "🤓",
+   "zin": "Het boek is interessant.",
+   "thema": "mening"
+  },
+  {
+   "nl": "het nieuws",
+   "en": "news",
+   "beeld": "📰",
+   "zin": "Ik kijk naar het nieuws.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "spelen",
+   "en": "to play",
+   "beeld": "🎲",
+   "zin": "De kinderen spelen in de tuin.",
+   "thema": "vrije tijd"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind fietsen leuk omdat het gezond is.",
+   "en": "I like cycling because it is healthy."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga met de bus omdat het makkelijk is.",
+   "en": "I go by bus because it is easy."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik kijk naar het nieuws omdat het interessant is.",
+   "en": "I watch the news because it is interesting."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind de zomer leuk omdat het warm is.",
+   "en": "I like summer because it is warm."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik koop op de markt omdat het goedkoop is.",
+   "en": "I buy at the market because it is cheap."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik denk dat hij thee drinkt.",
+   "en": "I think he drinks tea."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik denk dat ze koffie drinken.",
+   "en": "I think they drink coffee."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik denk dat hij in een winkel werkt.",
+   "en": "I think he works in a shop."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik denk dat ze voetbal spelen.",
+   "en": "I think they play football."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik denk dat zij blij is.",
+   "en": "I think she is happy."
+  }
+ ]
+}

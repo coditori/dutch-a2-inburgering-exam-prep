@@ -1,0 +1,121 @@
+{
+ "id": "U21",
+ "trede": 2,
+ "titel": "Twee zinnen: niet, geen en maar",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Heb je een fiets?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, ik heb geen fiets. Ik ga altijd met de bus."
+    }
+   ],
+   "v": "Wat heeft de vrouw niet?",
+   "o": [
+    "een fiets",
+    "een kaartje voor de bus",
+    "tijd"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Kom je vanavond eten?"
+    },
+    {
+     "s": "C",
+     "t": "Ik kan niet komen. Ik moet tot tien uur werken."
+    }
+   ],
+   "v": "Waarom komt de man niet?",
+   "o": [
+    "Hij moet werken.",
+    "Hij is ziek.",
+    "Hij heeft al gegeten."
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "C",
+     "t": "Is de huisarts er vandaag?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, vandaag niet. Maar de assistente kan u wel helpen."
+    }
+   ],
+   "v": "Wie kan de man vandaag helpen?",
+   "o": [
+    "de assistente",
+    "de huisarts",
+    "niemand"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Ik wil graag kip met rijst."
+    },
+    {
+     "s": "B",
+     "t": "Sorry, wij hebben vandaag geen kip. Wilt u vis?"
+    }
+   ],
+   "v": "Wat kan de man eten?",
+   "o": [
+    "vis",
+    "kip",
+    "kip en vis"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Is het zwembad morgen open?"
+    },
+    {
+     "s": "A",
+     "t": "'s Ochtends niet, maar 's middags wel."
+    }
+   ],
+   "v": "Wanneer kan de vrouw morgen zwemmen?",
+   "o": [
+    "'s middags",
+    "'s ochtends",
+    "morgen niet"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "C",
+     "t": "Neem je de auto?"
+    },
+    {
+     "s": "A",
+     "t": "Nee, de auto is bij mijn broer. Ik ga met de trein."
+    }
+   ],
+   "v": "Hoe reist de man?",
+   "o": [
+    "met de trein",
+    "met de auto",
+    "met zijn broer"
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik heb geen fiets.",
+  "'s Ochtends niet, maar 's middags wel."
+ ]
+}

@@ -1,0 +1,564 @@
+{
+ "id": "5-instanties",
+ "trede": 3,
+ "titel": "Instanties",
+ "max_nieuw": 23,
+ "namen": [
+  "Lena",
+  "Tom",
+  "Sara",
+  "Omar",
+  "Mila",
+  "Karim",
+  "Noor",
+  "Daan",
+  "Yusuf",
+  "Eva",
+  "UWV",
+  "DigiD",
+  "BSN",
+  "Juridisch",
+  "Loket",
+  "WA",
+  "Nederlander",
+  "Nederlanders",
+  "Koophandel",
+  "BRP",
+  "IND",
+  "btw",
+  "Meld",
+  "Misdaad",
+  "Anoniem",
+  "Discriminatie.nl",
+  "Europa",
+  "Rob",
+  "Anna",
+  "Tim",
+  "Sam",
+  "raadslieden",
+  "sociaal",
+  "nl"
+ ],
+ "woorden": [
+  {
+   "nl": "de instantie",
+   "en": "agency / official body",
+   "beeld": "🏛️",
+   "zin": "Het UWV is een {instantie} van de overheid.",
+   "thema": "instanties",
+   "vormen": [
+    "instanties"
+   ]
+  },
+  {
+   "nl": "de vergunning",
+   "en": "permit",
+   "beeld": "📜✅",
+   "zin": "Voor het bouwen van een groot huis hebt u een {vergunning} nodig.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "het burgerservicenummer",
+   "en": "citizen service number (BSN)",
+   "beeld": "🔢🪪",
+   "zin": "Iedereen die in Nederland woont, heeft een {burgerservicenummer}.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de aangifte",
+   "en": "report (to the police) / tax return",
+   "beeld": "📝👮",
+   "zin": "Is uw fiets gestolen? Doe dan {aangifte} bij de politie.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "het bezwaar",
+   "en": "objection",
+   "beeld": "✋",
+   "zin": "Bent u het niet eens met een brief van de gemeente? Dan kunt u {bezwaar} maken.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de schade",
+   "en": "damage",
+   "beeld": "💥",
+   "zin": "De verzekering betaalt de {schade} aan uw auto.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de advocaat",
+   "en": "lawyer",
+   "beeld": "👩‍⚖️",
+   "zin": "Een {advocaat} helpt u bij de rechter.",
+   "thema": "instanties",
+   "vormen": [
+    "advocaten"
+   ]
+  },
+  {
+   "nl": "het uittreksel",
+   "en": "extract (official copy of your registration)",
+   "beeld": "📃",
+   "zin": "Een {uittreksel} is een papier van de gemeente met uw naam en adres.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de naturalisatie",
+   "en": "naturalisation",
+   "beeld": "🇳🇱🪪",
+   "zin": "Na {naturalisatie} bent u Nederlander.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de inburgering",
+   "en": "civic integration",
+   "beeld": "🎓🇳🇱",
+   "zin": "De {inburgering} is verplicht voor veel nieuwe Nederlanders.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de identificatieplicht",
+   "en": "duty to carry ID",
+   "beeld": "🪪❗",
+   "zin": "Door de {identificatieplicht} moet u een identiteitsbewijs kunnen laten zien.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de machtiging",
+   "en": "direct debit authorisation",
+   "beeld": "🔁💶",
+   "zin": "Met een {machtiging} betaalt u de huur elke maand automatisch.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "het loket",
+   "en": "counter / desk",
+   "beeld": "🪟🧑‍💼",
+   "zin": "Bij het {loket} van het gemeentehuis helpt een medewerker u.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de discriminatie",
+   "en": "discrimination",
+   "beeld": "🚫⚖️",
+   "zin": "{Discriminatie} is in Nederland verboden.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "het recht",
+   "en": "right / law",
+   "beeld": "⚖️",
+   "zin": "U hebt {recht} op hulp van een advocaat.",
+   "thema": "instanties",
+   "vormen": [
+    "rechten",
+    "rechter",
+    "rechters"
+   ]
+  },
+  {
+   "nl": "de scheiding",
+   "en": "divorce",
+   "beeld": "💔",
+   "zin": "Na een {scheiding} zijn twee mensen niet meer getrouwd.",
+   "thema": "instanties",
+   "meer": true
+  },
+  {
+   "nl": "de identiteitskaart",
+   "en": "identity card",
+   "beeld": "🪪",
+   "zin": "Met een {identiteitskaart} kunt u reizen in Europa.",
+   "thema": "instanties",
+   "meer": true
+  },
+  {
+   "nl": "anoniem",
+   "en": "anonymous",
+   "beeld": "🕶️",
+   "zin": "U kunt {anoniem} bellen: u zegt uw naam niet.",
+   "thema": "instanties",
+   "meer": true
+  },
+  {
+   "nl": "de nationaliteit",
+   "en": "nationality",
+   "beeld": "🌍🪪",
+   "zin": "Zij heeft de Nederlandse {nationaliteit}.",
+   "thema": "instanties",
+   "meer": true
+  },
+  {
+   "nl": "de schuld",
+   "en": "debt",
+   "beeld": "📉💶",
+   "zin": "Hij heeft een grote {schuld} bij de bank.",
+   "thema": "instanties",
+   "vormen": [
+    "schulden"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de voedselbank",
+   "en": "food bank",
+   "beeld": "🥫",
+   "zin": "De {voedselbank} geeft gratis eten.",
+   "thema": "instanties",
+   "meer": true
+  },
+  {
+   "nl": "blokkeren",
+   "en": "to block",
+   "beeld": "🔒",
+   "zin": "Laat uw bankpas meteen {blokkeren}.",
+   "thema": "instanties",
+   "vormen": [
+    "blokkeer",
+    "blokkeert",
+    "blokkeerde",
+    "geblokkeerd"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de misdaad",
+   "en": "crime",
+   "beeld": "🦹",
+   "zin": "Stelen is een {misdaad}.",
+   "thema": "instanties",
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Waar vraagt u een paspoort of een rijbewijs aan?",
+   "a": "Bij de gemeente.",
+   "en": "Where do you apply for a passport or driving licence? At the municipality.",
+   "beeld": "🪪"
+  },
+  {
+   "v": "Wat is DigiD?",
+   "a": "Met DigiD laat u op websites van de overheid zien wie u bent.",
+   "en": "What is DigiD? Your secure login for government websites.",
+   "beeld": "🔐"
+  },
+  {
+   "v": "Wat is het BSN?",
+   "a": "Het burgerservicenummer: uw eigen nummer bij de overheid. Het staat op uw paspoort.",
+   "en": "What is the BSN? Your personal number with the government; it is on your passport.",
+   "beeld": "🔢"
+  },
+  {
+   "v": "Vanaf hoeveel jaar moet u een identiteitsbewijs kunnen laten zien?",
+   "a": "Vanaf 14 jaar.",
+   "en": "From what age must you be able to show ID? From 14.",
+   "beeld": "🪪"
+  },
+  {
+   "v": "Wat doet u als er iets van u gestolen is?",
+   "a": "U doet aangifte bij de politie. Dat kan vaak ook online.",
+   "en": "What do you do when something is stolen? Report it to the police, often possible online.",
+   "beeld": "👮"
+  },
+  {
+   "v": "Welk nummer belt u voor de politie als het niet snel hoeft?",
+   "a": "0900 - 8844.",
+   "en": "Which police number when it is not urgent? 0900-8844.",
+   "beeld": "📞"
+  },
+  {
+   "v": "Wat doet u als u het niet eens bent met een brief van de Belastingdienst?",
+   "a": "U maakt bezwaar. Dat doet u binnen zes weken.",
+   "en": "What if you disagree with a decision of the tax office? File an objection within six weeks.",
+   "beeld": "✋"
+  },
+  {
+   "v": "Waar krijgt u gratis hulp bij vragen over de wet en uw rechten?",
+   "a": "Bij het Juridisch Loket.",
+   "en": "Where do you get free legal advice? At the Juridisch Loket.",
+   "beeld": "⚖️"
+  },
+  {
+   "v": "Welke toeslagen kunt u bij de Belastingdienst aanvragen?",
+   "a": "Zorgtoeslag, huurtoeslag en kinderopvangtoeslag.",
+   "en": "Which allowances can you apply for at the tax office? Care, rent and childcare allowance.",
+   "beeld": "💶"
+  },
+  {
+   "v": "Welke verzekering is verplicht als u een auto hebt?",
+   "a": "Een autoverzekering (WA).",
+   "en": "Which insurance is mandatory when you own a car? Third-party car insurance (WA).",
+   "beeld": "🚗"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "Het paspoort van Lena is bijna niet meer geldig.",
+   "v": "Waar vraagt zij een nieuw paspoort aan?",
+   "o": [
+    "Bij de gemeente.",
+    "Bij de politie.",
+    "Bij de Belastingdienst."
+   ],
+   "w": "Een paspoort, een identiteitsbewijs en een rijbewijs vraagt u aan bij de gemeente.",
+   "beeld": "🪪"
+  },
+  {
+   "sit": "De fiets van Tom is gestolen.",
+   "v": "Wat doet hij?",
+   "o": [
+    "Aangifte doen bij de politie.",
+    "112 bellen.",
+    "Bezwaar maken bij de gemeente."
+   ],
+   "w": "Is er iets gestolen? Dan doet u aangifte bij de politie. 112 is alleen als er meteen hulp nodig is.",
+   "beeld": "🚲"
+  },
+  {
+   "sit": "Sara krijgt een baby.",
+   "v": "Waar schrijft zij haar baby in?",
+   "o": [
+    "Bij de gemeente.",
+    "Bij het UWV.",
+    "Bij de bank."
+   ],
+   "w": "Een nieuwe baby meldt u binnen drie dagen bij de gemeente.",
+   "beeld": "👶"
+  },
+  {
+   "sit": "Omar krijgt een brief van de Belastingdienst. Hij moet € 800 betalen. Hij denkt dat dit niet goed is.",
+   "v": "Wat kan hij doen?",
+   "o": [
+    "Bezwaar maken.",
+    "Niets: hij moet betalen.",
+    "Aangifte doen bij de politie."
+   ],
+   "w": "Bent u het niet eens met de overheid? Dan mag u bezwaar maken.",
+   "beeld": "✋"
+  },
+  {
+   "sit": "Mila is 16 jaar. De politie vraagt in de trein om haar identiteitsbewijs.",
+   "v": "Moet zij dat laten zien?",
+   "o": [
+    "Ja, dat moet vanaf 14 jaar.",
+    "Nee, pas vanaf 18 jaar.",
+    "Alleen als haar ouders er ook zijn."
+   ],
+   "w": "De identificatieplicht is er voor iedereen vanaf 14 jaar.",
+   "beeld": "🪪"
+  },
+  {
+   "sit": "Karim wil online zijn toeslagen bekijken op de website van de Belastingdienst.",
+   "v": "Wat heeft hij nodig?",
+   "o": [
+    "Zijn DigiD.",
+    "Zijn rijbewijs.",
+    "Een vergunning."
+   ],
+   "w": "Voor websites van de overheid hebt u DigiD nodig.",
+   "beeld": "🔐"
+  },
+  {
+   "sit": "Noor heeft een probleem met haar verhuurder. Zij heeft weinig geld en wil weten wat haar rechten zijn.",
+   "v": "Waar kan zij gratis hulp vragen?",
+   "o": [
+    "Bij het Juridisch Loket.",
+    "Bij de Kamer van Koophandel.",
+    "Bij de apotheek."
+   ],
+   "w": "Het Juridisch Loket geeft gratis hulp bij vragen over de wet.",
+   "beeld": "⚖️"
+  },
+  {
+   "sit": "Daan koopt een auto.",
+   "v": "Wat moet hij regelen?",
+   "o": [
+    "Een autoverzekering.",
+    "Een inboedelverzekering.",
+    "Een vergunning van de politie."
+   ],
+   "w": "Een autoverzekering is verplicht voor iedereen met een auto.",
+   "beeld": "🚗"
+  },
+  {
+   "sit": "Yusuf gaat trouwen.",
+   "v": "Waar regelt hij dat?",
+   "o": [
+    "Bij de gemeente.",
+    "Bij de notaris.",
+    "Bij de politie."
+   ],
+   "w": "Trouwen doet u bij de gemeente. U meldt het daar eerst.",
+   "beeld": "💍"
+  },
+  {
+   "sit": "Eva ziet 's nachts een man die een raam van de buren kapot maakt en naar binnen gaat.",
+   "v": "Welk nummer belt zij?",
+   "o": [
+    "112",
+    "0900 - 8844",
+    "Het nummer van de gemeente."
+   ],
+   "w": "Gebeurt het nu? Bel dan 112. Hoeft de politie niet meteen te komen? Dan belt u 0900 - 8844.",
+   "beeld": "🚨"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Waar moet iedereen die in Nederland woont zich inschrijven?",
+    "a": "Bij de gemeente, in de BRP. Daar krijgt u ook uw burgerservicenummer.",
+    "en": "Where must everyone living in the Netherlands register? At the municipality (BRP); you also get your BSN there.",
+    "beeld": "🏛️"
+   },
+   {
+    "v": "Welke veranderingen meldt u nog meer bij de gemeente?",
+    "a": "Een scheiding, en als iemand in uw gezin is overleden.",
+    "en": "What else do you report to the municipality? A divorce and a death in the family.",
+    "beeld": "📣"
+   },
+   {
+    "v": "Hoe lang is een paspoort of een identiteitskaart geldig?",
+    "a": "Voor volwassenen 10 jaar, voor kinderen tot 18 jaar 5 jaar.",
+    "en": "How long is a passport or ID card valid? 10 years for adults, 5 years under 18.",
+    "beeld": "🪪"
+   },
+   {
+    "v": "Wat is het verschil tussen een paspoort, een identiteitskaart en een rijbewijs?",
+    "a": "Met een paspoort reist u naar alle landen, met een identiteitskaart alleen in Europa. Met een rijbewijs kunt u niet reizen, maar het is wel een identiteitsbewijs.",
+    "en": "Passport: all countries. ID card: Europe only. Driving licence: not for travel, but valid ID.",
+    "beeld": "✈️"
+   },
+   {
+    "v": "Wat kan er gebeuren als u aan de politie geen identiteitsbewijs kunt laten zien?",
+    "a": "U kunt een boete krijgen.",
+    "en": "No ID to show the police: you can be fined.",
+    "beeld": "👮"
+   },
+   {
+    "v": "U wilt een misdaad melden, maar niet uw naam zeggen. Welk nummer belt u?",
+    "a": "0800 - 7000: Meld Misdaad Anoniem.",
+    "en": "Reporting a crime anonymously: call 0800-7000.",
+    "beeld": "🕶️"
+   },
+   {
+    "v": "Is een verblijfsvergunning altijd tijdelijk?",
+    "a": "Nee. Eerst is hij tijdelijk. Na vijf jaar wonen in Nederland kunt u een vergunning voor altijd aanvragen. Dat doet u bij de IND, niet bij de gemeente.",
+    "en": "Is a residence permit always temporary? First yes; after five years you can apply for a permanent one, at the IND (not the municipality).",
+    "beeld": "📄"
+   },
+   {
+    "v": "Wat is nodig voor naturalisatie?",
+    "a": "U woont meestal minstens vijf jaar in Nederland en u hebt het inburgeringsexamen gehaald. Soms moet u uw andere nationaliteit opgeven.",
+    "en": "What is needed for naturalisation? Usually five years' residence and the integration exam; sometimes giving up your other nationality.",
+    "beeld": "🇳🇱"
+   },
+   {
+    "v": "Wanneer doet u aangifte van uw inkomen bij de Belastingdienst?",
+    "a": "Elk jaar tussen 1 maart en 1 mei, met DigiD.",
+    "en": "When do you file your tax return? Every year between 1 March and 1 May, with DigiD.",
+    "beeld": "📅"
+   },
+   {
+    "v": "Wat is btw?",
+    "a": "Belasting op wat u koopt. Op bijna alles wat u koopt zit 21% btw.",
+    "en": "What is btw (VAT)? Tax on purchases; 21% on most things.",
+    "beeld": "🧾"
+   },
+   {
+    "v": "Welke belastingen heeft de gemeente?",
+    "a": "Belasting voor afval, voor uw huis en soms voor uw hond. Wie heel weinig verdient, kan kwijtschelding vragen.",
+    "en": "Which municipal taxes are there? For waste, property and sometimes dogs; remission possible with a very low income.",
+    "beeld": "🏛️"
+   },
+   {
+    "v": "Wie helpt gratis met brieven, formulieren en bezwaar?",
+    "a": "De sociaal raadslieden van de gemeente. Een advocaat is niet gratis; wie weinig verdient, betaalt minder.",
+    "en": "Who helps for free with letters, forms and objections? The municipal social advisers. A lawyer costs money (less with a low income).",
+    "beeld": "📝"
+   },
+   {
+    "v": "Waar meldt u discriminatie?",
+    "a": "Bij Discriminatie.nl of bij de politie.",
+    "en": "Where do you report discrimination? At Discriminatie.nl or the police.",
+    "beeld": "🚫"
+   },
+   {
+    "v": "Uw bankpas is gestolen. Wat doet u?",
+    "a": "U laat de pas meteen blokkeren bij de bank en u doet aangifte bij de politie.",
+    "en": "Bank card stolen: block it at once and report it to the police.",
+    "beeld": "🔒"
+   },
+   {
+    "v": "Waar vraagt u hulp bij schulden?",
+    "a": "Bij de gemeente. De voedselbank geeft gratis eten aan mensen met heel weinig geld.",
+    "en": "Where do you get help with debts? At the municipality. The food bank gives free food to people with very little money.",
+    "beeld": "🥫"
+   },
+   {
+    "v": "Vanaf hoeveel jaar moet u in de bus of de trein een identiteitsbewijs laten zien?",
+    "a": "De regel is: vanaf 14 jaar. In de bus en de trein geldt het al vanaf 12 jaar, als u geen geldig kaartje hebt.",
+    "en": "ID in public transport: general rule from 14; in bus and train from 12 if you have no valid ticket.",
+    "beeld": "🚆"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "Rob en Anna gaan scheiden.",
+    "v": "Waar wordt dat gemeld?",
+    "o": [
+     "Bij de gemeente.",
+     "Bij het UWV.",
+     "Bij de bank."
+    ],
+    "w": "Trouwen, scheiden, een baby en verhuizen: de gemeente moet het weten.",
+    "beeld": "💔"
+   },
+   {
+    "sit": "Tim weet dat iemand in zijn straat auto's steelt. Hij wil het melden, maar niet zijn naam zeggen.",
+    "v": "Welk nummer belt hij?",
+    "o": [
+     "0800 - 7000",
+     "112",
+     "0900 - 8844"
+    ],
+    "w": "Bij Meld Misdaad Anoniem hoeft u uw naam niet te zeggen.",
+    "beeld": "🕶️"
+   },
+   {
+    "sit": "Mila verliest haar bankpas in de trein.",
+    "v": "Wat doet zij eerst?",
+    "o": [
+     "De pas laten blokkeren bij de bank.",
+     "Een nieuwe rekening openen.",
+     "Wachten tot iemand de pas terugbrengt."
+    ],
+    "w": "Een verloren of gestolen pas laat u meteen blokkeren.",
+    "beeld": "🔒"
+   },
+   {
+    "sit": "Omar heeft veel schulden. Hij kan zijn rekeningen niet meer betalen.",
+    "v": "Waar vraagt hij hulp?",
+    "o": [
+     "Bij de gemeente.",
+     "Bij de Kamer van Koophandel.",
+     "Bij de huisarts."
+    ],
+    "w": "De gemeente helpt gratis bij schulden.",
+    "beeld": "📉"
+   },
+   {
+    "sit": "Sam is 13 jaar. Hij zit in de trein zonder kaartje. Een medewerker vraagt om zijn identiteitsbewijs.",
+    "v": "Moet Sam dat laten zien?",
+    "o": [
+     "Ja, in de trein en de bus moet dat vanaf 12 jaar als u geen kaartje hebt.",
+     "Nee, pas vanaf 14 jaar.",
+     "Nee, pas vanaf 18 jaar."
+    ],
+    "w": "De regel is 14 jaar, maar in de bus en de trein is het 12 jaar als u geen geldig kaartje hebt.",
+    "beeld": "🚆"
+   }
+  ]
+ }
+}

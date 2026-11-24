@@ -1,0 +1,206 @@
+{
+ "trede": 1,
+ "na": "U05",
+ "items": [
+  {
+   "t": "dertien",
+   "goed": "13",
+   "soort": "getal"
+  },
+  {
+   "t": "zeventien",
+   "goed": "17",
+   "soort": "getal"
+  },
+  {
+   "t": "eenentwintig",
+   "goed": "21",
+   "soort": "getal"
+  },
+  {
+   "t": "vierentwintig",
+   "goed": "24",
+   "soort": "getal"
+  },
+  {
+   "t": "negenentwintig",
+   "goed": "29",
+   "soort": "getal"
+  },
+  {
+   "t": "tweeëndertig",
+   "goed": "32",
+   "soort": "getal"
+  },
+  {
+   "t": "zesendertig",
+   "goed": "36",
+   "soort": "getal"
+  },
+  {
+   "t": "drieënveertig",
+   "goed": "43",
+   "soort": "getal"
+  },
+  {
+   "t": "achtenveertig",
+   "goed": "48",
+   "soort": "getal"
+  },
+  {
+   "t": "eenenvijftig",
+   "goed": "51",
+   "soort": "getal"
+  },
+  {
+   "t": "zevenenvijftig",
+   "goed": "57",
+   "soort": "getal"
+  },
+  {
+   "t": "tweeënzestig",
+   "goed": "62",
+   "soort": "getal"
+  },
+  {
+   "t": "vijfenzestig",
+   "goed": "65",
+   "soort": "getal"
+  },
+  {
+   "t": "negenenzestig",
+   "goed": "69",
+   "soort": "getal"
+  },
+  {
+   "t": "drieënzeventig",
+   "goed": "73",
+   "soort": "getal"
+  },
+  {
+   "t": "achtenzeventig",
+   "goed": "78",
+   "soort": "getal"
+  },
+  {
+   "t": "vierentachtig",
+   "goed": "84",
+   "soort": "getal"
+  },
+  {
+   "t": "zesentachtig",
+   "goed": "86",
+   "soort": "getal"
+  },
+  {
+   "t": "tweeënnegentig",
+   "goed": "92",
+   "soort": "getal"
+  },
+  {
+   "t": "vijfennegentig",
+   "goed": "95",
+   "soort": "getal"
+  },
+  {
+   "t": "negenennegentig",
+   "goed": "99",
+   "soort": "getal"
+  },
+  {
+   "t": "honderdtien",
+   "goed": "110",
+   "soort": "getal"
+  },
+  {
+   "t": "honderdtwintig",
+   "goed": "120",
+   "soort": "getal"
+  },
+  {
+   "t": "honderdvijftig",
+   "goed": "150",
+   "soort": "getal"
+  },
+  {
+   "t": "vier euro vijfentwintig",
+   "goed": "4,25",
+   "soort": "prijs"
+  },
+  {
+   "t": "negen euro negenennegentig",
+   "goed": "9,99",
+   "soort": "prijs"
+  },
+  {
+   "t": "zestien euro vijftig",
+   "goed": "16,50",
+   "soort": "prijs"
+  },
+  {
+   "t": "een euro tachtig",
+   "goed": "1,80",
+   "soort": "prijs"
+  },
+  {
+   "t": "tweeëndertig euro",
+   "goed": "32",
+   "soort": "prijs"
+  },
+  {
+   "t": "zeven euro vijfenveertig",
+   "goed": "7,45",
+   "soort": "prijs"
+  },
+  {
+   "t": "twintig euro tien",
+   "goed": "20,10",
+   "soort": "prijs"
+  },
+  {
+   "t": "drie euro vijfenzestig",
+   "goed": "3,65",
+   "soort": "prijs"
+  },
+  {
+   "t": "kwart over zeven",
+   "goed": "7.15",
+   "soort": "tijd"
+  },
+  {
+   "t": "half elf",
+   "goed": "10.30",
+   "soort": "tijd"
+  },
+  {
+   "t": "tien voor zes",
+   "goed": "5.50",
+   "soort": "tijd"
+  },
+  {
+   "t": "vijf over half negen",
+   "goed": "8.35",
+   "soort": "tijd"
+  },
+  {
+   "t": "kwart voor een",
+   "goed": "12.45",
+   "soort": "tijd"
+  },
+  {
+   "t": "twintig over drie",
+   "goed": "3.20",
+   "soort": "tijd"
+  },
+  {
+   "t": "vijf voor half vier",
+   "goed": "3.25",
+   "soort": "tijd"
+  },
+  {
+   "t": "half een",
+   "goed": "12.30",
+   "soort": "tijd"
+  }
+ ]
+}

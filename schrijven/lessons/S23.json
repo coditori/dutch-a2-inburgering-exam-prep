@@ -1,0 +1,73 @@
+{
+ "id": "S23",
+ "trede": 4,
+ "titel": "Een hele set op papier: set A",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [
+  {
+   "nl": "de set",
+   "en": "set (of four tasks)",
+   "beeld": "🗂️",
+   "zin": "Ik maak vandaag set A.",
+   "thema": "schrijven",
+   "vormen": [
+    "sets"
+   ]
+  },
+  {
+   "nl": "de pen",
+   "en": "pen",
+   "beeld": "🖊️",
+   "zin": "Ik schrijf met een pen.",
+   "thema": "schrijven",
+   "vormen": [
+    "pennen"
+   ]
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Het examen heeft vier opdrachten en duurt 40 minuten. U schrijft met een pen op papier.",
+   "en": "The exam has four tasks and takes 40 minutes. You write with a pen on paper."
+  },
+  {
+   "nl": "Lees eerst alle punten van de opdracht. Schrijf bij elk punt één zin.",
+   "en": "First read all points of the task. Write one sentence for each point."
+  },
+  {
+   "nl": "Vergeten punten kosten de meeste punten. Kijk aan het einde: hebt u alle punten?",
+   "en": "Missing points cost the most. Check at the end: are all points there?"
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "set",
+   "goed": "A",
+   "uitleg": "Maak set A op papier, in 40 minuten."
+  }
+ ]
+}

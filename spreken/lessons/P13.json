@@ -1,0 +1,183 @@
+{
+ "id": "P13",
+ "trede": 2,
+ "titel": "Boodschappen, weekend en het weer",
+ "uitleg": "U hoort twee vragen. Geef antwoord op de eerste vraag en op de tweede vraag.",
+ "en": "You hear a two-part question (on the exam: a video). Answer BOTH parts: one short sentence each. Reuse the words of the question. You may invent your answer.",
+ "woorden": [
+  {
+   "nl": "eigen",
+   "en": "own",
+   "beeld": "🏷️",
+   "zin": "Ik heb een eigen kamer.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "regenen",
+   "en": "to rain",
+   "beeld": "🌧️",
+   "zin": "Het regent vandaag.",
+   "thema": "weer"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Waar doet u meestal boodschappen? Vertel ook wanneer u boodschappen doet.",
+   "model": [
+    "Ik doe meestal boodschappen bij de supermarkt.",
+    "Ik doe boodschappen op zaterdag in de ochtend."
+   ],
+   "sleutel": [
+    [
+     "supermarkt",
+     "markt",
+     "winkel"
+    ],
+    [
+     "maandag",
+     "dinsdag",
+     "woensdag",
+     "donderdag",
+     "vrijdag",
+     "zaterdag",
+     "zondag",
+     "ochtend",
+     "middag",
+     "avond",
+     "weekend",
+     "elke"
+    ]
+   ],
+   "en": "Reuse the question: 'Ik doe boodschappen bij ...'. Time first = verb second: 'Elke dag doe ik ...'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik koop mijn boodschappen in de supermarkt. Waar koopt u uw boodschappen? Vertel ook wat u dan koopt.",
+   "model": [
+    "Ik koop mijn boodschappen op de markt.",
+    "Ik koop brood, kaas en groente."
+   ],
+   "sleutel": [
+    [
+     "markt",
+     "supermarkt",
+     "winkel"
+    ],
+    [
+     "brood",
+     "kaas",
+     "groente",
+     "fruit",
+     "melk",
+     "vlees",
+     "vis",
+     "rijst"
+    ]
+   ],
+   "en": "Use 'bij de supermarkt' or 'op de markt'. Then name two or three things."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat doet u graag in het weekend? Vertel ook waarom u dat leuk vindt.",
+   "model": [
+    "Ik fiets graag in het weekend.",
+    "Ik vind dat leuk omdat het gezond is."
+   ],
+   "sleutel": [
+    [
+     "graag",
+     "weekend"
+    ],
+    [
+     "omdat",
+     "want"
+    ]
+   ],
+   "en": "After 'omdat' the verb goes to the end: 'omdat het gezond is'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik ga in het weekend graag naar een feest. Wat doet u het liefst in het weekend? Vertel ook met wie u dat doet.",
+   "model": [
+    "Ik ga het liefst naar het park.",
+    "Ik ga met mijn kinderen."
+   ],
+   "sleutel": [
+    [
+     "liefst",
+     "graag",
+     "weekend"
+    ],
+    [
+     "met mijn",
+     "met een",
+     "met de",
+     "alleen",
+     "samen"
+    ]
+   ],
+   "en": "The first sentence is about the speaker. Only answer the two questions."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat vindt u van het weer in Nederland? Vertel ook hoe het weer is in uw eigen land.",
+   "model": [
+    "Ik vind het weer in Nederland niet leuk.",
+    "Het regent vaak.",
+    "In mijn land is het warm."
+   ],
+   "sleutel": [
+    [
+     "weer",
+     "regent",
+     "koud",
+     "leuk"
+    ],
+    [
+     "mijn land",
+     "in mijn",
+     "warm",
+     "zon"
+    ]
+   ],
+   "en": "'In mijn land is het warm': after 'In mijn land' the verb comes before 'het'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Op welke dag doet u het liefst boodschappen? Vertel ook waarom.",
+   "model": [
+    "Ik doe het liefst op maandag boodschappen.",
+    "Dan is het niet druk in de winkel."
+   ],
+   "sleutel": [
+    [
+     "maandag",
+     "dinsdag",
+     "woensdag",
+     "donderdag",
+     "vrijdag",
+     "zaterdag",
+     "zondag"
+    ],
+    [
+     "omdat",
+     "want",
+     "dan is",
+     "druk",
+     "rustig",
+     "tijd",
+     "vrij"
+    ]
+   ],
+   "en": "Days have no capital letter and no article: 'op maandag'."
+  }
+ ]
+}

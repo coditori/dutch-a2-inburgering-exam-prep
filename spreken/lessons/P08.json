@@ -1,0 +1,91 @@
+{
+ "id": "P08",
+ "trede": 1,
+ "titel": "Hoe vaak? En vier zinnen",
+ "uitleg": "U zegt hoe vaak u iets doet. U zegt ook vier zinnen. Luister en zeg het na.",
+ "en": "Say how often: elke dag, vaak, elke week, elk jaar. Then the 4-sentence formula: like + opinion + 'maar' dislike + opinion.",
+ "patroon": "Ik ___ elke dag / vaak / elke week.",
+ "woorden": [
+  {
+   "nl": "elke",
+   "en": "every",
+   "beeld": "🔁",
+   "zin": "Ik werk elke dag.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "het jaar",
+   "en": "year",
+   "beeld": "📆",
+   "zin": "Een jaar is lang.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de televisie",
+   "en": "television",
+   "beeld": "📺",
+   "zin": "Ik kijk televisie.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "schoonmaken",
+   "en": "to clean",
+   "beeld": "🧹",
+   "zin": "Ik maak de keuken schoon.",
+   "thema": "wonen"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "Ik fiets elke dag.",
+   "en": "I cycle every day."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik luister vaak naar muziek.",
+   "en": "I often listen to music."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga elke week naar de markt.",
+   "en": "I go to the market every week."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik kijk vaak televisie.",
+   "en": "I often watch television."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga elk jaar op vakantie.",
+   "en": "I go on holiday every year."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik drink elke ochtend koffie.",
+   "en": "I drink coffee every morning."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga vaak met de trein.",
+   "en": "I often go by train."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik werk elke dag.",
+   "en": "I work every day."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik fiets graag. Ik vind dat leuk. Maar ik hou niet van voetbal. Ik vind dat saai.",
+   "en": "I like cycling. I think that is nice. But I don't like football. I find that boring."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik kook graag. Ik vind dat leuk. Maar ik hou niet van schoonmaken. Ik vind dat saai.",
+   "en": "I like cooking. I think that is nice. But I don't like cleaning. I find that boring."
+  }
+ ]
+}

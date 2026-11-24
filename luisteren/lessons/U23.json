@@ -1,0 +1,166 @@
+{
+ "id": "U23",
+ "trede": 3,
+ "titel": "Op het werk",
+ "namen": [
+  "Sara",
+  "Jan",
+  "Tom",
+  "Karim",
+  "Lisa",
+  "Lena",
+  "Peter",
+  "Mila"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Sara praat met haar leidinggevende.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Jan, heb je even tijd? Ik heb een vraag over het rooster."
+    },
+    {
+     "s": "A",
+     "t": "Natuurlijk. Wat is er?"
+    },
+    {
+     "s": "B",
+     "t": "Ik moet volgende week vrijdag naar de tandarts. Kan ik dan vrij krijgen?"
+    },
+    {
+     "s": "A",
+     "t": "Vrijdag is het druk in de winkel. Hoe laat is je afspraak?"
+    },
+    {
+     "s": "B",
+     "t": "Om drie uur 's middags."
+    },
+    {
+     "s": "A",
+     "t": "Dan kun je in de ochtend werken, van acht tot twaalf. Is dat goed?"
+    },
+    {
+     "s": "B",
+     "t": "Ja, dat is goed. Dank je wel."
+    },
+    {
+     "s": "A",
+     "t": "Zet het zelf even in het rooster."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom wil Sara vrij?",
+     "o": [
+      "Zij moet naar de tandarts.",
+      "Zij gaat op vakantie.",
+      "Zij is ziek."
+     ]
+    },
+    {
+     "v": "Wat spreken zij af?",
+     "o": [
+      "Sara werkt vrijdag alleen in de ochtend.",
+      "Sara is vrijdag de hele dag vrij.",
+      "Sara ruilt met een collega."
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Tom begint vandaag met een nieuwe baan. Een collega vertelt hoe het werkt.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Hallo Tom, ik ben Karim. Ik laat je zien waar alles is."
+    },
+    {
+     "s": "A",
+     "t": "Dank je wel."
+    },
+    {
+     "s": "C",
+     "t": "Hier is de keuken. De pauze is van half een tot een uur. Koffie en thee zijn gratis."
+    },
+    {
+     "s": "A",
+     "t": "En waar kan ik mijn jas laten?"
+    },
+    {
+     "s": "C",
+     "t": "In de kast naast de deur. Je krijgt straks een sleutel van Lisa."
+    },
+    {
+     "s": "A",
+     "t": "Hoe laat beginnen wij 's ochtends?"
+    },
+    {
+     "s": "C",
+     "t": "Om half acht. Maar op maandag om acht uur, want dan is er eerst een vergadering."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Van wie krijgt Tom een sleutel?",
+     "o": [
+      "van Lisa",
+      "van Karim",
+      "van de baas"
+     ]
+    },
+    {
+     "v": "Hoe laat begint Tom op maandag?",
+     "o": [
+      "om acht uur",
+      "om half acht",
+      "om half een"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Lena luistert naar een bericht van haar baas.",
+   "soort": "voicemail",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Hallo Lena, met Peter. Ik bel over morgen."
+    },
+    {
+     "s": "C",
+     "t": "Mila is ziek en ik zoek iemand voor de avonddienst, van vier tot tien uur."
+    },
+    {
+     "s": "C",
+     "t": "Kun jij dat doen? Je krijgt dan donderdag een dag vrij."
+    },
+    {
+     "s": "C",
+     "t": "Bel mij vandaag vóór zes uur terug, alsjeblieft. Dan kan ik het rooster maken."
+    },
+    {
+     "s": "C",
+     "t": "Dank je wel."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat moet Lena doen?",
+     "o": [
+      "Peter vandaag vóór zes uur bellen",
+      "morgen om tien uur beginnen",
+      "Mila bellen"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Kan ik dan vrij krijgen?",
+  "De pauze is van half een tot een uur."
+ ]
+}

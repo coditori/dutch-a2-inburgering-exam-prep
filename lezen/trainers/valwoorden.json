@@ -1,0 +1,174 @@
+{
+ "trede": 4,
+ "na": "L32",
+ "items": [
+  {
+   "a": "De winkel is elke dag open, behalve op zondag.",
+   "b": "De winkel is elke dag open, ook op zondag.",
+   "v": "Op zondag is de winkel dicht.",
+   "goed": "a",
+   "val": "behalve"
+  },
+  {
+   "a": "U kunt alleen met de pinpas betalen.",
+   "b": "U kunt ook met de pinpas betalen.",
+   "v": "U kunt niet met geld betalen.",
+   "goed": "a",
+   "val": "alleen"
+  },
+  {
+   "a": "Bel ons vóór 12.00 uur.",
+   "b": "Bel ons na 12.00 uur.",
+   "v": "Om 11.00 uur kunt u bellen.",
+   "goed": "a",
+   "val": "vóór"
+  },
+  {
+   "a": "Aanmelden kan uiterlijk 5 mei.",
+   "b": "Aanmelden kan vanaf 5 mei.",
+   "v": "Op 3 mei kunt u zich aanmelden.",
+   "goed": "a",
+   "val": "uiterlijk"
+  },
+  {
+   "a": "Kinderen betalen niet.",
+   "b": "Kinderen betalen ook.",
+   "v": "Voor kinderen is het gratis.",
+   "goed": "a",
+   "val": "niet"
+  },
+  {
+   "a": "Er is geen les op maandag.",
+   "b": "Er is een les op maandag.",
+   "v": "Op maandag blijven de cursisten thuis.",
+   "goed": "a",
+   "val": "geen"
+  },
+  {
+   "a": "De cursus is voor minstens tien personen.",
+   "b": "De cursus is voor maximaal tien personen.",
+   "v": "Er kunnen twaalf personen meedoen.",
+   "goed": "a",
+   "val": "minstens / maximaal"
+  },
+  {
+   "a": "De huisarts is er niet, maar de assistente is er wel.",
+   "b": "De huisarts is er wel, maar de assistente is er niet.",
+   "v": "U kunt met de assistente praten.",
+   "goed": "a",
+   "val": "wel / niet"
+  },
+  {
+   "a": "U mag hier parkeren, maar alleen in het weekend.",
+   "b": "U mag hier parkeren, ook in het weekend.",
+   "v": "Op dinsdag mag u hier niet parkeren.",
+   "goed": "a",
+   "val": "alleen"
+  },
+  {
+   "a": "Neem uw paspoort of uw rijbewijs mee.",
+   "b": "Neem uw paspoort en uw rijbewijs mee.",
+   "v": "U moet het paspoort én het rijbewijs meenemen.",
+   "goed": "b",
+   "val": "of / en"
+  },
+  {
+   "a": "De lift werkt niet meer.",
+   "b": "De lift werkt weer.",
+   "v": "U moet de trap nemen.",
+   "goed": "a",
+   "val": "niet meer"
+  },
+  {
+   "a": "Het zwembad is tot 1 juni gesloten.",
+   "b": "Het zwembad is vanaf 1 juni gesloten.",
+   "v": "Op 15 mei kunt u niet zwemmen.",
+   "goed": "a",
+   "val": "tot / vanaf"
+  },
+  {
+   "a": "Iedereen behalve Tom komt naar de vergadering.",
+   "b": "Iedereen komt naar de vergadering, ook Tom.",
+   "v": "Tom is niet bij de vergadering.",
+   "goed": "a",
+   "val": "behalve"
+  },
+  {
+   "a": "Betaal binnen 14 dagen.",
+   "b": "Betaal na 14 dagen.",
+   "v": "U moet snel betalen.",
+   "goed": "a",
+   "val": "binnen"
+  },
+  {
+   "a": "De monteur komt niet vóór 12.00 uur.",
+   "b": "De monteur komt vóór 12.00 uur.",
+   "v": "De monteur komt in de middag.",
+   "goed": "a",
+   "val": "niet vóór"
+  },
+  {
+   "a": "U hoeft zich niet aan te melden.",
+   "b": "U moet zich aanmelden.",
+   "v": "U kunt komen zonder aanmelden.",
+   "goed": "a",
+   "val": "hoeft niet"
+  },
+  {
+   "a": "Het kaartje is alleen vandaag geldig.",
+   "b": "Het kaartje is vanaf vandaag geldig.",
+   "v": "Morgen kunt u het kaartje niet meer gebruiken.",
+   "goed": "a",
+   "val": "alleen"
+  },
+  {
+   "a": "Wij bezorgen niet op zaterdag.",
+   "b": "Wij bezorgen ook op zaterdag.",
+   "v": "Op zaterdag krijgt u geen pakje.",
+   "goed": "a",
+   "val": "niet"
+  },
+  {
+   "a": "De ouders mogen komen, maar het is niet verplicht.",
+   "b": "De ouders moeten komen: het is verplicht.",
+   "v": "Een ouder kan thuis blijven.",
+   "goed": "a",
+   "val": "niet verplicht"
+  },
+  {
+   "a": "Bijna alle lessen gaan door.",
+   "b": "Alle lessen gaan door.",
+   "v": "Er is een les die niet doorgaat.",
+   "goed": "a",
+   "val": "bijna"
+  },
+  {
+   "a": "De bus rijdt niet op feestdagen.",
+   "b": "De bus rijdt alleen op feestdagen.",
+   "v": "Op een feestdag rijdt de bus.",
+   "goed": "b",
+   "val": "alleen"
+  },
+  {
+   "a": "U krijgt de uitslag na een week.",
+   "b": "U krijgt de uitslag binnen een week.",
+   "v": "Na drie dagen hebt u de uitslag misschien al.",
+   "goed": "b",
+   "val": "binnen"
+  },
+  {
+   "a": "Stuur het formulier naar de gemeente, niet naar de school.",
+   "b": "Stuur het formulier naar de school, niet naar de gemeente.",
+   "v": "De gemeente moet het formulier krijgen.",
+   "goed": "a",
+   "val": "niet"
+  },
+  {
+   "a": "Het spreekuur is elke dag, behalve op woensdag.",
+   "b": "Het spreekuur is alleen op woensdag.",
+   "v": "Op woensdag kunt u naar het spreekuur.",
+   "goed": "b",
+   "val": "alleen / behalve"
+  }
+ ]
+}

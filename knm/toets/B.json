@@ -1,0 +1,587 @@
+{
+ "id": "B",
+ "trede": 4,
+ "na": "8-geschiedenis",
+ "titel": "Toets B",
+ "namen": [
+  "Jan",
+  "Anna",
+  "Mo",
+  "Els",
+  "Lia",
+  "Kees",
+  "Aylin",
+  "Bo",
+  "Sanne",
+  "Ilse",
+  "Wim",
+  "Ria",
+  "Stijn",
+  "Lot",
+  "Gijs",
+  "Mare",
+  "Jos",
+  "Roos",
+  "Finn",
+  "Tess",
+  "Luuk",
+  "Iris",
+  "Bram",
+  "Evi",
+  "Sem",
+  "Lars",
+  "Kim",
+  "Noa",
+  "Jet",
+  "Daan",
+  "Pien",
+  "Wilhelmina",
+  "Beatrix",
+  "Máxima",
+  "Zeeland",
+  "Utrecht",
+  "Drenthe",
+  "Randstad",
+  "Rotterdam",
+  "Den",
+  "Haag",
+  "Friesland",
+  "Zuid-Holland",
+  "Noord-Holland",
+  "Groningen",
+  "Gouden",
+  "Sven",
+  "DigiD",
+  "UWV",
+  "WW",
+  "WW-uitkering",
+  "Engeland",
+  "Tweede",
+  "Wereldoorlog",
+  "Nederlander",
+  "Nederlanders",
+  "Nederlandse",
+  "Juul",
+  "Mees",
+  "Zoë",
+  "Vera",
+  "Koen",
+  "Nina",
+  "Thijs",
+  "Fleur",
+  "Milan",
+  "Saar",
+  "Ruben",
+  "Fenna",
+  "Guus",
+  "Lieke",
+  "Joep",
+  "Yara",
+  "Bas",
+  "Maud",
+  "Hanna",
+  "Stef",
+  "Lotte",
+  "Olaf",
+  "Jip",
+  "Kiki",
+  "Maya",
+  "Tom",
+  "Sara",
+  "Rik",
+  "Spanje",
+  "Duitsland",
+  "IJsselmeer",
+  "Afsluitdijk",
+  "Maastricht",
+  "Limburg",
+  "Deltawerken",
+  "Koningsdag",
+  "Bevrijdingsdag",
+  "Europese",
+  "Unie",
+  "AOW",
+  "IDW",
+  "Internationale",
+  "Diplomawaardering",
+  "IND",
+  "havo",
+  "havo-diploma",
+  "hbo",
+  "vmbo",
+  "vwo"
+ ],
+ "vragen": [
+  {
+   "thema": "geschiedenis",
+   "v": "Wanneer was de grote overstroming in Zeeland?",
+   "o": [
+    "In 1953.",
+    "In 1648.",
+    "In 1945."
+   ],
+   "w": "In 1953 was de grote overstroming. Daarna zijn de Deltawerken gebouwd.",
+   "beeld": "🌊"
+  },
+  {
+   "thema": "geschiedenis",
+   "v": "Met welk land had Nederland tachtig jaar oorlog?",
+   "o": [
+    "Spanje",
+    "Engeland",
+    "Duitsland"
+   ],
+   "w": "De oorlog met Spanje was van 1568 tot 1648.",
+   "beeld": "🗺️"
+  },
+  {
+   "thema": "geschiedenis",
+   "v": "Wat is het IJsselmeer?",
+   "o": [
+    "Een groot meer dat vroeger zee was.",
+    "Een provincie.",
+    "Een haven bij Rotterdam."
+   ],
+   "w": "Door de Afsluitdijk werd de zee een meer: het IJsselmeer.",
+   "beeld": "💧"
+  },
+  {
+   "thema": "geschiedenis",
+   "v": "In welke provincie ligt Maastricht?",
+   "o": [
+    "In Limburg.",
+    "In Groningen.",
+    "In Zeeland."
+   ],
+   "w": "Maastricht is de hoofdstad van de provincie Limburg.",
+   "beeld": "🗺️"
+  },
+  {
+   "thema": "geschiedenis",
+   "v": "Wat gebeurde er op 5 mei 1945?",
+   "o": [
+    "De bevrijding van Nederland.",
+    "Het begin van de oorlog.",
+    "De eerste Koningsdag."
+   ],
+   "w": "Op 5 mei 1945 was de oorlog in Nederland voorbij. Daarom is 5 mei Bevrijdingsdag.",
+   "beeld": "🕊️"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Juul betaalt elke maand een bedrag voor energie. Na een jaar krijgt zij de jaarrekening.",
+   "v": "Wat kan er dan gebeuren?",
+   "o": [
+    "Zij krijgt geld terug of zij moet extra betalen.",
+    "Zij krijgt altijd geld terug.",
+    "Haar contract stopt."
+   ],
+   "w": "Op de jaarrekening staat hoeveel energie u echt hebt gebruikt.",
+   "beeld": "⚡"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Daan woont in een huurwoning. Hij wil een muur weghalen.",
+   "v": "Wat moet hij eerst doen?",
+   "o": [
+    "Het aan de verhuurder vragen.",
+    "Niets: het is zijn woning.",
+    "Een hypotheek nemen."
+   ],
+   "w": "Voor grote veranderingen in een huurwoning vraagt u eerst de verhuurder.",
+   "beeld": "🏠"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Mees staat al drie jaar op de wachtlijst voor een sociale huurwoning. Door een ziekte kan hij niet meer in zijn huis wonen.",
+   "v": "Wat kan hij aanvragen?",
+   "o": [
+    "Een urgentieverklaring.",
+    "Een rijbewijs.",
+    "Kinderbijslag."
+   ],
+   "w": "Met een urgentieverklaring krijgt u sneller een woning.",
+   "beeld": "🏠"
+  },
+  {
+   "thema": "staat",
+   "v": "Wat is een rechtsstaat?",
+   "o": [
+    "Een land waar iedereen zich aan de wet moet houden, ook de regering.",
+    "Een land zonder politie.",
+    "Een land waar de koning alles beslist."
+   ],
+   "w": "In een rechtsstaat staat niemand boven de wet.",
+   "beeld": "⚖️"
+  },
+  {
+   "thema": "staat",
+   "v": "Hoeveel provincies heeft Nederland?",
+   "o": [
+    "Twaalf.",
+    "Tien.",
+    "Vijftien."
+   ],
+   "w": "Nederland heeft twaalf provincies.",
+   "beeld": "🗺️"
+  },
+  {
+   "thema": "staat",
+   "sit": "Zoë is 19 jaar en heeft een Nederlands paspoort. Zij wil in de gemeenteraad komen.",
+   "v": "Mag dat?",
+   "o": [
+    "Ja, vanaf 18 jaar mag dat.",
+    "Nee, dat mag pas vanaf 30 jaar.",
+    "Nee, alleen mannen mogen dat."
+   ],
+   "w": "Vanaf 18 jaar mag u stemmen en zelf gekozen worden.",
+   "beeld": "🗳️"
+  },
+  {
+   "thema": "staat",
+   "v": "Wie is het staatshoofd van Nederland?",
+   "o": [
+    "De koning.",
+    "De minister-president.",
+    "De burgemeester van Amsterdam."
+   ],
+   "w": "De koning is het staatshoofd. De minister-president is de baas van de ministers.",
+   "beeld": "👑"
+  },
+  {
+   "thema": "staat",
+   "sit": "Nederland is lid van de Europese Unie.",
+   "v": "Wat betekent dat voor geld?",
+   "o": [
+    "In veel landen van de Unie betaalt u met de euro.",
+    "U moet in elk land ander geld kopen.",
+    "U mag geen geld meenemen."
+   ],
+   "w": "In de meeste landen van de Europese Unie betaalt u met de euro.",
+   "beeld": "🇪🇺"
+  },
+  {
+   "thema": "werk",
+   "sit": "Vera werkt drie dagen per week.",
+   "v": "Hoe heet dat?",
+   "o": [
+    "In deeltijd werken.",
+    "In de proeftijd werken.",
+    "Zwart werken."
+   ],
+   "w": "Wie minder dan de hele week werkt, werkt in deeltijd.",
+   "beeld": "💼"
+  },
+  {
+   "thema": "werk",
+   "sit": "Koen werkt zonder contract. Hij krijgt het geld in de hand en betaalt geen belasting.",
+   "v": "Wat is waar?",
+   "o": [
+    "Dat is zwart werken en dat is verboden.",
+    "Dat is normaal bij een eerste baan.",
+    "Dat mag in het weekend."
+   ],
+   "w": "Over loon betaalt u belasting. Zwart werken is verboden.",
+   "beeld": "💼"
+  },
+  {
+   "thema": "werk",
+   "sit": "Nina wordt ziek. Zij kan vandaag niet werken.",
+   "v": "Wat doet zij als eerste?",
+   "o": [
+    "Zich ziek melden bij haar werkgever.",
+    "Een week thuis blijven en dan bellen.",
+    "Het UWV bellen."
+   ],
+   "w": "Bent u ziek? Meld het meteen bij uw werkgever.",
+   "beeld": "🤒"
+  },
+  {
+   "thema": "werk",
+   "sit": "Thijs is 67 jaar en stopt met werken.",
+   "v": "Welk geld krijgt hij van de overheid?",
+   "o": [
+    "AOW.",
+    "Kinderbijslag.",
+    "Studiefinanciering."
+   ],
+   "w": "De AOW is het pensioen van de overheid voor oudere mensen.",
+   "beeld": "👴"
+  },
+  {
+   "thema": "werk",
+   "sit": "Fleur ziet een vacature en wil solliciteren.",
+   "v": "Wat stuurt zij meestal?",
+   "o": [
+    "Een brief en haar cv.",
+    "Haar paspoort en haar loonstrook.",
+    "Een uittreksel van de gemeente."
+   ],
+   "w": "Bij een sollicitatie stuurt u een brief en een cv.",
+   "beeld": "✉️"
+  },
+  {
+   "thema": "werk",
+   "sit": "In het bedrijf van Milan werken 80 mensen. De werknemers willen meepraten over de plannen van het bedrijf.",
+   "v": "Waar kan dat?",
+   "o": [
+    "In de ondernemingsraad.",
+    "In de gemeenteraad.",
+    "In de Tweede Kamer."
+   ],
+   "w": "Een bedrijf met 50 of meer werknemers heeft een ondernemingsraad.",
+   "beeld": "💼"
+  },
+  {
+   "thema": "werk",
+   "sit": "Saar werkt als vrijwilliger in het buurthuis.",
+   "v": "Krijgt zij loon?",
+   "o": [
+    "Nee, een vrijwilliger krijgt geen loon.",
+    "Ja, het minimumloon.",
+    "Ja, van het UWV."
+   ],
+   "w": "Vrijwilligerswerk is werk zonder loon. Het is wel goed voor uw taal en uw cv.",
+   "beeld": "🙋"
+  },
+  {
+   "thema": "werk",
+   "sit": "Ruben heeft een diploma uit een ander land. Hij wil weten wat het diploma in Nederland waard is.",
+   "v": "Wie kan dat controleren?",
+   "o": [
+    "IDW.",
+    "De politie.",
+    "De woningcorporatie."
+   ],
+   "w": "IDW (Internationale Diplomawaardering) vergelijkt uw diploma met Nederlandse diploma's.",
+   "beeld": "🎓"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Het identiteitsbewijs van Fenna is gestolen.",
+   "v": "Wat doet zij?",
+   "o": [
+    "Aangifte doen bij de politie en een nieuw bewijs aanvragen bij de gemeente.",
+    "Niets: zij wacht tot het terugkomt.",
+    "Een nieuw bewijs kopen bij de bank."
+   ],
+   "w": "Bij een gestolen paspoort of identiteitsbewijs doet u aangifte en vraagt u een nieuw aan.",
+   "beeld": "🪪"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Guus kan een rekening van de Belastingdienst niet in één keer betalen.",
+   "v": "Wat kan hij vragen?",
+   "o": [
+    "Of hij in termijnen mag betalen.",
+    "Of de politie betaalt.",
+    "Of hij een vergunning krijgt."
+   ],
+   "w": "Kunt u niet alles in één keer betalen? Vraag dan om te betalen in termijnen.",
+   "beeld": "💶"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Lieke wil een grote garage in haar tuin bouwen.",
+   "v": "Wat heeft zij misschien nodig van de gemeente?",
+   "o": [
+    "Een vergunning.",
+    "Een verwijsbrief.",
+    "Een machtiging."
+   ],
+   "w": "Voor bouwen hebt u vaak een vergunning van de gemeente nodig.",
+   "beeld": "🏗️"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Een andere auto rijdt tegen de auto van Joep. Joep heeft schade.",
+   "v": "Wie betaalt meestal de schade?",
+   "o": [
+    "De autoverzekering van de persoon die de fout maakte.",
+    "De gemeente.",
+    "De huisarts."
+   ],
+   "w": "Daarom is een autoverzekering verplicht voor iedereen met een auto.",
+   "beeld": "🚗"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Yara gaat een maand op vakantie naar een ander land. Zij wil verzekerd zijn als zij daar haar tas verliest.",
+   "v": "Welke verzekering is handig?",
+   "o": [
+    "Een reisverzekering.",
+    "Een inboedelverzekering.",
+    "Een autoverzekering."
+   ],
+   "w": "Een reisverzekering is niet verplicht, maar wel handig op vakantie.",
+   "beeld": "🧳"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Bas krijgt een brief van de IND.",
+   "v": "Wat doet de IND?",
+   "o": [
+    "De IND beslist over verblijfsvergunningen.",
+    "De IND betaalt uitkeringen.",
+    "De IND verkoopt huizen."
+   ],
+   "w": "De IND is de dienst voor verblijfsvergunningen en naturalisatie.",
+   "beeld": "📨"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Maud wil weten welke gegevens de gemeente over haar heeft.",
+   "v": "Mag zij die zien?",
+   "o": [
+    "Ja, zij mag haar eigen gegevens zien.",
+    "Nee, die zijn geheim.",
+    "Alleen met een advocaat."
+   ],
+   "w": "U hebt het recht om uw eigen gegevens bij de overheid te zien.",
+   "beeld": "🗂️"
+  },
+  {
+   "thema": "onderwijs",
+   "v": "Tot hoeveel jaar hebben ouders het gezag over hun kind?",
+   "o": [
+    "Tot 18 jaar.",
+    "Tot 12 jaar.",
+    "Tot 21 jaar."
+   ],
+   "w": "Het gezag van de ouders stopt als een kind 18 jaar wordt.",
+   "beeld": "🎒"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "De dochter van Hanna is 8 jaar. Hanna werkt tot 18.00 uur.",
+   "v": "Waar kan haar dochter na school naartoe?",
+   "o": [
+    "Naar de buitenschoolse opvang.",
+    "Naar het consultatiebureau.",
+    "Naar de peuterspeelzaal."
+   ],
+   "w": "De buitenschoolse opvang is voor kinderen van de basisschool, vóór en na school.",
+   "beeld": "🎒"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "Stef is 16 jaar en heeft geen diploma. Hij wil stoppen met school.",
+   "v": "Mag dat?",
+   "o": [
+    "Nee, hij moet tot 18 jaar naar school of een diploma halen.",
+    "Ja, na 16 jaar mag alles.",
+    "Ja, als hij een uitkering aanvraagt."
+   ],
+   "w": "Jongeren zonder diploma moeten tot 18 jaar onderwijs volgen.",
+   "beeld": "🎒"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "De ouders van Lotte kiezen een school die bij hun geloof past.",
+   "v": "Mag dat?",
+   "o": [
+    "Ja, ouders mogen zelf een school kiezen.",
+    "Nee, de gemeente kiest de school.",
+    "Alleen als de school in hun straat staat."
+   ],
+   "w": "In Nederland is er vrijheid van onderwijs.",
+   "beeld": "🎒"
+  },
+  {
+   "thema": "omgang",
+   "sit": "Een buurvrouw van Olaf krijgt een baby.",
+   "v": "Wat doen Nederlanders vaak?",
+   "o": [
+    "Een kaart sturen of op kraamvisite gaan.",
+    "Niets: dat hoort niet.",
+    "De gemeente bellen."
+   ],
+   "w": "Bij een baby stuurt u een kaart of gaat u, na een afspraak, op kraamvisite.",
+   "beeld": "👶"
+  },
+  {
+   "thema": "omgang",
+   "sit": "De ouders van Jip willen kiezen met wie hij later trouwt.",
+   "v": "Wat zegt de Nederlandse wet?",
+   "o": [
+    "Iedereen kiest zelf met wie hij trouwt.",
+    "De ouders kiezen.",
+    "De gemeente kiest."
+   ],
+   "w": "Niemand mag u dwingen om te trouwen.",
+   "beeld": "💍"
+  },
+  {
+   "thema": "omgang",
+   "sit": "Kiki zit in de trein op een plek waar 'stilte' staat.",
+   "v": "Wat betekent dat?",
+   "o": [
+    "Zij mag daar niet bellen of hard praten.",
+    "Zij moet daar extra betalen.",
+    "Zij mag daar niet zitten zonder kind."
+   ],
+   "w": "In een stiltecoupé is het rustig: niet bellen en niet praten.",
+   "beeld": "🤫"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Daan heeft een recept. Het is nacht en zijn eigen apotheek is dicht. Hij heeft het medicijn nu nodig.",
+   "v": "Waar kan hij naartoe?",
+   "o": [
+    "Naar de apotheek die 's nachts open is.",
+    "Naar de drogist.",
+    "Naar de tandarts."
+   ],
+   "w": "Er is altijd een apotheek in de buurt die 's nachts en in het weekend open is.",
+   "beeld": "💊"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Maya is al weken heel verdrietig en kan niet slapen.",
+   "v": "Met wie praat zij eerst?",
+   "o": [
+    "Met de huisarts.",
+    "Met de politie.",
+    "Met de apotheek."
+   ],
+   "w": "Ook met problemen in uw hoofd gaat u eerst naar de huisarts.",
+   "beeld": "🩺"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Tom gaat naar de fysiotherapeut. Dat zit niet in zijn basisverzekering.",
+   "v": "Welke verzekering betaalt dit misschien?",
+   "o": [
+    "De aanvullende verzekering.",
+    "De autoverzekering.",
+    "De inboedelverzekering."
+   ],
+   "w": "Een aanvullende verzekering betaalt zorg die niet in de basisverzekering zit.",
+   "beeld": "🩺"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "De baby van Sara krijgt een prik tegen ziektes.",
+   "v": "Waar krijgt de baby die?",
+   "o": [
+    "Bij het consultatiebureau.",
+    "Bij de apotheek.",
+    "Op de basisschool."
+   ],
+   "w": "Baby's en kleine kinderen krijgen hun prikken gratis bij het consultatiebureau.",
+   "beeld": "💉"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Rik krijgt op het werk iets in zijn oog. Het doet veel pijn en hij ziet bijna niets.",
+   "v": "Wat doet hij?",
+   "o": [
+    "Meteen de huisarts bellen of naar de spoedeisende hulp gaan.",
+    "Een week wachten.",
+    "Naar de drogist gaan."
+   ],
+   "w": "Bij iets ernstigs belt u meteen de huisarts. Die zegt of u naar de spoedeisende hulp moet.",
+   "beeld": "👁️"
+  }
+ ]
+}

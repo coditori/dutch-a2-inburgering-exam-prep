@@ -1,0 +1,524 @@
+{
+ "id": "2-wonen",
+ "trede": 3,
+ "titel": "Wonen",
+ "max_nieuw": 23,
+ "namen": [
+  "Daan",
+  "Emma",
+  "Bas",
+  "Lisa",
+  "Ali",
+  "Sara",
+  "Tom",
+  "Noor",
+  "Peter",
+  "Mila",
+  "Yusuf",
+  "UWV",
+  "Huurcommissie",
+  "NPO",
+  "RTL",
+  "SBS",
+  "Tim",
+  "Lena"
+ ],
+ "woorden": [
+  {
+   "nl": "de sociale huurwoning",
+   "en": "social housing (low rent)",
+   "beeld": "🏘️",
+   "zin": "Een {sociale huurwoning} is voor mensen die niet veel verdienen.",
+   "thema": "wonen",
+   "vormen": [
+    "sociale",
+    "huurwoningen"
+   ]
+  },
+  {
+   "nl": "de wachtlijst",
+   "en": "waiting list",
+   "beeld": "📋⏳",
+   "zin": "Voor een huurwoning staat u vaak lang op de {wachtlijst}.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de vrije sector",
+   "en": "private (non-social) rental market",
+   "beeld": "🏢",
+   "zin": "In de {vrije sector} betaalt u vaak meer huur.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de servicekosten",
+   "en": "service charges",
+   "beeld": "🧹",
+   "zin": "De {servicekosten} zijn voor het schoonmaken van de trap en de lift.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de opzegtermijn",
+   "en": "notice period",
+   "beeld": "📆",
+   "zin": "De {opzegtermijn} van een huurwoning is meestal één maand.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de hypotheek",
+   "en": "mortgage",
+   "beeld": "🏦🏠",
+   "zin": "Voor een koophuis leent u geld van de bank: een {hypotheek}.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de makelaar",
+   "en": "estate agent",
+   "beeld": "🤵🏠",
+   "zin": "Een {makelaar} helpt u bij het kopen of verkopen van een huis.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de notaris",
+   "en": "notary",
+   "beeld": "🖋️",
+   "zin": "Bij de {notaris} tekent u de papieren van uw nieuwe huis.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de inboedelverzekering",
+   "en": "home contents insurance",
+   "beeld": "🛋️🛡️",
+   "zin": "Met een {inboedelverzekering} is alles in uw huis verzekerd, ook bij brand.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de aansprakelijkheidsverzekering",
+   "en": "liability insurance",
+   "beeld": "🤝🛡️",
+   "zin": "Maakt u iets kapot van een ander? Dan betaalt de {aansprakelijkheidsverzekering}.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de energie",
+   "en": "energy (gas and electricity)",
+   "beeld": "⚡",
+   "zin": "U sluit zelf een contract af voor {energie}.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de meterstand",
+   "en": "meter reading",
+   "beeld": "🔢⚡",
+   "zin": "U geeft elk jaar de {meterstand} door aan het energiebedrijf.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de storing",
+   "en": "outage / breakdown",
+   "beeld": "⚠️🔌",
+   "zin": "Bij een {storing} is er in de hele straat geen energie.",
+   "thema": "wonen",
+   "vormen": [
+    "storingen"
+   ]
+  },
+  {
+   "nl": "het statiegeld",
+   "en": "deposit (on bottles and cans)",
+   "beeld": "♻️🪙",
+   "zin": "Brengt u een fles terug naar de supermarkt? Dan krijgt u {statiegeld}.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het gft-afval",
+   "en": "organic waste (vegetable, fruit, garden)",
+   "beeld": "🥕🍂",
+   "zin": "Groente, fruit en afval uit de tuin zijn {gft-afval}.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de rente",
+   "en": "interest",
+   "beeld": "％",
+   "zin": "Voor een hypotheek betaalt u elke maand {rente} aan de bank.",
+   "thema": "wonen",
+   "meer": true
+  },
+  {
+   "nl": "de kwijtschelding",
+   "en": "remission (you do not have to pay)",
+   "beeld": "🚫💶",
+   "zin": "Wie heel weinig verdient, kan {kwijtschelding} van de belasting vragen.",
+   "thema": "wonen",
+   "meer": true
+  },
+  {
+   "nl": "de woonhuisverzekering",
+   "en": "building insurance (for home owners)",
+   "beeld": "🏠🛡️",
+   "zin": "Een {woonhuisverzekering} is voor mensen met een koophuis.",
+   "thema": "wonen",
+   "meer": true
+  },
+  {
+   "nl": "de zender",
+   "en": "(TV / radio) channel",
+   "beeld": "📺",
+   "zin": "NPO 1 is een {zender} van de overheid.",
+   "thema": "wonen",
+   "vormen": [
+    "zenders"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het beltegoed",
+   "en": "prepaid phone credit",
+   "beeld": "📱💶",
+   "zin": "Met {beltegoed} betaalt u eerst en belt u daarna.",
+   "thema": "wonen",
+   "meer": true
+  },
+  {
+   "nl": "het gas",
+   "en": "gas",
+   "beeld": "🔥",
+   "zin": "Wij koken op {gas}.",
+   "thema": "wonen",
+   "meer": true
+  },
+  {
+   "nl": "chemisch",
+   "en": "chemical",
+   "beeld": "☣️",
+   "zin": "Klein {chemisch} afval mag niet bij het andere afval.",
+   "thema": "wonen",
+   "meer": true
+  },
+  {
+   "nl": "de lamp",
+   "en": "lamp",
+   "beeld": "💡",
+   "zin": "De {lamp} in de keuken is kapot.",
+   "thema": "wonen",
+   "vormen": [
+    "lampen"
+   ],
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Waar schrijft u zich in voor een sociale huurwoning?",
+   "a": "Bij een woningcorporatie.",
+   "en": "Where do you register for social housing? At a housing association.",
+   "beeld": "🏘️"
+  },
+  {
+   "v": "Wie kan huurtoeslag krijgen?",
+   "a": "Mensen die weinig verdienen en een woning huren. U vraagt het aan bij de Belastingdienst.",
+   "en": "Who can get rent allowance? People with a low income who rent. You apply at the tax office.",
+   "beeld": "💶"
+  },
+  {
+   "v": "Wie regelt het contract voor energie in uw woning?",
+   "a": "U zelf. U kiest zelf een energiebedrijf.",
+   "en": "Who arranges the energy contract for your home? You do; you choose the company.",
+   "beeld": "⚡"
+  },
+  {
+   "v": "Wat doet u als er in uw straat geen energie is?",
+   "a": "U belt het storingsnummer: 0800 - 9009. Dat is gratis.",
+   "en": "What do you do in a power or gas outage? Call the national outage number 0800-9009 (free).",
+   "beeld": "🔌"
+  },
+  {
+   "v": "Waar brengt u oud glas naartoe?",
+   "a": "Naar de container voor glas. Niet bij het andere afval.",
+   "en": "Where does old glass go? In the glass container, not with other waste.",
+   "beeld": "🍾"
+  },
+  {
+   "v": "Moet u de gemeente vertellen dat u verhuist?",
+   "a": "Ja. U geeft uw nieuwe adres door, uiterlijk vijf dagen na de dag dat u verhuist.",
+   "en": "Must you tell the municipality that you move? Yes, at the latest five days after moving.",
+   "beeld": "🚚"
+  },
+  {
+   "v": "Wat is een hypotheek?",
+   "a": "Geld dat u van de bank leent om een huis te kopen.",
+   "en": "What is a mortgage? Money you borrow from the bank to buy a house.",
+   "beeld": "🏦"
+  },
+  {
+   "v": "Waarvoor is een aansprakelijkheidsverzekering?",
+   "a": "Als u iets van iemand anders kapot maakt, betaalt deze verzekering.",
+   "en": "What is liability insurance for? It pays when you damage something of someone else.",
+   "beeld": "🛡️"
+  },
+  {
+   "v": "Wat staat er in een huurcontract?",
+   "a": "De huur, de opzegtermijn en de regels van de woning.",
+   "en": "What is in a rental contract? The rent, the notice period and the rules.",
+   "beeld": "📄"
+  },
+  {
+   "v": "Wat krijgt u als u plastic flessen terugbrengt naar de supermarkt?",
+   "a": "Statiegeld.",
+   "en": "What do you get when you return plastic bottles to the supermarket? The deposit.",
+   "beeld": "♻️"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "Daan zoekt een goedkope huurwoning.",
+   "v": "Waar schrijft hij zich in?",
+   "o": [
+    "Bij een woningcorporatie.",
+    "Bij de Belastingdienst.",
+    "Bij een notaris."
+   ],
+   "w": "Sociale huurwoningen zijn van woningcorporaties. Daar schrijft u zich in.",
+   "beeld": "🏘️"
+  },
+  {
+   "sit": "Emma en Bas willen een huis kopen.",
+   "v": "Wie helpt bij het zoeken en kopen?",
+   "o": [
+    "Een makelaar.",
+    "De woningcorporatie.",
+    "Het UWV."
+   ],
+   "w": "Een makelaar helpt bij het kopen en verkopen van huizen.",
+   "beeld": "🏠"
+  },
+  {
+   "sit": "Lisa verhuist naar een andere stad.",
+   "v": "Wat moet zij doen?",
+   "o": [
+    "Haar nieuwe adres doorgeven aan de gemeente.",
+    "Niets: de gemeente weet het al.",
+    "Een brief sturen naar de politie."
+   ],
+   "w": "Een nieuw adres geeft u zelf door aan de gemeente waar u gaat wonen.",
+   "beeld": "🚚"
+  },
+  {
+   "sit": "Ali huurt een woning. Hij verdient weinig en de huur is te duur.",
+   "v": "Wat kan hij aanvragen?",
+   "o": [
+    "Huurtoeslag bij de Belastingdienst.",
+    "Een hypotheek bij de bank.",
+    "Een verblijfsvergunning bij de gemeente."
+   ],
+   "w": "Huurtoeslag is geld van de overheid voor huurders die weinig verdienen.",
+   "beeld": "💶"
+  },
+  {
+   "sit": "In de straat van Sara werkt niets meer: geen verwarming en geen televisie. Ook bij de buren niet.",
+   "v": "Wie belt zij?",
+   "o": [
+    "Het storingsnummer.",
+    "De politie.",
+    "De huisarts."
+   ],
+   "w": "Bij een storing van energie belt u 0800 - 9009.",
+   "beeld": "🔌"
+  },
+  {
+   "sit": "De verwarming in de huurwoning van Tom is kapot.",
+   "v": "Wie moet de verwarming repareren?",
+   "o": [
+    "De verhuurder.",
+    "Tom zelf.",
+    "De gemeente."
+   ],
+   "w": "Grote reparaties zijn voor de verhuurder. Meld het bij de verhuurder of de woningcorporatie.",
+   "beeld": "🔧"
+  },
+  {
+   "sit": "Noor wil stoppen met het huren van haar woning.",
+   "v": "Wat moet zij doen?",
+   "o": [
+    "Een brief sturen aan de verhuurder en de opzegtermijn afwachten.",
+    "De sleutel in de brievenbus doen en weggaan.",
+    "De gemeente bellen."
+   ],
+   "w": "U zegt de huur op met een brief. Tijdens de opzegtermijn betaalt u nog huur.",
+   "beeld": "📆"
+  },
+  {
+   "sit": "De buren van Peter maken elke nacht veel lawaai.",
+   "v": "Wat doet Peter eerst?",
+   "o": [
+    "Met de buren praten.",
+    "De politie bellen.",
+    "Verhuizen."
+   ],
+   "w": "Eerst zelf praten. Helpt dat niet? Ga dan naar de woningcorporatie of de politie.",
+   "beeld": "🔊"
+  },
+  {
+   "sit": "Mila heeft veel oud papier.",
+   "v": "Waar doet zij dat?",
+   "o": [
+    "In de container voor papier.",
+    "Bij het gft-afval.",
+    "In de container voor glas."
+   ],
+   "w": "Papier, glas, plastic en gft-afval gaan elk in een eigen container.",
+   "beeld": "📦"
+  },
+  {
+   "sit": "Het kind van Yusuf maakt bij de buren een raam kapot.",
+   "v": "Welke verzekering betaalt het raam?",
+   "o": [
+    "De aansprakelijkheidsverzekering van Yusuf.",
+    "De zorgverzekering van Yusuf.",
+    "Geen verzekering: de gemeente betaalt."
+   ],
+   "w": "Ouders zijn verantwoordelijk voor hun kinderen. Hun aansprakelijkheidsverzekering betaalt.",
+   "beeld": "🪟"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Wie betaalt een nieuwe lamp of een andere kleine reparatie in een huurwoning?",
+    "a": "De huurder zelf. Grote reparaties zijn voor de verhuurder.",
+    "en": "Who pays small repairs in a rented home? The tenant. Big repairs are for the landlord.",
+    "beeld": "💡"
+   },
+   {
+    "v": "U zet het afval op een andere dag buiten dan de dag van het ophalen. Wat kan er gebeuren?",
+    "a": "U kunt een boete krijgen van de gemeente.",
+    "en": "Putting rubbish out on the wrong day: you can get a fine from the municipality.",
+    "beeld": "🗑️"
+   },
+   {
+    "v": "Mag klein chemisch afval bij het andere afval?",
+    "a": "Nee. U brengt het zelf naar een plaats van de gemeente of terug naar de winkel.",
+    "en": "May small chemical waste go with other waste? No: take it to the municipal collection point or back to the shop.",
+    "beeld": "☣️"
+   },
+   {
+    "v": "Moet iedereen belasting betalen aan de gemeente voor het ophalen van afval?",
+    "a": "Ja. Wie heel weinig verdient, kan kwijtschelding vragen: dan hoeft u niet te betalen.",
+    "en": "Must everyone pay municipal waste tax? Yes; with a very low income you can ask for remission.",
+    "beeld": "🏛️"
+   },
+   {
+    "v": "Wat gebeurt er als u de rekening voor energie niet betaalt?",
+    "a": "Eerst krijgt u een brief. Betaalt u dan nog niet? Dan kan het energiebedrijf de energie afsluiten.",
+    "en": "Not paying the energy bill: first a warning letter, then the supplier can cut you off.",
+    "beeld": "⚡"
+   },
+   {
+    "v": "Wat is het termijnbedrag?",
+    "a": "Het bedrag dat u elke maand voor energie betaalt.",
+    "en": "What is the 'termijnbedrag'? The amount you pay each month for energy.",
+    "beeld": "💶"
+   },
+   {
+    "v": "Er komt gas uit de verwarming of in de keuken. Wat doet u?",
+    "a": "Doe de hoofdkraan dicht, zet de ramen open en bel het storingsnummer: 0800 - 9009.",
+    "en": "A gas leak: close the main tap, open windows and call 0800-9009.",
+    "beeld": "🔥"
+   },
+   {
+    "v": "Voor wie is een woonhuisverzekering?",
+    "a": "Voor mensen met een koophuis. De verzekering betaalt als het huis kapot gaat door brand of water.",
+    "en": "Who needs building insurance? Home owners; it pays for damage to the house by fire or water.",
+    "beeld": "🏠"
+   },
+   {
+    "v": "Mensen met een hypotheek betalen rente aan de bank. Wat betekent dat voor de belasting?",
+    "a": "Zij betalen dan minder belasting.",
+    "en": "Mortgage interest: home owners may deduct it and pay less tax.",
+    "beeld": "🏦"
+   },
+   {
+    "v": "Wie helpt als de huur te duur is of de verhuurder niets repareert?",
+    "a": "De Huurcommissie.",
+    "en": "Who helps when the rent is too high or the landlord does not repair? The Rent Tribunal (Huurcommissie).",
+    "beeld": "⚖️"
+   },
+   {
+    "v": "Kost inschrijven bij een woningcorporatie geld?",
+    "a": "Vaak wel. U betaalt een klein bedrag en u moet elk jaar weer betalen om op de wachtlijst te blijven.",
+    "en": "Does registering with a housing association cost money? Often a small yearly fee to stay on the waiting list.",
+    "beeld": "📋"
+   },
+   {
+    "v": "Wat geeft u door als u verhuist?",
+    "a": "De meterstanden van gas en water en van de andere energie.",
+    "en": "What do you report when you move? The meter readings of gas, water and electricity.",
+    "beeld": "🔢"
+   },
+   {
+    "v": "Mag u naar een ander energiebedrijf gaan?",
+    "a": "Ja. U kiest zelf. Er zijn contracten met een vaste prijs en contracten met een prijs die kan veranderen.",
+    "en": "May you switch energy supplier? Yes. There are fixed-price and variable-price contracts.",
+    "beeld": "🔁"
+   },
+   {
+    "v": "Wie betaalt de zenders NPO 1, 2 en 3?",
+    "a": "De overheid. RTL en SBS zijn zenders van bedrijven: zij krijgen geen geld van de overheid.",
+    "en": "Who pays for NPO 1, 2 and 3? The government (public channels). RTL and SBS are commercial.",
+    "beeld": "📺"
+   },
+   {
+    "v": "Hoe kunt u betalen voor uw mobiele telefoon?",
+    "a": "Met beltegoed: u betaalt eerst en belt daarna. Of met een contract: u betaalt elke maand.",
+    "en": "Paying for a mobile phone: prepaid credit, or a monthly contract.",
+    "beeld": "📱"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "De kraan in de huurwoning van Sara lekt een beetje.",
+    "v": "Wie repareert dat?",
+    "o": [
+     "Sara zelf: het is een kleine reparatie.",
+     "De gemeente.",
+     "De notaris."
+    ],
+    "w": "Kleine reparaties doet en betaalt de huurder zelf.",
+    "beeld": "🚰"
+   },
+   {
+    "sit": "Tim verdient heel weinig. Hij kan de belasting van de gemeente voor afval niet betalen.",
+    "v": "Wat kan hij vragen?",
+    "o": [
+     "Kwijtschelding.",
+     "Een hypotheek.",
+     "Statiegeld."
+    ],
+    "w": "Met een heel klein inkomen kunt u kwijtschelding vragen bij de gemeente.",
+    "beeld": "🏛️"
+   },
+   {
+    "sit": "Lena denkt dat zij te veel huur betaalt. Praten met de verhuurder helpt niet.",
+    "v": "Waar kan zij naartoe?",
+    "o": [
+     "Naar de Huurcommissie.",
+     "Naar het consultatiebureau.",
+     "Naar het UWV."
+    ],
+    "w": "De Huurcommissie kijkt of de huur klopt.",
+    "beeld": "⚖️"
+   },
+   {
+    "sit": "Bas heeft de rekening voor energie al drie maanden niet betaald.",
+    "v": "Wat kan er gebeuren?",
+    "o": [
+     "Het energiebedrijf sluit de energie af.",
+     "De gemeente betaalt de rekening.",
+     "Hij krijgt statiegeld terug."
+    ],
+    "w": "Na een brief mag het energiebedrijf de energie afsluiten.",
+    "beeld": "⚡"
+   }
+  ]
+ }
+}

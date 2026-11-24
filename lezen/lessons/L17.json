@@ -1,0 +1,159 @@
+{
+ "id": "L17",
+ "trede": 2,
+ "titel": "Met de bus en de trein",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het kwartier",
+   "en": "quarter of an hour",
+   "beeld": "⏱️",
+   "zin": "Ik wacht al een kwartier.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "overstappen",
+   "en": "to change (bus / train)",
+   "beeld": "🔁",
+   "zin": "In Utrecht moet u overstappen.",
+   "thema": "vervoer",
+   "vormen": [
+    "stap",
+    "stapt",
+    "stapte",
+    "over",
+    "overgestapt",
+    "overstapt"
+   ]
+  },
+  {
+   "nl": "de richting",
+   "en": "direction",
+   "beeld": "🧭",
+   "zin": "Dit is de trein in de richting van Amsterdam.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de reiziger",
+   "en": "traveller / passenger",
+   "beeld": "🧳",
+   "zin": "De reizigers wachten op het perron.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "ongeveer",
+   "en": "about / approximately",
+   "beeld": "〰️",
+   "zin": "Het is ongeveer tien minuten lopen.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "bijna",
+   "en": "almost",
+   "beeld": "🤏",
+   "zin": "Het is bijna drie uur.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "de weg",
+   "en": "road / way",
+   "beeld": "🛤️",
+   "zin": "De weg is dicht.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de chauffeur",
+   "en": "driver",
+   "beeld": "🧑‍✈️",
+   "zin": "De chauffeur van de bus helpt u.",
+   "thema": "vervoer"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit bordje staat op het station.",
+   "soort": "bordje",
+   "tekst": [
+    "Let op, reizigers!",
+    "De trein naar Utrecht van 8.15 uur rijdt vandaag niet.",
+    "De volgende trein vertrekt om 8.45 uur van spoor 4."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat vertrekt de volgende trein naar Utrecht?",
+     "o": [
+      "om 8.45 uur",
+      "om 8.15 uur",
+      "om 4.00 uur"
+     ],
+     "b": "De volgende trein vertrekt om 8.45 uur van spoor 4."
+    },
+    {
+     "v": "Van welk spoor vertrekt de trein?",
+     "o": [
+      "spoor 4",
+      "spoor 8",
+      "spoor 15"
+     ],
+     "b": "De volgende trein vertrekt om 8.45 uur van spoor 4."
+    }
+   ]
+  },
+  {
+   "intro": "Mila krijgt een bericht van Yusuf.",
+   "soort": "sms",
+   "tekst": [
+    "Hallo Mila,",
+    "Mijn bus heeft bijna een kwartier vertraging. Er wordt aan de weg gewerkt.",
+    "Ik ben er ongeveer om half vier.",
+    "Tot straks! Yusuf"
+   ],
+   "vragen": [
+    {
+     "v": "Waarom heeft de bus vertraging?",
+     "o": [
+      "Er wordt aan de weg gewerkt.",
+      "De chauffeur is ziek.",
+      "Het weer is slecht."
+     ],
+     "b": "Er wordt aan de weg gewerkt."
+    },
+    {
+     "v": "Hoe laat komt Yusuf ongeveer?",
+     "o": [
+      "om half vier",
+      "om kwart over drie",
+      "om vier uur"
+     ],
+     "b": "Ik ben er ongeveer om half vier."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat in de bus.",
+   "soort": "bordje",
+   "tekst": [
+    "Bus 12, richting centrum",
+    "Wilt u naar het zwembad? Dan moet u overstappen bij halte Stationsstraat. Neem daar bus 7.",
+    "Kaartjes koopt u bij de chauffeur."
+   ],
+   "vragen": [
+    {
+     "sit": "U zit in bus 12. U wilt naar het zwembad.",
+     "v": "Wat doet u bij halte Stationsstraat?",
+     "o": [
+      "overstappen op bus 7",
+      "een kaartje kopen",
+      "wachten op bus 12"
+     ],
+     "b": "Dan moet u overstappen bij halte Stationsstraat."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Mijn bus heeft bijna een {kwartier} vertraging.",
+  "Dan moet u {overstappen} bij halte Stationsstraat.",
+  "De volgende trein {vertrekt} om 8.45 uur."
+ ]
+}

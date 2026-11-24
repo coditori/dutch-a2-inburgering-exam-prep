@@ -1,0 +1,500 @@
+{
+ "id": "C",
+ "trede": 4,
+ "na": "L38",
+ "titel": "Toets C",
+ "namen": [
+  "Yusuf",
+  "Lena",
+  "Visser",
+  "Lindelaan",
+  "Midden",
+  "Fatima",
+  "Brug",
+  "Karim",
+  "Boer",
+  "Daan",
+  "Stationsweg",
+  "Noor",
+  "Omar",
+  "Maria",
+  "Lisa",
+  "Mila",
+  "Taalcafé",
+  "Marktstraat",
+  "Sam",
+  "Peter",
+  "Anna",
+  "Tom",
+  "Emma",
+  "Amsterdam",
+  "Utrecht",
+  "Rotterdam",
+  "Ali",
+  "Yilmaz",
+  "Wijk",
+  "Bakker",
+  "Eva"
+ ],
+ "teksten": [
+  {
+   "intro": "Yusuf leest een folder van de huisartsenpost.",
+   "kop": "Huisartsenpost Utrecht: 's avonds en in het weekend",
+   "soort": "tekst",
+   "tekst": [
+    "Is uw eigen huisarts gesloten en kunt u niet wachten tot de volgende werkdag? Dan kunt u naar de huisartsenpost.",
+    "# Wanneer zijn wij open?",
+    "maandag tot en met vrijdag | van 17.00 uur tot 8.00 uur de volgende ochtend",
+    "zaterdag, zondag en feestdagen | de hele dag en de hele nacht",
+    "",
+    "# Bel altijd eerst",
+    "U kunt niet zonder afspraak komen. Bel eerst 030 - 555 30 30. De assistente stelt u een paar vragen. Daarna zegt zij wat u moet doen: thuis blijven met een advies, naar de huisartsenpost komen, of wachten op een huisarts die bij u thuis komt.",
+    "# Wat neemt u mee?",
+    "Neem uw identiteitsbewijs, uw pasje van de zorgverzekering en uw medicijnen mee.",
+    "# Kosten",
+    "Een bezoek aan de huisartsenpost is gratis. De medicijnen van de apotheek betaalt u soms zelf.",
+    "Is er gevaar voor uw leven? Bel dan niet de huisartsenpost, maar meteen 112."
+   ],
+   "vragen": [
+    {
+     "sit": "Het is dinsdag 20.00 uur. Het kind van Yusuf heeft koorts en veel pijn. Yusuf wil naar de huisartsenpost.",
+     "v": "Wat moet hij eerst doen?",
+     "o": [
+      "de huisartsenpost bellen",
+      "meteen naar de huisartsenpost gaan",
+      "112 bellen",
+      "wachten tot woensdag 8.00 uur"
+     ],
+     "b": "U kunt niet zonder afspraak komen."
+    },
+    {
+     "sit": "Het is woensdag 10.00 uur. Lena heeft pijn in haar buik.",
+     "v": "Kan zij nu naar de huisartsenpost?",
+     "o": [
+      "Nee, zij moet haar eigen huisarts bellen.",
+      "Ja, de huisartsenpost is de hele dag open.",
+      "Ja, maar alleen met een afspraak."
+     ],
+     "b": "maandag tot en met vrijdag | van 17.00 uur tot 8.00 uur de volgende ochtend"
+    },
+    {
+     "v": "Wat betaalt u voor een bezoek aan de huisartsenpost?",
+     "o": [
+      "niets",
+      "€ 30",
+      "Dat hangt af van uw zorgverzekering."
+     ],
+     "b": "Een bezoek aan de huisartsenpost is gratis."
+    }
+   ]
+  },
+  {
+   "intro": "Mevrouw Visser krijgt een brief van het waterbedrijf.",
+   "kop": "Op dinsdag 14 mei tijdelijk geen water",
+   "soort": "tekst",
+   "tekst": [
+    "Beste bewoner,",
+    "",
+    "Op dinsdag 14 mei werken wij aan de waterleiding in uw straat. Daarom hebt u die dag van 9.00 tot 15.00 uur geen water. Dit is voor alle woningen in de Lindelaan met de nummers 1 tot en met 40.",
+    "# Wat kunt u doen?",
+    "- Doe vóór 9.00 uur water in flessen of in een pan. Dat water kunt u gebruiken om te drinken en te koken.",
+    "- Gebruik de wasmachine niet tussen 9.00 en 15.00 uur.",
+    "- Houd alle kranen dicht tijdens de werkzaamheden.",
+    "# Na de werkzaamheden",
+    "Het water kan na 15.00 uur een beetje bruin zijn. Dat is niet erg. Zet de kraan in de keuken een paar minuten open. Daarna is het water weer schoon en kunt u het gewoon drinken.",
+    "Zijn de werkzaamheden door slecht weer niet mogelijk? Dan komen wij op donderdag 16 mei. U krijgt dan geen nieuwe brief.",
+    "Hebt u vragen? Bel onze klantenservice: 0800 - 555 14 14 (gratis).",
+    "",
+    "Met vriendelijke groet,",
+    "Waterbedrijf Midden"
+   ],
+   "vragen": [
+    {
+     "sit": "De zus van mevrouw Visser woont ook in de Lindelaan, op nummer 52.",
+     "v": "Heeft zij op 14 mei water?",
+     "o": [
+      "Ja, want haar woning heeft een ander nummer.",
+      "Nee, van 9.00 tot 15.00 uur niet.",
+      "Nee, de hele dag niet.",
+      "Alleen in de keuken."
+     ],
+     "b": "Dit is voor alle woningen in de Lindelaan met de nummers 1 tot en met 40."
+    },
+    {
+     "v": "Wat gebeurt er als het op 14 mei heel slecht weer is?",
+     "o": [
+      "De werkzaamheden zijn dan op 16 mei.",
+      "De bewoners krijgen een nieuwe brief.",
+      "De werkzaamheden gaan toch door.",
+      "Het waterbedrijf belt alle bewoners."
+     ],
+     "b": "Dan komen wij op donderdag 16 mei."
+    }
+   ]
+  },
+  {
+   "intro": "Fatima wil vrijwilliger worden. Zij leest deze vacature van het buurthuis.",
+   "kop": "Vrijwilliger gezocht voor de koffie-ochtend",
+   "soort": "tekst",
+   "tekst": [
+    "Buurthuis De Brug zoekt een vrijwilliger voor de koffie-ochtend op maandag en donderdag. Op die ochtenden komen ongeveer dertig oudere bewoners uit de wijk koffie drinken en praten.",
+    "# Wat doet u?",
+    "U zet koffie en thee, u praat met de bezoekers en u helpt bij het schoonmaken na de koffie-ochtend. U werkt samen met twee andere vrijwilligers.",
+    "# Wie zoeken wij?",
+    "- U vindt het leuk om met mensen te praten.",
+    "- U kunt minstens één ochtend per week, van 9.00 tot 12.30 uur.",
+    "- U spreekt een beetje Nederlands. Ervaring is niet nodig.",
+    "# Wat krijgt u?",
+    "U krijgt geen loon, maar wel € 5 per ochtend voor uw kosten voor de bus of de tram. U kunt gratis meedoen met de cursus Nederlands in het buurthuis. Na een jaar krijgt u een certificaat.",
+    "# Meedoen?",
+    "Bel Karim de Boer, 030 - 555 48 48, of kom op dinsdag tussen 14.00 en 16.00 uur naar het buurthuis. U kunt eerst één ochtend komen kijken."
+   ],
+   "vragen": [
+    {
+     "sit": "Fatima kan alleen op donderdag. Zij heeft nog nooit in een buurthuis gewerkt.",
+     "v": "Is dit werk geschikt voor haar?",
+     "o": [
+      "Ja, want één ochtend per week is genoeg.",
+      "Nee, want zij moet twee ochtenden komen.",
+      "Nee, want zij heeft geen ervaring.",
+      "Ja, maar zij moet eerst een cursus doen."
+     ],
+     "b": "- U kunt minstens één ochtend per week, van 9.00 tot 12.30 uur."
+    },
+    {
+     "v": "Wat krijgt een vrijwilliger voor het werk?",
+     "o": [
+      "€ 5 per ochtend voor de kosten van de bus of de tram",
+      "een loon van € 5 per uur",
+      "een gratis kaartje voor de bus"
+     ],
+     "b": "U krijgt geen loon, maar wel € 5 per ochtend voor uw kosten voor de bus of de tram."
+    }
+   ]
+  },
+  {
+   "intro": "Daan reist elke dag met bus 8. Bij de halte hangt deze mededeling.",
+   "kop": "Bus 8: andere tijden en andere haltes vanaf 2 september",
+   "soort": "tabel",
+   "tekst": [
+    "Van 2 september tot en met 18 oktober wordt er gewerkt aan de Stationsweg. Bus 8 rijdt daarom door andere straten en stopt niet bij alle haltes.",
+    "halte | tot 2 september | vanaf 2 september",
+    "Station | elk kwartier | elk half uur",
+    "Markt | elk kwartier | elk half uur",
+    "Ziekenhuis | elk kwartier | bus stopt hier niet",
+    "Zwembad | elk kwartier | elk half uur",
+    "",
+    "Moet u naar het ziekenhuis? Stap dan uit bij halte Markt. Daar staat een kleine bus die u gratis naar het ziekenhuis brengt. Deze bus rijdt alleen op werkdagen, van 7.00 tot 19.00 uur.",
+    "Op zaterdag en zondag is het ongeveer tien minuten lopen van halte Markt naar het ziekenhuis.",
+    "De laatste bus 8 vertrekt vanaf 2 september om 23.00 uur van het station. Dat is een uur vroeger dan nu.",
+    "Meer informatie vindt u op onze website of bij de chauffeur."
+   ],
+   "vragen": [
+    {
+     "sit": "Het is 10 september. Daan staat bij halte Zwembad.",
+     "v": "Hoe vaak komt bus 8 daar?",
+     "o": [
+      "elk half uur",
+      "elk kwartier",
+      "elk uur",
+      "De bus stopt daar niet."
+     ],
+     "b": "Zwembad | elk kwartier | elk half uur"
+    },
+    {
+     "sit": "Noor moet op zondag 15 september naar het ziekenhuis. Zij reist met bus 8.",
+     "v": "Hoe komt zij van halte Markt naar het ziekenhuis?",
+     "o": [
+      "Zij loopt.",
+      "met de kleine gratis bus",
+      "met bus 8",
+      "met een andere bus die zij moet betalen"
+     ],
+     "b": "Op zaterdag en zondag is het ongeveer tien minuten lopen van halte Markt naar het ziekenhuis."
+    },
+    {
+     "v": "Hoe laat vertrekt de laatste bus 8 nu, vóór 2 september, van het station?",
+     "o": [
+      "om 24.00 uur",
+      "om 23.00 uur",
+      "om 22.00 uur"
+     ],
+     "b": "Dat is een uur vroeger dan nu."
+    }
+   ]
+  },
+  {
+   "intro": "Omar doet een cursus Nederlands. Hij krijgt een e-mail van zijn docent.",
+   "kop": "Onderwerp: oefenen voor het examen lezen",
+   "soort": "tekst",
+   "tekst": [
+    "Beste cursisten,",
+    "",
+    "Over vier weken doen jullie het examen lezen. Ik wil jullie graag helpen met oefenen.",
+    "Op de website van de school staan vanaf vandaag vier oefenexamens. Maak elke week één oefenexamen. Doe dat thuis, op een rustig moment. Gebruik geen woordenboek, want dat mag bij het examen ook niet.",
+    "Schrijf op hoeveel antwoorden goed zijn en neem dat briefje mee naar de les van donderdag. Wij bespreken dan samen de moeilijke vragen.",
+    "Hebben jullie minder dan 15 van de 25 antwoorden goed? Kom dan ook op dinsdag van 18.00 tot 19.00 uur naar de extra les in lokaal 3. Aanmelden is niet nodig.",
+    "Thuis geen computer? Elke woensdagmiddag is het computerlokaal van de school open van 13.00 tot 17.00 uur.",
+    "Een tip: lees altijd eerst de vraag en daarna de tekst.",
+    "",
+    "Veel succes!",
+    "Groetjes,",
+    "Maria"
+   ],
+   "vragen": [
+    {
+     "sit": "Omar heeft bij het eerste oefenexamen 13 antwoorden goed.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "op dinsdag naar de extra les komen",
+      "zich aanmelden voor een nieuwe cursus",
+      "het oefenexamen opnieuw maken op school",
+      "een e-mail sturen naar Maria"
+     ],
+     "b": "Kom dan ook op dinsdag van 18.00 tot 19.00 uur naar de extra les in lokaal 3."
+    },
+    {
+     "v": "Wat mogen de cursisten niet gebruiken bij het oefenen?",
+     "o": [
+      "een woordenboek",
+      "een computer",
+      "de website van de school"
+     ],
+     "b": "Gebruik geen woordenboek, want dat mag bij het examen ook niet."
+    },
+    {
+     "sit": "Lisa heeft thuis geen computer.",
+     "v": "Wanneer kan zij op school een oefenexamen maken?",
+     "o": [
+      "op woensdagmiddag",
+      "op dinsdag van 18.00 tot 19.00 uur",
+      "op donderdag tijdens de les"
+     ],
+     "b": "Elke woensdagmiddag is het computerlokaal van de school open van 13.00 tot 17.00 uur."
+    }
+   ]
+  },
+  {
+   "intro": "Mila wil beter Nederlands leren spreken. Zij leest een folder van de bibliotheek.",
+   "kop": "Taalcafé in de bibliotheek",
+   "soort": "tekst",
+   "tekst": [
+    "Wilt u Nederlands oefenen? Kom dan naar het Taalcafé! U praat in kleine groepen met vrijwilligers en met andere bezoekers. Het is geen les: er is geen docent en u krijgt geen huiswerk.",
+    "# Wanneer en waar?",
+    "Elke dinsdag van 10.00 tot 11.30 uur en elke donderdag van 19.00 tot 20.30 uur, in de bibliotheek aan de Marktstraat 5, op de eerste verdieping.",
+    "In de schoolvakanties is er alleen op dinsdag een Taalcafé.",
+    "# Voor wie?",
+    "Voor iedereen van 18 jaar en ouder die een beetje Nederlands spreekt. U hoeft geen lid van de bibliotheek te zijn.",
+    "# Kosten en aanmelden",
+    "Het Taalcafé is gratis. Koffie en thee kosten € 1. Aanmelden is niet nodig, behalve als u met een groep van meer dan vijf personen komt. Stuur dan een e-mail naar de bibliotheek.",
+    "Elke week praten wij over een ander onderwerp, bijvoorbeeld werk, eten of de huisarts. Het onderwerp van de volgende week staat op de website."
+   ],
+   "vragen": [
+    {
+     "sit": "Mila werkt elke dag van 9.00 tot 17.00 uur. Het is geen vakantie.",
+     "v": "Wanneer kan zij naar het Taalcafé?",
+     "o": [
+      "op donderdagavond",
+      "op dinsdagochtend",
+      "op dinsdagavond",
+      "alleen in de schoolvakanties"
+     ],
+     "b": "elke donderdag van 19.00 tot 20.30 uur"
+    },
+    {
+     "sit": "Sam wil alleen naar het Taalcafé komen. Hij is geen lid van de bibliotheek.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "Hij kan gewoon komen.",
+      "Hij moet eerst lid worden.",
+      "Hij moet een e-mail sturen.",
+      "Hij moet € 1 betalen bij de ingang."
+     ],
+     "b": "Aanmelden is niet nodig, behalve als u met een groep van meer dan vijf personen komt."
+    }
+   ]
+  },
+  {
+   "intro": "Peter zoekt tweedehands spullen voor zijn nieuwe woning. Hij leest drie advertenties op internet.",
+   "kop": "Te koop",
+   "soort": "tekst",
+   "tekst": [
+    "# 1. Koelkast",
+    "Goede koelkast, drie jaar oud. Prijs: € 80. U moet de koelkast zelf ophalen in Amsterdam. Wij wonen op de vierde verdieping en er is geen lift. Kom dus met twee personen. Bel Anna na 18.00 uur: 06 - 555 21 21.",
+    "# 2. Tafel met vier stoelen",
+    "Grote tafel met vier stoelen, bijna nieuw. Prijs: € 120. Alleen de tafel kost € 90. Ik kan de tafel en de stoelen voor € 15 extra bij u thuis bezorgen, maar alleen in Utrecht. Stuur een bericht naar Tom: 06 - 555 34 34.",
+    "# 3. Wasmachine",
+    "Wasmachine van vijf jaar oud. De wasmachine werkt goed, maar de deur is een beetje beschadigd. Daarom is de wasmachine goedkoop: € 60. U krijgt geen garantie. Ophalen in Rotterdam, alleen op zaterdag of zondag. Bel Emma: 06 - 555 56 56."
+   ],
+   "vragen": [
+    {
+     "sit": "Peter woont in Utrecht. Hij koopt de tafel met de vier stoelen. Tom bezorgt alles bij Peter thuis.",
+     "v": "Hoeveel betaalt Peter?",
+     "o": [
+      "€ 135",
+      "€ 120",
+      "€ 105",
+      "€ 90"
+     ],
+     "b": "Ik kan de tafel en de stoelen voor € 15 extra bij u thuis bezorgen, maar alleen in Utrecht."
+    },
+    {
+     "sit": "Peter wil de wasmachine van Emma kopen. Hij werkt elke zaterdag.",
+     "v": "Wanneer kan hij de wasmachine ophalen?",
+     "o": [
+      "op zondag",
+      "op zaterdag",
+      "op een werkdag na 18.00 uur"
+     ],
+     "b": "Ophalen in Rotterdam, alleen op zaterdag of zondag."
+    },
+    {
+     "v": "Waarom moet u met twee personen komen voor de koelkast?",
+     "o": [
+      "omdat er geen lift is",
+      "omdat de koelkast beschadigd is",
+      "omdat Anna niet thuis is",
+      "omdat de koelkast dan goedkoper is"
+     ],
+     "b": "Wij wonen op de vierde verdieping en er is geen lift."
+    }
+   ]
+  },
+  {
+   "intro": "Ali wil gaan voetballen. Hij krijgt een brief van de sportvereniging.",
+   "kop": "Lid worden van voetbalvereniging De Wijk",
+   "soort": "tekst",
+   "tekst": [
+    "Beste meneer Yilmaz,",
+    "",
+    "Leuk dat u lid wilt worden van onze vereniging! In deze brief leest u hoe dat gaat.",
+    "# Eerst proberen",
+    "U mag twee keer gratis meedoen met een training. De trainingen voor volwassenen zijn op dinsdag en donderdag van 19.30 tot 21.00 uur.",
+    "# Lid worden",
+    "Wilt u daarna lid worden? Vul dan het formulier bij deze brief in en lever het in bij de balie. Neem ook een kopie van uw identiteitsbewijs mee.",
+    "# Betalen",
+    "wie? | per jaar",
+    "kinderen tot 12 jaar | € 110",
+    "kinderen van 12 tot 18 jaar | € 150",
+    "volwassenen | € 210",
+    "",
+    "U kunt het bedrag in één keer betalen of in vier termijnen. Bij betalen in termijnen betaalt u € 10 extra per jaar.",
+    "Wilt u stoppen? Zeg dan vóór 1 juni op. Zegt u later op? Dan betaalt u ook voor het volgende jaar.",
+    "",
+    "Met vriendelijke groet,",
+    "Lena Bakker"
+   ],
+   "vragen": [
+    {
+     "sit": "Ali is 34 jaar. Hij wil in vier termijnen betalen.",
+     "v": "Hoeveel betaalt hij per jaar?",
+     "o": [
+      "€ 220",
+      "€ 210",
+      "€ 160",
+      "€ 150"
+     ],
+     "b": "Bij betalen in termijnen betaalt u € 10 extra per jaar."
+    },
+    {
+     "sit": "Ali wil eerst weten of hij voetballen leuk vindt.",
+     "v": "Wat kan hij doen?",
+     "o": [
+      "twee keer gratis meedoen met een training",
+      "een maand gratis lid worden",
+      "op dinsdag komen kijken zonder mee te doen"
+     ],
+     "b": "U mag twee keer gratis meedoen met een training."
+    }
+   ]
+  },
+  {
+   "intro": "Karim begint morgen met werken in een fabriek. Hij leest de regels.",
+   "kop": "Regels: veilig werken en werkkleding",
+   "soort": "tekst",
+   "tekst": [
+    "In onze fabriek werken wij met grote machines. Daarom zijn er regels. Deze regels zijn verplicht voor alle medewerkers en ook voor bezoekers.",
+    "# Werkkleding",
+    "- U draagt altijd de jas en de schoenen van het bedrijf. U krijgt ze op uw eerste werkdag van uw leidinggevende.",
+    "- De werkkleding blijft in de fabriek. Wij wassen de jassen elke week. De schoenen maakt u zelf schoon.",
+    "# In de fabriek",
+    "- Eten en drinken mag alleen in de keuken van het bedrijf, niet bij de machines.",
+    "- Uw telefoon legt u in de kast in de kleedkamer. Alleen in de pauze mag u bellen.",
+    "- Ziet u iets dat niet veilig is? Of is een machine kapot? Probeer het niet zelf te repareren, maar meld het meteen bij uw leidinggevende.",
+    "# Een ongeluk",
+    "Is er een ongeluk? Bel het nummer van de fabriek: 555. Dat nummer staat op elke telefoon in de fabriek. Blijf bij uw collega tot er hulp komt."
+   ],
+   "vragen": [
+    {
+     "sit": "Karim ziet dat een machine kapot is.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "het meteen aan zijn leidinggevende vertellen",
+      "de machine zelf repareren",
+      "555 bellen",
+      "wachten tot de pauze"
+     ],
+     "b": "Probeer het niet zelf te repareren, maar meld het meteen bij uw leidinggevende."
+    },
+    {
+     "v": "Wie maakt de werkschoenen schoon?",
+     "o": [
+      "de medewerker zelf",
+      "het bedrijf, elke week",
+      "de leidinggevende"
+     ],
+     "b": "De schoenen maakt u zelf schoon."
+    }
+   ]
+  },
+  {
+   "intro": "Eva wil minder geld uitgeven in de supermarkt. Zij leest tips in de krant van de wijk.",
+   "kop": "Goedkoper boodschappen doen: zes tips",
+   "soort": "tekst",
+   "tekst": [
+    "Boodschappen worden steeds duurder. Met deze tips betaalt u minder.",
+    "- Schrijf thuis op een briefje wat u nodig hebt en koop alleen dat.",
+    "- Ga niet naar de supermarkt als u nog niet gegeten hebt. U koopt dan meer dan u nodig hebt.",
+    "- Kijk naar de prijs per kilo en niet naar de prijs van het pak. Een groot pak is niet altijd goedkoper.",
+    "- Kijk ook beneden in de kast. De dure producten staan vaak boven.",
+    "- Koop groente en fruit op de markt, het liefst laat in de middag. Dan is alles daar goedkoper.",
+    "- Kijk in de folder welke producten in de aanbieding zijn. Maar let op: koop een aanbieding alleen als u het product gaat gebruiken.",
+    "",
+    "Veel supermarkten verkopen na 18.00 uur brood en vlees met 35% korting. Die producten moet u wel dezelfde dag of de volgende dag opeten."
+   ],
+   "vragen": [
+    {
+     "sit": "Eva wil appels kopen. Zij wil zo weinig mogelijk betalen.",
+     "v": "Wat kan zij volgens de tekst het beste doen?",
+     "o": [
+      "laat in de middag naar de markt gaan",
+      "'s ochtends vroeg naar de supermarkt gaan",
+      "een groot pak appels kopen",
+      "appels kopen met 35% korting"
+     ],
+     "b": "- Koop groente en fruit op de markt, het liefst laat in de middag."
+    },
+    {
+     "v": "Wanneer moet u een aanbieding niet kopen?",
+     "o": [
+      "als u het product niet gaat gebruiken",
+      "als het product niet in de folder staat",
+      "als het product op de markt te koop is"
+     ],
+     "b": "Maar let op: koop een aanbieding alleen als u het product gaat gebruiken."
+    },
+    {
+     "sit": "Eva koopt om 19.00 uur vlees met 35% korting.",
+     "v": "Wanneer moet zij het vlees uiterlijk eten?",
+     "o": [
+      "de volgende dag",
+      "dezelfde dag",
+      "binnen een week",
+      "Dat staat niet in de tekst."
+     ],
+     "b": "Die producten moet u wel dezelfde dag of de volgende dag opeten."
+    }
+   ]
+  }
+ ]
+}

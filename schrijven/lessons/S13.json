@@ -1,0 +1,77 @@
+{
+ "id": "S13",
+ "trede": 2,
+ "titel": "Niet of geen",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Kunt u zeggen: een …? Dan is het geen: geen auto, geen tijd, geen kinderen.",
+   "en": "Can you say 'een …'? Then use geen."
+  },
+  {
+   "nl": "Anders is het niet: Ik werk niet. Ik ben niet ziek. Ik kan niet komen.",
+   "en": "Otherwise use niet."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "gat",
+   "zin": "Ik heb {geen} auto.",
+   "opties": [
+    "geen",
+    "niet"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "Ik kan morgen {niet} komen.",
+   "opties": [
+    "geen",
+    "niet"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "Ik heb vandaag {geen} tijd.",
+   "opties": [
+    "geen",
+    "niet"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "De winkel is {niet} open.",
+   "opties": [
+    "geen",
+    "niet"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "Wij hebben {geen} kinderen.",
+   "opties": [
+    "geen",
+    "niet"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "Ik werk {niet} op zondag.",
+   "opties": [
+    "geen",
+    "niet"
+   ]
+  }
+ ]
+}

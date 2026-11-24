@@ -1,0 +1,81 @@
+{
+ "id": "P02",
+ "trede": 1,
+ "titel": "Zeg na: ij, ei, ou en au",
+ "uitleg": "Luister goed. Zeg het na. Zeg het ook met de computer.",
+ "en": "Listen carefully. Repeat. Speak together with the voice (shadowing). Then record yourself and compare.",
+ "woorden": [],
+ "namen": [
+  "ui",
+  "eu",
+  "ij",
+  "ei",
+  "ou",
+  "au",
+  "sch",
+  "uu",
+  "oe"
+ ],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "mijn",
+   "en": "my"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de tijd",
+   "en": "time"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de prijs",
+   "en": "price"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "klein",
+   "en": "small"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de trein",
+   "en": "train"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik blijf vandaag thuis.",
+   "en": "I am staying at home today."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Mijn trein is te laat.",
+   "en": "My train is late."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "oud",
+   "en": "old"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de vrouw",
+   "en": "woman"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "koud",
+   "en": "cold"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de auto",
+   "en": "car"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "De vrouw heeft een oude auto.",
+   "en": "The woman has an old car."
+  }
+ ]
+}

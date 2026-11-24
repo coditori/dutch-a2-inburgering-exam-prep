@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNM – toets</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../knm.css">
+</head>
+<body>
+<div id="pagina"><main><p class="zacht">Even wachten…</p></main></div>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../knm.js"></script>
+<script>
+// KNM-toets zoals het echte examen: 40 vragen per thema, 45 minuten, drie antwoorden, uitslag aan het einde.
+// toets.html?t=A laadt A.json. Antwoorden en klok blijven bewaard als de pagina opnieuw laadt.
+(async () => {
+  const { el } = App;
+  const MINUTEN = 45;
+  const THEMA = { gezondheid: 'gezondheid en gezondheidszorg', wonen: 'wonen', werk: 'werk en inkomen', onderwijs: 'onderwijs en opvoeding', instanties: 'instanties', omgang: 'omgangsvormen, waarden en normen', staat: 'staatsinrichting en rechtsstaat', geschiedenis: 'geschiedenis en geografie' };
+  const id = new URLSearchParams(location.search).get('t') || 'A';
+  const pagina = document.getElementById('pagina');
+  let toets;
+  try { toets = await Lezen.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
+  const kop = App.kop(`KNM · ${toets.titel}`, '../index.html');
+  const klok = el('b');
+  kop.insertBefore(klok, kop.lastChild);
+  const vragen = toets.vragen;
+  // schermen: bij elk nieuw thema eerst een scherm met de naam van het thema
+  const schermen = [];
+  vragen.forEach((v, i) => { if (i === 0 || vragen[i - 1].thema !== v.thema) schermen.push({ intro: v.thema }); schermen.push({ nr: i }); });
+
+  let stand = App.lees('knm-toets-bezig', null);
+  if (!stand || stand.id !== id) stand = null;
+  const bewaar = () => App.schrijf('knm-toets-bezig', stand);
+  let tik = null;
+
+  function welkom() {
+    document.body.classList.remove('geen-woorden');
+    const eerder = KNM.P.toets[id] || [];
+    klok.textContent = '';
+    pagina.textContent = '';
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
+      el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
+      el('p', { class: 'zacht', en: 'Like the real exam: questions per theme, three answers, no word help. 🔊 reads the question aloud. Result at the end.' }, 'Net als het echte examen: vragen per thema, drie antwoorden, geen hulp bij woorden. Met 🔊 hoort u de vraag. De uitslag ziet u aan het einde.'),
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum})`).join(' · ')) : null,
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
+        stand = { id, start: Date.now(), nu: 0, antwoorden: {}, volgorde: vragen.map((v) => App.schud(v.o.map((_, i) => i))) };
+        bewaar(); examen();
+      } }, 'Start')))));
+  }
+  const rest = () => Math.max(0, MINUTEN * 60 - Math.floor((Date.now() - stand.start) / 1000));
+  function tekenKlok() { const s = rest(); klok.textContent = `⏱ ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; if (s <= 0) inleveren(); }
+  function examen() { document.body.classList.add('geen-woorden'); clearInterval(tik); tik = setInterval(tekenKlok, 1000); tekenKlok(); if (!stand.klaar) teken(); }
+  const voorlezen = (v) => [v.sit, v.v].filter(Boolean).join(' ');
+
+  function teken() {
+    Spraak.stop();
+    const s = schermen[stand.nu];
+    const vak = el('div', { class: 'toetsvak' });
+    pagina.textContent = '';
+    pagina.append(vak, el('div', { class: 'voet' },
+      el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, '‹ Vorige'),
+      el('span', {}, s.intro ? '' : el('b', {}, `${s.nr + 1} / ${vragen.length} `), el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, '▦ Overzicht')),
+      stand.nu < schermen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende ›') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
+    if (s.intro) { vak.append(el('div', { class: 'kaart' }, el('p', { style: 'font-size:1.15rem' }, `De volgende vragen gaan over het thema '${THEMA[s.intro] || s.intro}'.`), el('p', { class: 'zacht' }, "Klik op 'Volgende'."))); return; }
+    const v = vragen[s.nr];
+    const vraagDoel = el('div');
+    vak.append(el('div', { class: 'kaart' }, el('div', { class: 'kplaat' }, v.beeld || '🇳🇱'),
+      el('p', { class: 'midden' }, el('button', { class: 'knop licht klein', en: 'listen', onclick: () => Spraak.zeg(voorlezen(v)) }, '🔊 Luister')), vraagDoel));
+    const blok = Lezen.vraag(vraagDoel, v, { volgorde: stand.volgorde[s.nr], gekozen: stand.antwoorden[s.nr], op: (keuze) => { stand.antwoorden[s.nr] = keuze; bewaar(); blok.teken(keuze, false); } });
+    window.scrollTo(0, 0);
+  }
+  function ga(n) { stand.nu = n; bewaar(); teken(); }
+  const schermVan = (nr) => schermen.findIndex((s) => s.nr === nr);
+
+  function overzicht() {
+    Spraak.stop();
+    const open = vragen.filter((_, i) => stand.antwoorden[i] == null).length;
+    pagina.textContent = '';
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('h2', { style: 'margin-top:0', en: 'overview' }, 'Overzicht'),
+      el('p', {}, open ? `U hebt ${open} ${open === 1 ? 'vraag' : 'vragen'} nog niet beantwoord.` : 'U hebt alle vragen beantwoord.'),
+      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: stand.antwoorden[i] != null ? 'af' : '', onclick: () => ga(schermVan(i)) }, String(i + 1)))),
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', onclick: teken }, 'Terug naar de vraag'),
+        el('button', { class: 'knop', en: 'hand in: you cannot change answers after this', onclick: inleveren }, 'Inleveren')))));
+  }
+  function inleveren() {
+    if (stand.klaar) return;
+    clearInterval(tik);
+    stand.klaar = true;
+    stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000));
+    stand.score = vragen.filter((_, i) => stand.antwoorden[i] === 0).length;
+    (KNM.P.toets[id] = KNM.P.toets[id] || []).push({ score: stand.score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
+    KNM.bewaar(); bewaar(); uitslag();
+  }
+  function uitslag(kijk) {
+    document.body.classList.remove('geen-woorden');
+    clearInterval(tik); klok.textContent = '';
+    const ok = stand.score >= 32;
+    pagina.textContent = '';
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('div', { class: 'groot midden' }, `${stand.score} / ${vragen.length}`),
+      el('p', { class: 'midden uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? '32 or more: ready.' : 'Goal: 32 of 40. Look at the red questions.' }, ok ? '✔ 32 of meer: klaar voor het examen.' : 'Doel: 32 van de 40. Bekijk de rode vragen.'),
+      el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en waarom.`),
+      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('knm-toets-bezig', null); welkom(); } }, 'Nog een keer'), el('a', { class: 'knop', href: '../index.html' }, 'Naar de thema\'s')))));
+    if (kijk != null) {
+      const v = vragen[kijk]; const doel = el('div');
+      pagina.append(el('div', { class: 'toetsvak', style: 'padding-bottom:20px' }, el('div', { class: 'kaart' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1} · ${THEMA[v.thema] || v.thema}` + (stand.antwoorden[kijk] == null ? ' · niet beantwoord' : '')), el('div', { class: 'kplaat' }, v.beeld || '🇳🇱'), doel,
+        el('div', { class: 'waarom' }, el('b', {}, 'Waarom? '), App.woorden(v.w || '')))));
+      Lezen.vraag(doel, v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
+    }
+  }
+  if (!stand) welkom(); else if (stand.klaar) uitslag(); else examen();
+})();
+</script>
+</body>
+</html>

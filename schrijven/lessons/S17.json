@@ -1,0 +1,186 @@
+{
+ "id": "S17",
+ "trede": 3,
+ "titel": "Formele e-mail: vragen en excuses",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [
+  {
+   "nl": "de excuses",
+   "en": "apologies",
+   "beeld": "🙇",
+   "zin": "Mijn excuses, ik ben te laat.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de opdracht",
+   "en": "task / assignment",
+   "beeld": "📌",
+   "zin": "Ik lees eerst de opdracht.",
+   "thema": "lezen",
+   "vormen": [
+    "opdrachten"
+   ]
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Soms staan er vier punten in de opdracht. Schrijf bij elk punt één zin.",
+   "en": "Sometimes the task has four points. Write one sentence for each point."
+  },
+  {
+   "nl": "Excuses aanbieden: Mijn excuses. of: Sorry.",
+   "en": "To apologise: Mijn excuses. or: Sorry."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Een dag vrij",
+    "situatie": "U wilt volgende week een dag vrij. U schrijft een e-mail aan uw baas, mevrouw Smit.",
+    "punten": [
+     {
+      "p": "Schrijf op welke dag u vrij wilt zijn. Bedenk zelf een dag en een datum.",
+      "model": "Ik wil graag op vrijdag 12 juni vrij zijn.",
+      "val": [
+       "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u vrij wilt zijn. Bedenk zelf waarom.",
+      "model": "Mijn zus gaat op die dag trouwen.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|trouw|verhuiz|ziekenhuis|gaat|ga "
+      ]
+     },
+     {
+      "p": "Schrijf welke collega uw werk kan doen.",
+      "model": "Mijn collega Karim kan op die dag voor mij werken.",
+      "val": [
+       "collega|kan .*werk"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Beste mevrouw Smit,",
+    "afsluiting": "Met vriendelijke groet,"
+   },
+   "kader": true
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Het gesprek op school",
+    "situatie": "U hebt morgen een gesprek met de juf van uw dochter. U kunt niet komen. U schrijft een e-mail aan de juf, mevrouw Bakker.",
+    "punten": [
+     {
+      "p": "Schrijf waarom u de e-mail stuurt.",
+      "model": "Ik schrijf u omdat ik morgen niet naar het gesprek kan komen.",
+      "val": [
+       "niet .*kom|kan .*niet|gesprek"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u niet kunt komen. Bedenk het zelf.",
+      "model": "Ik moet met mijn moeder naar het ziekenhuis.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|ziekenhuis"
+      ]
+     },
+     {
+      "p": "Bied uw excuses aan.",
+      "model": "Mijn excuses.",
+      "val": [
+       "excuses|sorry"
+      ]
+     },
+     {
+      "p": "Vraag wanneer u wel kunt komen.",
+      "model": "Wanneer kan ik op een andere dag komen?",
+      "val": [
+       "wanneer|welke dag|kan ik"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Beste mevrouw Bakker,",
+    "afsluiting": "Met vriendelijke groet,"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Informatie over een cursus",
+    "situatie": "U wilt een cursus Nederlands doen in het buurthuis. U schrijft een e-mail aan meneer Yilmaz van het buurthuis.",
+    "punten": [
+     {
+      "p": "Schrijf dat u de cursus wilt doen.",
+      "model": "Ik wil graag de cursus Nederlands doen.",
+      "val": [
+       "cursus"
+      ]
+     },
+     {
+      "p": "Vraag op welke dag de cursus is.",
+      "model": "Op welke dag is de cursus?",
+      "val": [
+       "welke dag|wanneer"
+      ]
+     },
+     {
+      "p": "Vraag hoeveel de cursus kost.",
+      "model": "Hoeveel kost de cursus?",
+      "val": [
+       "hoeveel|kost|prijs"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Beste meneer Yilmaz,",
+    "afsluiting": "Met vriendelijke groet,"
+   },
+   "stappen": [
+    "schrijf"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik schrijf u omdat ik morgen niet kan komen."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wanneer kan ik een nieuwe afspraak maken?"
+  }
+ ]
+}

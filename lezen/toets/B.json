@@ -1,0 +1,503 @@
+{
+ "id": "B",
+ "trede": 4,
+ "na": "L38",
+ "titel": "Toets B",
+ "namen": [
+  "Yusuf",
+  "Parkzicht",
+  "Visser",
+  "Lindelaan",
+  "Thuis",
+  "Fatima",
+  "Peter",
+  "Maria",
+  "Karim",
+  "Omar",
+  "Lena",
+  "Anna",
+  "Smit",
+  "Ali",
+  "Emma",
+  "Golf",
+  "Linde",
+  "Bakker",
+  "Sara",
+  "Stationsplein",
+  "Noor",
+  "Yilmaz",
+  "Tom",
+  "Daan"
+ ],
+ "teksten": [
+  {
+   "intro": "Yusuf leest de folder van zijn nieuwe tandarts.",
+   "kop": "Tandartspraktijk Parkzicht",
+   "soort": "tekst",
+   "tekst": [
+    "Welkom bij onze praktijk. In deze folder leest u hoe wij werken.",
+    "# Afspraak maken",
+    "U kunt een afspraak maken op onze website of u kunt bellen: 030 - 555 31 31. Bellen kan op werkdagen van 8.00 tot 12.00 uur.",
+    "Kunt u niet komen? Zeg uw afspraak dan minstens één dag vóór de afspraak af. Doet u dat niet? Dan betaalt u € 30.",
+    "# Controle",
+    "Wij willen uw tanden twee keer per jaar controleren. U krijgt van ons een e-mail als het tijd is voor een nieuwe controle. Een controle duurt ongeveer tien minuten.",
+    "# Pijn",
+    "Hebt u veel pijn? Bel dan vóór 10.00 uur. U kunt dan dezelfde dag nog komen.",
+    "'s Avonds en in het weekend belt u een ander nummer: 030 - 555 99 00.",
+    "# Kosten",
+    "Kinderen tot 18 jaar betalen niets. Volwassenen betalen de tandarts zelf, of de zorgverzekering betaalt een deel. Vraag dat aan uw verzekering.",
+    "U krijgt de rekening per e-mail en u betaalt binnen 30 dagen."
+   ],
+   "vragen": [
+    {
+     "sit": "Yusuf heeft een afspraak op donderdag om 14.00 uur. Hij belt donderdag om 9.00 uur dat hij niet kan komen.",
+     "v": "Wat betekent dat?",
+     "o": [
+      "Hij moet € 30 betalen.",
+      "Hij betaalt niets.",
+      "Hij krijgt meteen een nieuwe afspraak.",
+      "Hij moet een e-mail sturen."
+     ],
+     "b": "Dan betaalt u € 30."
+    },
+    {
+     "sit": "Het is zaterdag. De dochter van Yusuf heeft veel pijn aan haar tanden.",
+     "v": "Wat moet Yusuf doen?",
+     "o": [
+      "030 - 555 99 00 bellen",
+      "maandag vóór 10.00 uur bellen",
+      "een afspraak maken op de website"
+     ],
+     "b": "'s Avonds en in het weekend belt u een ander nummer: 030 - 555 99 00."
+    },
+    {
+     "v": "Wie betaalt niets bij de tandarts?",
+     "o": [
+      "kinderen tot 18 jaar",
+      "alle volwassenen",
+      "iedereen met een zorgverzekering"
+     ],
+     "b": "Kinderen tot 18 jaar betalen niets."
+    }
+   ]
+  },
+  {
+   "intro": "Mevrouw Visser huurt een woning in de Lindelaan. Zij krijgt een brief van de woningcorporatie.",
+   "kop": "Wij schilderen uw woning",
+   "soort": "tekst",
+   "tekst": [
+    "Beste bewoners,",
+    "",
+    "In mei schilderen wij de deuren en de ramen van alle woningen in de Lindelaan. Wij schilderen alleen buiten, niet in uw woning.",
+    "De schilders beginnen op maandag 6 mei bij nummer 1. Zij werken van 7.30 tot 16.00 uur. Het werk duurt ongeveer drie weken.",
+    "# Wat vragen wij van u?",
+    "- Haal vóór 6 mei de planten en andere spullen bij uw ramen en deuren weg.",
+    "- Zet uw fiets tijdelijk in de fietsenkamer.",
+    "- Houd uw ramen en deuren dicht op de dag dat de schilders bij u werken. U hoeft niet thuis te zijn.",
+    "",
+    "Op welke dag de schilders bij u komen, leest u in een tweede brief. Die krijgt u een week vóór het werk begint.",
+    "Bij regen kunnen de schilders niet werken. Het werk duurt dan langer.",
+    "Hebt u vragen? Bel ons kantoor: 030 - 555 20 20.",
+    "",
+    "Met vriendelijke groet,",
+    "Woningcorporatie Thuis"
+   ],
+   "vragen": [
+    {
+     "sit": "Mevrouw Visser wil weten op welke dag de schilders bij haar woning werken.",
+     "v": "Hoe krijgt zij die informatie?",
+     "o": [
+      "Zij krijgt een tweede brief.",
+      "Zij moet het kantoor bellen.",
+      "Dat staat in deze brief.",
+      "De schilders bellen haar."
+     ],
+     "b": "Op welke dag de schilders bij u komen, leest u in een tweede brief."
+    },
+    {
+     "sit": "Mevrouw Visser moet werken op de dag dat de schilders komen.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "haar ramen en deuren dicht houden",
+      "thuis blijven",
+      "een sleutel aan de buren geven"
+     ],
+     "b": "- Houd uw ramen en deuren dicht op de dag dat de schilders bij u werken. U hoeft niet thuis te zijn."
+    }
+   ]
+  },
+  {
+   "intro": "Fatima doet een cursus Nederlands. Zij krijgt deze informatie van de taalschool.",
+   "kop": "Cursus Nederlands A2 – lessen en vakanties",
+   "soort": "tabel",
+   "tekst": [
+    "# Lessen",
+    "groep | dagen | tijd | docent",
+    "groep 1 | maandag en woensdag | 9.00 - 11.30 uur | Peter",
+    "groep 2 | dinsdag en donderdag | 13.00 - 15.30 uur | Maria",
+    "groep 3 | maandag en donderdag | 19.00 - 21.30 uur | Karim",
+    "# Vakanties",
+    "herfstvakantie | 21 tot en met 25 oktober",
+    "kerstvakantie | 23 december tot en met 3 januari",
+    "meivakantie | 28 april tot en met 2 mei",
+    "",
+    "In de vakanties zijn er geen lessen. De school is dan wel open: u kunt van 9.00 tot 12.00 uur op de computers oefenen.",
+    "Kunt u een keer niet naar de les komen? Meld dat vóór de les bij uw docent. U mag de les dan in dezelfde week bij een andere groep doen.",
+    "Bent u meer dan drie keer weg zonder dit te melden? Dan krijgt u een gesprek met de docent."
+   ],
+   "vragen": [
+    {
+     "sit": "Fatima werkt elke dag van 8.30 tot 17.00 uur.",
+     "v": "Welke groep is geschikt voor haar?",
+     "o": [
+      "groep 3",
+      "groep 1",
+      "groep 2"
+     ],
+     "b": "groep 3 | maandag en donderdag | 19.00 - 21.30 uur | Karim"
+    },
+    {
+     "sit": "Het is 22 oktober, 10.00 uur. Fatima gaat naar de school.",
+     "v": "Wat kan zij daar doen?",
+     "o": [
+      "oefenen op de computer",
+      "naar de les van haar groep gaan",
+      "naar de les van een andere groep gaan",
+      "niets, want de school is dicht"
+     ],
+     "b": "In de vakanties zijn er geen lessen. De school is dan wel open: u kunt van 9.00 tot 12.00 uur op de computers oefenen."
+    },
+    {
+     "sit": "Omar zit in groep 1. Hij kan woensdag niet naar de les komen.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "dit vóór de les aan Peter melden",
+      "dit na de les aan Maria melden",
+      "een gesprek met de docent vragen",
+      "de les volgende week bij een andere groep doen"
+     ],
+     "b": "Meld dat vóór de les bij uw docent."
+    }
+   ]
+  },
+  {
+   "intro": "Lena werkt in een kledingwinkel. Zij krijgt een e-mail van haar baas.",
+   "kop": "Onderwerp: nieuwe openingstijden en werktijden",
+   "soort": "tekst",
+   "tekst": [
+    "Beste collega's,",
+    "",
+    "Vanaf 1 november is onze winkel ook op donderdagavond open, tot 21.00 uur. Op de andere dagen sluiten wij om 18.00 uur, net als nu.",
+    "Dat betekent dat wij een nieuw rooster krijgen. Op donderdag zijn er twee diensten: van 9.00 tot 15.00 uur en van 15.00 tot 21.00 uur.",
+    "Voor de avonddienst krijgt u na 18.00 uur 25% meer loon.",
+    "Niemand hoeft meer uren te werken dan nu. Werkt u op donderdagavond? Dan bent u vrijdagochtend vrij.",
+    "Ik wil graag weten wie op donderdagavond kan werken. Stuur mij uiterlijk 15 oktober een e-mail. Kunt u nooit op donderdagavond? Schrijf dan ook waarom.",
+    "Het nieuwe rooster hangt vanaf 22 oktober in de keuken.",
+    "",
+    "Groeten,",
+    "Anna Smit"
+   ],
+   "vragen": [
+    {
+     "sit": "Lena werkt op donderdag van 15.00 tot 21.00 uur.",
+     "v": "Voor welke uren krijgt zij meer loon?",
+     "o": [
+      "voor de uren na 18.00 uur",
+      "voor alle uren van haar dienst",
+      "voor de uren op vrijdagochtend"
+     ],
+     "b": "Voor de avonddienst krijgt u na 18.00 uur 25% meer loon."
+    },
+    {
+     "sit": "Lena kan nooit op donderdagavond werken, omdat zij dan naar een cursus gaat.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "uiterlijk 15 oktober een e-mail sturen met de reden",
+      "wachten op het nieuwe rooster",
+      "op 22 oktober met Anna praten",
+      "een collega vragen om te ruilen"
+     ],
+     "b": "Ik wil graag weten wie op donderdagavond kan werken. Stuur mij uiterlijk 15 oktober een e-mail. Kunt u nooit op donderdagavond? Schrijf dan ook waarom."
+    }
+   ]
+  },
+  {
+   "intro": "Ali heeft een nieuw paspoort nodig. Hij leest de informatie op de website van de gemeente.",
+   "kop": "Een paspoort aanvragen",
+   "soort": "tekst",
+   "tekst": [
+    "U vraagt een paspoort aan bij de gemeente waar u woont. U moet zelf naar het gemeentehuis komen. Dat kan alleen met een afspraak. Een afspraak maakt u online of u belt 14 030.",
+    "# Wat neemt u mee?",
+    "- uw oude paspoort of een ander identiteitsbewijs",
+    "- één nieuwe foto (niet ouder dan zes maanden)",
+    "- uw pinpas: u betaalt meteen bij de balie",
+    "# Kosten",
+    "volwassenen (18 jaar en ouder) | € 77,85 | 10 jaar geldig",
+    "kinderen (tot 18 jaar) | € 58,85 | 5 jaar geldig",
+    "",
+    "Een kind moet zelf meekomen. Is uw kind jonger dan 12 jaar? Dan moet één ouder meekomen. De andere ouder vult thuis een formulier in en zet daar een handtekening op.",
+    "Na zes werkdagen is het paspoort klaar. U haalt het zelf op.",
+    "Hebt u het paspoort snel nodig? Dan kan het binnen twee werkdagen. Dat kost € 53 extra."
+   ],
+   "vragen": [
+    {
+     "sit": "Ali is 35 jaar. Hij heeft het paspoort over twee dagen nodig.",
+     "v": "Hoeveel betaalt hij?",
+     "o": [
+      "€ 77,85 en € 53 extra",
+      "€ 77,85",
+      "€ 58,85 en € 53 extra",
+      "€ 53"
+     ],
+     "b": "Hebt u het paspoort snel nodig? Dan kan het binnen twee werkdagen. Dat kost € 53 extra."
+    },
+    {
+     "sit": "De dochter van Ali is 9 jaar. Zij heeft ook een paspoort nodig.",
+     "v": "Wie moeten naar het gemeentehuis komen?",
+     "o": [
+      "de dochter en één ouder",
+      "alleen Ali",
+      "de dochter en haar twee ouders",
+      "alleen de dochter"
+     ],
+     "b": "Dan moet één ouder meekomen."
+    },
+    {
+     "v": "Hoe betaalt Ali voor het paspoort?",
+     "o": [
+      "met zijn pinpas bij de balie",
+      "online, vóór de afspraak",
+      "binnen 30 dagen met een rekening"
+     ],
+     "b": "- uw pinpas: u betaalt meteen bij de balie"
+    }
+   ]
+  },
+  {
+   "intro": "Emma wil gaan zwemmen met haar kinderen. Zij leest de folder van het zwembad.",
+   "kop": "Zwembad De Golf – tijden en prijzen",
+   "soort": "tabel",
+   "tekst": [
+    "# Tijden",
+    "zwemmen voor iedereen | maandag tot en met vrijdag 13.00 - 17.00 uur, zaterdag en zondag 10.00 - 17.00 uur",
+    "zwemmen voor volwassenen | maandag tot en met vrijdag 7.00 - 9.00 uur en dinsdag 19.00 - 21.00 uur",
+    "zwemmen voor ouders met een baby | woensdag 9.30 - 10.30 uur",
+    "zwemles voor kinderen | woensdag en zaterdag 9.00 - 10.00 uur",
+    "# Prijzen",
+    "kinderen tot 4 jaar | gratis",
+    "kinderen van 4 tot en met 15 jaar | € 4,00",
+    "volwassenen | € 5,50",
+    "kaartje voor 10 keer | € 45,00",
+    "",
+    "Kinderen tot 8 jaar mogen alleen zwemmen als er een volwassene mee het water in gaat.",
+    "Op feestdagen is het zwembad gesloten.",
+    "Een kast voor uw kleren kost € 0,50. Neem dus een beetje geld mee."
+   ],
+   "vragen": [
+    {
+     "sit": "Emma gaat zaterdag zwemmen met haar zoon van 3 en haar dochter van 10.",
+     "v": "Hoeveel betalen zij samen voor het zwemmen?",
+     "o": [
+      "€ 9,50",
+      "€ 5,50",
+      "€ 13,50",
+      "€ 4,00"
+     ],
+     "b": "kinderen tot 4 jaar | gratis"
+    },
+    {
+     "sit": "Emma wil op dinsdag om 19.30 uur gaan zwemmen. Haar dochter van 10 wil mee.",
+     "v": "Kan dat?",
+     "o": [
+      "Nee, want dan is het zwembad alleen voor volwassenen.",
+      "Ja, want Emma gaat mee het water in.",
+      "Ja, maar haar dochter betaalt dan € 5,50.",
+      "Nee, want het zwembad is dan gesloten."
+     ],
+     "b": "zwemmen voor volwassenen | maandag tot en met vrijdag 7.00 - 9.00 uur en dinsdag 19.00 - 21.00 uur"
+    },
+    {
+     "v": "Wanneer is er zwemles voor kinderen?",
+     "o": [
+      "op woensdag en zaterdag",
+      "op elke werkdag",
+      "alleen in het weekend"
+     ],
+     "b": "zwemles voor kinderen | woensdag en zaterdag 9.00 - 10.00 uur"
+    }
+   ]
+  },
+  {
+   "intro": "Karim en zijn vrouw zoeken een school voor hun dochter van drie. Zij krijgen deze uitnodiging.",
+   "kop": "Open dag basisschool De Linde",
+   "soort": "tekst",
+   "tekst": [
+    "Beste ouders,",
+    "",
+    "Wordt uw kind dit jaar of volgend jaar vier jaar? Dan zoekt u nu een basisschool. Wij nodigen u uit voor onze open dag op woensdag 13 maart.",
+    "# Wat kunt u doen?",
+    "9.00 - 10.30 uur | kijken in de lokalen tijdens de lessen",
+    "10.30 - 11.00 uur | koffie en thee met de juffen en meesters",
+    "11.00 - 11.45 uur | de directeur vertelt over de school",
+    "",
+    "Uw kind mag natuurlijk meekomen. Tijdens het gesprek met de directeur kunnen de kinderen spelen in het lokaal van groep 1.",
+    "Aanmelden voor de open dag is niet nodig. Kunt u niet op 13 maart? Bel dan voor een afspraak op een andere dag: 030 - 555 45 45.",
+    "Wilt u uw kind inschrijven op onze school? Dat kan op de open dag, maar ook later. Doe het wel vóór 1 juni.",
+    "Na die datum is er misschien geen plaats meer.",
+    "",
+    "Met vriendelijke groet,",
+    "Het team van basisschool De Linde"
+   ],
+   "vragen": [
+    {
+     "sit": "Karim wil zien hoe de juffen en meesters lesgeven.",
+     "v": "Hoe laat moet hij op de open dag komen?",
+     "o": [
+      "tussen 9.00 en 10.30 uur",
+      "tussen 10.30 en 11.00 uur",
+      "om 11.00 uur",
+      "om 11.45 uur"
+     ],
+     "b": "9.00 - 10.30 uur | kijken in de lokalen tijdens de lessen"
+    },
+    {
+     "v": "Waarom moeten ouders hun kind vóór 1 juni inschrijven?",
+     "o": [
+      "Later is er misschien geen plaats meer.",
+      "Na 1 juni is de school gesloten.",
+      "Inschrijven kan alleen op de open dag."
+     ],
+     "b": "Na die datum is er misschien geen plaats meer."
+    }
+   ]
+  },
+  {
+   "intro": "Meneer Bakker woont op de zesde verdieping. Bij de ingang van het gebouw hangt deze mededeling.",
+   "kop": "De lift is kapot",
+   "soort": "tekst",
+   "tekst": [
+    "Beste bewoners,",
+    "",
+    "De lift in ons gebouw is kapot. De monteur heeft een nieuw onderdeel nodig. Dat onderdeel komt uit het buitenland en is er pas op donderdag.",
+    "Wij denken dat de lift vrijdag in de middag weer werkt.",
+    "Tot die tijd moet u de trap gebruiken. Wij weten dat dit voor veel bewoners moeilijk is.",
+    "# Hulp nodig?",
+    "- Kunt u de trap niet nemen en moet u toch naar buiten, bijvoorbeeld naar de dokter? Bel dan 06 - 555 30 30. Twee medewerkers helpen u dan naar beneden en naar boven. Dat kan elke dag tussen 8.00 en 20.00 uur.",
+    "- Hebt u zware boodschappen? Zet ze beneden bij de receptie. Een vrijwilliger brengt ze tussen 17.00 en 18.00 uur naar uw woning.",
+    "",
+    "Let op: de trap wordt elke ochtend van 7.00 tot 7.30 uur schoongemaakt. De trap is dan nat. Loop dan langzaam!",
+    "",
+    "Met vriendelijke groet,",
+    "Woningcorporatie Thuis"
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer Bakker kan niet goed lopen. Hij heeft woensdag om 10.00 uur een afspraak bij de dokter.",
+     "v": "Wat kan hij doen?",
+     "o": [
+      "06 - 555 30 30 bellen voor hulp op de trap",
+      "wachten tot de lift weer werkt",
+      "de receptie vragen om een vrijwilliger",
+      "de dokter vragen om naar het gebouw te komen"
+     ],
+     "b": "Bel dan 06 - 555 30 30."
+    },
+    {
+     "v": "Wanneer werkt de lift volgens de mededeling weer?",
+     "o": [
+      "op vrijdagmiddag",
+      "op donderdag",
+      "op woensdag"
+     ],
+     "b": "Wij denken dat de lift vrijdag in de middag weer werkt."
+    }
+   ]
+  },
+  {
+   "intro": "Sara leest in de krant van de wijk een tekst over een nieuwe markt.",
+   "kop": "Nieuwe markt op het Stationsplein",
+   "soort": "tekst",
+   "tekst": [
+    "Vanaf zaterdag 4 mei is er elke week een markt op het Stationsplein. De markt is er op zaterdag van 9.00 tot 16.00 uur.",
+    "Op de markt staan ongeveer dertig verkopers. U kunt er groente, fruit, vis, kaas en brood kopen. Er zijn ook verkopers met kleding en met tweedehands boeken. De gemeente wil dat minstens tien verkopers uit de eigen wijk komen.",
+    "'Veel mensen in de wijk hebben geen auto,' zegt Noor Yilmaz van de gemeente. 'Voor die mensen is de supermarkt ver weg. Nu kunnen zij dichtbij groente en fruit kopen.'",
+    "Op zaterdag kunt u niet parkeren op het Stationsplein. Staat uw auto er vrijdagavond na 22.00 uur nog? Dan neemt de gemeente de auto mee en betaalt u een boete. Parkeren kan wel gratis bij het sportcentrum.",
+    "De eerste zaterdag is er een feest met muziek. Kinderen krijgen dan een gratis appel.",
+    "Wilt u zelf iets verkopen op de markt? Dat kan. Een plaats kost € 15 per dag.",
+    "Aanmelden kan bij de gemeente, uiterlijk op de woensdag vóór de markt."
+   ],
+   "vragen": [
+    {
+     "v": "Waarom wil de gemeente een markt in de wijk?",
+     "o": [
+      "Veel bewoners wonen ver van de supermarkt.",
+      "De supermarkt in de wijk is te duur.",
+      "De verkopers hebben werk nodig.",
+      "Er is te weinig plaats om te parkeren."
+     ],
+     "b": "'Veel mensen in de wijk hebben geen auto,' zegt Noor Yilmaz van de gemeente. 'Voor die mensen is de supermarkt ver weg. Nu kunnen zij dichtbij groente en fruit kopen.'"
+    },
+    {
+     "sit": "Tom parkeert zijn auto altijd op het Stationsplein.",
+     "v": "Wanneer moet zijn auto daar weg zijn?",
+     "o": [
+      "op vrijdag vóór 22.00 uur",
+      "op zaterdag vóór 9.00 uur",
+      "op zaterdag na 16.00 uur"
+     ],
+     "b": "Staat uw auto er vrijdagavond na 22.00 uur nog?"
+    },
+    {
+     "sit": "Sara wil op zaterdag 11 mei kleren verkopen op de markt.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "zich uiterlijk woensdag 8 mei aanmelden bij de gemeente",
+      "op zaterdag om 9.00 uur € 15 betalen op de markt",
+      "zich aanmelden bij Noor Yilmaz op het feest",
+      "vrijdag vóór 22.00 uur een plaats kiezen"
+     ],
+     "b": "Aanmelden kan bij de gemeente, uiterlijk op de woensdag vóór de markt."
+    }
+   ]
+  },
+  {
+   "intro": "Daan wil een telefoon kopen op internet. Hij leest eerst deze tips.",
+   "kop": "Veilig kopen op internet: vijf tips",
+   "soort": "tekst",
+   "tekst": [
+    "Kopen op internet is makkelijk, maar het gaat soms fout. Met deze tips koopt u veilig.",
+    "- Koop bij een winkel die u kent. Kent u de winkel niet? Zoek dan eerst op internet wat andere klanten over de winkel schrijven.",
+    "- Kijk of het adres en het telefoonnummer van de winkel op de website staan. Staat er geen adres en geen telefoonnummer? Koop dan niet.",
+    "- Is het product veel goedkoper dan in andere winkels? Let dan goed op.",
+    "- Betaal het liefst pas als u het product hebt gekregen. Moet u toch eerst betalen? Maak dan nooit geld over naar een persoon, maar alleen naar de rekening van de winkel.",
+    "- Bewaar alle e-mails van de winkel en de bon. Die hebt u nodig als u het product wilt terugsturen of als het kapot is.",
+    "",
+    "Is er toch iets fout gegaan? Bel of mail dan eerst de klantenservice van de winkel.",
+    "Krijgt u binnen twee weken geen antwoord? Meld het dan bij de politie. Dat kan online."
+   ],
+   "vragen": [
+    {
+     "sit": "Daan ziet een nieuwe telefoon op een website. De telefoon is veel goedkoper dan in andere winkels. Daan kent de winkel niet.",
+     "v": "Wat moet hij volgens de tips eerst doen?",
+     "o": [
+      "lezen wat andere klanten over de winkel schrijven",
+      "de telefoon snel kopen",
+      "de politie bellen",
+      "geld overmaken naar de eigenaar"
+     ],
+     "b": "Zoek dan eerst op internet wat andere klanten over de winkel schrijven."
+    },
+    {
+     "sit": "Daan heeft betaald, maar hij krijgt de telefoon niet. Hij heeft drie weken geleden een e-mail gestuurd naar de klantenservice. Hij krijgt geen antwoord.",
+     "v": "Wat moet hij nu doen?",
+     "o": [
+      "het melden bij de politie",
+      "nog twee weken wachten",
+      "de klantenservice opnieuw een e-mail sturen"
+     ],
+     "b": "Krijgt u binnen twee weken geen antwoord? Meld het dan bij de politie."
+    }
+   ]
+  }
+ ]
+}

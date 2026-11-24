@@ -1,0 +1,90 @@
+{
+ "id": "P12",
+ "trede": 2,
+ "titel": "Welke? Hoe lang? Ja of nee?",
+ "uitleg": "U hoort een vraag. Zeg binnen 3 seconden het begin van uw antwoord. Daarna ziet u een goed antwoord.",
+ "en": "You hear a question. Within 3 seconds say the START of your answer aloud. The question word tells you how to start. Then you see a model.",
+ "patroon": "Welke …? → Ik vind … / Ik woon in …  ·  Hoe lang? → al … jaar  ·  Ja, ik … / Nee, ik … niet …",
+ "woorden": [
+  {
+   "nl": "het seizoen",
+   "en": "season",
+   "beeld": "🍂",
+   "zin": "De zomer is een warm seizoen.",
+   "thema": "tijd",
+   "vormen": [
+    "seizoenen"
+   ]
+  },
+  {
+   "nl": "fijn",
+   "en": "nice / pleasant",
+   "beeld": "🙂",
+   "zin": "Ik vind de zomer fijn.",
+   "thema": "mening"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "kaart",
+   "vraag": "Welke sport vindt u leuk?",
+   "begin": "Ik vind … leuk.",
+   "model": "Ik vind zwemmen leuk."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Op welke dag doet u boodschappen?",
+   "begin": "Ik doe op … boodschappen.",
+   "model": "Ik doe op zaterdag boodschappen."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "In welke stad woont u?",
+   "begin": "Ik woon in …",
+   "model": "Ik woon in Utrecht."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Welk seizoen vindt u fijn?",
+   "begin": "Ik vind … een fijn seizoen.",
+   "model": "Ik vind de zomer een fijn seizoen."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe lang woont u al in Nederland?",
+   "begin": "Ik woon al … in Nederland.",
+   "model": "Ik woon al twee jaar in Nederland."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Hoe lang kent u uw buren al?",
+   "begin": "Ik ken mijn buren al …",
+   "model": "Ik ken mijn buren al een jaar."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Reist u vaak met de trein?",
+   "begin": "Ja, ik reis … / Nee, ik reis niet …",
+   "model": "Ja, ik reis vaak met de trein."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Houdt u van koken?",
+   "begin": "Ja, ik hou van … / Nee, ik hou niet van …",
+   "model": "Ja, ik hou van koken."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Kijkt u vaak televisie?",
+   "begin": "Ja, ik kijk … / Nee, ik kijk niet …",
+   "model": "Nee, ik kijk niet vaak televisie."
+  },
+  {
+   "soort": "kaart",
+   "vraag": "Bent u wel eens te laat?",
+   "begin": "Ja, ik ben soms … / Nee, ik ben nooit …",
+   "model": "Ja, ik ben soms te laat."
+  }
+ ]
+}

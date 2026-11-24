@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNM – instantie-trainer</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../knm.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../knm.js"></script>
+<script>
+// Instantie-trainer: bij welke organisatie moet u zijn? Inhoud: instantie.json
+(async () => {
+  const { el } = App;
+  App.kop('Instantie-trainer', '../index.html');
+  const data = await Lezen.json('instantie.json');
+  const pagina = document.getElementById('pagina');
+  const N = 12;
+  let rij, goed, nr;
+  const start = () => { rij = App.schud(data.items).slice(0, N); goed = 0; nr = 0; volgende(); };
+  function volgende() {
+    pagina.textContent = '';
+    if (nr >= rij.length) {
+      const oud = KNM.P.trainers.instantie || { beste: 0, keer: 0 };
+      KNM.P.trainers.instantie = { beste: Math.max(oud.beste, goed), totaal: rij.length, keer: oud.keer + 1 }; KNM.bewaar();
+      pagina.append(el('div', { class: 'kaart midden' }, el('div', { class: 'groot' }, `${goed} / ${rij.length}`), el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', onclick: start }, 'Nog een keer'), el('a', { class: 'knop licht', href: '../index.html' }, 'Naar de thema\'s'))));
+      return;
+    }
+    const item = rij[nr];
+    const juist = data.instanties.find((x) => x.id === item.goed);
+    const keuzes = App.schud([juist, ...App.schud(data.instanties.filter((x) => x.id !== item.goed)).slice(0, 3)]);
+    const onder = el('div');
+    const knoppen = keuzes.map((k) => el('button', { class: 'optie', onclick: () => {
+      knoppen.forEach((b, i) => { b.disabled = true; if (keuzes[i] === juist) b.classList.add('goed'); });
+      if (k !== juist) knoppen[keuzes.indexOf(k)].classList.add('fout'); else goed++;
+      nr++;
+      onder.append(el('p', { class: 'uitslag ' + (k === juist ? 'goed' : 'fout') }, k === juist ? '✔ Goed!' : '✘ Niet goed.'), el('div', { class: 'waarom' }, el('b', {}, juist.naam + ': '), juist.doet),
+        el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: volgende }, 'Verder')));
+    } }, el('span', { class: 'l' }, k.beeld), el('span', {}, k.naam)));
+    pagina.append(el('p', { class: 'zacht klein' }, `${nr + 1} / ${rij.length}`), el('div', { class: 'tekstvak soort-zin' }, App.woorden(item.v)),
+      el('p', { class: 'v', style: 'font-weight:700;margin-top:14px', en: 'Where do you go?' }, 'Waar moet u zijn?'), el('div', {}, knoppen), onder);
+  }
+  pagina.append(el('div', { class: 'kaart' }, el('p', { en: 'Read the situation. Choose the right organisation.' }, 'Lees de situatie. Kies de goede organisatie.'), el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: start }, 'Start'))));
+})();
+</script>
+</body>
+</html>

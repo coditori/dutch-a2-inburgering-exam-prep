@@ -1,0 +1,601 @@
+{
+ "id": "8-geschiedenis",
+ "trede": 3,
+ "titel": "Geschiedenis en geografie",
+ "max_nieuw": 23,
+ "namen": [
+  "Geschiedenis",
+  "geografie",
+  "Tweede",
+  "Wereldoorlog",
+  "Suriname",
+  "Gouden",
+  "Texel",
+  "Rotterdam",
+  "Europa",
+  "Wilhelmus",
+  "Koningsdag",
+  "Aruba",
+  "Curaçao",
+  "Sint",
+  "Maarten",
+  "Zeeland",
+  "Duitsland",
+  "België",
+  "Den",
+  "Haag",
+  "Bevrijdingsdag",
+  "Deltawerken",
+  "Willem",
+  "Oranje",
+  "Spanje",
+  "VOC",
+  "Azië",
+  "Koninkrijk",
+  "der",
+  "Nederlanden",
+  "Nederlanders",
+  "Nederlands",
+  "Frankrijk",
+  "Utrecht",
+  "Maastricht",
+  "Indonesië",
+  "Engeland",
+  "Flevoland",
+  "Friesland",
+  "Sinterklaas",
+  "Joden",
+  "Joodse",
+  "Duitsers",
+  "Holocaust",
+  "Amerika",
+  "Canada",
+  "Turkije",
+  "Marokko",
+  "Rembrandt",
+  "Nachtwacht",
+  "Afrika",
+  "Willem-Alexander",
+  "katholiek",
+  "protestant",
+  "NAVO",
+  "Verenigde",
+  "Naties",
+  "Europese",
+  "Unie",
+  "Bonaire",
+  "Saba",
+  "Eustatius",
+  "Fries",
+  "Waddeneilanden",
+  "Veluwe",
+  "Schiphol",
+  "Gelderland",
+  "Groningen",
+  "OV-chipkaart",
+  "OV-pas",
+  "Fatima",
+  "DigiD"
+ ],
+ "woorden": [
+  {
+   "nl": "de oorlog",
+   "en": "war",
+   "beeld": "⚔️",
+   "zin": "Van 1940 tot 1945 was er {oorlog} in Nederland.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "oorlogen"
+   ]
+  },
+  {
+   "nl": "de bevrijding",
+   "en": "liberation",
+   "beeld": "🕊️🇳🇱",
+   "zin": "Op 5 mei viert Nederland de {bevrijding}.",
+   "thema": "geschiedenis"
+  },
+  {
+   "nl": "de kolonie",
+   "en": "colony",
+   "beeld": "🌍⛵",
+   "zin": "Suriname was vroeger een {kolonie} van Nederland.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "kolonies",
+    "koloniën"
+   ]
+  },
+  {
+   "nl": "de slavernij",
+   "en": "slavery",
+   "beeld": "⛓️",
+   "zin": "In 1863 stopte Nederland met de {slavernij}.",
+   "thema": "geschiedenis"
+  },
+  {
+   "nl": "de eeuw",
+   "en": "century",
+   "beeld": "💯",
+   "zin": "De tijd van 1600 tot 1700 heet de Gouden {Eeuw}.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "eeuwen"
+   ]
+  },
+  {
+   "nl": "de dijk",
+   "en": "dike",
+   "beeld": "🌊🧱",
+   "zin": "Een {dijk} zorgt dat het water niet op het land komt.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "dijken"
+   ]
+  },
+  {
+   "nl": "de zee",
+   "en": "sea",
+   "beeld": "🌊",
+   "zin": "Nederland ligt aan de {zee}.",
+   "thema": "geschiedenis"
+  },
+  {
+   "nl": "de polder",
+   "en": "polder (land reclaimed from water)",
+   "beeld": "🌾",
+   "zin": "Een {polder} is nieuw land dat vroeger water was.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "polders"
+   ]
+  },
+  {
+   "nl": "het eiland",
+   "en": "island",
+   "beeld": "🏝️",
+   "zin": "Texel is een {eiland} in de zee.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "eilanden"
+   ]
+  },
+  {
+   "nl": "de haven",
+   "en": "harbour / port",
+   "beeld": "🚢",
+   "zin": "Rotterdam heeft de grootste {haven} van Europa.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "havens"
+   ]
+  },
+  {
+   "nl": "het volkslied",
+   "en": "national anthem",
+   "beeld": "🎶🇳🇱",
+   "zin": "Het Wilhelmus is het {volkslied} van Nederland.",
+   "thema": "geschiedenis"
+  },
+  {
+   "nl": "de vlag",
+   "en": "flag",
+   "beeld": "🇳🇱",
+   "zin": "Op Koningsdag hangt de {vlag} buiten.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "vlaggen"
+   ]
+  },
+  {
+   "nl": "het koninkrijk",
+   "en": "kingdom",
+   "beeld": "👑🗺️",
+   "zin": "Aruba hoort bij het {koninkrijk} Nederland.",
+   "thema": "geschiedenis"
+  },
+  {
+   "nl": "de overstroming",
+   "en": "flood",
+   "beeld": "🌊🏠",
+   "zin": "In 1953 was er een grote {overstroming} in Zeeland.",
+   "thema": "geschiedenis"
+  },
+  {
+   "nl": "het buurland",
+   "en": "neighbouring country",
+   "beeld": "🗺️↔️",
+   "zin": "Duitsland is een {buurland} van Nederland.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "buurlanden"
+   ]
+  },
+  {
+   "nl": "het verzet",
+   "en": "the resistance",
+   "beeld": "✊🕯️",
+   "zin": "Mensen van het {verzet} hielpen Joden in de oorlog.",
+   "thema": "geschiedenis",
+   "meer": true
+  },
+  {
+   "nl": "de soldaat",
+   "en": "soldier",
+   "beeld": "🪖",
+   "zin": "De {soldaat} vecht in de oorlog.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "soldaten"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "onafhankelijk",
+   "en": "independent",
+   "beeld": "🕊️🗺️",
+   "zin": "Suriname is nu een {onafhankelijk} land.",
+   "thema": "geschiedenis",
+   "meer": true
+  },
+  {
+   "nl": "de gastarbeider",
+   "en": "guest worker",
+   "beeld": "🧳👷",
+   "zin": "Een {gastarbeider} kwam naar Nederland om te werken.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "gastarbeiders"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het schilderij",
+   "en": "painting",
+   "beeld": "🖼️",
+   "zin": "De Nachtwacht is een groot {schilderij} van Rembrandt.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "schilderijen"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de slaaf",
+   "en": "slave",
+   "beeld": "⛓️🧍",
+   "zin": "Een {slaaf} moest werken zonder loon en was niet vrij.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "slaven"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "vermoorden",
+   "en": "to murder",
+   "beeld": "🗡️",
+   "zin": "Willem van Oranje is in 1584 {vermoord}.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "vermoord",
+    "vermoordde",
+    "vermoordden"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het leger",
+   "en": "army",
+   "beeld": "🪖🪖",
+   "zin": "In het {leger} werken soldaten.",
+   "thema": "geschiedenis",
+   "vormen": [
+    "legers"
+   ],
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Wat is de hoofdstad van Nederland?",
+   "a": "Amsterdam. De regering zit in Den Haag.",
+   "en": "What is the capital? Amsterdam. The government sits in The Hague.",
+   "beeld": "🏙️"
+  },
+  {
+   "v": "Hoeveel provincies heeft Nederland?",
+   "a": "Twaalf.",
+   "en": "How many provinces? Twelve.",
+   "beeld": "🗺️"
+  },
+  {
+   "v": "Welke landen zijn de buurlanden van Nederland?",
+   "a": "België en Duitsland.",
+   "en": "Which countries border the Netherlands? Belgium and Germany.",
+   "beeld": "↔️"
+  },
+  {
+   "v": "Wanneer was de Tweede Wereldoorlog in Nederland?",
+   "a": "Van 1940 tot 1945. Duitsland was in die jaren de baas in Nederland.",
+   "en": "When was WWII in the Netherlands? 1940-1945, under German occupation.",
+   "beeld": "⚔️"
+  },
+  {
+   "v": "Wat viert Nederland op 5 mei?",
+   "a": "Bevrijdingsdag: de bevrijding in 1945. Op 4 mei denkt Nederland aan de doden van de oorlog.",
+   "en": "What is celebrated on 5 May? Liberation Day (1945). On 4 May the war dead are remembered.",
+   "beeld": "🕊️"
+  },
+  {
+   "v": "Wat gebeurde er in 1953?",
+   "a": "Een grote overstroming in Zeeland. Daarna zijn de Deltawerken gebouwd.",
+   "en": "What happened in 1953? A great flood in Zeeland; afterwards the Delta Works were built.",
+   "beeld": "🌊"
+  },
+  {
+   "v": "Wie was Willem van Oranje?",
+   "a": "De leider van de Nederlanders in de oorlog met Spanje (1568-1648). Hij heet 'de vader van het vaderland'.",
+   "en": "Who was William of Orange? Leader of the Dutch in the war against Spain (1568-1648), 'father of the fatherland'.",
+   "beeld": "🍊"
+  },
+  {
+   "v": "Wat was de VOC?",
+   "a": "Een groot Nederlands bedrijf in de Gouden Eeuw. Het handelde met landen in Azië.",
+   "en": "What was the VOC? A large Dutch trading company in the Golden Age, trading with Asia.",
+   "beeld": "⛵"
+  },
+  {
+   "v": "Welke landen horen bij het Koninkrijk der Nederlanden?",
+   "a": "Nederland, Aruba, Curaçao en Sint Maarten.",
+   "en": "Which countries form the Kingdom of the Netherlands? The Netherlands, Aruba, Curaçao and Sint Maarten.",
+   "beeld": "👑"
+  },
+  {
+   "v": "Wat is het Wilhelmus?",
+   "a": "Het volkslied van Nederland.",
+   "en": "What is the Wilhelmus? The national anthem.",
+   "beeld": "🎶"
+  }
+ ],
+ "situaties": [
+  {
+   "v": "Waarom heeft Nederland veel dijken?",
+   "o": [
+    "Zonder dijken komt het water van de zee op het land.",
+    "Om meer land voor huizen te maken.",
+    "Om de wegen veilig te maken."
+   ],
+   "w": "Een groot deel van Nederland ligt lager dan de zee. De dijken zorgen dat het land veilig is.",
+   "beeld": "🌊"
+  },
+  {
+   "v": "In welke stad zit de regering?",
+   "o": [
+    "In Den Haag.",
+    "In Amsterdam.",
+    "In Rotterdam."
+   ],
+   "w": "Amsterdam is de hoofdstad, maar de regering en het parlement zitten in Den Haag.",
+   "beeld": "🏛️"
+  },
+  {
+   "sit": "Op 4 mei is het om 20.00 uur twee minuten heel rustig in Nederland.",
+   "v": "Waarom?",
+   "o": [
+    "Nederland denkt aan de doden van de oorlog.",
+    "Nederland viert de verjaardag van de koning.",
+    "Het is het begin van de vakantie."
+   ],
+   "w": "Op 4 mei denkt Nederland aan de doden. Op 5 mei is het feest: Bevrijdingsdag.",
+   "beeld": "🕯️"
+  },
+  {
+   "v": "Welk land is een buurland van Nederland?",
+   "o": [
+    "België",
+    "Frankrijk",
+    "Spanje"
+   ],
+   "w": "Nederland heeft twee buurlanden: België en Duitsland.",
+   "beeld": "🗺️"
+  },
+  {
+   "v": "Welke stad heeft de grootste haven van Europa?",
+   "o": [
+    "Rotterdam",
+    "Utrecht",
+    "Maastricht"
+   ],
+   "w": "De haven van Rotterdam is de grootste van Europa.",
+   "beeld": "🚢"
+  },
+  {
+   "v": "Welk land was vroeger een kolonie van Nederland?",
+   "o": [
+    "Indonesië",
+    "Duitsland",
+    "Engeland"
+   ],
+   "w": "Indonesië en Suriname waren vroeger kolonies van Nederland.",
+   "beeld": "🌍"
+  },
+  {
+   "v": "Wat is Flevoland?",
+   "o": [
+    "Een provincie die vroeger water was.",
+    "Een eiland in de zee.",
+    "De hoofdstad van Friesland."
+   ],
+   "w": "Flevoland is een polder: nieuw land dat vroeger water was.",
+   "beeld": "🌾"
+  },
+  {
+   "v": "Wat viert Nederland op 27 april?",
+   "o": [
+    "Koningsdag.",
+    "Bevrijdingsdag.",
+    "Sinterklaas."
+   ],
+   "w": "27 april is de verjaardag van de koning.",
+   "beeld": "👑"
+  },
+  {
+   "v": "Wat was de Gouden Eeuw?",
+   "o": [
+    "Een tijd met veel handel en veel geld voor Nederland.",
+    "Een oorlog met Duitsland.",
+    "Het jaar van de grote overstroming."
+   ],
+   "w": "In de Gouden Eeuw (1600-1700) verdiende Nederland veel geld met handel.",
+   "beeld": "⛵"
+  },
+  {
+   "v": "Wat is waar over Aruba, Curaçao en Sint Maarten?",
+   "o": [
+    "Zij horen bij het Koninkrijk der Nederlanden.",
+    "Zij zijn provincies van Nederland.",
+    "Zij zijn buurlanden van Nederland."
+   ],
+   "w": "Het Koninkrijk heeft vier landen: Nederland, Aruba, Curaçao en Sint Maarten.",
+   "beeld": "🏝️"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Wat gebeurde er in de Tweede Wereldoorlog met de Joden in Nederland?",
+    "a": "De meeste Joden zijn door de Duitsers meegenomen en vermoord. Dat heet de Holocaust. Mensen van het verzet hielpen Joden om zich te verbergen.",
+    "en": "What happened to Dutch Jews in WWII? Most were deported and murdered (the Holocaust). The resistance helped Jews to hide.",
+    "beeld": "🕯️"
+   },
+   {
+    "v": "Wie zorgden in 1945 voor de bevrijding van Nederland?",
+    "a": "Soldaten uit Engeland, Amerika en Canada.",
+    "en": "Who liberated the Netherlands in 1945? Soldiers from Britain, the United States and Canada.",
+    "beeld": "🪖"
+   },
+   {
+    "v": "Wanneer werden Indonesië en Suriname onafhankelijk?",
+    "a": "Indonesië in 1949 en Suriname in 1975. Daarna kwamen veel mensen uit die landen naar Nederland.",
+    "en": "When did Indonesia and Suriname become independent? 1949 and 1975; many people then came to the Netherlands.",
+    "beeld": "🕊️"
+   },
+   {
+    "v": "Wie waren de gastarbeiders?",
+    "a": "Mensen uit Turkije en Marokko die vanaf 1960 naar Nederland kwamen om te werken. Veel gastarbeiders zijn gebleven.",
+    "en": "Who were the guest workers? People from Turkey and Morocco who came to work from the 1960s; many stayed.",
+    "beeld": "🧳"
+   },
+   {
+    "v": "Wie was Rembrandt?",
+    "a": "Een schilder uit de Gouden Eeuw. Zijn schilderij De Nachtwacht kent bijna iedereen.",
+    "en": "Who was Rembrandt? A Golden Age painter; his Night Watch is world famous.",
+    "beeld": "🖼️"
+   },
+   {
+    "v": "Wat deden Nederlanders vroeger met slaven?",
+    "a": "Zij kochten en verkochten mensen uit Afrika. De slaven moesten zonder loon werken in Suriname en op de eilanden bij Aruba en Curaçao.",
+    "en": "What did the Dutch do with slaves? They traded people from Africa, who had to work unpaid in Suriname and the Antilles.",
+    "beeld": "⛓️"
+   },
+   {
+    "v": "Wat gebeurde er met Willem van Oranje?",
+    "a": "Hij is in 1584 vermoord. Koning Willem-Alexander komt uit zijn familie.",
+    "en": "What happened to William of Orange? He was murdered in 1584; King Willem-Alexander descends from his family.",
+    "beeld": "🍊"
+   },
+   {
+    "v": "Waarover ging de oorlog met Spanje ook?",
+    "a": "Over geloof. De koning van Spanje was katholiek, veel Nederlanders waren protestant.",
+    "en": "What was the war with Spain also about? Religion: the Spanish king was Catholic, many Dutch were Protestant.",
+    "beeld": "✝️"
+   },
+   {
+    "v": "Waarvan is Nederland lid?",
+    "a": "Van de NAVO (de legers van veel landen werken samen), van de Verenigde Naties en van de Europese Unie.",
+    "en": "What is the Netherlands a member of? NATO (armies cooperate), the United Nations and the European Union.",
+    "beeld": "🌐"
+   },
+   {
+    "v": "Vanaf welk jaar betaalt Nederland met de euro?",
+    "a": "Vanaf 2002. De landen van Europa werken al samen vanaf 1957.",
+    "en": "Since when does the Netherlands pay with the euro? 2002. European cooperation began in 1957.",
+    "beeld": "💶"
+   },
+   {
+    "v": "Wat veranderde er in Nederland na 1960?",
+    "a": "Mensen kregen meer vrijheid en het geloof werd voor veel mensen minder belangrijk.",
+    "en": "What changed after 1960? More personal freedom; religion became less important for many.",
+    "beeld": "🕊️"
+   },
+   {
+    "v": "Wat zijn Bonaire, Saba en Sint Eustatius?",
+    "a": "Bijzondere gemeenten van Nederland. Het zijn geen eigen landen.",
+    "en": "What are Bonaire, Saba and Sint Eustatius? Special municipalities of the Netherlands, not separate countries.",
+    "beeld": "🏝️"
+   },
+   {
+    "v": "Welke taal spreken mensen in Friesland ook?",
+    "a": "Fries. Dat is de tweede taal van Nederland.",
+    "en": "Which language is also spoken in Friesland? Frisian, the second official language.",
+    "beeld": "🗣️"
+   },
+   {
+    "v": "Wat zijn de Waddeneilanden, de Veluwe en Schiphol?",
+    "a": "De Waddeneilanden liggen in de zee boven Friesland en Groningen. De Veluwe is een groot park in Gelderland. Van Schiphol vliegt u naar andere landen.",
+    "en": "The Wadden Islands lie north of Friesland and Groningen; the Veluwe is a large nature area in Gelderland; Schiphol is the main airport.",
+    "beeld": "🗺️"
+   },
+   {
+    "v": "Hoe betaalt u in de bus en de trein?",
+    "a": "Met uw OV-chipkaart, uw bankpas of uw telefoon, als u instapt en als u uitstapt. Let op: de OV-chipkaart stopt in 2027. Daarna is er de OV-pas.",
+    "en": "Paying in bus and train: check in and out with OV-chipkaart, bank card or phone. The OV-chipkaart ends in 2027 (then: OV-pas).",
+    "beeld": "🚌"
+   }
+  ],
+  "situaties": [
+   {
+    "v": "Welk land werd in 1975 onafhankelijk van Nederland?",
+    "o": [
+     "Suriname",
+     "België",
+     "Spanje"
+    ],
+    "w": "Suriname is onafhankelijk vanaf 1975, Indonesië vanaf 1949.",
+    "beeld": "🕊️"
+   },
+   {
+    "v": "Wat is De Nachtwacht?",
+    "o": [
+     "Een schilderij van Rembrandt.",
+     "Een eiland in Zeeland.",
+     "Het volkslied."
+    ],
+    "w": "Rembrandt was een schilder uit de Gouden Eeuw.",
+    "beeld": "🖼️"
+   },
+   {
+    "v": "Wat is Bonaire?",
+    "o": [
+     "Een bijzondere gemeente van Nederland.",
+     "Een eigen land in het Koninkrijk.",
+     "Een provincie in Europa."
+    ],
+    "w": "Bonaire, Saba en Sint Eustatius zijn bijzondere gemeenten.",
+    "beeld": "🏝️"
+   },
+   {
+    "sit": "Fatima stapt in de bus.",
+    "v": "Waarmee kan zij betalen?",
+    "o": [
+     "Met haar bankpas of haar OV-chipkaart.",
+     "Alleen met geld bij de chauffeur.",
+     "Met haar DigiD."
+    ],
+    "w": "In de bus en de trein betaalt u met een OV-chipkaart, een bankpas of een telefoon.",
+    "beeld": "🚌"
+   }
+  ]
+ }
+}

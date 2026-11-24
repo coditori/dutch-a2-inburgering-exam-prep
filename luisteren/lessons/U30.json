@@ -1,0 +1,136 @@
+{
+ "id": "U30",
+ "trede": 4,
+ "titel": "Examen: een klein oefenexamen",
+ "namen": [
+  "Yusuf",
+  "Anna",
+  "Peter"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Yusuf heeft een nieuwe baan in een fabriek. Zijn leidinggevende vertelt hoe het werkt.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Yusuf, ik vertel je even hoe het hier werkt. Wij beginnen elke dag om zeven uur."
+    },
+    {
+     "s": "B",
+     "t": "Je moet tien minuten vóór zeven aanwezig zijn, want je moet eerst je werkkleding aandoen."
+    },
+    {
+     "s": "A",
+     "t": "Waar vind ik die kleding?"
+    },
+    {
+     "s": "B",
+     "t": "In de kleedkamer, in kast twaalf. De sleutel krijg je bij de receptie."
+    },
+    {
+     "s": "B",
+     "t": "De pauze is om half tien en om twaalf uur. Eten doe je in de keuken, nooit in de fabriek zelf."
+    },
+    {
+     "s": "A",
+     "t": "En als ik ziek ben?"
+    },
+    {
+     "s": "B",
+     "t": "Dan bel je mij vóór half zeven. Niet een bericht sturen: bellen. Mijn nummer staat in je contract."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat moet Yusuf op zijn werk zijn?",
+     "o": [
+      "om tien voor zeven",
+      "om zeven uur",
+      "om half zeven",
+      "om tien over zeven"
+     ]
+    },
+    {
+     "v": "Waar krijgt Yusuf de sleutel van zijn kast?",
+     "o": [
+      "bij de receptie",
+      "in de kleedkamer",
+      "van zijn leidinggevende"
+     ]
+    },
+    {
+     "sit": "Yusuf is ziek.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "zijn leidinggevende bellen vóór half zeven",
+      "een bericht sturen vóór zeven uur",
+      "de receptie bellen"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Anna en Peter praten over het weekend.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Zullen wij zaterdag naar het strand gaan?"
+    },
+    {
+     "s": "A",
+     "t": "Zaterdag gaat het regenen. Zondag is het beter weer."
+    },
+    {
+     "s": "B",
+     "t": "Zondag komt mijn moeder eten."
+    },
+    {
+     "s": "A",
+     "t": "Hoe laat komt zij?"
+    },
+    {
+     "s": "B",
+     "t": "Pas om vijf uur. Dan kunnen wij 's ochtends gaan en om drie uur terug zijn."
+    },
+    {
+     "s": "A",
+     "t": "Goed. Gaan wij met de auto?"
+    },
+    {
+     "s": "B",
+     "t": "Parkeren is daar duur. Laten wij de trein nemen. Dat kost samen twaalf euro."
+    },
+    {
+     "s": "A",
+     "t": "Dat is goed."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wanneer gaan Anna en Peter naar het strand?",
+     "o": [
+      "op zondagochtend",
+      "op zaterdag",
+      "op zondag om vijf uur",
+      "Zij gaan niet."
+     ]
+    },
+    {
+     "v": "Hoe reizen zij?",
+     "o": [
+      "met de trein",
+      "met de auto",
+      "met de bus"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Zondag is het beter weer.",
+  "Dan bel je mij vóór half zeven."
+ ]
+}

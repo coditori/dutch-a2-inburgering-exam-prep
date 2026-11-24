@@ -1,0 +1,117 @@
+{
+ "id": "U03",
+ "trede": 1,
+ "titel": "Woorden: het huis en de dag",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "het bed"
+    }
+   ],
+   "o": [
+    "🛏️",
+    "🪑",
+    "🚪"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de stoel"
+    }
+   ],
+   "o": [
+    "🪑",
+    "🛏️",
+    "🪟"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de deur"
+    }
+   ],
+   "o": [
+    "🚪",
+    "🪟",
+    "🌳"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "het raam"
+    }
+   ],
+   "o": [
+    "🪟",
+    "🚪",
+    "🍳"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de keuken"
+    }
+   ],
+   "o": [
+    "🍳",
+    "🛏️",
+    "🌳"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de tuin"
+    }
+   ],
+   "o": [
+    "🌳",
+    "🍳",
+    "🚪"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de nacht"
+    }
+   ],
+   "o": [
+    "🌙",
+    "🌅",
+    "☀️"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de ochtend"
+    }
+   ],
+   "o": [
+    "🌅",
+    "🌙",
+    "🌆"
+   ]
+  }
+ ],
+ "dictee": [
+  "De deur is dicht.",
+  "In de nacht slaap ik."
+ ]
+}

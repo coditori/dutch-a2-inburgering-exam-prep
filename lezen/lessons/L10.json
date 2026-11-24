@@ -1,0 +1,156 @@
+{
+ "id": "L10",
+ "trede": 1,
+ "titel": "Wanneer, hoe laat, hoeveel",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de afspraak",
+   "en": "appointment",
+   "beeld": "🗓️",
+   "zin": "Ik heb een afspraak.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de halte",
+   "en": "stop",
+   "beeld": "🚏",
+   "zin": "De bus staat bij de halte.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "het kaartje",
+   "en": "ticket",
+   "beeld": "🎫",
+   "zin": "Ik koop een kaartje.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "het park",
+   "en": "park",
+   "beeld": "🏞️",
+   "zin": "Het park is mooi.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "het centrum",
+   "en": "centre",
+   "beeld": "📍",
+   "zin": "De winkels zijn in het centrum.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "links",
+   "en": "left",
+   "beeld": "⬅️",
+   "zin": "De school is links.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "rechts",
+   "en": "right",
+   "beeld": "➡️",
+   "zin": "Het station is rechts.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "aan",
+   "en": "to / on / at",
+   "beeld": "👉",
+   "zin": "Ik geef het boek aan Tom.",
+   "thema": "voorzetsel"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "Ik heb morgen om tien uur een afspraak bij de dokter."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat is de afspraak?",
+     "o": [
+      "om tien uur",
+      "om twee uur",
+      "om half tien"
+     ],
+     "b": "om tien uur"
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De halte is naast het park. De bus naar het centrum komt om half negen."
+   ],
+   "vragen": [
+    {
+     "v": "Waar is de halte?",
+     "o": [
+      "naast het park",
+      "in het centrum",
+      "naast het station"
+     ],
+     "b": "De halte is naast het park."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De prijs van een kaartje is drie euro. Kinderen betalen niets."
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel betaalt een kind voor een kaartje?",
+     "o": [
+      "niets",
+      "drie euro",
+      "twee euro"
+     ],
+     "b": "Kinderen betalen niets."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "U gaat hier naar links. Daar is de supermarkt. De school is rechts."
+   ],
+   "vragen": [
+    {
+     "v": "Waar is de supermarkt?",
+     "o": [
+      "links",
+      "rechts",
+      "naast de school"
+     ],
+     "b": "U gaat hier naar links."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Sara geeft het boek aan Tom. Tom geeft het morgen aan Anna."
+   ],
+   "vragen": [
+    {
+     "v": "Wie heeft het boek morgen?",
+     "o": [
+      "Anna",
+      "Tom",
+      "Sara"
+     ],
+     "b": "Tom geeft het morgen aan Anna."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Ik heb morgen om tien uur een {afspraak}.",
+  "De {halte} is naast het park.",
+  "Kinderen betalen {niets}."
+ ]
+}

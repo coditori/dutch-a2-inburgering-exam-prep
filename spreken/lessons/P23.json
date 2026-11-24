@@ -1,0 +1,167 @@
+{
+ "id": "P23",
+ "trede": 3,
+ "titel": "Twee plaatjes: vrije tijd",
+ "uitleg": "U ziet twee plaatjes. Kies één plaatje. Zeg wat u liever doet en vertel ook waarom.",
+ "en": "Two pictures (exam part 3). Choose ONE: 'Ik ... liever ...'. Then one reason: 'Dat is ...' or '... omdat het ... is'.",
+ "woorden": [],
+ "namen": [],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🚲🌳",
+    "🚲🏙️"
+   ],
+   "sit": "U gaat fietsen.",
+   "vraag": "Waar fietst u liever? Vertel ook waarom.",
+   "model": [
+    "Ik fiets liever in het park.",
+    "Daar is het rustig."
+   ],
+   "sleutel": [
+    [
+     "park",
+     "stad",
+     "buiten",
+     "centrum"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "daar is",
+     "rustig",
+     "druk"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "📺",
+    "📖"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Wat doet u 's avonds liever? Vertel ook waarom.",
+   "model": [
+    "Ik lees 's avonds liever een boek.",
+    "Dat vind ik rustig."
+   ],
+   "sleutel": [
+    [
+     "televisie",
+     "boek",
+     "lees",
+     "kijk"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "dat vind"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏊",
+    "⚽"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Welke sport doet u liever? Vertel ook hoe vaak u sport.",
+   "model": [
+    "Ik zwem liever.",
+    "Ik zwem één keer per week."
+   ],
+   "sleutel": [
+    [
+     "zwem",
+     "voetbal"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit",
+     "week"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🎂🎉👨‍👩‍👧‍👦",
+    "🍽️👫"
+   ],
+   "sit": "U viert uw verjaardag.",
+   "vraag": "Hoe viert u uw verjaardag liever? Vertel ook waarom.",
+   "model": [
+    "Ik vier mijn verjaardag liever met een groot feest.",
+    "Ik vind het gezellig met veel mensen."
+   ],
+   "sleutel": [
+    [
+     "feest",
+     "restaurant",
+     "familie",
+     "thuis",
+     "eten"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "gezellig"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🌞",
+    "❄️"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Welk seizoen vindt u fijner? Vertel ook wat u dan doet.",
+   "model": [
+    "Ik vind de zomer fijner.",
+    "Dan ga ik vaak naar het strand."
+   ],
+   "sleutel": [
+    [
+     "zomer",
+     "winter"
+    ],
+    [
+     "dan",
+     "ik ga",
+     "ik fiets",
+     "ik blijf",
+     "ik wandel",
+     "ik zwem"
+    ]
+   ]
+  }
+ ]
+}

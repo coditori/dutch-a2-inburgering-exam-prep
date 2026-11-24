@@ -1,0 +1,97 @@
+{
+ "id": "U07",
+ "trede": 1,
+ "titel": "De dagen en de tijd",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De les is op dinsdag."
+    }
+   ],
+   "v": "Op welke dag is de les?",
+   "o": [
+    "dinsdag",
+    "donderdag",
+    "maandag"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De markt is op zaterdag om negen uur."
+    }
+   ],
+   "v": "Wanneer is de markt?",
+   "o": [
+    "zaterdag om negen uur",
+    "zondag om negen uur",
+    "zaterdag om tien uur"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Ik werk van maandag tot vrijdag."
+    }
+   ],
+   "v": "Op welke dagen ben ik vrij?",
+   "o": [
+    "zaterdag en zondag",
+    "maandag en vrijdag",
+    "woensdag"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De dokter is er morgen om half tien."
+    }
+   ],
+   "v": "Wanneer is de dokter er?",
+   "o": [
+    "morgen om half tien",
+    "vandaag om half tien",
+    "morgen om half elf"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Het feest is niet op vrijdag, maar op zaterdag."
+    }
+   ],
+   "v": "Wanneer is het feest?",
+   "o": [
+    "op zaterdag",
+    "op vrijdag",
+    "op vrijdag en zaterdag"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De winkel is op zondag dicht."
+    }
+   ],
+   "v": "Wanneer is de winkel dicht?",
+   "o": [
+    "op zondag",
+    "op maandag",
+    "op zaterdag"
+   ]
+  }
+ ],
+ "dictee": [
+  "De les is op dinsdag.",
+  "De winkel is op zondag dicht."
+ ]
+}

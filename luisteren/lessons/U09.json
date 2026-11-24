@@ -1,0 +1,86 @@
+{
+ "id": "U09",
+ "trede": 1,
+ "titel": "Nummers en adressen",
+ "namen": [
+  "Stationsstraat",
+  "Parkstraat",
+  "Jansen"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Mijn nummer is nul zes, een twee, drie vier, vijf zes, zeven acht."
+    }
+   ],
+   "typ": "0612345678"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Het nummer van de dokter is nul drie nul, vijf vijf vijf, nul een, twee drie."
+    }
+   ],
+   "typ": "0305550123"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Bel het nummer nul zes, negen acht, zeven zes, vijf vier, drie twee."
+    }
+   ],
+   "typ": "0698765432"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Ik woon in de Stationsstraat, op nummer zestien."
+    }
+   ],
+   "v": "Wat is het adres?",
+   "o": [
+    "Stationsstraat 16",
+    "Stationsstraat 60",
+    "Stationsstraat 6"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Het adres van de school is Parkstraat achtentwintig."
+    }
+   ],
+   "v": "Wat is het adres?",
+   "o": [
+    "Parkstraat 28",
+    "Parkstraat 82",
+    "Parkstraat 18"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Mevrouw Jansen woont niet op nummer veertien, maar op nummer veertig."
+    }
+   ],
+   "v": "Op welk nummer woont mevrouw Jansen?",
+   "o": [
+    "nummer 40",
+    "nummer 14",
+    "nummer 44"
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik woon op nummer zestien.",
+  "Wat is uw adres?"
+ ]
+}

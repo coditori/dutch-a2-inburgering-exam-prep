@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNM – kaart-trainer</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../knm.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../knm.js"></script>
+<script>
+// Kaart-trainer: klik op de provincie, de stad of het buurland. Inhoud: kaart.json
+// De kaart is een eenvoudige tekening (grove vormen uit lengte- en breedtegraden), geen precieze kaart.
+(async () => {
+  const { el } = App;
+  App.kop('Kaart-trainer', '../index.html');
+  const data = await Lezen.json('kaart.json');
+  const pagina = document.getElementById('pagina');
+  const NS = 'http://www.w3.org/2000/svg';
+  const K = 150, LON0 = 2.6, LAT0 = 53.75, COS = Math.cos(52.2 * Math.PI / 180);
+  const xy = ([lon, lat]) => [((lon - LON0) * COS * K).toFixed(1), ((LAT0 - lat) * K).toFixed(1)];
+  const svgEl = (tag, attrs, tekst) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (tekst) e.textContent = tekst; return e; };
+  const midden = (punten) => { const p = punten.map(xy); return [p.reduce((s, q) => s + +q[0], 0) / p.length, p.reduce((s, q) => s + +q[1], 0) / p.length]; };
+
+  function tekenKaart(soort, namen) {
+    const svg = svgEl('svg', { viewBox: '0 0 470 470' });
+    const vormen = {};
+    data.buren.forEach((b) => { const v = svgEl('polygon', { class: b.id === 'noordzee' ? 'zee' : 'buur', points: b.punten.map((p) => xy(p).join(',')).join(' ') }); v.dataset.id = b.id; v.dataset.soort = 'buur'; vormen[b.id] = v; svg.append(v); });
+    data.provincies.forEach((p) => { const v = svgEl('polygon', { class: 'prov', points: p.punten.map((q) => xy(q).join(',')).join(' ') }); v.dataset.id = p.id; v.dataset.soort = 'provincie'; vormen[p.id] = v; svg.append(v); });
+    if (soort === 'stad') data.steden.forEach((s) => { const [x, y] = xy(s.plek); const v = svgEl('circle', { class: 'stad', cx: x, cy: y, r: 7 }); v.dataset.id = s.id; v.dataset.soort = 'stad'; vormen[s.id] = v; svg.append(v); });
+    if (namen) {
+      data.provincies.forEach((p) => { const [x, y] = midden(p.punten); svg.append(svgEl('text', { x, y, 'text-anchor': 'middle' }, p.naam)); });
+      data.buren.forEach((b) => { const [x, y] = xy(b.label); svg.append(svgEl('text', { x, y, 'text-anchor': 'middle', style: 'font-weight:700' }, b.naam)); });
+      data.steden.forEach((s) => { const [x, y] = xy(s.plek); svg.append(svgEl('circle', { cx: x, cy: y, r: 3, fill: '#1f5fa8' }), svgEl('text', { x: +x + 5, y: +y - 4, style: 'fill:#1f5fa8' }, s.naam)); });
+    }
+    return { svg, vormen };
+  }
+
+  const vragen = () => [
+    ...data.provincies.map((p) => ({ soort: 'provincie', id: p.id, v: `Klik op de provincie ${p.naam}.` })),
+    ...data.steden.map((s) => ({ soort: 'stad', id: s.id, v: `Klik op de stad ${s.naam}.` })),
+    ...data.buren.map((b) => ({ soort: 'buur', id: b.id, v: `Klik op ${b.vraag}.` })),
+  ];
+  const N = 12;
+  let rij, goed, nr;
+  const start = () => { rij = App.schud(vragen()).slice(0, N); goed = 0; nr = 0; volgende(); };
+  function volgende() {
+    pagina.textContent = '';
+    if (nr >= rij.length) {
+      const oud = KNM.P.trainers.kaart || { beste: 0, keer: 0 };
+      KNM.P.trainers.kaart = { beste: Math.max(oud.beste, goed), totaal: rij.length, keer: oud.keer + 1 }; KNM.bewaar();
+      pagina.append(el('div', { class: 'kaart midden' }, el('div', { class: 'groot' }, `${goed} / ${rij.length}`), el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', onclick: start }, 'Nog een keer'), el('button', { class: 'knop licht', onclick: leer }, 'Kaart met namen'), el('a', { class: 'knop licht', href: '../index.html' }, 'Naar de thema\'s'))));
+      return;
+    }
+    const q = rij[nr];
+    const { svg, vormen } = tekenKaart(q.soort, false);
+    const onder = el('div');
+    let af = false;
+    svg.addEventListener('click', (e) => {
+      const doel = e.target; if (af || !doel.dataset || !doel.dataset.id) return;
+      if (q.soort === 'stad' && doel.dataset.soort !== 'stad') return;
+      if (q.soort !== 'stad' && doel.dataset.soort === 'stad') return;
+      af = true; nr++;
+      const ok = doel.dataset.id === q.id; if (ok) goed++;
+      vormen[q.id].classList.add('goed'); if (!ok) doel.classList.add('fout');
+      onder.append(el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.'), el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: volgende }, 'Verder')));
+    });
+    pagina.append(el('p', { class: 'zacht klein' }, `${nr + 1} / ${rij.length}`), el('p', { style: 'font-weight:700;font-size:1.2rem' }, q.v), el('div', { class: 'kaartvak' }, svg), onder);
+  }
+  function leer() {
+    pagina.textContent = '';
+    pagina.append(el('p', { class: 'zacht', en: 'Simple drawing, not a precise map. Learn the 12 provinces, the big cities and the neighbours.' }, 'Dit is een eenvoudige tekening, geen precieze kaart. Leer de 12 provincies, de grote steden en de buurlanden.'),
+      el('div', { class: 'kaartvak' }, tekenKaart('provincie', true).svg), el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: start }, 'Start de trainer')));
+  }
+  leer();
+})();
+</script>
+</body>
+</html>

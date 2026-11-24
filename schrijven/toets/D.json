@@ -1,0 +1,180 @@
+{
+ "id": "D",
+ "trede": 4,
+ "na": "S22",
+ "titel": "Set D",
+ "namen": [
+  "Sara",
+  "Vries",
+  "Parkstraat",
+  "AB",
+  "Utrecht",
+  "nl",
+  "Bakker",
+  "Sam",
+  "Mila",
+  "Wit",
+  "Bos",
+  "Omar",
+  "Lisa",
+  "Maria",
+  "Anna",
+  "Tom",
+  "Karim",
+  "Turkije",
+  "Thuis",
+  "Jansen",
+  "Lindelaan",
+  "Yilmaz"
+ ],
+ "items": [
+  {
+   "soort": "email",
+   "kop": "Een cadeau voor Lisa",
+   "situatie": "Uw collega Lisa heeft volgende week haar verjaardag. U wilt samen met de collega's een cadeau kopen. U schrijft een e-mail aan uw collega Omar.",
+   "punten": [
+    {
+     "p": "Schrijf dat u een cadeau wilt kopen voor Lisa.",
+     "model": "Ik wil een cadeau kopen voor de verjaardag van Lisa.",
+     "val": [
+      "cadeau"
+     ]
+    },
+    {
+     "p": "Vraag of Omar mee wil doen.",
+     "model": "Doe jij ook mee?",
+     "val": [
+      "mee|ook"
+     ]
+    },
+    {
+     "p": "Schrijf hoeveel geld u vraagt.",
+     "model": "Ik vraag vijf euro per persoon.",
+     "val": [
+      "euro|€"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+   "aanhef": "Hallo Omar,",
+   "afsluiting": "Groetjes,"
+  },
+  {
+   "soort": "email",
+   "kop": "Mijn zoon is ziek",
+   "situatie": "Uw zoon is ziek. Hij kan morgen niet naar school. U schrijft een e-mail aan zijn juf, mevrouw Jansen.",
+   "punten": [
+    {
+     "p": "Schrijf dat uw zoon morgen niet naar school komt.",
+     "model": "Mijn zoon Tom kan morgen niet naar school komen.",
+     "val": [
+      "niet .*(kom|school)|blijft thuis"
+     ]
+    },
+    {
+     "p": "Schrijf waarom hij niet komt.",
+     "model": "Hij is ziek en hij heeft koorts.",
+     "val": [
+      "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|koorts|pijn|verkouden|griep"
+     ]
+    },
+    {
+     "p": "Schrijf wanneer hij weer naar school komt.",
+     "model": "Ik denk dat hij maandag weer naar school komt.",
+     "val": [
+      "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)|weer|beter"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+   "aanhef": "Beste mevrouw Jansen,",
+   "afsluiting": "Vriendelijke groet,"
+  },
+  {
+   "soort": "formulier",
+   "kop": "Formulier: iets verloren in de bus",
+   "situatie": "U hebt gisteren uw tas in de bus laten liggen. In de tas zit uw telefoon. Kijk naar de plaatjes. U vult het formulier van het busbedrijf in. Sommige gegevens moet u zelf bedenken.",
+   "velden": [
+    {
+     "label": "Wat hebt u verloren?",
+     "soort": "open",
+     "model": "Ik heb mijn tas met mijn telefoon verloren."
+    },
+    {
+     "label": "Hoe ziet het eruit?",
+     "soort": "open",
+     "model": "De tas is groot en oud."
+    },
+    {
+     "label": "Wanneer en in welke bus was het?",
+     "soort": "open",
+     "model": "Het was gisteren om negen uur in bus 12."
+    },
+    {
+     "label": "Voor- en achternaam",
+     "soort": "naam",
+     "model": "Sara de Vries"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres",
+     "model": "Parkstraat 12"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode",
+     "model": "3511 AB"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats",
+     "model": "Utrecht"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon",
+     "model": "06 12345678"
+    },
+    {
+     "label": "Datum van vandaag",
+     "soort": "datum",
+     "model": "3 juni 2026"
+    }
+   ],
+   "plaatjes": [
+    "🎒",
+    "📱"
+   ]
+  },
+  {
+   "soort": "tekst",
+   "kop": "Mijn stad",
+   "situatie": "U krijgt elke week een krant van de wijk. Iedereen uit de buurt mag iets voor deze krant schrijven. U schrijft over de stad of het dorp waar u woont.",
+   "punten": [
+    {
+     "p": "Waar woont u?",
+     "model": "Ik woon in Utrecht.",
+     "val": [
+      "woon"
+     ]
+    },
+    {
+     "p": "Wat kunt u doen in uw stad of dorp?",
+     "model": "In mijn stad kan ik goed winkelen en er is een mooi park.",
+     "val": [
+      "kan|kunt|er is|er zijn"
+     ]
+    },
+    {
+     "p": "Wat vindt u van uw stad of dorp?",
+     "model": "Ik vind mijn stad mooi, maar het is er wel druk.",
+     "val": [
+      "vind|mooi|leuk|druk|rustig|gezellig"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf minimaal drie zinnen op. Schrijf in hele zinnen.",
+   "begin": "Dit is mijn tekst over mijn stad:"
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+{
+ "id": "U27",
+ "trede": 3,
+ "titel": "De buren en het vervoer",
+ "namen": [
+  "Lisa",
+  "Ali",
+  "Zwolle",
+  "Amersfoort",
+  "Rotterdam"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Lisa praat met haar buurman.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Dag buurman. Mag ik u iets vragen?"
+    },
+    {
+     "s": "C",
+     "t": "Natuurlijk, Lisa."
+    },
+    {
+     "s": "B",
+     "t": "Wij geven zaterdag een feest. Er komt misschien een beetje lawaai."
+    },
+    {
+     "s": "C",
+     "t": "Tot hoe laat?"
+    },
+    {
+     "s": "B",
+     "t": "Tot twaalf uur. Daarna gaat de muziek uit."
+    },
+    {
+     "s": "C",
+     "t": "Dat is goed. Zondag kan ik lang slapen. Dank je dat je het zegt."
+    },
+    {
+     "s": "B",
+     "t": "U mag ook komen! Wij beginnen om acht uur."
+    },
+    {
+     "s": "C",
+     "t": "Dat is leuk. Dan kom ik even."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom praat Lisa met de buurman?",
+     "o": [
+      "Zij geeft een feest.",
+      "De buurman maakt lawaai.",
+      "Zij gaat verhuizen."
+     ]
+    },
+    {
+     "v": "Wat gaat de buurman zaterdag doen?",
+     "o": [
+      "naar het feest komen",
+      "vroeg slapen",
+      "de muziek uit doen"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Ali is op het station. Hij praat met een medewerker.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Kunt u mij helpen? Ik moet naar Zwolle."
+    },
+    {
+     "s": "B",
+     "t": "De trein van tien over tien rijdt vandaag niet. Er wordt aan het spoor gewerkt."
+    },
+    {
+     "s": "C",
+     "t": "Hoe kom ik dan in Zwolle?"
+    },
+    {
+     "s": "B",
+     "t": "U neemt de trein naar Amersfoort van kwart over tien. Daar stapt u over op de bus."
+    },
+    {
+     "s": "C",
+     "t": "Is mijn kaartje geldig in de bus?"
+    },
+    {
+     "s": "B",
+     "t": "Ja. U bent ongeveer een half uur later in Zwolle."
+    },
+    {
+     "s": "C",
+     "t": "Van welk spoor vertrekt de trein?"
+    },
+    {
+     "s": "B",
+     "t": "Van spoor vijf."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Hoe reist Ali naar Zwolle?",
+     "o": [
+      "eerst met de trein en dan met de bus",
+      "alleen met de trein",
+      "alleen met de bus"
+     ]
+    },
+    {
+     "v": "Wat moet Ali doen met zijn kaartje?",
+     "o": [
+      "niets: het kaartje is ook geldig in de bus",
+      "een nieuw kaartje kopen",
+      "het kaartje ruilen"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "U zit in de trein. U hoort een mededeling.",
+   "soort": "mededeling",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Beste reizigers, deze trein heeft ongeveer een kwartier vertraging."
+    },
+    {
+     "s": "A",
+     "t": "Wij wachten op een andere trein."
+    },
+    {
+     "s": "A",
+     "t": "Reizigers naar Rotterdam kunnen op het volgende station overstappen. Die trein wacht op u."
+    },
+    {
+     "s": "A",
+     "t": "Sorry voor de vertraging."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel vertraging heeft de trein?",
+     "o": [
+      "ongeveer een kwartier",
+      "ongeveer een half uur",
+      "ongeveer een uur"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Er komt misschien een beetje lawaai.",
+  "Daar stapt u over op de bus."
+ ]
+}

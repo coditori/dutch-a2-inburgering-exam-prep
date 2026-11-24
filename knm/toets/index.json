@@ -1,0 +1,12 @@
+[
+ {
+  "id": "A",
+  "titel": "Toets A",
+  "vragen": 40
+ },
+ {
+  "id": "B",
+  "titel": "Toets B",
+  "vragen": 40
+ }
+]

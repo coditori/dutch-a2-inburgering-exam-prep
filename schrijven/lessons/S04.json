@@ -1,0 +1,72 @@
+{
+ "id": "S04",
+ "trede": 1,
+ "titel": "Een vraag schrijven",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [
+  {
+   "nl": "het vraagteken",
+   "en": "question mark",
+   "beeld": "❓",
+   "zin": "Na een vraag komt een vraagteken.",
+   "thema": "schrijven"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Na een vraag komt geen punt, maar een vraagteken.",
+   "en": "After a question there is no full stop but a question mark."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "Hoe laat is het?"
+  },
+  {
+   "soort": "typ",
+   "toon": "Waar woont u?"
+  },
+  {
+   "soort": "typ",
+   "toon": "Wat is uw naam?"
+  },
+  {
+   "soort": "typ",
+   "toon": "Wanneer is de les?",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Kan ik morgen komen?",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Hebt u een vraag?",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "wat is de prijs van het brood",
+   "goed": "Wat is de prijs van het brood?",
+   "vraag": "Schrijf de vraag goed: met een hoofdletter en een vraagteken."
+  },
+  {
+   "soort": "typ",
+   "toon": "waarom is de winkel dicht",
+   "goed": "Waarom is de winkel dicht?",
+   "vraag": "Schrijf de vraag goed: met een hoofdletter en een vraagteken."
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luisteren – getallen</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../luisteren.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../luisteren.js"></script>
+<script>
+// Getallen-trainer: u hoort een getal, een prijs of een tijd en typt het in cijfers. Inhoud: getallen.json
+(async () => {
+  const { el } = App;
+  const data = await Lezen.json('getallen.json');
+  const schoon = (s) => String(s).toLowerCase().replace(/[\s€-]/g, '').replace(/[,:]/g, '.').replace(/uur$/, '');
+  Luister.ronde({
+    id: 'getallen', titel: 'Getallen', na: data.na, items: data.items, n: 10,
+    uitleg: 'U hoort een getal, een prijs of een tijd. Typ het in cijfers. Let op: in het Nederlands komt het laatste cijfer eerst (vijfenveertig = 45).',
+    uitlegEn: 'You hear a number, a price or a time. Type it in digits. Note: Dutch says the last digit first (vijfenveertig = 45).',
+    teken(doel, item, klaar) {
+      const regels = [{ s: 'A', t: item.t }];
+      const invoer = el('input', { class: 'typ', autocomplete: 'off' });
+      const af = () => { if (invoer.disabled) return; invoer.disabled = true; knop.remove();
+        klaar(schoon(invoer.value) === schoon(item.goed), el('p', {}, el('b', {}, item.goed), ' = ', item.t)); };
+      const knop = el('button', { class: 'knop', en: 'check', onclick: af }, 'Controleer');
+      invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter') af(); });
+      doel.append(el('p', { class: 'zacht', en: item.soort === 'tijd' ? 'Type the time like 2.45' : item.soort === 'prijs' ? 'Type the price like 3,50' : 'Type the number' },
+        item.soort === 'tijd' ? 'Typ de tijd, zo: 2.45' : item.soort === 'prijs' ? 'Typ de prijs, zo: 3,50' : 'Typ het getal'),
+        Luister.speler(regels), invoer, ' ', knop);
+      invoer.focus();
+      Luister.speel(regels);
+    },
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+{
+ "id": "1-gezondheid",
+ "trede": 3,
+ "titel": "Gezondheid",
+ "max_nieuw": 23,
+ "namen": [
+  "Yara",
+  "Tim",
+  "Mira",
+  "Omar",
+  "Lena",
+  "Noor",
+  "Karim",
+  "Eva",
+  "Sam",
+  "Fatima",
+  "GGD",
+  "Wmo",
+  "soa-test",
+  "Anna",
+  "Tom",
+  "Mila"
+ ],
+ "woorden": [
+  {
+   "nl": "de gezondheid",
+   "en": "health",
+   "beeld": "💚",
+   "zin": "Bewegen is goed voor uw {gezondheid}.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de basisverzekering",
+   "en": "basic health insurance",
+   "beeld": "🛡️",
+   "zin": "Iedereen in Nederland moet een {basisverzekering} hebben.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de premie",
+   "en": "premium (monthly insurance payment)",
+   "beeld": "💶",
+   "zin": "U betaalt elke maand {premie} voor uw zorgverzekering.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de huisartsenpost",
+   "en": "out-of-hours GP service",
+   "beeld": "🌙🩺",
+   "zin": "'s Avonds en in het weekend belt u de {huisartsenpost}.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de spoedeisende hulp",
+   "en": "emergency room (A&E)",
+   "beeld": "🚑",
+   "zin": "De {spoedeisende hulp} van het ziekenhuis helpt mensen die meteen hulp nodig hebben.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de specialist",
+   "en": "(medical) specialist",
+   "beeld": "👨‍⚕️",
+   "zin": "In het ziekenhuis werkt de {specialist}.",
+   "thema": "gezondheid",
+   "vormen": [
+    "specialisten"
+   ]
+  },
+  {
+   "nl": "de verwijsbrief",
+   "en": "referral letter",
+   "beeld": "📨",
+   "zin": "Met een {verwijsbrief} van de huisarts kunt u naar het ziekenhuis.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "het consultatiebureau",
+   "en": "child health clinic (0-4 years)",
+   "beeld": "👶⚖️",
+   "zin": "Het {consultatiebureau} controleert de gezondheid van baby's en kleine kinderen.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de verloskundige",
+   "en": "midwife",
+   "beeld": "🤰",
+   "zin": "De {verloskundige} helpt een vrouw die een baby krijgt.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de tolk",
+   "en": "interpreter",
+   "beeld": "🗣️🔁",
+   "zin": "Spreekt u geen Nederlands? Een {tolk} kan helpen bij het gesprek.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "het beroepsgeheim",
+   "en": "professional secrecy",
+   "beeld": "🤐",
+   "zin": "De huisarts heeft een {beroepsgeheim}: hij vertelt niets over u aan andere mensen.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de drogist",
+   "en": "chemist / drugstore",
+   "beeld": "🧴🏪",
+   "zin": "Bij de {drogist} koopt u medicijnen zonder recept.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de eigen bijdrage",
+   "en": "own contribution (part you pay yourself)",
+   "beeld": "🪙",
+   "zin": "Voor een paar medicijnen betaalt u zelf een deel: de {eigen bijdrage}.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de aanvullende verzekering",
+   "en": "additional insurance",
+   "beeld": "➕🛡️",
+   "zin": "Een {aanvullende verzekering} is niet verplicht.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de controle",
+   "en": "check-up / check",
+   "beeld": "🔍",
+   "zin": "Ga twee keer per jaar naar de tandarts voor {controle}.",
+   "thema": "gezondheid",
+   "vormen": [
+    "controles"
+   ]
+  },
+  {
+   "nl": "de polikliniek",
+   "en": "outpatient clinic (in a hospital)",
+   "beeld": "🏥🚪",
+   "zin": "In de {polikliniek} van het ziekenhuis hebt u een afspraak met de specialist.",
+   "thema": "gezondheid",
+   "meer": true
+  },
+  {
+   "nl": "de kraamhulp",
+   "en": "maternity care at home",
+   "beeld": "👩‍🍼",
+   "zin": "De {kraamhulp} helpt thuis in de eerste week met de baby.",
+   "thema": "gezondheid",
+   "meer": true
+  },
+  {
+   "nl": "de mantelzorg",
+   "en": "informal care by family or friends",
+   "beeld": "🤲👵",
+   "zin": "{Mantelzorg} is zorg door familie, vrienden of buren.",
+   "thema": "gezondheid",
+   "meer": true
+  },
+  {
+   "nl": "het verzorgingshuis",
+   "en": "care home for the elderly",
+   "beeld": "🏠👴",
+   "zin": "Opa woont nu in een {verzorgingshuis}.",
+   "thema": "gezondheid",
+   "vormen": [
+    "verzorgingshuizen"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de psycholoog",
+   "en": "psychologist",
+   "beeld": "🧠💬",
+   "zin": "De {psycholoog} helpt bij problemen in uw hoofd.",
+   "thema": "gezondheid",
+   "meer": true
+  },
+  {
+   "nl": "zwanger",
+   "en": "pregnant",
+   "beeld": "🤰",
+   "zin": "Zij is {zwanger}: zij krijgt een baby.",
+   "thema": "gezondheid",
+   "vormen": [
+    "zwangere"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de bevalling",
+   "en": "childbirth",
+   "beeld": "👶🏥",
+   "zin": "Na de {bevalling} komt de kraamhulp.",
+   "thema": "gezondheid",
+   "meer": true
+  },
+  {
+   "nl": "hoog",
+   "en": "high",
+   "beeld": "⬆️",
+   "zin": "Het eigen risico kan {hoog} of laag zijn.",
+   "thema": "gezondheid",
+   "vormen": [
+    "hoge",
+    "hoger",
+    "hoogste"
+   ],
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Bij wie maakt u eerst een afspraak als u ziek bent?",
+   "a": "Bij de huisarts. Niet bij het ziekenhuis.",
+   "en": "Who do you see first when you are ill? The GP, not the hospital.",
+   "beeld": "🩺"
+  },
+  {
+   "v": "Welk nummer belt u bij brand of als iemand heel snel hulp nodig heeft?",
+   "a": "112. Bel dit nummer alleen als er snel hulp moet komen.",
+   "en": "Which number for fire or urgent help? 112, only for emergencies.",
+   "beeld": "🚨"
+  },
+  {
+   "v": "Welke verzekering is voor iedereen verplicht?",
+   "a": "De basisverzekering. U kiest zelf een zorgverzekering.",
+   "en": "Which insurance is mandatory for everyone? Basic health insurance; you choose the insurer.",
+   "beeld": "🛡️"
+  },
+  {
+   "v": "Wat is het eigen risico?",
+   "a": "Het eerste deel van de kosten van zorg in een jaar betaalt u zelf. Voor de huisarts betaalt u geen eigen risico.",
+   "en": "What is the 'eigen risico'? You pay the first part of your care costs each year yourself. The GP is not included.",
+   "beeld": "💶"
+  },
+  {
+   "v": "Wat hebt u nodig om naar een specialist in het ziekenhuis te gaan?",
+   "a": "Een verwijsbrief van de huisarts.",
+   "en": "What do you need to see a hospital specialist? A referral from the GP.",
+   "beeld": "📨"
+  },
+  {
+   "v": "Waar haalt u medicijnen met een recept?",
+   "a": "Bij de apotheek. Bij de drogist krijgt u geen medicijnen op recept.",
+   "en": "Where do you get prescription medicine? At the pharmacy, not at the drugstore.",
+   "beeld": "💊"
+  },
+  {
+   "v": "Wie belt u als u 's nachts of in het weekend snel een dokter nodig hebt?",
+   "a": "De huisartsenpost. Bel altijd eerst.",
+   "en": "Who do you call at night or in the weekend for a doctor? The out-of-hours GP service. Always call first.",
+   "beeld": "🌙"
+  },
+  {
+   "v": "Voor wie is het consultatiebureau?",
+   "a": "Voor baby's en kinderen van 0 tot 4 jaar. Het is gratis.",
+   "en": "Who is the consultatiebureau for? Babies and children aged 0-4. It is free.",
+   "beeld": "👶"
+  },
+  {
+   "v": "Betaalt u premie voor de zorgverzekering van uw kind van 10 jaar?",
+   "a": "Nee. Kinderen tot 18 jaar zijn gratis verzekerd.",
+   "en": "Do you pay a premium for a 10-year-old child? No, children under 18 are insured for free.",
+   "beeld": "🧒"
+  },
+  {
+   "v": "Mag de huisarts met uw werkgever over uw gezondheid praten?",
+   "a": "Nee. De huisarts heeft een beroepsgeheim.",
+   "en": "May the GP talk to your employer about your health? No: professional secrecy.",
+   "beeld": "🤐"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "Yara heeft al vier dagen pijn in haar buik.",
+   "v": "Wat moet zij eerst doen?",
+   "o": [
+    "De huisarts bellen voor een afspraak.",
+    "Naar het ziekenhuis gaan.",
+    "112 bellen."
+   ],
+   "w": "Eerst naar de huisarts. De huisarts stuurt u naar het ziekenhuis als dat nodig is.",
+   "beeld": "🤕"
+  },
+  {
+   "sit": "De buurman van Tim valt van de trap. Hij praat niet meer.",
+   "v": "Welk nummer belt Tim?",
+   "o": [
+    "112",
+    "Het nummer van de huisarts.",
+    "Het nummer van de apotheek."
+   ],
+   "w": "Heeft iemand meteen hulp nodig? Bel dan altijd 112.",
+   "beeld": "🚑"
+  },
+  {
+   "sit": "Het is zaterdagnacht. Het kind van Mira heeft veel koorts. Mira kan niet wachten tot maandag.",
+   "v": "Wie belt zij?",
+   "o": [
+    "De huisartsenpost.",
+    "Haar eigen huisarts.",
+    "De tandarts."
+   ],
+   "w": "'s Nachts en in het weekend is de eigen huisarts dicht. Dan belt u de huisartsenpost.",
+   "beeld": "🌙"
+  },
+  {
+   "sit": "Omar is 30 jaar. Hij komt in Nederland wonen en werken.",
+   "v": "Welke verzekering moet hij nemen?",
+   "o": [
+    "Een basisverzekering.",
+    "Een aanvullende verzekering.",
+    "Geen: dat mag hij zelf kiezen."
+   ],
+   "w": "De basisverzekering is verplicht voor iedereen die in Nederland woont of werkt.",
+   "beeld": "🛡️"
+  },
+  {
+   "sit": "De huisarts geeft Lena een recept.",
+   "v": "Waar haalt zij het medicijn?",
+   "o": [
+    "Bij de apotheek.",
+    "Bij de drogist.",
+    "Bij het ziekenhuis."
+   ],
+   "w": "Medicijnen op recept haalt u bij de apotheek.",
+   "beeld": "💊"
+  },
+  {
+   "sit": "Noor heeft een baby van twee maanden.",
+   "v": "Wie controleert of de baby goed groeit?",
+   "o": [
+    "Het consultatiebureau.",
+    "De gemeente.",
+    "De basisschool."
+   ],
+   "w": "Het consultatiebureau controleert kinderen van 0 tot 4 jaar. Dat is gratis.",
+   "beeld": "👶"
+  },
+  {
+   "sit": "Karim heeft pijn in zijn rug. Hij wil naar een specialist in het ziekenhuis.",
+   "v": "Wat heeft hij nodig?",
+   "o": [
+    "Een verwijsbrief van de huisarts.",
+    "Een brief van zijn werkgever.",
+    "Een recept van de apotheek."
+   ],
+   "w": "Zonder verwijsbrief van de huisarts kunt u niet naar de specialist.",
+   "beeld": "📨"
+  },
+  {
+   "sit": "De baas van Eva belt haar huisarts. Hij vraagt waarom Eva ziek is.",
+   "v": "Wat doet de huisarts?",
+   "o": [
+    "Hij vertelt niets.",
+    "Hij vertelt alles.",
+    "Hij vertelt alleen een beetje."
+   ],
+   "w": "De huisarts heeft een beroepsgeheim. Hij vertelt niets aan uw baas.",
+   "beeld": "🤐"
+  },
+  {
+   "sit": "Sam is 8 jaar. Hij gaat naar de tandarts voor controle.",
+   "v": "Wie betaalt de tandarts?",
+   "o": [
+    "De zorgverzekering: voor kinderen is het gratis.",
+    "De ouders van Sam betalen alles.",
+    "De school van Sam."
+   ],
+   "w": "Kinderen tot 18 jaar zijn gratis verzekerd, ook voor de tandarts.",
+   "beeld": "🦷"
+  },
+  {
+   "sit": "Fatima spreekt nog weinig Nederlands. Zij heeft een belangrijk gesprek in het ziekenhuis.",
+   "v": "Wat kan het ziekenhuis doen?",
+   "o": [
+    "Een tolk regelen.",
+    "Fatima naar huis sturen.",
+    "Het gesprek aan de huisarts geven."
+   ],
+   "w": "Een tolk helpt bij het gesprek als u de taal nog niet goed spreekt.",
+   "beeld": "🗣️"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Zit de tandarts voor volwassenen in de basisverzekering?",
+    "a": "Nee. Daarvoor kunt u een tandartsverzekering nemen. Die is niet verplicht.",
+    "en": "Is the dentist covered by basic insurance for adults? No; separate dental insurance, not mandatory.",
+    "beeld": "🦷"
+   },
+   {
+    "v": "U kunt niet naar uw afspraak bij de huisarts of de tandarts. Wat doet u?",
+    "a": "U zegt de afspraak op tijd af, meestal 24 uur vóór de afspraak. Anders moet u soms betalen.",
+    "en": "You cannot make your appointment: cancel in time (usually 24 hours before), otherwise you may still have to pay.",
+    "beeld": "📞"
+   },
+   {
+    "v": "Hoe stelt u een kleine vraag aan de huisarts?",
+    "a": "U belt tijdens het spreekuur aan de telefoon. Bij heel zieke of oude mensen komt de huisarts op huisbezoek.",
+    "en": "A short question for the GP: call during the telephone consultation hour. For very ill or old people the GP makes a home visit.",
+    "beeld": "☎️"
+   },
+   {
+    "v": "Geeft de huisarts altijd medicijnen?",
+    "a": "Nee. Nederlandse huisartsen geven niet snel medicijnen. Vaak gaat een klacht weg zonder medicijn.",
+    "en": "Does the GP always prescribe medicine? No. Dutch GPs are careful; complaints often pass by themselves.",
+    "beeld": "💊"
+   },
+   {
+    "v": "Wie kiest uw huisarts en uw tandarts?",
+    "a": "U zelf. Het liefst dicht bij uw huis.",
+    "en": "Who chooses your GP and dentist? You do, preferably near your home.",
+    "beeld": "🩺"
+   },
+   {
+    "v": "Wat neemt u mee naar de polikliniek van het ziekenhuis?",
+    "a": "De verwijsbrief, het pasje van uw zorgverzekering en een identiteitsbewijs.",
+    "en": "What do you bring to the outpatient clinic? The referral, your insurance card and ID.",
+    "beeld": "🏥"
+   },
+   {
+    "v": "Hebt u een afspraak nodig bij de spoedeisende hulp?",
+    "a": "Nee. Wie de hulp het meest nodig heeft, wordt het eerst geholpen.",
+    "en": "Do you need an appointment at A&E? No. The most urgent patient is helped first.",
+    "beeld": "🚑"
+   },
+   {
+    "v": "Waar kunt u zonder verwijsbrief een soa-test laten doen?",
+    "a": "Bij de GGD.",
+    "en": "Where can you get an STD test without referral? At the GGD (municipal health service).",
+    "beeld": "🧪"
+   },
+   {
+    "v": "Wie stuurt u naar een psycholoog?",
+    "a": "De huisarts. Zonder verwijsbrief betaalt de verzekering meestal niet.",
+    "en": "Who refers you to a psychologist? The GP. Without referral the insurance usually does not pay.",
+    "beeld": "🧠"
+   },
+   {
+    "v": "Wie helpt thuis in de eerste week na de bevalling?",
+    "a": "De kraamhulp. Die regelt u zelf, vóór de bevalling.",
+    "en": "Who helps at home in the first week after childbirth? Maternity care; you arrange it yourself before the birth.",
+    "beeld": "👩‍🍼"
+   },
+   {
+    "v": "Waar krijgt een zwangere vrouw haar baby als er problemen zijn?",
+    "a": "In het ziekenhuis, bij een specialist. Zonder problemen kan het ook thuis, met de verloskundige.",
+    "en": "Where does a pregnant woman give birth if there are problems? In hospital with a specialist; otherwise also at home with the midwife.",
+    "beeld": "🤰"
+   },
+   {
+    "v": "Wat is mantelzorg?",
+    "a": "Zorg door familie, vrienden of buren, zonder loon. Oude mensen wonen het liefst lang thuis. Pas later gaan zij naar een verzorgingshuis.",
+    "en": "What is 'mantelzorg'? Unpaid care by family, friends or neighbours. Elderly people stay at home as long as they can.",
+    "beeld": "🤲"
+   },
+   {
+    "v": "Waar vraagt u hulp aan voor het schoonmaken van uw huis als u oud of ziek bent?",
+    "a": "Bij de gemeente (Wmo). Eerst komt iemand van de gemeente bij u thuis voor een gesprek.",
+    "en": "Where do you apply for help at home when old or ill? At the municipality (Wmo); first someone visits you for a talk.",
+    "beeld": "🧹"
+   },
+   {
+    "v": "Kunt u kiezen voor een hoger eigen risico?",
+    "a": "Ja. Dan betaalt u minder premie per maand, maar meer als u zorg nodig hebt.",
+    "en": "Can you choose a higher 'eigen risico'? Yes: lower premium, but you pay more when you need care.",
+    "beeld": "💶"
+   },
+   {
+    "v": "Wanneer mag u een andere zorgverzekering kiezen?",
+    "a": "Elk jaar. U zegt de oude verzekering op vóór 1 januari en u kiest de nieuwe uiterlijk 31 januari.",
+    "en": "When may you switch health insurer? Every year: cancel before 1 January, choose the new one by 31 January.",
+    "beeld": "📅"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "Anna is 30 jaar. Zij krijgt een rekening van de tandarts.",
+    "v": "Wie betaalt?",
+    "o": [
+     "Anna zelf of haar tandartsverzekering.",
+     "De basisverzekering betaalt alles.",
+     "De gemeente."
+    ],
+    "w": "Voor volwassenen zit de tandarts niet in de basisverzekering.",
+    "beeld": "🦷"
+   },
+   {
+    "sit": "Tom heeft morgen om 9.00 uur een afspraak bij de huisarts. Hij kan niet.",
+    "v": "Wat doet hij?",
+    "o": [
+     "Vandaag bellen en zeggen dat hij niet komt.",
+     "Niets: hij gaat een andere keer.",
+     "Morgen om 10.00 uur bellen."
+    ],
+    "w": "Zeg een afspraak op tijd af, anders moet u soms betalen.",
+    "beeld": "📞"
+   },
+   {
+    "sit": "Mila krijgt over twee maanden een baby.",
+    "v": "Wat regelt zij nu al?",
+    "o": [
+     "De kraamhulp.",
+     "Het consultatiebureau.",
+     "De basisschool."
+    ],
+    "w": "De kraamhulp regelt u zelf, vóór de bevalling.",
+    "beeld": "👩‍🍼"
+   },
+   {
+    "sit": "De vader van Karim is oud. Karim doet elke week boodschappen voor zijn vader en maakt het huis schoon.",
+    "v": "Hoe heet deze hulp?",
+    "o": [
+     "Mantelzorg.",
+     "Thuiszorg.",
+     "Kraamhulp."
+    ],
+    "w": "Zorg door familie zonder loon heet mantelzorg.",
+    "beeld": "🤲"
+   }
+  ]
+ }
+}

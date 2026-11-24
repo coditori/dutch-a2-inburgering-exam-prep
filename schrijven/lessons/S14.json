@@ -1,0 +1,65 @@
+{
+ "id": "S14",
+ "trede": 2,
+ "titel": "Want en omdat",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Na want blijft het werkwoord op de tweede plaats: … want ik ben ziek.",
+   "en": "After want the verb stays in second position."
+  },
+  {
+   "nl": "Na omdat staat het werkwoord aan het einde: … omdat ik ziek ben.",
+   "en": "After omdat the verb goes to the end."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "gat",
+   "zin": "Ik kom niet, {want} ik ben ziek.",
+   "opties": [
+    "want",
+    "omdat"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "Ik kom niet, {omdat} ik ziek ben.",
+   "opties": [
+    "want",
+    "omdat"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik kan niet komen, omdat ik moet werken."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik blijf thuis, want mijn dochter is ziek."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik kom later, omdat de bus vertraging heeft."
+  },
+  {
+   "soort": "gat",
+   "zin": "Ik ben blij, {omdat} ik morgen vrij ben.",
+   "opties": [
+    "want",
+    "omdat"
+   ]
+  }
+ ]
+}

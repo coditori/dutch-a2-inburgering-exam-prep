@@ -1,0 +1,3 @@
+# Only needed to make new audio or to check speaking locally. The site itself needs none of this.
+piper-tts        # text -> speech (tts*.py)
+faster-whisper   # speech -> text (stt_server.py)

@@ -1,0 +1,182 @@
+[
+ {
+  "id": "U01",
+  "trede": 1,
+  "titel": "Woorden: de stad",
+  "soort": ""
+ },
+ {
+  "id": "U02",
+  "trede": 1,
+  "titel": "Woorden: man, vrouw en eten",
+  "soort": ""
+ },
+ {
+  "id": "U03",
+  "trede": 1,
+  "titel": "Woorden: het huis en de dag",
+  "soort": ""
+ },
+ {
+  "id": "U04",
+  "trede": 1,
+  "titel": "Van een tot twintig",
+  "soort": ""
+ },
+ {
+  "id": "U05",
+  "trede": 1,
+  "titel": "Van eenentwintig tot honderd",
+  "soort": ""
+ },
+ {
+  "id": "U06",
+  "trede": 1,
+  "titel": "Hoe laat is het?",
+  "soort": ""
+ },
+ {
+  "id": "U07",
+  "trede": 1,
+  "titel": "De dagen en de tijd",
+  "soort": ""
+ },
+ {
+  "id": "U08",
+  "trede": 1,
+  "titel": "Prijzen",
+  "soort": ""
+ },
+ {
+  "id": "U09",
+  "trede": 1,
+  "titel": "Nummers en adressen",
+  "soort": ""
+ },
+ {
+  "id": "U10",
+  "trede": 2,
+  "titel": "Zinnen: de stad en de mensen",
+  "soort": ""
+ },
+ {
+  "id": "U11",
+  "trede": 2,
+  "titel": "Zinnen: eten en het huis",
+  "soort": ""
+ },
+ {
+  "id": "U12",
+  "trede": 2,
+  "titel": "Zinnen: de dag en de winkel",
+  "soort": ""
+ },
+ {
+  "id": "U13",
+  "trede": 2,
+  "titel": "Zinnen met niet en geen",
+  "soort": ""
+ },
+ {
+  "id": "U14",
+  "trede": 2,
+  "titel": "Zinnen met een vraag",
+  "soort": ""
+ },
+ {
+  "id": "U15",
+  "trede": 2,
+  "titel": "Berichten: wat hoort u?",
+  "soort": ""
+ },
+ {
+  "id": "U16",
+  "trede": 2,
+  "titel": "Berichten van buren en collega's",
+  "soort": ""
+ },
+ {
+  "id": "U17",
+  "trede": 2,
+  "titel": "Twee zinnen: waar zijn ze?",
+  "soort": ""
+ },
+ {
+  "id": "U18",
+  "trede": 2,
+  "titel": "Twee zinnen: wie praat?",
+  "soort": ""
+ },
+ {
+  "id": "U19",
+  "trede": 2,
+  "titel": "Twee zinnen: wat willen ze?",
+  "soort": ""
+ },
+ {
+  "id": "U20",
+  "trede": 2,
+  "titel": "Twee zinnen: hoe laat en welke dag?",
+  "soort": ""
+ },
+ {
+  "id": "U21",
+  "trede": 2,
+  "titel": "Twee zinnen: niet, geen en maar",
+  "soort": ""
+ },
+ {
+  "id": "U22",
+  "trede": 3,
+  "titel": "Bij de huisarts en de apotheek",
+  "soort": ""
+ },
+ {
+  "id": "U23",
+  "trede": 3,
+  "titel": "Op het werk",
+  "soort": ""
+ },
+ {
+  "id": "U24",
+  "trede": 3,
+  "titel": "Op school",
+  "soort": ""
+ },
+ {
+  "id": "U25",
+  "trede": 3,
+  "titel": "In de winkel",
+  "soort": ""
+ },
+ {
+  "id": "U26",
+  "trede": 3,
+  "titel": "De gemeente en de woning",
+  "soort": ""
+ },
+ {
+  "id": "U27",
+  "trede": 3,
+  "titel": "De buren en het vervoer",
+  "soort": ""
+ },
+ {
+  "id": "U28",
+  "trede": 4,
+  "titel": "Examen: mensen veranderen van idee",
+  "soort": ""
+ },
+ {
+  "id": "U29",
+  "trede": 4,
+  "titel": "Examen: voicemail en nieuws",
+  "soort": ""
+ },
+ {
+  "id": "U30",
+  "trede": 4,
+  "titel": "Examen: een klein oefenexamen",
+  "soort": ""
+ }
+]

@@ -1,0 +1,184 @@
+{
+ "id": "S18",
+ "trede": 3,
+ "titel": "Informele e-mail aan een collega of vriend",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [
+  {
+   "nl": "informeel",
+   "en": "informal",
+   "beeld": "👕",
+   "zin": "Een e-mail aan een vriend is informeel.",
+   "thema": "schrijven",
+   "vormen": [
+    "informele"
+   ]
+  },
+  {
+   "nl": "hoi",
+   "en": "hi",
+   "beeld": "🙋",
+   "zin": "Hoi Lena, hoe gaat het?",
+   "thema": "groeten"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Een informele e-mail schrijft u aan een vriend, een collega of de buren.",
+   "en": "You write an informal e-mail to a friend, a colleague or the neighbours."
+  },
+  {
+   "nl": "De aanhef is Hallo of Hoi, met de voornaam. De afsluiting is Groetjes, met uw naam.",
+   "en": "Greeting: Hallo / Hoi + first name. Closing: Groetjes, + your name."
+  },
+  {
+   "nl": "U schrijft je en jij, niet u.",
+   "en": "You write je and jij, not u."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Een dienst ruilen",
+    "situatie": "U moet zaterdag werken, maar u wilt naar het feest van uw broer. U schrijft een e-mail aan uw collega Lena.",
+    "punten": [
+     {
+      "p": "Vraag of Lena met u wil ruilen.",
+      "model": "Wil jij zaterdag met mij ruilen?",
+      "val": [
+       "ruil"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u wilt ruilen. Bedenk het zelf.",
+      "model": "Mijn broer geeft zaterdag een feest.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|broer"
+      ]
+     },
+     {
+      "p": "Schrijf op welke dag u wel kunt werken.",
+      "model": "Ik kan wel op zondag werken.",
+      "val": [
+       "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Hallo Lena,",
+    "extra": "Alvast bedankt!",
+    "afsluiting": "Groetjes,"
+   },
+   "kader": true
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "De auto van de buurman",
+    "situatie": "U gaat zaterdag verhuizen. Uw buurman Tom heeft een grote auto. U wilt de auto lenen. U schrijft Tom een e-mail.",
+    "punten": [
+     {
+      "p": "Schrijf wat u wilt lenen.",
+      "model": "Mag ik zaterdag jouw auto lenen?",
+      "val": [
+       "auto"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u de auto wilt lenen.",
+      "model": "Ik ga verhuizen en ik heb een grote bank en een kast.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|verhuiz"
+      ]
+     },
+     {
+      "p": "Schrijf wanneer Tom de auto terugkrijgt. Bedenk zelf wanneer.",
+      "model": "Je krijgt de auto zaterdagavond terug.",
+      "val": [
+       "terug|maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Hallo Tom,",
+    "afsluiting": "Groetjes,"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Een feest voor uw verjaardag",
+    "situatie": "U geeft een feest voor uw verjaardag. U schrijft een e-mail aan uw vriendin Noor.",
+    "punten": [
+     {
+      "p": "Schrijf wanneer het feest is.",
+      "model": "Ik geef op zaterdag 8 juni een feest voor mijn verjaardag.",
+      "val": [
+       "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     },
+     {
+      "p": "Schrijf waar het feest is.",
+      "model": "Het feest is bij mij thuis.",
+      "val": [
+       "thuis|bij |in |op "
+      ]
+     },
+     {
+      "p": "Vraag of Noor iets wil meenemen.",
+      "model": "Wil jij iets te drinken meenemen?",
+      "val": [
+       "meenemen|neem|mee"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Hoi Noor,",
+    "afsluiting": "Groetjes,"
+   },
+   "stappen": [
+    "schrijf"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Kun jij zaterdag voor mij werken?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik kan wel op zondag werken."
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lezen – de ladder</title>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+<main>
+  <div class="kaart" id="vandaag"></div>
+  <div id="ladder"></div>
+  <h2 data-en="trainers">Trainers</h2>
+  <div class="tegels" id="trainers"></div>
+  <h2 data-en="mock exams: 25 questions, 65 minutes">Toetsen · 25 vragen, 65 minuten</h2>
+  <div class="tegels" id="toetsen"></div>
+  <p class="zacht klein" data-en="Ready when: 20 of 25 or better on two tests here and on two DUO practice exams.">Klaar voor het examen: 20 van de 25 of meer op twee toetsen hier én op twee oefenexamens van DUO.</p>
+  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a></p>
+  <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, English, progress">⚙ Instellingen: alle lessen open, Engels, voortgang</a></p>
+</main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="lezen.js"></script>
+<script>
+(async () => {
+  const { el } = App;
+  App.kop('Lezen', '../index.html');
+  const TREDE = { 1: 'Trede 1 · één zin', 2: 'Trede 2 · korte teksten', 3: 'Trede 3 · brief en e-mail', 4: 'Trede 4 · examen' };
+  const TRAINERS = [
+    { id: 'vraagwoorden', titel: 'Vraagwoorden', uitleg: 'Wanneer → een tijd', na: 'L10' },
+    { id: 'snelzoeken', titel: 'Snel zoeken', uitleg: 'Vind de prijs in 20 seconden', na: 'L24' },
+    { id: 'valwoorden', titel: 'Valwoorden', uitleg: 'niet · alleen · behalve', na: 'L32' },
+  ];
+  const [lessen, toetsen] = await Promise.all([Lezen.json('lessons/index.json'), Lezen.json('toets/index.json').catch(() => [])]);
+  const P = Lezen.P;
+
+  const eerste = lessen.find((l, i) => !Lezen.gehaald(l.id) && Lezen.isOpen(lessen, i));
+  const tel = SRS.tel();
+  const klaar = lessen.filter((l) => Lezen.gehaald(l.id)).length;
+  document.getElementById('vandaag').append(
+    el('h3', { en: 'today' }, 'Vandaag'),
+    el('p', {}, `${klaar} van ${lessen.length} lessen gehaald.`),
+    el('div', { class: 'knoppen' },
+      el('a', { class: 'knop' + (tel.nu ? '' : ' licht'), href: 'herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`),
+      eerste ? el('a', { class: 'knop', href: `les.html?les=${eerste.id}`, en: 'next lesson' }, `Les ${eerste.id}: ${eerste.titel}`) : null));
+
+  const ladder = document.getElementById('ladder');
+  for (const t of [1, 2, 3, 4]) {
+    ladder.append(el('h2', {}, TREDE[t]));
+    ladder.append(el('div', { class: 'tegels' }, lessen.map((l, i) => {
+      if (l.trede !== t) return null;
+      const r = P.lessen[l.id];
+      const open = Lezen.isOpen(lessen, i);
+      const cls = 'tegel' + (Lezen.gehaald(l.id) ? ' klaar' : '') + (!open ? ' slot' : '') + (eerste && eerste.id === l.id ? ' nu' : '');
+      return el('a', { class: cls, href: `les.html?les=${l.id}` },
+        el('b', {}, `${l.id} ${Lezen.gehaald(l.id) ? '✔' : open ? '' : '🔒'}`), l.titel,
+        r ? el('div', { class: 'klein zacht' }, `${r.beste} / ${r.totaal}`) : null);
+    })));
+  }
+
+  document.getElementById('trainers').append(...TRAINERS.map((t) => {
+    const r = P.trainers[t.id];
+    return el('a', { class: 'tegel' + (Lezen.naLes(t.na) ? '' : ' slot') + (r ? ' klaar' : ''), href: `trainers/${t.id}.html` },
+      el('b', {}, t.titel + (Lezen.naLes(t.na) ? '' : ' 🔒')), t.uitleg,
+      el('div', { class: 'klein zacht' }, r ? `beste: ${r.beste} / ${r.totaal}` : `na les ${t.na}`));
+  }));
+
+  const laatste = lessen.length ? lessen[lessen.length - 1].id : null;
+  document.getElementById('toetsen').append(...toetsen.map((t) => {
+    const r = P.toets[t.id] || [];
+    const beste = r.length ? Math.max(...r.map((x) => x.score)) : null;
+    return el('a', { class: 'tegel' + (Lezen.naLes(laatste) ? '' : ' slot') + (beste >= 20 ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, t.titel + (Lezen.naLes(laatste) ? '' : ' 🔒')), `${t.vragen} vragen`,
+      el('div', { class: 'klein zacht' }, r.length ? `beste: ${beste} / ${t.vragen} · ${r.length}× gedaan` : `na les ${laatste}`));
+  }));
+})();
+</script>
+</body>
+</html>

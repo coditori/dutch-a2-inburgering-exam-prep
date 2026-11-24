@@ -1,0 +1,183 @@
+{
+ "trede": 2,
+ "na": "S07",
+ "namen": [],
+ "formulieren": [
+  {
+   "kop": "Formulier: cursus Nederlands",
+   "velden": [
+    {
+     "label": "Voornaam",
+     "soort": "voornaam"
+    },
+    {
+     "label": "Achternaam",
+     "soort": "achternaam"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "Ik kies deze groep:",
+     "soort": "keuze",
+     "opties": [
+      "dinsdagochtend",
+      "donderdagmiddag",
+      "zaterdagochtend"
+     ]
+    }
+   ]
+  },
+  {
+   "kop": "Formulier van de huisarts",
+   "velden": [
+    {
+     "label": "Achternaam",
+     "soort": "achternaam"
+    },
+    {
+     "label": "Voornaam",
+     "soort": "voornaam"
+    },
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    }
+   ]
+  },
+  {
+   "kop": "Formulier van de bibliotheek",
+   "velden": [
+    {
+     "label": "Voornaam en achternaam",
+     "soort": "naam"
+    },
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email"
+    },
+    {
+     "label": "Ik wil boeken lenen voor:",
+     "soort": "keuze",
+     "opties": [
+      "een jaar",
+      "zes maanden"
+     ]
+    }
+   ]
+  },
+  {
+   "kop": "Formulier van het zwembad",
+   "velden": [
+    {
+     "label": "Voornaam en achternaam",
+     "soort": "naam"
+    },
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email"
+    },
+    {
+     "label": "Ik kom zwemmen op:",
+     "soort": "keuze",
+     "opties": [
+      "maandagavond",
+      "woensdagavond",
+      "zondagochtend"
+     ]
+    },
+    {
+     "label": "Datum van vandaag",
+     "soort": "datum"
+    }
+   ]
+  },
+  {
+   "kop": "Formulier van de school van uw kind",
+   "velden": [
+    {
+     "label": "Uw voornaam en achternaam",
+     "soort": "naam"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "Mijn kind komt naar school:",
+     "soort": "keuze",
+     "opties": [
+      "met de fiets",
+      "met de bus",
+      "met de auto"
+     ]
+    }
+   ]
+  }
+ ]
+}

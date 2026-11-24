@@ -1,0 +1,162 @@
+{
+ "trede": 1,
+ "na": "L10",
+ "soorten": [
+  {
+   "id": "tijd",
+   "beeld": "🕒",
+   "naam": "een tijd of een dag"
+  },
+  {
+   "id": "plaats",
+   "beeld": "📍",
+   "naam": "een stad, een straat of een huis"
+  },
+  {
+   "id": "persoon",
+   "beeld": "🧑",
+   "naam": "een man, een vrouw of een kind"
+  },
+  {
+   "id": "reden",
+   "beeld": "💡",
+   "naam": "omdat …"
+  },
+  {
+   "id": "getal",
+   "beeld": "🔢",
+   "naam": "een nummer of een prijs"
+  },
+  {
+   "id": "hoe",
+   "beeld": "🚲",
+   "naam": "met de bus, goed, snel"
+  }
+ ],
+ "items": [
+  {
+   "v": "Wanneer is de les?",
+   "soort": "tijd"
+  },
+  {
+   "v": "Hoe laat komt de bus?",
+   "soort": "tijd"
+  },
+  {
+   "v": "Wanneer is de winkel open?",
+   "soort": "tijd"
+  },
+  {
+   "v": "Op welke dag is de markt?",
+   "soort": "tijd"
+  },
+  {
+   "v": "Hoe laat is de afspraak?",
+   "soort": "tijd"
+  },
+  {
+   "v": "Wanneer heeft Tom vakantie?",
+   "soort": "tijd"
+  },
+  {
+   "v": "Waar woont Anna?",
+   "soort": "plaats"
+  },
+  {
+   "v": "Waar is de halte?",
+   "soort": "plaats"
+  },
+  {
+   "v": "Naar welke stad gaat de trein?",
+   "soort": "plaats"
+  },
+  {
+   "v": "Waar koopt u een kaartje?",
+   "soort": "plaats"
+  },
+  {
+   "v": "Uit welk land komt meneer Bakker?",
+   "soort": "plaats"
+  },
+  {
+   "v": "Waar is het feest?",
+   "soort": "plaats"
+  },
+  {
+   "v": "Wie is er ziek?",
+   "soort": "persoon"
+  },
+  {
+   "v": "Wie betaalt het eten?",
+   "soort": "persoon"
+  },
+  {
+   "v": "Van wie is de fiets?",
+   "soort": "persoon"
+  },
+  {
+   "v": "Met wie gaat Sara naar de markt?",
+   "soort": "persoon"
+  },
+  {
+   "v": "Wie heeft het boek?",
+   "soort": "persoon"
+  },
+  {
+   "v": "Voor wie is het kaartje?",
+   "soort": "persoon"
+  },
+  {
+   "v": "Waarom is de winkel dicht?",
+   "soort": "reden"
+  },
+  {
+   "v": "Waarom komt Tom niet naar het werk?",
+   "soort": "reden"
+  },
+  {
+   "v": "Waarom neemt Anna de bus?",
+   "soort": "reden"
+  },
+  {
+   "v": "Waarom is het kind blij?",
+   "soort": "reden"
+  },
+  {
+   "v": "Hoeveel betaalt u voor het brood?",
+   "soort": "getal"
+  },
+  {
+   "v": "Wat is de prijs van de jas?",
+   "soort": "getal"
+  },
+  {
+   "v": "Hoeveel kinderen heeft de vrouw?",
+   "soort": "getal"
+  },
+  {
+   "v": "Op welk nummer woont mevrouw Jansen?",
+   "soort": "getal"
+  },
+  {
+   "v": "Hoeveel dagen werkt de man?",
+   "soort": "getal"
+  },
+  {
+   "v": "Hoe gaat Sara naar school?",
+   "soort": "hoe"
+  },
+  {
+   "v": "Hoe is het weer vandaag?",
+   "soort": "hoe"
+  },
+  {
+   "v": "Hoe komt u naar het station?",
+   "soort": "hoe"
+  },
+  {
+   "v": "Hoe is de koffie?",
+   "soort": "hoe"
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spreken – de 7 patronen</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="../spreken/spreken.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="../spreken/spreken.js"></script>
+<script>
+// De 7 zinspatronen + de formule van 4 zinnen, met geluid. Inhoud: patronen.json
+(async () => {
+  const { el } = App;
+  App.kop('De 7 patronen', 'index.html');
+  await Spraak.map('audio/');
+  const data = await Spreken.json('patronen.json');
+  const pagina = document.getElementById('pagina');
+  pagina.append(el('p', { class: 'zacht', en: data.uitleg_en }, data.uitleg));
+  const blok = (p) => el('div', { class: 'kaart' },
+    el('div', { class: 'patroon' }, p.patroon),
+    p.uitleg ? el('p', { class: 'zacht klein', en: p.uitleg_en || '' }, p.uitleg) : null,
+    el('table', { class: 'zinnen' }, p.zinnen.map((z) => {
+      const en = el('span', { class: 'zacht klein', hidden: true, style: 'font-style:italic' }, ' ' + z.en);
+      return el('tr', {}, el('td', {}, App.woorden(z.nl), en),
+        el('td', { style: 'white-space:nowrap;text-align:right' },
+          el('button', { class: 'rond', title: 'luister', onclick: () => Spreken.speel(z.nl) }, '🔊'), ' ',
+          el('button', { class: 'rond', title: 'langzaam', onclick: () => Spreken.speel(z.nl, 0.75) }, '🐢'), ' ',
+          el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗')));
+    })),
+    el('div', { class: 'knoppen' }, el('button', { class: 'knop licht klein', en: 'play all', onclick: () => Spreken.speel(p.zinnen.map((z) => z.nl)) }, '▶ Alles')));
+  pagina.append(...data.patronen.map(blok));
+  pagina.append(el('h2', { en: 'the 4-sentence formula' }, 'De formule van 4 zinnen'), el('p', { class: 'zacht', en: data.formule_en }, data.formule_uitleg));
+  pagina.append(...data.formules.map((f) => blok({ patroon: f.titel, zinnen: f.zinnen })));
+  pagina.append(el('h2', { en: 'ready reasons' }, 'Redenen die altijd passen'), el('div', { class: 'kaart' }, el('p', {}, App.woorden(data.redenen))));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+{
+ "id": "L01",
+ "trede": 1,
+ "titel": "De winkel en de bus",
+ "soort": "plaatje",
+ "woorden": [
+  {
+   "nl": "de winkel",
+   "en": "shop",
+   "beeld": "🏪",
+   "zin": "De winkel is open.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "het huis",
+   "en": "house",
+   "beeld": "🏠",
+   "zin": "Het huis is oud.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de bus",
+   "en": "bus",
+   "beeld": "🚌",
+   "zin": "De bus is te laat.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de fiets",
+   "en": "bicycle",
+   "beeld": "🚲",
+   "zin": "Mijn fiets is nieuw.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de auto",
+   "en": "car",
+   "beeld": "🚗",
+   "zin": "De auto is duur.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de trein",
+   "en": "train",
+   "beeld": "🚆",
+   "zin": "De trein is snel.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "het station",
+   "en": "station",
+   "beeld": "🚉",
+   "zin": "Het station is groot.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de supermarkt",
+   "en": "supermarket",
+   "beeld": "🛒",
+   "zin": "De supermarkt is dicht.",
+   "thema": "winkelen"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "De bus is groot."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🚌",
+      "🚲",
+      "🏠"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Ik woon in een klein huis."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🏠",
+      "🏪",
+      "🚆"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Zij gaat met de fiets naar de winkel."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🚲🏪",
+      "🚗🏪",
+      "🚲🚉"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De trein staat op het station."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🚆🚉",
+      "🚌🚉",
+      "🚆🏠"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Wij kopen eten in de supermarkt."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🛒",
+      "🚉",
+      "🚗"
+     ]
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De winkel is {open}.",
+  "Ik woon in een klein {huis}.",
+  "De {auto} is duur."
+ ]
+}

@@ -1,0 +1,823 @@
+# WOORDEN - gedeelde lijst voor alle 5 examens (0 -> A2)
+# Formaat:  trede | nederlands | engels | thema | (extra vormen, als de vorm niet volgens de regel gaat)
+# trede 0 = ken je al   1 = bouwstenen   2 = dagelijks leven   3 = examenthema's   4 = examentaal
+# Werkwoorden: zie werkwoorden-a2.tsv (466 stuks, trede 1 = 46 eerst leren)
+# Zelfstandige naamwoorden altijd MET de/het leren.
+# Dit is de startlijst (ca. 400). Doel bij A2: ca. 1000-1200 woorden herkennen.
+
+# ---------- TREDE 0: ken je al (herhalen) ----------
+0 | hallo | hello | groeten
+0 | goedemorgen | good morning | groeten
+0 | goedemiddag | good afternoon | groeten
+0 | goedenavond | good evening | groeten
+0 | dag / doei | bye | groeten
+0 | tot ziens | see you | groeten
+0 | dank u wel / dank je wel | thank you (formal / informal) | groeten
+0 | alstublieft / alsjeblieft | please / here you are | groeten
+0 | sorry | sorry | groeten
+0 | ja / nee | yes / no | groeten
+0 | het uur | hour | klok
+0 | de minuut | minute | klok
+0 | half | half (half drie = 2:30!) | klok
+0 | kwart voor / kwart over | quarter to / quarter past | klok
+0 | hoe laat is het? | what time is it? | klok
+
+# ---------- TREDE 1: bouwstenen (deze woorden staan in ELKE tekst) ----------
+1 | ik | I | persoon
+1 | jij / je | you (informal) | persoon
+1 | u | you (formal - het examen zegt altijd "u") | persoon
+1 | hij | he | persoon
+1 | zij / ze | she / they | persoon
+1 | het | it | persoon
+1 | wij / we | we | persoon
+1 | jullie | you (plural) | persoon
+1 | mijn | my | persoon
+1 | jouw / uw | your | persoon
+1 | zijn / haar | his / her | persoon
+1 | onze / ons | our | persoon
+1 | hun | their | persoon
+1 | de / het | the | lidwoord
+1 | een | a / an | lidwoord
+1 | dit / dat | this / that (het-woorden) | lidwoord
+1 | deze / die | this / that (de-woorden) | lidwoord
+1 | niet | not | ontkenning
+1 | geen | no / not a | ontkenning
+1 | en | and | verbinden
+1 | of | or | verbinden
+1 | maar | but | verbinden
+1 | want | because (gewone woordvolgorde) | verbinden
+1 | omdat | because (werkwoord naar het einde) | verbinden
+1 | dus | so | verbinden
+1 | daarom | that is why | verbinden
+1 | als | if / when | verbinden
+1 | ook | also | verbinden
+1 | wie | who | vraagwoord
+1 | wat | what | vraagwoord
+1 | waar | where | vraagwoord
+1 | wanneer | when | vraagwoord
+1 | waarom | why | vraagwoord
+1 | hoe | how | vraagwoord
+1 | welke / welk | which | vraagwoord
+1 | hoeveel | how much / how many | vraagwoord
+1 | hoe vaak | how often | vraagwoord
+1 | hoe lang | how long | vraagwoord
+1 | in | in | voorzetsel
+1 | op | on | voorzetsel
+1 | naar | to (richting) | voorzetsel
+1 | van | of / from | voorzetsel
+1 | met | with | voorzetsel
+1 | voor | for / before | voorzetsel
+1 | na | after | voorzetsel
+1 | bij | at / near | voorzetsel
+1 | uit | out of / from | voorzetsel
+1 | om | at (tijd: om drie uur) | voorzetsel
+1 | tot | until | voorzetsel
+1 | over | about / over | voorzetsel
+1 | tussen | between | voorzetsel
+1 | naast | next to | voorzetsel
+1 | zonder | without | voorzetsel
+1 | hier / daar | here / there | plaats
+1 | er | there (er is = there is) | plaats
+1 | nu | now | tijd
+1 | vandaag | today | tijd
+1 | morgen | tomorrow | tijd
+1 | gisteren | yesterday | tijd
+1 | altijd | always | tijd
+1 | vaak | often | tijd
+1 | soms | sometimes | tijd
+1 | nooit | never | tijd
+1 | meestal | usually | tijd
+1 | al | already | tijd
+1 | nog | still / yet | tijd
+1 | straks | later (today) | tijd
+1 | vroeg / laat | early / late | tijd
+1 | heel / erg | very | hoeveel
+1 | veel / weinig | much, many / little, few | hoeveel
+1 | meer / minder | more / less | hoeveel
+1 | alle / alles | all / everything | hoeveel
+1 | iets / niets | something / nothing | hoeveel
+1 | iemand / niemand | someone / nobody | hoeveel
+1 | een beetje | a little | hoeveel
+1 | te | too (te duur = too expensive) | hoeveel
+1 | graag | gladly (ik fiets graag = I like cycling) | mening
+1 | liever / het liefst | rather / most of all | mening
+1 | goed / slecht | good / bad | mening
+1 | leuk | nice, fun | mening
+1 | mooi | beautiful | mening
+1 | lekker | tasty / nice | mening
+1 | saai | boring | mening
+1 | makkelijk / moeilijk | easy / difficult | mening
+1 | belangrijk | important | mening
+1 | groot / klein | big / small | eigenschap
+1 | nieuw / oud | new / old | eigenschap
+1 | jong | young | eigenschap
+1 | duur / goedkoop | expensive / cheap | eigenschap
+1 | warm / koud | warm / cold | eigenschap
+1 | open / dicht | open / closed | eigenschap
+1 | druk / rustig | busy / quiet | eigenschap
+1 | snel / langzaam | fast / slow | eigenschap
+1 | ziek / gezond | ill / healthy | eigenschap
+1 | moe | tired | eigenschap
+1 | blij | happy | eigenschap
+1 | klaar | ready / finished | eigenschap
+1 | vrij | free / off (work) | eigenschap
+1 | gratis | free of charge | eigenschap
+1 | een, twee, drie ... twintig | 1-20 | getal
+1 | dertig, veertig, vijftig, honderd, duizend | 30, 40, 50, 100, 1000 | getal
+1 | eenentwintig | 21 (one-and-twenty: eerst de 1!) | getal
+1 | eerste, tweede, derde | first, second, third | getal
+
+# ---------- TREDE 2: dagelijks leven ----------
+2 | de dag | day | tijd
+2 | de week | week | tijd
+2 | de maand | month | tijd
+2 | het jaar | year | tijd
+2 | het weekend | weekend | tijd
+2 | de ochtend / 's ochtends | morning / in the morning | tijd
+2 | de middag / 's middags | afternoon / in the afternoon | tijd
+2 | de avond / 's avonds | evening / in the evening | tijd
+2 | de nacht / 's nachts | night / at night | tijd
+2 | maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag, zondag | Monday - Sunday | tijd
+2 | januari ... december | months | tijd
+2 | de lente, de zomer, de herfst, de winter | spring, summer, autumn, winter | tijd
+2 | elke / elk | every (elke dag, elk jaar) | tijd
+2 | volgende / vorige | next / last (volgende week) | tijd | vorig volgend
+2 | de datum | date | tijd
+2 | de afspraak | appointment | tijd
+2 | de man | man / husband | familie
+2 | de vrouw | woman / wife | familie
+2 | het kind / de kinderen | child / children | familie | kinderen
+2 | de vader / de moeder | father / mother | familie
+2 | de ouders | parents | familie
+2 | de zoon / de dochter | son / daughter | familie
+2 | de broer / de zus | brother / sister | familie
+2 | de opa / de oma | grandfather / grandmother | familie
+2 | de vriend / de vriendin | friend (m / f) | familie
+2 | de buurman / de buurvrouw | neighbour (m / f) | familie
+2 | de buren | neighbours | familie
+2 | de familie | family (relatives) | familie
+2 | het gezin | family (household) | familie
+2 | de mensen | people | familie | mens
+2 | de naam | name | gegevens
+2 | de voornaam / de achternaam | first name / surname | gegevens
+2 | het adres | address | gegevens
+2 | de straat | street | gegevens
+2 | het huisnummer | house number | gegevens
+2 | de postcode | postal code | gegevens
+2 | de woonplaats | town of residence | gegevens
+2 | de geboortedatum | date of birth | gegevens
+2 | het telefoonnummer | phone number | gegevens
+2 | het land | country | gegevens
+2 | de handtekening | signature | gegevens
+2 | het huis | house | wonen
+2 | de woning | home, dwelling | wonen
+2 | de kamer | room | wonen
+2 | de keuken | kitchen | wonen
+2 | de badkamer | bathroom | wonen
+2 | de slaapkamer | bedroom | wonen
+2 | de woonkamer | living room | wonen
+2 | de tuin | garden | wonen
+2 | de deur | door | wonen
+2 | het raam | window | wonen
+2 | de tafel / de stoel | table / chair | wonen
+2 | het bed | bed | wonen
+2 | de huur | rent | wonen
+2 | de buurt / de wijk | neighbourhood | wonen
+2 | het eten | food | eten
+2 | het brood | bread | eten
+2 | de kaas | cheese | eten
+2 | de melk | milk | eten
+2 | het water | water | eten
+2 | de koffie / de thee | coffee / tea | eten
+2 | de groente | vegetables | eten
+2 | het fruit | fruit | eten
+2 | het vlees / de vis | meat / fish | eten
+2 | de rijst | rice | eten
+2 | het ei | egg | eten | eieren
+2 | het ontbijt | breakfast | eten
+2 | de lunch | lunch | eten
+2 | het avondeten | dinner | eten
+2 | de winkel | shop | winkelen
+2 | de supermarkt | supermarket | winkelen
+2 | de markt | market | winkelen
+2 | de boodschappen | groceries (boodschappen doen) | winkelen
+2 | het geld | money | winkelen
+2 | de prijs | price | winkelen
+2 | de korting | discount | winkelen
+2 | de aanbieding | special offer | winkelen
+2 | de bon | receipt | winkelen
+2 | de kassa | checkout | winkelen
+2 | de pinpas | debit card | winkelen
+2 | de kleding / de kleren | clothes | winkelen | kleren
+2 | de schoenen | shoes | winkelen
+2 | de jas | coat | winkelen
+2 | de maat | size | winkelen
+2 | de fiets | bicycle | vervoer
+2 | de auto | car | vervoer
+2 | de bus | bus | vervoer
+2 | de trein | train | vervoer
+2 | de tram | tram | vervoer
+2 | het station | station | vervoer
+2 | de halte | stop | vervoer
+2 | het kaartje | ticket | vervoer
+2 | de vertraging | delay | vervoer
+2 | het perron / het spoor | platform / track | vervoer
+2 | links / rechts | left / right | vervoer
+2 | rechtdoor | straight ahead | vervoer
+2 | ver / dichtbij | far / nearby | vervoer
+2 | de stad | city | plaats
+2 | het dorp | village | plaats
+2 | het centrum | centre | plaats
+2 | het park | park | plaats
+2 | het strand | beach | plaats
+2 | thuis | at home | plaats
+2 | buiten / binnen | outside / inside | plaats
+2 | het weer | weather | weer
+2 | de zon | sun | weer
+2 | de regen | rain (het regent = it rains) | weer
+2 | de wind | wind | weer
+2 | de sneeuw | snow | weer
+2 | de sport | sport | vrije tijd
+2 | de muziek | music | vrije tijd
+2 | de film | film | vrije tijd
+2 | het boek | book | vrije tijd
+2 | de televisie / de tv | television | vrije tijd
+2 | het nieuws | news | vrije tijd
+2 | de vakantie | holiday | vrije tijd
+2 | het feest | party | vrije tijd
+2 | de verjaardag | birthday | vrije tijd
+2 | het cadeau | present | vrije tijd
+2 | de vrije tijd | free time | vrije tijd
+2 | de telefoon / de mobiel | phone / mobile | vrije tijd
+2 | de computer | computer | vrije tijd
+2 | het internet | internet | vrije tijd
+2 | drinken | to drink | werkwoord (extra) | drink drinkt dronk dronken gedronken
+2 | fietsen | to cycle | werkwoord (extra) | fiets fietst fietste fietsten gefietst
+2 | invullen | to fill in (ik vul in) | werkwoord (extra) | vul vult vulde vulden ingevuld invul invult
+2 | afspreken | to make an appointment (ik spreek af) | werkwoord (extra) | spreek spreekt sprak spraken af afgesproken afspreek afspreekt
+2 | nodig hebben | to need | werkwoord (extra)
+
+# ---------- TREDE 3: examenthema's (werk, gezondheid, school, instanties) ----------
+3 | het werk | work | werk
+3 | de baan | job | werk
+3 | de baas / de chef | boss | werk
+3 | de collega | colleague | werk
+3 | het bedrijf | company | werk
+3 | het kantoor | office | werk
+3 | de fabriek | factory | werk
+3 | de dienst | shift / service | werk
+3 | de pauze | break | werk
+3 | het loon / het salaris | wage / salary | werk
+3 | het contract | contract | werk
+3 | de sollicitatie | job application | werk
+3 | solliciteren | to apply for a job | werk | solliciteer solliciteert solliciteerde gesolliciteerd
+3 | de vacature | job opening | werk
+3 | de ervaring | experience | werk
+3 | het diploma | diploma | werk
+3 | de werkgever / de werknemer | employer / employee | werk
+3 | het uitzendbureau | temp agency | werk
+3 | werkloos | unemployed | werk
+3 | de vergadering | meeting | werk
+3 | ruilen | to swap | werk | ruil ruilt ruilde geruild
+3 | vrij nemen / vrij zijn | to take time off / be off | werk
+3 | de dokter / de huisarts | doctor / GP | gezondheid
+3 | het ziekenhuis | hospital | gezondheid
+3 | de tandarts | dentist | gezondheid
+3 | de apotheek | pharmacy | gezondheid
+3 | het medicijn | medicine | gezondheid
+3 | het recept | prescription / recipe | gezondheid
+3 | de pijn | pain | gezondheid
+3 | de koorts | fever | gezondheid
+3 | het hoofd, de buik, de rug, de keel | head, belly, back, throat | gezondheid
+3 | de hoofdpijn | headache | gezondheid
+3 | verkouden | having a cold | gezondheid
+3 | de griep | flu | gezondheid
+3 | het spreekuur | consultation hour | gezondheid
+3 | de verwijzing | referral | gezondheid
+3 | de zorgverzekering | health insurance | gezondheid
+3 | het eigen risico | deductible (own risk) | gezondheid
+3 | de school | school | onderwijs
+3 | de basisschool | primary school | onderwijs
+3 | de les / de cursus | lesson / course | onderwijs
+3 | de docent / de juf / de meester | teacher | onderwijs
+3 | de leerling / de cursist | pupil / course participant | onderwijs
+3 | het huiswerk | homework | onderwijs
+3 | de opleiding | education, training | onderwijs
+3 | het examen / de toets | exam / test | onderwijs
+3 | het rapport | school report | onderwijs
+3 | de ouderavond | parents' evening | onderwijs
+3 | de kinderopvang | childcare | onderwijs
+3 | de gemeente | municipality | instanties
+3 | het gemeentehuis | town hall | instanties
+3 | de overheid | government | instanties
+3 | de belasting | tax | instanties
+3 | de Belastingdienst | tax office | instanties
+3 | de toeslag | allowance (huurtoeslag, zorgtoeslag) | instanties
+3 | de uitkering | benefit | instanties
+3 | de verzekering | insurance | instanties
+3 | het formulier | form | instanties
+3 | de brief | letter | instanties
+3 | de rekening | bill / account | instanties
+3 | de bank | bank / sofa | instanties
+3 | het paspoort | passport | instanties
+3 | de verblijfsvergunning | residence permit | instanties
+3 | het rijbewijs | driving licence | instanties
+3 | de politie | police | instanties
+3 | de brandweer | fire brigade | instanties
+3 | de boete | fine | instanties
+3 | de wet / de regel | law / rule | instanties
+3 | het afval | waste | wonen
+3 | de container | waste container | wonen
+3 | de verhuurder / de huurder | landlord / tenant | wonen
+3 | de woningcorporatie | housing association | wonen
+3 | kapot | broken | wonen
+3 | repareren | to repair | wonen | repareer repareert repareerde gerepareerd
+3 | de lekkage | leak | wonen
+3 | de verwarming | heating | wonen
+3 | het lawaai / de overlast | noise / nuisance | wonen
+3 | de klacht | complaint | wonen
+3 | het probleem | problem | algemeen
+3 | de vraag / het antwoord | question / answer | algemeen
+3 | de informatie | information | algemeen
+3 | de mogelijkheid | possibility | algemeen
+3 | de reden | reason | algemeen
+3 | het voorbeeld | example | algemeen
+3 | het verschil | difference | algemeen
+3 | de kosten | costs | algemeen
+3 | de openingstijden | opening hours | algemeen
+3 | de uitnodiging | invitation | algemeen
+3 | de bibliotheek | library | algemeen
+3 | het buurthuis | community centre | algemeen
+3 | de vrijwilliger | volunteer | algemeen
+3 | de vereniging | club, association | algemeen
+3 | lid worden | to become a member | algemeen
+
+# ---------- TREDE 4: examentaal (woorden uit de VRAGEN en opdrachten) ----------
+4 | Kies het goede antwoord. | Choose the right answer. | opdracht
+4 | Lees de tekst. | Read the text. | opdracht
+4 | Luister naar het gesprek. | Listen to the conversation. | opdracht
+4 | Kijk naar het filmpje. | Watch the short video. | opdracht
+4 | Vertel ook waarom. | Also tell why. (spreken: ALTIJD twee antwoorden!) | opdracht
+4 | Vertel wat u ziet. | Tell what you see. | opdracht
+4 | Schrijf in hele zinnen. | Write in whole sentences. | opdracht
+4 | Schrijf minimaal drie zinnen. | Write at least three sentences. | opdracht
+4 | Vul het formulier in. | Fill in the form. | opdracht
+4 | Bedenk zelf ... | Make up yourself ... | opdracht
+4 | Stel een nieuwe datum voor. | Propose a new date. | opdracht
+4 | Wat is het doel van de tekst? | What is the purpose of the text? | lezen
+4 | Wat moet ... doen? | What does ... have to do? | lezen
+4 | Wat kan ... doen? | What can ... do? | lezen
+4 | Wat betekent ...? | What does ... mean? | lezen
+4 | Waarom schrijft ... deze brief? | Why does ... write this letter? | lezen
+4 | Voor wie is deze tekst? | Who is this text for? | lezen
+4 | volgens | according to | lezen
+4 | bijvoorbeeld | for example | lezen
+4 | behalve | except | lezen
+4 | alleen | only / alone | lezen
+4 | wel / niet | does / doesn't (contrast) | lezen
+4 | vóór / uiterlijk | before / at the latest | lezen
+4 | minstens / maximaal | at least / at most | lezen
+4 | verplicht | mandatory | lezen
+4 | mogelijk / onmogelijk | possible / impossible | lezen
+4 | aanmelden / afmelden | to register / to cancel, sign off | lezen | meld meldt meldde aangemeld afgemeld aanmeldt afmeldt aan af
+4 | inleveren | to hand in | lezen | lever levert leverde ingeleverd inlevert
+4 | meenemen | to bring along | lezen
+4 | de mededeling | notice | lezen
+4 | het bericht | message | lezen
+4 | de advertentie | advertisement | lezen
+4 | de folder | leaflet | lezen
+4 | Beste meneer / Beste mevrouw ... | Dear Mr / Mrs ... (formeel) | schrijven
+4 | Hallo ... / Hoi ... | Hi ... (informeel) | schrijven
+4 | Met vriendelijke groet, | Kind regards, (formeel) | schrijven
+4 | Groetjes, | Greetings, (informeel) | schrijven
+4 | Ik schrijf u omdat ... | I am writing to you because ... | schrijven
+4 | Ik kan niet komen. | I cannot come. | schrijven
+4 | Ik wil de afspraak verzetten. | I want to reschedule the appointment. | schrijven
+4 | Kan ik ... ? | Can I ... ? | schrijven
+4 | Alvast bedankt. | Thanks in advance. | schrijven
+4 | Ik vind ... leuk. | I like ... | spreken
+4 | Ik hou (niet) van ... | I (don't) like ... | spreken
+4 | Ik ga het liefst ... | I prefer to go ... | spreken
+4 | Ik denk dat ... | I think that ... (werkwoord naar het einde) | spreken
+4 | Ik zie een man / een vrouw. | I see a man / a woman. | spreken
+4 | Op het plaatje zie ik ... | In the picture I see ... | spreken
+4 | Kunt u dat herhalen? | Can you repeat that? | spreken
+
+# ---------- UIT DE LESSEN (automatisch toegevoegd door tools/bouw.py) ----------
+1 | de baby | baby | familie | baby's
+1 | de euro | euro | winkelen | euro's
+1 | het nummer | number | gegevens
+1 | meneer | Mr / sir | persoon
+1 | mevrouw | Mrs / madam | persoon
+1 | de tijd | time | tijd
+1 | aan | to / on / at | voorzetsel
+2 | het bordje | sign | lezen
+2 | dan | then | verbinden
+2 | de ingang | entrance | plaats
+2 | de uitgang | exit | plaats
+2 | de klant | customer | winkelen
+2 | let op | attention / watch out | lezen
+2 | verboden | forbidden | lezen
+2 | de hond | dog | algemeen
+2 | mij | me | persoon | me
+2 | eerst | first | tijd
+2 | daarna | after that | tijd
+2 | samen | together | algemeen
+2 | even | for a moment | tijd
+2 | misschien | maybe | mening
+2 | groetjes | greetings (informal) | schrijven
+2 | het briefje | note | lezen
+2 | de sleutel | key | wonen
+2 | de koelkast | fridge | wonen
+2 | iedereen | everyone | persoon
+2 | ander | other | algemeen | andere anderen
+2 | beste | dear (start of a letter) | schrijven
+2 | het lokaal | classroom | onderwijs | lokalen
+2 | de tas | bag | algemeen
+2 | de gym | PE / gym | onderwijs
+2 | vanaf | from (a time or place) | tijd
+2 | het zwembad | swimming pool | vrije tijd
+2 | extra | extra | hoeveel
+2 | de assistente | (doctor's) assistant | gezondheid
+2 | de praktijk | (doctor's) practice | gezondheid
+2 | de balie | desk / counter | algemeen
+2 | melden | to report | lezen | meld meldt meldde gemeld
+2 | zich | himself / herself / yourself | persoon
+2 | het pakje | parcel | algemeen
+2 | de trap | stairs | wonen
+2 | de lift | lift / elevator | wonen
+2 | beneden | downstairs / below | plaats
+2 | boven | upstairs / above | plaats
+2 | het kwartier | quarter of an hour | tijd
+2 | overstappen | to change (bus / train) | vervoer | stap stapt stapte over overgestapt overstapt
+2 | de richting | direction | vervoer
+2 | de reiziger | traveller / passenger | vervoer
+2 | ongeveer | about / approximately | hoeveel
+2 | bijna | almost | hoeveel
+2 | de weg | road / way | vervoer
+2 | de chauffeur | driver | vervoer
+2 | het rooster | schedule / rota | werk
+2 | het team | team | werk
+2 | de website | website | algemeen
+2 | online | online | algemeen
+2 | de taal | language | onderwijs
+2 | Nederlands | Dutch | onderwijs | nederlandse
+2 | door | through / (gaat door = takes place) | voorzetsel
+2 | het menu | menu | eten | menu's
+2 | de soep | soup | eten
+2 | de kip | chicken | eten
+2 | de salade | salad | eten
+2 | het toetje | dessert | eten
+2 | het glas | glass | eten | glazen
+2 | het restaurant | restaurant | eten
+2 | vegetarisch | vegetarian | eten
+2 | de kast | cupboard / wardrobe | wonen
+2 | de wasmachine | washing machine | wonen
+2 | bezorgen | to deliver | winkelen | bezorg bezorgt bezorgde bezorgd
+2 | per | per | hoeveel
+2 | de kilo | kilo | winkelen | kilo's
+2 | het pak | carton / pack | winkelen | pakken
+2 | de fles | bottle | winkelen
+2 | de appel | apple | eten
+2 | de aardappel | potato | eten
+2 | het stuk | piece | winkelen
+2 | geldig | valid | lezen
+2 | de activiteit | activity | vrije tijd
+2 | de deelnemer | participant | algemeen
+2 | een paar | a few | hoeveel
+2 | verschillend | different / various | algemeen | verschillende
+2 | de volwassene | adult | persoon | volwassenen
+3 | de e-mail | e-mail | lezen | e-mails mail
+3 | elkaar | each other | persoon
+3 | bespreken | to discuss | algemeen | bespreek bespreekt besprak besproken
+3 | het gesprek | conversation / talk | algemeen
+3 | de groep | group / class (primary school) | onderwijs
+3 | tijdens | during | tijd
+3 | met vriendelijke groet | kind regards | schrijven
+3 | het onderzoek | examination / test | gezondheid
+3 | de uitslag | result (of a test) | gezondheid
+3 | de afdeling | department / ward | gezondheid
+3 | de verdieping | floor / storey | wonen
+3 | het gebouw | building | plaats
+3 | de receptie | reception | algemeen
+3 | het identiteitsbewijs | identity document (ID) | instanties
+3 | de bewoner | resident | wonen
+3 | het papier | paper | wonen
+3 | het plastic | plastic | wonen
+3 | de zak | bag / sack | wonen
+3 | het verkeer | traffic | vervoer
+3 | de werkzaamheden | (road / building) works | wonen
+3 | veilig | safe | algemeen
+3 | tijdelijk | temporary / temporarily | tijd
+3 | de leidinggevende | manager / supervisor | werk
+3 | de medewerker | employee / staff member | werk
+3 | beter | better / recovered | gezondheid
+3 | meteen | immediately | tijd
+3 | de taak | task | werk | taken
+3 | plannen | to plan | werk | plan plant plande gepland
+3 | het idee | idea | algemeen | ideeën
+3 | allemaal | all (of us / you / them) | hoeveel
+3 | de monteur | repairman / mechanic | wonen
+3 | de reparatie | repair | wonen
+3 | de keer | time (one time, two times) | hoeveel
+3 | aanwezig | present (there) | algemeen
+3 | de kraan | tap | wonen
+3 | de douche | shower | wonen
+3 | lekken | to leak | wonen | lek lekt lekte gelekt
+3 | zelf | yourself / myself (on your own) | persoon
+3 | inschrijven | to enrol / register | onderwijs | schrijf schrijft in ingeschreven inschrijft inschrijving
+3 | het certificaat | certificate | onderwijs | certificaten
+3 | het niveau | level | onderwijs | niveaus
+3 | het resultaat | result | onderwijs | resultaten
+3 | het onderdeel | part / section | onderwijs | onderdelen
+3 | de locatie | location | plaats
+3 | de kopie | copy | instanties | kopieën
+3 | het bedrag | amount (of money) | instanties
+3 | de betaling | payment | instanties
+3 | de termijn | instalment / term | instanties
+3 | overmaken | to transfer (money) | instanties | maak maakt over overgemaakt overmaakt
+3 | automatisch | automatic(ally) | instanties
+3 | de herinnering | reminder | instanties
+3 | het inkomen | income | instanties
+3 | doorgeven | to pass on / report | instanties | geef geeft door doorgegeven doorgeeft
+3 | de bijeenkomst | meeting / gathering | algemeen
+3 | het onderwerp | subject / topic | lezen
+3 | de mening | opinion | mening
+3 | de hulp | help | algemeen
+3 | gezellig | cosy / fun (with others) | mening
+3 | namens | on behalf of | schrijven
+3 | de speeltuin | playground | plaats
+3 | natuurlijk | of course | mening
+4 | het abonnement | subscription / membership | algemeen
+4 | opzeggen | to cancel (a contract) | algemeen | zeg zegt zei op opgezegd opzegt
+4 | geschikt | suitable | mening
+4 | de kleedkamer | changing room | vrije tijd
+4 | de handdoek | towel | wonen
+4 | de soort | kind / type | algemeen | soorten
+4 | genoeg | enough | hoeveel
+4 | zo | so / as | hoeveel
+4 | de functie | job / position | werk
+4 | de eis | requirement | werk | eisen
+4 | het cv | CV / résumé | werk | cv's
+4 | flexibel | flexible | werk
+4 | de kans | chance | algemeen
+4 | direct | directly / right away | tijd
+4 | de persoon | person | persoon | personen
+4 | de motivatie | motivation | werk
+4 | gewoon | just / normal(ly) | algemeen | gewone
+4 | hetzelfde | the same | algemeen | dezelfde
+4 | steeds | more and more / all the time | tijd
+4 | de fout | mistake | algemeen | fouten
+4 | het moment | moment | tijd | momenten
+4 | sommige | some | hoeveel
+4 | toch | still / anyway | verbinden
+4 | de last | trouble / nuisance | wonen
+4 | de bestelling | order | winkelen
+4 | de garantie | guarantee / warranty | winkelen
+4 | de klantenservice | customer service | winkelen
+4 | het product | product | winkelen | producten
+4 | beschadigd | damaged | winkelen
+4 | omruilen | to exchange (goods) | winkelen | ruil ruilt om omgeruild omruilt
+4 | de doos | box | winkelen | dozen
+4 | de spullen | things / stuff | algemeen
+4 | het advies | advice | algemeen
+4 | de manier | way / manner | algemeen | manieren
+4 | opnieuw | again | tijd
+4 | precies | exactly | hoeveel
+4 | handig | handy / useful | mening
+4 | de plek | place / spot | plaats | plekken
+4 | kort | short / briefly | eigenschap | korte
+4 | de planning | schedule / plan | werk
+4 | de krant | newspaper | vrije tijd
+4 | weg | away / gone | plaats
+4 | tweedehands | second-hand | winkelen
+4 | de eigenaar | owner | algemeen
+4 | gelukkig | luckily / happy | mening
+4 | de verrassing | surprise | vrije tijd
+4 | vol | full | eigenschap | volle
+4 | net | just (now) | tijd
+4 | de tip | tip | algemeen | tips
+1 | het woord | word | schrijven
+1 | de zin | sentence | schrijven
+1 | de letter | letter (a, b, c) | schrijven
+1 | de hoofdletter | capital letter | schrijven
+1 | de punt | full stop | schrijven
+1 | het vraagteken | question mark | schrijven
+1 | januari | January | tijd
+1 | de gegevens | data / details | gegevens
+2 | het werkwoord | verb | schrijven
+2 | de plaats | place / position | plaats
+2 | het einde | end | algemeen
+3 | formeel | formal | schrijven | formele
+3 | de aanhef | greeting (first line of a letter) | schrijven
+3 | de afsluiting | closing (last lines of a letter) | schrijven
+3 | alvast | in advance / already | schrijven
+3 | bedankt | thanks | schrijven
+3 | de excuses | apologies | schrijven
+3 | informeel | informal | schrijven | informele
+3 | het ding | thing | algemeen | dingen
+3 | het plaatje | picture | lezen
+3 | de tekst | text | lezen
+3 | de opdracht | task / assignment | lezen | opdrachten
+4 | de set | set (of four tasks) | schrijven | sets
+4 | de pen | pen | schrijven | pennen
+1 | het voetbal | football | vrije tijd
+1 | houden van | to like / love | mening | hou houd houdt
+1 | interessant | interesting | mening
+2 | naartoe | to (where ... to) | vervoer
+2 | aardig | kind / nice (person) | mening
+2 | het seizoen | season | tijd | seizoenen
+2 | fijn | nice / pleasant | mening
+2 | eigen | own | algemeen
+2 | hard | loud / hard | eigenschap | harde
+2 | het programma | programme | vrije tijd | programma's
+4 | de voicemail | voicemail | luisteren
+4 | inspreken | to leave (a voice message) | luisteren | spreek spreekt in ingesproken inspreekt
+4 | de radio | radio | luisteren | radio's
+3 | de gezondheid | health | gezondheid
+3 | de basisverzekering | basic health insurance | gezondheid
+3 | de premie | premium (monthly insurance payment) | gezondheid
+3 | de huisartsenpost | out-of-hours GP service | gezondheid
+3 | de spoedeisende hulp | emergency room (A&E) | gezondheid
+3 | de specialist | (medical) specialist | gezondheid | specialisten
+3 | de verwijsbrief | referral letter | gezondheid
+3 | het consultatiebureau | child health clinic (0-4 years) | gezondheid
+3 | de verloskundige | midwife | gezondheid
+3 | de tolk | interpreter | gezondheid
+3 | het beroepsgeheim | professional secrecy | gezondheid
+3 | de drogist | chemist / drugstore | gezondheid
+3 | de eigen bijdrage | own contribution (part you pay yourself) | gezondheid
+3 | de aanvullende verzekering | additional insurance | gezondheid
+3 | de controle | check-up / check | gezondheid | controles
+2 | de seconde | second | tijd | seconden
+3 | de berg | mountain | plaats | bergen
+3 | de taart | cake | eten
+4 | het beroep | profession | werk
+4 | het dier | animal | algemeen | dieren
+4 | de kat | cat | algemeen
+3 | de sociale huurwoning | social housing (low rent) | wonen | sociale huurwoningen
+3 | de wachtlijst | waiting list | wonen
+3 | de vrije sector | private (non-social) rental market | wonen
+3 | de servicekosten | service charges | wonen
+3 | de opzegtermijn | notice period | wonen
+3 | de hypotheek | mortgage | wonen
+3 | de makelaar | estate agent | wonen
+3 | de notaris | notary | wonen
+3 | de inboedelverzekering | home contents insurance | wonen
+3 | de aansprakelijkheidsverzekering | liability insurance | wonen
+3 | de energie | energy (gas and electricity) | wonen
+3 | de meterstand | meter reading | wonen
+3 | de storing | outage / breakdown | wonen | storingen
+3 | het statiegeld | deposit (on bottles and cans) | wonen
+3 | het gft-afval | organic waste (vegetable, fruit, garden) | wonen
+3 | het arbeidscontract | employment contract | werk | arbeidscontracten
+3 | de proeftijd | trial period | werk
+3 | vast | permanent / fixed | werk | vaste
+3 | bruto | gross (before tax) | werk
+3 | netto | net (after tax) | werk
+3 | de loonstrook | payslip | werk | loonstroken
+3 | de vakbond | trade union | werk
+3 | de cao | collective labour agreement | werk
+3 | het minimumloon | minimum wage | werk
+3 | de ondernemingsraad | works council | werk
+3 | de bedrijfsarts | company doctor | werk
+3 | de bijstand | social assistance benefit | werk
+3 | het pensioen | pension | werk
+3 | het ontslag | dismissal | werk
+3 | gelijk | equal | werk | gelijke
+3 | de leerplicht | compulsory education | onderwijs
+3 | het onderwijs | education | onderwijs
+3 | het kinderdagverblijf | day-care centre (nursery) | onderwijs
+3 | de peuterspeelzaal | playgroup (2-4 years) | onderwijs
+3 | de buitenschoolse opvang | after-school care | onderwijs
+3 | voortgezet | secondary (education) | onderwijs
+3 | de universiteit | university | onderwijs
+3 | de kinderbijslag | child benefit | onderwijs
+3 | de studiefinanciering | student finance | onderwijs
+3 | de opvoeding | upbringing | onderwijs
+3 | openbaar | public (open to all) | onderwijs | openbare
+3 | bijzonder | special / denominational | onderwijs | bijzondere
+3 | de leerplichtambtenaar | school attendance officer | onderwijs
+3 | verantwoordelijk | responsible | onderwijs
+3 | de oppas | babysitter | onderwijs
+3 | de instantie | agency / official body | instanties | instanties
+3 | de vergunning | permit | instanties
+3 | het burgerservicenummer | citizen service number (BSN) | instanties
+3 | de aangifte | report (to the police) / tax return | instanties
+3 | het bezwaar | objection | instanties
+3 | de schade | damage | instanties
+3 | de advocaat | lawyer | instanties | advocaten
+3 | het uittreksel | extract (official copy of your registration) | instanties
+3 | de naturalisatie | naturalisation | instanties
+3 | de inburgering | civic integration | instanties
+3 | de identificatieplicht | duty to carry ID | instanties
+3 | de machtiging | direct debit authorisation | instanties
+3 | het loket | counter / desk | instanties
+3 | de discriminatie | discrimination | instanties
+3 | het recht | right / law | instanties | rechten rechter rechters
+3 | de waarde | value | omgangsvormen | waarden
+3 | de norm | norm (rule of behaviour) | omgangsvormen | normen
+3 | de vrijheid | freedom | omgangsvormen
+3 | gefeliciteerd | congratulations | omgangsvormen
+3 | gecondoleerd | my condolences | omgangsvormen
+3 | trakteren | to treat (others to something) | omgangsvormen | trakteer trakteert trakteerde getrakteerd
+3 | de kraamvisite | visit to a newborn baby | omgangsvormen
+3 | de beschuit | rusk (Dutch crisp bread) | omgangsvormen
+3 | de traditie | tradition | omgangsvormen | tradities
+3 | het huwelijk | marriage | omgangsvormen
+3 | het geweld | violence | omgangsvormen
+3 | het respect | respect | omgangsvormen
+3 | de koning | king | omgangsvormen
+3 | de bruiloft | wedding party | omgangsvormen
+3 | de grondwet | constitution | staat
+3 | de democratie | democracy | staat
+3 | de verkiezingen | elections | staat | verkiezing
+3 | het parlement | parliament | staat
+3 | de regering | government | staat
+3 | de minister | minister | staat | ministers
+3 | de minister-president | prime minister | staat
+3 | de burgemeester | mayor | staat
+3 | de gemeenteraad | municipal council | staat
+3 | de provincie | province | staat | provincies
+3 | de partij | (political) party | staat | partijen
+3 | de macht | power | staat
+3 | de straf | punishment | staat | straffen
+3 | de burger | citizen | staat | burgers
+3 | het waterschap | water board | staat
+3 | de oorlog | war | geschiedenis | oorlogen
+3 | de bevrijding | liberation | geschiedenis
+3 | de kolonie | colony | geschiedenis | kolonies koloniën
+3 | de slavernij | slavery | geschiedenis
+3 | de eeuw | century | geschiedenis | eeuwen
+3 | de dijk | dike | geschiedenis | dijken
+3 | de zee | sea | geschiedenis
+3 | de polder | polder (land reclaimed from water) | geschiedenis | polders
+3 | het eiland | island | geschiedenis | eilanden
+3 | de haven | harbour / port | geschiedenis | havens
+3 | het volkslied | national anthem | geschiedenis
+3 | de vlag | flag | geschiedenis | vlaggen
+3 | het koninkrijk | kingdom | geschiedenis
+3 | de overstroming | flood | geschiedenis
+3 | het buurland | neighbouring country | geschiedenis | buurlanden
+3 | de polikliniek | outpatient clinic (in a hospital) | gezondheid
+3 | de kraamhulp | maternity care at home | gezondheid
+3 | de mantelzorg | informal care by family or friends | gezondheid
+3 | het verzorgingshuis | care home for the elderly | gezondheid | verzorgingshuizen
+3 | de psycholoog | psychologist | gezondheid
+3 | zwanger | pregnant | gezondheid | zwangere
+3 | de bevalling | childbirth | gezondheid
+3 | hoog | high | gezondheid | hoge hoger hoogste
+3 | de rente | interest | wonen
+3 | de kwijtschelding | remission (you do not have to pay) | wonen
+3 | de woonhuisverzekering | building insurance (for home owners) | wonen
+3 | de zender | (TV / radio) channel | wonen | zenders
+3 | het beltegoed | prepaid phone credit | wonen
+3 | het gas | gas | wonen
+3 | chemisch | chemical | wonen
+3 | de lamp | lamp | wonen | lampen
+3 | arbeidsongeschikt | unfit for work (through illness) | werk
+3 | het re-integratiebedrijf | reintegration company | werk
+3 | de toestemming | permission | werk
+3 | accepteren | to accept | werk | accepteer accepteert accepteerde geaccepteerd
+3 | de zzp'er | self-employed person without staff | werk | zzp'ers
+3 | laag | low | werk | lage lager laagste
+3 | de verandering | change | werk | veranderingen
+3 | speciaal | special | onderwijs | speciale
+3 | de gastouder | childminder | onderwijs | gastouders
+3 | de lening | loan | onderwijs | leningen
+3 | de beurs | grant (for students) | onderwijs | beurzen
+3 | de student | student | onderwijs | studenten
+3 | het gezag | (parental) authority | onderwijs
+3 | de seksuele voorlichting | sex education | onderwijs
+3 | de scheiding | divorce | instanties
+3 | de identiteitskaart | identity card | instanties
+3 | anoniem | anonymous | instanties
+3 | de nationaliteit | nationality | instanties
+3 | de schuld | debt | instanties | schulden
+3 | de voedselbank | food bank | instanties
+3 | blokkeren | to block | instanties | blokkeer blokkeert blokkeerde geblokkeerd
+3 | de misdaad | crime | instanties
+3 | de ambtenaar | civil servant | omgangsvormen | ambtenaren
+3 | het samenlevingscontract | cohabitation agreement | omgangsvormen
+3 | het geregistreerd partnerschap | registered partnership | omgangsvormen
+3 | het slachtoffer | victim | omgangsvormen | slachtoffers
+3 | het wapen | weapon | omgangsvormen | wapens
+3 | de eerwraak | honour-related violence | omgangsvormen
+3 | de oliebol | Dutch doughnut ball (New Year's Eve) | omgangsvormen | oliebollen
+3 | het vuurwerk | fireworks | omgangsvormen
+3 | de coalitie | coalition (parties that govern together) | staat
+3 | de oppositie | opposition | staat
+3 | het kabinet | cabinet (all ministers) | staat
+3 | de troonrede | King's speech (on Prinsjesdag) | staat
+3 | de commissaris | commissioner | staat
+3 | de kerk | church | staat
+3 | passief | passive | staat
+3 | actief | active | staat
+3 | het verzet | the resistance | geschiedenis
+3 | de soldaat | soldier | geschiedenis | soldaten
+3 | onafhankelijk | independent | geschiedenis
+3 | de gastarbeider | guest worker | geschiedenis | gastarbeiders
+3 | het schilderij | painting | geschiedenis | schilderijen
+3 | de slaaf | slave | geschiedenis | slaven
+3 | vermoorden | to murder | geschiedenis | vermoord vermoordde vermoordden
+3 | het leger | army | geschiedenis | legers

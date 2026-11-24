@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luisteren – bijna hetzelfde</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../luisteren.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../luisteren.js"></script>
+<script>
+// Bijna hetzelfde (minimale paren): u hoort één woord. Welk woord is het? Inhoud: paren.json
+// vormen: de twee woorden, en: Engels (achter ❗).
+(async () => {
+  const { el } = App;
+  const data = await Lezen.json('paren.json');
+  Luister.ronde({
+    id: 'paren', titel: 'Bijna hetzelfde', na: data.na, items: data.items, n: 10,
+    uitleg: 'U hoort één woord. Twee woorden lijken op elkaar. Welk woord hoort u?', uitlegEn: 'You hear one word. Two words sound alike. Which one do you hear?',
+    teken(doel, item, klaar) {
+      const welk = Math.random() < 0.5 ? 0 : 1;
+      const regels = [{ s: 'A', t: item.vormen[welk] }];
+      const knoppen = item.vormen.map((w, i) => el('button', { class: 'optie', onclick: () => {
+        knoppen.forEach((k, j) => { k.disabled = true; if (j === welk) k.classList.add('goed'); });
+        if (i !== welk) knoppen[i].classList.add('fout');
+        const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = ${item.en[0]} · ${item.vormen[1]} = ${item.en[1]}`);
+        klaar(i === welk, el('p', {}, el('button', { class: 'rond', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, '🔊'), ` ${item.vormen[0]} – ${item.vormen[1]} `,
+          el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'), en));
+      } }, el('span', { class: 'l' }, 'AB'[i]), el('span', {}, w)));
+      doel.append(Luister.speler(regels), el('div', { class: 'opties' }, knoppen));
+      Luister.speel(regels);
+    },
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+{
+ "id": "P05",
+ "trede": 1,
+ "titel": "Ik vind … leuk en ik hou van …",
+ "uitleg": "U zegt wat u leuk vindt. Luister en zeg het na.",
+ "en": "Say what you like. Two patterns: 'Ik vind ___ (niet) leuk' and 'Ik hou (niet) van ___'.",
+ "patroon": "Ik vind ___ (niet) leuk. · Ik hou (niet) van ___.",
+ "woorden": [
+  {
+   "nl": "het voetbal",
+   "en": "football",
+   "beeld": "⚽",
+   "zin": "Ik vind voetbal leuk.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "de muziek",
+   "en": "music",
+   "beeld": "🎵",
+   "zin": "Ik luister naar muziek.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "koken",
+   "en": "to cook",
+   "beeld": "🍳",
+   "zin": "Ik kook vandaag.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de sport",
+   "en": "sport",
+   "beeld": "🏅",
+   "zin": "Sport is gezond.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "de film",
+   "en": "film",
+   "beeld": "🎬",
+   "zin": "De film is leuk.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "fietsen",
+   "en": "to cycle",
+   "beeld": "🚴",
+   "zin": "Ik fiets naar mijn werk.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "zwemmen",
+   "en": "to swim",
+   "beeld": "🏊",
+   "zin": "Ik zwem graag.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "houden van",
+   "en": "to like / love",
+   "beeld": "❤️",
+   "zin": "Ik hou van muziek.",
+   "thema": "mening",
+   "vormen": [
+    "hou",
+    "houd",
+    "houdt"
+   ]
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind voetbal leuk.",
+   "en": "I like football."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind muziek leuk.",
+   "en": "I like music."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind koken leuk.",
+   "en": "I like cooking."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind lezen niet leuk.",
+   "en": "I don't like reading."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind films leuk.",
+   "en": "I like films."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik hou van sport.",
+   "en": "I like sport."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik hou van fietsen.",
+   "en": "I like cycling."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik hou van zwemmen.",
+   "en": "I like swimming."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik hou niet van voetbal.",
+   "en": "I don't like football."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik hou van koffie.",
+   "en": "I like coffee."
+  }
+ ]
+}

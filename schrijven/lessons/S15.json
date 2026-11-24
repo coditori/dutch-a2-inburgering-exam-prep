@@ -1,0 +1,64 @@
+{
+ "id": "S15",
+ "trede": 2,
+ "titel": "Een dag en een tijd in de zin",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "op + dag: op maandag. om + tijd: om negen uur. in + maand: in mei.",
+   "en": "op + day, om + time, in + month."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "gat",
+   "zin": "Ik kom {op} dinsdag.",
+   "opties": [
+    "op",
+    "om",
+    "in"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "De les begint {om} negen uur.",
+   "opties": [
+    "op",
+    "om",
+    "in"
+   ]
+  },
+  {
+   "soort": "gat",
+   "zin": "Ik heb vakantie {in} juli.",
+   "opties": [
+    "op",
+    "om",
+    "in"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik kom op vrijdag om tien uur."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Kan ik op woensdag om twee uur komen?"
+  },
+  {
+   "soort": "tegels",
+   "zin": "De cursus begint in september."
+  }
+ ]
+}

@@ -1,0 +1,156 @@
+{
+ "id": "L12",
+ "trede": 2,
+ "titel": "Een bericht van een vriend",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het bericht",
+   "en": "message",
+   "beeld": "✉️",
+   "zin": "Ik stuur een bericht.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "mij",
+   "en": "me",
+   "beeld": "👈",
+   "zin": "Wil je mij bellen?",
+   "thema": "persoon",
+   "vormen": [
+    "me"
+   ]
+  },
+  {
+   "nl": "eerst",
+   "en": "first",
+   "beeld": "1️⃣",
+   "zin": "Eerst eet ik brood.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "daarna",
+   "en": "after that",
+   "beeld": "2️⃣",
+   "zin": "Daarna ga ik naar het werk.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "samen",
+   "en": "together",
+   "beeld": "🧑‍🤝‍🧑",
+   "zin": "Wij eten samen.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "even",
+   "en": "for a moment",
+   "beeld": "⏱️",
+   "zin": "Wacht even!",
+   "thema": "tijd"
+  },
+  {
+   "nl": "misschien",
+   "en": "maybe",
+   "beeld": "🤔",
+   "zin": "Misschien kom ik morgen.",
+   "thema": "mening"
+  },
+  {
+   "nl": "groetjes",
+   "en": "greetings (informal)",
+   "beeld": "👋",
+   "zin": "Tot morgen! Groetjes, Tom",
+   "thema": "schrijven"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Sara krijgt een bericht van Tom.",
+   "soort": "sms",
+   "tekst": [
+    "Hallo Sara,",
+    "Ik ben ziek. Ik kom vandaag niet naar de les.",
+    "Wil je mij morgen even bellen?",
+    "Groetjes, Tom"
+   ],
+   "vragen": [
+    {
+     "v": "Waarom komt Tom niet naar de les?",
+     "o": [
+      "Hij is ziek.",
+      "Hij heeft geen tijd.",
+      "Hij moet werken."
+     ],
+     "b": "Ik ben ziek."
+    },
+    {
+     "v": "Wat moet Sara morgen doen?",
+     "o": [
+      "Tom bellen",
+      "naar Tom gaan",
+      "een bericht sturen"
+     ],
+     "b": "Wil je mij morgen even bellen?"
+    }
+   ]
+  },
+  {
+   "intro": "Ali krijgt een bericht van zijn vriend Omar.",
+   "soort": "sms",
+   "tekst": [
+    "Hallo Ali,",
+    "Gaan wij zaterdag samen naar de markt?",
+    "Eerst drinken wij koffie bij mij thuis. Daarna lopen wij naar het centrum.",
+    "Kom je om tien uur?",
+    "Groetjes, Omar"
+   ],
+   "vragen": [
+    {
+     "v": "Wat doen Ali en Omar eerst?",
+     "o": [
+      "koffie drinken",
+      "naar de markt gaan",
+      "naar het centrum lopen"
+     ],
+     "b": "Eerst drinken wij koffie bij mij thuis."
+    },
+    {
+     "v": "Hoe gaan zij naar het centrum?",
+     "o": [
+      "Zij lopen.",
+      "met de bus",
+      "met de fiets"
+     ],
+     "b": "Daarna lopen wij naar het centrum."
+    }
+   ]
+  },
+  {
+   "intro": "Emma krijgt een bericht van Lisa.",
+   "soort": "sms",
+   "tekst": [
+    "Dag Emma,",
+    "Ik ben misschien een beetje laat. De bus heeft vertraging.",
+    "Wacht je even op mij bij het station?",
+    "Lisa"
+   ],
+   "vragen": [
+    {
+     "v": "Waar wacht Emma op Lisa?",
+     "o": [
+      "bij het station",
+      "bij de halte",
+      "thuis"
+     ],
+     "b": "Wacht je even op mij bij het station?"
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "{Eerst} drinken wij koffie bij mij thuis.",
+  "{Daarna} lopen wij naar het centrum.",
+  "Ik ben {misschien} een beetje laat."
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "id": "L03",
+ "trede": 1,
+ "titel": "Eten en drinken",
+ "soort": "plaatje",
+ "woorden": [
+  {
+   "nl": "het brood",
+   "en": "bread",
+   "beeld": "🍞",
+   "zin": "Ik eet brood.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de kaas",
+   "en": "cheese",
+   "beeld": "🧀",
+   "zin": "De kaas is lekker.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de melk",
+   "en": "milk",
+   "beeld": "🥛",
+   "zin": "De melk is koud.",
+   "thema": "eten"
+  },
+  {
+   "nl": "het water",
+   "en": "water",
+   "beeld": "💧",
+   "zin": "Ik wil graag water.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de koffie",
+   "en": "coffee",
+   "beeld": "☕",
+   "zin": "De koffie is warm.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de thee",
+   "en": "tea",
+   "beeld": "🍵",
+   "zin": "Wilt u thee?",
+   "thema": "eten"
+  },
+  {
+   "nl": "het fruit",
+   "en": "fruit",
+   "beeld": "🍎",
+   "zin": "Fruit is gezond.",
+   "thema": "eten"
+  },
+  {
+   "nl": "drinken",
+   "en": "to drink",
+   "beeld": "🥤",
+   "zin": "Wat wilt u drinken?",
+   "thema": "eten"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "Ik eet brood met kaas."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🍞🧀",
+      "🍞🍎",
+      "☕🧀"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Het kind drinkt melk."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🧒🥛",
+      "🧒💧",
+      "👩🥛"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De vrouw drinkt thee en de man drinkt koffie."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👩🍵 👨☕",
+      "👩☕ 👨🍵",
+      "👩🍵 👨🥛"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Wij kopen fruit in de supermarkt."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🍎🛒",
+      "🍞🛒",
+      "🍎🚉"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Opa drinkt water en eet kaas."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👴💧🧀",
+      "👵💧🧀",
+      "👴🥛🧀"
+     ]
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Ik eet {brood} met kaas.",
+  "Het kind {drinkt} melk.",
+  "Fruit is {gezond}."
+ ]
+}

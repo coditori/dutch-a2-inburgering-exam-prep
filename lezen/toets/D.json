@@ -1,0 +1,491 @@
+{
+ "id": "D",
+ "trede": 4,
+ "na": "L38",
+ "titel": "Toets D",
+ "namen": [
+  "Demir",
+  "Jansen",
+  "Bos",
+  "Havenweg",
+  "Lena",
+  "Fatima",
+  "Zon",
+  "Jeroen",
+  "Sanne",
+  "Yusuf",
+  "Nu",
+  "Daan",
+  "Zwolle",
+  "Meppel",
+  "Staphorst",
+  "Mila",
+  "Boer",
+  "Thuis",
+  "Noor",
+  "Molenstraat",
+  "Karin",
+  "Mehmet",
+  "Eva",
+  "Petra",
+  "Wit",
+  "Tom"
+ ],
+ "teksten": [
+  {
+   "intro": "Mevrouw Demir krijgt een brief van het ziekenhuis.",
+   "kop": "Uw afspraak is veranderd",
+   "soort": "tekst",
+   "tekst": [
+    "Beste mevrouw Demir,",
+    "",
+    "U hebt op dinsdag 4 maart een afspraak bij dokter Jansen. De dokter is op die dag niet aanwezig. Daarom hebben wij uw afspraak verzet.",
+    "# Uw nieuwe afspraak",
+    "datum | donderdag 13 maart",
+    "tijd | 10.40 uur",
+    "plaats | gebouw A, eerste verdieping, afdeling 12",
+    "",
+    "Kunt u op deze dag niet komen? Bel dan uiterlijk maandag 10 maart naar de afdeling: 030 - 555 30 30. Dat kan op werkdagen tussen 8.30 en 12.00 uur. U kunt de afspraak ook zelf veranderen op onze website.",
+    "Belt u niet en komt u niet? Dan betaalt u € 45.",
+    "Neem uw identiteitsbewijs en een lijst van uw medicijnen mee. Meld u eerst bij de balie van afdeling 12. Kom een kwartier vóór uw afspraak, want u moet eerst een formulier invullen.",
+    "",
+    "Met vriendelijke groet,",
+    "Afdeling 12"
+   ],
+   "vragen": [
+    {
+     "v": "Waarom krijgt mevrouw Demir deze brief?",
+     "o": [
+      "Het ziekenhuis heeft haar afspraak verzet.",
+      "Zij is niet naar haar afspraak gekomen.",
+      "Zij moet € 45 betalen.",
+      "Zij moet een nieuwe dokter kiezen."
+     ],
+     "b": "Daarom hebben wij uw afspraak verzet."
+    },
+    {
+     "sit": "Mevrouw Demir kan op 13 maart niet komen. Zij wil de afdeling bellen.",
+     "v": "Wanneer kan zij bellen?",
+     "o": [
+      "op vrijdag 7 maart om 9.00 uur",
+      "op vrijdag 7 maart om 14.00 uur",
+      "op zaterdag 8 maart om 9.00 uur",
+      "op dinsdag 11 maart om 9.00 uur"
+     ],
+     "b": "Dat kan op werkdagen tussen 8.30 en 12.00 uur."
+    },
+    {
+     "v": "Hoe laat moet mevrouw Demir op 13 maart in het ziekenhuis zijn?",
+     "o": [
+      "om 10.25 uur",
+      "om 10.40 uur",
+      "om 10.55 uur"
+     ],
+     "b": "Kom een kwartier vóór uw afspraak, want u moet eerst een formulier invullen."
+    }
+   ]
+  },
+  {
+   "intro": "Meneer Bos wil zijn oude bank niet meer. Hij leest de folder van de gemeente.",
+   "kop": "Grote spullen laten ophalen",
+   "soort": "tekst",
+   "tekst": [
+    "Hebt u grote spullen die niet in de container passen? Bijvoorbeeld een bank, een bed of een kast? De gemeente haalt ze bij u op.",
+    "# Hoe werkt het?",
+    "- Maak een afspraak op de website van de gemeente of bel 14 030.",
+    "- U hoort meteen op welke dag wij komen. Wij komen meestal binnen twee weken.",
+    "- Zet de spullen op de dag van de afspraak vóór 7.30 uur buiten, naast de weg. Niet op de avond vóór de afspraak.",
+    "# Wat kost het?",
+    "Twee keer per jaar is het ophalen gratis. Daarna betaalt u € 20 per keer. Wij nemen maximaal vijf grote spullen per keer mee.",
+    "# Wat nemen wij niet mee?",
+    "Koelkasten en wasmachines nemen wij niet mee. Koopt u een nieuwe koelkast of wasmachine? Dan neemt de winkel de oude gratis mee. U kunt deze spullen ook zelf naar het afvalpunt aan de Havenweg brengen. Dat is open van dinsdag tot en met zaterdag."
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer Bos heeft dit jaar al twee keer grote spullen laten ophalen. Nu wil hij zijn oude bank laten ophalen.",
+     "v": "Hoeveel betaalt hij?",
+     "o": [
+      "€ 20",
+      "niets",
+      "€ 40",
+      "€ 5"
+     ],
+     "b": "Daarna betaalt u € 20 per keer."
+    },
+    {
+     "sit": "Lena heeft een kapotte wasmachine. Zij koopt geen nieuwe wasmachine.",
+     "v": "Wat kan zij met de wasmachine doen?",
+     "o": [
+      "de wasmachine zelf naar het afvalpunt brengen",
+      "de wasmachine buiten naast de weg zetten",
+      "de gemeente bellen voor een afspraak"
+     ],
+     "b": "U kunt deze spullen ook zelf naar het afvalpunt aan de Havenweg brengen."
+    }
+   ]
+  },
+  {
+   "intro": "Fatima zoekt kinderopvang voor haar kinderen. Zij leest de informatie van kinderopvang De Zon.",
+   "kop": "Kinderopvang De Zon",
+   "soort": "tabel",
+   "tekst": [
+    "Wij zijn open van maandag tot en met vrijdag, van 7.30 tot 18.30 uur. In de eerste week van augustus zijn wij gesloten.",
+    "groep | voor wie? | wanneer? | prijs per uur",
+    "Baby's | 0 tot 2 jaar | de hele dag | € 10,50",
+    "Kleine kinderen | 2 tot 4 jaar | de hele dag | € 9,80",
+    "Schoolkinderen | 4 tot 12 jaar | na school, tot 18.30 uur | € 8,90",
+    "",
+    "U kiest minstens twee dagen per week. In de schoolvakanties kunnen schoolkinderen de hele dag komen. Dat kost niets extra.",
+    "Het eten en drinken zit bij de prijs. Alleen eten voor baby's neemt u zelf mee.",
+    "Haalt u uw kind na 18.30 uur op? Dan betaalt u € 15 extra per keer.",
+    "Wilt u komen kijken? Elke eerste woensdag van de maand is er om 9.30 uur een ochtend voor nieuwe ouders. Aanmelden is niet nodig."
+   ],
+   "vragen": [
+    {
+     "sit": "De dochter van Fatima is 3 jaar.",
+     "v": "Hoeveel betaalt Fatima per uur voor haar dochter?",
+     "o": [
+      "€ 9,80",
+      "€ 10,50",
+      "€ 8,90",
+      "€ 15"
+     ],
+     "b": "Kleine kinderen | 2 tot 4 jaar | de hele dag | € 9,80"
+    },
+    {
+     "sit": "De zoon van Fatima is 7 jaar. Het is schoolvakantie.",
+     "v": "Wanneer kan hij naar De Zon?",
+     "o": [
+      "de hele dag",
+      "alleen na school",
+      "alleen in de ochtend"
+     ],
+     "b": "In de schoolvakanties kunnen schoolkinderen de hele dag komen."
+    },
+    {
+     "v": "Wat moeten ouders zelf meenemen?",
+     "o": [
+      "eten voor een baby",
+      "eten voor alle kinderen",
+      "drinken voor schoolkinderen",
+      "niets"
+     ],
+     "b": "Alleen eten voor baby's neemt u zelf mee."
+    }
+   ]
+  },
+  {
+   "intro": "Jeroen werkt bij een bedrijf dat fietsen maakt. Hij krijgt een e-mail van zijn collega Sanne.",
+   "kop": "Onderwerp: dag uit met het team",
+   "soort": "tekst",
+   "tekst": [
+    "Hallo allemaal,",
+    "",
+    "Op vrijdag 20 juni gaan wij een dag uit met het hele team! Wij gaan naar het strand.",
+    "Wij vertrekken om 9.00 uur met de bus vanaf het kantoor. Kom je met de auto naar het strand? Stuur mij dan vóór 13 juni een bericht. Dan weet ik hoeveel plaatsen wij in de bus nodig hebben.",
+    "In de ochtend wandelen wij over het strand. Om 12.30 uur eten wij samen in een restaurant. Het bedrijf betaalt de lunch. In de middag kun je kiezen: zwemmen of sporten op het strand.",
+    "Neem een handdoek en warme kleren mee, want aan het water is het vaak koud. Eet je geen vlees of vis? Laat het mij dan weten. Dan bel ik het restaurant.",
+    "Om 17.00 uur rijdt de bus terug. Wij zijn ongeveer om 18.00 uur weer bij het kantoor.",
+    "",
+    "Groetjes,",
+    "Sanne"
+   ],
+   "vragen": [
+    {
+     "sit": "Jeroen wil met zijn eigen auto naar het strand gaan.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "vóór 13 juni een bericht sturen naar Sanne",
+      "om 9.00 uur bij het kantoor zijn",
+      "het restaurant bellen"
+     ],
+     "b": "Stuur mij dan vóór 13 juni een bericht."
+    },
+    {
+     "sit": "Jeroen eet geen vlees. Hij laat dat aan Sanne weten.",
+     "v": "Wie belt het restaurant?",
+     "o": [
+      "Sanne",
+      "Jeroen",
+      "de baas",
+      "niemand"
+     ],
+     "b": "Dan bel ik het restaurant."
+    }
+   ]
+  },
+  {
+   "intro": "Yusuf zoekt werk. Hij leest de folder van een uitzendbureau.",
+   "kop": "Uitzendbureau Werk Nu",
+   "soort": "tekst",
+   "tekst": [
+    "Zoekt u werk? Wij helpen u! Wij hebben elke week nieuwe vacatures in winkels, fabrieken, restaurants en op kantoren.",
+    "# Hoe werkt het?",
+    "- Schrijf u in op onze website of kom naar ons kantoor. Inschrijven is gratis.",
+    "- Neem uw identiteitsbewijs en uw cv mee. Hebt u geen cv? Wij helpen u er een te maken.",
+    "- U hebt een gesprek met een van onze medewerkers. Wij kijken samen welk werk bij u past.",
+    "- Hebben wij werk voor u? Dan bellen wij u. Soms kunt u de volgende dag al beginnen.",
+    "# Loon",
+    "U krijgt elke week uw loon van ons, niet van het bedrijf waar u werkt. Bent u ziek? Meld dat dan vóór 9.00 uur bij ons én bij het bedrijf.",
+    "# Openingstijden",
+    "Ons kantoor is open van maandag tot en met vrijdag van 8.30 tot 17.00 uur. Op donderdag zijn wij open tot 20.00 uur. Een afspraak maken is alleen nodig op donderdagavond."
+   ],
+   "vragen": [
+    {
+     "sit": "Yusuf heeft geen cv.",
+     "v": "Wat kan hij doen?",
+     "o": [
+      "zich inschrijven en hulp vragen bij het cv",
+      "eerst thuis een cv maken en dan terugkomen",
+      "wachten tot het uitzendbureau belt"
+     ],
+     "b": "Wij helpen u er een te maken."
+    },
+    {
+     "sit": "Yusuf heeft van het uitzendbureau werk in een fabriek gekregen. Hij wordt ziek.",
+     "v": "Wie moet hij bellen?",
+     "o": [
+      "het uitzendbureau en de fabriek",
+      "alleen het uitzendbureau",
+      "alleen de fabriek",
+      "de huisarts"
+     ],
+     "b": "Meld dat dan vóór 9.00 uur bij ons én bij het bedrijf."
+    },
+    {
+     "sit": "Yusuf wil op dinsdag om 16.00 uur naar het kantoor gaan.",
+     "v": "Heeft hij een afspraak nodig?",
+     "o": [
+      "Nee, alleen op donderdagavond is een afspraak nodig.",
+      "Ja, een afspraak is altijd nodig.",
+      "Nee, maar het kantoor is dan gesloten."
+     ],
+     "b": "Een afspraak maken is alleen nodig op donderdagavond."
+    }
+   ]
+  },
+  {
+   "intro": "Daan reist elke dag met de trein. Op het station hangt deze mededeling.",
+   "kop": "Werkzaamheden aan het spoor",
+   "soort": "tabel",
+   "tekst": [
+    "Van zaterdag 5 april tot en met zondag 13 april rijden er geen treinen tussen Zwolle en Meppel. Er wordt aan het spoor gewerkt. In plaats van de trein rijden er bussen.",
+    "bus | van | naar | hoe vaak?",
+    "Snelbus | station Zwolle | station Meppel | twee keer per uur",
+    "Stopbus | station Zwolle | alle haltes tot station Meppel | één keer per uur",
+    "",
+    "De bussen vertrekken bij de uitgang aan de kant van het centrum.",
+    "Uw treinkaartje is ook geldig in de bus. U hoeft geen nieuw kaartje te kopen.",
+    "Uw reis duurt ongeveer een half uur langer. In de bus is geen plaats voor fietsen. Alleen een fiets die u klein kunt maken, mag mee.",
+    "Tussen 24.00 en 6.00 uur rijden er geen bussen.",
+    "Vanaf maandag 14 april rijden de treinen weer."
+   ],
+   "vragen": [
+    {
+     "sit": "Daan moet op dinsdag 8 april naar Staphorst. Dat is een halte tussen Zwolle en Meppel.",
+     "v": "Welke bus neemt hij?",
+     "o": [
+      "de stopbus",
+      "de snelbus",
+      "geen bus: hij kan met de trein"
+     ],
+     "b": "Stopbus | station Zwolle | alle haltes tot station Meppel | één keer per uur"
+    },
+    {
+     "v": "Wat moet een reiziger met een treinkaartje doen?",
+     "o": [
+      "niets: het kaartje is ook geldig in de bus",
+      "een nieuw kaartje kopen bij de chauffeur",
+      "het kaartje omruilen bij de balie",
+      "€ 2 extra betalen"
+     ],
+     "b": "Uw treinkaartje is ook geldig in de bus."
+    },
+    {
+     "sit": "Mila wil haar gewone fiets meenemen van Zwolle naar Meppel.",
+     "v": "Kan dat op 10 april?",
+     "o": [
+      "Nee, in de bus is geen plaats voor haar fiets.",
+      "Ja, in de snelbus mag een fiets mee.",
+      "Ja, maar zij betaalt extra."
+     ],
+     "b": "In de bus is geen plaats voor fietsen."
+    }
+   ]
+  },
+  {
+   "intro": "Meneer De Boer huurt een woning. Hij krijgt een brief van de woningcorporatie.",
+   "kop": "Uw nieuwe huur vanaf 1 juli",
+   "soort": "tekst",
+   "tekst": [
+    "Beste meneer De Boer,",
+    "",
+    "Elk jaar verandert de huur van uw woning. Vanaf 1 juli wordt uw huur hoger.",
+    "huur tot 1 juli | € 640,00 per maand",
+    "huur vanaf 1 juli | € 662,40 per maand",
+    "",
+    "Betaalt u automatisch? Dan hoeft u niets te doen. Wij veranderen het bedrag voor u. Maakt u de huur elke maand zelf over? Dan moet u vanaf juli zelf het nieuwe bedrag overmaken.",
+    "Krijgt u huurtoeslag? De Belastingdienst krijgt de nieuwe huur van ons. U hoeft dit niet door te geven.",
+    "Bent u het niet eens met de nieuwe huur? Stuur ons dan vóór 1 juni een brief. Schrijf in de brief waarom u het er niet mee eens bent. U krijgt binnen vier weken antwoord.",
+    "Hebt u vragen? Bel ons op werkdagen van 9.00 tot 12.00 uur: 030 - 555 80 80.",
+    "",
+    "Met vriendelijke groet,",
+    "Woningcorporatie Thuis"
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer De Boer maakt de huur elke maand zelf over.",
+     "v": "Wat moet hij in juli doen?",
+     "o": [
+      "€ 662,40 overmaken",
+      "€ 640,00 overmaken",
+      "niets: het gaat automatisch",
+      "de Belastingdienst bellen"
+     ],
+     "b": "Dan moet u vanaf juli zelf het nieuwe bedrag overmaken."
+    },
+    {
+     "sit": "Meneer De Boer is het niet eens met de nieuwe huur.",
+     "v": "Wat kan hij doen?",
+     "o": [
+      "vóór 1 juni een brief sturen",
+      "vóór 1 juli bellen",
+      "de huurtoeslag stoppen"
+     ],
+     "b": "Stuur ons dan vóór 1 juni een brief."
+    }
+   ]
+  },
+  {
+   "intro": "Noor woont in de Molenstraat. Zij vindt deze uitnodiging in haar brievenbus.",
+   "kop": "Feest in de Molenstraat!",
+   "soort": "tekst",
+   "tekst": [
+    "Beste buren,",
+    "",
+    "Op zaterdag 30 augustus is er weer een feest in onze straat. Vorig jaar was het heel gezellig. Komt u ook?",
+    "15.00 uur | spelen voor de kinderen",
+    "17.30 uur | samen eten",
+    "20.00 uur | muziek en dansen",
+    "23.00 uur | het feest is klaar",
+    "",
+    "De straat is die dag van 12.00 tot 24.00 uur dicht voor auto's. Parkeer uw auto dus vóór 12.00 uur in een andere straat.",
+    "Iedereen maakt iets te eten voor ongeveer zes personen. Wij zorgen voor het drinken, de tafels en de stoelen. Daarom vragen wij € 5 per volwassene. Kinderen betalen niets.",
+    "Wilt u komen? Vul dan het briefje bij deze uitnodiging in en doe het uiterlijk 20 augustus in de brievenbus van nummer 17. Schrijf ook op wat u gaat maken. Dan eten wij niet allemaal hetzelfde!",
+    "Wilt u helpen? Wij zoeken nog mensen die om 13.00 uur de tafels buiten zetten.",
+    "",
+    "Groetjes,",
+    "Karin en Mehmet (nummer 17)"
+   ],
+   "vragen": [
+    {
+     "sit": "Noor komt met haar man en hun twee kinderen van 6 en 9 jaar.",
+     "v": "Hoeveel betalen zij samen?",
+     "o": [
+      "€ 10",
+      "€ 5",
+      "€ 20",
+      "niets"
+     ],
+     "b": "Daarom vragen wij € 5 per volwassene."
+    },
+    {
+     "v": "Wat moet Noor meenemen naar het feest?",
+     "o": [
+      "eten voor ongeveer zes personen",
+      "drinken voor haar gezin",
+      "een tafel en vier stoelen"
+     ],
+     "b": "Iedereen maakt iets te eten voor ongeveer zes personen."
+    },
+    {
+     "sit": "De auto van Noor staat in de Molenstraat.",
+     "v": "Wat moet zij op 30 augustus doen?",
+     "o": [
+      "de auto vóór 12.00 uur in een andere straat zetten",
+      "de auto vóór 15.00 uur in een andere straat zetten",
+      "de auto laten staan tot 24.00 uur",
+      "Karin en Mehmet bellen"
+     ],
+     "b": "Parkeer uw auto dus vóór 12.00 uur in een andere straat."
+    }
+   ]
+  },
+  {
+   "intro": "Eva leest in de krant een tekst over de bibliotheek.",
+   "kop": "Bibliotheek zoekt vrijwilligers om voor te lezen",
+   "soort": "tekst",
+   "tekst": [
+    "De bibliotheek in het centrum zoekt tien nieuwe vrijwilligers. Zij gaan voorlezen aan kinderen van 2 tot 6 jaar die thuis weinig Nederlands horen.",
+    "De vrijwilliger komt twintig weken lang één keer per week bij een gezin thuis. Hij of zij leest een uur voor en praat met het kind over het boek. De ouders zijn er altijd bij. Zo leren zij hoe zij zelf kunnen voorlezen.",
+    "'Kinderen die vaak een boek horen, leren sneller nieuwe woorden,' zegt Petra de Wit van de bibliotheek. 'En op school gaat het daarna beter.'",
+    "U hoeft geen docent te zijn. U moet wel goed Nederlands spreken en minstens 18 jaar zijn. Nieuwe vrijwilligers krijgen eerst een gratis cursus van twee avonden.",
+    "Voor het werk krijgt u geen geld, maar de bibliotheek betaalt wel uw kosten voor de bus of de trein.",
+    "Wilt u meedoen? Kom dan op dinsdag 9 september om 19.30 uur naar de bijeenkomst in de bibliotheek. Aanmelden kan tot 5 september per e-mail."
+   ],
+   "vragen": [
+    {
+     "sit": "Eva is 17 jaar. Zij spreekt goed Nederlands en wil graag voorlezen.",
+     "v": "Kan zij vrijwilliger worden?",
+     "o": [
+      "Nee, want zij is nog geen 18 jaar.",
+      "Ja, want zij spreekt goed Nederlands.",
+      "Nee, want zij is geen docent.",
+      "Ja, maar zij moet eerst een cursus betalen."
+     ],
+     "b": "U moet wel goed Nederlands spreken en minstens 18 jaar zijn."
+    },
+    {
+     "v": "Wat betaalt de bibliotheek voor de vrijwilligers?",
+     "o": [
+      "de kosten voor de bus of de trein",
+      "loon voor twintig weken",
+      "boeken voor thuis"
+     ],
+     "b": "Voor het werk krijgt u geen geld, maar de bibliotheek betaalt wel uw kosten voor de bus of de trein."
+    }
+   ]
+  },
+  {
+   "intro": "Tom slaapt slecht. Hij leest tips op de website van zijn huisarts.",
+   "kop": "Beter slapen: zeven tips",
+   "soort": "tekst",
+   "tekst": [
+    "Veel mensen slapen slecht. Zij zijn overdag moe en kunnen minder goed werken of leren. Deze tips kunnen helpen.",
+    "- Ga elke dag op dezelfde tijd naar bed en sta op dezelfde tijd op. Doe dat ook in het weekend.",
+    "- Drink na 15.00 uur geen koffie meer. Water en melk mogen wel.",
+    "- Eet 's avonds niet te laat en niet te veel.",
+    "- Beweeg elke dag minstens een half uur, maar sport niet in het laatste uur voor het slapen.",
+    "- Kijk het laatste uur voor het slapen niet op uw telefoon of computer. Lees liever een boek.",
+    "- Zorg dat uw slaapkamer rustig, donker en niet te warm is.",
+    "- Kunt u na een half uur nog niet slapen? Blijf dan niet in bed liggen. Sta op en doe iets rustigs in een andere kamer. Ga terug naar bed als u moe bent.",
+    "",
+    "Slaapt u na vier weken nog steeds slecht? Maak dan een afspraak met uw huisarts. Neem geen medicijnen om te slapen zonder advies van de huisarts."
+   ],
+   "vragen": [
+    {
+     "sit": "Tom ligt al drie kwartier in bed. Hij kan niet slapen.",
+     "v": "Wat moet hij volgens de tekst doen?",
+     "o": [
+      "opstaan en iets rustigs doen in een andere kamer",
+      "in bed blijven liggen en wachten",
+      "op zijn telefoon kijken",
+      "een medicijn nemen"
+     ],
+     "b": "Sta op en doe iets rustigs in een andere kamer."
+    },
+    {
+     "sit": "Tom doet alle tips al twee weken. Hij slaapt nog steeds slecht.",
+     "v": "Wat moet hij nu doen?",
+     "o": [
+      "nog twee weken de tips blijven doen",
+      "meteen een afspraak maken met de huisarts",
+      "medicijnen kopen bij de apotheek",
+      "stoppen met sporten"
+     ],
+     "b": "Slaapt u na vier weken nog steeds slecht?"
+    }
+   ]
+  }
+ ]
+}

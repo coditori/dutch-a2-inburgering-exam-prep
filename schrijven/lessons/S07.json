@@ -1,0 +1,203 @@
+{
+ "id": "S07",
+ "trede": 1,
+ "titel": "Een formulier invullen",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "dan"
+ ],
+ "woorden": [
+  {
+   "nl": "het formulier",
+   "en": "form",
+   "beeld": "📋",
+   "zin": "Ik krijg een formulier van de school.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "invullen",
+   "en": "to fill in",
+   "beeld": "✍️",
+   "zin": "Ik vul het formulier in.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de gegevens",
+   "en": "data / details",
+   "beeld": "🪪",
+   "zin": "Ik schrijf mijn gegevens op het formulier.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de handtekening",
+   "en": "signature",
+   "beeld": "🖊️",
+   "zin": "Schrijf hier uw handtekening.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "kiezen",
+   "en": "to choose",
+   "beeld": "☑️",
+   "zin": "Ik kies de groep op dinsdag.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de groep",
+   "en": "group",
+   "beeld": "👥",
+   "zin": "In de groep zitten tien mensen.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "Nederlands",
+   "en": "Dutch",
+   "beeld": "🇳🇱",
+   "zin": "Ik leer Nederlands.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de mensen",
+   "en": "people",
+   "beeld": "🧑‍🤝‍🧑",
+   "zin": "Er zijn veel mensen in de winkel.",
+   "thema": "familie"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Op een formulier schrijft u uw gegevens: uw naam, uw adres en uw telefoonnummer.",
+   "en": "On a form you write your details."
+  },
+  {
+   "nl": "Soms moet u kiezen. Kies dan één antwoord.",
+   "en": "Sometimes you must choose. Choose one answer."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "Ik vul het formulier in."
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik kies de groep op dinsdag.",
+   "geheugen": true
+  },
+  {
+   "soort": "formulier",
+   "kop": "Formulier: cursus Nederlands",
+   "velden": [
+    {
+     "label": "Voornaam en achternaam",
+     "soort": "naam"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "Ik kies deze groep:",
+     "soort": "keuze",
+     "opties": [
+      "maandag om 9.00 uur",
+      "woensdag om 13.00 uur",
+      "vrijdag om 19.00 uur"
+     ]
+    }
+   ],
+   "situatie": "U wilt een cursus Nederlands doen. Vul het formulier in."
+  },
+  {
+   "soort": "formulier",
+   "kop": "Formulier van de school",
+   "velden": [
+    {
+     "label": "Voornaam",
+     "soort": "voornaam"
+    },
+    {
+     "label": "Achternaam",
+     "soort": "achternaam"
+    },
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email"
+    },
+    {
+     "label": "Ik kom naar school met:",
+     "soort": "keuze",
+     "opties": [
+      "de bus",
+      "de fiets",
+      "de auto"
+     ]
+    },
+    {
+     "label": "Datum van vandaag",
+     "soort": "datum"
+    }
+   ],
+   "situatie": "U krijgt een formulier van de school. Vul het formulier in."
+  },
+  {
+   "soort": "formulier",
+   "kop": "Formulier van de dokter",
+   "velden": [
+    {
+     "label": "Achternaam",
+     "soort": "achternaam"
+    },
+    {
+     "label": "Voornaam",
+     "soort": "voornaam"
+    },
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    }
+   ],
+   "situatie": "U bent nieuw bij de dokter. Vul het formulier in."
+  }
+ ]
+}

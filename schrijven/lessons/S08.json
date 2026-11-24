@@ -1,0 +1,64 @@
+{
+ "id": "S08",
+ "trede": 2,
+ "titel": "Ik + werkwoord",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [
+  {
+   "nl": "het werkwoord",
+   "en": "verb",
+   "beeld": "🏃",
+   "zin": "Werken is een werkwoord.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de plaats",
+   "en": "place / position",
+   "beeld": "📍",
+   "zin": "Het werkwoord staat op de tweede plaats.",
+   "thema": "plaats"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Het werkwoord staat op de tweede plaats: Ik werk in een winkel.",
+   "en": "The verb is in second position."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "tegels",
+   "zin": "Ik werk in een supermarkt."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Mijn zoon speelt in de tuin."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wij wonen in een klein dorp."
+  },
+  {
+   "soort": "tegels",
+   "zin": "De les begint om negen uur."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Mijn vrouw kookt elke avond."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik fiets naar het station."
+  }
+ ]
+}

@@ -1,0 +1,150 @@
+{
+ "id": "L38",
+ "trede": 4,
+ "titel": "Een tekst uit de krant",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de krant",
+   "en": "newspaper",
+   "beeld": "🗞️",
+   "zin": "Ik lees elke ochtend de krant.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "weg",
+   "en": "away / gone",
+   "beeld": "💨",
+   "zin": "Mijn fiets is weg!",
+   "thema": "plaats"
+  },
+  {
+   "nl": "tweedehands",
+   "en": "second-hand",
+   "beeld": "♻️",
+   "zin": "Ik koop een tweedehands fiets.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de eigenaar",
+   "en": "owner",
+   "beeld": "🧑‍💼🔑",
+   "zin": "De eigenaar van de winkel heet Bas.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "gelukkig",
+   "en": "luckily / happy",
+   "beeld": "🍀",
+   "zin": "Gelukkig is de trein op tijd.",
+   "thema": "mening"
+  },
+  {
+   "nl": "de verrassing",
+   "en": "surprise",
+   "beeld": "🎁",
+   "zin": "Het cadeau is een verrassing.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "vol",
+   "en": "full",
+   "beeld": "🈵",
+   "zin": "De bus is vol.",
+   "thema": "eigenschap",
+   "vormen": [
+    "volle"
+   ]
+  },
+  {
+   "nl": "net",
+   "en": "just (now)",
+   "beeld": "🆕",
+   "zin": "Ik ben net thuis.",
+   "thema": "tijd"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "In de krant van de wijk staat een tekst over een winkel.",
+   "kop": "Winkel 'Tweede Kans' bestaat vijf jaar",
+   "soort": "tekst",
+   "tekst": [
+    "In de winkel 'Tweede Kans' aan de Parkstraat koopt u tweedehands spullen: kleren, boeken, stoelen, tafels en spullen voor de keuken. Alles is gebruikt, maar nog goed. En alles is goedkoop.",
+    "# Hoe werkt het?",
+    "Hebt u spullen die u niet meer gebruikt? Gooi ze niet weg, maar breng ze naar de winkel. Dat kan elke dag behalve zondag. Voor grote spullen, bijvoorbeeld een bank of een kast, komen de medewerkers gratis bij u thuis. Zij nemen alleen spullen mee die niet kapot zijn.",
+    "U krijgt geen geld voor uw spullen. Alle medewerkers zijn vrijwilligers. Van het geld dat de winkel verdient, betaalt eigenaar Bas Visser de huur van de winkel. Wat er daarna over is, gaat naar de speeltuin in de wijk.",
+    "# Feest",
+    "Op zaterdag 6 september bestaat de winkel vijf jaar. Er is koffie en er is muziek. En er is een verrassing voor de kinderen. 'Vorig jaar was de winkel op het feest te vol,' zegt Bas. 'Gelukkig hebben wij net een tweede kamer gekregen. Nu is er plaats voor iedereen.'"
+   ],
+   "vragen": [
+    {
+     "sit": "Emma heeft een oude kast. Eén deur van de kast is kapot.",
+     "v": "Wat doet de winkel met de kast?",
+     "o": [
+      "De winkel neemt de kast niet mee.",
+      "De winkel haalt de kast gratis op.",
+      "De winkel repareert de kast.",
+      "De winkel betaalt Emma voor de kast."
+     ],
+     "b": "Zij nemen alleen spullen mee die niet kapot zijn."
+    },
+    {
+     "v": "Op welke dag kunt u geen spullen brengen?",
+     "o": [
+      "op zondag",
+      "op zaterdag",
+      "op maandag"
+     ],
+     "b": "Dat kan elke dag behalve zondag."
+    },
+    {
+     "v": "Wat doet de winkel met het geld?",
+     "o": [
+      "de huur betalen en de speeltuin helpen",
+      "de vrijwilligers betalen",
+      "nieuwe spullen kopen",
+      "alles aan de eigenaar geven"
+     ],
+     "b": "Wat er daarna over is, gaat naar de speeltuin in de wijk."
+    }
+   ]
+  },
+  {
+   "intro": "Bas stuurt een bericht aan alle vrijwilligers van de winkel.",
+   "soort": "sms",
+   "tekst": [
+    "Hallo allemaal,",
+    "Zaterdag is het feest! Wie kan vrijdag na 17.00 uur helpen? Wij zetten dan de tafels en stoelen in de nieuwe kamer. Lena en Omar kunnen al. Wij zoeken nog minstens twee personen.",
+    "Zaterdag beginnen wij om 9.00 uur, een uur vroeger dan op andere dagen.",
+    "Laat mij uiterlijk woensdag weten of je komt.",
+    "Groetjes, Bas"
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel vrijwilligers heeft Bas op vrijdag nog nodig?",
+     "o": [
+      "minstens twee",
+      "maximaal twee",
+      "precies vier"
+     ],
+     "b": "Wij zoeken nog minstens twee personen."
+    },
+    {
+     "v": "Hoe laat begint de winkel op andere dagen?",
+     "o": [
+      "om 10.00 uur",
+      "om 9.00 uur",
+      "om 8.00 uur"
+     ],
+     "b": "Zaterdag beginnen wij om 9.00 uur, een uur vroeger dan op andere dagen."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Gooi ze niet {weg}, maar breng ze naar de winkel.",
+  "Dat kan elke dag {behalve} zondag.",
+  "{Gelukkig} hebben wij net een tweede kamer gekregen."
+ ]
+}

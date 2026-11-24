@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNM – thema</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="knm.css">
+</head>
+<body>
+<main>
+  <div class="stappen" id="stappen"></div>
+  <div id="pagina"><p class="zacht">Even wachten…</p></div>
+</main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="../lezen/lezen.js"></script>
+<script src="knm.js"></script>
+<script>
+// Eén sjabloon voor alle thema's: thema.html?t=1-gezondheid&stap=a (Woorden) | b (Weetjes) | c (Situaties) | d (Meer weetjes)
+(async () => {
+  const { el } = App;
+  const q = new URLSearchParams(location.search);
+  const tid = q.get('t') || '1-gezondheid';
+  const stap = 'abcd'.includes(q.get('stap') || 'a') ? (q.get('stap') || 'a') : 'a';
+  const pagina = document.getElementById('pagina');
+  let thema, themas;
+  try { [thema, themas] = await Promise.all([Lezen.json(`themes/${tid}.json`), Lezen.json('themes/index.json')]); }
+  catch (e) { pagina.textContent = 'Dit thema bestaat niet: ' + tid; return; }
+  const les = `${tid}-${stap}`;
+  const label = KNM.STAPPEN.find((s) => s[0] === stap);
+  document.title = `KNM – ${thema.titel} – ${label[1]}`;
+  App.kop(`${thema.titel} · ${label[1]}`, 'index.html');
+  Spraak.map('audio/');
+  const nieuw = new Set(thema.woorden.map((w) => App.lemmaNr(w.nl)).filter((n) => n >= 0));
+  const rij = KNM.rij(themas);
+  const volgende = rij[rij.indexOf(les) + 1];
+  const balk = (i, n) => { const s = document.getElementById('stappen'); s.textContent = ''; for (let k = 0; k < n; k++) s.append(el('i', { class: k <= i ? 'aan' : '' })); };
+
+  function einde(goed, totaal, extra) {
+    KNM.sla(les, goed, totaal);
+    const ok = goed / totaal >= 0.8;
+    pagina.textContent = '';
+    balk(99, 1);
+    pagina.append(el('div', { class: 'kaart midden' },
+      el('div', { class: 'groot' }, `${goed} / ${totaal}`),
+      el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? 'Passed. The next lesson is open.' : 'You need 80%. Do it again.' }, ok ? '✔ Gehaald. De volgende les is open.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      extra || null,
+      el('div', { class: 'knoppen', style: 'justify-content:center' },
+        ok && volgende ? el('a', { class: 'knop', href: `thema.html?t=${volgende.slice(0, -2)}&stap=${volgende.slice(-1)}`, en: 'next' }, 'Volgende les') : null,
+        el('button', { class: 'knop licht', en: 'again', onclick: () => location.reload() }, 'Nog een keer'),
+        el('a', { class: 'knop licht', href: 'index.html', en: 'overview' }, 'Overzicht'))));
+  }
+
+  // ---------- a: woorden ----------
+  const basis = thema.woorden.filter((w) => !w.meer);   // de 15 woorden van stap a
+  const extra = thema.woorden.filter((w) => w.meer);     // de woorden van stap d
+  function woorden(lijst, verder, knop) {
+    balk(0, 2);
+    const zin = (w) => w.zin.replace(/[{}]/g, '');
+    const kaarten = lijst.map((w) => {
+      SRS.voegToe('w:' + w.nl, { soort: 'w', nl: w.nl, en: w.en, beeld: w.beeld || '' });
+      const z = el('div', { class: 'zin', hidden: true }, App.woorden(zin(w), nieuw));
+      const en = el('div', { class: 'en', hidden: true }, w.en);
+      const k = el('div', { class: 'wkaart' }, el('div', { class: 'beeld' }, w.beeld || '💬'), el('div', { class: 'nl' }, w.nl), z, en,
+        el('div', { class: 'knoppen', style: 'justify-content:center' },
+          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(z.hidden ? w.nl : zin(w)); } }, '🔊'),
+          el('button', { class: 'rond', title: 'Engels', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, '❗')));
+      k.addEventListener('click', (e) => { if (e.target.closest('.w')) return; z.hidden = !z.hidden; k.classList.toggle('om', !z.hidden); });
+      return k;
+    });
+    pagina.textContent = '';
+    pagina.append(el('h2', { en: 'words of this theme' }, 'Woorden van dit thema'),
+      el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English. Then: a short test.' }, 'Klik op een kaart: u ziet een zin. ❗ = Engels. Daarna komt een korte test.'),
+      el('div', { class: 'wkaarten' }, kaarten),
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: verder }, knop)));
+  }
+  // test: 5 zinnen met een gat, kies het goede woord
+  function woordTest() {
+    const kaal = (nl) => nl.replace(/^(de|het|een) /, '');
+    const items = App.schud(basis.filter((w) => /\{.+\}/.test(w.zin))).slice(0, 5);
+    let i = 0, goed = 0;
+    const toon = () => {
+      balk(1, 2);
+      if (i >= items.length) return einde(goed, items.length);
+      const w = items[i];
+      const [voor, woord, na] = w.zin.split(/[{}]/);
+      const fout = App.schud(basis.filter((x) => x !== w)).slice(0, 2).map((x) => kaal(x.nl));
+      const vraagDoel = el('div'), onder = el('div');
+      pagina.textContent = '';
+      pagina.append(el('p', { class: 'zacht klein' }, `${i + 1} / ${items.length}`), el('div', { class: 'tekstvak soort-zin' }, voor, '_____', na), vraagDoel, onder);
+      const blok = Lezen.vraag(vraagDoel, { v: 'Welk woord past?', o: [woord, ...fout.filter((f) => f !== woord)] }, { op: (keuze) => {
+        blok.teken(keuze, true); if (keuze === 0) goed++; i++;
+        onder.append(el('p', { class: 'uitslag ' + (keuze === 0 ? 'goed' : 'fout') }, keuze === 0 ? '✔ Goed!' : '✘ Niet goed.'), el('p', {}, App.woorden(voor + woord + na, nieuw)),
+          el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: toon }, 'Verder')));
+      } });
+    };
+    toon();
+  }
+
+  // ---------- b: weetjes ----------
+  // lijst = de kaarten; voor = begin van de kaart-id ('' of 'm'); klaar(goed) als alle kaarten gedaan zijn
+  function weetjes(lijst, voor, klaar) {
+    let i = 0, goed = 0;
+    const toon = () => {
+      balk(i, lijst.length);
+      if (i >= lijst.length) return klaar(goed);
+      const k = lijst[i]; const id = `${tid}:${voor}${i}`;
+      KNM.Kaarten.voegToe(id);
+      const en = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic' }, k.en || '');
+      const achter = el('div', { hidden: true }, el('div', { class: 'antwoord' }, App.woorden(k.a, nieuw)), el('p', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗')), en);
+      const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'show the answer', onclick: () => {
+        achter.hidden = false; knoppen.textContent = '';
+        const kies = (ok) => { KNM.Kaarten.antwoord(id, ok); if (ok) goed++; i++; toon(); };
+        knoppen.append(el('button', { class: 'knop licht', en: 'I did not know', onclick: () => kies(false) }, '✘ Wist ik niet'), el('button', { class: 'knop', en: 'I knew it', onclick: () => kies(true) }, '✔ Wist ik'));
+      } }, 'Toon het antwoord'));
+      pagina.textContent = '';
+      pagina.append(el('p', { class: 'zacht klein' }, `${i + 1} / ${lijst.length}`),
+        el('div', { class: 'kaart weetje' }, el('div', { class: 'kplaat' }, k.beeld || '❓'), el('div', { class: 'vraagtekst' }, App.woorden(k.v, nieuw), ' ', el('button', { class: 'rond', onclick: () => Spraak.zeg(k.v) }, '🔊')), achter, knoppen));
+    };
+    toon();
+  }
+
+  // ---------- c: situaties ----------
+  function situaties(lijst, klaar) {
+    let i = 0, goed = 0;
+    const toon = () => {
+      balk(i, lijst.length);
+      if (i >= lijst.length) return klaar(goed);
+      const s = lijst[i];
+      const vraagDoel = el('div'), onder = el('div');
+      pagina.textContent = '';
+      pagina.append(el('p', { class: 'zacht klein' }, `${i + 1} / ${lijst.length}`), el('div', { class: 'kplaat' }, s.beeld || '🇳🇱'), vraagDoel, onder);
+      const blok = Lezen.vraag(vraagDoel, s, { nieuw, op: (keuze) => {
+        blok.teken(keuze, true); if (keuze === 0) goed++; i++;
+        onder.append(el('p', { class: 'uitslag ' + (keuze === 0 ? 'goed' : 'fout') }, keuze === 0 ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.'),
+          el('div', { class: 'waarom' }, el('b', { en: 'why' }, 'Waarom? '), App.woorden(s.w, nieuw)),
+          el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: toon }, 'Verder')));
+      } });
+    };
+    toon();
+  }
+
+  if (!KNM.isOpen(themas, les)) { pagina.textContent = ''; pagina.append(el('p', { class: 'kaart' }, 'Deze les is nog dicht. Doe eerst de les ervoor.')); return; }
+  const komtTerug = () => el('p', { class: 'zacht klein', en: 'The facts come back on the review page (tomorrow, then after 2, 4, 8, 16 days).' }, 'De weetjes komen terug bij "Weetjes herhalen".');
+  // d: de extra woorden, dan de extra weetjes, dan de extra situaties; samen één score
+  function meer() {
+    const m = thema.meer || { weetjes: [], situaties: [] };
+    const totaal = m.weetjes.length + m.situaties.length;
+    const kaarten = () => weetjes(m.weetjes, 'm', (g1) => situaties(m.situaties, (g2) => einde(g1 + g2, totaal, komtTerug())));
+    if (extra.length) woorden(extra, kaarten, 'Naar de weetjes'); else kaarten();
+  }
+  ({
+    a: () => woorden(basis, woordTest, 'Naar de test'),
+    b: () => weetjes(thema.weetjes, '', (g) => einde(g, thema.weetjes.length, komtTerug())),
+    c: () => situaties(thema.situaties, (g) => einde(g, thema.situaties.length)),
+    d: meer,
+  })[stap]();
+})();
+</script>
+</body>
+</html>

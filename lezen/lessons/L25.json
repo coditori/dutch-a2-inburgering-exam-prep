@@ -1,0 +1,164 @@
+{
+ "id": "L25",
+ "trede": 3,
+ "titel": "Een e-mail van school",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de e-mail",
+   "en": "e-mail",
+   "beeld": "📧",
+   "zin": "Ik stuur een e-mail naar de juf.",
+   "thema": "lezen",
+   "vormen": [
+    "e-mails",
+    "mail"
+   ]
+  },
+  {
+   "nl": "elkaar",
+   "en": "each other",
+   "beeld": "🤝",
+   "zin": "Wij helpen elkaar.",
+   "thema": "persoon"
+  },
+  {
+   "nl": "bespreken",
+   "en": "to discuss",
+   "beeld": "💬",
+   "zin": "De juf bespreekt het rapport met de ouders.",
+   "thema": "algemeen",
+   "vormen": [
+    "bespreek",
+    "bespreekt",
+    "besprak",
+    "besproken"
+   ]
+  },
+  {
+   "nl": "het gesprek",
+   "en": "conversation / talk",
+   "beeld": "🗨️",
+   "zin": "Het gesprek duurt tien minuten.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de groep",
+   "en": "group / class (primary school)",
+   "beeld": "👥",
+   "zin": "Mijn zoon zit in groep 5.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "uiterlijk",
+   "en": "at the latest",
+   "beeld": "⏰",
+   "zin": "U moet uiterlijk vrijdag bellen.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "tijdens",
+   "en": "during",
+   "beeld": "⏳",
+   "zin": "Tijdens de les mag u niet bellen.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "met vriendelijke groet",
+   "en": "kind regards",
+   "beeld": "✍️",
+   "zin": "Met vriendelijke groet, Juf Emma",
+   "thema": "schrijven"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Mevrouw Yilmaz krijgt een e-mail van de basisschool van haar zoon.",
+   "kop": "Onderwerp: ouderavond groep 5",
+   "soort": "tekst",
+   "tekst": [
+    "Beste ouders van groep 5,",
+    "",
+    "Op dinsdag 12 maart is de ouderavond. U krijgt dan het rapport van uw kind. De juf bespreekt het rapport met u. Elk gesprek duurt tien minuten.",
+    "U kunt een tijd kiezen op de website van de school. Doe dit uiterlijk vrijdag 8 maart. Kiest u geen tijd? Dan kiest de juf een tijd voor u.",
+    "Tijdens de gesprekken kunnen uw kinderen spelen in lokaal 2. Daar is een vrijwilliger.",
+    "",
+    "Met vriendelijke groet,",
+    "Juf Emma"
+   ],
+   "vragen": [
+    {
+     "sit": "Mevrouw Yilmaz wil een tijd kiezen voor het gesprek.",
+     "v": "Wanneer moet zij dat uiterlijk doen?",
+     "o": [
+      "op vrijdag 8 maart",
+      "op dinsdag 12 maart",
+      "tijdens de ouderavond"
+     ],
+     "b": "Doe dit uiterlijk vrijdag 8 maart."
+    },
+    {
+     "v": "Wat doet de juf op de ouderavond?",
+     "o": [
+      "Zij bespreekt het rapport met de ouders.",
+      "Zij speelt met de kinderen.",
+      "Zij geeft les aan de ouders."
+     ],
+     "b": "De juf bespreekt het rapport met u."
+    }
+   ]
+  },
+  {
+   "intro": "De ouders van groep 5 krijgen nog een e-mail van de juf.",
+   "kop": "Onderwerp: naar de bibliotheek",
+   "soort": "tekst",
+   "tekst": [
+    "Beste ouders,",
+    "",
+    "Volgende week donderdag gaan wij met de groep naar de bibliotheek. Wij gaan lopen. Dat duurt ongeveer een kwartier.",
+    "Wij zoeken drie ouders die meelopen. Kunt u mee? Stuur dan vandaag of morgen een e-mail naar de juf. De ouders leren elkaar dan ook kennen.",
+    "De kinderen kunnen in de bibliotheek een boek lenen. Zij hebben dan het pasje van de bibliotheek nodig. Hebt u thuis geen pasje? Vertel het dan aan de juf. Dan vraagt zij een pasje voor uw kind aan. Dat is gratis.",
+    "Wij zijn om 12.00 uur weer op school.",
+    "",
+    "Met vriendelijke groet,",
+    "Juf Emma"
+   ],
+   "vragen": [
+    {
+     "sit": "De vader van Sam kan donderdag meelopen.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "een e-mail sturen naar de juf",
+      "naar de bibliotheek bellen",
+      "een pasje aanvragen"
+     ],
+     "b": "Stuur dan vandaag of morgen een e-mail naar de juf."
+    },
+    {
+     "sit": "Mila heeft geen pasje van de bibliotheek.",
+     "v": "Wie vraagt het pasje aan?",
+     "o": [
+      "de juf",
+      "de ouders van Mila",
+      "de bibliotheek"
+     ],
+     "b": "Dan vraagt zij een pasje voor uw kind aan."
+    },
+    {
+     "v": "Hoe gaat de groep naar de bibliotheek?",
+     "o": [
+      "De groep loopt.",
+      "met de bus",
+      "met de auto's van de ouders"
+     ],
+     "b": "Wij gaan lopen."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De juf {bespreekt} het rapport met u.",
+  "Doe dit {uiterlijk} vrijdag 8 maart.",
+  "{Tijdens} de gesprekken kunnen uw kinderen spelen in lokaal 2."
+ ]
+}

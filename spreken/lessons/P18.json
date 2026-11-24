@@ -1,0 +1,148 @@
+{
+ "id": "P18",
+ "trede": 3,
+ "titel": "Eén plaatje: wat doet hij of zij?",
+ "uitleg": "Kijk naar het plaatje en lees de vraag. Geef antwoord op de twee delen van de vraag.",
+ "en": "One picture (exam part 2). Say what you see: who, where, what. Then answer the second half. 'Ik denk dat ...' is always allowed.",
+ "woorden": [],
+ "namen": [
+  "Noor",
+  "Karim"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🏊‍♀️💦"
+   ],
+   "vraag": "Wat doet de vrouw? Vertel ook hoe vaak u dat doet.",
+   "model": [
+    "De vrouw zwemt.",
+    "Ik zwem één keer per week."
+   ],
+   "sleutel": [
+    [
+     "zwemt",
+     "zwemmen",
+     "zwembad"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit"
+    ]
+   ],
+   "en": "'Hoe vaak u dat doet' is about you: 'Ik zwem één keer per week' or 'Ik zwem nooit'."
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🚴‍♂️🌳🌳"
+   ],
+   "vraag": "Wat doet de man? Vertel ook waar hij fietst.",
+   "model": [
+    "De man fietst.",
+    "Hij fietst in het park."
+   ],
+   "sleutel": [
+    [
+     "fietst",
+     "fiets"
+    ],
+    [
+     "park",
+     "buiten",
+     "stad",
+     "straat"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍💻🏢☕"
+   ],
+   "sit": "Dit is Noor.",
+   "vraag": "Vertel wat Noor doet. Vertel ook wat u van dit werk vindt.",
+   "model": [
+    "Noor werkt op een kantoor.",
+    "Ik vind dat werk saai."
+   ],
+   "sleutel": [
+    [
+     "werkt",
+     "kantoor",
+     "computer"
+    ],
+    [
+     "ik vind",
+     "leuk",
+     "saai",
+     "moeilijk",
+     "interessant"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨‍👧⚽🌳"
+   ],
+   "vraag": "Wat doen de vader en zijn dochter? Vertel ook wat u graag buiten doet.",
+   "model": [
+    "Zij spelen voetbal in het park.",
+    "Ik wandel graag buiten."
+   ],
+   "sleutel": [
+    [
+     "voetbal",
+     "spelen",
+     "park"
+    ],
+    [
+     "ik wandel",
+     "ik fiets",
+     "ik speel",
+     "ik ga",
+     "ik zit",
+     "graag"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🧹🧽👨🏠"
+   ],
+   "sit": "Dit is Karim.",
+   "vraag": "Vertel wat Karim doet. Vertel ook hoe vaak u dat doet.",
+   "model": [
+    "Karim maakt zijn huis schoon.",
+    "Ik maak elke week schoon."
+   ],
+   "sleutel": [
+    [
+     "schoon"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit",
+     "week",
+     "dag"
+    ]
+   ]
+  }
+ ]
+}

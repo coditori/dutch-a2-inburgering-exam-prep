@@ -1,0 +1,161 @@
+{
+ "id": "L19",
+ "trede": 2,
+ "titel": "Openingstijden",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de openingstijden",
+   "en": "opening hours",
+   "beeld": "🕘",
+   "zin": "De openingstijden staan op de deur.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de bibliotheek",
+   "en": "library",
+   "beeld": "📚",
+   "zin": "In de bibliotheek zijn veel boeken.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de apotheek",
+   "en": "pharmacy",
+   "beeld": "💊",
+   "zin": "Ik haal een medicijn bij de apotheek.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "het medicijn",
+   "en": "medicine",
+   "beeld": "🧴",
+   "zin": "Dit medicijn helpt goed.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "het gemeentehuis",
+   "en": "town hall",
+   "beeld": "🏛️",
+   "zin": "Ik heb een afspraak in het gemeentehuis.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de website",
+   "en": "website",
+   "beeld": "🌐",
+   "zin": "De openingstijden staan op de website.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "lenen",
+   "en": "to borrow / lend",
+   "beeld": "🤲",
+   "zin": "Ik leen een boek van de bibliotheek.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "online",
+   "en": "online",
+   "beeld": "💻",
+   "zin": "U kunt online een afspraak maken.",
+   "thema": "algemeen"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit bordje staat bij de ingang van de bibliotheek.",
+   "kop": "Bibliotheek Centrum",
+   "soort": "tabel",
+   "tekst": [
+    "# Openingstijden",
+    "maandag | gesloten",
+    "dinsdag tot en met vrijdag | 10.00 - 18.00 uur",
+    "zaterdag | 10.00 - 16.00 uur",
+    "zondag | gesloten",
+    "",
+    "Boeken lenen is gratis voor kinderen tot 18 jaar.",
+    "Op de website kunt u zien welke boeken er zijn."
+   ],
+   "vragen": [
+    {
+     "v": "Wanneer is de bibliotheek op zaterdag open?",
+     "o": [
+      "van 10.00 tot 16.00 uur",
+      "van 10.00 tot 18.00 uur",
+      "De bibliotheek is dan gesloten."
+     ],
+     "b": "zaterdag | 10.00 - 16.00 uur"
+    },
+    {
+     "v": "Voor wie is boeken lenen gratis?",
+     "o": [
+      "voor kinderen tot 18 jaar",
+      "voor iedereen",
+      "voor ouders"
+     ],
+     "b": "Boeken lenen is gratis voor kinderen tot 18 jaar."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat op de deur van de apotheek.",
+   "kop": "Apotheek Parkstraat",
+   "soort": "tabel",
+   "tekst": [
+    "maandag tot en met vrijdag | 8.30 - 17.30 uur",
+    "zaterdag | 9.00 - 13.00 uur",
+    "",
+    "Hebt u 's nachts of op zondag een medicijn nodig?",
+    "Bel dan 030 - 555 09 09."
+   ],
+   "vragen": [
+    {
+     "v": "Tot hoe laat is de apotheek op zaterdag open?",
+     "o": [
+      "tot 13.00 uur",
+      "tot 17.30 uur",
+      "tot 9.00 uur"
+     ],
+     "b": "zaterdag | 9.00 - 13.00 uur"
+    },
+    {
+     "sit": "Het is zondag. U hebt een medicijn nodig.",
+     "v": "Wat doet u?",
+     "o": [
+      "U belt 030 - 555 09 09.",
+      "U wacht tot maandag.",
+      "U gaat naar de apotheek."
+     ],
+     "b": "Bel dan 030 - 555 09 09."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat bij het gemeentehuis.",
+   "kop": "Gemeentehuis",
+   "soort": "bordje",
+   "tekst": [
+    "Open: maandag tot en met vrijdag van 9.00 tot 17.00 uur.",
+    "U kunt alleen komen met een afspraak.",
+    "Een afspraak maakt u online, op onze website."
+   ],
+   "vragen": [
+    {
+     "sit": "U wilt naar het gemeentehuis.",
+     "v": "Wat doet u eerst?",
+     "o": [
+      "online een afspraak maken",
+      "bellen",
+      "om 9.00 uur komen"
+     ],
+     "b": "Een afspraak maakt u online, op onze website."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Boeken {lenen} is gratis voor kinderen tot 18 jaar.",
+  "Hebt u op zondag een {medicijn} nodig?",
+  "Een afspraak maakt u {online}."
+ ]
+}

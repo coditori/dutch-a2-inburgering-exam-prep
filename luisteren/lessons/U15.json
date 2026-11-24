@@ -1,0 +1,223 @@
+{
+ "id": "U15",
+ "trede": 2,
+ "titel": "Berichten: wat hoort u?",
+ "namen": [
+  "Sara",
+  "Tom",
+  "Ali",
+  "Omar",
+  "Emma",
+  "Lisa",
+  "Daan",
+  "Yilmaz",
+  "Sam",
+  "Noor",
+  "Eva",
+  "Peter",
+  "Mila",
+  "Yusuf",
+  "Smit",
+  "Bas",
+  "Maria",
+  "Karim"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Sara krijgt een bericht van Tom.",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Hallo Sara,"
+    },
+    {
+     "s": "A",
+     "t": "Ik ben ziek. Ik kom vandaag niet naar de les."
+    },
+    {
+     "s": "A",
+     "t": "Wil je mij morgen even bellen?"
+    },
+    {
+     "s": "A",
+     "t": "Groetjes, Tom"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom komt Tom niet naar de les?",
+     "o": [
+      "Hij is ziek.",
+      "Hij heeft geen tijd.",
+      "Hij moet werken."
+     ]
+    },
+    {
+     "v": "Wat moet Sara morgen doen?",
+     "o": [
+      "Tom bellen",
+      "naar Tom gaan",
+      "een bericht sturen"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Ali krijgt een bericht van zijn vriend Omar.",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Hallo Ali,"
+    },
+    {
+     "s": "C",
+     "t": "Gaan wij zaterdag samen naar de markt?"
+    },
+    {
+     "s": "C",
+     "t": "Eerst drinken wij koffie bij mij thuis. Daarna lopen wij naar het centrum."
+    },
+    {
+     "s": "C",
+     "t": "Kom je om tien uur?"
+    },
+    {
+     "s": "C",
+     "t": "Groetjes, Omar"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat doen Ali en Omar eerst?",
+     "o": [
+      "koffie drinken",
+      "naar de markt gaan",
+      "naar het centrum lopen"
+     ]
+    },
+    {
+     "v": "Hoe gaan zij naar het centrum?",
+     "o": [
+      "Zij lopen.",
+      "met de bus",
+      "met de fiets"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Emma krijgt een bericht van Lisa.",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Dag Emma,"
+    },
+    {
+     "s": "B",
+     "t": "Ik ben misschien een beetje laat. De bus heeft vertraging."
+    },
+    {
+     "s": "B",
+     "t": "Wacht je even op mij bij het station?"
+    },
+    {
+     "s": "B",
+     "t": "Lisa"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waar wacht Emma op Lisa?",
+     "o": [
+      "bij het station",
+      "bij de halte",
+      "thuis"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Daan komt thuis uit school. Op de tafel ligt een briefje.",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Dag Daan,"
+    },
+    {
+     "s": "B",
+     "t": "Ik ben tot zes uur op mijn werk."
+    },
+    {
+     "s": "B",
+     "t": "Je eten staat in de koelkast."
+    },
+    {
+     "s": "B",
+     "t": "Vergeet je sleutel niet als je naar buiten gaat!"
+    },
+    {
+     "s": "B",
+     "t": "Groetjes, je moeder"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waar is het eten van Daan?",
+     "o": [
+      "in de koelkast",
+      "op de tafel",
+      "bij oma"
+     ]
+    },
+    {
+     "v": "Wat moet Daan meenemen als hij naar buiten gaat?",
+     "o": [
+      "zijn sleutel",
+      "zijn eten",
+      "zijn telefoon"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Mevrouw Smit krijgt een bericht van de juf.",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Dag mevrouw Smit,"
+    },
+    {
+     "s": "B",
+     "t": "Uw zoon Bas heeft vandaag geen eten in zijn tas."
+    },
+    {
+     "s": "B",
+     "t": "De pauze is om twaalf uur."
+    },
+    {
+     "s": "B",
+     "t": "Kunt u het eten naar school brengen?"
+    },
+    {
+     "s": "B",
+     "t": "Juf Maria"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat vraagt de juf?",
+     "o": [
+      "Mevrouw Smit moet eten naar school brengen.",
+      "Bas moet naar huis komen.",
+      "Mevrouw Smit moet de juf bellen."
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Wil je mij morgen even bellen?",
+  "Je eten staat in de koelkast."
+ ]
+}

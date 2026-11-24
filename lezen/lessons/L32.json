@@ -1,0 +1,155 @@
+{
+ "id": "L32",
+ "trede": 3,
+ "titel": "Een uitnodiging uit de buurt",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de bijeenkomst",
+   "en": "meeting / gathering",
+   "beeld": "👥",
+   "zin": "De bijeenkomst is in het buurthuis.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "het onderwerp",
+   "en": "subject / topic",
+   "beeld": "📌",
+   "zin": "Het onderwerp van de brief is afval.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de mening",
+   "en": "opinion",
+   "beeld": "💭",
+   "zin": "Wat is uw mening over het plan?",
+   "thema": "mening"
+  },
+  {
+   "nl": "de hulp",
+   "en": "help",
+   "beeld": "🆘",
+   "zin": "Hebt u hulp nodig?",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "gezellig",
+   "en": "cosy / fun (with others)",
+   "beeld": "😊",
+   "zin": "Het feest was heel gezellig.",
+   "thema": "mening"
+  },
+  {
+   "nl": "namens",
+   "en": "on behalf of",
+   "beeld": "✒️",
+   "zin": "Ik schrijf namens alle buren.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de speeltuin",
+   "en": "playground",
+   "beeld": "🛝",
+   "zin": "De kinderen spelen in de speeltuin.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "natuurlijk",
+   "en": "of course",
+   "beeld": "👍",
+   "zin": "Natuurlijk mag u komen.",
+   "thema": "mening"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "De bewoners van een buurt in Utrecht krijgen een uitnodiging.",
+   "kop": "Uitnodiging: bijeenkomst over de nieuwe speeltuin",
+   "soort": "tekst",
+   "tekst": [
+    "Beste bewoners,",
+    "",
+    "De gemeente wil een nieuwe speeltuin maken in het park. Wij willen graag uw mening horen. Daarom is er een bijeenkomst op woensdag 5 juni in het buurthuis.",
+    "19.30 uur | koffie en thee",
+    "19.45 uur | de gemeente vertelt over het plan",
+    "20.15 uur | u geeft uw mening",
+    "21.00 uur | de bijeenkomst is klaar",
+    "",
+    "Kinderen mogen natuurlijk ook komen. Er is een vrijwilliger die met de kinderen gaat tekenen.",
+    "Aanmelden is niet nodig. Kunt u niet komen? Dan kunt u uw mening tot 12 juni per e-mail sturen.",
+    "",
+    "Namens de gemeente,",
+    "Maria Jansen"
+   ],
+   "vragen": [
+    {
+     "sit": "Bas wil alleen zijn mening geven. Hij heeft weinig tijd.",
+     "v": "Hoe laat moet hij er zijn?",
+     "o": [
+      "om 20.15 uur",
+      "om 19.30 uur",
+      "om 21.00 uur"
+     ],
+     "b": "20.15 uur | u geeft uw mening"
+    },
+    {
+     "sit": "Eva kan op 5 juni niet komen.",
+     "v": "Wat kan zij doen?",
+     "o": [
+      "haar mening per e-mail sturen",
+      "zich aanmelden voor 12 juni",
+      "de gemeente bellen"
+     ],
+     "b": "Dan kunt u uw mening tot 12 juni per e-mail sturen."
+    }
+   ]
+  },
+  {
+   "intro": "Bij de ingang van het buurthuis hangt een brief.",
+   "kop": "Samen de buurt schoonmaken",
+   "soort": "tekst",
+   "tekst": [
+    "Op zaterdag 15 juni maken wij samen de buurt schoon. Wij beginnen om 10.00 uur bij het buurthuis.",
+    "Wij hebben veel hulp nodig! Iedereen kan meedoen: jong en oud. U krijgt van ons zakken voor het afval en warme koffie.",
+    "Om 13.00 uur zijn wij klaar. Daarna eten wij samen soep en brood in de tuin van het buurthuis. Dat is altijd heel gezellig.",
+    "Doet u mee? Geef u dan vóór 10 juni op bij Karim (Parkstraat 22) of bel 06 - 555 77 88.",
+    "Het onderwerp van de volgende bijeenkomst in het buurthuis is: wat doen wij met het geld van de gemeente? Die bijeenkomst is op 2 juli."
+   ],
+   "vragen": [
+    {
+     "v": "Wat krijgen de deelnemers van het buurthuis?",
+     "o": [
+      "zakken voor het afval en koffie",
+      "geld van de gemeente",
+      "een nieuwe container"
+     ],
+     "b": "U krijgt van ons zakken voor het afval en warme koffie."
+    },
+    {
+     "sit": "Sam wil meedoen met het schoonmaken.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "zich vóór 10 juni opgeven bij Karim",
+      "op 2 juli naar het buurthuis komen",
+      "om 13.00 uur naar de tuin komen"
+     ],
+     "b": "Geef u dan vóór 10 juni op bij Karim (Parkstraat 22) of bel 06 - 555 77 88."
+    },
+    {
+     "v": "Wat gebeurt er na het schoonmaken?",
+     "o": [
+      "De deelnemers eten samen.",
+      "Er is een bijeenkomst over geld.",
+      "Iedereen gaat meteen naar huis."
+     ],
+     "b": "Daarna eten wij samen soep en brood in de tuin van het buurthuis."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Wij willen graag uw {mening} horen.",
+  "Wij hebben veel {hulp} nodig!",
+  "Dat is altijd heel {gezellig}."
+ ]
+}

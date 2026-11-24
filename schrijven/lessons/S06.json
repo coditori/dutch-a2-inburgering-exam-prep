@@ -1,0 +1,123 @@
+{
+ "id": "S06",
+ "trede": 1,
+ "titel": "Geboortedatum en telefoonnummer",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "gegevens",
+  "zo",
+  "dan",
+  "eerst"
+ ],
+ "woorden": [
+  {
+   "nl": "de geboortedatum",
+   "en": "date of birth",
+   "beeld": "🎂",
+   "zin": "Mijn geboortedatum is 14 maart 1990.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "het telefoonnummer",
+   "en": "phone number",
+   "beeld": "📞",
+   "zin": "Mijn telefoonnummer is 06 12345678.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de datum",
+   "en": "date",
+   "beeld": "📆",
+   "zin": "De datum van vandaag is 2 mei.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de e-mail",
+   "en": "e-mail",
+   "beeld": "📧",
+   "zin": "Mijn e-mail is sara@mail.nl.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "het jaar",
+   "en": "year",
+   "beeld": "🗓️",
+   "zin": "Een jaar heeft twaalf maanden.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de maand",
+   "en": "month",
+   "beeld": "🌙",
+   "zin": "Januari is de eerste maand.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "januari",
+   "en": "January",
+   "beeld": "❄️",
+   "zin": "In januari is het koud.",
+   "thema": "tijd"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Een datum schrijft u zo: 14 maart 1990 of 14-03-1990. Eerst de dag, dan de maand, dan het jaar.",
+   "en": "Write a date like this: day first, then month, then year."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "Mijn geboortedatum is 14 maart 1990."
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn telefoonnummer is 06 12345678."
+  },
+  {
+   "soort": "typ",
+   "toon": "De datum van vandaag is 2 mei 2026."
+  },
+  {
+   "soort": "typ",
+   "toon": "Een jaar heeft twaalf maanden.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn e-mail is sara@mail.nl."
+  },
+  {
+   "soort": "formulier",
+   "kop": "Uw gegevens",
+   "velden": [
+    {
+     "label": "Geboortedatum",
+     "soort": "geboortedatum"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email"
+    },
+    {
+     "label": "Datum van vandaag",
+     "soort": "datum"
+    }
+   ],
+   "situatie": "Schrijf hier uw geboortedatum, uw telefoonnummer en uw e-mail."
+  }
+ ]
+}

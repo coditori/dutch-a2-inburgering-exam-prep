@@ -1,0 +1,234 @@
+{
+ "uitleg": "Met deze zeven zinnen kunt u bijna elke vraag van het examen beantwoorden. Luister, zeg na en leer ze uit uw hoofd.",
+ "uitleg_en": "These seven sentence patterns cover almost every question of the speaking exam. Listen, repeat and learn them by heart.",
+ "patronen": [
+  {
+   "patroon": "1. Ik vind ___ (niet) leuk.",
+   "zinnen": [
+    {
+     "nl": "Ik vind voetbal leuk.",
+     "en": "I like football."
+    },
+    {
+     "nl": "Ik vind muziek leuk.",
+     "en": "I like music."
+    },
+    {
+     "nl": "Ik vind koken leuk.",
+     "en": "I like cooking."
+    },
+    {
+     "nl": "Ik vind lezen niet leuk.",
+     "en": "I don't like reading."
+    },
+    {
+     "nl": "Ik vind films leuk.",
+     "en": "I like films."
+    }
+   ]
+  },
+  {
+   "patroon": "2. Ik hou (niet) van ___.",
+   "zinnen": [
+    {
+     "nl": "Ik hou van sport.",
+     "en": "I like sport."
+    },
+    {
+     "nl": "Ik hou van fietsen.",
+     "en": "I like cycling."
+    },
+    {
+     "nl": "Ik hou van zwemmen.",
+     "en": "I like swimming."
+    },
+    {
+     "nl": "Ik hou niet van voetbal.",
+     "en": "I don't like football."
+    },
+    {
+     "nl": "Ik hou van koffie.",
+     "en": "I like coffee."
+    }
+   ]
+  },
+  {
+   "patroon": "3. Ik ___ (niet) graag.",
+   "zinnen": [
+    {
+     "nl": "Ik kook graag.",
+     "en": "I like to cook."
+    },
+    {
+     "nl": "Ik lees graag.",
+     "en": "I like to read."
+    },
+    {
+     "nl": "Ik zwem graag.",
+     "en": "I like to swim."
+    },
+    {
+     "nl": "Ik dans niet graag.",
+     "en": "I don't like dancing."
+    },
+    {
+     "nl": "Ik reis graag.",
+     "en": "I like travelling."
+    }
+   ]
+  },
+  {
+   "patroon": "4. Ik ga het liefst ___.",
+   "uitleg": "Niet: Ik ga liever niet ___.",
+   "uitleg_en": "Negative: 'Ik ga liever niet ...' (I'd rather not go ...).",
+   "zinnen": [
+    {
+     "nl": "Ik ga het liefst naar het strand.",
+     "en": "I prefer to go to the beach."
+    },
+    {
+     "nl": "Ik ga het liefst met de fiets.",
+     "en": "I prefer to go by bike."
+    },
+    {
+     "nl": "Ik blijf het liefst thuis.",
+     "en": "I prefer to stay at home."
+    },
+    {
+     "nl": "Ik ga het liefst in de zomer op vakantie.",
+     "en": "I prefer to go on holiday in summer."
+    },
+    {
+     "nl": "Ik ga liever niet in de winter op vakantie.",
+     "en": "I'd rather not go on holiday in winter."
+    }
+   ]
+  },
+  {
+   "patroon": "5. … omdat het ___ is.",
+   "uitleg": "Na omdat staat het werkwoord aan het einde.",
+   "uitleg_en": "After 'omdat' the verb goes to the end.",
+   "zinnen": [
+    {
+     "nl": "Ik vind fietsen leuk omdat het gezond is.",
+     "en": "I like cycling because it is healthy."
+    },
+    {
+     "nl": "Ik ga met de bus omdat het makkelijk is.",
+     "en": "I go by bus because it is easy."
+    },
+    {
+     "nl": "Ik kijk naar het nieuws omdat het interessant is.",
+     "en": "I watch the news because it is interesting."
+    },
+    {
+     "nl": "Ik vind de zomer leuk omdat het warm is.",
+     "en": "I like summer because it is warm."
+    },
+    {
+     "nl": "Ik koop op de markt omdat het goedkoop is.",
+     "en": "I buy at the market because it is cheap."
+    }
+   ]
+  },
+  {
+   "patroon": "6. Ik denk dat ___.",
+   "uitleg": "Voor plaatjes. Ook hier staat het werkwoord aan het einde.",
+   "uitleg_en": "For pictures. Here too the verb goes to the end.",
+   "zinnen": [
+    {
+     "nl": "Ik denk dat hij thee drinkt.",
+     "en": "I think he drinks tea."
+    },
+    {
+     "nl": "Ik denk dat ze koffie drinken.",
+     "en": "I think they drink coffee."
+    },
+    {
+     "nl": "Ik denk dat hij in een winkel werkt.",
+     "en": "I think he works in a shop."
+    },
+    {
+     "nl": "Ik denk dat ze voetbal spelen.",
+     "en": "I think they play football."
+    },
+    {
+     "nl": "Ik denk dat zij blij is.",
+     "en": "I think she is happy."
+    }
+   ]
+  },
+  {
+   "patroon": "7. Ik ___ elke dag / vaak / elke week.",
+   "zinnen": [
+    {
+     "nl": "Ik fiets elke dag.",
+     "en": "I cycle every day."
+    },
+    {
+     "nl": "Ik luister vaak naar muziek.",
+     "en": "I often listen to music."
+    },
+    {
+     "nl": "Ik ga elke week naar de markt.",
+     "en": "I go to the market every week."
+    },
+    {
+     "nl": "Ik kijk vaak televisie.",
+     "en": "I often watch television."
+    },
+    {
+     "nl": "Ik ga elk jaar op vakantie.",
+     "en": "I go on holiday every year."
+    }
+   ]
+  }
+ ],
+ "formule_uitleg": "Hebt u tijd? Zeg dan vier zinnen: wat u graag doet, wat u daarvan vindt, wat u niet leuk vindt, en wat u daarvan vindt.",
+ "formule_en": "When you have time, say four sentences: what you like, your opinion, 'but' what you don't like, your opinion.",
+ "formules": [
+  {
+   "titel": "Ik … graag. Ik vind dat … . Maar ik hou niet van … . Ik vind dat … .",
+   "zinnen": [
+    {
+     "nl": "Ik fiets graag.",
+     "en": "I like cycling."
+    },
+    {
+     "nl": "Ik vind dat leuk.",
+     "en": "I think that is nice."
+    },
+    {
+     "nl": "Maar ik hou niet van voetbal.",
+     "en": "But I don't like football."
+    },
+    {
+     "nl": "Ik vind dat saai.",
+     "en": "I find that boring."
+    }
+   ]
+  },
+  {
+   "titel": "Nog een voorbeeld",
+   "zinnen": [
+    {
+     "nl": "Ik kook graag.",
+     "en": "I like cooking."
+    },
+    {
+     "nl": "Ik vind dat leuk.",
+     "en": "I think that is nice."
+    },
+    {
+     "nl": "Maar ik hou niet van schoonmaken.",
+     "en": "But I don't like cleaning."
+    },
+    {
+     "nl": "Ik vind dat saai.",
+     "en": "I find that boring."
+    }
+   ]
+  }
+ ],
+ "redenen": "Goed: leuk, makkelijk, gezond, goedkoop, interessant. Niet goed: saai, duur, moeilijk."
+}

@@ -1,0 +1,157 @@
+{
+ "id": "L14",
+ "trede": 2,
+ "titel": "Een briefje van school",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de juf",
+   "en": "teacher (woman, primary school)",
+   "beeld": "👩‍🏫",
+   "zin": "De juf helpt de kinderen.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "het lokaal",
+   "en": "classroom",
+   "beeld": "🏫🚪",
+   "zin": "De les is in lokaal 3.",
+   "thema": "onderwijs",
+   "vormen": [
+    "lokalen"
+   ]
+  },
+  {
+   "nl": "de tas",
+   "en": "bag",
+   "beeld": "🎒",
+   "zin": "Mijn boek zit in mijn tas.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de gym",
+   "en": "PE / gym",
+   "beeld": "🤸",
+   "zin": "De kinderen hebben vandaag gym.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "vanaf",
+   "en": "from (a time or place)",
+   "beeld": "▶️",
+   "zin": "Vanaf maandag ben ik vrij.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "het zwembad",
+   "en": "swimming pool",
+   "beeld": "🏊",
+   "zin": "Wij zwemmen in het zwembad.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "extra",
+   "en": "extra",
+   "beeld": "➕",
+   "zin": "Neem een extra jas mee.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "de pauze",
+   "en": "break",
+   "beeld": "⏸️",
+   "zin": "In de pauze eten wij brood.",
+   "thema": "werk"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "De ouders krijgen een briefje van de juf.",
+   "soort": "briefje",
+   "tekst": [
+    "Beste ouders,",
+    "Vrijdag gaan de kinderen zwemmen in het zwembad.",
+    "Zij nemen een tas met zwemkleding mee.",
+    "Wij gaan met de bus. De bus vertrekt om negen uur.",
+    "Juf Maria"
+   ],
+   "vragen": [
+    {
+     "v": "Wat nemen de kinderen vrijdag mee?",
+     "o": [
+      "een tas met zwemkleding",
+      "een boek",
+      "geld voor de bus"
+     ],
+     "b": "Zij nemen een tas met zwemkleding mee."
+    },
+    {
+     "v": "Hoe laat vertrekt de bus?",
+     "o": [
+      "om negen uur",
+      "om acht uur",
+      "om half negen"
+     ],
+     "b": "De bus vertrekt om negen uur."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat in de school.",
+   "soort": "bordje",
+   "tekst": [
+    "Let op!",
+    "Vanaf maandag is de gym in lokaal 12.",
+    "Lokaal 4 is dan dicht.",
+    "Neem extra schoenen mee voor de gym."
+   ],
+   "vragen": [
+    {
+     "v": "Waar is de gym vanaf maandag?",
+     "o": [
+      "in lokaal 12",
+      "in lokaal 4",
+      "buiten"
+     ],
+     "b": "Vanaf maandag is de gym in lokaal 12."
+    },
+    {
+     "v": "Wat nemen de kinderen mee voor de gym?",
+     "o": [
+      "extra schoenen",
+      "een extra tas",
+      "eten"
+     ],
+     "b": "Neem extra schoenen mee voor de gym."
+    }
+   ]
+  },
+  {
+   "intro": "Mevrouw Smit krijgt een bericht van de juf.",
+   "soort": "sms",
+   "tekst": [
+    "Dag mevrouw Smit,",
+    "Uw zoon Bas heeft vandaag geen eten in zijn tas.",
+    "De pauze is om twaalf uur.",
+    "Kunt u het eten naar school brengen?",
+    "Juf Maria"
+   ],
+   "vragen": [
+    {
+     "v": "Wat vraagt de juf?",
+     "o": [
+      "Mevrouw Smit moet eten naar school brengen.",
+      "Bas moet naar huis komen.",
+      "Mevrouw Smit moet de juf bellen."
+     ],
+     "b": "Kunt u het eten naar school brengen?"
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "{Vanaf} maandag is de gym in lokaal 12.",
+  "De {pauze} is om twaalf uur.",
+  "Zij nemen een {tas} met zwemkleding mee."
+ ]
+}

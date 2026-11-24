@@ -1,0 +1,123 @@
+{
+ "id": "U17",
+ "trede": 2,
+ "titel": "Twee zinnen: waar zijn ze?",
+ "namen": [
+  "Utrecht"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Goedemorgen. Een brood en twee flessen melk, alstublieft."
+    },
+    {
+     "s": "B",
+     "t": "Dat is samen vier euro tien."
+    }
+   ],
+   "v": "Waar zijn ze?",
+   "o": [
+    "in de winkel",
+    "bij de huisarts",
+    "in de bus"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemiddag, ik heb om drie uur een afspraak met de huisarts."
+    },
+    {
+     "s": "A",
+     "t": "Goed. U kunt wachten in de wachtkamer."
+    }
+   ],
+   "v": "Waar zijn ze?",
+   "o": [
+    "bij de huisarts",
+    "op school",
+    "op het station"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Is dit de bus naar het centrum?"
+    },
+    {
+     "s": "C",
+     "t": "Nee, die vertrekt bij de halte daar."
+    }
+   ],
+   "v": "Waar zijn ze?",
+   "o": [
+    "bij de halte",
+    "in de supermarkt",
+    "in het zwembad"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Mag ik het menu zien?"
+    },
+    {
+     "s": "A",
+     "t": "Ja. Wilt u eerst iets drinken?"
+    }
+   ],
+   "v": "Waar zijn ze?",
+   "o": [
+    "in een restaurant",
+    "in de bibliotheek",
+    "bij de apotheek"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Ik wil dit boek graag lenen."
+    },
+    {
+     "s": "B",
+     "t": "Dat kan. Het boek moet over drie weken terug zijn."
+    }
+   ],
+   "v": "Waar zijn ze?",
+   "o": [
+    "in de bibliotheek",
+    "in de kledingwinkel",
+    "op het werk"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Een kaartje naar Utrecht, alstublieft."
+    },
+    {
+     "s": "C",
+     "t": "De trein vertrekt over vijf minuten van spoor twee."
+    }
+   ],
+   "v": "Waar zijn ze?",
+   "o": [
+    "op het station",
+    "in het park",
+    "in het buurthuis"
+   ]
+  }
+ ],
+ "dictee": [
+  "Dat is samen vier euro tien.",
+  "De trein vertrekt over vijf minuten van spoor twee."
+ ]
+}

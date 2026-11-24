@@ -1,0 +1,154 @@
+{
+ "id": "L18",
+ "trede": 2,
+ "titel": "Een bericht van het werk",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de collega",
+   "en": "colleague",
+   "beeld": "🧑‍💼",
+   "zin": "Mijn collega helpt mij.",
+   "thema": "werk",
+   "vormen": [
+    "collega's"
+   ]
+  },
+  {
+   "nl": "de baas",
+   "en": "boss",
+   "beeld": "👔",
+   "zin": "De baas is vandaag niet op het werk.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de dienst",
+   "en": "shift",
+   "beeld": "🕐",
+   "zin": "Ik heb morgen de ochtenddienst.",
+   "thema": "werk"
+  },
+  {
+   "nl": "ruilen",
+   "en": "to swap",
+   "beeld": "🔄",
+   "zin": "Wil je een dag met mij ruilen?",
+   "thema": "werk"
+  },
+  {
+   "nl": "het rooster",
+   "en": "schedule / rota",
+   "beeld": "📋",
+   "zin": "Op het rooster staat wanneer ik werk.",
+   "thema": "werk"
+  },
+  {
+   "nl": "het kantoor",
+   "en": "office",
+   "beeld": "🏢",
+   "zin": "Zij werkt op een kantoor.",
+   "thema": "werk"
+  },
+  {
+   "nl": "het team",
+   "en": "team",
+   "beeld": "🤝",
+   "zin": "Ons team is klein.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de vergadering",
+   "en": "meeting",
+   "beeld": "🗣️",
+   "zin": "De vergadering begint om negen uur.",
+   "thema": "werk"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Eva krijgt een bericht van een collega.",
+   "soort": "sms",
+   "tekst": [
+    "Hallo Eva,",
+    "Ik heb zaterdag de ochtenddienst, maar mijn dochter heeft dan een feest.",
+    "Wil jij met mij ruilen? Dan werk ik zondag.",
+    "Groetjes, je collega Lisa"
+   ],
+   "vragen": [
+    {
+     "v": "Wat vraagt Lisa?",
+     "o": [
+      "Zij wil een dienst ruilen.",
+      "Zij wil vrij op zondag.",
+      "Zij wil naar een feest van Eva."
+     ],
+     "b": "Wil jij met mij ruilen?"
+    },
+    {
+     "v": "Wanneer wil Lisa werken?",
+     "o": [
+      "op zondag",
+      "op zaterdag",
+      "op maandag"
+     ],
+     "b": "Dan werk ik zondag."
+    }
+   ]
+  },
+  {
+   "intro": "Dit briefje ligt op het werk.",
+   "soort": "briefje",
+   "tekst": [
+    "Beste collega's,",
+    "De vergadering van het team is morgen niet om 9.00 uur, maar om 11.00 uur.",
+    "Wij zitten in kamer 3, naast het kantoor van de baas.",
+    "Er is koffie en thee."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat is de vergadering?",
+     "o": [
+      "om 11.00 uur",
+      "om 9.00 uur",
+      "om 3.00 uur"
+     ],
+     "b": "De vergadering van het team is morgen niet om 9.00 uur, maar om 11.00 uur."
+    },
+    {
+     "v": "Waar is de vergadering?",
+     "o": [
+      "in kamer 3",
+      "in het kantoor van de baas",
+      "in de keuken"
+     ],
+     "b": "Wij zitten in kamer 3, naast het kantoor van de baas."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat bij de deur van het kantoor.",
+   "soort": "bordje",
+   "tekst": [
+    "Het nieuwe rooster ligt op de tafel in de keuken.",
+    "Kun je een dag niet werken? Bel dan vóór vrijdag de baas."
+   ],
+   "vragen": [
+    {
+     "sit": "Je kunt een dag niet werken.",
+     "v": "Wat doe je?",
+     "o": [
+      "vóór vrijdag de baas bellen",
+      "een collega bellen",
+      "het rooster meenemen"
+     ],
+     "b": "Bel dan vóór vrijdag de baas."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Wil jij met mij {ruilen}?",
+  "De {vergadering} van het team is morgen om 11.00 uur.",
+  "Het nieuwe {rooster} ligt op de tafel in de keuken."
+ ]
+}

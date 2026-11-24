@@ -1,0 +1,165 @@
+{
+ "id": "L33",
+ "trede": 4,
+ "titel": "De folder van het sportcentrum",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het abonnement",
+   "en": "subscription / membership",
+   "beeld": "🎟️",
+   "zin": "Ik heb een abonnement voor de bus.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "opzeggen",
+   "en": "to cancel (a contract)",
+   "beeld": "✂️",
+   "zin": "Ik zeg mijn abonnement op.",
+   "thema": "algemeen",
+   "vormen": [
+    "zeg",
+    "zegt",
+    "zei",
+    "op",
+    "opgezegd",
+    "opzegt"
+   ]
+  },
+  {
+   "nl": "geschikt",
+   "en": "suitable",
+   "beeld": "👌",
+   "zin": "Deze cursus is geschikt voor iedereen.",
+   "thema": "mening"
+  },
+  {
+   "nl": "de kleedkamer",
+   "en": "changing room",
+   "beeld": "🚻",
+   "zin": "In de kleedkamer doet u uw sportkleren aan.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "de handdoek",
+   "en": "towel",
+   "beeld": "🧖",
+   "zin": "Neem een handdoek mee naar het zwembad.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de soort",
+   "en": "kind / type",
+   "beeld": "🗂️",
+   "zin": "Er zijn twee soorten kaartjes.",
+   "thema": "algemeen",
+   "vormen": [
+    "soorten"
+   ]
+  },
+  {
+   "nl": "genoeg",
+   "en": "enough",
+   "beeld": "🈵",
+   "zin": "Ik heb genoeg geld.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "zo",
+   "en": "so / as",
+   "beeld": "↔️",
+   "zin": "Kom zo snel als u kunt.",
+   "thema": "hoeveel"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Daan en Mila lezen de folder van een sportcentrum.",
+   "kop": "Sportcentrum Actief",
+   "soort": "tekst",
+   "tekst": [
+    "Het sportcentrum is geopend op werkdagen van 7.00 tot 22.00 uur. Op zaterdag en zondag van 9.00 tot 17.00 uur.",
+    "Er zijn drie soorten abonnementen:",
+    "abonnement | wanneer? | prijs per maand",
+    "Ochtend | maandag tot en met vrijdag, tot 12.00 uur | € 19",
+    "Weekend | alleen zaterdag en zondag | € 15",
+    "Alles | elke dag, zo vaak als u wilt | € 32",
+    "",
+    "Bij elk abonnement kunt u gratis meedoen met de groepslessen. Alleen voor zwemles betaalt u € 4 extra per les.",
+    "Weet u niet welk abonnement geschikt is voor u? Vraag dan een gratis proefles aan bij de balie.",
+    "Neem altijd een handdoek mee. In de kleedkamers zijn kasten voor uw kleren en uw tas. De sleutel krijgt u bij de balie.",
+    "Wilt u stoppen? U kunt uw abonnement elke maand opzeggen. Doe dat uiterlijk op dag 20 van de maand. Zegt u later op? Dan betaalt u nog één maand."
+   ],
+   "vragen": [
+    {
+     "sit": "Daan werkt van maandag tot en met vrijdag van 9.00 tot 17.00 uur. Hij wil alleen in het weekend sporten.",
+     "v": "Hoeveel betaalt hij per maand?",
+     "o": [
+      "€ 15",
+      "€ 19",
+      "€ 32",
+      "€ 4"
+     ],
+     "b": "Weekend | alleen zaterdag en zondag | € 15"
+    },
+    {
+     "sit": "Mila heeft het abonnement Ochtend. Zij wil op woensdag om 10.00 uur meedoen met een groepsles.",
+     "v": "Wat betaalt zij voor die les?",
+     "o": [
+      "niets",
+      "€ 4",
+      "€ 19"
+     ],
+     "b": "Bij elk abonnement kunt u gratis meedoen met de groepslessen."
+    },
+    {
+     "sit": "Daan zegt zijn abonnement op 25 maart op.",
+     "v": "Wat betekent dat?",
+     "o": [
+      "Hij betaalt ook nog voor de maand april.",
+      "Hij betaalt niets meer.",
+      "Hij moet een boete betalen.",
+      "Hij kan niet meer opzeggen."
+     ],
+     "b": "Dan betaalt u nog één maand."
+    }
+   ]
+  },
+  {
+   "intro": "Bij de ingang van het sportcentrum hangt deze mededeling.",
+   "kop": "Zwembad tijdelijk dicht",
+   "soort": "tekst",
+   "tekst": [
+    "Van 3 tot en met 9 juni is het zwembad dicht. Wij maken het zwembad schoon.",
+    "De zwemlessen voor kinderen gaan in deze week niet door. U krijgt het geld voor deze lessen terug.",
+    "De andere groepslessen gaan wel door.",
+    "Het is in deze week druk in de kleedkamers. Er zijn misschien niet genoeg kasten. Laat uw telefoon en uw geld dus thuis."
+   ],
+   "vragen": [
+    {
+     "v": "Welke lessen gaan van 3 tot en met 9 juni niet door?",
+     "o": [
+      "de zwemlessen voor kinderen",
+      "alle groepslessen",
+      "de lessen in het weekend"
+     ],
+     "b": "De zwemlessen voor kinderen gaan in deze week niet door."
+    },
+    {
+     "v": "Waarom moeten bezoekers hun telefoon thuis laten?",
+     "o": [
+      "Er zijn misschien niet genoeg kasten.",
+      "Een telefoon is verboden in het sportcentrum.",
+      "De kleedkamers zijn dicht."
+     ],
+     "b": "Er zijn misschien niet genoeg kasten."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "U kunt uw abonnement elke maand {opzeggen}.",
+  "Weet u niet welk abonnement {geschikt} is voor u?",
+  "Er zijn misschien niet {genoeg} kasten."
+ ]
+}

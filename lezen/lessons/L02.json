@@ -1,0 +1,149 @@
+{
+ "id": "L02",
+ "trede": 1,
+ "titel": "De man en de vrouw",
+ "soort": "plaatje",
+ "woorden": [
+  {
+   "nl": "de man",
+   "en": "man / husband",
+   "beeld": "👨",
+   "zin": "De man werkt veel.",
+   "thema": "familie"
+  },
+  {
+   "nl": "de vrouw",
+   "en": "woman / wife",
+   "beeld": "👩",
+   "zin": "De vrouw heet Anna.",
+   "thema": "familie"
+  },
+  {
+   "nl": "het kind",
+   "en": "child",
+   "beeld": "🧒",
+   "zin": "Het kind is blij.",
+   "thema": "familie"
+  },
+  {
+   "nl": "de baby",
+   "en": "baby",
+   "beeld": "👶",
+   "zin": "De baby slaapt veel.",
+   "thema": "familie",
+   "vormen": [
+    "baby's"
+   ]
+  },
+  {
+   "nl": "de opa",
+   "en": "grandfather",
+   "beeld": "👴",
+   "zin": "Mijn opa is oud.",
+   "thema": "familie"
+  },
+  {
+   "nl": "de oma",
+   "en": "grandmother",
+   "beeld": "👵",
+   "zin": "Mijn oma woont hier.",
+   "thema": "familie"
+  },
+  {
+   "nl": "de vader",
+   "en": "father",
+   "beeld": "👨‍👧",
+   "zin": "Mijn vader heeft een auto.",
+   "thema": "familie"
+  },
+  {
+   "nl": "de moeder",
+   "en": "mother",
+   "beeld": "👩‍👧",
+   "zin": "Mijn moeder werkt in een winkel.",
+   "thema": "familie"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "De baby slaapt."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👶😴",
+      "👴😴",
+      "👶🚌"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De oma zit in de bus."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👵🚌",
+      "👴🚌",
+      "👵🚆"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De vrouw woont in een groot huis."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👩🏠",
+      "👨🏠",
+      "👩🏪"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De vader loopt met het kind naar de winkel."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👨‍👧🏪",
+      "👩‍👧🏪",
+      "👨‍👧🚉"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De opa en de man wachten op de trein."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👴👨🚆",
+      "👵👨🚆",
+      "👴👨🚌"
+     ]
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De {baby} slaapt.",
+  "De vader loopt met het {kind} naar de winkel.",
+  "Mijn {moeder} werkt in een winkel."
+ ]
+}

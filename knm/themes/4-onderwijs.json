@@ -1,0 +1,550 @@
+{
+ "id": "4-onderwijs",
+ "trede": 3,
+ "titel": "Onderwijs en opvoeding",
+ "max_nieuw": 23,
+ "namen": [
+  "Sara",
+  "Tom",
+  "Eva",
+  "Omar",
+  "Mila",
+  "Karim",
+  "Noor",
+  "Lisa",
+  "Daan",
+  "Yusuf",
+  "Peter",
+  "Emma",
+  "DUO",
+  "UWV",
+  "SVB",
+  "vmbo",
+  "vmbo-diploma",
+  "havo",
+  "vwo",
+  "mbo",
+  "hbo",
+  "vwo-diploma",
+  "Sociale",
+  "Verzekeringsbank",
+  "Toeslagen",
+  "WW-uitkering",
+  "doorstroomtoets",
+  "Stichting",
+  "Leergeld",
+  "Ali"
+ ],
+ "woorden": [
+  {
+   "nl": "de leerplicht",
+   "en": "compulsory education",
+   "beeld": "🎒❗",
+   "zin": "Door de {leerplicht} moeten alle kinderen naar school.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "het onderwijs",
+   "en": "education",
+   "beeld": "📚",
+   "zin": "Goed {onderwijs} is belangrijk voor elk kind.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "het kinderdagverblijf",
+   "en": "day-care centre (nursery)",
+   "beeld": "🧸",
+   "zin": "Een baby kan naar het {kinderdagverblijf} als de ouders werken.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de peuterspeelzaal",
+   "en": "playgroup (2-4 years)",
+   "beeld": "🪁",
+   "zin": "Kinderen van 2 tot 4 jaar kunnen naar de {peuterspeelzaal}.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de buitenschoolse opvang",
+   "en": "after-school care",
+   "beeld": "🏫🕓",
+   "zin": "Na school gaan de kinderen naar de {buitenschoolse opvang}.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "voortgezet",
+   "en": "secondary (education)",
+   "beeld": "🏫➡️",
+   "zin": "Na de basisschool gaat een kind naar het {voortgezet} onderwijs.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de universiteit",
+   "en": "university",
+   "beeld": "🎓",
+   "zin": "Na het vwo kan een leerling naar de {universiteit}.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de kinderbijslag",
+   "en": "child benefit",
+   "beeld": "👨‍👩‍👧💶",
+   "zin": "Ouders krijgen {kinderbijslag} voor de kosten van hun kinderen.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de studiefinanciering",
+   "en": "student finance",
+   "beeld": "🎓💶",
+   "zin": "Wie studeert, kan {studiefinanciering} aanvragen bij DUO.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de opvoeding",
+   "en": "upbringing",
+   "beeld": "👪",
+   "zin": "De ouders zorgen voor de {opvoeding} van hun kind.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "openbaar",
+   "en": "public (open to all)",
+   "beeld": "🚪",
+   "zin": "Een {openbare} school is voor alle kinderen.",
+   "thema": "onderwijs",
+   "vormen": [
+    "openbare"
+   ]
+  },
+  {
+   "nl": "bijzonder",
+   "en": "special / denominational",
+   "beeld": "✨",
+   "zin": "Een {bijzondere} school hoort vaak bij een geloof.",
+   "thema": "onderwijs",
+   "vormen": [
+    "bijzondere"
+   ]
+  },
+  {
+   "nl": "de leerplichtambtenaar",
+   "en": "school attendance officer",
+   "beeld": "👮🎒",
+   "zin": "Gaat een kind vaak niet naar school? Dan komt de {leerplichtambtenaar}.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "verantwoordelijk",
+   "en": "responsible",
+   "beeld": "🫵",
+   "zin": "Ouders zijn {verantwoordelijk} voor de opvoeding van hun kinderen tot 18 jaar.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de oppas",
+   "en": "babysitter",
+   "beeld": "🧑‍🍼",
+   "zin": "De {oppas} past op de kinderen als de ouders niet thuis zijn.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "het advies",
+   "en": "advice",
+   "beeld": "🧑‍🏫💬",
+   "zin": "In groep 8 krijgt een kind een {advies} voor de volgende school.",
+   "thema": "onderwijs",
+   "meer": true
+  },
+  {
+   "nl": "speciaal",
+   "en": "special",
+   "beeld": "⭐",
+   "zin": "Het {speciaal} onderwijs is voor kinderen die veel extra hulp nodig hebben.",
+   "thema": "onderwijs",
+   "vormen": [
+    "speciale"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de gastouder",
+   "en": "childminder",
+   "beeld": "🏠🧒",
+   "zin": "De {gastouder} zorgt in haar eigen huis voor een paar kinderen.",
+   "thema": "onderwijs",
+   "vormen": [
+    "gastouders"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de lening",
+   "en": "loan",
+   "beeld": "🏦💶",
+   "zin": "Een {lening} moet u later terugbetalen.",
+   "thema": "onderwijs",
+   "vormen": [
+    "leningen"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de beurs",
+   "en": "grant (for students)",
+   "beeld": "🎓💶",
+   "zin": "Een student krijgt een {beurs} van DUO.",
+   "thema": "onderwijs",
+   "vormen": [
+    "beurzen"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "de student",
+   "en": "student",
+   "beeld": "🧑‍🎓",
+   "zin": "De {student} studeert aan de universiteit.",
+   "thema": "onderwijs",
+   "vormen": [
+    "studenten"
+   ],
+   "meer": true
+  },
+  {
+   "nl": "het gezag",
+   "en": "(parental) authority",
+   "beeld": "👪⚖️",
+   "zin": "Ouders hebben het {gezag} over hun kind tot 18 jaar.",
+   "thema": "onderwijs",
+   "meer": true
+  },
+  {
+   "nl": "de seksuele voorlichting",
+   "en": "sex education",
+   "beeld": "📖❤️",
+   "zin": "Op school krijgen kinderen {seksuele voorlichting}.",
+   "thema": "onderwijs",
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Vanaf hoeveel jaar moet een kind naar school?",
+   "a": "Vanaf 5 jaar. De meeste kinderen gaan al met 4 jaar.",
+   "en": "From what age must a child go to school? From 5. Most start at 4.",
+   "beeld": "🎒"
+  },
+  {
+   "v": "Tot wanneer moet een kind naar school?",
+   "a": "Tot 16 jaar. Heeft een kind dan nog geen diploma? Dan moet het tot 18 jaar naar school.",
+   "en": "Until when? Until 16; without a basic diploma, until 18.",
+   "beeld": "📅"
+  },
+  {
+   "v": "Hoeveel groepen heeft de basisschool?",
+   "a": "Acht: groep 1 tot en met groep 8.",
+   "en": "How many year groups in primary school? Eight.",
+   "beeld": "8️⃣"
+  },
+  {
+   "v": "Welke scholen zijn er na de basisschool?",
+   "a": "Het vmbo (4 jaar), de havo (5 jaar) en het vwo (6 jaar).",
+   "en": "Which schools come after primary school? vmbo (4 years), havo (5), vwo (6).",
+   "beeld": "🏫"
+  },
+  {
+   "v": "Met welk diploma kan een leerling naar de universiteit?",
+   "a": "Met een diploma van het vwo.",
+   "en": "Which diploma gives access to university? vwo.",
+   "beeld": "🎓"
+  },
+  {
+   "v": "Wie betaalt de kinderbijslag?",
+   "a": "De Sociale Verzekeringsbank (SVB).",
+   "en": "Who pays child benefit? The Social Insurance Bank (SVB).",
+   "beeld": "🏛️"
+  },
+  {
+   "v": "Waar vraagt u kinderopvangtoeslag aan?",
+   "a": "Bij de Belastingdienst (Dienst Toeslagen).",
+   "en": "Where do you apply for childcare allowance? At the tax office (Benefits service).",
+   "beeld": "🧸"
+  },
+  {
+   "v": "Waar vraagt iemand die studeert studiefinanciering aan?",
+   "a": "Bij DUO.",
+   "en": "Where does a student apply for student finance? At DUO.",
+   "beeld": "💶"
+  },
+  {
+   "v": "Is de basisschool gratis?",
+   "a": "Ja. De school mag een ouderbijdrage vragen, maar die is niet verplicht.",
+   "en": "Is primary school free? Yes. The school may ask a parental contribution, but it is voluntary.",
+   "beeld": "🆓"
+  },
+  {
+   "v": "Wat gebeurt er als een kind zonder reden niet naar school gaat?",
+   "a": "De leerplichtambtenaar praat met de ouders. De ouders kunnen een boete krijgen.",
+   "en": "What happens when a child skips school without reason? The attendance officer talks to the parents; they can be fined.",
+   "beeld": "👮"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "De dochter van Sara wordt volgende maand 5 jaar.",
+   "v": "Wat betekent dat?",
+   "o": [
+    "Zij moet naar school.",
+    "Zij mag naar school, maar het hoeft niet.",
+    "Zij moet naar de peuterspeelzaal."
+   ],
+   "w": "De leerplicht begint als een kind 5 jaar is.",
+   "beeld": "🎒"
+  },
+  {
+   "sit": "Tom en Eva werken elke dag. Hun zoon is 1 jaar.",
+   "v": "Waar kan hun zoon dan zijn?",
+   "o": [
+    "Op het kinderdagverblijf.",
+    "Op de basisschool.",
+    "Op de buitenschoolse opvang."
+   ],
+   "w": "Het kinderdagverblijf is voor kinderen van 0 tot 4 jaar.",
+   "beeld": "🧸"
+  },
+  {
+   "sit": "Omar is 15 jaar. Hij wil stoppen met school en gaan werken.",
+   "v": "Mag dat?",
+   "o": [
+    "Nee, hij moet nog naar school.",
+    "Ja, als zijn ouders het goedvinden.",
+    "Ja, als hij werk heeft."
+   ],
+   "w": "Door de leerplicht moet Omar nog naar school.",
+   "beeld": "📅"
+  },
+  {
+   "sit": "Mila zit in groep 8.",
+   "v": "Waar gaat zij volgend jaar naartoe?",
+   "o": [
+    "Naar het voortgezet onderwijs.",
+    "Naar de universiteit.",
+    "Naar het mbo."
+   ],
+   "w": "Na groep 8 gaan kinderen naar het voortgezet onderwijs: vmbo, havo of vwo.",
+   "beeld": "🏫"
+  },
+  {
+   "sit": "De zoon van Karim leert niet goed op school. Karim maakt zich zorgen.",
+   "v": "Met wie praat Karim eerst?",
+   "o": [
+    "Met de juf of de meester van zijn zoon.",
+    "Met de politie.",
+    "Met de gemeente."
+   ],
+   "w": "Bij problemen op school praat u eerst met de juf of de meester.",
+   "beeld": "👩‍🏫"
+  },
+  {
+   "sit": "Noor gaat studeren aan het hbo. Zij heeft weinig geld.",
+   "v": "Waar kan zij geld aanvragen om te studeren?",
+   "o": [
+    "Bij DUO.",
+    "Bij het UWV.",
+    "Bij de SVB."
+   ],
+   "w": "Studiefinanciering vraagt u aan bij DUO.",
+   "beeld": "🎓"
+  },
+  {
+   "sit": "Lisa en Daan krijgen een baby.",
+   "v": "Welk geld krijgen zij voor de kosten van hun kind?",
+   "o": [
+    "Kinderbijslag van de SVB.",
+    "Een WW-uitkering van het UWV.",
+    "Huurtoeslag van de gemeente."
+   ],
+   "w": "Alle ouders met kinderen tot 18 jaar krijgen kinderbijslag van de SVB.",
+   "beeld": "👶"
+  },
+  {
+   "sit": "De school van Yusuf vraagt een ouderbijdrage voor een dag uit. De ouders van Yusuf kunnen niet betalen.",
+   "v": "Mag Yusuf mee?",
+   "o": [
+    "Ja, de ouderbijdrage is niet verplicht.",
+    "Nee, zonder geld mag hij niet mee.",
+    "Alleen als de buren betalen."
+   ],
+   "w": "De ouderbijdrage is niet verplicht. Alle kinderen mogen meedoen.",
+   "beeld": "🚌"
+  },
+  {
+   "sit": "De dochter van Peter is 10 jaar. Zij blijft vaak thuis zonder reden.",
+   "v": "Wie kan er bij Peter op bezoek komen?",
+   "o": [
+    "De leerplichtambtenaar.",
+    "De notaris.",
+    "De bedrijfsarts."
+   ],
+   "w": "De leerplichtambtenaar controleert of kinderen naar school gaan.",
+   "beeld": "👮"
+  },
+  {
+   "sit": "Emma heeft een vmbo-diploma.",
+   "v": "Naar welke school kan zij nu?",
+   "o": [
+    "Naar het mbo.",
+    "Naar de universiteit.",
+    "Naar de basisschool."
+   ],
+   "w": "Na het vmbo gaat u naar het mbo. Voor de universiteit is een vwo-diploma nodig.",
+   "beeld": "🎓"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Wat gebeurt er in groep 8?",
+    "a": "De kinderen krijgen een schooladvies en maken de doorstroomtoets. Daarna kiezen zij een school voor voortgezet onderwijs.",
+    "en": "What happens in group 8? School advice and the 'doorstroomtoets'; then they choose a secondary school.",
+    "beeld": "🏫"
+   },
+   {
+    "v": "Mag u uw kind buiten de schoolvakanties thuis houden voor een vrije dag?",
+    "a": "Nee. Alleen met toestemming van de school, anders kunt u een boete krijgen.",
+    "en": "May you keep your child home outside school holidays? Only with the school's permission, otherwise a fine.",
+    "beeld": "📅"
+   },
+   {
+    "v": "Mag iedereen een eigen school beginnen?",
+    "a": "Ja. Daarom zijn er veel verschillende scholen, ook scholen die bij een geloof horen.",
+    "en": "May anyone start a school? Yes; that is why there are many kinds of schools, also religious ones.",
+    "beeld": "🏫"
+   },
+   {
+    "v": "Voor wie is het speciaal onderwijs?",
+    "a": "Voor kinderen die veel extra hulp nodig hebben bij het leren.",
+    "en": "Who is special education for? Children who need a lot of extra help.",
+    "beeld": "⭐"
+   },
+   {
+    "v": "Wanneer krijgt u kinderopvangtoeslag?",
+    "a": "Als de ouders werken, een opleiding doen of een cursus voor inburgering doen. De toeslag is er niet voor ouders die thuis zijn.",
+    "en": "When do you get childcare allowance? When the parents work, study or follow integration; not when they are at home.",
+    "beeld": "🧸"
+   },
+   {
+    "v": "Wat doet een gastouder?",
+    "a": "Zij zorgt voor een paar kinderen, in haar eigen huis of bij het kind thuis.",
+    "en": "What does a childminder do? She looks after a few children at her home or the child's home.",
+    "beeld": "🏠"
+   },
+   {
+    "v": "Voor wie is de voorschool?",
+    "a": "Voor kleine kinderen die extra hulp nodig hebben met de Nederlandse taal, vóór zij naar de basisschool gaan.",
+    "en": "Who is pre-school (voorschool) for? Small children who need extra help with Dutch before primary school.",
+    "beeld": "🔤"
+   },
+   {
+    "v": "Krijgen kinderen op school seksuele voorlichting?",
+    "a": "Ja. Dat is verplicht op alle scholen.",
+    "en": "Do children get sex education at school? Yes, it is compulsory.",
+    "beeld": "📖"
+   },
+   {
+    "v": "Wie betaalt de schoolboeken in het voortgezet onderwijs?",
+    "a": "De school: de boeken zijn gratis. Papier en een tas betalen de ouders zelf.",
+    "en": "Who pays for school books in secondary school? The school; parents pay for stationery and a bag.",
+    "beeld": "📚"
+   },
+   {
+    "v": "Wie helpt ouders met weinig geld met de kosten van school, sport en muziek?",
+    "a": "De gemeente en Stichting Leergeld.",
+    "en": "Who helps low-income parents with school, sport and music costs? The municipality and Stichting Leergeld.",
+    "beeld": "🎻"
+   },
+   {
+    "v": "Wat kan een student krijgen met studiefinanciering?",
+    "a": "Een beurs, soms een extra beurs als de ouders weinig verdienen, een pas voor bus en trein, en als de student dat wil een lening.",
+    "en": "What can a student get? A basic grant, sometimes a supplementary grant, a public-transport pass, and a loan if wanted.",
+    "beeld": "🎓"
+   },
+   {
+    "v": "Wanneer meldt u uw kind aan bij een basisschool?",
+    "a": "Op tijd: vóór uw kind vier jaar wordt.",
+    "en": "When do you register your child at a primary school? In time, before the child turns four.",
+    "beeld": "✍️"
+   },
+   {
+    "v": "Is de kinderbijslag voor elk kind gelijk?",
+    "a": "Nee. Voor een ouder kind krijgt u meer.",
+    "en": "Is child benefit the same for every child? No, more for older children.",
+    "beeld": "💶"
+   },
+   {
+    "v": "Hoe kunnen ouders meepraten op school?",
+    "a": "Zij gaan naar de ouderavond en kunnen meedoen in een groep van ouders die met de school praat.",
+    "en": "How can parents have a say at school? Parents' evenings and the parents' council.",
+    "beeld": "🗣️"
+   },
+   {
+    "v": "Bij wie vraagt u hulp bij grote problemen met de opvoeding?",
+    "a": "Bij de huisarts of bij de gemeente.",
+    "en": "Where do you ask help with serious parenting problems? The GP or the municipality.",
+    "beeld": "👪"
+   },
+   {
+    "v": "Tot hoeveel jaar hebben ouders het gezag over hun kind?",
+    "a": "Tot 18 jaar. Maakt een kind jonger dan 14 jaar iets kapot? Dan betalen de ouders. Vanaf 16 jaar is een kind daar zelf verantwoordelijk voor.",
+    "en": "Until what age do parents have authority? 18. Damage by a child under 14: parents pay; from 16 the child is liable.",
+    "beeld": "⚖️"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "Er is een feest van de familie op een schooldag. De ouders van Noor willen dat zij een dag vrij krijgt.",
+    "v": "Wat doen de ouders?",
+    "o": [
+     "Zij vragen toestemming aan de school.",
+     "Zij houden Noor thuis zonder iets te zeggen.",
+     "Zij bellen de gemeente."
+    ],
+    "w": "Buiten de vakanties mag een vrije dag alleen met toestemming van de school.",
+    "beeld": "📅"
+   },
+   {
+    "sit": "De zoon van Ali is 3 jaar en spreekt nog bijna geen Nederlands.",
+    "v": "Waar kan hij extra hulp met de taal krijgen?",
+    "o": [
+     "Op de voorschool.",
+     "Op het voortgezet onderwijs.",
+     "Bij de leerplichtambtenaar."
+    ],
+    "w": "De voorschool helpt kleine kinderen met de Nederlandse taal.",
+    "beeld": "🔤"
+   },
+   {
+    "sit": "Daan is 12 jaar. Hij maakt een raam van de school kapot.",
+    "v": "Wie betaalt?",
+    "o": [
+     "Zijn ouders.",
+     "Daan zelf.",
+     "De school."
+    ],
+    "w": "Voor een kind jonger dan 14 jaar betalen de ouders.",
+    "beeld": "🪟"
+   },
+   {
+    "sit": "Eva gaat naar het hbo. Haar ouders verdienen weinig.",
+    "v": "Wat kan zij extra krijgen van DUO?",
+    "o": [
+     "Een extra beurs.",
+     "Kinderbijslag.",
+     "Een WW-uitkering."
+    ],
+    "w": "Verdienen de ouders weinig? Dan krijgt een student een extra beurs.",
+    "beeld": "🎓"
+   }
+  ]
+ }
+}

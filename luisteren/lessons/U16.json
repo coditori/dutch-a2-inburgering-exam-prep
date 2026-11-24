@@ -1,0 +1,227 @@
+{
+ "id": "U16",
+ "trede": 2,
+ "titel": "Berichten van buren en collega's",
+ "namen": [
+  "Sara",
+  "Tom",
+  "Ali",
+  "Omar",
+  "Emma",
+  "Lisa",
+  "Daan",
+  "Yilmaz",
+  "Sam",
+  "Noor",
+  "Eva",
+  "Peter",
+  "Mila",
+  "Yusuf",
+  "Smit",
+  "Bas",
+  "Maria",
+  "Karim"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "De buurvrouw vindt een briefje bij haar deur.",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Dag buurvrouw,"
+    },
+    {
+     "s": "C",
+     "t": "Er is een pakje voor u gekomen."
+    },
+    {
+     "s": "C",
+     "t": "Het ligt bij mij, op nummer 3 beneden."
+    },
+    {
+     "s": "C",
+     "t": "U kunt het na zes uur halen. Dan ben ik thuis."
+    },
+    {
+     "s": "C",
+     "t": "Peter"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waar is het pakje?",
+     "o": [
+      "bij Peter op nummer 3",
+      "bij de buurvrouw boven",
+      "bij de lift"
+     ]
+    },
+    {
+     "v": "Wanneer kan de buurvrouw het pakje halen?",
+     "o": [
+      "na zes uur",
+      "vóór zes uur",
+      "morgen"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Mila krijgt een bericht van Yusuf.",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Hallo Mila,"
+    },
+    {
+     "s": "A",
+     "t": "Mijn bus heeft bijna een kwartier vertraging. Er wordt aan de weg gewerkt."
+    },
+    {
+     "s": "A",
+     "t": "Ik ben er ongeveer om half vier."
+    },
+    {
+     "s": "A",
+     "t": "Tot straks! Yusuf"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom heeft de bus vertraging?",
+     "o": [
+      "Er wordt aan de weg gewerkt.",
+      "De chauffeur is ziek.",
+      "Het weer is slecht."
+     ]
+    },
+    {
+     "v": "Hoe laat komt Yusuf ongeveer?",
+     "o": [
+      "om half vier",
+      "om kwart over drie",
+      "om vier uur"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Eva krijgt een bericht van een collega.",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Hallo Eva,"
+    },
+    {
+     "s": "B",
+     "t": "Ik heb zaterdag de ochtenddienst, maar mijn dochter heeft dan een feest."
+    },
+    {
+     "s": "B",
+     "t": "Wil jij met mij ruilen? Dan werk ik zondag."
+    },
+    {
+     "s": "B",
+     "t": "Groetjes, je collega Lisa"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat vraagt Lisa?",
+     "o": [
+      "Zij wil een dienst ruilen.",
+      "Zij wil vrij op zondag.",
+      "Zij wil naar een feest van Eva."
+     ]
+    },
+    {
+     "v": "Wanneer wil Lisa werken?",
+     "o": [
+      "op zondag",
+      "op zaterdag",
+      "op maandag"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Sam leest een briefje van Noor.",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Sam,"
+    },
+    {
+     "s": "B",
+     "t": "Ik heb jouw sleutel niet. Ik heb alleen de sleutel van de auto."
+    },
+    {
+     "s": "B",
+     "t": "Misschien heeft Eva een andere sleutel van het huis. Zij is wel thuis."
+    },
+    {
+     "s": "B",
+     "t": "Noor"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wie heeft misschien een sleutel van het huis?",
+     "o": [
+      "Eva",
+      "Noor",
+      "Sam"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "De buren van de familie Yilmaz krijgen dit briefje.",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Beste buren,"
+    },
+    {
+     "s": "A",
+     "t": "Zaterdag geven wij een feest voor de verjaardag van onze dochter."
+    },
+    {
+     "s": "A",
+     "t": "Iedereen mag komen, ook de kinderen."
+    },
+    {
+     "s": "A",
+     "t": "Het feest begint om drie uur in de tuin."
+    },
+    {
+     "s": "A",
+     "t": "Groetjes, de familie Yilmaz (nummer 14)"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wie mogen naar het feest komen?",
+     "o": [
+      "alle buren en hun kinderen",
+      "alleen de kinderen",
+      "alleen de familie"
+     ]
+    },
+    {
+     "v": "Waar is het feest?",
+     "o": [
+      "in de tuin",
+      "in de straat",
+      "in het park"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Het ligt bij mij, op nummer drie beneden.",
+  "Wil jij met mij ruilen?"
+ ]
+}

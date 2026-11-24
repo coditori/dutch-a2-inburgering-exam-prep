@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nederlands A2 – inburgering</title>
+<link rel="stylesheet" href="shared/app.css">
+</head>
+<body>
+<main>
+  <div class="kaart" id="vandaag"></div>
+  <h2 data-en="the ladder: the same 5 steps in every exam">De ladder</h2>
+  <table class="ladder" id="ladder"></table>
+  <h2 data-en="the five exams">De vijf examens</h2>
+  <div class="tegels" id="examens"></div>
+</main>
+<script src="shared/woorden.js"></script>
+<script src="shared/srs.js"></script>
+<script src="shared/audio.js"></script>
+<script src="shared/app.js"></script>
+<script>
+(async () => {
+  const { el } = App;
+  App.kop('Nederlands A2 · inburgering');
+  const TREDES = [
+    ['groeten, de klok', 'greetings, the clock'],
+    ['bouwstenen: ik / u, niet / geen, vraagwoorden', 'building blocks'],
+    ['dagelijks leven: familie, huis, eten, winkel, vervoer', 'daily life'],
+    ["examenthema's: werk, gezondheid, school, gemeente", 'exam themes'],
+    ['examentaal: de woorden uit de vragen', 'exam language'],
+  ];
+  // een examen is klaar als de map een index.html heeft
+  const EXAMENS = await Promise.all(['Lezen', 'Luisteren', 'Schrijven', 'Spreken', 'KNM'].map(async (naam) => {
+    const map = naam.toLowerCase();
+    const klaar = await fetch(`${map}/index.html`, { method: 'HEAD' }).then((r) => r.ok).catch(() => false);
+    let n = 0;
+    // lessen staan in lessons/ ; bij KNM in themes/ (elk thema = 4 stappen: woorden, weetjes, situaties, meer weetjes)
+    for (const [pad, keer] of [['lessons', 1], ['themes', 4]]) {
+      try { n = n || keer * (await (await fetch(`${map}/${pad}/index.json`, { cache: 'no-cache' })).json()).length; } catch (e) { /* deze map is er niet */ }
+    }
+    const gedaan = Object.values((App.lees(map, {}).lessen) || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length;
+    return { naam, href: `${map}/index.html`, klaar, n, gedaan };
+  }));
+  const stand = App.tredeStand();
+  document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => el('tr', {},
+    el('th', {}, `Trede ${t}`),
+    el('td', { en }, nl),
+    el('td', { style: 'width:28%' }, el('div', { class: 'balk' }, el('i', { style: `width:${stand[t].totaal ? Math.round(100 * stand[t].bekend / stand[t].totaal) : 0}%` })),
+      el('span', { class: 'klein zacht' }, `${stand[t].bekend} van ${stand[t].totaal} woorden`)))));
+
+  const lezen = App.lees('lezen', { lessen: {} });
+  let lessen = [];
+  try { lessen = await (await fetch('lezen/lessons/index.json', { cache: 'no-cache' })).json(); } catch (e) { /* nog geen lessen */ }
+  const gehaald = (l) => { const r = (lezen.lessen || {})[l.id]; return r && r.beste / r.totaal >= 0.8; };
+  const volgende = lessen.find((l) => !gehaald(l));
+  const tel = SRS.tel();
+  document.getElementById('vandaag').append(
+    el('h3', { en: 'today' }, 'Vandaag'),
+    el('div', { class: 'knoppen' },
+      el('a', { class: 'knop' + (tel.nu ? '' : ' licht'), href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`),
+      volgende ? el('a', { class: 'knop', href: `lezen/les.html?les=${volgende.id}`, en: 'next reading lesson' }, `Lezen ${volgende.id}: ${volgende.titel}`) : null));
+
+  document.getElementById('examens').append(...EXAMENS.map((x) => x.klaar
+    ? el('a', { class: 'tegel nu', href: x.href }, el('b', {}, x.naam), x.n ? `${x.gedaan} van ${x.n} lessen` : '')
+    : el('div', { class: 'tegel slot' }, el('b', {}, x.naam), el('span', { en: 'not ready yet' }, 'nog niet klaar'))));
+})();
+</script>
+</body>
+</html>

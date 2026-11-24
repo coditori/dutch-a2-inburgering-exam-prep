@@ -1,0 +1,158 @@
+{
+ "id": "L15",
+ "trede": 2,
+ "titel": "Bij de huisarts",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de huisarts",
+   "en": "family doctor (GP)",
+   "beeld": "🩺",
+   "zin": "Ik ga naar de huisarts.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de assistente",
+   "en": "(doctor's) assistant",
+   "beeld": "👩‍⚕️",
+   "zin": "De assistente maakt een afspraak.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de praktijk",
+   "en": "(doctor's) practice",
+   "beeld": "🏥",
+   "zin": "De praktijk is open tot vijf uur.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de pijn",
+   "en": "pain",
+   "beeld": "🤕",
+   "zin": "Ik heb veel pijn.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "het spreekuur",
+   "en": "consultation hour",
+   "beeld": "🕘",
+   "zin": "Het spreekuur is in de ochtend.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "de balie",
+   "en": "desk / counter",
+   "beeld": "🛎️",
+   "zin": "U vraagt het aan de balie.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "melden",
+   "en": "to report",
+   "beeld": "📣",
+   "zin": "U meldt zich bij de balie.",
+   "thema": "lezen",
+   "vormen": [
+    "meld",
+    "meldt",
+    "meldde",
+    "gemeld"
+   ]
+  },
+  {
+   "nl": "zich",
+   "en": "himself / herself / yourself",
+   "beeld": "🙋",
+   "zin": "Hij meldt zich bij de assistente.",
+   "thema": "persoon"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit bordje staat bij de ingang van de praktijk.",
+   "soort": "bordje",
+   "tekst": [
+    "Praktijk van huisarts Visser",
+    "Meld u eerst bij de assistente aan de balie.",
+    "Daarna kunt u wachten in de wachtkamer."
+   ],
+   "vragen": [
+    {
+     "v": "Wat doet u eerst?",
+     "o": [
+      "U meldt zich bij de assistente.",
+      "U gaat naar de wachtkamer.",
+      "U gaat naar de huisarts."
+     ],
+     "b": "Meld u eerst bij de assistente aan de balie."
+    },
+    {
+     "v": "Waar is de assistente?",
+     "o": [
+      "aan de balie",
+      "in de wachtkamer",
+      "buiten bij de deur"
+     ],
+     "b": "Meld u eerst bij de assistente aan de balie."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat op de deur van de huisarts.",
+   "soort": "bordje",
+   "tekst": [
+    "Spreekuur zonder afspraak",
+    "Elke ochtend van 8.00 tot 9.00 uur.",
+    "Hebt u veel pijn? Bel dan de assistente: 030 - 555 01 23.",
+    "Na 17.00 uur is de praktijk gesloten."
+   ],
+   "vragen": [
+    {
+     "v": "Wanneer kunt u zonder afspraak komen?",
+     "o": [
+      "elke ochtend van 8.00 tot 9.00 uur",
+      "elke middag",
+      "na 17.00 uur"
+     ],
+     "b": "Elke ochtend van 8.00 tot 9.00 uur."
+    },
+    {
+     "sit": "Het is twee uur in de middag. U hebt veel pijn.",
+     "v": "Wat doet u?",
+     "o": [
+      "U belt de assistente.",
+      "U wacht tot morgen.",
+      "U komt na 17.00 uur."
+     ],
+     "b": "Bel dan de assistente: 030 - 555 01 23."
+    }
+   ]
+  },
+  {
+   "intro": "Meneer Bakker krijgt een bericht van de huisarts.",
+   "soort": "sms",
+   "tekst": [
+    "Beste meneer Bakker,",
+    "U hebt morgen om 10.15 uur een afspraak bij huisarts Visser.",
+    "Kunt u niet komen? Bel dan vandaag vóór 16.00 uur de praktijk."
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer Bakker kan morgen niet komen.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "vandaag vóór 16.00 uur bellen",
+      "morgen om 10.15 uur bellen",
+      "een bericht sturen"
+     ],
+     "b": "Bel dan vandaag vóór 16.00 uur de praktijk."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "{Meld} u eerst bij de assistente aan de balie.",
+  "Hebt u veel {pijn}?",
+  "Na 17.00 uur is de praktijk {gesloten}."
+ ]
+}

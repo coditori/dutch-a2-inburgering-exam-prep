@@ -1,0 +1,167 @@
+{
+ "id": "L31",
+ "trede": 3,
+ "titel": "Een brief over geld",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het bedrag",
+   "en": "amount (of money)",
+   "beeld": "💶",
+   "zin": "Het bedrag is vijftig euro.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de betaling",
+   "en": "payment",
+   "beeld": "💳",
+   "zin": "Wij hebben uw betaling ontvangen.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de termijn",
+   "en": "instalment / term",
+   "beeld": "⏳",
+   "zin": "U kunt betalen in drie termijnen.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "overmaken",
+   "en": "to transfer (money)",
+   "beeld": "🏦",
+   "zin": "Ik maak het geld vandaag over.",
+   "thema": "instanties",
+   "vormen": [
+    "maak",
+    "maakt",
+    "over",
+    "overgemaakt",
+    "overmaakt"
+   ]
+  },
+  {
+   "nl": "automatisch",
+   "en": "automatic(ally)",
+   "beeld": "🔁",
+   "zin": "De huur wordt automatisch betaald.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "de herinnering",
+   "en": "reminder",
+   "beeld": "🔔",
+   "zin": "Ik krijg een herinnering voor de rekening.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "het inkomen",
+   "en": "income",
+   "beeld": "💰",
+   "zin": "Ik heb een klein inkomen.",
+   "thema": "instanties"
+  },
+  {
+   "nl": "doorgeven",
+   "en": "to pass on / report",
+   "beeld": "📨",
+   "zin": "Geef uw nieuwe adres door aan de gemeente.",
+   "thema": "instanties",
+   "vormen": [
+    "geef",
+    "geeft",
+    "door",
+    "doorgegeven",
+    "doorgeeft"
+   ]
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Meneer Smit krijgt een brief van zijn zorgverzekering.",
+   "kop": "Herinnering: uw rekening van maart",
+   "soort": "tekst",
+   "tekst": [
+    "Beste meneer Smit,",
+    "",
+    "Wij hebben uw betaling van maart nog niet ontvangen. Het bedrag is € 138,50.",
+    "Wilt u dit bedrag binnen 14 dagen overmaken naar rekening 12.34.56.789? Schrijf het nummer van deze brief bij uw betaling: 44-2031.",
+    "Hebt u al betaald? Dan hoeft u niets te doen.",
+    "Betaalt u niet binnen 14 dagen? Dan krijgt u een tweede herinnering en betaalt u € 15 extra.",
+    "Kunt u het bedrag niet in één keer betalen? Bel ons dan. U kunt dan betalen in drie termijnen.",
+    "Wilt u nooit meer een betaling vergeten? Kies dan voor automatisch betalen. Dat kunt u op onze website doen.",
+    "",
+    "Met vriendelijke groet,",
+    "Zorgverzekering Gezond"
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer Smit heeft de rekening van maart vorige week betaald.",
+     "v": "Wat moet hij nu doen?",
+     "o": [
+      "niets",
+      "de zorgverzekering bellen",
+      "€ 15 extra betalen"
+     ],
+     "b": "Dan hoeft u niets te doen."
+    },
+    {
+     "sit": "Meneer Smit kan niet € 138,50 in één keer betalen.",
+     "v": "Wat kan hij doen?",
+     "o": [
+      "bellen en in drie termijnen betalen",
+      "14 dagen wachten",
+      "kiezen voor automatisch betalen"
+     ],
+     "b": "U kunt dan betalen in drie termijnen."
+    }
+   ]
+  },
+  {
+   "intro": "Lena krijgt huurtoeslag. Zij leest informatie van de Belastingdienst.",
+   "kop": "Verandert uw inkomen? Geef het door!",
+   "soort": "tekst",
+   "tekst": [
+    "U krijgt elke maand huurtoeslag. Het bedrag hangt af van uw inkomen en van uw huur.",
+    "Gaat u meer verdienen? Of gaat u samenwonen? Geef dat dan binnen vier weken door. Dat kan online.",
+    "Geeft u dit niet of te laat door? Dan krijgt u misschien te veel toeslag. Dat geld moet u later terugbetalen.",
+    "Verdient u minder? Geef dat ook door. Misschien krijgt u dan meer toeslag.",
+    "Vindt u dit moeilijk? In de bibliotheek is elke woensdag een gratis spreekuur. Een vrijwilliger helpt u daar."
+   ],
+   "vragen": [
+    {
+     "sit": "Lena krijgt een nieuwe baan en gaat meer verdienen.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "dit binnen vier weken doorgeven",
+      "wachten op een brief",
+      "de toeslag meteen terugbetalen"
+     ],
+     "b": "Geef dat dan binnen vier weken door."
+    },
+    {
+     "v": "Wat gebeurt er als Lena dit te laat doorgeeft?",
+     "o": [
+      "Zij moet later misschien geld terugbetalen.",
+      "Zij krijgt een boete.",
+      "Zij krijgt nooit meer toeslag."
+     ],
+     "b": "Dat geld moet u later terugbetalen."
+    },
+    {
+     "v": "Wie kan Lena helpen?",
+     "o": [
+      "een vrijwilliger in de bibliotheek",
+      "haar werkgever",
+      "de huisarts"
+     ],
+     "b": "Een vrijwilliger helpt u daar."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Het {bedrag} is € 138,50.",
+  "Kies dan voor {automatisch} betalen.",
+  "Geef dat dan binnen vier weken {door}."
+ ]
+}

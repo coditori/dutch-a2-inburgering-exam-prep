@@ -1,0 +1,164 @@
+{
+ "id": "L29",
+ "trede": 3,
+ "titel": "Een brief van de woningcorporatie",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de monteur",
+   "en": "repairman / mechanic",
+   "beeld": "🔧",
+   "zin": "De monteur repareert de verwarming.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de reparatie",
+   "en": "repair",
+   "beeld": "🛠️",
+   "zin": "De reparatie is gratis.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de keer",
+   "en": "time (one time, two times)",
+   "beeld": "🔂",
+   "zin": "Ik bel twee keer per week.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "aanwezig",
+   "en": "present (there)",
+   "beeld": "🙋",
+   "zin": "Bij het gesprek zijn de ouders aanwezig.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de kraan",
+   "en": "tap",
+   "beeld": "🚰",
+   "zin": "Er komt geen water uit de kraan.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de douche",
+   "en": "shower",
+   "beeld": "🚿",
+   "zin": "De douche is in de badkamer.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "lekken",
+   "en": "to leak",
+   "beeld": "💧",
+   "zin": "De kraan lekt.",
+   "thema": "wonen",
+   "vormen": [
+    "lek",
+    "lekt",
+    "lekte",
+    "gelekt"
+   ]
+  },
+  {
+   "nl": "zelf",
+   "en": "yourself / myself (on your own)",
+   "beeld": "🫵",
+   "zin": "Ik maak de tuin zelf schoon.",
+   "thema": "persoon"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Mevrouw Bakker huurt een woning. Zij krijgt een brief van de woningcorporatie.",
+   "kop": "Reparatie in uw keuken",
+   "soort": "tekst",
+   "tekst": [
+    "Beste mevrouw Bakker,",
+    "",
+    "U hebt ons gebeld over de kraan in uw keuken. De kraan lekt.",
+    "Onze monteur komt op dinsdag 9 april bij u thuis voor de reparatie. Hij komt tussen 8.00 en 12.00 uur. De reparatie duurt ongeveer een uur en is gratis.",
+    "Er moet iemand van 18 jaar of ouder aanwezig zijn. Bent u er niet? Dan kan de monteur niet werken en betaalt u € 25.",
+    "Kunt u niet op 9 april? Bel ons dan uiterlijk maandag 8 april vóór 12.00 uur. Wij maken dan een nieuwe afspraak.",
+    "",
+    "Met vriendelijke groet,",
+    "Woningcorporatie Thuis"
+   ],
+   "vragen": [
+    {
+     "sit": "Mevrouw Bakker moet op 9 april werken. Haar zoon van 16 is wel thuis.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "de woningcorporatie bellen voor een nieuwe afspraak",
+      "haar zoon vragen om de deur open te doen",
+      "niets: de monteur heeft een sleutel"
+     ],
+     "b": "Er moet iemand van 18 jaar of ouder aanwezig zijn."
+    },
+    {
+     "v": "Hoeveel betaalt mevrouw Bakker voor de reparatie als zij thuis is?",
+     "o": [
+      "niets",
+      "€ 25",
+      "€ 9"
+     ],
+     "b": "De reparatie duurt ongeveer een uur en is gratis."
+    }
+   ]
+  },
+  {
+   "intro": "Op de website van de woningcorporatie staat informatie over reparaties.",
+   "kop": "Wie repareert wat?",
+   "soort": "tekst",
+   "tekst": [
+    "Is er iets kapot in uw woning? Soms repareert de woningcorporatie het, soms doet u het zelf.",
+    "# Dit doet de woningcorporatie",
+    "- de verwarming repareren",
+    "- een lekkage in de badkamer of de keuken",
+    "- een kapotte deur naar buiten",
+    "# Dit doet u zelf",
+    "- de douche en de kranen schoonmaken",
+    "- de tuin",
+    "- een nieuwe sleutel laten maken als u uw sleutel verliest",
+    "",
+    "Werkt de verwarming niet in de winter? Dan komt de monteur binnen één dag. Voor andere reparaties komt de monteur binnen twee weken.",
+    "U kunt een reparatie melden op de website of twee keer per week op het spreekuur: dinsdag en donderdag van 9.00 tot 10.00 uur."
+   ],
+   "vragen": [
+    {
+     "sit": "Het is januari. De verwarming van Ali werkt niet.",
+     "v": "Wanneer komt de monteur?",
+     "o": [
+      "binnen één dag",
+      "binnen twee weken",
+      "op dinsdag of donderdag"
+     ],
+     "b": "Dan komt de monteur binnen één dag."
+    },
+    {
+     "sit": "Emma heeft haar sleutel verloren.",
+     "v": "Wie zorgt voor een nieuwe sleutel?",
+     "o": [
+      "Emma zelf",
+      "de woningcorporatie",
+      "de monteur"
+     ],
+     "b": "een nieuwe sleutel laten maken als u uw sleutel verliest"
+    },
+    {
+     "v": "Hoe vaak is er een spreekuur?",
+     "o": [
+      "twee keer per week",
+      "elke dag",
+      "één keer per maand"
+     ],
+     "b": "twee keer per week"
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De kraan in de keuken {lekt}.",
+  "Er moet iemand van 18 jaar of ouder {aanwezig} zijn.",
+  "De {monteur} komt tussen 8.00 en 12.00 uur."
+ ]
+}

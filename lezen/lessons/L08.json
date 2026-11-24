@@ -1,0 +1,159 @@
+{
+ "id": "L08",
+ "trede": 1,
+ "titel": "Naam en adres",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de naam",
+   "en": "name",
+   "beeld": "🪪",
+   "zin": "Mijn naam is Sara.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "het adres",
+   "en": "address",
+   "beeld": "📮",
+   "zin": "Wat is uw adres?",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de straat",
+   "en": "street",
+   "beeld": "🛣️",
+   "zin": "De straat is rustig.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "de stad",
+   "en": "city",
+   "beeld": "🏙️",
+   "zin": "Ik woon in de stad.",
+   "thema": "plaats",
+   "vormen": [
+    "steden"
+   ]
+  },
+  {
+   "nl": "het land",
+   "en": "country",
+   "beeld": "🌍",
+   "zin": "Nederland is een klein land.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "het nummer",
+   "en": "number",
+   "beeld": "🔢",
+   "zin": "Ik woon op nummer 12.",
+   "thema": "gegevens"
+  },
+  {
+   "nl": "meneer",
+   "en": "Mr / sir",
+   "beeld": "🤵",
+   "zin": "Goedemorgen, meneer Bakker.",
+   "thema": "persoon"
+  },
+  {
+   "nl": "mevrouw",
+   "en": "Mrs / madam",
+   "beeld": "👩‍💼",
+   "zin": "Dag mevrouw Jansen.",
+   "thema": "persoon"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "Mijn naam is Sara de Vries. Ik woon in Utrecht."
+   ],
+   "vragen": [
+    {
+     "v": "Waar woont Sara?",
+     "o": [
+      "in Utrecht",
+      "in Amsterdam",
+      "in Rotterdam"
+     ],
+     "b": "Ik woon in Utrecht."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Meneer Bakker woont niet in de Parkstraat. Hij woont in de Stationsstraat, op nummer 12."
+   ],
+   "vragen": [
+    {
+     "v": "Wat is het adres van meneer Bakker?",
+     "o": [
+      "Stationsstraat 12",
+      "Parkstraat 12",
+      "Stationsstraat 21"
+     ],
+     "b": "Hij woont in de Stationsstraat, op nummer 12."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Mevrouw Jansen komt niet uit Nederland. Zij komt uit een warm land."
+   ],
+   "vragen": [
+    {
+     "v": "Uit welk land komt mevrouw Jansen?",
+     "o": [
+      "uit een warm land",
+      "uit Nederland",
+      "uit een koud land"
+     ],
+     "b": "Zij komt uit een warm land."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Amsterdam is een grote stad. Het is er altijd druk."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe is de stad Amsterdam?",
+     "o": [
+      "groot en druk",
+      "klein en rustig",
+      "oud en klein"
+     ],
+     "b": "Het is er altijd druk."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Ik weet het nummer van de dokter niet. Mevrouw Jansen weet het nummer."
+   ],
+   "vragen": [
+    {
+     "v": "Wie weet het nummer van de dokter?",
+     "o": [
+      "mevrouw Jansen",
+      "ik",
+      "meneer Bakker"
+     ],
+     "b": "Mevrouw Jansen weet het nummer."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Mijn {naam} is Sara de Vries.",
+  "Amsterdam is een grote {stad}.",
+  "Wat is uw {adres}?"
+ ]
+}

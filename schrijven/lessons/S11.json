@@ -1,0 +1,61 @@
+{
+ "id": "S11",
+ "trede": 2,
+ "titel": "Kan, moet, wil en ga",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [
+  {
+   "nl": "het einde",
+   "en": "end",
+   "beeld": "🔚",
+   "zin": "Aan het einde van de zin staat een punt.",
+   "thema": "algemeen"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Na kan, moet, wil en ga komt nog een werkwoord. Dat werkwoord staat aan het einde van de zin.",
+   "en": "After kan, moet, wil and ga there is another verb. It goes at the end of the sentence."
+  },
+  {
+   "nl": "Ik kan morgen niet komen.",
+   "en": ""
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "tegels",
+   "zin": "Ik kan morgen niet komen."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik moet vandaag werken."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik wil een afspraak maken."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik ga zaterdag boodschappen doen."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Mijn dochter moet naar de dokter gaan."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Kan ik op dinsdag komen?"
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+ "id": "U12",
+ "trede": 2,
+ "titel": "Zinnen: de dag en de winkel",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "In de nacht slaap ik."
+    }
+   ],
+   "o": [
+    "🌙😴",
+    "☀️😴",
+    "🌙🍞"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "In de ochtend drink ik koffie."
+    }
+   ],
+   "o": [
+    "🌅☕",
+    "🌙☕",
+    "🌅🍵"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Om acht uur in de avond eten wij."
+    }
+   ],
+   "o": [
+    "🕗🌆🍽️",
+    "🕗🌅🍽️",
+    "🕑🌆🍽️"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "In de middag zit opa in de tuin."
+    }
+   ],
+   "o": [
+    "🕑👴🌳",
+    "🌙👴🌳",
+    "🕑👵🌳"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Een week is zeven dagen."
+    }
+   ],
+   "o": [
+    "📅 7",
+    "📅 5",
+    "📅 2"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De schoenen zijn te duur."
+    }
+   ],
+   "o": [
+    "👟💰💰💰",
+    "🧥💰💰💰",
+    "🍞💰💰💰"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Ik koop een nieuwe jas."
+    }
+   ],
+   "o": [
+    "🧥",
+    "👟",
+    "🚲"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Zij doet boodschappen op de markt."
+    }
+   ],
+   "o": [
+    "👩🛍️⛺",
+    "👨🛍️⛺",
+    "👩🛍️🚉"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De prijs van het brood is twee euro."
+    }
+   ],
+   "o": [
+    "🍞 € 2",
+    "🍞 € 12",
+    "🧀 € 2"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De man betaalt bij de kassa. Hij geeft geld."
+    }
+   ],
+   "o": [
+    "👨🧾💰",
+    "👩🧾💰",
+    "👨🚪💰"
+   ]
+  }
+ ],
+ "dictee": [
+  "In de ochtend drink ik koffie.",
+  "Ik koop een nieuwe jas."
+ ]
+}

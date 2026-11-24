@@ -1,0 +1,206 @@
+{
+ "id": "U13",
+ "trede": 2,
+ "titel": "Zinnen met niet en geen",
+ "namen": [
+  "Anna",
+  "Tom",
+  "Sara",
+  "Vries",
+  "Utrecht",
+  "Amsterdam",
+  "Rotterdam",
+  "Bakker",
+  "Parkstraat",
+  "Stationsstraat",
+  "Jansen",
+  "Nederland"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Anna gaat vandaag niet naar het werk."
+    },
+    {
+     "s": "A",
+     "t": "Zij is ziek."
+    }
+   ],
+   "v": "Gaat Anna vandaag naar het werk?",
+   "o": [
+    "Nee, zij is ziek.",
+    "Ja, zij werkt vandaag.",
+    "Ja, maar zij is laat."
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Tom heeft geen computer."
+    },
+    {
+     "s": "B",
+     "t": "Hij heeft een telefoon."
+    }
+   ],
+   "v": "Wat heeft Tom?",
+   "o": [
+    "een telefoon",
+    "een computer",
+    "een boek"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De kinderen zijn niet op school."
+    },
+    {
+     "s": "A",
+     "t": "Zij zijn thuis."
+    }
+   ],
+   "v": "Waar zijn de kinderen?",
+   "o": [
+    "thuis",
+    "op school",
+    "bij de dokter"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Ik heb vandaag geen les."
+    },
+    {
+     "s": "B",
+     "t": "Ik lees thuis een boek."
+    }
+   ],
+   "v": "Wat doe ik vandaag?",
+   "o": [
+    "Ik lees een boek.",
+    "Ik ga naar de les.",
+    "Ik ga naar het werk."
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De dokter is er vandaag niet."
+    },
+    {
+     "s": "A",
+     "t": "Morgen is hij er om negen uur."
+    }
+   ],
+   "v": "Wanneer is de dokter er?",
+   "o": [
+    "morgen om negen uur",
+    "vandaag om negen uur",
+    "vandaag en morgen niet"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Mijn naam is Sara de Vries."
+    },
+    {
+     "s": "A",
+     "t": "Ik woon in Utrecht."
+    }
+   ],
+   "v": "Waar woont Sara?",
+   "o": [
+    "in Utrecht",
+    "in Amsterdam",
+    "in Rotterdam"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Meneer Bakker woont niet in de Parkstraat."
+    },
+    {
+     "s": "B",
+     "t": "Hij woont in de Stationsstraat, op nummer 12."
+    }
+   ],
+   "v": "Wat is het adres van meneer Bakker?",
+   "o": [
+    "Stationsstraat 12",
+    "Parkstraat 12",
+    "Stationsstraat 21"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Mevrouw Jansen komt niet uit Nederland."
+    },
+    {
+     "s": "A",
+     "t": "Zij komt uit een warm land."
+    }
+   ],
+   "v": "Uit welk land komt mevrouw Jansen?",
+   "o": [
+    "uit een warm land",
+    "uit Nederland",
+    "uit een koud land"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Amsterdam is een grote stad."
+    },
+    {
+     "s": "B",
+     "t": "Het is er altijd druk."
+    }
+   ],
+   "v": "Hoe is de stad Amsterdam?",
+   "o": [
+    "groot en druk",
+    "klein en rustig",
+    "oud en klein"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Ik weet het nummer van de dokter niet."
+    },
+    {
+     "s": "A",
+     "t": "Mevrouw Jansen weet het nummer."
+    }
+   ],
+   "v": "Wie weet het nummer van de dokter?",
+   "o": [
+    "mevrouw Jansen",
+    "ik",
+    "meneer Bakker"
+   ]
+  }
+ ],
+ "dictee": [
+  "Tom heeft geen computer.",
+  "Zij komt uit een warm land."
+ ]
+}

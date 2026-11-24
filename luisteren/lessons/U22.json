@@ -1,0 +1,176 @@
+{
+ "id": "U22",
+ "trede": 3,
+ "titel": "Bij de huisarts en de apotheek",
+ "namen": [
+  "Bakker",
+  "Visser",
+  "Peter",
+  "Smit",
+  "Omar",
+  "Haddou"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "context": "Meneer Bakker belt de praktijk van de huisarts.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemorgen, praktijk van huisarts Visser."
+    },
+    {
+     "s": "A",
+     "t": "Goedemorgen, met Peter Bakker. Ik wil graag een afspraak maken."
+    },
+    {
+     "s": "B",
+     "t": "Wat is het probleem, meneer Bakker?"
+    },
+    {
+     "s": "A",
+     "t": "Ik heb al een week pijn in mijn keel en ik heb koorts."
+    },
+    {
+     "s": "B",
+     "t": "Dan kunt u vandaag komen. Kunt u om kwart over elf?"
+    },
+    {
+     "s": "A",
+     "t": "Nee, dan moet ik werken. Kan het ook in de middag?"
+    },
+    {
+     "s": "B",
+     "t": "Ja, om tien voor half drie is er nog tijd."
+    },
+    {
+     "s": "A",
+     "t": "Dat is goed. Tot vanmiddag."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom belt meneer Bakker?",
+     "o": [
+      "Hij heeft pijn in zijn keel en koorts.",
+      "Hij wil een medicijn bestellen.",
+      "Hij kan niet naar zijn afspraak komen."
+     ]
+    },
+    {
+     "v": "Hoe laat is de afspraak?",
+     "o": [
+      "om tien voor half drie",
+      "om kwart over elf",
+      "om half drie"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Mevrouw Smit is bij de huisarts.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Goedemiddag mevrouw Smit. Wat kan ik voor u doen?"
+    },
+    {
+     "s": "B",
+     "t": "Ik heb veel hoofdpijn, dokter. Bijna elke dag."
+    },
+    {
+     "s": "C",
+     "t": "Slaapt u goed?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, ik slaap slecht. Ik werk vaak in de nacht."
+    },
+    {
+     "s": "C",
+     "t": "En drinkt u veel koffie?"
+    },
+    {
+     "s": "B",
+     "t": "Ja, zes of zeven koffie per dag."
+    },
+    {
+     "s": "C",
+     "t": "Dat is te veel. Drink niet meer dan twee koffie per dag en drink meer water. Kom over twee weken terug."
+    },
+    {
+     "s": "B",
+     "t": "Krijg ik geen medicijn?"
+    },
+    {
+     "s": "C",
+     "t": "Nee, nu nog niet. Eerst proberen wij dit."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat moet mevrouw Smit doen?",
+     "o": [
+      "minder koffie en meer water drinken",
+      "een medicijn halen bij de apotheek",
+      "stoppen met werken in de nacht"
+     ]
+    },
+    {
+     "v": "Wanneer komt zij terug bij de huisarts?",
+     "o": [
+      "over twee weken",
+      "morgen",
+      "over twee dagen"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Omar haalt een medicijn bij de apotheek.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Goedemiddag. Ik kom een medicijn halen. Mijn naam is Omar Haddou."
+    },
+    {
+     "s": "B",
+     "t": "Even kijken. Ja, hier is het. U neemt het drie keer per dag, na het eten."
+    },
+    {
+     "s": "A",
+     "t": "Drie keer per dag. En hoe lang?"
+    },
+    {
+     "s": "B",
+     "t": "Een week. Hebt u daarna nog pijn? Bel dan de huisarts."
+    },
+    {
+     "s": "A",
+     "t": "Moet ik iets betalen?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, uw zorgverzekering betaalt dit medicijn."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Hoe vaak moet Omar het medicijn nemen?",
+     "o": [
+      "drie keer per dag",
+      "één keer per dag",
+      "drie keer per week"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik heb al een week pijn in mijn keel.",
+  "U neemt het drie keer per dag, na het eten."
+ ]
+}

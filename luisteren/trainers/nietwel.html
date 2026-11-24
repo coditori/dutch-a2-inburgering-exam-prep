@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luisteren – niet of wel</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../luisteren.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../luisteren.js"></script>
+<script>
+// Niet-of-wel: u hoort een zin. Zit er "niet" of "geen" in? Inhoud: nietwel.json
+(async () => {
+  const { el } = App;
+  const data = await Lezen.json('nietwel.json');
+  Luister.ronde({
+    id: 'nietwel', titel: 'Niet of wel', na: data.na, items: data.items, n: 10,
+    uitleg: 'U hoort een zin. Hoort u "niet" of "geen"? Kies ja of nee. Op het examen hangt het antwoord vaak aan dit ene woord.',
+    uitlegEn: 'You hear a sentence. Do you hear "niet" or "geen"? Choose yes or no. In the exam the answer often hangs on this one word.',
+    teken(doel, item, klaar) {
+      const regels = [{ s: item.s || 'A', t: item.t }];
+      const keuzes = [['ja', 'Ja: ik hoor niet of geen'], ['nee', 'Nee: ik hoor die woorden niet']];
+      const knoppen = keuzes.map(([k, tekst]) => el('button', { class: 'optie', onclick: () => {
+        knoppen.forEach((x, j) => { x.disabled = true; if (keuzes[j][0] === item.goed) x.classList.add('goed'); });
+        if (k !== item.goed) knoppen[keuzes.findIndex((c) => c[0] === k)].classList.add('fout');
+        klaar(k === item.goed, el('p', { style: 'font-size:1.15rem' }, App.woorden(item.t)));
+      } }, el('span', { class: 'l' }, k === 'ja' ? '✔' : '✘'), el('span', {}, tekst)));
+      doel.append(Luister.speler(regels), el('div', { class: 'opties' }, knoppen));
+      Luister.speel(regels);
+    },
+  });
+})();
+</script>
+</body>
+</html>

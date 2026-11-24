@@ -1,0 +1,71 @@
+{
+ "id": "P01",
+ "trede": 1,
+ "titel": "Zeg na: ui en eu",
+ "uitleg": "Luister goed. Zeg het na. Zeg het ook met de computer.",
+ "en": "Listen carefully. Repeat. Speak together with the voice (shadowing). Then record yourself and compare.",
+ "woorden": [],
+ "namen": [
+  "ui",
+  "eu",
+  "ij",
+  "ei",
+  "ou",
+  "au",
+  "sch",
+  "uu",
+  "oe"
+ ],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "het huis",
+   "en": "house"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de tuin",
+   "en": "garden"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Het huis heeft een tuin.",
+   "en": "The house has a garden."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik kom uit een warm land.",
+   "en": "I come from a warm country."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "leuk",
+   "en": "nice / fun"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de deur",
+   "en": "door"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de keuken",
+   "en": "kitchen"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "De deur van de keuken is open.",
+   "en": "The kitchen door is open."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Het brood is twee euro.",
+   "en": "The bread is two euros."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik vind de tuin leuk.",
+   "en": "I like the garden."
+  }
+ ]
+}

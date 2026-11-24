@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luisteren – de ladder</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="luisteren.css">
+</head>
+<body>
+<main>
+  <div class="kaart" id="vandaag"></div>
+  <div class="kaart">
+    <h3 data-en="how to listen in the exam">Zo luistert u op het examen</h3>
+    <ol style="margin:0;padding-left:1.2em">
+      <li data-en="Read the question and the answers before the audio starts.">Lees de vraag en de antwoorden vóór het geluid begint.</li>
+      <li data-en="Listen only for that answer: numbers, times, days, niet / geen.">Luister alleen naar dat antwoord: getallen, tijden, dagen, niet / geen.</li>
+      <li data-en="People change their mind. The last thing they agree on is usually the answer.">Mensen veranderen van idee. Het laatste wat zij afspreken is meestal het antwoord.</li>
+    </ol>
+  </div>
+  <div id="ladder"></div>
+  <h2 data-en="trainers">Trainers</h2>
+  <div class="tegels" id="trainers"></div>
+  <h2 data-en="mock exams: 25 questions, 45 minutes">Toetsen · 25 vragen, 45 minuten</h2>
+  <div class="tegels" id="toetsen"></div>
+  <p class="zacht klein" data-en="Ready when: 19 of 25 or better on two tests here and on two DUO practice exams. From trede 3 on, also listen to real people every day: the DUO practice exams, netinnederland.nl, NOS Jeugdjournaal.">Klaar voor het examen: 19 van de 25 of meer op twee toetsen hier én op twee oefenexamens van DUO. Luister vanaf trede 3 ook elke dag naar echte mensen: de oefenexamens van DUO, netinnederland.nl, het NOS Jeugdjournaal.</p>
+  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> · <a href="https://www.netinnederland.nl" target="_blank" rel="noopener">netinnederland.nl</a></p>
+  <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, English, progress">⚙ Instellingen: alle lessen open, Engels, voortgang</a></p>
+</main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="../lezen/lezen.js"></script>
+<script src="luisteren.js"></script>
+<script>
+(async () => {
+  const { el } = App;
+  App.kop('Luisteren', '../index.html');
+  const TREDE = { 1: 'Trede 1 · woorden, getallen, tijden', 2: 'Trede 2 · één zin, twee zinnen', 3: 'Trede 3 · een gesprek', 4: 'Trede 4 · examen' };
+  const TRAINERS = [
+    { id: 'getallen', titel: 'Getallen', uitleg: 'vijfenveertig → 45', na: 'U05' },
+    { id: 'paren', titel: 'Bijna hetzelfde', uitleg: 'man of maan? zon of zoon?', na: 'U09' },
+    { id: 'nietwel', titel: 'Niet of wel', uitleg: 'Hoort u niet of geen?', na: 'U16' },
+  ];
+  const [lessen, toetsen] = await Promise.all([Lezen.json('lessons/index.json'), Lezen.json('toets/index.json').catch(() => [])]);
+  const P = Luister.P;
+  const eerste = lessen.find((l, i) => !Luister.gehaald(l.id) && Luister.isOpen(lessen, i));
+  const tel = SRS.tel();
+  const klaar = lessen.filter((l) => Luister.gehaald(l.id)).length;
+  document.getElementById('vandaag').append(
+    el('h3', { en: 'today' }, 'Vandaag'), el('p', {}, `${klaar} van ${lessen.length} lessen gehaald.`),
+    el('div', { class: 'knoppen' },
+      el('a', { class: 'knop' + (tel.nu ? '' : ' licht'), href: '../lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`),
+      eerste ? el('a', { class: 'knop', href: `les.html?les=${eerste.id}`, en: 'next lesson' }, `Les ${eerste.id}: ${eerste.titel}`) : null));
+  const ladder = document.getElementById('ladder');
+  for (const t of [1, 2, 3, 4]) {
+    ladder.append(el('h2', {}, TREDE[t]), el('div', { class: 'tegels' }, lessen.map((l, i) => {
+      if (l.trede !== t) return null;
+      const r = P.lessen[l.id], open = Luister.isOpen(lessen, i);
+      return el('a', { class: 'tegel' + (Luister.gehaald(l.id) ? ' klaar' : '') + (!open ? ' slot' : '') + (eerste && eerste.id === l.id ? ' nu' : ''), href: `les.html?les=${l.id}` },
+        el('b', {}, `${l.id} ${Luister.gehaald(l.id) ? '✔' : open ? '' : '🔒'}`), l.titel, r ? el('div', { class: 'klein zacht' }, `${r.beste} / ${r.totaal}`) : null);
+    })));
+  }
+  document.getElementById('trainers').append(...TRAINERS.map((t) => {
+    const r = P.trainers[t.id];
+    return el('a', { class: 'tegel' + (Luister.naLes(t.na) ? '' : ' slot') + (r ? ' klaar' : ''), href: `trainers/${t.id}.html` },
+      el('b', {}, t.titel + (Luister.naLes(t.na) ? '' : ' 🔒')), t.uitleg, el('div', { class: 'klein zacht' }, r ? `beste: ${r.beste} / ${r.totaal}` : `na les ${t.na}`));
+  }));
+  const laatste = lessen.length ? lessen[lessen.length - 1].id : null;
+  document.getElementById('toetsen').append(...toetsen.map((t) => {
+    const r = P.toets[t.id] || [];
+    const beste = r.length ? Math.max(...r.map((x) => x.score)) : null;
+    return el('a', { class: 'tegel' + (Luister.naLes(laatste) ? '' : ' slot') + (beste >= 19 ? ' klaar' : ''), href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, t.titel + (Luister.naLes(laatste) ? '' : ' 🔒')), `${t.vragen} vragen`, el('div', { class: 'klein zacht' }, r.length ? `beste: ${beste} / ${t.vragen} · ${r.length}× gedaan` : `na les ${laatste}`));
+  }));
+})();
+</script>
+</body>
+</html>

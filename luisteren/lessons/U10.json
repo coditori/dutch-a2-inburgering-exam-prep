@@ -1,0 +1,143 @@
+{
+ "id": "U10",
+ "trede": 2,
+ "titel": "Zinnen: de stad en de mensen",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De bus is groot."
+    }
+   ],
+   "o": [
+    "🚌",
+    "🚲",
+    "🏠"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Ik woon in een klein huis."
+    }
+   ],
+   "o": [
+    "🏠",
+    "🏪",
+    "🚆"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Zij gaat met de fiets naar de winkel."
+    }
+   ],
+   "o": [
+    "🚲🏪",
+    "🚗🏪",
+    "🚲🚉"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De trein staat op het station."
+    }
+   ],
+   "o": [
+    "🚆🚉",
+    "🚌🚉",
+    "🚆🏠"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Wij kopen eten in de supermarkt."
+    }
+   ],
+   "o": [
+    "🛒",
+    "🚉",
+    "🚗"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De baby slaapt."
+    }
+   ],
+   "o": [
+    "👶😴",
+    "👴😴",
+    "👶🚌"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De oma zit in de bus."
+    }
+   ],
+   "o": [
+    "👵🚌",
+    "👴🚌",
+    "👵🚆"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De vrouw woont in een groot huis."
+    }
+   ],
+   "o": [
+    "👩🏠",
+    "👨🏠",
+    "👩🏪"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De vader loopt met het kind naar de winkel."
+    }
+   ],
+   "o": [
+    "👨‍👧🏪",
+    "👩‍👧🏪",
+    "👨‍👧🚉"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De opa en de man wachten op de trein."
+    }
+   ],
+   "o": [
+    "👴👨🚆",
+    "👵👨🚆",
+    "👴👨🚌"
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik woon in een klein huis.",
+  "De oma zit in de bus."
+ ]
+}

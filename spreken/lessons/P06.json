@@ -1,0 +1,110 @@
+{
+ "id": "P06",
+ "trede": 1,
+ "titel": "Ik … graag en ik ga het liefst …",
+ "uitleg": "U zegt wat u graag doet. Luister en zeg het na.",
+ "en": "Say what you like doing: 'Ik ___ graag'. And what you prefer: 'Ik ga het liefst ___'.",
+ "patroon": "Ik ___ (niet) graag. · Ik ga het liefst ___.",
+ "woorden": [
+  {
+   "nl": "dansen",
+   "en": "to dance",
+   "beeld": "💃",
+   "zin": "Wij dansen op het feest.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "wandelen",
+   "en": "to walk (for pleasure)",
+   "beeld": "🚶",
+   "zin": "Ik wandel in het park.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "reizen",
+   "en": "to travel",
+   "beeld": "✈️",
+   "zin": "Ik reis met de trein.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "het strand",
+   "en": "beach",
+   "beeld": "🏖️",
+   "zin": "Wij gaan naar het strand.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "de zomer",
+   "en": "summer",
+   "beeld": "☀️",
+   "zin": "In de zomer is het warm.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de winter",
+   "en": "winter",
+   "beeld": "❄️",
+   "zin": "In de winter is het koud.",
+   "thema": "tijd"
+  }
+ ],
+ "namen": [],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "Ik kook graag.",
+   "en": "I like to cook."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik lees graag.",
+   "en": "I like to read."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik zwem graag.",
+   "en": "I like to swim."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik dans niet graag.",
+   "en": "I don't like dancing."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik wandel graag.",
+   "en": "I like walking."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik reis graag.",
+   "en": "I like travelling."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga het liefst naar het strand.",
+   "en": "I prefer to go to the beach."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga het liefst met de fiets.",
+   "en": "I prefer to go by bike."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik blijf het liefst thuis.",
+   "en": "I prefer to stay at home."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga het liefst in de zomer op vakantie.",
+   "en": "I prefer to go on holiday in summer."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga liever niet in de winter op vakantie.",
+   "en": "I'd rather not go on holiday in winter."
+  }
+ ]
+}

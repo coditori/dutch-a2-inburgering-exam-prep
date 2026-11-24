@@ -1,0 +1,146 @@
+{
+ "id": "P15",
+ "trede": 2,
+ "titel": "Werk, buren en reizen",
+ "uitleg": "U hoort twee vragen. Geef antwoord op de eerste vraag en op de tweede vraag.",
+ "en": "You hear a two-part question (on the exam: a video). Answer BOTH parts: one short sentence each. Reuse the words of the question. You may invent your answer.",
+ "woorden": [],
+ "namen": [],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat voor werk doet u? Vertel ook wat u van uw werk vindt.",
+   "model": [
+    "Ik werk in een supermarkt.",
+    "Ik vind mijn werk leuk."
+   ],
+   "sleutel": [
+    [
+     "werk"
+    ],
+    [
+     "vind",
+     "leuk",
+     "moeilijk",
+     "saai",
+     "makkelijk"
+    ]
+   ],
+   "en": "No job? Invent one. Nobody checks."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Hoe vaak neemt u pauze op uw werk? En wat doet u in de pauze?",
+   "model": [
+    "Ik neem twee keer pauze op mijn werk.",
+    "In de pauze drink ik koffie."
+   ],
+   "sleutel": [
+    [
+     "keer",
+     "pauze"
+    ],
+    [
+     "in de pauze",
+     "drink",
+     "eet",
+     "lees",
+     "praat",
+     "wandel"
+    ]
+   ],
+   "en": "'pauze nemen'. 'In de pauze drink ik ...' (verb second)."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik werk graag samen met collega's. Hoe werkt u het liefst? Vertel ook waarom.",
+   "model": [
+    "Ik werk het liefst alleen.",
+    "Dan kan ik rustig werken."
+   ],
+   "sleutel": [
+    [
+     "alleen",
+     "samen",
+     "collega",
+     "liefst"
+    ],
+    [
+     "omdat",
+     "want",
+     "dan",
+     "vind"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat vindt u van uw buren? En hoe lang kent u ze al?",
+   "model": [
+    "Ik vind mijn buren aardig.",
+    "Ik ken ze al twee jaar."
+   ],
+   "sleutel": [
+    [
+     "buren",
+     "aardig",
+     "leuk",
+     "vind"
+    ],
+    [
+     "jaar",
+     "maand",
+     "week",
+     "lang"
+    ]
+   ],
+   "en": "'Ik ken ze al twee jaar': 'al' for something that is still going on."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Gaat u vaak met de trein? En waar gaat u dan naartoe?",
+   "model": [
+    "Ja, ik ga elke week met de trein.",
+    "Ik ga dan naar mijn familie in Rotterdam."
+   ],
+   "sleutel": [
+    [
+     "trein"
+    ],
+    [
+     "naar"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Reist u liever met de bus of met de fiets? Vertel ook waarom.",
+   "model": [
+    "Ik reis liever met de fiets.",
+    "Dat is gezond en goedkoop."
+   ],
+   "sleutel": [
+    [
+     "bus",
+     "fiets"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "gezond",
+     "goedkoop",
+     "makkelijk",
+     "snel"
+    ]
+   ],
+   "en": "Five ready reasons: leuk, makkelijk, gezond, goedkoop, interessant."
+  }
+ ]
+}

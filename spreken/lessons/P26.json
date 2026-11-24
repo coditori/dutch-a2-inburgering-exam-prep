@@ -1,0 +1,256 @@
+{
+ "id": "P26",
+ "trede": 4,
+ "titel": "Alles door elkaar: acht vragen",
+ "uitleg": "U krijgt acht vragen, twee van elk onderdeel van het examen. Geef steeds antwoord op alle delen van de vraag.",
+ "en": "Mixed practice in exam order: 2 video questions (audio only), 2 with one picture, 2 with two pictures, 2 with three pictures.",
+ "woorden": [
+  {
+   "nl": "het beroep",
+   "en": "profession",
+   "beeld": "🧑‍🔧",
+   "zin": "Wat is uw beroep?",
+   "thema": "werk"
+  },
+  {
+   "nl": "het dier",
+   "en": "animal",
+   "beeld": "🐾",
+   "zin": "Een hond is een dier.",
+   "thema": "algemeen",
+   "vormen": [
+    "dieren"
+   ]
+  },
+  {
+   "nl": "de kat",
+   "en": "cat",
+   "beeld": "🐈",
+   "zin": "De kat slaapt op de bank.",
+   "thema": "algemeen"
+  }
+ ],
+ "namen": [
+  "Jansen",
+  "Karim",
+  "Eva",
+  "Noor"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik ben docent Nederlands. Wat is uw beroep en hoe lang doet u dat al?",
+   "model": [
+    "Ik werk in een fabriek.",
+    "Ik doe dat al drie jaar."
+   ],
+   "sleutel": [
+    [
+     "ik ben",
+     "ik werk"
+    ],
+    [
+     "jaar",
+     "maand",
+     "week"
+    ]
+   ],
+   "en": "'Ik doe dat al drie jaar' ('al', not 'voor')."
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik was vandaag te laat op een afspraak. Bent u wel eens te laat? Vertel ook wat u dan doet.",
+   "model": [
+    "Ja, ik ben soms te laat.",
+    "Dan bel ik en zeg ik sorry."
+   ],
+   "sleutel": [
+    [
+     "laat",
+     "nooit",
+     "soms"
+    ],
+    [
+     "dan",
+     "bel",
+     "sorry"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍🦳🌷🌱"
+   ],
+   "sit": "Dit is mevrouw Jansen.",
+   "vraag": "Vertel waar zij is. Vertel ook wat u van werken in de tuin vindt.",
+   "model": [
+    "Mevrouw Jansen is in haar tuin.",
+    "Ik vind werken in de tuin leuk."
+   ],
+   "sleutel": [
+    [
+     "tuin",
+     "buiten"
+    ],
+    [
+     "ik vind",
+     "leuk",
+     "saai"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🧒🤕🚲"
+   ],
+   "sit": "De zoon van Karim heeft een probleem.",
+   "vraag": "Vertel wat er is gebeurd. Vertel ook wat Karim nu moet doen.",
+   "model": [
+    "Het kind is met de fiets gevallen. Hij heeft pijn.",
+    "Karim moet de huisarts bellen."
+   ],
+   "sleutel": [
+    [
+     "gevallen",
+     "fiets",
+     "pijn"
+    ],
+    [
+     "bellen",
+     "huisarts",
+     "dokter",
+     "ziekenhuis",
+     "helpen",
+     "moet"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🚌",
+    "🚲"
+   ],
+   "sit": "U gaat naar de les.",
+   "vraag": "Hoe gaat u liever? Vertel ook waarom.",
+   "model": [
+    "Ik ga liever met de fiets.",
+    "Dat is gratis en gezond."
+   ],
+   "sleutel": [
+    [
+     "bus",
+     "fiets"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "gratis",
+     "gezond",
+     "snel"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🐕",
+    "🐈"
+   ],
+   "sit": "U wilt een dier in huis.",
+   "vraag": "Welk dier hebt u liever? Vertel ook waarom.",
+   "model": [
+    "Ik heb liever een kat.",
+    "Een kat is rustig."
+   ],
+   "sleutel": [
+    [
+     "hond",
+     "kat"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "rustig"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🧺👕",
+    "🌞👕",
+    "👕🗄️"
+   ],
+   "sit": "Eva wast haar kleren. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Eva doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Eva doet de kleren in de wasmachine.",
+    "De kleren hangen buiten in de zon.",
+    "Zij legt de kleren in de kast."
+   ],
+   "sleutel": [
+    [
+     "wasmachine",
+     "wast"
+    ],
+    [
+     "buiten",
+     "zon",
+     "hangen",
+     "hangt"
+    ],
+    [
+     "kast",
+     "legt"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🎂",
+    "🎁",
+    "🎉"
+   ],
+   "sit": "Noor heeft haar verjaardag.",
+   "vraag": "Vertel wat u ziet. Vertel ook wat u doet op uw verjaardag.",
+   "model": [
+    "Ik zie een taart.",
+    "Ik zie een cadeau.",
+    "Ik zie een feest. Op mijn verjaardag eet ik met mijn familie."
+   ],
+   "sleutel": [
+    [
+     "taart"
+    ],
+    [
+     "cadeau"
+    ],
+    [
+     "feest"
+    ]
+   ]
+  }
+ ]
+}

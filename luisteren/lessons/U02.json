@@ -1,0 +1,117 @@
+{
+ "id": "U02",
+ "trede": 1,
+ "titel": "Woorden: man, vrouw en eten",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de man"
+    }
+   ],
+   "o": [
+    "👨",
+    "👩",
+    "🧒"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de vrouw"
+    }
+   ],
+   "o": [
+    "👩",
+    "👨",
+    "👶"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "het kind"
+    }
+   ],
+   "o": [
+    "🧒",
+    "👴",
+    "👩"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de baby"
+    }
+   ],
+   "o": [
+    "👶",
+    "👵",
+    "👨"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "het brood"
+    }
+   ],
+   "o": [
+    "🍞",
+    "🧀",
+    "🍎"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de melk"
+    }
+   ],
+   "o": [
+    "🥛",
+    "☕",
+    "💧"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de koffie"
+    }
+   ],
+   "o": [
+    "☕",
+    "🍵",
+    "🥛"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de kaas"
+    }
+   ],
+   "o": [
+    "🧀",
+    "🍞",
+    "🍎"
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik eet brood met kaas.",
+  "Het kind drinkt melk."
+ ]
+}

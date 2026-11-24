@@ -1,0 +1,121 @@
+{
+ "id": "U19",
+ "trede": 2,
+ "titel": "Twee zinnen: wat willen ze?",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Kan ik u helpen?"
+    },
+    {
+     "s": "A",
+     "t": "Ja, ik zoek een warme jas voor de winter."
+    }
+   ],
+   "v": "Wat zoekt de man?",
+   "o": [
+    "een jas",
+    "schoenen",
+    "een tas"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Wil je koffie of thee?"
+    },
+    {
+     "s": "B",
+     "t": "Thee graag, zonder melk."
+    }
+   ],
+   "v": "Wat wil de vrouw drinken?",
+   "o": [
+    "thee zonder melk",
+    "koffie met melk",
+    "thee met melk"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Ik wil een afspraak maken voor mijn zoon."
+    },
+    {
+     "s": "A",
+     "t": "Dat kan morgen om negen uur of om elf uur."
+    }
+   ],
+   "v": "Voor wie is de afspraak?",
+   "o": [
+    "voor de zoon van de vrouw",
+    "voor de vrouw",
+    "voor de man"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "C",
+     "t": "Mag ik met de pinpas betalen?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, sorry. Wij nemen hier alleen geld."
+    }
+   ],
+   "v": "Hoe moet de man betalen?",
+   "o": [
+    "met geld",
+    "met de pinpas",
+    "Hij betaalt niet."
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Ik wil graag twee kilo appels."
+    },
+    {
+     "s": "A",
+     "t": "Die zijn vandaag in de aanbieding: twee kilo voor twee euro."
+    }
+   ],
+   "v": "Hoeveel betaalt de vrouw?",
+   "o": [
+    "twee euro",
+    "vier euro",
+    "één euro"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Kunt u mij helpen? Ik zoek de bibliotheek."
+    },
+    {
+     "s": "C",
+     "t": "Ja. U gaat hier links en dan de tweede straat rechts."
+    }
+   ],
+   "v": "Wat zoekt de man?",
+   "o": [
+    "de bibliotheek",
+    "de tweede straat",
+    "een halte"
+   ]
+  }
+ ],
+ "dictee": [
+  "Ik zoek een warme jas voor de winter.",
+  "U gaat hier links en dan de tweede straat rechts."
+ ]
+}

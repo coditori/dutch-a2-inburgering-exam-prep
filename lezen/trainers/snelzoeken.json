@@ -1,0 +1,163 @@
+{
+ "trede": 2,
+ "na": "L24",
+ "items": [
+  {
+   "kop": "Te koop",
+   "tekst": [
+    "Fiets voor een kind. Prijs: [€ 45].",
+    "Bel na [18.00 uur]: [06 - 555 10 20]."
+   ],
+   "v": "Hoeveel kost de fiets?",
+   "goed": 0
+  },
+  {
+   "kop": "Te koop",
+   "tekst": [
+    "Fiets voor een kind. Prijs: [€ 45].",
+    "Bel na [18.00 uur]: [06 - 555 10 20]."
+   ],
+   "v": "Welk nummer belt u?",
+   "goed": 2
+  },
+  {
+   "kop": "Bibliotheek",
+   "tekst": [
+    "Open: dinsdag tot en met zaterdag van [10.00] tot [17.00 uur].",
+    "Gesloten op [maandag].",
+    "Vragen? Bel [030 - 555 22 33]."
+   ],
+   "v": "Hoe laat gaat de bibliotheek dicht?",
+   "goed": 1
+  },
+  {
+   "kop": "Huisarts Visser",
+   "tekst": [
+    "Spreekuur: elke ochtend van [8.00] tot [9.00 uur].",
+    "Afspraak maken: bel [030 - 555 01 23] vóór [11.00 uur].",
+    "Na [17.00 uur] is de praktijk gesloten."
+   ],
+   "v": "Tot hoe laat kunt u bellen voor een afspraak?",
+   "goed": 3
+  },
+  {
+   "kop": "Zwemles voor kinderen",
+   "tekst": [
+    "Elke [woensdag] van [15.00] tot [16.00 uur] in het zwembad.",
+    "De eerste les is op [4 september].",
+    "Prijs: [€ 6] per les."
+   ],
+   "v": "Wanneer is de eerste les?",
+   "goed": 3
+  },
+  {
+   "kop": "Zwemles voor kinderen",
+   "tekst": [
+    "Elke [woensdag] van [15.00] tot [16.00 uur] in het zwembad.",
+    "De eerste les is op [4 september].",
+    "Prijs: [€ 6] per les."
+   ],
+   "v": "Hoeveel kost één les?",
+   "goed": 4
+  },
+  {
+   "kop": "Feest in het buurthuis",
+   "tekst": [
+    "Zaterdag [12 mei], van [14.00] tot [18.00 uur].",
+    "Kinderen tot 12 jaar: [gratis]. Volwassenen: [€ 2,50].",
+    "Aanmelden vóór [5 mei]."
+   ],
+   "v": "Hoeveel betaalt een volwassene?",
+   "goed": 4
+  },
+  {
+   "kop": "Feest in het buurthuis",
+   "tekst": [
+    "Zaterdag [12 mei], van [14.00] tot [18.00 uur].",
+    "Kinderen tot 12 jaar: [gratis]. Volwassenen: [€ 2,50].",
+    "Aanmelden vóór [5 mei]."
+   ],
+   "v": "Vóór welke datum moet u zich aanmelden?",
+   "goed": 5
+  },
+  {
+   "kop": "Trein naar Amsterdam",
+   "tekst": [
+    "Vertrek: [9.12 uur], spoor [3].",
+    "U komt aan om [9.48 uur].",
+    "Kaartje: [€ 8,40]."
+   ],
+   "v": "Van welk spoor vertrekt de trein?",
+   "goed": 1
+  },
+  {
+   "kop": "Trein naar Amsterdam",
+   "tekst": [
+    "Vertrek: [9.12 uur], spoor [3].",
+    "U komt aan om [9.48 uur].",
+    "Kaartje: [€ 8,40]."
+   ],
+   "v": "Hoe laat komt u aan in Amsterdam?",
+   "goed": 2
+  },
+  {
+   "kop": "Kamer te huur",
+   "tekst": [
+    "Kamer in het centrum, vrij vanaf [1 juni].",
+    "Huur: [€ 480] per maand.",
+    "Bel [06 - 555 90 80], alleen na [19.00 uur]."
+   ],
+   "v": "Vanaf wanneer is de kamer vrij?",
+   "goed": 0
+  },
+  {
+   "kop": "Kamer te huur",
+   "tekst": [
+    "Kamer in het centrum, vrij vanaf [1 juni].",
+    "Huur: [€ 480] per maand.",
+    "Bel [06 - 555 90 80], alleen na [19.00 uur]."
+   ],
+   "v": "Hoeveel is de huur per maand?",
+   "goed": 1
+  },
+  {
+   "kop": "Aanbieding",
+   "tekst": [
+    "Deze week: 2 kilo appels voor [€ 2,50].",
+    "Brood: [€ 1,10] per stuk.",
+    "Geldig tot en met [zaterdag 8 juni]."
+   ],
+   "v": "Tot en met welke dag is de aanbieding geldig?",
+   "goed": 2
+  },
+  {
+   "kop": "Cursus Nederlands",
+   "tekst": [
+    "De cursus begint op [maandag 2 september].",
+    "Les: elke maandag en donderdag van [19.00] tot [21.00 uur].",
+    "Lokaal [14]. Prijs: [€ 120]."
+   ],
+   "v": "In welk lokaal is de les?",
+   "goed": 3
+  },
+  {
+   "kop": "Een pakje voor u",
+   "tekst": [
+    "Wij hebben een pakje voor u. U was niet thuis.",
+    "U kunt het halen bij de supermarkt in de [Parkstraat 8].",
+    "Dat kan vanaf [morgen 12.00 uur] tot [20 maart]."
+   ],
+   "v": "Tot wanneer kunt u het pakje halen?",
+   "goed": 2
+  },
+  {
+   "kop": "Let op: de les gaat niet door",
+   "tekst": [
+    "De les van [dinsdag 4 maart] gaat niet door. De docent is ziek.",
+    "De volgende les is op [donderdag 6 maart] om [9.30 uur] in lokaal [5]."
+   ],
+   "v": "Wanneer is de volgende les?",
+   "goed": 1
+  }
+ ]
+}

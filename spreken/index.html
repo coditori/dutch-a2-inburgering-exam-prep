@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spreken – de ladder</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="../spreken/spreken.css">
+</head>
+<body>
+<main>
+  <div class="kaart" id="vandaag"></div>
+  <div class="kaart" id="techniek"></div>
+  <div id="ladder"></div>
+  <h2 data-en="mock exam: 16 questions, 35 minutes">Toets · 16 vragen, 35 minuten</h2>
+  <div class="tegels" id="toetsen"></div>
+  <p class="zacht klein" data-en="Ready when: 20 random part-1 questions with two correct sentences each, and a full run inside 35 minutes with both halves answered every time.">Klaar voor het examen: 20 vragen van onderdeel 1 met twee goede zinnen, en een hele toets binnen 35 minuten met op elke vraag twee antwoorden.</p>
+  <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> (Chrome of Firefox)</p>
+  <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, English, progress">⚙ Instellingen: alle lessen open, Engels, voortgang</a></p>
+</main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="../spreken/spreken.js"></script>
+<script>
+(async () => {
+  const { el } = App;
+  App.kop('Spreken', '../index.html');
+  const TREDE = { 1: 'Trede 1 · klanken en zinnen', 2: 'Trede 2 · vraag en antwoord', 3: 'Trede 3 · plaatjes', 4: 'Trede 4 · examen' };
+  const [lessen, toetsen] = await Promise.all([Spreken.json('lessons/index.json'), Spreken.json('toets/index.json').catch(() => [])]);
+  const P = Spreken.P;
+  const eerste = lessen.find((l, i) => !Spreken.gehaald(l.id) && Spreken.isOpen(lessen, i));
+  const terug = Spreken.terug.nu().length;
+  document.getElementById('vandaag').append(
+    el('h3', { en: 'today' }, 'Vandaag'),
+    el('p', {}, `${lessen.filter((l) => Spreken.gehaald(l.id)).length} van ${lessen.length} lessen gehaald.`),
+    el('div', { class: 'knoppen' },
+      el('a', { class: 'knop' + (terug ? '' : ' licht'), href: 'les.html?terug=1', en: 'questions that come back today' }, `Terug vandaag: ${terug} ${terug === 1 ? 'vraag' : 'vragen'}`),
+      eerste ? el('a', { class: 'knop', href: `les.html?les=${eerste.id}`, en: 'next lesson' }, `Les ${eerste.id}: ${eerste.titel}`) : null,
+      el('a', { class: 'knop licht', href: 'patronen.html', en: 'the 7 sentence patterns' }, 'De 7 patronen')));
+
+  const aan = await Spreken.server();
+  document.getElementById('techniek').append(
+    el('h3', { en: 'speech check' }, 'Controle van uw spraak'),
+    el('p', { en: aan ? 'The local speech server is running (faster-whisper).' : Spreken.heeftSR ? 'The local server is not running. This browser uses its own speech recognition (Chrome sends audio to Google).' : 'No speech-to-text available. You record, listen back and check yourself.' },
+      aan ? '✔ De spraakserver op uw computer draait.' : Spreken.heeftSR ? 'De spraakserver draait niet. De browser luistert zelf mee.' : 'Geen spraak-naar-tekst. U neemt op, luistert en controleert zelf.'),
+    aan ? '' : el('p', { class: 'klein zacht' }, 'Server starten: ', el('code', {}, 'tools/.venv/bin/python tools/stt_server.py')));
+
+  const ladder = document.getElementById('ladder');
+  for (const t of [1, 2, 3, 4]) {
+    ladder.append(el('h2', {}, TREDE[t]), el('div', { class: 'tegels' }, lessen.map((l, i) => {
+      if (l.trede !== t) return null;
+      const r = P.lessen[l.id], open = Spreken.isOpen(lessen, i);
+      return el('a', { class: 'tegel' + (Spreken.gehaald(l.id) ? ' klaar' : '') + (!open ? ' slot' : '') + (eerste && eerste.id === l.id ? ' nu' : ''), href: `les.html?les=${l.id}` },
+        el('b', {}, `${l.id} ${Spreken.gehaald(l.id) ? '✔' : open ? '' : '🔒'}`), l.titel, r ? el('div', { class: 'klein zacht' }, `${r.beste} / ${r.totaal}`) : null);
+    })));
+  }
+  const laatste = lessen.length ? lessen[lessen.length - 1].id : null;
+  const toetsOpen = P.open || !laatste || Spreken.gehaald(laatste);
+  document.getElementById('toetsen').append(...toetsen.map((t) => {
+    const r = P.toets[t.id] || [];
+    return el('a', { class: 'tegel' + (toetsOpen ? '' : ' slot'), href: `toets/toets.html?t=${t.id}` },
+      el('b', {}, t.titel + (toetsOpen ? '' : ' 🔒')), `${t.vragen} vragen`,
+      el('div', { class: 'klein zacht' }, r.length ? `beste: ${Math.max(...r.map((x) => x.score))} / ${t.vragen} · ${r.length}× gedaan` : `na les ${laatste}`));
+  }));
+})();
+</script>
+</body>
+</html>

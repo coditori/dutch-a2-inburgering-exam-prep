@@ -1,0 +1,53 @@
+{
+ "id": "S09",
+ "trede": 2,
+ "titel": "Morgen werk ik",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Begint de zin met een tijd of een dag? Dan komt eerst het werkwoord en daarna ik.",
+   "en": "Does the sentence start with a time or a day? Then the verb comes first and then ik."
+  },
+  {
+   "nl": "Ik werk morgen. → Morgen werk ik.",
+   "en": ""
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "tegels",
+   "zin": "Morgen werk ik niet."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Vandaag blijf ik thuis."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Op maandag heb ik les."
+  },
+  {
+   "soort": "tegels",
+   "zin": "In het weekend bezoek ik mijn ouders."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Om acht uur vertrekt de bus."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Volgende week kom ik naar de les."
+  }
+ ]
+}

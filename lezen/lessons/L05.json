@@ -1,0 +1,146 @@
+{
+ "id": "L05",
+ "trede": 1,
+ "titel": "De dag en de week",
+ "soort": "plaatje",
+ "woorden": [
+  {
+   "nl": "de dag",
+   "en": "day",
+   "beeld": "☀️",
+   "zin": "Het is een mooie dag.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de week",
+   "en": "week",
+   "beeld": "📅",
+   "zin": "Ik werk de hele week.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de ochtend",
+   "en": "morning",
+   "beeld": "🌅",
+   "zin": "In de ochtend drink ik koffie.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de middag",
+   "en": "afternoon",
+   "beeld": "🕑",
+   "zin": "In de middag werk ik.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de avond",
+   "en": "evening",
+   "beeld": "🌆",
+   "zin": "In de avond ben ik moe.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de nacht",
+   "en": "night",
+   "beeld": "🌙",
+   "zin": "In de nacht is het rustig.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "het weekend",
+   "en": "weekend",
+   "beeld": "🎈",
+   "zin": "In het weekend ben ik vrij.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "maandag",
+   "en": "Monday",
+   "beeld": "1️⃣",
+   "zin": "Maandag is de eerste dag van de week.",
+   "thema": "tijd"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "In de nacht slaap ik."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🌙😴",
+      "☀️😴",
+      "🌙🍞"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "In de ochtend drink ik koffie."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🌅☕",
+      "🌙☕",
+      "🌅🍵"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Om acht uur in de avond eten wij."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🕗🌆🍽️",
+      "🕗🌅🍽️",
+      "🕑🌆🍽️"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "In de middag zit opa in de tuin."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🕑👴🌳",
+      "🌙👴🌳",
+      "🕑👵🌳"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Een week is zeven dagen."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "📅 7",
+      "📅 5",
+      "📅 2"
+     ]
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "In de {nacht} slaap ik.",
+  "In het {weekend} ben ik vrij.",
+  "{Maandag} is de eerste dag van de week."
+ ]
+}

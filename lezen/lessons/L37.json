@@ -1,0 +1,159 @@
+{
+ "id": "L37",
+ "trede": 4,
+ "titel": "Tips: meer bewegen",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het advies",
+   "en": "advice",
+   "beeld": "🧑‍⚕️💬",
+   "zin": "De huisarts geeft mij advies.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de manier",
+   "en": "way / manner",
+   "beeld": "🛤️",
+   "zin": "Fietsen is een goede manier om te bewegen.",
+   "thema": "algemeen",
+   "vormen": [
+    "manieren"
+   ]
+  },
+  {
+   "nl": "opnieuw",
+   "en": "again",
+   "beeld": "🔄",
+   "zin": "Ik doe de toets opnieuw.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "precies",
+   "en": "exactly",
+   "beeld": "🎯",
+   "zin": "De les begint precies om negen uur.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "handig",
+   "en": "handy / useful",
+   "beeld": "🧰",
+   "zin": "Een fiets is handig in de stad.",
+   "thema": "mening"
+  },
+  {
+   "nl": "de tip",
+   "en": "tip",
+   "beeld": "💡",
+   "zin": "Ik geef u een goede tip.",
+   "thema": "algemeen",
+   "vormen": [
+    "tips"
+   ]
+  },
+  {
+   "nl": "kort",
+   "en": "short / briefly",
+   "beeld": "📏",
+   "zin": "De pauze is kort.",
+   "thema": "eigenschap",
+   "vormen": [
+    "korte"
+   ]
+  },
+  {
+   "nl": "de planning",
+   "en": "schedule / plan",
+   "beeld": "🗓️",
+   "zin": "Ik maak een planning voor de week.",
+   "thema": "werk"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "In een folder van de huisarts staan tips.",
+   "kop": "Meer bewegen: zes tips",
+   "soort": "tekst",
+   "tekst": [
+    "Bewegen is gezond. Volgens huisartsen moet een volwassene minstens een half uur per dag bewegen. Dat hoeft geen sport te zijn. Hier staan zes tips.",
+    "- Maak een planning voor de week. Schrijf precies op wanneer u gaat bewegen. Dan vergeet u het niet.",
+    "- Begin rustig. Loop de eerste week elke dag tien minuten. Loop elke week vijf minuten langer.",
+    "- Zoek een manier van bewegen die u leuk vindt: wandelen, fietsen, dansen of zwemmen.",
+    "- Neem de trap en niet de lift. Stap een halte te vroeg uit de bus en loop het laatste stuk.",
+    "- Beweeg samen met iemand. Dat is gezelliger en u stopt minder snel.",
+    "- Zit u veel op uw werk? Sta dan elk half uur kort op en loop even naar een andere plaats.",
+    "",
+    "Hebt u pijn bij het bewegen? Of bent u lang ziek geweest? Vraag dan eerst advies aan uw huisarts. Begin daarna opnieuw, maar langzaam."
+   ],
+   "vragen": [
+    {
+     "sit": "Peter wil meer bewegen. Hij is gezond, maar hij heeft nog nooit aan sport gedaan.",
+     "v": "Hoe moet hij volgens de tekst beginnen?",
+     "o": [
+      "elke dag tien minuten lopen",
+      "elke dag een half uur sporten",
+      "eerst naar de huisarts gaan",
+      "een fiets kopen"
+     ],
+     "b": "Loop de eerste week elke dag tien minuten."
+    },
+    {
+     "sit": "Anna werkt de hele dag op een kantoor, op een stoel.",
+     "v": "Welke tip is handig voor haar?",
+     "o": [
+      "elk half uur kort opstaan en lopen",
+      "een planning maken voor het weekend",
+      "elke dag gaan zwemmen"
+     ],
+     "b": "Sta dan elk half uur kort op en loop even naar een andere plaats."
+    },
+    {
+     "v": "Wanneer moet iemand eerst advies vragen aan de huisarts?",
+     "o": [
+      "als hij pijn heeft of lang ziek is geweest",
+      "als hij ouder is dan 50 jaar",
+      "als hij alleen wil bewegen",
+      "altijd"
+     ],
+     "b": "Vraag dan eerst advies aan uw huisarts."
+    }
+   ]
+  },
+  {
+   "intro": "Op het werk van Anna hangt een mededeling.",
+   "kop": "Samen wandelen in de pauze",
+   "soort": "tekst",
+   "tekst": [
+    "Vanaf 1 mei wandelen wij elke dinsdag en donderdag samen in de pauze. Wij vertrekken om 12.15 uur bij de receptie en zijn om 12.45 uur terug.",
+    "Het is handig om goede schoenen aan te doen. Bij regen gaat het wandelen niet door.",
+    "Aanmelden hoeft niet: wie er is, loopt mee."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe lang duurt het wandelen?",
+     "o": [
+      "een half uur",
+      "een kwartier",
+      "een uur"
+     ],
+     "b": "Wij vertrekken om 12.15 uur bij de receptie en zijn om 12.45 uur terug."
+    },
+    {
+     "v": "Wanneer gaat het wandelen niet door?",
+     "o": [
+      "als het regent",
+      "op donderdag",
+      "als er weinig mensen zijn"
+     ],
+     "b": "Bij regen gaat het wandelen niet door."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Schrijf {precies} op wanneer u gaat bewegen.",
+  "Vraag dan eerst {advies} aan uw huisarts.",
+  "Begin daarna {opnieuw}, maar langzaam."
+ ]
+}

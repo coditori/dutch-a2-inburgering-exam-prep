@@ -1,0 +1,156 @@
+{
+ "id": "L27",
+ "trede": 3,
+ "titel": "Een brief van de gemeente",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de bewoner",
+   "en": "resident",
+   "beeld": "🏠🧑",
+   "zin": "De bewoners van de straat krijgen een brief.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het papier",
+   "en": "paper",
+   "beeld": "📃",
+   "zin": "Oud papier gaat in de container.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het plastic",
+   "en": "plastic",
+   "beeld": "🧴",
+   "zin": "Plastic gaat in een andere zak.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de zak",
+   "en": "bag / sack",
+   "beeld": "🛍️",
+   "zin": "Het afval zit in een zak.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het verkeer",
+   "en": "traffic",
+   "beeld": "🚦",
+   "zin": "Er is veel verkeer in de stad.",
+   "thema": "vervoer"
+  },
+  {
+   "nl": "de werkzaamheden",
+   "en": "(road / building) works",
+   "beeld": "🚧",
+   "zin": "Door de werkzaamheden is de straat dicht.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "veilig",
+   "en": "safe",
+   "beeld": "🦺",
+   "zin": "De straat is veilig voor kinderen.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "tijdelijk",
+   "en": "temporary / temporarily",
+   "beeld": "⏲️",
+   "zin": "De winkel is tijdelijk gesloten.",
+   "thema": "tijd"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "De bewoners van de Lindelaan krijgen een brief van de gemeente.",
+   "kop": "Werkzaamheden in uw straat",
+   "soort": "tekst",
+   "tekst": [
+    "Beste bewoners,",
+    "",
+    "Van maandag 3 juni tot en met vrijdag 14 juni werkt de gemeente aan de weg in de Lindelaan. De straat wordt veiliger voor kinderen op de fiets.",
+    "Tijdens de werkzaamheden is de straat dicht voor het verkeer. U kunt uw auto tijdelijk gratis parkeren bij het zwembad.",
+    "Het afval wordt in deze weken op woensdag opgehaald. Zet uw container aan het begin van de straat, bij de Parkstraat.",
+    "Hebt u vragen? Bel de gemeente: 14 030.",
+    "Wij weten dat de werkzaamheden overlast geven. Wij hopen dat u het begrijpt.",
+    "",
+    "Met vriendelijke groet,",
+    "Gemeente Utrecht"
+   ],
+   "vragen": [
+    {
+     "sit": "Meneer Smit woont in de Lindelaan. Hij heeft een auto.",
+     "v": "Waar kan hij zijn auto parkeren tijdens de werkzaamheden?",
+     "o": [
+      "bij het zwembad",
+      "in de Parkstraat",
+      "in de Lindelaan"
+     ],
+     "b": "U kunt uw auto tijdelijk gratis parkeren bij het zwembad."
+    },
+    {
+     "v": "Waarom werkt de gemeente aan de weg?",
+     "o": [
+      "De straat wordt veiliger.",
+      "Er komt een nieuw zwembad.",
+      "Er komt een plaats voor containers."
+     ],
+     "b": "De straat wordt veiliger voor kinderen op de fiets."
+    }
+   ]
+  },
+  {
+   "intro": "Bij de brief zit een folder over afval.",
+   "kop": "Afval: wat gaat waar?",
+   "soort": "tabel",
+   "tekst": [
+    "afval | waar? | wanneer?",
+    "papier | container voor papier | elke eerste dinsdag van de maand",
+    "plastic | zak voor plastic | elke maandag",
+    "groente, fruit en eten | kleine container | elke woensdag",
+    "ander afval | grote container | elke vrijdag",
+    "",
+    "De zakken voor plastic zijn gratis. U kunt ze halen in het gemeentehuis en in de bibliotheek.",
+    "Zet de container of de zak vóór 7.30 uur buiten. Niet op de avond vóór de dag van het ophalen: dat is verboden.",
+    "Glas brengt u naar de container bij de supermarkt."
+   ],
+   "vragen": [
+    {
+     "sit": "Het is maandag.",
+     "v": "Welk afval zet u vandaag buiten?",
+     "o": [
+      "plastic",
+      "papier",
+      "glas"
+     ],
+     "b": "plastic | zak voor plastic | elke maandag"
+    },
+    {
+     "v": "Waar krijgt u zakken voor plastic?",
+     "o": [
+      "in het gemeentehuis en in de bibliotheek",
+      "bij de supermarkt",
+      "van de buren"
+     ],
+     "b": "U kunt ze halen in het gemeentehuis en in de bibliotheek."
+    },
+    {
+     "sit": "Karim wil zijn container op dinsdagavond al buiten zetten voor woensdag.",
+     "v": "Mag dat?",
+     "o": [
+      "Nee, dat is verboden.",
+      "Ja, dat mag altijd.",
+      "Ja, maar alleen na 19.30 uur."
+     ],
+     "b": "Niet op de avond vóór de dag van het ophalen: dat is verboden."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Tijdens de {werkzaamheden} is de straat dicht voor het verkeer.",
+  "U kunt uw auto {tijdelijk} gratis parkeren bij het zwembad.",
+  "De zakken voor {plastic} zijn gratis."
+ ]
+}

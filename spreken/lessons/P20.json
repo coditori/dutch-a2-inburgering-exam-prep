@@ -1,0 +1,105 @@
+{
+ "id": "P20",
+ "trede": 3,
+ "titel": "Eén plaatje: noem drie dingen",
+ "uitleg": "Kijk naar het plaatje. Vertel drie dingen over de mensen. Elke zin heeft een werkwoord.",
+ "en": "'Noem drie dingen' = three short sentences: where they are, what they do, what you think ('Ik denk dat ...').",
+ "woorden": [
+  {
+   "nl": "het ding",
+   "en": "thing",
+   "beeld": "🔹",
+   "zin": "Ik vertel drie dingen.",
+   "thema": "algemeen",
+   "vormen": [
+    "dingen"
+   ]
+  }
+ ],
+ "namen": [
+  "Eva",
+  "Daan",
+  "Omar",
+  "Anna",
+  "Bas",
+  "Visser",
+  "Mila"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍🦱👨‍🦱☕🌳"
+   ],
+   "sit": "Dit zijn Eva en Daan.",
+   "vraag": "Vertel wat over Eva en Daan. Noem drie dingen.",
+   "model": [
+    "Eva en Daan zitten in de tuin.",
+    "Zij drinken koffie.",
+    "Ik denk dat zij vrienden zijn."
+   ],
+   "drie": true
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👴🧒📖🛋️"
+   ],
+   "sit": "Dit zijn Omar en zijn opa.",
+   "vraag": "Vertel wat over Omar en zijn opa. Noem drie dingen.",
+   "model": [
+    "Omar zit naast zijn opa.",
+    "Opa leest een boek.",
+    "Ik denk dat Omar blij is."
+   ],
+   "drie": true
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍🍳👨‍🍳🍝🍽️"
+   ],
+   "sit": "Dit zijn Anna en Bas.",
+   "vraag": "Vertel wat over Anna en Bas. Noem drie dingen.",
+   "model": [
+    "Anna en Bas werken in een restaurant.",
+    "Zij koken samen.",
+    "Het eten is klaar."
+   ],
+   "drie": true
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨‍👩‍👧🧺🌞🏞️"
+   ],
+   "sit": "Dit is de familie Visser.",
+   "vraag": "Vertel wat over de familie Visser. Noem drie dingen.",
+   "model": [
+    "De familie is in het park.",
+    "De zon schijnt.",
+    "Zij eten samen buiten."
+   ],
+   "drie": true
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍🏫🧒🧒✏️"
+   ],
+   "sit": "Dit zijn juf Mila en de kinderen van haar groep.",
+   "vraag": "Vertel wat over juf Mila en de kinderen. Noem drie dingen.",
+   "model": [
+    "De juf geeft les.",
+    "De kinderen schrijven.",
+    "Ik denk dat de les leuk is."
+   ],
+   "drie": true
+  }
+ ]
+}

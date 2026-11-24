@@ -1,0 +1,205 @@
+{
+ "id": "S22",
+ "trede": 3,
+ "titel": "Vakantie, eten en een formulier met vragen",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Op een formulier staan soms vragen. Schrijf dan een hele zin, met een hoofdletter en een punt.",
+   "en": "A form sometimes has questions. Then write a whole sentence, with a capital and a full stop."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn vakantie",
+    "situatie": "U schrijft voor de krant van de buurt over uw vakantie.",
+    "punten": [
+     {
+      "p": "Naar welk land gaat u graag op vakantie?",
+      "model": "Ik ga graag op vakantie naar Turkije.",
+      "val": [
+       "naar |ga |land"
+      ]
+     },
+     {
+      "p": "Met wie gaat u op vakantie?",
+      "model": "Ik ga met mijn vrouw en mijn twee dochters.",
+      "val": [
+       "met |alleen"
+      ]
+     },
+     {
+      "p": "Wat doet u in de vakantie?",
+      "model": "Wij zwemmen elke dag en wij bezoeken mijn familie.",
+      "val": [
+       "zwem|bezoek|wandel|eet|ga |gaan|lees|slaap|fiets|kijk"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn vakantie:"
+   }
+  },
+  {
+   "soort": "formulier",
+   "kop": "Formulier voor zwemles",
+   "velden": [
+    {
+     "label": "Voornaam en achternaam",
+     "soort": "naam"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email"
+    },
+    {
+     "label": "Ik wil zwemles op:",
+     "soort": "keuze",
+     "opties": [
+      "dinsdagavond 19.00 - 20.00 uur",
+      "donderdagavond 20.00 - 21.00 uur",
+      "zaterdagochtend 9.00 - 10.00 uur"
+     ]
+    },
+    {
+     "label": "Kunt u al een beetje zwemmen?",
+     "soort": "open"
+    },
+    {
+     "label": "Waarom wilt u zwemles?",
+     "soort": "open",
+     "val": [
+      "want|omdat|wil|graag|kan|leren"
+     ]
+    }
+   ],
+   "situatie": "U wilt zwemles nemen. Vul het formulier in. Schrijf bij de vragen een hele zin."
+  },
+  {
+   "soort": "formulier",
+   "kop": "Formulier van de woningcorporatie",
+   "velden": [
+    {
+     "label": "Voornaam en achternaam",
+     "soort": "naam"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon"
+    },
+    {
+     "label": "Wat is het probleem?",
+     "soort": "open",
+     "val": [
+      "douche|kraan|water|lek|kapot|werkt niet"
+     ]
+    },
+    {
+     "label": "Wanneer bent u thuis?",
+     "soort": "open",
+     "val": [
+      "dag|ochtend|middag|avond|uur|morgen|altijd"
+     ]
+    },
+    {
+     "label": "Datum van vandaag",
+     "soort": "datum"
+    }
+   ],
+   "situatie": "Er is een probleem in uw badkamer. Kijk naar de plaatjes. U meldt het probleem bij de woningcorporatie. Schrijf bij de vragen een hele zin.",
+   "plaatjes": [
+    "🚿",
+    "💧"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn eten",
+    "situatie": "U schrijft voor de krant van de buurt over het eten bij u thuis.",
+    "punten": [
+     {
+      "p": "Wat eet u het liefst?",
+      "model": "Ik eet het liefst rijst met kip en groente.",
+      "val": [
+       "eet"
+      ]
+     },
+     {
+      "p": "Wie kookt er bij u thuis?",
+      "model": "Mijn man kookt meestal bij ons thuis.",
+      "val": [
+       "kook"
+      ]
+     },
+     {
+      "p": "Wanneer eet u dit?",
+      "model": "Wij eten dit vaak op zondag.",
+      "val": [
+       "op |in |elke|vaak|soms|altijd|avond|weekend"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn eten:"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik wil zwemles nemen, omdat ik niet goed kan zwemmen."
+  }
+ ]
+}

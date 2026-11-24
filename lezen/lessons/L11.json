@@ -1,0 +1,149 @@
+{
+ "id": "L11",
+ "trede": 2,
+ "titel": "Bordjes lezen",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het bordje",
+   "en": "sign",
+   "beeld": "🪧",
+   "zin": "Op de deur zit een bordje.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "dan",
+   "en": "then",
+   "beeld": "➡️",
+   "zin": "Hebt u een vraag? Dan kunt u bellen.",
+   "thema": "verbinden"
+  },
+  {
+   "nl": "de ingang",
+   "en": "entrance",
+   "beeld": "🚪⬅️",
+   "zin": "De ingang is links.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "de uitgang",
+   "en": "exit",
+   "beeld": "🚪➡️",
+   "zin": "De uitgang is naast de kassa.",
+   "thema": "plaats"
+  },
+  {
+   "nl": "de klant",
+   "en": "customer",
+   "beeld": "🧑‍🦱🛒",
+   "zin": "De klant betaalt bij de kassa.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "let op",
+   "en": "attention / watch out",
+   "beeld": "⚠️",
+   "zin": "Let op! De deur is dicht.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "verboden",
+   "en": "forbidden",
+   "beeld": "🚫",
+   "zin": "Fietsen is hier verboden.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de hond",
+   "en": "dog",
+   "beeld": "🐕",
+   "zin": "De hond loopt in het park.",
+   "thema": "algemeen"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit bordje staat op de deur van een winkel.",
+   "soort": "bordje",
+   "tekst": [
+    "Let op!",
+    "Deze deur is dicht.",
+    "De ingang is nu aan de Parkstraat."
+   ],
+   "vragen": [
+    {
+     "v": "Waar is de ingang nu?",
+     "o": [
+      "aan de Parkstraat",
+      "naast de kassa",
+      "bij deze deur"
+     ],
+     "b": "De ingang is nu aan de Parkstraat."
+    },
+    {
+     "v": "Wat is er met deze deur?",
+     "o": [
+      "De deur is dicht.",
+      "De deur is nieuw.",
+      "De deur is de uitgang."
+     ],
+     "b": "Deze deur is dicht."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat bij een park.",
+   "soort": "bordje",
+   "tekst": [
+    "Honden zijn in dit park verboden.",
+    "Hebt u een hond? Dan kunt u naar het park bij het station gaan."
+   ],
+   "vragen": [
+    {
+     "v": "Wat mag niet in dit park?",
+     "o": [
+      "een hond meenemen",
+      "lopen",
+      "fietsen"
+     ],
+     "b": "Honden zijn in dit park verboden."
+    },
+    {
+     "v": "Naar welk park kunt u gaan met een hond?",
+     "o": [
+      "het park bij het station",
+      "dit park",
+      "het park bij de school"
+     ],
+     "b": "Dan kunt u naar het park bij het station gaan."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat in de supermarkt.",
+   "soort": "bordje",
+   "tekst": [
+    "Uitgang",
+    "Klanten zonder boodschappen: hier naar buiten.",
+    "Hebt u boodschappen? Betaal dan bij de kassa."
+   ],
+   "vragen": [
+    {
+     "sit": "U hebt brood en melk in de supermarkt.",
+     "v": "Wat doet u?",
+     "o": [
+      "U betaalt bij de kassa.",
+      "U gaat hier naar buiten.",
+      "U gaat naar de ingang."
+     ],
+     "b": "Betaal dan bij de kassa."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Honden zijn in dit park {verboden}.",
+  "De {ingang} is nu aan de Parkstraat.",
+  "Hebt u een hond? {Dan} kunt u naar een ander park gaan."
+ ]
+}

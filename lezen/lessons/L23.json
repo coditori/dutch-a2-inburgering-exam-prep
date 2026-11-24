@@ -1,0 +1,151 @@
+{
+ "id": "L23",
+ "trede": 2,
+ "titel": "De aanbieding",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de kilo",
+   "en": "kilo",
+   "beeld": "⚖️",
+   "zin": "Ik koop een kilo appels.",
+   "thema": "winkelen",
+   "vormen": [
+    "kilo's"
+   ]
+  },
+  {
+   "nl": "het pak",
+   "en": "carton / pack",
+   "beeld": "🧃",
+   "zin": "Een pak melk, alstublieft.",
+   "thema": "winkelen",
+   "vormen": [
+    "pakken"
+   ]
+  },
+  {
+   "nl": "de fles",
+   "en": "bottle",
+   "beeld": "🍾",
+   "zin": "Ik koop een fles water.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de appel",
+   "en": "apple",
+   "beeld": "🍏",
+   "zin": "De appel is lekker.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de aardappel",
+   "en": "potato",
+   "beeld": "🥔",
+   "zin": "Wij eten vaak aardappelen.",
+   "thema": "eten"
+  },
+  {
+   "nl": "het stuk",
+   "en": "piece",
+   "beeld": "🍰",
+   "zin": "Mag ik een stuk kaas?",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "geldig",
+   "en": "valid",
+   "beeld": "📆",
+   "zin": "Het kaartje is één dag geldig.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de folder",
+   "en": "leaflet",
+   "beeld": "📄",
+   "zin": "De aanbiedingen staan in de folder.",
+   "thema": "lezen"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Deze folder krijgt u thuis.",
+   "kop": "Supermarkt De Markt – aanbiedingen van deze week",
+   "soort": "tabel",
+   "tekst": [
+    "appels | 1 kilo | € 1,49",
+    "aardappelen | 2 kilo | € 1,99",
+    "melk | 2 pakken | € 1,60",
+    "water | 6 flessen | € 2,40",
+    "brood | per stuk | € 1,25",
+    "",
+    "Deze aanbiedingen zijn geldig van maandag tot en met zaterdag."
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel kost 1 kilo appels?",
+     "o": [
+      "€ 1,49",
+      "€ 1,99",
+      "€ 1,25"
+     ],
+     "b": "appels | 1 kilo | € 1,49"
+    },
+    {
+     "v": "Hoeveel flessen water krijgt u voor € 2,40?",
+     "o": [
+      "6 flessen",
+      "2 flessen",
+      "1 fles"
+     ],
+     "b": "water | 6 flessen | € 2,40"
+    },
+    {
+     "v": "Op welke dag zijn de aanbiedingen niet geldig?",
+     "o": [
+      "op zondag",
+      "op maandag",
+      "op zaterdag"
+     ],
+     "b": "Deze aanbiedingen zijn geldig van maandag tot en met zaterdag."
+    }
+   ]
+  },
+  {
+   "intro": "Deze folder is van een kledingwinkel.",
+   "kop": "Korting op kleding",
+   "soort": "tekst",
+   "tekst": [
+    "Deze week krijgt u 20% korting op alle jassen.",
+    "Koopt u twee jassen? Dan krijgt u 30% korting.",
+    "Neem deze folder mee naar de winkel.",
+    "Zonder folder krijgt u geen korting."
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel korting krijgt u op één jas?",
+     "o": [
+      "20%",
+      "30%",
+      "50%"
+     ],
+     "b": "Deze week krijgt u 20% korting op alle jassen."
+    },
+    {
+     "v": "Wat moet u meenemen naar de winkel?",
+     "o": [
+      "deze folder",
+      "de bon",
+      "een oude jas"
+     ],
+     "b": "Neem deze folder mee naar de winkel."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Deze aanbiedingen zijn {geldig} van maandag tot en met zaterdag.",
+  "Zonder {folder} krijgt u geen korting.",
+  "Het brood kost € 1,25 per {stuk}."
+ ]
+}

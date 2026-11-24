@@ -1,0 +1,156 @@
+{
+ "id": "L07",
+ "trede": 1,
+ "titel": "Niet en geen",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het werk",
+   "en": "work",
+   "beeld": "💼",
+   "zin": "Ik ga naar het werk.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de school",
+   "en": "school",
+   "beeld": "🏫",
+   "zin": "De school is groot.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de les",
+   "en": "lesson",
+   "beeld": "🧑‍🏫",
+   "zin": "De les is om negen uur.",
+   "thema": "onderwijs"
+  },
+  {
+   "nl": "de dokter",
+   "en": "doctor",
+   "beeld": "🩺",
+   "zin": "De dokter is er vandaag niet.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "het boek",
+   "en": "book",
+   "beeld": "📕",
+   "zin": "Ik lees een boek.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "de telefoon",
+   "en": "phone",
+   "beeld": "📱",
+   "zin": "Mijn telefoon is nieuw.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "de computer",
+   "en": "computer",
+   "beeld": "💻",
+   "zin": "Ik werk op de computer.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "thuis",
+   "en": "at home",
+   "beeld": "🏡",
+   "zin": "Ik ben vandaag thuis.",
+   "thema": "plaats"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "Anna gaat vandaag niet naar het werk. Zij is ziek."
+   ],
+   "vragen": [
+    {
+     "v": "Gaat Anna vandaag naar het werk?",
+     "o": [
+      "Nee, zij is ziek.",
+      "Ja, zij werkt vandaag.",
+      "Ja, maar zij is laat."
+     ],
+     "b": "Anna gaat vandaag niet naar het werk."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Tom heeft geen computer. Hij heeft een telefoon."
+   ],
+   "vragen": [
+    {
+     "v": "Wat heeft Tom?",
+     "o": [
+      "een telefoon",
+      "een computer",
+      "een boek"
+     ],
+     "b": "Hij heeft een telefoon."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De kinderen zijn niet op school. Zij zijn thuis."
+   ],
+   "vragen": [
+    {
+     "v": "Waar zijn de kinderen?",
+     "o": [
+      "thuis",
+      "op school",
+      "bij de dokter"
+     ],
+     "b": "Zij zijn thuis."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Ik heb vandaag geen les. Ik lees thuis een boek."
+   ],
+   "vragen": [
+    {
+     "v": "Wat doe ik vandaag?",
+     "o": [
+      "Ik lees een boek.",
+      "Ik ga naar de les.",
+      "Ik ga naar het werk."
+     ],
+     "b": "Ik lees thuis een boek."
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De dokter is er vandaag niet. Morgen is hij er om negen uur."
+   ],
+   "vragen": [
+    {
+     "v": "Wanneer is de dokter er?",
+     "o": [
+      "morgen om negen uur",
+      "vandaag om negen uur",
+      "vandaag en morgen niet"
+     ],
+     "b": "Morgen is hij er om negen uur."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Anna gaat vandaag {niet} naar het werk.",
+  "Tom heeft {geen} computer.",
+  "De kinderen zijn niet op {school}."
+ ]
+}

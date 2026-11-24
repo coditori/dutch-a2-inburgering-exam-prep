@@ -1,0 +1,483 @@
+{
+ "id": "A",
+ "trede": 4,
+ "na": "L38",
+ "titel": "Toets A",
+ "namen": [
+  "Mila",
+  "Omar",
+  "DigiD",
+  "Sara",
+  "Tom",
+  "Lena",
+  "Yusuf",
+  "Peter",
+  "Noor",
+  "Lisa",
+  "Bakker",
+  "Lindelaan",
+  "Eva",
+  "Karim",
+  "Smit",
+  "Bas",
+  "Maria",
+  "Yilmaz",
+  "Fatima",
+  "Tuin",
+  "Markt"
+ ],
+ "teksten": [
+  {
+   "intro": "De ouders van Mila krijgen een brief van de kinderopvang.",
+   "kop": "Nieuwe regels voor brengen en halen",
+   "soort": "tekst",
+   "tekst": [
+    "Beste ouders,",
+    "",
+    "Vanaf 1 januari hebben wij een paar nieuwe regels.",
+    "U kunt uw kind 's ochtends brengen tussen 7.30 en 9.00 uur. Om 9.00 uur gaat de deur dicht. Komt u later? Bel dan eerst.",
+    "Halen kan tussen 16.30 en 18.00 uur. Haalt u uw kind na 18.00 uur? Dan betaalt u € 10 voor elk kwartier dat u te laat bent.",
+    "Haalt iemand anders uw kind, bijvoorbeeld opa, oma of de buurvrouw? Vertel dat dan 's ochtends aan de medewerker van de groep. Deze persoon moet een identiteitsbewijs meenemen. Zonder identiteitsbewijs geven wij uw kind niet mee.",
+    "Is uw kind ziek? Meld dat vóór 8.30 uur. Een kind met koorts mag niet komen.",
+    "",
+    "Met vriendelijke groet,",
+    "Kinderopvang De Tuin"
+   ],
+   "vragen": [
+    {
+     "sit": "De vader van Mila haalt haar om 18.30 uur.",
+     "v": "Hoeveel moet hij betalen?",
+     "o": [
+      "€ 20",
+      "€ 10",
+      "€ 30",
+      "niets"
+     ],
+     "b": "Dan betaalt u € 10 voor elk kwartier dat u te laat bent."
+    },
+    {
+     "sit": "De oma van Mila haalt haar vandaag.",
+     "v": "Wat moet oma meenemen?",
+     "o": [
+      "een identiteitsbewijs",
+      "een brief van de ouders",
+      "€ 10"
+     ],
+     "b": "Deze persoon moet een identiteitsbewijs meenemen."
+    },
+    {
+     "sit": "Mila heeft koorts.",
+     "v": "Wat doen haar ouders?",
+     "o": [
+      "Zij melden vóór 8.30 uur dat Mila ziek is.",
+      "Zij brengen Mila na 9.00 uur.",
+      "Zij bellen eerst en brengen Mila dan."
+     ],
+     "b": "Meld dat vóór 8.30 uur."
+    }
+   ]
+  },
+  {
+   "intro": "Omar gaat verhuizen. Hij leest een folder van de gemeente.",
+   "kop": "Gaat u verhuizen?",
+   "soort": "tekst",
+   "tekst": [
+    "Gaat u verhuizen naar een ander adres in Nederland? Geef uw nieuwe adres dan door aan de gemeente waar u gaat wonen.",
+    "# Wanneer?",
+    "U kunt uw verhuizing doorgeven vanaf vier weken vóór de verhuizing tot uiterlijk vijf dagen na de verhuizing. Bent u te laat? Dan kunt u een boete krijgen.",
+    "# Hoe?",
+    "- online, met uw DigiD. Dit is de snelste manier.",
+    "- aan de balie van het gemeentehuis. U moet eerst een afspraak maken. Neem een identiteitsbewijs en uw huurcontract mee.",
+    "# Gaat u bij iemand wonen?",
+    "Dan hebt u ook een brief nodig van de persoon die er al woont. In de brief staat dat u er mag wonen. Deze persoon moet de brief tekenen.",
+    "",
+    "Doorgeven van een verhuizing is gratis. De gemeente geeft uw nieuwe adres door aan de Belastingdienst. Uw huisarts, uw werkgever en uw bank moet u zelf een bericht sturen."
+   ],
+   "vragen": [
+    {
+     "sit": "Omar verhuist op 10 mei.",
+     "v": "Wat is de laatste dag dat hij zijn nieuwe adres kan doorgeven?",
+     "o": [
+      "15 mei",
+      "10 mei",
+      "5 mei",
+      "14 mei"
+     ],
+     "b": "U kunt uw verhuizing doorgeven vanaf vier weken vóór de verhuizing tot uiterlijk vijf dagen na de verhuizing."
+    },
+    {
+     "sit": "Omar gaat bij zijn broer wonen.",
+     "v": "Wat heeft hij extra nodig?",
+     "o": [
+      "een brief van zijn broer",
+      "een nieuw huurcontract",
+      "een brief van de Belastingdienst"
+     ],
+     "b": "Dan hebt u ook een brief nodig van de persoon die er al woont."
+    },
+    {
+     "v": "Wie krijgt het nieuwe adres van de gemeente?",
+     "o": [
+      "de Belastingdienst",
+      "de huisarts",
+      "de werkgever",
+      "de bank"
+     ],
+     "b": "De gemeente geeft uw nieuwe adres door aan de Belastingdienst."
+    }
+   ]
+  },
+  {
+   "intro": "Sara werkt bij supermarkt De Markt. Zij krijgt het rooster voor volgende week.",
+   "kop": "Rooster week 23",
+   "soort": "tabel",
+   "tekst": [
+    "O = ochtenddienst: 7.00 - 13.00 uur",
+    "M = middagdienst: 13.00 - 18.00 uur",
+    "A = avonddienst: 18.00 - 22.00 uur",
+    "",
+    "naam | maandag | dinsdag | woensdag | donderdag | vrijdag | zaterdag",
+    "Sara | O | O | vrij | M | M | vrij",
+    "Tom | M | vrij | O | O | A | O",
+    "Lena | A | A | M | vrij | O | M",
+    "Yusuf | vrij | M | A | A | vrij | A",
+    "",
+    "Wilt u een dienst ruilen? Dat mag alleen met een collega die op die dag vrij is. Meld het uiterlijk twee dagen vóór de dienst bij de leidinggevende.",
+    "Op zaterdag krijgt u € 2 extra per uur."
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat begint Sara op donderdag?",
+     "o": [
+      "om 13.00 uur",
+      "om 7.00 uur",
+      "om 18.00 uur"
+     ],
+     "b": "Sara | O | O | vrij | M | M | vrij"
+    },
+    {
+     "sit": "Sara wil op dinsdag vrij zijn. Zij zoekt een collega om mee te ruilen.",
+     "v": "Met wie kan zij ruilen?",
+     "o": [
+      "met Tom",
+      "met Lena",
+      "met Yusuf",
+      "met niemand"
+     ],
+     "b": "Tom | M | vrij | O | O | A | O"
+    },
+    {
+     "v": "Wie krijgen deze week € 2 extra per uur?",
+     "o": [
+      "Tom, Lena en Yusuf",
+      "alleen Sara",
+      "Sara en Tom",
+      "alle vier de medewerkers"
+     ],
+     "b": "Op zaterdag krijgt u € 2 extra per uur."
+    }
+   ]
+  },
+  {
+   "intro": "Peter krijgt een e-mail van zijn collega Noor.",
+   "kop": "Onderwerp: sleutel vergeten",
+   "soort": "tekst",
+   "tekst": [
+    "Hoi Peter,",
+    "",
+    "Ik heb een probleem. Ik ben vanmiddag snel naar huis gegaan, want mijn dochter was ziek. Nu zie ik dat de sleutel van de kast met de computers nog in mijn tas zit. Sorry!",
+    "Morgen ben ik vrij en jij hebt de sleutel om 8.00 uur nodig. Ik kan de sleutel vanavond bij je thuis brengen. Ben je na 19.00 uur thuis? Als dat niet kan, leg ik de sleutel morgen vroeg bij de receptie. Dan ligt hij er om 7.30 uur.",
+    "Wil je mij een bericht sturen? Dan weet ik wat ik moet doen.",
+    "Er is nog iets: in de kast ligt een doos voor Lisa. Wil je die morgen aan haar geven?",
+    "",
+    "Alvast bedankt!",
+    "Groetjes, Noor"
+   ],
+   "vragen": [
+    {
+     "v": "Waar is de sleutel nu?",
+     "o": [
+      "in de tas van Noor",
+      "in de kast",
+      "bij de receptie"
+     ],
+     "b": "Nu zie ik dat de sleutel van de kast met de computers nog in mijn tas zit."
+    },
+    {
+     "sit": "Peter is vanavond niet thuis.",
+     "v": "Waar kan hij de sleutel morgen vinden?",
+     "o": [
+      "bij de receptie",
+      "bij Noor thuis",
+      "in de kast met de computers",
+      "bij Lisa"
+     ],
+     "b": "Als dat niet kan, leg ik de sleutel morgen vroeg bij de receptie."
+    }
+   ]
+  },
+  {
+   "intro": "Mevrouw Bakker gebruikt elke dag medicijnen. Zij leest de folder van haar apotheek.",
+   "kop": "Uw medicijnen bestellen",
+   "soort": "tekst",
+   "tekst": [
+    "Gebruikt u elke dag dezelfde medicijnen? Dan kunt u ze bij ons opnieuw bestellen. U hoeft dan niet eerst naar de huisarts.",
+    "# Zo bestelt u",
+    "- online, op onze website: dag en nacht",
+    "- met de telefoon: op werkdagen tussen 9.00 en 12.00 uur",
+    "- aan de balie van de apotheek",
+    "# Wanneer zijn de medicijnen klaar?",
+    "Bestelt u vóór 12.00 uur? Dan kunt u de medicijnen de volgende werkdag na 15.00 uur ophalen. Bestelt u na 12.00 uur? Dan duurt het een dag langer.",
+    "# Bezorgen",
+    "Kunt u niet naar de apotheek komen, bijvoorbeeld omdat u ziek bent of slecht loopt? Dan bezorgen wij de medicijnen gratis bij u thuis. Wij bezorgen op dinsdag en vrijdag tussen 14.00 en 17.00 uur.",
+    "",
+    "Let op: bestel op tijd. Wacht niet tot uw medicijnen op zijn."
+   ],
+   "vragen": [
+    {
+     "sit": "Mevrouw Bakker bestelt op maandag om 10.00 uur haar medicijnen.",
+     "v": "Wanneer kan zij de medicijnen ophalen?",
+     "o": [
+      "op dinsdag na 15.00 uur",
+      "op maandag na 15.00 uur",
+      "op dinsdag om 12.00 uur",
+      "op woensdag na 15.00 uur"
+     ],
+     "b": "Dan kunt u de medicijnen de volgende werkdag na 15.00 uur ophalen."
+    },
+    {
+     "sit": "Het is zaterdagavond. Mevrouw Bakker wil medicijnen bestellen.",
+     "v": "Hoe kan zij dat nu doen?",
+     "o": [
+      "op de website",
+      "met de telefoon",
+      "aan de balie"
+     ],
+     "b": "- online, op onze website: dag en nacht"
+    }
+   ]
+  },
+  {
+   "intro": "De bewoners van de Lindelaan krijgen een uitnodiging.",
+   "kop": "Feest in de straat!",
+   "soort": "tekst",
+   "tekst": [
+    "Beste buren,",
+    "",
+    "Op zaterdag 21 juni is er weer een feest in onze straat. Vorig jaar was het heel gezellig. Wij hopen dat er dit jaar nog meer buren komen.",
+    "Het feest begint om 15.00 uur met spelen voor de kinderen. Om 18.00 uur gaan wij samen eten. Iedereen neemt iets te eten mee voor ongeveer vier personen. Wij zorgen voor het drinken, de tafels en de stoelen. Na het eten is er muziek tot 22.00 uur.",
+    "De straat is die dag vanaf 12.00 uur dicht voor auto's. Parkeer uw auto dus op tijd in een andere straat.",
+    "Het feest kost € 5 per volwassene. Kinderen betalen niets. Wilt u komen? Doe dan vóór 14 juni een briefje met uw naam en het geld in de brievenbus van nummer 12.",
+    "Bij regen is het feest in het buurthuis.",
+    "",
+    "Groetjes, Eva en Karim (nummer 12)"
+   ],
+   "vragen": [
+    {
+     "v": "Wat moeten de buren meenemen naar het feest?",
+     "o": [
+      "eten",
+      "drinken",
+      "stoelen",
+      "muziek"
+     ],
+     "b": "Iedereen neemt iets te eten mee voor ongeveer vier personen."
+    },
+    {
+     "sit": "Meneer Smit en zijn vrouw komen met hun twee kinderen naar het feest.",
+     "v": "Hoeveel betalen zij samen?",
+     "o": [
+      "€ 10",
+      "€ 20",
+      "€ 5",
+      "niets"
+     ],
+     "b": "Het feest kost € 5 per volwassene."
+    },
+    {
+     "sit": "Lena woont in de Lindelaan. Zij heeft op 21 juni om 14.00 uur haar auto nodig.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "haar auto vóór 12.00 uur in een andere straat zetten",
+      "haar auto na 15.00 uur halen",
+      "een briefje in de brievenbus van nummer 12 doen"
+     ],
+     "b": "Parkeer uw auto dus op tijd in een andere straat."
+    }
+   ]
+  },
+  {
+   "intro": "Tom brengt zijn fiets naar de fietsenwinkel. Bij de kassa hangt deze informatie.",
+   "kop": "Fietsenwinkel Bas – reparaties",
+   "soort": "tabel",
+   "tekst": [
+    "reparatie | prijs | klaar",
+    "nieuwe band | € 28 | dezelfde dag",
+    "nieuw licht | € 15 | dezelfde dag",
+    "nieuwe remmen | € 45 | na twee werkdagen",
+    "controle van de hele fiets | € 35 | na twee werkdagen",
+    "",
+    "Brengt u uw fiets vóór 10.00 uur? Dan is een kleine reparatie dezelfde dag om 17.00 uur klaar.",
+    "U kunt gratis een fiets van ons lenen als de reparatie langer dan één dag duurt. Vraag het aan de balie.",
+    "Betalen doet u als u de fiets ophaalt. Haalt u de fiets niet binnen vier weken op? Dan verkopen wij de fiets.",
+    "Kinderen tot 12 jaar krijgen 10% korting."
+   ],
+   "vragen": [
+    {
+     "sit": "Tom brengt zijn fiets om 9.00 uur. Hij wil nieuwe remmen.",
+     "v": "Wanneer is de fiets klaar?",
+     "o": [
+      "na twee werkdagen",
+      "vandaag om 17.00 uur",
+      "morgen om 10.00 uur"
+     ],
+     "b": "nieuwe remmen | € 45 | na twee werkdagen"
+    },
+    {
+     "v": "Wanneer kan een klant gratis een fiets lenen?",
+     "o": [
+      "als de reparatie langer dan één dag duurt",
+      "bij elke reparatie",
+      "alleen als hij vóór 10.00 uur komt",
+      "als hij € 35 betaalt"
+     ],
+     "b": "U kunt gratis een fiets van ons lenen als de reparatie langer dan één dag duurt."
+    }
+   ]
+  },
+  {
+   "intro": "De ouders van groep 6 krijgen een brief van school.",
+   "kop": "Een dag naar het strand",
+   "soort": "tekst",
+   "tekst": [
+    "Beste ouders,",
+    "",
+    "Op donderdag 19 juni gaan wij met groep 6 een dag naar het strand. Wij gaan met de bus. De bus vertrekt om 8.45 uur bij de school. De kinderen moeten er om 8.30 uur zijn. Om 16.00 uur zijn wij terug.",
+    "# Wat neemt uw kind mee?",
+    "- een tas met eten en drinken voor de hele dag",
+    "- zwemkleding en een handdoek",
+    "- een jas voor als het regent",
+    "Geef uw kind geen geld en geen telefoon mee.",
+    "",
+    "Kan uw kind niet zwemmen? Schrijf dat dan op het formulier. Uw kind mag dan niet in het water, maar speelt op het strand.",
+    "Wij zoeken nog vier ouders die mee willen gaan. Kunt u mee? Schrijf dat dan ook op het formulier.",
+    "Lever het formulier uiterlijk vrijdag 13 juni in bij juf Maria. De dag kost € 7,50. U kunt dit bedrag overmaken of aan de juf geven.",
+    "",
+    "Met vriendelijke groet,",
+    "Juf Maria"
+   ],
+   "vragen": [
+    {
+     "v": "Hoe laat moeten de kinderen op school zijn?",
+     "o": [
+      "om 8.30 uur",
+      "om 8.45 uur",
+      "om 9.00 uur"
+     ],
+     "b": "De kinderen moeten er om 8.30 uur zijn."
+    },
+    {
+     "sit": "De zoon van meneer Yilmaz kan niet zwemmen.",
+     "v": "Wat betekent dat?",
+     "o": [
+      "Hij mag mee, maar hij gaat niet in het water.",
+      "Hij moet op school blijven.",
+      "Zijn vader moet meegaan.",
+      "Hij moet eerst zwemles nemen."
+     ],
+     "b": "Uw kind mag dan niet in het water, maar speelt op het strand."
+    }
+   ]
+  },
+  {
+   "intro": "Fatima wordt lid van de bibliotheek. Zij krijgt deze regels.",
+   "kop": "Regels van de bibliotheek",
+   "soort": "tekst",
+   "tekst": [
+    "# Lenen",
+    "Met uw pasje kunt u maximaal tien boeken lenen. U mag de boeken drie weken houden. Hebt u een boek nog niet uit? Dan kunt u het één keer drie weken langer houden. Dat kan op de website of aan de balie. Het kan niet als iemand anders op het boek wacht.",
+    "# Te laat",
+    "Brengt u een boek te laat terug? Dan betaalt u € 0,20 per boek per dag. Voor kinderen tot 18 jaar is dat € 0,10.",
+    "# Pasje verloren?",
+    "Meld het meteen aan de balie. Een nieuw pasje kost € 3.",
+    "# Computers",
+    "In de bibliotheek staan computers. Met uw pasje mag u een computer een uur per dag gratis gebruiken. Wilt u langer? Dan betaalt u € 1 per half uur.",
+    "",
+    "Eten is in de bibliotheek verboden. Drinken mag alleen bij de ingang."
+   ],
+   "vragen": [
+    {
+     "sit": "Fatima heeft een boek al drie weken. Zij wil het langer houden. Niemand wacht op het boek.",
+     "v": "Wanneer moet zij het boek uiterlijk terugbrengen?",
+     "o": [
+      "over drie weken",
+      "over een week",
+      "over zes weken",
+      "vandaag"
+     ],
+     "b": "Dan kunt u het één keer drie weken langer houden."
+    },
+    {
+     "sit": "De zoon van Fatima is 12 jaar. Hij brengt twee boeken drie dagen te laat terug.",
+     "v": "Hoeveel moet hij betalen?",
+     "o": [
+      "€ 0,60",
+      "€ 1,20",
+      "€ 0,30",
+      "€ 0,20"
+     ],
+     "b": "Voor kinderen tot 18 jaar is dat € 0,10."
+    },
+    {
+     "sit": "Fatima wil vandaag twee uur op een computer werken.",
+     "v": "Hoeveel betaalt zij?",
+     "o": [
+      "€ 2",
+      "€ 1",
+      "niets",
+      "€ 4"
+     ],
+     "b": "Dan betaalt u € 1 per half uur."
+    }
+   ]
+  },
+  {
+   "intro": "Karim zoekt werk. Hij leest tips op de website van het uitzendbureau.",
+   "kop": "Vijf tips voor een goed gesprek",
+   "soort": "tekst",
+   "tekst": [
+    "U hebt gesolliciteerd en u mag komen voor een gesprek. Wat nu?",
+    "- Zoek informatie over het bedrijf. Kijk op de website wat het bedrijf doet. Dan kunt u goede vragen stellen.",
+    "- Kom op tijd. Tien minuten te vroeg is goed. Te laat komen is een slecht begin. Weet u de weg niet? Rijd of fiets dan een dag vóór het gesprek al een keer naar het adres.",
+    "- Doe schone kleren aan die bij het werk passen.",
+    "- Zet uw telefoon uit vóór u naar binnen gaat.",
+    "- Vertel wat u goed kunt en geef een voorbeeld. Zeg niet alleen: 'Ik ben snel.' Vertel ook waar u dat geleerd hebt.",
+    "",
+    "Na het gesprek hoort u meestal binnen een week of u de baan krijgt. Hoort u na twee weken nog niets? Dan mag u het bedrijf bellen."
+   ],
+   "vragen": [
+    {
+     "sit": "Karim weet niet precies waar het bedrijf is.",
+     "v": "Wat kan hij volgens de tekst het beste doen?",
+     "o": [
+      "een dag vóór het gesprek naar het adres gaan",
+      "het bedrijf bellen",
+      "tien minuten later komen",
+      "een collega vragen"
+     ],
+     "b": "Rijd of fiets dan een dag vóór het gesprek al een keer naar het adres."
+    },
+    {
+     "sit": "Karim heeft twee weken na het gesprek nog niets gehoord.",
+     "v": "Wat mag hij doen?",
+     "o": [
+      "het bedrijf bellen",
+      "nog een week wachten",
+      "opnieuw solliciteren"
+     ],
+     "b": "Dan mag u het bedrijf bellen."
+    }
+   ]
+  }
+ ]
+}

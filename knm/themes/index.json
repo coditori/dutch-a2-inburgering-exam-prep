@@ -1,0 +1,50 @@
+[
+ {
+  "id": "1-gezondheid",
+  "trede": 3,
+  "titel": "Gezondheid",
+  "soort": ""
+ },
+ {
+  "id": "2-wonen",
+  "trede": 3,
+  "titel": "Wonen",
+  "soort": ""
+ },
+ {
+  "id": "3-werk",
+  "trede": 3,
+  "titel": "Werk en inkomen",
+  "soort": ""
+ },
+ {
+  "id": "4-onderwijs",
+  "trede": 3,
+  "titel": "Onderwijs en opvoeding",
+  "soort": ""
+ },
+ {
+  "id": "5-instanties",
+  "trede": 3,
+  "titel": "Instanties",
+  "soort": ""
+ },
+ {
+  "id": "6-omgangsvormen",
+  "trede": 3,
+  "titel": "Omgangsvormen, waarden en normen",
+  "soort": ""
+ },
+ {
+  "id": "7-staatsinrichting",
+  "trede": 3,
+  "titel": "Staatsinrichting en rechtsstaat",
+  "soort": ""
+ },
+ {
+  "id": "8-geschiedenis",
+  "trede": 3,
+  "titel": "Geschiedenis en geografie",
+  "soort": ""
+ }
+]

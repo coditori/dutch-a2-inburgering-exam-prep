@@ -1,0 +1,154 @@
+{
+ "id": "S21",
+ "trede": 3,
+ "titel": "Een korte tekst: buurt, werk en huis",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos",
+  "ervan"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Wat vindt u ervan? Schrijf: Ik vind … leuk, want … of: Ik vind … niet leuk, omdat …",
+   "en": "What do you think of it? Write: Ik vind … leuk, want … / Ik vind … niet leuk, omdat …"
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn buurt",
+    "situatie": "U schrijft voor de krant van de buurt over uw buurt.",
+    "punten": [
+     {
+      "p": "Waar woont u?",
+      "model": "Ik woon in een rustige buurt in Utrecht.",
+      "val": [
+       "woon"
+      ]
+     },
+     {
+      "p": "Wat vindt u leuk in uw buurt?",
+      "model": "Ik vind het park leuk, want mijn kinderen spelen daar.",
+      "val": [
+       "leuk|mooi|fijn|goed|gezellig"
+      ]
+     },
+     {
+      "p": "Wat vindt u niet leuk in uw buurt?",
+      "model": "Ik vind het verkeer niet leuk, want de auto's rijden te snel.",
+      "val": [
+       "niet|geen|te "
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn buurt:"
+   }
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn werk",
+    "situatie": "U schrijft voor de krant van de buurt over uw werk.",
+    "punten": [
+     {
+      "p": "Wat voor werk doet u?",
+      "model": "Ik werk in de keuken van een restaurant.",
+      "val": [
+       "werk"
+      ]
+     },
+     {
+      "p": "Op welke dagen werkt u?",
+      "model": "Ik werk van dinsdag tot en met zaterdag.",
+      "val": [
+       "dag|weekend|week"
+      ]
+     },
+     {
+      "p": "Wat vindt u van uw werk?",
+      "model": "Ik vind mijn werk leuk, omdat ik graag kook.",
+      "val": [
+       "vind|leuk|moeilijk|saai|mooi|graag"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn werk:"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn huis",
+    "situatie": "U schrijft voor de krant van de buurt over uw huis.",
+    "punten": [
+     {
+      "p": "In wat voor huis woont u?",
+      "model": "Ik woon in een woning op de tweede verdieping.",
+      "val": [
+       "woon|huis|woning"
+      ]
+     },
+     {
+      "p": "Hoeveel kamers heeft uw huis?",
+      "model": "Mijn huis heeft drie kamers en een keuken.",
+      "val": [
+       "kamer"
+      ]
+     },
+     {
+      "p": "Welke kamer vindt u het mooist?",
+      "model": "Ik vind de woonkamer het mooist, omdat er veel zon is.",
+      "val": [
+       "kamer|keuken|tuin"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn huis:"
+   },
+   "stappen": [
+    "schrijf"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik vind mijn werk leuk, omdat ik graag kook."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik woon in een rustige buurt in Utrecht."
+  }
+ ]
+}

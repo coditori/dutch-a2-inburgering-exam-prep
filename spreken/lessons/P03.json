@@ -1,0 +1,76 @@
+{
+ "id": "P03",
+ "trede": 1,
+ "titel": "Zeg na: g en sch",
+ "uitleg": "Luister goed. Zeg het na. Zeg het ook met de computer.",
+ "en": "Listen carefully. Repeat. Speak together with the voice (shadowing). Then record yourself and compare.",
+ "woorden": [],
+ "namen": [
+  "ui",
+  "eu",
+  "ij",
+  "ei",
+  "ou",
+  "au",
+  "sch",
+  "uu",
+  "oe"
+ ],
+ "items": [
+  {
+   "soort": "zegna",
+   "tekst": "goed",
+   "en": "good"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "graag",
+   "en": "gladly"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "geen geld",
+   "en": "no money"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Goedemorgen!",
+   "en": "Good morning!"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik ga graag naar de markt.",
+   "en": "I like going to the market."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Morgen ga ik naar de dokter.",
+   "en": "Tomorrow I am going to the doctor."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de school",
+   "en": "school"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "de schoenen",
+   "en": "shoes"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "schrijven",
+   "en": "to write"
+  },
+  {
+   "soort": "zegna",
+   "tekst": "Ik schrijf mijn naam.",
+   "en": "I write my name."
+  },
+  {
+   "soort": "zegna",
+   "tekst": "De schoenen zijn goedkoop.",
+   "en": "The shoes are cheap."
+  }
+ ]
+}

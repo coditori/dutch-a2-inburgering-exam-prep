@@ -1,0 +1,158 @@
+{
+ "id": "L13",
+ "trede": 2,
+ "titel": "Een briefje op de tafel",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het briefje",
+   "en": "note",
+   "beeld": "📝",
+   "zin": "Er ligt een briefje op de tafel.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de sleutel",
+   "en": "key",
+   "beeld": "🔑",
+   "zin": "Ik heb de sleutel van het huis.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de koelkast",
+   "en": "fridge",
+   "beeld": "🧊",
+   "zin": "De melk staat in de koelkast.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "alleen",
+   "en": "only / alone",
+   "beeld": "☝️",
+   "zin": "Ik heb alleen brood.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "iedereen",
+   "en": "everyone",
+   "beeld": "👥",
+   "zin": "Iedereen mag komen.",
+   "thema": "persoon"
+  },
+  {
+   "nl": "ander",
+   "en": "other",
+   "beeld": "🔄",
+   "zin": "Ik wil een andere jas.",
+   "thema": "algemeen",
+   "vormen": [
+    "andere",
+    "anderen"
+   ]
+  },
+  {
+   "nl": "wel",
+   "en": "(does / is, as contrast to niet)",
+   "beeld": "✅",
+   "zin": "Tom is niet thuis, maar Eva is wel thuis.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "beste",
+   "en": "dear (start of a letter)",
+   "beeld": "💌",
+   "zin": "Beste buren,",
+   "thema": "schrijven"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Daan komt thuis uit school. Op de tafel ligt een briefje.",
+   "soort": "briefje",
+   "tekst": [
+    "Dag Daan,",
+    "Ik ben tot zes uur op mijn werk.",
+    "Je eten staat in de koelkast.",
+    "Vergeet je sleutel niet als je naar buiten gaat!",
+    "Groetjes, je moeder"
+   ],
+   "vragen": [
+    {
+     "v": "Waar is het eten van Daan?",
+     "o": [
+      "in de koelkast",
+      "op de tafel",
+      "bij oma"
+     ],
+     "b": "Je eten staat in de koelkast."
+    },
+    {
+     "v": "Wat moet Daan meenemen als hij naar buiten gaat?",
+     "o": [
+      "zijn sleutel",
+      "zijn eten",
+      "zijn telefoon"
+     ],
+     "b": "Vergeet je sleutel niet als je naar buiten gaat!"
+    }
+   ]
+  },
+  {
+   "intro": "De buren van de familie Yilmaz krijgen dit briefje.",
+   "soort": "briefje",
+   "tekst": [
+    "Beste buren,",
+    "Zaterdag geven wij een feest voor de verjaardag van onze dochter.",
+    "Iedereen mag komen, ook de kinderen.",
+    "Het feest begint om drie uur in de tuin.",
+    "Groetjes, de familie Yilmaz (nummer 14)"
+   ],
+   "vragen": [
+    {
+     "v": "Wie mogen naar het feest komen?",
+     "o": [
+      "alle buren en hun kinderen",
+      "alleen de kinderen",
+      "alleen de familie"
+     ],
+     "b": "Iedereen mag komen, ook de kinderen."
+    },
+    {
+     "v": "Waar is het feest?",
+     "o": [
+      "in de tuin",
+      "in de straat",
+      "in het park"
+     ],
+     "b": "Het feest begint om drie uur in de tuin."
+    }
+   ]
+  },
+  {
+   "intro": "Sam leest een briefje van Noor.",
+   "soort": "briefje",
+   "tekst": [
+    "Sam,",
+    "Ik heb jouw sleutel niet. Ik heb alleen de sleutel van de auto.",
+    "Misschien heeft Eva een andere sleutel van het huis. Zij is wel thuis.",
+    "Noor"
+   ],
+   "vragen": [
+    {
+     "v": "Wie heeft misschien een sleutel van het huis?",
+     "o": [
+      "Eva",
+      "Noor",
+      "Sam"
+     ],
+     "b": "Misschien heeft Eva een andere sleutel van het huis."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Je eten staat in de {koelkast}.",
+  "{Iedereen} mag komen, ook de kinderen.",
+  "Ik heb {alleen} de sleutel van de auto."
+ ]
+}

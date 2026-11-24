@@ -1,0 +1,472 @@
+{
+ "id": "B",
+ "trede": 4,
+ "na": "P26",
+ "titel": "Toets B",
+ "namen": [
+  "Fatima",
+  "Daan",
+  "Yilmaz",
+  "Lisa",
+  "Karim",
+  "Noor",
+  "Peter"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Reist u vaak met de bus? Vertel ook waarom.",
+   "model": [
+    "Ja, ik reis vaak met de bus.",
+    "Ik heb geen auto."
+   ],
+   "sleutel": [
+    [
+     "bus"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "geen auto",
+     "heb geen"
+    ]
+   ],
+   "les": "P15:5"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Waar maakt u uw huiswerk? Vertel ook waarom.",
+   "model": [
+    "Ik maak mijn huiswerk in de keuken.",
+    "Daar is het rustig."
+   ],
+   "sleutel": [
+    [
+     "huiswerk",
+     "thuis",
+     "bibliotheek",
+     "school",
+     "keuken",
+     "kamer"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "daar",
+     "rustig"
+    ]
+   ],
+   "les": "P13:5"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik krijg het liefst een boek op mijn verjaardag. Wat krijgt u het liefst? Vertel ook waarom.",
+   "model": [
+    "Ik krijg het liefst een taart.",
+    "Dat vind ik lekker."
+   ],
+   "sleutel": [
+    [
+     "krijg",
+     "liefst"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "lekker",
+     "leuk"
+    ]
+   ],
+   "les": "P16:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik luister elke dag naar het nieuws op de radio. Hoe vaak luistert u naar de radio? Vertel ook wat u dan hoort.",
+   "model": [
+    "Ik luister elke ochtend naar de radio.",
+    "Ik luister naar muziek."
+   ],
+   "sleutel": [
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit"
+    ],
+    [
+     "muziek",
+     "nieuws",
+     "luister naar"
+    ]
+   ],
+   "les": "P14:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍⚕️💊🏪"
+   ],
+   "sit": "Dit is Fatima.",
+   "vraag": "Vertel waar Fatima werkt. Vertel ook wat zij daar doet.",
+   "model": [
+    "Fatima werkt in een apotheek.",
+    "Zij geeft medicijnen aan klanten."
+   ],
+   "sleutel": [
+    [
+     "apotheek"
+    ],
+    [
+     "medicijn",
+     "geeft",
+     "helpt",
+     "verkoopt"
+    ]
+   ],
+   "les": "P17:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨🔑❌🚪"
+   ],
+   "sit": "Daan staat voor zijn huis.",
+   "vraag": "Vertel wat het probleem is. Vertel ook wat Daan kan doen.",
+   "model": [
+    "Daan heeft zijn sleutel niet.",
+    "Hij kan zijn vrouw bellen."
+   ],
+   "sleutel": [
+    [
+     "sleutel",
+     "deur",
+     "dicht"
+    ],
+    [
+     "bellen",
+     "wachten",
+     "buren",
+     "kan"
+    ]
+   ],
+   "les": "P19:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👵🚶‍♀️🐕🌳"
+   ],
+   "vraag": "Wat doet de vrouw? Vertel ook hoe vaak u buiten wandelt.",
+   "model": [
+    "De vrouw wandelt met haar hond.",
+    "Ik wandel elke dag."
+   ],
+   "sleutel": [
+    [
+     "wandelt",
+     "loopt",
+     "hond"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit",
+     "dag",
+     "week"
+    ]
+   ],
+   "les": "P18:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨‍👩‍👦🍽️🏠"
+   ],
+   "sit": "Dit is de familie Yilmaz.",
+   "vraag": "Vertel wat over de familie Yilmaz. Noem drie dingen.",
+   "model": [
+    "De familie zit aan tafel.",
+    "Zij eten samen.",
+    "Ik denk dat het avond is."
+   ],
+   "drie": true,
+   "les": "P20:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏋️🏢",
+    "🏃🌳"
+   ],
+   "sit": "U wilt meer bewegen.",
+   "vraag": "Waar sport u liever: binnen of buiten? Vertel ook waarom.",
+   "model": [
+    "Ik sport liever buiten.",
+    "Dat is gratis."
+   ],
+   "sleutel": [
+    [
+     "binnen",
+     "buiten"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "gratis"
+    ]
+   ],
+   "les": "P23:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "📱",
+    "💻"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Wat gebruikt u vaker? Vertel ook waarvoor u dit gebruikt.",
+   "model": [
+    "Ik gebruik mijn telefoon vaker.",
+    "Ik bel met mijn familie."
+   ],
+   "sleutel": [
+    [
+     "telefoon",
+     "computer"
+    ],
+    [
+     "bel",
+     "lees",
+     "kijk",
+     "werk",
+     "schrijf",
+     "luister"
+    ]
+   ],
+   "les": "P23:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🍳",
+    "🧹"
+   ],
+   "sit": "U helpt thuis.",
+   "vraag": "Wat doet u liever: koken of schoonmaken? Vertel ook waarom.",
+   "model": [
+    "Ik kook liever.",
+    "Schoonmaken vind ik saai."
+   ],
+   "sleutel": [
+    [
+     "kook",
+     "koken",
+     "schoonmaken",
+     "maak"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "saai",
+     "leuk"
+    ]
+   ],
+   "les": "P22:4"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏙️",
+    "🏘️🌳"
+   ],
+   "sit": "U gaat verhuizen.",
+   "vraag": "Waar woont u liever: in de stad of in een dorp? Vertel ook waarom.",
+   "model": [
+    "Ik woon liever in een dorp.",
+    "Daar is het rustig."
+   ],
+   "sleutel": [
+    [
+     "stad",
+     "dorp"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "daar",
+     "rustig",
+     "winkels"
+    ]
+   ],
+   "les": "P22:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🪑",
+    "🛏️",
+    "🛋️"
+   ],
+   "sit": "Lisa heeft deze spullen gekocht voor haar nieuwe woning.",
+   "vraag": "Vertel welke spullen dat zijn. Vertel ook in welke kamer zij staan.",
+   "model": [
+    "Ik zie een stoel. De stoel staat in de keuken.",
+    "Ik zie een bed. Het bed staat in de slaapkamer.",
+    "Ik zie een bank. De bank staat in de woonkamer."
+   ],
+   "sleutel": [
+    [
+     "stoel"
+    ],
+    [
+     "bed"
+    ],
+    [
+     "bank"
+    ]
+   ],
+   "les": "P24:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "📄✍️",
+    "✉️",
+    "🤝👔"
+   ],
+   "sit": "Karim zoekt werk. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Karim doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Karim schrijft een brief.",
+    "Hij stuurt de brief naar het bedrijf.",
+    "Hij heeft een gesprek."
+   ],
+   "sleutel": [
+    [
+     "schrijft",
+     "brief"
+    ],
+    [
+     "stuurt",
+     "e-mail",
+     "brief"
+    ],
+    [
+     "gesprek",
+     "praat",
+     "baas"
+    ]
+   ],
+   "les": "P25:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🚌",
+    "🏫",
+    "📝"
+   ],
+   "sit": "Noor gaat naar de les. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Noor doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Noor gaat met de bus.",
+    "Zij komt aan bij de school.",
+    "Zij maakt een toets."
+   ],
+   "sleutel": [
+    [
+     "bus"
+    ],
+    [
+     "school"
+    ],
+    [
+     "toets",
+     "schrijft",
+     "les"
+    ]
+   ],
+   "les": "P25:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🍎",
+    "🍌",
+    "🥕"
+   ],
+   "sit": "Dit koopt Peter op de markt.",
+   "vraag": "Vertel wat Peter koopt. Vertel ook wat u vaak op de markt koopt.",
+   "model": [
+    "Peter koopt appels.",
+    "Hij koopt ook bananen.",
+    "En hij koopt groente. Ik koop vaak vis op de markt."
+   ],
+   "sleutel": [
+    [
+     "appel",
+     "appels"
+    ],
+    [
+     "bananen",
+     "fruit"
+    ],
+    [
+     "groente"
+    ]
+   ],
+   "les": "P24:1"
+  }
+ ]
+}

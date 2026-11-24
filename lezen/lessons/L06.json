@@ -1,0 +1,158 @@
+{
+ "id": "L06",
+ "trede": 1,
+ "titel": "Kopen en betalen",
+ "soort": "plaatje",
+ "woorden": [
+  {
+   "nl": "het geld",
+   "en": "money",
+   "beeld": "💰",
+   "zin": "Ik heb weinig geld.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de euro",
+   "en": "euro",
+   "beeld": "💶",
+   "zin": "Het brood is twee euro.",
+   "thema": "winkelen",
+   "vormen": [
+    "euro's"
+   ]
+  },
+  {
+   "nl": "de prijs",
+   "en": "price",
+   "beeld": "🏷️",
+   "zin": "De prijs is goed.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de kassa",
+   "en": "checkout",
+   "beeld": "🧾",
+   "zin": "U betaalt bij de kassa.",
+   "thema": "winkelen",
+   "vormen": [
+    "kassa's"
+   ]
+  },
+  {
+   "nl": "de schoenen",
+   "en": "shoes",
+   "beeld": "👟",
+   "zin": "Mijn schoenen zijn oud.",
+   "thema": "winkelen",
+   "vormen": [
+    "schoen"
+   ]
+  },
+  {
+   "nl": "de jas",
+   "en": "coat",
+   "beeld": "🧥",
+   "zin": "De jas is warm.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de markt",
+   "en": "market",
+   "beeld": "⛺",
+   "zin": "De markt is op maandag.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de boodschappen",
+   "en": "groceries",
+   "beeld": "🛍️",
+   "zin": "Ik doe boodschappen.",
+   "thema": "winkelen",
+   "vormen": [
+    "boodschap"
+   ]
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "De schoenen zijn te duur."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👟💰💰💰",
+      "🧥💰💰💰",
+      "🍞💰💰💰"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Ik koop een nieuwe jas."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🧥",
+      "👟",
+      "🚲"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Zij doet boodschappen op de markt."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👩🛍️⛺",
+      "👨🛍️⛺",
+      "👩🛍️🚉"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De prijs van het brood is twee euro."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🍞 € 2",
+      "🍞 € 12",
+      "🧀 € 2"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De man betaalt bij de kassa. Hij geeft geld."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👨🧾💰",
+      "👩🧾💰",
+      "👨🚪💰"
+     ]
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De {schoenen} zijn te duur.",
+  "Zij doet {boodschappen} op de markt.",
+  "De man {betaalt} bij de kassa."
+ ]
+}

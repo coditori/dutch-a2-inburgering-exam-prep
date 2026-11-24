@@ -1,0 +1,88 @@
+{
+ "trede": 4,
+ "na": "S15",
+ "namen": [],
+ "kaders": [
+  {
+   "titel": "Formele e-mail",
+   "wanneer": "Aan de docent, de dokter, de baas of de gemeente. U schrijft u.",
+   "regels": [
+    "Beste meneer / mevrouw [achternaam],",
+    "",
+    "Ik schrijf u omdat ik een vraag heb.",
+    "Ik kan [dag] niet komen, want [reden].",
+    "Kan ik op [dag] om [tijd] komen?",
+    "Alvast bedankt.",
+    "",
+    "Met vriendelijke groet,",
+    "[uw naam]"
+   ]
+  },
+  {
+   "titel": "Informele e-mail",
+   "wanneer": "Aan een collega, een vriend of de buren. U schrijft je en jij.",
+   "regels": [
+    "Hallo [voornaam],",
+    "",
+    "Ik heb een vraag.",
+    "Ik kan [dag] niet werken, want [reden].",
+    "Kun jij [dag] voor mij werken?",
+    "Ik kan wel op [dag] werken.",
+    "Alvast bedankt!",
+    "",
+    "Groetjes,",
+    "[uw naam]"
+   ]
+  }
+ ],
+ "zinnen": [
+  {
+   "nl": "Ik schrijf u omdat ik een vraag heb.",
+   "en": "I am writing to you because I have a question."
+  },
+  {
+   "nl": "Ik kan morgen niet komen.",
+   "en": "I cannot come tomorrow."
+  },
+  {
+   "nl": "Ik wil de afspraak graag verzetten.",
+   "en": "I would like to move the appointment."
+  },
+  {
+   "nl": "Kan ik op dinsdag om tien uur komen?",
+   "en": "Can I come on Tuesday at ten?"
+  },
+  {
+   "nl": "Ik kan niet komen, want ik ben ziek.",
+   "en": "I cannot come, because I am ill. (want: normal word order)"
+  },
+  {
+   "nl": "Ik kan niet komen, omdat ik moet werken.",
+   "en": "I cannot come, because I have to work. (omdat: verb at the end)"
+  },
+  {
+   "nl": "Mijn excuses.",
+   "en": "My apologies."
+  },
+  {
+   "nl": "Wanneer kan ik een nieuwe afspraak maken?",
+   "en": "When can I make a new appointment?"
+  },
+  {
+   "nl": "Wil jij met mij ruilen?",
+   "en": "Will you swap with me?"
+  },
+  {
+   "nl": "Ik kan wel op zondag werken.",
+   "en": "I can work on Sunday (though)."
+  },
+  {
+   "nl": "Kunt u mij helpen?",
+   "en": "Can you help me?"
+  },
+  {
+   "nl": "Alvast bedankt.",
+   "en": "Thanks in advance."
+  }
+ ]
+}

@@ -1,0 +1,171 @@
+{
+ "id": "U25",
+ "trede": 3,
+ "titel": "In de winkel",
+ "namen": [
+  "Fatima",
+  "Peter",
+  "Markt",
+  "Vries",
+  "Parkstraat"
+ ],
+ "woorden": [
+  {
+   "nl": "de mededeling",
+   "en": "announcement / notice",
+   "beeld": "📢",
+   "zin": "In de supermarkt hoort u een mededeling.",
+   "thema": "lezen"
+  }
+ ],
+ "items": [
+  {
+   "context": "Fatima is in een kledingwinkel.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Mag ik deze jas passen?"
+    },
+    {
+     "s": "A",
+     "t": "Natuurlijk. Welke maat hebt u?"
+    },
+    {
+     "s": "B",
+     "t": "Meestal maat achtendertig."
+    },
+    {
+     "s": "A",
+     "t": "Deze is maat veertig. Ik kijk even of wij een kleinere hebben."
+    },
+    {
+     "s": "A",
+     "t": "Sorry, achtendertig is er niet meer. Maar volgende week dinsdag komen er nieuwe jassen."
+    },
+    {
+     "s": "B",
+     "t": "Hoeveel kost de jas?"
+    },
+    {
+     "s": "A",
+     "t": "Negenenvijftig euro. Maar deze week krijgt u tien euro korting."
+    },
+    {
+     "s": "B",
+     "t": "Dan kom ik dinsdag terug. Is de korting dan nog geldig?"
+    },
+    {
+     "s": "A",
+     "t": "Nee, de korting is alleen tot en met zaterdag."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom koopt Fatima de jas nu niet?",
+     "o": [
+      "Haar maat is er niet.",
+      "De jas is te duur.",
+      "Zij vindt de jas niet mooi."
+     ]
+    },
+    {
+     "v": "Hoeveel kost de jas volgende week dinsdag?",
+     "o": [
+      "negenenvijftig euro",
+      "negenenveertig euro",
+      "tien euro"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Peter belt een winkel.",
+   "soort": "gesprek",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemiddag, met winkel De Markt."
+    },
+    {
+     "s": "A",
+     "t": "Goedemiddag. Ik heb vorige week een wasmachine besteld. Die is nog niet bezorgd."
+    },
+    {
+     "s": "B",
+     "t": "Wat is uw naam?"
+    },
+    {
+     "s": "A",
+     "t": "Peter de Vries, Parkstraat twaalf."
+    },
+    {
+     "s": "B",
+     "t": "Ik zie het. De wasmachine komt morgen, tussen twee en vier uur."
+    },
+    {
+     "s": "A",
+     "t": "Morgen ben ik pas om drie uur thuis. Kan het later?"
+    },
+    {
+     "s": "B",
+     "t": "Dan schrijf ik op: na drie uur. De chauffeur belt u eerst."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom belt Peter?",
+     "o": [
+      "Zijn wasmachine is nog niet bezorgd.",
+      "Zijn wasmachine is kapot.",
+      "Hij wil een wasmachine bestellen."
+     ]
+    },
+    {
+     "v": "Wanneer komt de wasmachine?",
+     "o": [
+      "morgen na drie uur",
+      "morgen om twee uur",
+      "volgende week"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "U hoort een mededeling in de supermarkt.",
+   "soort": "mededeling",
+   "regels": [
+    {
+     "s": "B",
+     "t": "Beste klanten, over tien minuten gaat de supermarkt dicht."
+    },
+    {
+     "s": "B",
+     "t": "Wilt u nu naar de kassa gaan?"
+    },
+    {
+     "s": "B",
+     "t": "Morgen, zondag, zijn wij open van twaalf tot zes uur."
+    },
+    {
+     "s": "B",
+     "t": "Vergeet u onze aanbieding niet: twee broden voor drie euro."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat moeten de klanten nu doen?",
+     "o": [
+      "naar de kassa gaan",
+      "twee broden kopen",
+      "tot zes uur wachten"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Mag ik deze jas passen?",
+  "De wasmachine komt morgen, tussen twee en vier uur."
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "id": "U05",
+ "trede": 1,
+ "titel": "Van eenentwintig tot honderd",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "drieëntwintig"
+    }
+   ],
+   "typ": "23"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "vijfenveertig"
+    }
+   ],
+   "typ": "45"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "zevenenzestig"
+    }
+   ],
+   "typ": "67"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "achtendertig"
+    }
+   ],
+   "typ": "38"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "eenennegentig"
+    }
+   ],
+   "typ": "91"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "vierenvijftig"
+    }
+   ],
+   "typ": "54"
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "zesenzeventig"
+    }
+   ],
+   "typ": "76"
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "honderd"
+    }
+   ],
+   "typ": "100"
+  }
+ ],
+ "dictee": [
+  "Mijn opa is zevenenzestig.",
+  "De jas is vijfenveertig euro."
+ ]
+}

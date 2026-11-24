@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNM – weetjes herhalen</title>
+<link rel="stylesheet" href="../shared/app.css">
+<link rel="stylesheet" href="knm.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script src="../lezen/lezen.js"></script>
+<script src="knm.js"></script>
+<script>
+// Weetjes herhalen met Leitner-dozen: fout = morgen terug, goed = over 2, 4, 8, 16 dagen.
+(async () => {
+  const { el } = App;
+  App.kop('Weetjes herhalen', 'index.html');
+  const pagina = document.getElementById('pagina');
+  const themas = await Lezen.json('themes/index.json');
+  const data = {};
+  await Promise.all(themas.map(async (t) => { data[t.id] = await Lezen.json(`themes/${t.id}.json`); }));
+  // id: '<thema>:3' = weetje 4 van het thema, '<thema>:m3' = weetje 4 van "Meer weetjes"
+  const kaart = (id) => {
+    const [t, i] = id.split(':');
+    if (!data[t]) return null;
+    const lijst = i[0] === 'm' ? ((data[t].meer || {}).weetjes || []) : data[t].weetjes;
+    const k = lijst[+i.replace('m', '')];
+    return k ? Object.assign({ id, thema: data[t].titel }, k) : null;
+  };
+  let rij = [], goed = 0, gedaan = 0, echt = true;
+
+  function begin() {
+    const nu = KNM.Kaarten.aanDeBeurt();
+    const alle = Object.keys(KNM.Kaarten.alle());
+    pagina.textContent = '';
+    pagina.append(el('div', { class: 'kaart' },
+      el('h3', {}, `Vandaag: ${nu.length} ${nu.length === 1 ? 'weetje' : 'weetjes'}`),
+      el('p', { class: 'zacht', en: 'Wrong: back tomorrow. Right: back in 2, 4, 8, 16 days.' }, 'Fout: morgen terug. Goed: terug over 2, 4, 8, 16 dagen.'),
+      el('p', { class: 'zacht klein' }, `${alle.length} weetjes in de dozen, ${KNM.Kaarten.bekend()} gekend.`),
+      el('div', { class: 'knoppen' },
+        el('button', { class: 'knop', disabled: !nu.length, onclick: () => start(nu, true) }, 'Begin'),
+        alle.length && !nu.length ? el('button', { class: 'knop licht', en: 'practise anyway', onclick: () => start(alle, false) }, 'Toch nu oefenen') : null,
+        el('a', { class: 'knop licht', href: '../lezen/herhaal.html', en: 'review words' }, 'Woorden herhalen'))));
+  }
+  function start(ids, telt) { rij = App.schud(ids).map(kaart).filter(Boolean).slice(0, 30); goed = 0; gedaan = 0; echt = telt; volgende(); }
+  function volgende() {
+    pagina.textContent = '';
+    const k = rij.shift();
+    if (!k) { pagina.append(el('div', { class: 'kaart midden' }, el('div', { class: 'groot' }, `${goed} / ${gedaan}`), el('p', {}, 'Klaar voor vandaag.'), el('div', { class: 'knoppen', style: 'justify-content:center' }, el('a', { class: 'knop', href: 'index.html' }, 'Naar de thema\'s')))); return; }
+    const en = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic' }, k.en || '');
+    const achter = el('div', { hidden: true }, el('div', { class: 'antwoord' }, App.woorden(k.a)), el('p', {}, el('button', { class: 'rond', onclick: () => { en.hidden = !en.hidden; } }, '❗')), en);
+    const klaar = (ok) => { gedaan++; if (ok) goed++; if (echt) KNM.Kaarten.antwoord(k.id, ok); volgende(); };
+    const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'show the answer', onclick: () => {
+      achter.hidden = false; knoppen.textContent = '';
+      knoppen.append(el('button', { class: 'knop licht', onclick: () => klaar(false) }, '✘ Wist ik niet'), el('button', { class: 'knop', onclick: () => klaar(true) }, '✔ Wist ik'));
+    } }, 'Toon het antwoord'));
+    pagina.append(el('p', { class: 'zacht klein' }, `nog ${rij.length + 1} · ${k.thema}`),
+      el('div', { class: 'kaart weetje' }, el('div', { class: 'kplaat' }, k.beeld || '❓'), el('div', { class: 'vraagtekst' }, App.woorden(k.v)), achter, knoppen));
+  }
+  begin();
+})();
+</script>
+</body>
+</html>

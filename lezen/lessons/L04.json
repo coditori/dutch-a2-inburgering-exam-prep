@@ -1,0 +1,146 @@
+{
+ "id": "L04",
+ "trede": 1,
+ "titel": "In het huis",
+ "soort": "plaatje",
+ "woorden": [
+  {
+   "nl": "de kamer",
+   "en": "room",
+   "beeld": "🛋️",
+   "zin": "Mijn kamer is klein.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de keuken",
+   "en": "kitchen",
+   "beeld": "🍳",
+   "zin": "De keuken is nieuw.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de tafel",
+   "en": "table",
+   "beeld": "🍽️",
+   "zin": "Het eten staat op tafel.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de stoel",
+   "en": "chair",
+   "beeld": "🪑",
+   "zin": "De stoel is oud.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het bed",
+   "en": "bed",
+   "beeld": "🛏️",
+   "zin": "Ik lig in bed.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de deur",
+   "en": "door",
+   "beeld": "🚪",
+   "zin": "De deur is dicht.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "het raam",
+   "en": "window",
+   "beeld": "🪟",
+   "zin": "Het raam is open.",
+   "thema": "wonen"
+  },
+  {
+   "nl": "de tuin",
+   "en": "garden",
+   "beeld": "🌳",
+   "zin": "Wij zitten in de tuin.",
+   "thema": "wonen"
+  }
+ ],
+ "teksten": [
+  {
+   "soort": "zin",
+   "tekst": [
+    "De baby slaapt in het bed."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👶🛏️",
+      "👶🪑",
+      "👴🛏️"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Oma zit op een stoel in de tuin."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👵🪑🌳",
+      "👵🛏️🌳",
+      "👵🪑🍳"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Het raam is open, maar de deur is dicht."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🪟✅ 🚪❌",
+      "🪟❌ 🚪✅",
+      "🪟✅ 🚪✅"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "De man maakt eten in de keuken."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "👨🍳",
+      "👨🛏️",
+      "👩🍳"
+     ]
+    }
+   ]
+  },
+  {
+   "soort": "zin",
+   "tekst": [
+    "Het brood ligt op de tafel in de kamer."
+   ],
+   "vragen": [
+    {
+     "o": [
+      "🍞🍽️🛋️",
+      "🧀🍽️🛋️",
+      "🍞🍽️🌳"
+     ]
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "De baby slaapt in het {bed}.",
+  "Het raam is open, maar de {deur} is dicht.",
+  "De man maakt eten in de {keuken}."
+ ]
+}

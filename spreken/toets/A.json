@@ -1,0 +1,463 @@
+{
+ "id": "A",
+ "trede": 4,
+ "na": "P26",
+ "titel": "Toets A",
+ "namen": [
+  "Utrecht",
+  "Bas",
+  "Anna",
+  "Lisa",
+  "Emma",
+  "Sam",
+  "Tom",
+  "Mila",
+  "Smit"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Waar gaat u het liefst winkelen? Vertel ook wanneer u het liefst gaat winkelen.",
+   "model": [
+    "Ik ga het liefst in het centrum winkelen.",
+    "Ik ga het liefst op zaterdag."
+   ],
+   "sleutel": [
+    [
+     "centrum",
+     "stad",
+     "winkel",
+     "markt",
+     "online"
+    ],
+    [
+     "maandag",
+     "dinsdag",
+     "woensdag",
+     "donderdag",
+     "vrijdag",
+     "zaterdag",
+     "zondag",
+     "ochtend",
+     "middag",
+     "avond",
+     "weekend"
+    ]
+   ],
+   "les": "P13:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Ik schilder graag in mijn vrije tijd. Wat doet u in uw vrije tijd? Vertel ook waarom.",
+   "model": [
+    "In mijn vrije tijd wandel ik.",
+    "Dat is gezond."
+   ],
+   "sleutel": [
+    [
+     "vrije tijd",
+     "ik wandel",
+     "ik fiets",
+     "ik lees",
+     "ik kook",
+     "ik sport"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "gezond",
+     "leuk"
+    ]
+   ],
+   "les": "P13:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "Wat kunt u goed en van wie heeft u dat geleerd?",
+   "model": [
+    "Ik kan goed koken.",
+    "Ik heb dat van mijn moeder geleerd."
+   ],
+   "sleutel": [
+    [
+     "ik kan",
+     "goed"
+    ],
+    [
+     "van mijn",
+     "geleerd",
+     "school"
+    ]
+   ],
+   "les": "P16:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "vraag": "In welke plaats woont u nu? Vertel ook wat u leuk vindt aan deze plaats.",
+   "model": [
+    "Ik woon in Utrecht.",
+    "Ik vind het centrum mooi."
+   ],
+   "sleutel": [
+    [
+     "ik woon",
+     "woon in"
+    ],
+    [
+     "leuk",
+     "mooi",
+     "vind",
+     "rustig",
+     "gezellig"
+    ]
+   ],
+   "les": "P14:5"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🧑‍🍳🍲🔥"
+   ],
+   "sit": "Dit is Bas.",
+   "vraag": "Vertel waar Bas is. Vertel ook wat zijn werk is.",
+   "model": [
+    "Bas is in de keuken van een restaurant.",
+    "Hij kookt voor de klanten. Dat is zijn werk."
+   ],
+   "sleutel": [
+    [
+     "keuken",
+     "restaurant"
+    ],
+    [
+     "kookt",
+     "koken",
+     "werk"
+    ]
+   ],
+   "les": "P17:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩🚆⌚😟"
+   ],
+   "sit": "Anna staat op het station.",
+   "vraag": "Vertel wat het probleem is. Vertel ook wat Anna nu kan doen.",
+   "model": [
+    "De trein heeft vertraging.",
+    "Anna kan haar werk bellen."
+   ],
+   "sleutel": [
+    [
+     "vertraging",
+     "laat",
+     "trein"
+    ],
+    [
+     "bellen",
+     "wachten",
+     "bus",
+     "kan"
+    ]
+   ],
+   "les": "P19:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨🧒🏊💦"
+   ],
+   "vraag": "Wat doen de vader en zijn zoon? Vertel ook hoe vaak u dat doet.",
+   "model": [
+    "Zij zwemmen in het zwembad.",
+    "Ik zwem bijna nooit."
+   ],
+   "sleutel": [
+    [
+     "zwem"
+    ],
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit"
+    ]
+   ],
+   "les": "P18:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍🦰👩📚☕"
+   ],
+   "sit": "Dit zijn Lisa en Emma.",
+   "vraag": "Vertel wat over Lisa en Emma. Noem drie dingen.",
+   "model": [
+    "Lisa en Emma zitten in de bibliotheek.",
+    "Zij leren samen.",
+    "Zij drinken koffie."
+   ],
+   "drie": true,
+   "les": "P20:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏫🏢",
+    "🏡🌳"
+   ],
+   "sit": "U doet een cursus.",
+   "vraag": "In welk gebouw hebt u liever les? Vertel ook waarom.",
+   "model": [
+    "Ik heb liever les in het grote gebouw.",
+    "Dat is in het centrum."
+   ],
+   "sleutel": [
+    [
+     "gebouw",
+     "groot",
+     "grote",
+     "klein",
+     "kleine",
+     "huis",
+     "tuin"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is"
+    ]
+   ],
+   "les": "P22:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🍗🍚",
+    "🥗"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Wat eet u liever? Vertel ook waarom.",
+   "model": [
+    "Ik eet liever kip met rijst.",
+    "Dat vind ik lekker."
+   ],
+   "sleutel": [
+    [
+     "kip",
+     "rijst",
+     "salade"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "lekker",
+     "gezond"
+    ]
+   ],
+   "les": "P21:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🚗",
+    "🚌"
+   ],
+   "sit": "Kijk naar de plaatjes.",
+   "vraag": "Hoe reist u vaker? Vertel ook waar u dan naartoe gaat.",
+   "model": [
+    "Ik reis vaker met de bus.",
+    "Ik ga dan naar mijn werk."
+   ],
+   "sleutel": [
+    [
+     "bus",
+     "auto"
+    ],
+    [
+     "naar"
+    ]
+   ],
+   "les": "P21:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🏠💻",
+    "🏢👥"
+   ],
+   "sit": "U zoekt werk.",
+   "vraag": "Waar werkt u liever: thuis of op een kantoor? Vertel ook waarom.",
+   "model": [
+    "Ik werk liever op een kantoor.",
+    "Daar zie ik mijn collega's."
+   ],
+   "sleutel": [
+    [
+     "thuis",
+     "kantoor"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "daar"
+    ]
+   ],
+   "les": "P22:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🥛",
+    "🍞",
+    "🥚"
+   ],
+   "sit": "Dit eet en drinkt Sam in de ochtend.",
+   "vraag": "Vertel wat u ziet. Vertel ook wat u in de ochtend eet.",
+   "model": [
+    "Ik zie melk.",
+    "Ik zie brood.",
+    "Ik zie een ei. Ik eet in de ochtend brood met kaas."
+   ],
+   "sleutel": [
+    [
+     "melk"
+    ],
+    [
+     "brood"
+    ],
+    [
+     "ei"
+    ]
+   ],
+   "les": "P24:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🛏️😴",
+    "⏰😱",
+    "🏃🚌"
+   ],
+   "sit": "Tom moet naar zijn werk. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat er gebeurt. Vertel iets over alle plaatjes.",
+   "model": [
+    "Tom slaapt.",
+    "Hij ziet dat het laat is.",
+    "Hij rent naar de bus."
+   ],
+   "sleutel": [
+    [
+     "slaapt",
+     "bed"
+    ],
+    [
+     "laat",
+     "tijd",
+     "ziet"
+    ],
+    [
+     "rent",
+     "bus",
+     "loopt"
+    ]
+   ],
+   "les": "P25:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🧽🍽️",
+    "🧹🛋️",
+    "🪟✨"
+   ],
+   "sit": "Mila maakt haar huis schoon. Kijk naar de plaatjes.",
+   "vraag": "Vertel wat Mila doet. Vertel iets over alle plaatjes.",
+   "model": [
+    "Mila maakt de keuken schoon.",
+    "Zij maakt de kamer schoon.",
+    "Zij maakt de ramen schoon."
+   ],
+   "sleutel": [
+    [
+     "keuken",
+     "wast"
+    ],
+    [
+     "kamer"
+    ],
+    [
+     "ramen",
+     "raam"
+    ]
+   ],
+   "les": "P25:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🎫",
+    "🧳",
+    "🚆"
+   ],
+   "sit": "De familie Smit gaat op vakantie. Dit hebben zij nodig.",
+   "vraag": "Vertel wat u ziet. Vertel ook waar u het liefst naartoe gaat op vakantie.",
+   "model": [
+    "Ik zie kaartjes.",
+    "Ik zie een tas.",
+    "Ik zie een trein. Ik ga het liefst naar het strand."
+   ],
+   "sleutel": [
+    [
+     "kaartje",
+     "kaartjes"
+    ],
+    [
+     "tas"
+    ],
+    [
+     "trein"
+    ]
+   ],
+   "les": "P24:4"
+  }
+ ]
+}

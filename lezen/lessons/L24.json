@@ -1,0 +1,153 @@
+{
+ "id": "L24",
+ "trede": 2,
+ "titel": "In het buurthuis",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het buurthuis",
+   "en": "community centre",
+   "beeld": "🏘️",
+   "zin": "In het buurthuis is veel te doen.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de activiteit",
+   "en": "activity",
+   "beeld": "🎯",
+   "zin": "Koken is een leuke activiteit.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "aanmelden",
+   "en": "to register / sign up",
+   "beeld": "✍️",
+   "zin": "U kunt zich aanmelden bij de balie.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "de vrijwilliger",
+   "en": "volunteer",
+   "beeld": "🙋‍♀️",
+   "zin": "De vrijwilliger krijgt geen geld voor het werk.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "de deelnemer",
+   "en": "participant",
+   "beeld": "🧑‍🤝‍🧑",
+   "zin": "Er zijn twaalf deelnemers.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "een paar",
+   "en": "a few",
+   "beeld": "✌️",
+   "zin": "Ik blijf een paar dagen.",
+   "thema": "hoeveel"
+  },
+  {
+   "nl": "verschillend",
+   "en": "different / various",
+   "beeld": "🔀",
+   "zin": "Er zijn verschillende activiteiten.",
+   "thema": "algemeen",
+   "vormen": [
+    "verschillende"
+   ]
+  },
+  {
+   "nl": "de volwassene",
+   "en": "adult",
+   "beeld": "🧑",
+   "zin": "Volwassenen betalen vier euro.",
+   "thema": "persoon",
+   "vormen": [
+    "volwassenen"
+   ]
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit rooster staat in het buurthuis.",
+   "kop": "Buurthuis De Tuin – activiteiten",
+   "soort": "tabel",
+   "tekst": [
+    "dag | activiteit | tijd | kosten",
+    "maandag | koffie-ochtend | 10.00 - 12.00 uur | gratis",
+    "dinsdag | Nederlands praten | 13.30 - 15.00 uur | gratis",
+    "woensdag | koken voor volwassenen | 17.00 - 19.30 uur | € 4,00",
+    "donderdag | sport voor vrouwen | 9.30 - 10.30 uur | € 2,00",
+    "zaterdag | spelen en dansen voor kinderen | 14.00 - 16.00 uur | € 1,00",
+    "",
+    "Voor koken moet u zich aanmelden bij de balie. Er kunnen 12 deelnemers meedoen.",
+    "Voor de andere activiteiten is aanmelden niet nodig."
+   ],
+   "vragen": [
+    {
+     "v": "Welke activiteit is op woensdag?",
+     "o": [
+      "koken voor volwassenen",
+      "sport voor vrouwen",
+      "Nederlands praten"
+     ],
+     "b": "woensdag | koken voor volwassenen | 17.00 - 19.30 uur | € 4,00"
+    },
+    {
+     "v": "Hoeveel kost sport voor vrouwen?",
+     "o": [
+      "€ 2,00",
+      "€ 4,00",
+      "Het is gratis."
+     ],
+     "b": "donderdag | sport voor vrouwen | 9.30 - 10.30 uur | € 2,00"
+    },
+    {
+     "v": "Voor welke activiteit moet u zich aanmelden?",
+     "o": [
+      "voor koken",
+      "voor alle activiteiten",
+      "voor Nederlands praten"
+     ],
+     "b": "Voor koken moet u zich aanmelden bij de balie."
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat bij de ingang van het buurthuis.",
+   "kop": "Vrijwilligers gezocht!",
+   "soort": "bordje",
+   "tekst": [
+    "Het buurthuis zoekt vrijwilligers voor verschillende activiteiten.",
+    "Hebt u een paar uur per week tijd?",
+    "Kom dan dinsdag om 19.00 uur naar het buurthuis.",
+    "Wij vertellen dan meer."
+   ],
+   "vragen": [
+    {
+     "v": "Wie zoekt het buurthuis?",
+     "o": [
+      "vrijwilligers",
+      "deelnemers",
+      "docenten"
+     ],
+     "b": "Het buurthuis zoekt vrijwilligers voor verschillende activiteiten."
+    },
+    {
+     "v": "Hoeveel tijd hebt u nodig?",
+     "o": [
+      "een paar uur per week",
+      "een paar uur per dag",
+      "elke dinsdag de hele dag"
+     ],
+     "b": "Hebt u een paar uur per week tijd?"
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Voor koken moet u zich {aanmelden} bij de balie.",
+  "Het buurthuis zoekt {vrijwilligers}.",
+  "Hebt u een {paar} uur per week tijd?"
+ ]
+}

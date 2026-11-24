@@ -1,0 +1,209 @@
+{
+ "id": "S16",
+ "trede": 3,
+ "titel": "Formele e-mail: ik kan niet komen",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [
+  {
+   "nl": "formeel",
+   "en": "formal",
+   "beeld": "👔",
+   "zin": "Een e-mail aan de dokter is formeel.",
+   "thema": "schrijven",
+   "vormen": [
+    "formele"
+   ]
+  },
+  {
+   "nl": "de aanhef",
+   "en": "greeting (first line of a letter)",
+   "beeld": "👋",
+   "zin": "De aanhef is: Beste mevrouw Visser,",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de afsluiting",
+   "en": "closing (last lines of a letter)",
+   "beeld": "🔚",
+   "zin": "De afsluiting is: Met vriendelijke groet,",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "alvast",
+   "en": "in advance / already",
+   "beeld": "⏩",
+   "zin": "Alvast bedankt voor uw hulp.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "bedankt",
+   "en": "thanks",
+   "beeld": "🙏",
+   "zin": "Bedankt voor uw e-mail.",
+   "thema": "schrijven"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Een formele e-mail schrijft u aan de docent, de dokter, de baas of de gemeente.",
+   "en": "You write a formal e-mail to the teacher, the doctor, the boss or the municipality."
+  },
+  {
+   "nl": "De aanhef is Beste meneer of Beste mevrouw, met de achternaam. De afsluiting is Met vriendelijke groet, met uw naam.",
+   "en": "The greeting is Beste meneer / mevrouw + surname. The closing is Met vriendelijke groet, + your name."
+  },
+  {
+   "nl": "Op het examen staan de aanhef en de afsluiting vaak al op het papier.",
+   "en": "In the exam the greeting and closing are often already printed."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Afspraak bij de huisarts",
+    "situatie": "U hebt morgen een afspraak bij de huisarts. U kunt niet komen. U schrijft een e-mail aan de assistente, mevrouw Visser.",
+    "punten": [
+     {
+      "p": "Schrijf dat u morgen niet kunt komen.",
+      "model": "Ik kan morgen niet naar mijn afspraak komen.",
+      "val": [
+       "niet .*kom",
+       "kan .*niet"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u niet kunt komen. Bedenk zelf waarom.",
+      "model": "Ik moet de hele dag werken.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest"
+      ]
+     },
+     {
+      "p": "Stel een nieuwe dag en tijd voor.",
+      "model": "Kan ik op donderdag om tien uur komen?",
+      "val": [
+       "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Beste mevrouw Visser,",
+    "extra": "Alvast bedankt.",
+    "afsluiting": "Met vriendelijke groet,"
+   },
+   "kader": true
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "De les van morgen",
+    "situatie": "U doet een cursus Nederlands. Morgen kunt u niet naar de les komen. U schrijft een e-mail aan uw docent, meneer De Boer.",
+    "punten": [
+     {
+      "p": "Schrijf dat u morgen niet naar de les komt.",
+      "model": "Ik kan morgen niet naar de les komen.",
+      "val": [
+       "niet .*(kom|les)",
+       "les .*niet"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u niet komt. Bedenk zelf waarom.",
+      "model": "Mijn zoon is ziek en ik moet thuis blijven.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest"
+      ]
+     },
+     {
+      "p": "Vraag wat het huiswerk is.",
+      "model": "Kunt u mij het huiswerk sturen?",
+      "val": [
+       "huiswerk"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Beste meneer De Boer,",
+    "afsluiting": "Met vriendelijke groet,"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "email",
+    "kop": "Afspraak in het gemeentehuis",
+    "situatie": "U hebt maandag om 9.00 uur een afspraak in het gemeentehuis. U moet dan werken. U schrijft een e-mail aan mevrouw Jansen van de gemeente.",
+    "punten": [
+     {
+      "p": "Schrijf dat u de afspraak wilt verzetten.",
+      "model": "Ik wil mijn afspraak van maandag graag verzetten.",
+      "val": [
+       "verzet",
+       "andere (dag|afspraak)",
+       "nieuwe afspraak"
+      ]
+     },
+     {
+      "p": "Schrijf waarom u dat wilt.",
+      "model": "Ik moet op maandag werken.",
+      "val": [
+       "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest"
+      ]
+     },
+     {
+      "p": "Stel een nieuwe datum voor.",
+      "model": "Kan ik op woensdag om 14.00 uur komen?",
+      "val": [
+       "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+    "aanhef": "Beste mevrouw Jansen,",
+    "afsluiting": "Met vriendelijke groet,"
+   },
+   "stappen": [
+    "schrijf"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik schrijf u omdat ik een vraag heb."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Kan ik op een andere dag komen?"
+  }
+ ]
+}

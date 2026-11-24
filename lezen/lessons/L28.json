@@ -1,0 +1,168 @@
+{
+ "id": "L28",
+ "trede": 3,
+ "titel": "Een e-mail van het werk",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de leidinggevende",
+   "en": "manager / supervisor",
+   "beeld": "👔",
+   "zin": "Mijn leidinggevende maakt het rooster.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de medewerker",
+   "en": "employee / staff member",
+   "beeld": "🧑‍🔧",
+   "zin": "De winkel heeft twintig medewerkers.",
+   "thema": "werk"
+  },
+  {
+   "nl": "beter",
+   "en": "better / recovered",
+   "beeld": "💪",
+   "zin": "Ik was ziek, maar nu ben ik weer beter.",
+   "thema": "gezondheid"
+  },
+  {
+   "nl": "meteen",
+   "en": "immediately",
+   "beeld": "⚡",
+   "zin": "Bel meteen de dokter.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de taak",
+   "en": "task",
+   "beeld": "✅",
+   "zin": "Schoonmaken is mijn taak.",
+   "thema": "werk",
+   "vormen": [
+    "taken"
+   ]
+  },
+  {
+   "nl": "plannen",
+   "en": "to plan",
+   "beeld": "🗓️",
+   "zin": "Wij plannen een vergadering.",
+   "thema": "werk",
+   "vormen": [
+    "plan",
+    "plant",
+    "plande",
+    "gepland"
+   ]
+  },
+  {
+   "nl": "het idee",
+   "en": "idea",
+   "beeld": "💡",
+   "zin": "Dat is een goed idee!",
+   "thema": "algemeen",
+   "vormen": [
+    "ideeën"
+   ]
+  },
+  {
+   "nl": "allemaal",
+   "en": "all (of us / you / them)",
+   "beeld": "🙌",
+   "zin": "Hallo allemaal!",
+   "thema": "hoeveel"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Alle medewerkers van supermarkt De Markt krijgen een e-mail van hun leidinggevende.",
+   "kop": "Onderwerp: ziek melden – nieuwe regels",
+   "soort": "tekst",
+   "tekst": [
+    "Beste medewerkers,",
+    "",
+    "Vanaf 1 september zijn er nieuwe regels als u ziek bent.",
+    "Bent u ziek? Bel dan meteen uw leidinggevende, uiterlijk een uur vóór uw dienst begint. Een bericht of een e-mail sturen mag niet.",
+    "Uw leidinggevende vraagt wanneer u denkt weer te werken. Hij of zij zoekt een collega voor uw taken.",
+    "Bent u weer beter? Meld dat dan een dag vóór u weer komt werken. Dan kunnen wij het rooster goed plannen.",
+    "Wordt u ziek tijdens het werk? Ga dan niet meteen naar huis, maar meld u eerst bij uw leidinggevende.",
+    "",
+    "Met vriendelijke groet,",
+    "Jan Visser"
+   ],
+   "vragen": [
+    {
+     "sit": "Sara begint morgen om 8.00 uur. Zij wordt 's nachts ziek.",
+     "v": "Wat moet zij doen?",
+     "o": [
+      "uiterlijk om 7.00 uur haar leidinggevende bellen",
+      "om 8.00 uur een e-mail sturen",
+      "een collega een bericht sturen"
+     ],
+     "b": "Bel dan meteen uw leidinggevende, uiterlijk een uur vóór uw dienst begint."
+    },
+    {
+     "sit": "Omar is ziek geweest. Hij wil donderdag weer werken.",
+     "v": "Wanneer meldt hij dat?",
+     "o": [
+      "op woensdag",
+      "op donderdag",
+      "op vrijdag"
+     ],
+     "b": "Meld dat dan een dag vóór u weer komt werken."
+    }
+   ]
+  },
+  {
+   "intro": "De medewerkers krijgen ook een e-mail over een feest.",
+   "kop": "Onderwerp: feest voor het team",
+   "soort": "tekst",
+   "tekst": [
+    "Hallo allemaal,",
+    "",
+    "Onze supermarkt bestaat in oktober tien jaar. Dat willen wij vieren met een feest voor alle medewerkers. Uw man, vrouw of vriend mag ook komen.",
+    "Wij weten nog niet wat wij gaan doen. Hebt u een goed idee? Schrijf het op een briefje en geef het vóór 15 september aan Lisa van het kantoor.",
+    "Het team kiest daarna het leukste idee. Het feest is op zaterdag 12 oktober, na het werk. De supermarkt betaalt het eten en het drinken.",
+    "Wilt u komen? Meld u dan aan bij Lisa. Dat kan tot 1 oktober.",
+    "",
+    "Groetjes,",
+    "Jan"
+   ],
+   "vragen": [
+    {
+     "v": "Waarom is er een feest?",
+     "o": [
+      "De supermarkt bestaat tien jaar.",
+      "De leidinggevende heeft zijn verjaardag.",
+      "Er komen nieuwe medewerkers."
+     ],
+     "b": "Onze supermarkt bestaat in oktober tien jaar."
+    },
+    {
+     "sit": "Yusuf heeft een idee voor het feest.",
+     "v": "Wat moet hij doen?",
+     "o": [
+      "het idee op een briefje aan Lisa geven",
+      "het idee tijdens het feest vertellen",
+      "Jan bellen"
+     ],
+     "b": "Schrijf het op een briefje en geef het vóór 15 september aan Lisa van het kantoor."
+    },
+    {
+     "v": "Tot wanneer kunnen medewerkers zich aanmelden voor het feest?",
+     "o": [
+      "tot 1 oktober",
+      "tot 15 september",
+      "tot 12 oktober"
+     ],
+     "b": "Dat kan tot 1 oktober."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Bel dan {meteen} uw leidinggevende.",
+  "Bent u weer {beter}?",
+  "Hebt u een goed {idee}?"
+ ]
+}

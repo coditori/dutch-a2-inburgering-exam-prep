@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schrijven – set</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<link rel="stylesheet" href="../schrijven.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../schrijven.js"></script>
+<script>
+// Een hele set zoals het examen: 4 opdrachten, 40 minuten, met pen en papier. toets.html?t=A laadt A.json
+// Daarna kijkt u zelf na met het voorbeeld en de lijst. Met &les=S23 telt de uitslag ook voor die les.
+(async () => {
+  const { el } = App;
+  const MINUTEN = 40;
+  const q = new URLSearchParams(location.search);
+  const id = q.get('t') || 'A';
+  const les = q.get('les');
+  const pagina = document.getElementById('pagina');
+  let set;
+  try { set = await Schrijven.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze set bestaat niet: ' + id; return; }
+  const kop = App.kop(`Schrijven · ${set.titel}`, '../index.html');
+  const klok = el('b', {});
+  kop.insertBefore(klok, kop.lastChild);
+  let stand = App.lees('schrijven-toets-bezig', null);
+  if (!stand || stand.id !== id) stand = null;
+  const bewaar = () => App.schrijf('schrijven-toets-bezig', stand);
+  let tik = null;
+
+  const lijnen = (n) => el('div', { class: 'lijnen' }, Array.from({ length: n }, () => el('i')));
+  function blad(t, nr) {
+    if (t.soort === 'formulier') {
+      return el('div', { class: 'taak' }, el('p', { class: 'zacht klein' }, `Opdracht ${nr + 1} van ${set.items.length}`), el('h3', {}, t.kop), el('p', {}, t.situatie),
+        t.plaatjes ? el('div', { class: 'plaatjes' }, t.plaatjes.map((p) => el('span', {}, p))) : null,
+        el('p', {}, el('b', {}, 'Vul het formulier in. Sommige gegevens moet u zelf bedenken.')),
+        t.velden.map((v) => el('div', { class: 'veld' }, el('span', {}, v.label), v.soort === 'keuze' ? el('div', {}, v.opties.map((o) => el('div', {}, '☐ ' + o))) : el('div', { style: 'border-bottom:1px solid var(--zacht);height:1.8em' }))));
+    }
+    const k = Schrijven.taakKaart(t);
+    k.prepend(el('p', { class: 'zacht klein' }, `Opdracht ${nr + 1} van ${set.items.length}`));
+    if (t.aanhef) k.append(el('p', {}, t.aanhef));
+    if (t.begin) k.append(el('p', {}, t.begin));
+    k.append(lijnen(t.aanhef ? 7 : 8));
+    if (t.afsluiting) k.append(el('p', {}, t.afsluiting));
+    return k;
+  }
+
+  function welkom() {
+    const eerder = Schrijven.P.toets[id] || [];
+    pagina.textContent = '';
+    pagina.append(el('div', { class: 'kaart' },
+      el('h2', { style: 'margin-top:0' }, `Welkom bij ${set.titel}`),
+      el('p', {}, `U moet ${set.items.length} opdrachten maken. U hebt ${MINUTEN} minuten.`),
+      el('p', { en: 'The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. The aanhef and afsluiting are already on the paper, as in the real exam.' },
+        'Het echte examen is met pen en papier. Druk de opdrachten af, of lees ze hier en schrijf op uw eigen papier. De aanhef en de afsluiting staan al op het papier, net als op het echte examen.'),
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${r.score}/${r.totaal} (${r.datum}, ${r.minuten} min)`).join(' · ')) : null,
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now() }; bewaar(); werk(); } }, 'Start'))));
+  }
+
+  function werk() {
+    pagina.textContent = '';
+    clearInterval(tik);
+    const teken = () => { const s = Math.max(0, MINUTEN * 60 - Math.floor((Date.now() - stand.start) / 1000)); klok.textContent = `⏱ ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; klok.style.color = s === 0 ? 'var(--fout)' : ''; };
+    tik = setInterval(teken, 1000); teken();
+    pagina.append(el('div', { class: 'knoppen niet-print' },
+      el('button', { class: 'knop licht', en: 'print the tasks', onclick: () => window.print() }, '🖨 Afdrukken'),
+      el('button', { class: 'knop', en: 'I am done: check my work', onclick: () => { stand.minuten = Math.round((Date.now() - stand.start) / 60000); stand.klaar = true; stand.vinken = {}; bewaar(); nakijken(); } }, 'Ik ben klaar: nakijken')),
+      ...set.items.map(blad));
+  }
+
+  const PUNTEN = {
+    tekst: ['alle punten staan erin', 'minimaal drie hele zinnen', 'hoofdletter en punt bij elke zin', 'ik kan mijn eigen handschrift goed lezen'],
+    formulier: ['alle vakken zijn ingevuld', 'postcode, telefoonnummer en datum zien er goed uit', 'één hokje gekozen (als er hokjes zijn)', 'bij een open vraag staat een hele zin'],
+  };
+  PUNTEN.email = PUNTEN.briefje = PUNTEN.tekst;
+  function nakijken() {
+    clearInterval(tik); klok.textContent = '';
+    pagina.textContent = '';
+    const totaal = set.items.reduce((n, t) => n + PUNTEN[t.soort].length, 0);
+    const uitslag = el('div', { class: 'kaart midden' });
+    const tel = () => Object.values(stand.vinken).filter(Boolean).length;
+    function tekenUitslag() {
+      uitslag.textContent = '';
+      uitslag.append(el('div', { class: 'groot' }, `${tel()} / ${totaal}`),
+        el('p', { class: 'zacht' }, `Tijd: ${stand.minuten} minuten` + (stand.minuten > MINUTEN ? ' (te lang: het examen is 40 minuten)' : '')),
+        el('div', { class: 'knoppen', style: 'justify-content:center' },
+          el('button', { class: 'knop', en: 'save the result', onclick: () => {
+            (Schrijven.P.toets[id] = Schrijven.P.toets[id] || []).push({ score: tel(), totaal, minuten: stand.minuten, datum: new Date().toISOString().slice(0, 10) });
+            if (les) { const oud = Schrijven.P.lessen[les] || { beste: 0, keer: 0 }; Schrijven.P.lessen[les] = { score: tel(), beste: Math.max(oud.beste, tel()), totaal, keer: oud.keer + 1, datum: new Date().toISOString().slice(0, 10) }; }
+            Schrijven.bewaar(); App.schrijf('schrijven-toets-bezig', null); location.href = '../index.html';
+          } }, 'Bewaar de uitslag'),
+          el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('schrijven-toets-bezig', null); welkom(); } }, 'Nog een keer')));
+    }
+    pagina.append(el('p', { en: 'Put your paper next to the screen. Compare with the model answer and tick what is right. Be honest.' }, 'Leg uw papier naast het scherm. Vergelijk met het voorbeeld en zet een vinkje bij wat goed is. Wees eerlijk.'));
+    set.items.forEach((t, nr) => {
+      const vak = el('div', { class: 'taak' }, el('h3', {}, `Opdracht ${nr + 1}: ${t.kop}`), el('p', {}, App.woorden(t.situatie)));
+      if (t.soort === 'formulier') {
+        vak.append(el('p', { class: 'zacht' }, 'Voorbeeld:'), el('div', { class: 'brief' }, t.velden.map((v) => `${v.label}: ${v.model}`).join('\n')));
+      } else {
+        if (t.punten[0].p) vak.append(el('ul', {}, t.punten.map((p, i) => el('li', {}, el('span', { class: Schrijven.kleur(i) }, p.p)))));
+        vak.append(el('p', { class: 'zacht' }, 'Voorbeeld (uw antwoord mag anders zijn):'), Schrijven.modelKaart(t, true));
+        const typ = el('details', {}, el('summary', { en: 'optional: type your answer for an automatic check' }, 'Typ uw antwoord over voor een controle'));
+        Schrijven.schrijfvak(typ, t, { voorgedrukt: true });
+        vak.append(typ);
+      }
+      vak.append(el('div', { class: 'vinklijst' }, PUNTEN[t.soort].map((p, i) => {
+        const sleutel = nr + ':' + i;
+        const c = el('input', { type: 'checkbox' });
+        c.checked = !!stand.vinken[sleutel];
+        c.addEventListener('change', () => { stand.vinken[sleutel] = c.checked; bewaar(); tekenUitslag(); });
+        return el('label', {}, c, ' ', p);
+      })));
+      pagina.append(vak);
+    });
+    pagina.append(uitslag);
+    tekenUitslag();
+  }
+
+  if (!stand) welkom(); else if (stand.klaar) nakijken(); else werk();
+})();
+</script>
+</body>
+</html>

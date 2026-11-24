@@ -1,0 +1,158 @@
+[
+ {
+  "id": "P01",
+  "trede": 1,
+  "titel": "Zeg na: ui en eu",
+  "soort": ""
+ },
+ {
+  "id": "P02",
+  "trede": 1,
+  "titel": "Zeg na: ij, ei, ou en au",
+  "soort": ""
+ },
+ {
+  "id": "P03",
+  "trede": 1,
+  "titel": "Zeg na: g en sch",
+  "soort": ""
+ },
+ {
+  "id": "P04",
+  "trede": 1,
+  "titel": "Zeg na: uu, oe en lange woorden",
+  "soort": ""
+ },
+ {
+  "id": "P05",
+  "trede": 1,
+  "titel": "Ik vind … leuk en ik hou van …",
+  "soort": ""
+ },
+ {
+  "id": "P06",
+  "trede": 1,
+  "titel": "Ik … graag en ik ga het liefst …",
+  "soort": ""
+ },
+ {
+  "id": "P07",
+  "trede": 1,
+  "titel": "… omdat het … is en ik denk dat …",
+  "soort": ""
+ },
+ {
+  "id": "P08",
+  "trede": 1,
+  "titel": "Hoe vaak? En vier zinnen",
+  "soort": ""
+ },
+ {
+  "id": "P09",
+  "trede": 2,
+  "titel": "Waar? en Wanneer?",
+  "soort": ""
+ },
+ {
+  "id": "P10",
+  "trede": 2,
+  "titel": "Wat?",
+  "soort": ""
+ },
+ {
+  "id": "P11",
+  "trede": 2,
+  "titel": "Waarom? Hoe? Hoe vaak?",
+  "soort": ""
+ },
+ {
+  "id": "P12",
+  "trede": 2,
+  "titel": "Welke? Hoe lang? Ja of nee?",
+  "soort": ""
+ },
+ {
+  "id": "P13",
+  "trede": 2,
+  "titel": "Boodschappen, weekend en het weer",
+  "soort": ""
+ },
+ {
+  "id": "P14",
+  "trede": 2,
+  "titel": "Muziek, televisie en vakantie",
+  "soort": ""
+ },
+ {
+  "id": "P15",
+  "trede": 2,
+  "titel": "Werk, buren en reizen",
+  "soort": ""
+ },
+ {
+  "id": "P16",
+  "trede": 2,
+  "titel": "Koken, kleding en het seizoen",
+  "soort": ""
+ },
+ {
+  "id": "P17",
+  "trede": 3,
+  "titel": "Eén plaatje: wie, waar, wat",
+  "soort": ""
+ },
+ {
+  "id": "P18",
+  "trede": 3,
+  "titel": "Eén plaatje: wat doet hij of zij?",
+  "soort": ""
+ },
+ {
+  "id": "P19",
+  "trede": 3,
+  "titel": "Eén plaatje: een probleem",
+  "soort": ""
+ },
+ {
+  "id": "P20",
+  "trede": 3,
+  "titel": "Eén plaatje: noem drie dingen",
+  "soort": ""
+ },
+ {
+  "id": "P21",
+  "trede": 3,
+  "titel": "Twee plaatjes: kies en zeg waarom",
+  "soort": ""
+ },
+ {
+  "id": "P22",
+  "trede": 3,
+  "titel": "Twee plaatjes: wonen, werken en leren",
+  "soort": ""
+ },
+ {
+  "id": "P23",
+  "trede": 3,
+  "titel": "Twee plaatjes: vrije tijd",
+  "soort": ""
+ },
+ {
+  "id": "P24",
+  "trede": 4,
+  "titel": "Drie plaatjes: spullen",
+  "soort": ""
+ },
+ {
+  "id": "P25",
+  "trede": 4,
+  "titel": "Drie plaatjes: wat doet hij of zij?",
+  "soort": ""
+ },
+ {
+  "id": "P26",
+  "trede": 4,
+  "titel": "Alles door elkaar: acht vragen",
+  "soort": ""
+ }
+]

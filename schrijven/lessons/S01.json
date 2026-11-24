@@ -1,0 +1,97 @@
+{
+ "id": "S01",
+ "trede": 1,
+ "titel": "Woorden en zinnen overschrijven",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [
+  {
+   "nl": "het woord",
+   "en": "word",
+   "beeld": "🔤",
+   "zin": "Dit is een moeilijk woord.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de zin",
+   "en": "sentence",
+   "beeld": "📝",
+   "zin": "Ik schrijf een zin.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de letter",
+   "en": "letter (a, b, c)",
+   "beeld": "🔠",
+   "zin": "Het woord bus heeft drie letters.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de hoofdletter",
+   "en": "capital letter",
+   "beeld": "🅰️",
+   "zin": "Mijn naam heeft een hoofdletter.",
+   "thema": "schrijven"
+  },
+  {
+   "nl": "de punt",
+   "en": "full stop",
+   "beeld": "⚫",
+   "zin": "Na de zin komt een punt.",
+   "thema": "schrijven"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "De eerste letter van een zin is een hoofdletter.",
+   "en": "The first letter of a sentence is a capital."
+  },
+  {
+   "nl": "Na de zin komt een punt.",
+   "en": "After the sentence comes a full stop."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "de winkel"
+  },
+  {
+   "soort": "typ",
+   "toon": "het station"
+  },
+  {
+   "soort": "typ",
+   "toon": "de supermarkt"
+  },
+  {
+   "soort": "typ",
+   "toon": "De winkel is open."
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik woon in een huis."
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik eet brood met kaas."
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn moeder werkt in een winkel."
+  },
+  {
+   "soort": "typ",
+   "toon": "Vandaag is het maandag."
+  }
+ ]
+}

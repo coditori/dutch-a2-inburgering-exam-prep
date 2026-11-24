@@ -1,0 +1,178 @@
+{
+ "trede": 3,
+ "na": "5-instanties",
+ "namen": [
+  "Belastingdienst",
+  "UWV",
+  "DUO",
+  "SVB",
+  "Koophandel",
+  "Juridisch",
+  "Loket",
+  "WW",
+  "WW-uitkering",
+  "AOW",
+  "Sociale",
+  "Verzekeringsbank"
+ ],
+ "instanties": [
+  {
+   "id": "gemeente",
+   "naam": "de gemeente",
+   "beeld": "🏛️",
+   "doet": "paspoort, rijbewijs, adres, trouwen, bijstand"
+  },
+  {
+   "id": "belasting",
+   "naam": "de Belastingdienst",
+   "beeld": "💶",
+   "doet": "belasting en toeslagen"
+  },
+  {
+   "id": "uwv",
+   "naam": "het UWV",
+   "beeld": "🧑‍💼",
+   "doet": "uitkering als u geen werk meer hebt of lang ziek bent"
+  },
+  {
+   "id": "duo",
+   "naam": "DUO",
+   "beeld": "🎓",
+   "doet": "studiefinanciering en inburgering"
+  },
+  {
+   "id": "huisarts",
+   "naam": "de huisarts",
+   "beeld": "🩺",
+   "doet": "eerste hulp bij ziek zijn, verwijsbrief"
+  },
+  {
+   "id": "politie",
+   "naam": "de politie",
+   "beeld": "👮",
+   "doet": "aangifte doen"
+  },
+  {
+   "id": "svb",
+   "naam": "de SVB",
+   "beeld": "👨‍👩‍👧",
+   "doet": "kinderbijslag en AOW"
+  },
+  {
+   "id": "corporatie",
+   "naam": "de woningcorporatie",
+   "beeld": "🏘️",
+   "doet": "sociale huurwoningen en reparaties"
+  },
+  {
+   "id": "kvk",
+   "naam": "de Kamer van Koophandel",
+   "beeld": "🏪",
+   "doet": "een eigen bedrijf inschrijven"
+  },
+  {
+   "id": "loket",
+   "naam": "het Juridisch Loket",
+   "beeld": "⚖️",
+   "doet": "gratis hulp bij vragen over de wet"
+  }
+ ],
+ "items": [
+  {
+   "v": "U wilt een nieuw paspoort.",
+   "goed": "gemeente"
+  },
+  {
+   "v": "U bent verhuisd en wilt uw nieuwe adres doorgeven.",
+   "goed": "gemeente"
+  },
+  {
+   "v": "U wilt trouwen.",
+   "goed": "gemeente"
+  },
+  {
+   "v": "U hebt geen werk en geen geld en wilt bijstand aanvragen.",
+   "goed": "gemeente"
+  },
+  {
+   "v": "U wilt een rijbewijs aanvragen.",
+   "goed": "gemeente"
+  },
+  {
+   "v": "U hebt een baby gekregen en wilt uw kind inschrijven.",
+   "goed": "gemeente"
+  },
+  {
+   "v": "U wilt huurtoeslag aanvragen.",
+   "goed": "belasting"
+  },
+  {
+   "v": "U wilt zorgtoeslag aanvragen.",
+   "goed": "belasting"
+  },
+  {
+   "v": "U moet aangifte doen van uw inkomen.",
+   "goed": "belasting"
+  },
+  {
+   "v": "U wilt kinderopvangtoeslag aanvragen.",
+   "goed": "belasting"
+  },
+  {
+   "v": "U hebt ontslag gekregen en wilt een WW-uitkering.",
+   "goed": "uwv"
+  },
+  {
+   "v": "U bent al twee jaar ziek en kunt niet meer werken.",
+   "goed": "uwv"
+  },
+  {
+   "v": "U wilt studiefinanciering aanvragen.",
+   "goed": "duo"
+  },
+  {
+   "v": "U wilt u aanmelden voor het inburgeringsexamen.",
+   "goed": "duo"
+  },
+  {
+   "v": "U hebt al een week hoofdpijn.",
+   "goed": "huisarts"
+  },
+  {
+   "v": "U wilt een verwijsbrief voor het ziekenhuis.",
+   "goed": "huisarts"
+  },
+  {
+   "v": "Uw fiets is gestolen.",
+   "goed": "politie"
+  },
+  {
+   "v": "U wilt aangifte doen.",
+   "goed": "politie"
+  },
+  {
+   "v": "U wilt weten wanneer u kinderbijslag krijgt.",
+   "goed": "svb"
+  },
+  {
+   "v": "U bent 67 jaar en hebt een vraag over uw AOW.",
+   "goed": "svb"
+  },
+  {
+   "v": "U zoekt een sociale huurwoning.",
+   "goed": "corporatie"
+  },
+  {
+   "v": "De verwarming in uw huurwoning is kapot.",
+   "goed": "corporatie"
+  },
+  {
+   "v": "U begint een eigen bedrijf.",
+   "goed": "kvk"
+  },
+  {
+   "v": "U hebt een probleem met uw werkgever en wilt gratis hulp bij vragen over uw rechten.",
+   "goed": "loket"
+  }
+ ]
+}

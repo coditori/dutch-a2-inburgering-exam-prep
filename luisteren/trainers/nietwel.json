@@ -1,0 +1,149 @@
+{
+ "trede": 2,
+ "na": "U16",
+ "namen": [
+  "Utrecht"
+ ],
+ "items": [
+  {
+   "s": "A",
+   "t": "Ik kom morgen niet.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Wij hebben geen melk.",
+   "goed": "ja"
+  },
+  {
+   "s": "A",
+   "t": "De winkel is vandaag niet open.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Hij heeft geen tijd.",
+   "goed": "ja"
+  },
+  {
+   "s": "A",
+   "t": "Ik kan zaterdag niet werken.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Er is geen les op maandag.",
+   "goed": "ja"
+  },
+  {
+   "s": "A",
+   "t": "De bus rijdt vandaag niet.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Zij woont niet in Utrecht.",
+   "goed": "ja"
+  },
+  {
+   "s": "A",
+   "t": "Ik heb geen fiets.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Mijn zoon is niet ziek.",
+   "goed": "ja"
+  },
+  {
+   "s": "A",
+   "t": "Wij eten geen vlees.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "De trein stopt hier niet.",
+   "goed": "ja"
+  },
+  {
+   "s": "A",
+   "t": "U krijgt geen korting.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Ik heb het boek niet gelezen.",
+   "goed": "ja"
+  },
+  {
+   "s": "B",
+   "t": "Ik kom morgen om negen uur.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Wij hebben nog melk.",
+   "goed": "nee"
+  },
+  {
+   "s": "B",
+   "t": "De winkel is vandaag open.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Hij heeft veel tijd.",
+   "goed": "nee"
+  },
+  {
+   "s": "B",
+   "t": "Ik kan zaterdag wel werken.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Er is een les op maandag.",
+   "goed": "nee"
+  },
+  {
+   "s": "B",
+   "t": "De bus rijdt elke tien minuten.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Zij woont in Utrecht.",
+   "goed": "nee"
+  },
+  {
+   "s": "B",
+   "t": "Ik heb een nieuwe fiets.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Mijn zoon is ziek.",
+   "goed": "nee"
+  },
+  {
+   "s": "B",
+   "t": "Wij eten graag vlees.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Ik weet het antwoord.",
+   "goed": "nee"
+  },
+  {
+   "s": "B",
+   "t": "Het is tien over negen.",
+   "goed": "nee"
+  },
+  {
+   "s": "A",
+   "t": "Ik zie een trein.",
+   "goed": "nee"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+[
+ {
+  "id": "A",
+  "titel": "Toets A",
+  "vragen": 25
+ },
+ {
+  "id": "B",
+  "titel": "Toets B",
+  "vragen": 25
+ },
+ {
+  "id": "C",
+  "titel": "Toets C",
+  "vragen": 25
+ },
+ {
+  "id": "D",
+  "titel": "Toets D",
+  "vragen": 25
+ }
+]

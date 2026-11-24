@@ -1,0 +1,152 @@
+{
+ "id": "P17",
+ "trede": 3,
+ "titel": "Eén plaatje: wie, waar, wat",
+ "uitleg": "Kijk naar het plaatje en lees de vraag. Geef antwoord op de twee delen van de vraag.",
+ "en": "One picture (exam part 2). Say what you see: who, where, what. Then answer the second half. 'Ik denk dat ...' is always allowed.",
+ "woorden": [],
+ "namen": [
+  "Maria",
+  "Bakker",
+  "Tom",
+  "Sara"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩‍🍳🍲🔥"
+   ],
+   "sit": "Dit is Maria.",
+   "vraag": "Vertel waar Maria is. Vertel ook wat zij doet.",
+   "model": [
+    "Maria is in de keuken.",
+    "Zij kookt soep."
+   ],
+   "sleutel": [
+    [
+     "keuken",
+     "restaurant",
+     "thuis"
+    ],
+    [
+     "kookt",
+     "koken",
+     "maakt",
+     "soep",
+     "eten"
+    ]
+   ],
+   "en": "'Vertel waar ...' = say where. One sentence per part."
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨‍🏫📖🧑‍🎓🧑‍🎓"
+   ],
+   "sit": "Dit zijn cursisten.",
+   "vraag": "Vertel wat de cursisten doen. Vertel ook waar zij zijn.",
+   "model": [
+    "De cursisten leren Nederlands.",
+    "Zij zijn op school."
+   ],
+   "sleutel": [
+    [
+     "leren",
+     "lezen",
+     "luisteren",
+     "les"
+    ],
+    [
+     "school",
+     "lokaal",
+     "cursus"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨‍⚕️🩺🧒"
+   ],
+   "sit": "Dit is dokter Bakker.",
+   "vraag": "Vertel waar de dokter is. Vertel ook wat zijn werk is.",
+   "model": [
+    "De dokter is in zijn praktijk.",
+    "Hij helpt zieke mensen."
+   ],
+   "sleutel": [
+    [
+     "praktijk",
+     "ziekenhuis",
+     "kamer"
+    ],
+    [
+     "helpt",
+     "dokter",
+     "huisarts",
+     "zieke",
+     "werk"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "🧑‍🦰🛒🥖🧀"
+   ],
+   "sit": "Dit is Tom.",
+   "vraag": "Vertel wat Tom doet. Vertel ook wat hij koopt.",
+   "model": [
+    "Tom doet boodschappen in de supermarkt.",
+    "Hij koopt brood en kaas."
+   ],
+   "sleutel": [
+    [
+     "boodschappen",
+     "supermarkt",
+     "winkel"
+    ],
+    [
+     "koopt",
+     "brood",
+     "kaas"
+    ]
+   ]
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👵📺☕"
+   ],
+   "sit": "Dit is de oma van Sara.",
+   "vraag": "Vertel wat oma doet. Vertel ook wat u 's avonds graag doet.",
+   "model": [
+    "Oma kijkt televisie en drinkt koffie.",
+    "Ik lees 's avonds graag een boek."
+   ],
+   "sleutel": [
+    [
+     "televisie",
+     "kijkt",
+     "koffie",
+     "drinkt"
+    ],
+    [
+     "ik lees",
+     "ik kijk",
+     "ik ga",
+     "ik kook",
+     "ik wandel",
+     "graag"
+    ]
+   ],
+   "en": "The second half is about YOU: start with 'Ik ...'."
+  }
+ ]
+}

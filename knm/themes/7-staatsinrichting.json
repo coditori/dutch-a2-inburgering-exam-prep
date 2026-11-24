@@ -1,0 +1,538 @@
+{
+ "id": "7-staatsinrichting",
+ "trede": 3,
+ "titel": "Staatsinrichting en rechtsstaat",
+ "max_nieuw": 23,
+ "namen": [
+  "Staatsinrichting",
+  "Sara",
+  "Tom",
+  "Omar",
+  "Lena",
+  "Karim",
+  "Daan",
+  "Mila",
+  "Willem-Alexander",
+  "Rob",
+  "Jetten",
+  "Den",
+  "Haag",
+  "EU",
+  "Europese",
+  "Unie",
+  "Duitsland",
+  "Utrecht",
+  "Nederlander",
+  "Nederlanders",
+  "Nederlands",
+  "Prinsjesdag",
+  "Provinciale",
+  "Staten",
+  "Europees",
+  "Parlement",
+  "Actief"
+ ],
+ "woorden": [
+  {
+   "nl": "de grondwet",
+   "en": "constitution",
+   "beeld": "📜",
+   "zin": "De {grondwet} is de belangrijkste wet van Nederland.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de democratie",
+   "en": "democracy",
+   "beeld": "🗳️",
+   "zin": "Nederland is een {democratie}: de mensen stemmen.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de verkiezingen",
+   "en": "elections",
+   "beeld": "🗳️📅",
+   "zin": "Bij de {verkiezingen} kiest u een partij.",
+   "thema": "staat",
+   "vormen": [
+    "verkiezing"
+   ]
+  },
+  {
+   "nl": "het parlement",
+   "en": "parliament",
+   "beeld": "🏛️",
+   "zin": "De Tweede Kamer en de Eerste Kamer zijn samen het {parlement}.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de regering",
+   "en": "government",
+   "beeld": "👔🏛️",
+   "zin": "De {regering} is de koning met de ministers.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de minister",
+   "en": "minister",
+   "beeld": "👔",
+   "zin": "Een {minister} is verantwoordelijk voor onderwijs of voor zorg.",
+   "thema": "staat",
+   "vormen": [
+    "ministers"
+   ]
+  },
+  {
+   "nl": "de minister-president",
+   "en": "prime minister",
+   "beeld": "👔⭐",
+   "zin": "De {minister-president} is de baas van de ministers.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de burgemeester",
+   "en": "mayor",
+   "beeld": "🎖️",
+   "zin": "De {burgemeester} is de baas van de gemeente.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de gemeenteraad",
+   "en": "municipal council",
+   "beeld": "🏛️🗣️",
+   "zin": "De {gemeenteraad} maakt de plannen voor de gemeente.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de provincie",
+   "en": "province",
+   "beeld": "🗺️",
+   "zin": "Nederland heeft twaalf {provincies}.",
+   "thema": "staat",
+   "vormen": [
+    "provincies"
+   ]
+  },
+  {
+   "nl": "de partij",
+   "en": "(political) party",
+   "beeld": "🚩",
+   "zin": "U stemt op de {partij} die u het beste vindt.",
+   "thema": "staat",
+   "vormen": [
+    "partijen"
+   ]
+  },
+  {
+   "nl": "de macht",
+   "en": "power",
+   "beeld": "💪",
+   "zin": "De koning heeft weinig {macht}.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de straf",
+   "en": "punishment",
+   "beeld": "⛓️",
+   "zin": "De rechter geeft een {straf} aan iemand die de wet niet volgt.",
+   "thema": "staat",
+   "vormen": [
+    "straffen"
+   ]
+  },
+  {
+   "nl": "de burger",
+   "en": "citizen",
+   "beeld": "🧑",
+   "zin": "Elke {burger} van 18 jaar of ouder mag stemmen.",
+   "thema": "staat",
+   "vormen": [
+    "burgers"
+   ]
+  },
+  {
+   "nl": "het waterschap",
+   "en": "water board",
+   "beeld": "💧🏛️",
+   "zin": "Het {waterschap} zorgt voor schoon en veilig water.",
+   "thema": "staat"
+  },
+  {
+   "nl": "de coalitie",
+   "en": "coalition (parties that govern together)",
+   "beeld": "🤝🏛️",
+   "zin": "De {coalitie} is de groep partijen die samen de regering maakt.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "de oppositie",
+   "en": "opposition",
+   "beeld": "🙅🏛️",
+   "zin": "De {oppositie} zit niet in de regering.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "het kabinet",
+   "en": "cabinet (all ministers)",
+   "beeld": "👔👔",
+   "zin": "Het {kabinet} is de groep van alle ministers.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "de troonrede",
+   "en": "King's speech (on Prinsjesdag)",
+   "beeld": "👑📜",
+   "zin": "De koning leest de {troonrede}.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "de commissaris",
+   "en": "commissioner",
+   "beeld": "🎖️🗺️",
+   "zin": "De {commissaris} van de Koning is de baas van een provincie.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "de kerk",
+   "en": "church",
+   "beeld": "⛪",
+   "zin": "Zondag gaan zij naar de {kerk}.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "passief",
+   "en": "passive",
+   "beeld": "🪑",
+   "zin": "{Passief} kiesrecht: mensen mogen op u stemmen.",
+   "thema": "staat",
+   "meer": true
+  },
+  {
+   "nl": "actief",
+   "en": "active",
+   "beeld": "🏃",
+   "zin": "{Actief} kiesrecht: u mag zelf stemmen.",
+   "thema": "staat",
+   "meer": true
+  }
+ ],
+ "weetjes": [
+  {
+   "v": "Wie is de koning van Nederland?",
+   "a": "Koning Willem-Alexander.",
+   "en": "Who is the king of the Netherlands? King Willem-Alexander.",
+   "beeld": "👑"
+  },
+  {
+   "v": "Hoeveel mensen zitten er in de Tweede Kamer?",
+   "a": "150. In de Eerste Kamer zitten 75 mensen.",
+   "en": "How many members has the Tweede Kamer? 150; the Eerste Kamer has 75.",
+   "beeld": "🏛️"
+  },
+  {
+   "v": "Vanaf hoeveel jaar mag u stemmen?",
+   "a": "Vanaf 18 jaar. Stemmen is niet verplicht.",
+   "en": "From what age may you vote? 18. Voting is not compulsory.",
+   "beeld": "🗳️"
+  },
+  {
+   "v": "Hoe vaak zijn er verkiezingen voor de Tweede Kamer?",
+   "a": "Meestal elke vier jaar.",
+   "en": "How often are there elections for the Tweede Kamer? Usually every four years.",
+   "beeld": "📅"
+  },
+  {
+   "v": "Wie maakt de wetten?",
+   "a": "De regering en het parlement samen. De Tweede en de Eerste Kamer stemmen over een nieuwe wet.",
+   "en": "Who makes the laws? Government and parliament together; both chambers vote on a new law.",
+   "beeld": "📜"
+  },
+  {
+   "v": "Wat is de eerste regel van de grondwet?",
+   "a": "Iedereen in Nederland wordt gelijk behandeld. Discriminatie is verboden.",
+   "en": "What is article 1 of the constitution? Everyone is treated equally; discrimination is forbidden.",
+   "beeld": "⚖️"
+  },
+  {
+   "v": "Wie geeft een straf?",
+   "a": "De rechter. Niet de politie en niet de regering.",
+   "en": "Who decides on a punishment? The judge, not the police or the government.",
+   "beeld": "👩‍⚖️"
+  },
+  {
+   "v": "Waar zit de regering?",
+   "a": "In Den Haag. De hoofdstad is Amsterdam.",
+   "en": "Where is the seat of government? The Hague. The capital is Amsterdam.",
+   "beeld": "🏛️"
+  },
+  {
+   "v": "Mag iemand zonder Nederlands paspoort stemmen voor de gemeenteraad?",
+   "a": "Soms. Mensen uit de EU mogen dat. Andere mensen mogen het na vijf jaar wonen in Nederland.",
+   "en": "May someone without a Dutch passport vote in municipal elections? EU citizens may; others after five years of legal residence.",
+   "beeld": "🗳️"
+  },
+  {
+   "v": "Hoe heet de minister-president?",
+   "a": "Rob Jetten (2026). Let op: dit verandert na nieuwe verkiezingen.",
+   "en": "Who is the prime minister? Rob Jetten (2026). Note: this changes after new elections.",
+   "beeld": "👔"
+  }
+ ],
+ "situaties": [
+  {
+   "sit": "Sara is 18 jaar geworden.",
+   "v": "Wat mag zij nu?",
+   "o": [
+    "Stemmen bij de verkiezingen.",
+    "Zelf nieuwe wetten maken.",
+    "Een straf geven aan andere burgers."
+   ],
+   "w": "Elke Nederlander van 18 jaar of ouder mag stemmen.",
+   "beeld": "🗳️"
+  },
+  {
+   "sit": "Tom heeft iets gestolen in een winkel. De politie neemt Tom mee.",
+   "v": "Wie geeft Tom een straf?",
+   "o": [
+    "De rechter.",
+    "De burgemeester.",
+    "De baas van de winkel."
+   ],
+   "w": "Alleen de rechter mag een straf geven.",
+   "beeld": "👩‍⚖️"
+  },
+  {
+   "sit": "Er zijn verkiezingen. Omar wil niet gaan stemmen.",
+   "v": "Mag dat?",
+   "o": [
+    "Ja, stemmen is niet verplicht.",
+    "Nee, hij krijgt een boete.",
+    "Alleen als hij ziek is."
+   ],
+   "w": "Stemmen is een recht. Het is niet verplicht.",
+   "beeld": "🗳️"
+  },
+  {
+   "sit": "Een baas wil geen mensen met een ander geloof in zijn bedrijf.",
+   "v": "Wat zegt de grondwet?",
+   "o": [
+    "Dat is discriminatie en dat is verboden.",
+    "De baas mag dat zelf weten.",
+    "Dat mag in kleine bedrijven."
+   ],
+   "w": "De eerste regel van de grondwet: iedereen is gelijk en discriminatie is verboden.",
+   "beeld": "⚖️"
+  },
+  {
+   "sit": "Lena woont in Utrecht. Zij wil meepraten over nieuwe huizen in haar stad.",
+   "v": "Voor welke verkiezingen gaat zij stemmen?",
+   "o": [
+    "Voor de gemeenteraad.",
+    "Voor de Europese Unie.",
+    "Voor het waterschap."
+   ],
+   "w": "De gemeenteraad maakt de plannen voor de stad of het dorp.",
+   "beeld": "🏘️"
+  },
+  {
+   "sit": "De regering maakt een plan voor een nieuwe wet.",
+   "v": "Wie moet de wet goedkeuren?",
+   "o": [
+    "Het parlement.",
+    "Alleen de koning.",
+    "De politie."
+   ],
+   "w": "Een wet is er pas als de Tweede en de Eerste Kamer ja zeggen.",
+   "beeld": "📜"
+  },
+  {
+   "sit": "Karim heeft een Nederlands paspoort. Hij wil in Duitsland wonen en werken.",
+   "v": "Mag dat?",
+   "o": [
+    "Ja, in de Europese Unie mag hij wonen en werken.",
+    "Nee, hij mag alleen in Nederland werken.",
+    "Alleen met een brief van de koning."
+   ],
+   "w": "Burgers van de Europese Unie mogen in alle landen van de Unie wonen en werken.",
+   "beeld": "🇪🇺"
+  },
+  {
+   "sit": "De politie denkt dat Daan iets heeft gestolen. Daan zegt dat het niet waar is.",
+   "v": "Waar heeft Daan recht op?",
+   "o": [
+    "Op hulp van een advocaat.",
+    "Op een nieuw paspoort.",
+    "Op een uitkering."
+   ],
+   "w": "Iedereen heeft recht op hulp van een advocaat.",
+   "beeld": "⚖️"
+  },
+  {
+   "sit": "Mila vindt een plan van de gemeente slecht. Zij wil dat laten zien op straat, samen met andere mensen.",
+   "v": "Mag dat?",
+   "o": [
+    "Ja, iedereen mag zijn mening laten horen.",
+    "Nee, dat is verboden.",
+    "Alleen als de burgemeester ook meedoet."
+   ],
+   "w": "In een democratie mag u uw mening laten horen, ook op straat.",
+   "beeld": "📣"
+  },
+  {
+   "sit": "Er is een groot feest in de stad. De politie zorgt dat het veilig blijft.",
+   "v": "Wie is dan de baas van de politie in de gemeente?",
+   "o": [
+    "De burgemeester.",
+    "De koning.",
+    "De rechter."
+   ],
+   "w": "De burgemeester is verantwoordelijk voor een veilige gemeente.",
+   "beeld": "🎖️"
+  }
+ ],
+ "meer": {
+  "weetjes": [
+   {
+    "v": "Welke drie machten zijn er in Nederland?",
+    "a": "Het parlement maakt de wetten. De regering voert de wetten uit. De rechters controleren of mensen de wet volgen. Zij zijn niet de baas over elkaar.",
+    "en": "The three powers: parliament makes laws, government executes them, judges check them; they are independent of each other.",
+    "beeld": "⚖️"
+   },
+   {
+    "v": "De wet zegt iets anders dan een geloof. Wat gaat voor?",
+    "a": "De wet. Kerk en staat zijn in Nederland gescheiden.",
+    "en": "Law versus religion: the law prevails. Church and state are separate.",
+    "beeld": "⛪"
+   },
+   {
+    "v": "Wat is actief en passief kiesrecht?",
+    "a": "Actief kiesrecht: u mag stemmen. Passief kiesrecht: mensen mogen op u stemmen.",
+    "en": "Active suffrage: you may vote. Passive suffrage: people may vote for you.",
+    "beeld": "🗳️"
+   },
+   {
+    "v": "Wat zijn de coalitie en de oppositie?",
+    "a": "De coalitie: de partijen die samen de regering maken. De oppositie: de andere partijen in het parlement.",
+    "en": "Coalition: the parties forming the government. Opposition: the other parties.",
+    "beeld": "🤝"
+   },
+   {
+    "v": "Wat is het kabinet?",
+    "a": "Alle ministers samen, met de minister-president.",
+    "en": "What is the cabinet? All ministers together, led by the prime minister.",
+    "beeld": "👔"
+   },
+   {
+    "v": "Wat gebeurt er op Prinsjesdag?",
+    "a": "Op de derde dinsdag van september leest de koning de troonrede: de plannen van de regering voor het volgende jaar.",
+    "en": "Prinsjesdag: third Tuesday of September; the king reads the government's plans for next year.",
+    "beeld": "👑"
+   },
+   {
+    "v": "Maakt de koning de wetten?",
+    "a": "Nee. Hij zet alleen zijn handtekening. De grondwet zegt wat de koning mag en niet mag.",
+    "en": "Does the king make laws? No, he only signs them. The constitution limits his role.",
+    "beeld": "🖋️"
+   },
+   {
+    "v": "Hoe worden de Tweede Kamer en de Eerste Kamer gekozen?",
+    "a": "De burgers kiezen de Tweede Kamer. De Provinciale Staten kiezen de Eerste Kamer.",
+    "en": "Citizens elect the Tweede Kamer; the Provincial Councils elect the Eerste Kamer.",
+    "beeld": "🏛️"
+   },
+   {
+    "v": "Kiezen de burgers de minister-president?",
+    "a": "Nee, niet direct. De minister-president komt uit de coalitie.",
+    "en": "Do citizens elect the prime minister? Not directly; he comes from the coalition.",
+    "beeld": "👔"
+   },
+   {
+    "v": "Welke verkiezingen zijn er nog meer?",
+    "a": "Voor de Provinciale Staten (elke vier jaar) en voor het Europees Parlement (elke vijf jaar).",
+    "en": "Other elections: Provincial Councils (every four years) and European Parliament (every five years).",
+    "beeld": "🗳️"
+   },
+   {
+    "v": "Hoe heet de baas van een provincie?",
+    "a": "De commissaris van de Koning. De provincie regelt de grote wegen.",
+    "en": "Head of a province: the King's Commissioner. Provinces deal with major roads and nature.",
+    "beeld": "🎖️"
+   },
+   {
+    "v": "Wat is het verschil tussen linkse en rechtse partijen?",
+    "a": "Linkse partijen willen dat de overheid veel doet voor mensen met weinig geld. Rechtse partijen willen dat mensen meer zelf regelen.",
+    "en": "Left-wing parties want the state to do much for people with little money; right-wing parties want people to arrange more themselves.",
+    "beeld": "↔️"
+   },
+   {
+    "v": "Wie kiest met wie u trouwt, of u kinderen wilt en welk werk u doet?",
+    "a": "U zelf. Iedereen is de baas over zijn eigen leven.",
+    "en": "Who decides whom you marry, whether you have children and what work you do? You do (self-determination).",
+    "beeld": "🫵"
+   },
+   {
+    "v": "Mag een kind trouwen?",
+    "a": "Nee. U moet 18 jaar zijn om te trouwen. Alle kinderen moeten naar school.",
+    "en": "May a child marry? No, you must be 18. All children must go to school.",
+    "beeld": "🚫"
+   },
+   {
+    "v": "Hoe stemt u?",
+    "a": "U gaat met uw identiteitsbewijs en uw stempas naar een plaats in uw buurt waar u kunt stemmen. Niemand ziet op wie u stemt.",
+    "en": "How do you vote? Take ID and your voting pass to a polling station; your vote is secret.",
+    "beeld": "🗳️"
+   }
+  ],
+  "situaties": [
+   {
+    "sit": "Partij A, partij B en partij C maken samen de regering. Partij D doet niet mee.",
+    "v": "Wat is partij D?",
+    "o": [
+     "Oppositie.",
+     "Coalitie.",
+     "Kabinet."
+    ],
+    "w": "De partijen die niet in de regering zitten, zijn de oppositie.",
+    "beeld": "🏛️"
+   },
+   {
+    "sit": "Het is de derde dinsdag van september.",
+    "v": "Wat gebeurt er in Den Haag?",
+    "o": [
+     "De koning leest de troonrede.",
+     "Er zijn verkiezingen voor de Tweede Kamer.",
+     "De burgemeester wordt gekozen."
+    ],
+    "w": "De derde dinsdag van september is Prinsjesdag.",
+    "beeld": "👑"
+   },
+   {
+    "sit": "De ouders van Sara (17) willen dat zij stopt met school en trouwt.",
+    "v": "Wat is waar?",
+    "o": [
+     "Dat mag niet: Sara kiest zelf en zij moet naar school.",
+     "Dat mogen de ouders kiezen.",
+     "Dat mag als de gemeente het goedvindt."
+    ],
+    "w": "Trouwen mag vanaf 18 jaar en iedereen kiest zelf.",
+    "beeld": "🚫"
+   },
+   {
+    "sit": "Karim wil zelf in de gemeenteraad komen. Mensen moeten dan op Karim kunnen stemmen.",
+    "v": "Welk recht heeft hij daarvoor nodig?",
+    "o": [
+     "Passief kiesrecht.",
+     "Actief kiesrecht.",
+     "Een vergunning."
+    ],
+    "w": "Passief kiesrecht: mensen mogen op u stemmen.",
+    "beeld": "🗳️"
+   }
+  ]
+ }
+}

@@ -1,0 +1,154 @@
+{
+ "id": "L21",
+ "trede": 2,
+ "titel": "Het menu",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "het menu",
+   "en": "menu",
+   "beeld": "📜",
+   "zin": "Mag ik het menu zien?",
+   "thema": "eten",
+   "vormen": [
+    "menu's"
+   ]
+  },
+  {
+   "nl": "de soep",
+   "en": "soup",
+   "beeld": "🍲",
+   "zin": "De soep is warm.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de kip",
+   "en": "chicken",
+   "beeld": "🍗",
+   "zin": "Ik eet graag kip.",
+   "thema": "eten"
+  },
+  {
+   "nl": "de salade",
+   "en": "salad",
+   "beeld": "🥗",
+   "zin": "Een salade is gezond.",
+   "thema": "eten"
+  },
+  {
+   "nl": "het toetje",
+   "en": "dessert",
+   "beeld": "🍨",
+   "zin": "Wij nemen een toetje.",
+   "thema": "eten"
+  },
+  {
+   "nl": "het glas",
+   "en": "glass",
+   "beeld": "🥂",
+   "zin": "Een glas water, alstublieft.",
+   "thema": "eten",
+   "vormen": [
+    "glazen"
+   ]
+  },
+  {
+   "nl": "het restaurant",
+   "en": "restaurant",
+   "beeld": "🍴",
+   "zin": "Wij eten in een restaurant.",
+   "thema": "eten"
+  },
+  {
+   "nl": "vegetarisch",
+   "en": "vegetarian",
+   "beeld": "🥦",
+   "zin": "Ik eet vegetarisch: geen vlees en geen vis.",
+   "thema": "eten"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Dit menu ligt op de tafels in het restaurant.",
+   "kop": "Restaurant De Markt – menu",
+   "soort": "tabel",
+   "tekst": [
+    "# Eten",
+    "soep van de dag | € 4,50",
+    "kip met rijst | € 11,00",
+    "vis met groente | € 13,50",
+    "salade met kaas (vegetarisch) | € 9,00",
+    "# Toetje",
+    "fruit | € 3,50",
+    "# Drinken",
+    "glas water | gratis",
+    "koffie of thee | € 2,50"
+   ],
+   "vragen": [
+    {
+     "v": "Hoeveel kost de kip met rijst?",
+     "o": [
+      "€ 11,00",
+      "€ 13,50",
+      "€ 9,00"
+     ],
+     "b": "kip met rijst | € 11,00"
+    },
+    {
+     "sit": "Anna eet geen vlees en geen vis.",
+     "v": "Wat kan zij kiezen?",
+     "o": [
+      "salade met kaas",
+      "kip met rijst",
+      "vis met groente"
+     ],
+     "b": "salade met kaas (vegetarisch) | € 9,00"
+    },
+    {
+     "v": "Wat is gratis?",
+     "o": [
+      "een glas water",
+      "de soep",
+      "koffie"
+     ],
+     "b": "glas water | gratis"
+    }
+   ]
+  },
+  {
+   "intro": "Dit bordje staat bij de deur van het restaurant.",
+   "kop": "Restaurant De Markt",
+   "soort": "bordje",
+   "tekst": [
+    "Op maandag is het restaurant gesloten.",
+    "Kinderen tot 6 jaar krijgen een gratis toetje.",
+    "Betalen kan alleen met de pinpas."
+   ],
+   "vragen": [
+    {
+     "v": "Wat krijgen kinderen tot 6 jaar?",
+     "o": [
+      "een gratis toetje",
+      "gratis soep",
+      "een glas melk"
+     ],
+     "b": "Kinderen tot 6 jaar krijgen een gratis toetje."
+    },
+    {
+     "v": "Hoe kunt u betalen?",
+     "o": [
+      "alleen met de pinpas",
+      "alleen met geld",
+      "met geld of met de pinpas"
+     ],
+     "b": "Betalen kan alleen met de pinpas."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "Betalen kan {alleen} met de pinpas.",
+  "Op maandag is het restaurant {gesloten}.",
+  "Kinderen tot 6 jaar krijgen een gratis {toetje}."
+ ]
+}

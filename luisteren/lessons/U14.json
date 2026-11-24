@@ -1,0 +1,206 @@
+{
+ "id": "U14",
+ "trede": 2,
+ "titel": "Zinnen met een vraag",
+ "namen": [
+  "Anna",
+  "Tom",
+  "Sara",
+  "Vries",
+  "Utrecht",
+  "Amsterdam",
+  "Rotterdam",
+  "Bakker",
+  "Parkstraat",
+  "Stationsstraat",
+  "Jansen",
+  "Nederland"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Het is mooi weer vandaag."
+    },
+    {
+     "s": "A",
+     "t": "De zon is warm."
+    }
+   ],
+   "v": "Hoe is het weer vandaag?",
+   "o": [
+    "mooi en warm",
+    "koud",
+    "slecht"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Morgen komt er veel regen."
+    },
+    {
+     "s": "B",
+     "t": "Daarom neem ik de bus en niet de fiets."
+    }
+   ],
+   "v": "Waarom neem ik morgen de bus?",
+   "o": [
+    "omdat er regen komt",
+    "omdat de fiets oud is",
+    "omdat de bus gratis is"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Tom heeft een vraag over de les."
+    },
+    {
+     "s": "A",
+     "t": "Hij weet het antwoord niet."
+    }
+   ],
+   "v": "Wat weet Tom niet?",
+   "o": [
+    "het antwoord",
+    "de vraag",
+    "de tijd"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Het feest is morgen om acht uur."
+    },
+    {
+     "s": "B",
+     "t": "Het is bij Sara thuis."
+    }
+   ],
+   "v": "Waar is het feest?",
+   "o": [
+    "bij Sara thuis",
+    "op school",
+    "in de stad"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Wij hebben in de vakantie veel tijd."
+    },
+    {
+     "s": "A",
+     "t": "Wij gaan vaak naar de markt."
+    }
+   ],
+   "v": "Wanneer hebben wij veel tijd?",
+   "o": [
+    "in de vakantie",
+    "in de nacht",
+    "op maandag"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Ik heb morgen om tien uur een afspraak bij de dokter."
+    }
+   ],
+   "v": "Hoe laat is de afspraak?",
+   "o": [
+    "om tien uur",
+    "om twee uur",
+    "om half tien"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "De halte is naast het park."
+    },
+    {
+     "s": "B",
+     "t": "De bus naar het centrum komt om half negen."
+    }
+   ],
+   "v": "Waar is de halte?",
+   "o": [
+    "naast het park",
+    "in het centrum",
+    "naast het station"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "De prijs van een kaartje is drie euro."
+    },
+    {
+     "s": "A",
+     "t": "Kinderen betalen niets."
+    }
+   ],
+   "v": "Hoeveel betaalt een kind voor een kaartje?",
+   "o": [
+    "niets",
+    "drie euro",
+    "twee euro"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "U gaat hier naar links."
+    },
+    {
+     "s": "B",
+     "t": "Daar is de supermarkt."
+    },
+    {
+     "s": "B",
+     "t": "De school is rechts."
+    }
+   ],
+   "v": "Waar is de supermarkt?",
+   "o": [
+    "links",
+    "rechts",
+    "naast de school"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Sara geeft het boek aan Tom."
+    },
+    {
+     "s": "A",
+     "t": "Tom geeft het morgen aan Anna."
+    }
+   ],
+   "v": "Wie heeft het boek morgen?",
+   "o": [
+    "Anna",
+    "Tom",
+    "Sara"
+   ]
+  }
+ ],
+ "dictee": [
+  "Morgen komt er veel regen.",
+  "Kinderen betalen niets."
+ ]
+}

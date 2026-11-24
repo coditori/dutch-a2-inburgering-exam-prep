@@ -1,0 +1,117 @@
+{
+ "id": "U01",
+ "trede": 1,
+ "titel": "Woorden: de stad",
+ "namen": [],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de bus"
+    }
+   ],
+   "o": [
+    "🚌",
+    "🚲",
+    "🏠"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "het huis"
+    }
+   ],
+   "o": [
+    "🏠",
+    "🏪",
+    "🚆"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de fiets"
+    }
+   ],
+   "o": [
+    "🚲",
+    "🚗",
+    "🚌"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de winkel"
+    }
+   ],
+   "o": [
+    "🏪",
+    "🏠",
+    "🚉"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de trein"
+    }
+   ],
+   "o": [
+    "🚆",
+    "🚌",
+    "🚗"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "het station"
+    }
+   ],
+   "o": [
+    "🚉",
+    "🛒",
+    "🏠"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "de auto"
+    }
+   ],
+   "o": [
+    "🚗",
+    "🚲",
+    "🚆"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "de supermarkt"
+    }
+   ],
+   "o": [
+    "🛒",
+    "🚉",
+    "🏪"
+   ]
+  }
+ ],
+ "dictee": [
+  "De winkel is open.",
+  "De bus is groot."
+ ]
+}

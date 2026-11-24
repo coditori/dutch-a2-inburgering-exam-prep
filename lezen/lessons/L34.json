@@ -1,0 +1,169 @@
+{
+ "id": "L34",
+ "trede": 4,
+ "titel": "Een vacature",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de functie",
+   "en": "job / position",
+   "beeld": "🧑‍🍳",
+   "zin": "Ik zoek een functie in een winkel.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de eis",
+   "en": "requirement",
+   "beeld": "📋",
+   "zin": "Ervaring is een eis voor deze baan.",
+   "thema": "werk",
+   "vormen": [
+    "eisen"
+   ]
+  },
+  {
+   "nl": "het cv",
+   "en": "CV / résumé",
+   "beeld": "📄",
+   "zin": "In mijn cv staat waar ik gewerkt heb.",
+   "thema": "werk",
+   "vormen": [
+    "cv's"
+   ]
+  },
+  {
+   "nl": "flexibel",
+   "en": "flexible",
+   "beeld": "🤸",
+   "zin": "Ik ben flexibel: ik kan elke dag werken.",
+   "thema": "werk"
+  },
+  {
+   "nl": "de kans",
+   "en": "chance",
+   "beeld": "🎲",
+   "zin": "Er is een kans op een nieuw contract.",
+   "thema": "algemeen"
+  },
+  {
+   "nl": "direct",
+   "en": "directly / right away",
+   "beeld": "⚡",
+   "zin": "U kunt direct beginnen.",
+   "thema": "tijd"
+  },
+  {
+   "nl": "de persoon",
+   "en": "person",
+   "beeld": "🧍",
+   "zin": "Het team heeft vijf personen.",
+   "thema": "persoon",
+   "vormen": [
+    "personen"
+   ]
+  },
+  {
+   "nl": "de motivatie",
+   "en": "motivation",
+   "beeld": "🔥",
+   "zin": "In de brief schrijft u uw motivatie.",
+   "thema": "werk"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Karim zoekt werk. Hij ziet deze vacature op internet.",
+   "kop": "Medewerker gezocht voor restaurant De Markt",
+   "soort": "tekst",
+   "tekst": [
+    "Restaurant De Markt in het centrum van Utrecht zoekt twee nieuwe medewerkers voor de keuken.",
+    "# De functie",
+    "U helpt bij het koken, u maakt de keuken schoon en u brengt soms het eten naar de klanten. U werkt in een klein team van vijf personen.",
+    "# Onze eisen",
+    "- U hebt minstens één jaar ervaring in een keuken of een restaurant.",
+    "- U bent flexibel: u kunt ook 's avonds en in het weekend werken.",
+    "- U spreekt een beetje Nederlands (minstens niveau A2).",
+    "- Een diploma is niet nodig.",
+    "# Wat krijgt u?",
+    "U begint met een contract voor zes maanden. Het loon is € 13,50 per uur. Na zes maanden is er een kans op een contract voor een jaar. Tijdens het werk eet u gratis mee.",
+    "# Solliciteren",
+    "Stuur uiterlijk 30 april uw cv en een brief met uw motivatie naar Maria Smit. Wilt u eerst meer weten? Bel haar dan direct: 030 - 555 61 61 (alleen 's ochtends)."
+   ],
+   "vragen": [
+    {
+     "sit": "Karim heeft twee jaar in een keuken gewerkt. Hij heeft geen diploma. Hij kan niet op zaterdag en zondag werken.",
+     "v": "Is deze functie geschikt voor Karim?",
+     "o": [
+      "Nee, want hij kan niet in het weekend werken.",
+      "Nee, want hij heeft geen diploma.",
+      "Ja, want hij heeft genoeg ervaring.",
+      "Ja, want een diploma is niet nodig."
+     ],
+     "b": "U bent flexibel: u kunt ook 's avonds en in het weekend werken."
+    },
+    {
+     "v": "Wat krijgt een nieuwe medewerker na zes maanden?",
+     "o": [
+      "misschien een contract voor een jaar",
+      "altijd een contract voor een jaar",
+      "meer loon",
+      "gratis eten"
+     ],
+     "b": "Na zes maanden is er een kans op een contract voor een jaar."
+    },
+    {
+     "sit": "Karim heeft een vraag over de vacature. Het is dinsdag 15.00 uur.",
+     "v": "Wat kan hij het beste doen?",
+     "o": [
+      "morgen in de ochtend bellen",
+      "nu meteen bellen",
+      "wachten tot 30 april"
+     ],
+     "b": "(alleen 's ochtends)"
+    }
+   ]
+  },
+  {
+   "intro": "Karim krijgt een e-mail van het restaurant.",
+   "kop": "Onderwerp: uw sollicitatie",
+   "soort": "tekst",
+   "tekst": [
+    "Beste meneer Haddou,",
+    "",
+    "Dank u wel voor uw sollicitatie. Wij willen graag met u praten.",
+    "Het gesprek is op donderdag 9 mei om 15.30 uur in ons restaurant. U praat met Maria Smit en met Tom, de leidinggevende van de keuken.",
+    "Wilt u uw identiteitsbewijs en een kopie van uw diploma's meenemen? Hebt u geen diploma? Dan is alleen uw identiteitsbewijs genoeg.",
+    "Kunt u niet op deze dag? Bel ons dan vóór 7 mei.",
+    "",
+    "Met vriendelijke groet,",
+    "Maria Smit"
+   ],
+   "vragen": [
+    {
+     "v": "Met wie heeft Karim het gesprek?",
+     "o": [
+      "met Maria Smit en Tom",
+      "alleen met Maria Smit",
+      "met het team van vijf personen"
+     ],
+     "b": "U praat met Maria Smit en met Tom, de leidinggevende van de keuken."
+    },
+    {
+     "sit": "Karim heeft geen diploma.",
+     "v": "Wat neemt hij mee naar het gesprek?",
+     "o": [
+      "alleen zijn identiteitsbewijs",
+      "zijn identiteitsbewijs en een kopie van zijn cv",
+      "niets"
+     ],
+     "b": "Dan is alleen uw identiteitsbewijs genoeg."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "U bent {flexibel}: u kunt ook 's avonds werken.",
+  "Na zes maanden is er een {kans} op een contract voor een jaar.",
+  "Stuur uw cv en een brief met uw {motivatie}."
+ ]
+}

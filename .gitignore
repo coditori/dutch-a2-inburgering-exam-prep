@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Piper voice models (about 60 MB each): download them, see README
+tools/voices/
+
+# build lock file
+tools/.bouw.lock
+
+# editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# official DUO writing practice exams (© Ministerie van SZW): not ours to publish, get them from inburgeren.nl
+schrijven/toets/*.pdf

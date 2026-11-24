@@ -1,0 +1,142 @@
+{
+ "id": "U29",
+ "trede": 4,
+ "titel": "Examen: voicemail en nieuws",
+ "namen": [
+  "Mila",
+  "Bas",
+  "Jansen",
+  "Sam",
+  "Utrecht",
+  "Oost"
+ ],
+ "woorden": [
+  {
+   "nl": "inspreken",
+   "en": "to leave (a voice message)",
+   "beeld": "🎙️",
+   "zin": "Ik spreek een bericht in op de voicemail.",
+   "thema": "luisteren",
+   "vormen": [
+    "spreek",
+    "spreekt",
+    "in",
+    "ingesproken",
+    "inspreekt"
+   ]
+  },
+  {
+   "nl": "de radio",
+   "en": "radio",
+   "beeld": "📻",
+   "zin": "Ik luister naar de radio.",
+   "thema": "luisteren",
+   "vormen": [
+    "radio's"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "context": "Mila werkt in een restaurant. Een klant heeft een bericht ingesproken op de voicemail.",
+   "soort": "voicemail",
+   "regels": [
+    {
+     "s": "C",
+     "t": "Goedemiddag, met Bas Jansen."
+    },
+    {
+     "s": "C",
+     "t": "Ik heb voor zaterdag een tafel besteld voor zes personen, om zeven uur."
+    },
+    {
+     "s": "C",
+     "t": "Er komen twee mensen meer, dus wij zijn met acht personen."
+    },
+    {
+     "s": "C",
+     "t": "En wij komen een half uur later, om half acht."
+    },
+    {
+     "s": "C",
+     "t": "Eén van ons eet geen vlees en geen vis. Kunt u mij terugbellen als dat een probleem is?"
+    },
+    {
+     "s": "C",
+     "t": "Mijn nummer is nul zes, twaalf, dertien, veertien, vijftien. Dank u wel."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Voor hoeveel personen moet Mila een tafel klaarmaken?",
+     "o": [
+      "voor acht personen",
+      "voor zes personen",
+      "voor twee personen",
+      "voor zeven personen"
+     ]
+    },
+    {
+     "v": "Hoe laat komt de groep?",
+     "o": [
+      "om half acht",
+      "om zeven uur",
+      "om half zeven"
+     ]
+    },
+    {
+     "v": "Wanneer moet Mila terugbellen?",
+     "o": [
+      "alleen als er een probleem is",
+      "altijd, vandaag nog",
+      "zaterdag vóór zeven uur"
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Sam luistert naar het nieuws van de stad op de radio.",
+   "soort": "radio",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Goedemorgen, dit is het nieuws van Utrecht."
+    },
+    {
+     "s": "A",
+     "t": "De bibliotheek in het centrum is vanaf maandag drie weken gesloten. Het gebouw krijgt een nieuwe verwarming."
+    },
+    {
+     "s": "A",
+     "t": "Wilt u in die weken boeken lenen of terugbrengen? Dat kan in de bibliotheek in de wijk Oost, elke dag van tien tot vijf."
+    },
+    {
+     "s": "A",
+     "t": "En dan het weer: vandaag veel regen en wind. Morgen is er zon en is het warmer."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom gaat de bibliotheek in het centrum dicht?",
+     "o": [
+      "Er komt een nieuwe verwarming.",
+      "Er zijn te weinig bezoekers.",
+      "De bibliotheek verhuist naar Oost."
+     ]
+    },
+    {
+     "v": "Hoe is het weer morgen?",
+     "o": [
+      "zon en warmer",
+      "regen en wind",
+      "koud met sneeuw"
+     ]
+    }
+   ]
+  }
+ ],
+ "dictee": [
+  "Wij komen een half uur later.",
+  "De bibliotheek is vanaf maandag drie weken gesloten."
+ ]
+}

@@ -1,0 +1,187 @@
+{
+ "id": "C",
+ "trede": 4,
+ "na": "S22",
+ "titel": "Set C",
+ "namen": [
+  "Sara",
+  "Vries",
+  "Parkstraat",
+  "AB",
+  "Utrecht",
+  "nl",
+  "Bakker",
+  "Sam",
+  "Mila",
+  "Wit",
+  "Bos",
+  "Omar",
+  "Lisa",
+  "Maria",
+  "Anna",
+  "Tom",
+  "Karim",
+  "Turkije",
+  "Thuis",
+  "Jansen",
+  "Lindelaan",
+  "Yilmaz"
+ ],
+ "items": [
+  {
+   "soort": "email",
+   "kop": "De verwarming is kapot",
+   "situatie": "De verwarming in uw woning is kapot. U schrijft een e-mail aan meneer Bos van de woningcorporatie.",
+   "punten": [
+    {
+     "p": "Schrijf wat er kapot is.",
+     "model": "De verwarming in mijn woning is kapot.",
+     "val": [
+      "verwarming|kapot|werkt niet"
+     ]
+    },
+    {
+     "p": "Schrijf waarom de monteur snel moet komen. Bedenk het zelf.",
+     "model": "Het is heel koud in huis en ik heb een baby.",
+     "val": [
+      "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|koud|baby|winter"
+     ]
+    },
+    {
+     "p": "Schrijf wanneer u thuis bent.",
+     "model": "Ik ben morgen de hele dag thuis.",
+     "val": [
+      "thuis|maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+   "aanhef": "Beste meneer Bos,",
+   "afsluiting": "Vriendelijke groet,"
+  },
+  {
+   "soort": "tekst",
+   "kop": "Sport",
+   "situatie": "U krijgt elke week een krant van de wijk. Iedereen uit de buurt mag iets voor deze krant schrijven. U schrijft over sport.",
+   "punten": [
+    {
+     "p": "Welke sport vindt u leuk?",
+     "model": "Ik vind zwemmen een leuke sport.",
+     "val": [
+      "sport|zwem|voetbal|fiets|wandel|dans|ren"
+     ]
+    },
+    {
+     "p": "Waar doet u deze sport?",
+     "model": "Ik zwem in het zwembad in mijn wijk.",
+     "val": [
+      "in |op |bij |thuis|buiten"
+     ]
+    },
+    {
+     "p": "Waarom vindt u deze sport leuk?",
+     "model": "Ik vind zwemmen leuk, omdat het gezond is.",
+     "val": [
+      "want|omdat|gezond|leuk"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf minimaal drie zinnen op. Schrijf in hele zinnen.",
+   "begin": "Dit is mijn tekst over sport:"
+  },
+  {
+   "soort": "formulier",
+   "kop": "Aanmeldformulier sportcentrum",
+   "situatie": "U wilt gaan sporten in het sportcentrum. U vult een formulier in. Sommige gegevens moet u zelf bedenken.",
+   "velden": [
+    {
+     "label": "Voor- en achternaam",
+     "soort": "naam",
+     "model": "Sara de Vries"
+    },
+    {
+     "label": "Adres",
+     "soort": "adres",
+     "model": "Parkstraat 12"
+    },
+    {
+     "label": "Postcode",
+     "soort": "postcode",
+     "model": "3511 AB"
+    },
+    {
+     "label": "Woonplaats",
+     "soort": "woonplaats",
+     "model": "Utrecht"
+    },
+    {
+     "label": "Telefoonnummer",
+     "soort": "telefoon",
+     "model": "06 12345678"
+    },
+    {
+     "label": "E-mail",
+     "soort": "email",
+     "model": "sara@mail.nl"
+    },
+    {
+     "label": "Ik kies dit abonnement:",
+     "soort": "keuze",
+     "opties": [
+      "Ochtend (€ 19 per maand)",
+      "Weekend (€ 15 per maand)",
+      "Alles (€ 32 per maand)"
+     ],
+     "model": "Weekend (€ 15 per maand)"
+    },
+    {
+     "label": "Welke sport wilt u doen?",
+     "soort": "open",
+     "model": "Ik wil graag zwemmen."
+    },
+    {
+     "label": "Waarom wilt u gaan sporten?",
+     "soort": "open",
+     "model": "Ik wil gaan sporten, omdat het gezond is."
+    }
+   ]
+  },
+  {
+   "soort": "briefje",
+   "kop": "Briefje voor een collega",
+   "situatie": "U werkt in een restaurant. Straks komt uw collega Omar. Hij moet een paar dingen doen. Kijk naar de plaatjes. Schrijf een briefje voor Omar. Vertel wat hij moet doen.",
+   "plaatjes": [
+    "🍽️",
+    "🧹",
+    "🗑️"
+   ],
+   "punten": [
+    {
+     "p": "",
+     "model": "Wil je de tafels klaar maken?",
+     "val": [
+      "tafel"
+     ]
+    },
+    {
+     "p": "",
+     "model": "Maak daarna de keuken schoon.",
+     "val": [
+      "schoon|keuken"
+     ]
+    },
+    {
+     "p": "",
+     "model": "Breng het afval naar de container.",
+     "val": [
+      "afval|container"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf drie dingen op. Schrijf in hele zinnen.",
+   "aanhef": "Hallo Omar,",
+   "extra": "Alvast bedankt!",
+   "afsluiting": "Groeten,"
+  }
+ ]
+}

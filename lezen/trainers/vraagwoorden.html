@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lezen – vraagwoorden</title>
+<link rel="stylesheet" href="../../shared/app.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../lezen.js"></script>
+<script>
+// Vraagwoorden-trainer: welke soort antwoord hoort bij de vraag? Inhoud: vraagwoorden.json
+(async () => {
+  const { el } = App;
+  const data = await Lezen.json('vraagwoorden.json');
+  Lezen.ronde({
+    id: 'vraagwoorden', titel: 'Vraagwoorden', na: data.na, items: data.items, n: 10,
+    uitleg: 'Lees de vraag. Kies: wat voor antwoord zoekt u in de tekst?', uitlegEn: 'Read the question. Choose what kind of answer you look for in the text.',
+    teken(doel, item, klaar) {
+      const knoppen = data.soorten.map((s) => el('button', { class: 'optie', onclick: () => {
+        knoppen.forEach((k, i) => { k.disabled = true; if (data.soorten[i].id === item.soort) k.classList.add('goed'); });
+        if (s.id !== item.soort) knoppen[data.soorten.indexOf(s)].classList.add('fout');
+        klaar(s.id === item.soort);
+      } }, el('span', { class: 'l' }, s.beeld), el('span', {}, App.woorden(s.naam))));
+      doel.append(el('div', { class: 'tekstvak soort-zin' }, App.woorden(item.v)), el('div', { class: 'opties' }, knoppen));
+    },
+  });
+})();
+</script>
+</body>
+</html>

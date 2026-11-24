@@ -1,0 +1,123 @@
+{
+ "id": "U20",
+ "trede": 2,
+ "titel": "Twee zinnen: hoe laat en welke dag?",
+ "namen": [
+  "Amsterdam"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Hoe laat begint de les morgen?"
+    },
+    {
+     "s": "B",
+     "t": "Om half negen, in lokaal vier."
+    }
+   ],
+   "v": "Hoe laat begint de les?",
+   "o": [
+    "om half negen",
+    "om half vier",
+    "om negen uur"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Is de winkel op zondag open?"
+    },
+    {
+     "s": "C",
+     "t": "Nee, alleen van maandag tot en met zaterdag."
+    }
+   ],
+   "v": "Wanneer is de winkel dicht?",
+   "o": [
+    "op zondag",
+    "op zaterdag",
+    "op maandag"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "C",
+     "t": "Wanneer komt de bus?"
+    },
+    {
+     "s": "A",
+     "t": "Over tien minuten. Hij heeft een beetje vertraging."
+    }
+   ],
+   "v": "Wanneer komt de bus?",
+   "o": [
+    "over tien minuten",
+    "over twee minuten",
+    "De bus komt niet."
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Kun je dinsdag komen?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, dinsdag werk ik. Woensdag kan ik wel."
+    }
+   ],
+   "v": "Wanneer kan de vrouw komen?",
+   "o": [
+    "op woensdag",
+    "op dinsdag",
+    "op dinsdag en woensdag"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Hoe laat is de trein in Amsterdam?"
+    },
+    {
+     "s": "C",
+     "t": "Om kwart over twee."
+    }
+   ],
+   "v": "Hoe laat is de trein in Amsterdam?",
+   "o": [
+    "om kwart over twee",
+    "om kwart voor twee",
+    "om half twee"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Is het feest op vijf mei?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, op vijftien mei. Om acht uur 's avonds."
+    }
+   ],
+   "v": "Wanneer is het feest?",
+   "o": [
+    "op vijftien mei",
+    "op vijf mei",
+    "op acht mei"
+   ]
+  }
+ ],
+ "dictee": [
+  "Woensdag kan ik wel.",
+  "Nee, alleen van maandag tot en met zaterdag."
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "id": "S20",
+ "trede": 3,
+ "titel": "Een korte tekst: feest en vrije dag",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "Visser",
+  "Boer",
+  "Jansen",
+  "Smit",
+  "Karim",
+  "Bakker",
+  "Yilmaz",
+  "Lena",
+  "Noor",
+  "Yusuf",
+  "Eva",
+  "Daan",
+  "Turkije",
+  "Bos"
+ ],
+ "woorden": [
+  {
+   "nl": "de krant",
+   "en": "newspaper",
+   "beeld": "🗞️",
+   "zin": "Ik schrijf een tekst voor de krant van de buurt.",
+   "thema": "vrije tijd"
+  },
+  {
+   "nl": "de tekst",
+   "en": "text",
+   "beeld": "📃",
+   "zin": "Ik schrijf een korte tekst.",
+   "thema": "lezen"
+  },
+  {
+   "nl": "kort",
+   "en": "short",
+   "beeld": "📏",
+   "zin": "De tekst is kort: drie zinnen.",
+   "thema": "eigenschap",
+   "vormen": [
+    "korte"
+   ]
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Bij een korte tekst staan drie vragen. Schrijf bij elke vraag één hele zin. Dan hebt u drie zinnen.",
+   "en": "A short text has three questions. Write one whole sentence for each question. Then you have three sentences."
+  },
+  {
+   "nl": "Gebruik de woorden uit de vraag: Wanneer is uw verjaardag? → Mijn verjaardag is op 14 maart.",
+   "en": "Reuse the words of the question."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn verjaardag",
+    "situatie": "U schrijft voor de krant van de buurt over uw verjaardag.",
+    "punten": [
+     {
+      "p": "Wanneer is uw verjaardag?",
+      "model": "Mijn verjaardag is op 14 maart.",
+      "val": [
+       "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)|januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december|zomer|winter"
+      ]
+     },
+     {
+      "p": "Wie komen er op uw verjaardag?",
+      "model": "Mijn familie en mijn vrienden komen bij mij thuis.",
+      "val": [
+       "familie|vriend|buren|kinderen|collega|ouders|broer|zus|niemand|kom"
+      ]
+     },
+     {
+      "p": "Wat doet u op uw verjaardag?",
+      "model": "Wij eten samen en wij luisteren naar muziek.",
+      "val": [
+       "eet|eten|dans|muziek|drink|kook|ga |gaan|speel|praat|vier"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn verjaardag:"
+   }
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Mijn vrije dag",
+    "situatie": "U schrijft voor de krant van de buurt over uw vrije dag.",
+    "punten": [
+     {
+      "p": "Wat doet u graag op uw vrije dag?",
+      "model": "Op mijn vrije dag wandel ik graag.",
+      "val": [
+       "graag|vrije dag|ik "
+      ]
+     },
+     {
+      "p": "Met wie doet u dat?",
+      "model": "Ik wandel met mijn man en onze hond.",
+      "val": [
+       "met |alleen"
+      ]
+     },
+     {
+      "p": "Waar doet u dat?",
+      "model": "Wij wandelen in het park bij ons huis.",
+      "val": [
+       "in |op |bij |naar |thuis"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over mijn vrije dag:"
+   },
+   "stappen": [
+    "schrijf",
+    "papier"
+   ]
+  },
+  {
+   "soort": "opdracht",
+   "taak": {
+    "soort": "tekst",
+    "kop": "Een feest in mijn land",
+    "situatie": "U schrijft voor de krant van de buurt over een feest dat u elk jaar viert.",
+    "punten": [
+     {
+      "p": "Welk feest viert u?",
+      "model": "Ik vier elk jaar het feest van het nieuwe jaar.",
+      "val": [
+       "feest|vier"
+      ]
+     },
+     {
+      "p": "Wanneer is het feest?",
+      "model": "Het feest is in maart.",
+      "val": [
+       "in |op |maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)"
+      ]
+     },
+     {
+      "p": "Wat eet u op het feest?",
+      "model": "Wij eten rijst met vis en veel fruit.",
+      "val": [
+       "eet|eten"
+      ]
+     }
+    ],
+    "opdracht": "Schrijf drie zinnen of meer. Schrijf in hele zinnen.",
+    "begin": "Dit is mijn tekst over het feest:"
+   },
+   "stappen": [
+    "schrijf"
+   ]
+  },
+  {
+   "soort": "tegels",
+   "zin": "Wij eten samen en wij luisteren naar muziek."
+  },
+  {
+   "soort": "tegels",
+   "zin": "Ik wandel graag met mijn man in het park."
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lezen – herhalen</title>
+<link rel="stylesheet" href="../shared/app.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script>
+// Herhalen met Leitner-dozen: woorden (kaart omdraaien) en zinnen met een gat (typen).
+(() => {
+  const { el } = App;
+  App.kop('Herhalen', 'index.html');
+  const pagina = document.getElementById('pagina');
+  let rij = [], goed = 0, gedaan = 0;
+
+  function start(kaarten) {
+    rij = App.schud(kaarten).slice(0, 30);
+    goed = 0; gedaan = 0;
+    volgende();
+  }
+
+  function begin() {
+    pagina.textContent = '';
+    const nu = SRS.aanDeBeurt();
+    const tel = SRS.tel();
+    const stand = App.tredeStand();
+    pagina.append(
+      el('div', { class: 'kaart' },
+        el('h3', {}, `Vandaag: ${nu.length} ${nu.length === 1 ? 'kaart' : 'kaarten'}`),
+        el('p', { class: 'zacht', en: 'Wrong: back tomorrow. Right: back in 2, 4, 8, 16 days.' }, 'Fout: morgen terug. Goed: terug over 2, 4, 8, 16 dagen.'),
+        el('div', { class: 'knoppen' },
+          el('button', { class: 'knop', disabled: !nu.length, en: 'start', onclick: () => start(nu) }, 'Begin'),
+          el('button', { class: 'knop licht', en: '10 new words from the list', onclick: nieuweWoorden }, '+ 10 nieuwe woorden'),
+          tel.totaal && !nu.length ? el('button', { class: 'knop licht', en: 'practise anyway', onclick: () => start(Object.entries(SRS.alle()).map(([id, k]) => Object.assign({ id, extra: true }, k))) }, 'Toch nu oefenen') : null)),
+      el('h2', { en: 'words you know, per step' }, 'Woorden die u kent'),
+      el('table', { class: 'ladder' }, stand.map((s, t) => el('tr', {},
+        el('td', {}, `Trede ${t}`),
+        el('td', { style: 'width:50%' }, el('div', { class: 'balk' }, el('i', { style: `width:${s.totaal ? Math.round(100 * s.bekend / s.totaal) : 0}%` }))),
+        el('td', { class: 'klein zacht' }, `${s.bekend} van ${s.totaal} · bezig met ${s.bezig}`)))),
+      el('p', { class: 'klein zacht', en: 'A word counts as known after two right answers on two different days.' }, 'Een woord telt als gekend na twee goede antwoorden op twee dagen.'));
+  }
+
+  // de volgende 10 woorden van de laagste trede die nog niet in de dozen zitten
+  function nieuweWoorden() {
+    const kaarten = SRS.alle();
+    const nieuw = [];
+    for (let t = 1; t <= 4 && nieuw.length < 10; t++) {
+      for (const r of App.W.lijst) {
+        if (nieuw.length >= 10) break;
+        if (r[0] !== t || (r[3] === 'werkwoord' && t > 2) || kaarten['w:' + r[1]]) continue;
+        SRS.voegToe('w:' + r[1], { soort: 'w', nl: r[1] }, true);
+        nieuw.push({ id: 'w:' + r[1], soort: 'w', nl: r[1], box: 0 });
+      }
+    }
+    if (nieuw.length) start(nieuw); else begin();
+  }
+
+  function volgende() {
+    pagina.textContent = '';
+    const k = rij.shift();
+    if (!k) {
+      pagina.append(el('div', { class: 'kaart midden' },
+        el('div', { class: 'groot' }, `${goed} / ${gedaan}`),
+        el('p', { en: 'Done for today.' }, 'Klaar voor vandaag.'),
+        el('div', { class: 'knoppen', style: 'justify-content:center' },
+          el('button', { class: 'knop licht', onclick: begin }, 'Terug'),
+          el('a', { class: 'knop', href: 'index.html' }, 'Naar de lessen'))));
+      return;
+    }
+    pagina.append(el('p', { class: 'zacht klein' }, `nog ${rij.length + 1}`));
+    const klaar = (ok) => { gedaan++; if (ok) goed++; if (!k.extra) SRS.antwoord(k.id, ok); volgende(); };
+    if (k.soort === 'z') zinKaart(k, klaar); else woordKaart(k, klaar);
+  }
+
+  function woordKaart(k, klaar) {
+    const r = App.W.lijst[App.lemmaNr(k.nl)] || [];
+    const en = k.en || r[2] || '';
+    const beeld = k.beeld || r[4] || '';
+    const achter = el('div', { hidden: true },
+      beeld ? el('div', { class: 'beeld', style: 'font-size:3rem' }, beeld) : null,
+      r[5] ? el('p', { class: 'zacht' }, r[5]) : null,
+      el('p', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { enEl.hidden = false; } }, '❗')));
+    const enEl = el('p', { class: 'zacht', hidden: !!beeld, style: 'font-style:italic' }, en);
+    achter.append(enEl);
+    const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' },
+      el('button', { class: 'knop', en: 'show', onclick: () => { achter.hidden = false; knoppen.textContent = ''; knoppen.append(
+        el('button', { class: 'knop licht', en: 'I did not know it', onclick: () => klaar(false) }, '✘ Wist ik niet'),
+        el('button', { class: 'knop', en: 'I knew it', onclick: () => klaar(true) }, '✔ Wist ik')); } }, 'Toon'));
+    pagina.append(el('div', { class: 'kaart midden' },
+      el('p', { class: 'zacht', en: 'What does this word mean?' }, 'Wat betekent dit woord?'),
+      el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+      achter, knoppen));
+  }
+
+  function zinKaart(k, klaar) {
+    const [voor, woord, na] = k.zin.split(/[{}]/);
+    const invoer = el('input', { class: 'gat', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' });
+    const uit = el('div');
+    const controleer = () => {
+      const ok = App.kaal(invoer.value.trim()) === App.kaal(woord);
+      invoer.disabled = true;
+      uit.textContent = '';
+      uit.append(
+        el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Het goede woord: ' + woord),
+        el('p', {}, voor, el('span', { class: 'gatwoord' }, woord), na, ' ', el('button', { class: 'rond', onclick: () => Spraak.zeg(voor + woord + na) }, '🔊')),
+        el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder')));
+      uit.querySelector('.knop').focus();
+    };
+    const knop = el('button', { class: 'knop', en: 'check', onclick: () => { knop.remove(); hint.remove(); controleer(); } }, 'Controleer');
+    const hint = el('button', { class: 'knop licht', en: 'first letter', onclick: () => { invoer.value = woord[0]; invoer.focus(); } }, 'Eerste letter');
+    invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !invoer.disabled) { knop.remove(); hint.remove(); controleer(); } });
+    pagina.append(el('div', { class: 'kaart midden' },
+      el('p', { class: 'zacht', en: 'Type the missing word.' }, 'Typ het woord in het gat.'),
+      el('p', { style: 'font-size:1.2rem' }, voor, invoer, na),
+      el('p', { class: 'zacht klein' }, `uit les ${k.les || ''}`),
+      el('div', { class: 'knoppen', style: 'justify-content:center' }, knop, hint), uit));
+    invoer.focus();
+  }
+
+  begin();
+})();
+</script>
+</body>
+</html>

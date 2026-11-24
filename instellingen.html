@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instellingen</title>
+<link rel="stylesheet" href="shared/app.css">
+</head>
+<body>
+<main>
+  <h2 data-en="lessons">Lessen</h2>
+  <div class="kaart">
+    <label class="instelling"><input type="checkbox" id="open">
+      <span><b data-en="open all lessons">Alle lessen open</b><br>
+      <span class="zacht klein" data-en="No lock: you can open every lesson, trainer and test in all five exams. Your scores stay.">Geen slot: u kunt elke les, trainer en toets openen, in alle vijf examens. Uw scores blijven.</span></span></label>
+    <label class="instelling" style="border-bottom:0"><input type="checkbox" id="en">
+      <span><b data-en="show English with the buttons">Engels bij de knoppen</b><br>
+      <span class="zacht klein">Dit is hetzelfde als de knop ❗ boven aan elke pagina.</span></span></label>
+  </div>
+
+  <h2 data-en="your progress">Uw voortgang</h2>
+  <div class="kaart">
+    <p data-en="Progress is saved in this browser, on this computer, for this address only. Another browser or another address (for example 127.0.0.1 instead of localhost) starts empty.">De voortgang staat in deze browser, op deze computer, alleen voor dit adres. Een andere browser of een ander adres (bijvoorbeeld 127.0.0.1 en niet localhost) begint leeg.</p>
+    <table class="ladder" id="stand"></table>
+    <div class="knoppen">
+      <button class="knop licht" id="bewaar" data-en="save progress to a file">Bewaar in een bestand</button>
+      <label class="knop licht" data-en="load progress from a file">Lees uit een bestand<input type="file" id="lees" accept="application/json" hidden></label>
+      <button class="knop licht" id="wis" data-en="delete all progress">Wis alles</button>
+    </div>
+    <p class="uitslag" id="melding"></p>
+  </div>
+</main>
+<script src="shared/woorden.js"></script>
+<script src="shared/srs.js"></script>
+<script src="shared/audio.js"></script>
+<script src="shared/app.js"></script>
+<script>
+// Instellingen voor alle examens. Alles staat in localStorage onder "dutch-exam:...".
+(() => {
+  const { el } = App;
+  App.kop('Instellingen', 'index.html');
+  const VOOR = 'dutch-exam:';
+  const melding = document.getElementById('melding');
+
+  const open = document.getElementById('open');
+  open.checked = App.instellingen().open;
+  open.addEventListener('change', () => App.schrijf('instellingen', Object.assign(App.instellingen(), { open: open.checked })));
+
+  const en = document.getElementById('en');
+  en.checked = App.lees('en', false);
+  en.addEventListener('change', () => { App.schrijf('en', en.checked); document.body.classList.toggle('en', en.checked); });
+
+  function stand() {
+    const t = document.getElementById('stand');
+    t.textContent = '';
+    for (const x of App.EXAMENS) {
+      const p = App.lees(x, {});
+      const lessen = Object.values(p.lessen || {});
+      const gehaald = lessen.filter((r) => r && r.beste / r.totaal >= 0.8).length;
+      const toetsen = Object.values(p.toets || {}).reduce((n, r) => n + (Array.isArray(r) ? r.length : 1), 0);
+      t.append(el('tr', {}, el('th', {}, x[0].toUpperCase() + x.slice(1)),
+        el('td', {}, `${gehaald} ${gehaald === 1 ? 'les' : 'lessen'} gehaald`), el('td', {}, `${toetsen} ${toetsen === 1 ? 'toets' : 'toetsen'} gedaan`)));
+    }
+    const s = SRS.tel();
+    t.append(el('tr', {}, el('th', {}, 'Herhalen'), el('td', {}, `${s.totaal} kaarten`), el('td', {}, `${s.bekend} gekend`)));
+  }
+  stand();
+
+  const alles = () => { const o = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith(VOOR)) o[k] = localStorage.getItem(k); } return o; };
+
+  document.getElementById('bewaar').addEventListener('click', () => {
+    const a = el('a', { href: URL.createObjectURL(new Blob([JSON.stringify(alles(), null, 1)], { type: 'application/json' })), download: `nederlands-a2-voortgang-${new Date().toISOString().slice(0, 10)}.json` });
+    document.body.append(a); a.click(); a.remove();
+    melding.className = 'uitslag goed'; melding.textContent = '✔ Bewaard in een bestand.';
+  });
+
+  document.getElementById('lees').addEventListener('change', async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try {
+      const o = JSON.parse(await f.text());
+      const sleutels = Object.keys(o).filter((k) => k.startsWith(VOOR) && typeof o[k] === 'string');
+      if (!sleutels.length) throw new Error('leeg');
+      sleutels.forEach((k) => localStorage.setItem(k, o[k]));
+      melding.className = 'uitslag goed'; melding.textContent = `✔ Voortgang gelezen (${sleutels.length} delen).`;
+      open.checked = App.instellingen().open; stand();
+    } catch (err) { melding.className = 'uitslag fout'; melding.textContent = '✘ Dit bestand is geen voortgang van deze site.'; }
+    e.target.value = '';
+  });
+
+  // wissen in twee stappen, zonder pop-up van de browser
+  const wis = document.getElementById('wis');
+  let zeker = false;
+  wis.addEventListener('click', () => {
+    if (!zeker) { zeker = true; wis.textContent = 'Zeker weten? Klik nog een keer'; wis.dataset.en = 'Are you sure? Click again'; setTimeout(() => { zeker = false; wis.textContent = 'Wis alles'; wis.dataset.en = 'delete all progress'; }, 5000); return; }
+    Object.keys(alles()).forEach((k) => localStorage.removeItem(k));
+    zeker = false; wis.textContent = 'Wis alles';
+    melding.className = 'uitslag goed'; melding.textContent = '✔ Alles is gewist.';
+    open.checked = false; en.checked = false; document.body.classList.remove('en'); stand();
+  });
+})();
+</script>
+</body>
+</html>

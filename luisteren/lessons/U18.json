@@ -1,0 +1,123 @@
+{
+ "id": "U18",
+ "trede": 2,
+ "titel": "Twee zinnen: wie praat?",
+ "namen": [
+  "Daan"
+ ],
+ "woorden": [],
+ "items": [
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Hoe laat ben je vanavond thuis, Daan?"
+    },
+    {
+     "s": "C",
+     "t": "Om zes uur, vader. Ik heb eerst nog sport."
+    }
+   ],
+   "v": "Wie praten er?",
+   "o": [
+    "een vader en zijn zoon",
+    "twee collega's",
+    "een docent en een cursist"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Waar hebt u pijn?"
+    },
+    {
+     "s": "A",
+     "t": "Ik heb veel pijn als ik loop, dokter."
+    }
+   ],
+   "v": "Wie praten er?",
+   "o": [
+    "een dokter en een zieke man",
+    "een juf en een kind",
+    "twee buren"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Kun jij morgen mijn dienst doen?"
+    },
+    {
+     "s": "B",
+     "t": "Ja, dat is goed. Dan werk ik morgen en jij zaterdag."
+    }
+   ],
+   "v": "Wie praten er?",
+   "o": [
+    "twee collega's",
+    "een moeder en haar zoon",
+    "een chauffeur en een reiziger"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "B",
+     "t": "Goedemiddag. Uw dochter leert goed, maar zij praat veel in de les."
+    },
+    {
+     "s": "C",
+     "t": "Goed, juf. Ik praat thuis met haar."
+    }
+   ],
+   "v": "Wie praten er?",
+   "o": [
+    "een juf en een vader",
+    "een dokter en een vader",
+    "twee collega's"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "C",
+     "t": "Hallo buurvrouw. Er is een pakje voor u gekomen."
+    },
+    {
+     "s": "B",
+     "t": "O, mooi! Ik kom het straks halen."
+    }
+   ],
+   "v": "Wie praten er?",
+   "o": [
+    "twee buren",
+    "twee collega's",
+    "een klant en een chauffeur"
+   ]
+  },
+  {
+   "regels": [
+    {
+     "s": "A",
+     "t": "Stopt deze bus bij het zwembad?"
+    },
+    {
+     "s": "C",
+     "t": "Ja, dat is de derde halte."
+    }
+   ],
+   "v": "Wie praten er?",
+   "o": [
+    "een reiziger en een chauffeur",
+    "een cursist en een docent",
+    "een vader en een zoon"
+   ]
+  }
+ ],
+ "dictee": [
+  "Kun jij morgen mijn dienst doen?",
+  "Er is een pakje voor u gekomen."
+ ]
+}

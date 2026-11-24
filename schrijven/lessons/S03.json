@@ -1,0 +1,74 @@
+{
+ "id": "S03",
+ "trede": 1,
+ "titel": "Zinnen uit het hoofd",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl",
+  "daarna"
+ ],
+ "woorden": [
+  {
+   "nl": "het hoofd",
+   "en": "head (uit het hoofd = from memory)",
+   "beeld": "🧠",
+   "zin": "Ik schrijf de zin uit het hoofd.",
+   "thema": "gezondheid"
+  }
+ ],
+ "uitleg": [
+  {
+   "nl": "Lees de zin goed. Schrijf de zin daarna uit het hoofd.",
+   "en": "Read the sentence well. Then write it from memory."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "Ik ben Sara.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik woon in Utrecht.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik kom uit een warm land.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik heb twee kinderen.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik werk in een winkel.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik ga met de bus naar school.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Ik drink graag koffie.",
+   "geheugen": true
+  },
+  {
+   "soort": "typ",
+   "toon": "Mijn telefoon is nieuw.",
+   "geheugen": true
+  }
+ ]
+}

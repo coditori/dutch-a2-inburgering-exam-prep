@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lezen – snel zoeken</title>
+<link rel="stylesheet" href="../../shared/app.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../lezen.js"></script>
+<script>
+// Snel zoeken: vind de prijs / datum / tijd in de tekst binnen 20 seconden. Klik op het antwoord. Inhoud: snelzoeken.json
+// In de tekst staan de klikbare stukjes tussen [haken]; "goed" is het nummer van het goede stukje (0 = eerste).
+(async () => {
+  const { el } = App;
+  const SECONDEN = 20;
+  const data = await Lezen.json('snelzoeken.json');
+  Lezen.ronde({
+    id: 'snelzoeken', titel: 'Snel zoeken', na: data.na, items: data.items, n: 8,
+    uitleg: `Lees eerst de vraag. Zoek het antwoord in de tekst en klik erop. U hebt ${SECONDEN} seconden.`, uitlegEn: 'Read the question first. Find the answer in the text and click it. You have 20 seconds.',
+    teken(doel, item, klaar) {
+      let nr = 0, af = false;
+      const stukjes = [];
+      const balk = el('i', { style: 'width:100%;background:var(--accent)' });
+      const vak = el('div', { class: 'tekstvak soort-' + (item.soort || 'bordje') }, item.kop ? el('h3', {}, item.kop) : null);
+      item.tekst.forEach((regel) => {
+        const p = el('p');
+        regel.split(/(\[[^\]]+\])/).forEach((deel) => {
+          if (!deel.startsWith('[')) { p.append(deel); return; }
+          const mijn = nr++;
+          const k = el('button', { class: 'knop licht klein', onclick: () => einde(mijn) }, deel.slice(1, -1));
+          stukjes.push(k);
+          p.append(k);
+        });
+        vak.append(p);
+      });
+      const start = Date.now();
+      const tik = setInterval(() => {
+        const over = SECONDEN - (Date.now() - start) / 1000;
+        balk.style.width = Math.max(0, 100 * over / SECONDEN) + '%';
+        if (over <= 0) einde(-1);
+      }, 100);
+      function einde(keuze) {
+        if (af) return;
+        af = true;
+        clearInterval(tik);
+        stukjes.forEach((k, i) => { k.disabled = true; if (i === item.goed) k.style.cssText = 'background:var(--goed-zacht);border-color:var(--goed);color:var(--tekst);opacity:1'; });
+        if (keuze >= 0 && keuze !== item.goed) stukjes[keuze].style.cssText = 'background:var(--fout-zacht);border-color:var(--fout);color:var(--tekst);opacity:1';
+        klaar(keuze === item.goed, keuze < 0 ? el('p', { class: 'zacht' }, 'De tijd is om.') : null);
+      }
+      doel.append(el('p', { class: 'v', style: 'font-weight:700;font-size:1.2rem' }, App.woorden(item.v)), el('div', { class: 'balk', style: 'margin-bottom:12px' }, balk), vak);
+    },
+  });
+})();
+</script>
+</body>
+</html>

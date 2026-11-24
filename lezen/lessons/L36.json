@@ -1,0 +1,164 @@
+{
+ "id": "L36",
+ "trede": 4,
+ "titel": "Bestellen op internet",
+ "soort": "tekst",
+ "woorden": [
+  {
+   "nl": "de bestelling",
+   "en": "order",
+   "beeld": "🛒📦",
+   "zin": "Mijn bestelling komt morgen.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de garantie",
+   "en": "guarantee / warranty",
+   "beeld": "🛡️",
+   "zin": "Op de wasmachine zit twee jaar garantie.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "de klantenservice",
+   "en": "customer service",
+   "beeld": "🎧",
+   "zin": "Ik bel de klantenservice van de winkel.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "het product",
+   "en": "product",
+   "beeld": "🏷️",
+   "zin": "Dit product is in de aanbieding.",
+   "thema": "winkelen",
+   "vormen": [
+    "producten"
+   ]
+  },
+  {
+   "nl": "beschadigd",
+   "en": "damaged",
+   "beeld": "💥",
+   "zin": "De doos is beschadigd.",
+   "thema": "winkelen"
+  },
+  {
+   "nl": "omruilen",
+   "en": "to exchange (goods)",
+   "beeld": "🔁",
+   "zin": "Ik wil deze jas omruilen voor een grotere maat.",
+   "thema": "winkelen",
+   "vormen": [
+    "ruil",
+    "ruilt",
+    "om",
+    "omgeruild",
+    "omruilt"
+   ]
+  },
+  {
+   "nl": "de doos",
+   "en": "box",
+   "beeld": "📦",
+   "zin": "De schoenen zitten in een doos.",
+   "thema": "winkelen",
+   "vormen": [
+    "dozen"
+   ]
+  },
+  {
+   "nl": "de spullen",
+   "en": "things / stuff",
+   "beeld": "🧳",
+   "zin": "Ik neem mijn spullen mee.",
+   "thema": "algemeen"
+  }
+ ],
+ "teksten": [
+  {
+   "intro": "Lisa wil een wasmachine kopen op internet. Zij leest de informatie van de winkel.",
+   "kop": "Bezorgen en omruilen",
+   "soort": "tekst",
+   "tekst": [
+    "# Bezorgen",
+    "Bestelt u vóór 22.00 uur? Dan bezorgen wij uw bestelling de volgende werkdag. Bestellingen van meer dan € 50 bezorgen wij gratis. Bij een kleinere bestelling betaalt u € 4,95.",
+    "Grote producten, bijvoorbeeld een wasmachine of een koelkast, bezorgen wij alleen op dinsdag en vrijdag. Wij zetten het product in de kamer die u kiest. Woont u boven de derde verdieping en is er geen lift? Dan zetten wij het product beneden bij de ingang.",
+    "U krijgt op de dag van het bezorgen een bericht met de tijd. Er moet iemand thuis zijn.",
+    "# Omruilen",
+    "Bent u niet blij met het product? U kunt het binnen 30 dagen omruilen of terugsturen. Het product moet in de doos zitten en mag niet gebruikt zijn. Terugsturen is gratis.",
+    "# Garantie",
+    "Op alle producten zit twee jaar garantie. Is het product beschadigd als u het krijgt? Bel dan binnen twee dagen onze klantenservice en vertel wat er kapot is."
+   ],
+   "vragen": [
+    {
+     "sit": "Lisa woont op de vijfde verdieping. In het gebouw is geen lift.",
+     "v": "Waar zet de winkel de wasmachine?",
+     "o": [
+      "beneden bij de ingang",
+      "in haar badkamer",
+      "bij de buren",
+      "bij de lift"
+     ],
+     "b": "Dan zetten wij het product beneden bij de ingang."
+    },
+    {
+     "sit": "Lisa bestelt de wasmachine op woensdag om 21.00 uur.",
+     "v": "Wanneer wordt de wasmachine bezorgd?",
+     "o": [
+      "op vrijdag",
+      "op donderdag",
+      "op dinsdag",
+      "op woensdag"
+     ],
+     "b": "Grote producten, bijvoorbeeld een wasmachine of een koelkast, bezorgen wij alleen op dinsdag en vrijdag."
+    },
+    {
+     "sit": "Lisa heeft de wasmachine één keer gebruikt. Zij vindt de wasmachine te klein.",
+     "v": "Kan zij de wasmachine omruilen?",
+     "o": [
+      "Nee, want zij heeft de wasmachine al gebruikt.",
+      "Ja, binnen 30 dagen.",
+      "Ja, maar zij betaalt € 4,95.",
+      "Nee, omruilen kan alleen bij kleine producten."
+     ],
+     "b": "Het product moet in de doos zitten en mag niet gebruikt zijn."
+    }
+   ]
+  },
+  {
+   "intro": "Lisa krijgt een bericht van de winkel.",
+   "soort": "sms",
+   "tekst": [
+    "Beste klant,",
+    "Wij bezorgen uw bestelling vandaag tussen 13.00 en 15.00 uur.",
+    "Bent u niet thuis? Dan proberen wij het morgen nog één keer. Daarna gaan uw spullen terug naar de winkel en moet u een nieuwe afspraak maken met de klantenservice. Dat kost € 15."
+   ],
+   "vragen": [
+    {
+     "sit": "Lisa is vandaag en morgen niet thuis.",
+     "v": "Wat gebeurt er met haar bestelling?",
+     "o": [
+      "De bestelling gaat terug naar de winkel.",
+      "De bestelling blijft bij de buren.",
+      "De bestelling staat bij de ingang."
+     ],
+     "b": "Daarna gaan uw spullen terug naar de winkel en moet u een nieuwe afspraak maken met de klantenservice."
+    },
+    {
+     "v": "Hoeveel kost een nieuwe afspraak voor het bezorgen?",
+     "o": [
+      "€ 15",
+      "niets",
+      "€ 4,95"
+     ],
+     "b": "Dat kost € 15."
+    }
+   ]
+  }
+ ],
+ "onthoud": [
+  "U kunt het binnen 30 dagen {omruilen} of terugsturen.",
+  "Op alle producten zit twee jaar {garantie}.",
+  "Is het product {beschadigd} als u het krijgt?"
+ ]
+}

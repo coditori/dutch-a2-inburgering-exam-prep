@@ -1,0 +1,77 @@
+{
+ "id": "S02",
+ "trede": 1,
+ "titel": "Hoofdletter en punt",
+ "namen": [
+  "Sara",
+  "Utrecht",
+  "Anna",
+  "Amsterdam",
+  "Tom",
+  "Nederland",
+  "Vries",
+  "Parkstraat",
+  "nl"
+ ],
+ "woorden": [],
+ "uitleg": [
+  {
+   "nl": "Een zin heeft een hoofdletter en een punt.",
+   "en": "A sentence has a capital letter and a full stop."
+  },
+  {
+   "nl": "Een naam heeft ook een hoofdletter: Anna, Utrecht, Nederland.",
+   "en": "A name also has a capital: Anna, Utrecht, Nederland."
+  }
+ ],
+ "oefeningen": [
+  {
+   "soort": "typ",
+   "toon": "mijn naam is sara",
+   "goed": "Mijn naam is Sara.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "de winkel is dicht",
+   "goed": "De winkel is dicht.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "anna woont in amsterdam",
+   "goed": "Anna woont in Amsterdam.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "ik heb een fiets",
+   "goed": "Ik heb een fiets.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "wij gaan naar de markt",
+   "goed": "Wij gaan naar de markt.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "tom werkt op maandag",
+   "goed": "Tom werkt op maandag.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "het is koud vandaag",
+   "goed": "Het is koud vandaag.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  },
+  {
+   "soort": "typ",
+   "toon": "ik kom uit nederland",
+   "goed": "Ik kom uit Nederland.",
+   "vraag": "Schrijf de zin goed: met een hoofdletter en een punt."
+  }
+ ]
+}
