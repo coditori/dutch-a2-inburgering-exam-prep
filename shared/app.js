@@ -405,6 +405,10 @@ window.App = (() => {
   // ---------- overzicht van de vijf examens: lessen, toetsen en wat de leerling al deed (startpagina en profiel) ----------
   const NAMEN = { lezen: 'Lezen', luisteren: 'Luisteren', schrijven: 'Schrijven', spreken: 'Spreken', knm: 'KNM' };
   const haal = (pad) => fetch(WORTEL + pad, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
+  // de kop van het grote vak boven aan een overzicht: het teken en de naam van het examen, groot. Zo ziet u meteen waar u bent.
+  const sectieKop = (map) => [
+    el('span', { class: 'oogje', en: 'today' }, 'Vandaag'),
+    el('h3', { class: 'sectie-naam' }, el('span', { class: 'sectie-icoon', 'aria-hidden': 'true' }, teken(map)), NAMEN[map])];
   function overzicht() {
     return Promise.all(EXAMENS.map(async (map) => {
       // lessen staan in lessons/ ; bij KNM in themes/ (elk thema = 4 stappen: woorden, weetjes, situaties, meer weetjes)
@@ -424,5 +428,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, sectieKop, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

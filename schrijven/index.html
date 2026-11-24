@@ -48,7 +48,8 @@
   const P = Schrijven.P;
   const eerste = lessen.find((l, i) => !Schrijven.gehaald(l.id) && Schrijven.isOpen(lessen, i));
   document.getElementById('vandaag').append(
-    el('h3', { en: 'today' }, 'Vandaag'),
+    ...App.sectieKop('schrijven'), // het teken en de naam van dit examen: zo ziet u waar u bent
+   
     el('p', {}, `${lessen.filter((l) => Schrijven.gehaald(l.id)).length} van ${lessen.length} lessen gehaald.`),
     el('p', { class: 'zacht', en: 'The exam is with pen and paper. Write every answer by hand too.' }, 'Het examen is met pen en papier. Schrijf elk antwoord ook met de hand.'),
     el('div', { class: 'knoppen' }, eerste ? el('a', { class: 'knop', href: `les.html?les=${eerste.id}`, en: 'next lesson' }, `Les ${eerste.id}: ${eerste.titel}`) : null));

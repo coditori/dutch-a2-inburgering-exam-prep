@@ -638,3 +638,8 @@ a.ring { color: inherit; text-decoration: none; border-radius: 50%; transition: 
 .kaart-antwoord b { font-size: 1.25rem; }
 .kaart-zin { display: inline-flex; align-items: center; gap: 8px; margin: 12px auto 0; padding: 8px 8px 8px 16px; border-radius: 999px; background: var(--accent-zacht); color: var(--op-accent-zacht); font-size: 1.05rem; text-align: left; }
 .kaart-zin .rond { background: var(--vlak); width: 36px; height: 36px; }
+/* overzicht van een examen: de naam van het examen staat groot in het bovenste vak, met het teken ervoor */
+#vandaag.kaart h3.sectie-naam { display: flex; align-items: center; gap: 14px; margin: 0 0 .35em; font-size: clamp(1.7rem, 1.2rem + 2vw, 2.2rem); font-weight: 750; letter-spacing: -.03em; line-height: 1.1; }
+.sectie-icoon { display: flex; align-items: center; justify-content: center; flex: none; width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.18); }
+.sectie-icoon .icoon { width: 28px; height: 28px; }
+@media (max-width: 560px) { .sectie-icoon { width: 44px; height: 44px; border-radius: 14px; } .sectie-icoon .icoon { width: 24px; height: 24px; } }

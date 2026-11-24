@@ -44,7 +44,8 @@
   const nu = KNM.Kaarten.aanDeBeurt().length;
   const naam = (id) => { const t = themas.find((x) => id.startsWith(x.id + '-')); const s = KNM.STAPPEN.find((x) => x[0] === id.slice(-1)); return `${t.titel}: ${s[1]}`; };
   document.getElementById('vandaag').append(
-    el('h3', { en: 'today' }, 'Vandaag'),
+    ...App.sectieKop('knm'), // het teken en de naam van dit examen: zo ziet u waar u bent
+   
     el('p', {}, `${alle.filter(KNM.gehaald).length} van ${alle.length} lessen gehaald. ${KNM.Kaarten.bekend()} weetjes gekend.`),
     el('div', { class: 'knoppen' },
       el('a', { class: 'knop' + (nu ? '' : ' licht'), href: 'herhaal.html', en: 'review facts' }, `Weetjes herhalen: ${nu}`),
