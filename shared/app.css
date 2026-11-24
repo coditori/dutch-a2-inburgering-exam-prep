@@ -767,3 +767,56 @@ body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
 .foutlijst p { margin: 0 0 10px; }
 .foutlijst-rij { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .knop.foutknop { background: var(--vlak); color: var(--fout); border-color: var(--fout); }
+
+/* ---------- telefoon: wat krap of scheef stond ---------- */
+/* de knop met de i in het blauwe vak van de startpagina: wit, en de uitleg in een licht vak */
+#vandaag.kaart .infoknop { color: #fff; }
+#vandaag.kaart .infoknop.open, #vandaag.kaart .infoknop:hover { background: rgba(255,255,255,.2); color: #fff; }
+#vandaag.kaart p.uitleg-tekst { background: rgba(255,255,255,.14); color: #fff; opacity: 1; }
+/* knoppen naast elkaar als ze op één regel passen; past het niet, dan elk op een eigen regel over de hele breedte. Nooit een halve regel leeg. */
+@media (max-width: 560px) {
+  .knoppen > .knop { flex: 1 1 max-content; }
+  /* blauw vak: het rondje staat rechtsboven, de tekst en de knoppen gebruiken de hele breedte */
+  .held-rij { display: block; position: relative; }
+  .held-rij > .ring { position: absolute; top: -4px; right: -4px; width: 72px; height: 72px; }
+  .held-rij > .ring b { font-size: 1.05rem; } .held-rij > .ring span { font-size: .58rem; }
+  .held-rij:has(> .ring) h2, .held-rij:has(> .ring) .oogje + h2 + p { padding-right: 76px; }
+  #vandaag .knoppen { gap: 8px; }
+  #vandaag .knoppen > .knop { flex: 1 1 100%; }
+  #vandaag .knoppen > .knop.licht { flex: 1 1 0; min-width: 0; padding-inline: 10px; font-size: .9rem; line-height: 1.25; }
+  /* het vak "Log in en bewaar uw voortgang": teken en kop op één regel, de knoppen eronder over de hele breedte */
+  .acc { gap: 10px 12px; }
+  .acc > div:first-of-type { flex: 1 1 0; }
+  .acc > .knoppen { flex: 1 1 100%; }
+  /* profiel: het naamveld en de knop Delen even breed */
+  .pnaam { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+  .pnaam > .knop { width: 100%; } .pnaam input { flex: none; width: 100%; }
+  /* de drie getallen op de startpagina: de tekst eronder past op twee regels */
+  .cijfers span { font-size: .72rem; overflow-wrap: normal; }
+}
+@media (max-width: 340px) { .cijfers > * { padding: 10px 8px; } .cijfers span { font-size: .66rem; } }
+@media (max-width: 380px) {
+  /* profielkaart op een smalle telefoon: kleiner rondje en teken, zodat de naam en de zin plek hebben */
+  .pkaart-kop { padding: 16px; gap: 10px; }
+  .pkaart-kop .avatar { width: 40px; height: 40px; font-size: 1.1rem; }
+  .pkaart-kop .ring { width: 60px; height: 60px; } .pkaart-kop .ring b { font-size: .95rem; }
+  .pkaart-kop p { font-size: .85rem; line-height: 1.35; }
+  .prij { padding-inline: 14px; gap: 4px 10px; }
+}
+/* een regel van de profielkaart: past "3 van 38 lessen" niet naast de naam, dan komt het er heel onder (niet half afgebroken) */
+.prij-naam { flex-wrap: wrap; } .prij-naam span { white-space: nowrap; }
+/* Mijn woorden: de notitie gebruikt de hele breedte; "Bewaard" staat even in het veld zelf */
+.mw-notitie { position: relative; }
+.mw-notitie .stand { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); min-width: 0; padding: 0 6px; border-radius: 999px; background: var(--vlak); pointer-events: none; }
+@media (max-width: 560px) {
+  /* de filters op één regel die opzij rolt, in plaats van drie regels */
+  .mw-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -4px; padding: 2px 4px; }
+  .mw-filters::-webkit-scrollbar { display: none; }
+  .mw-filters > *, .mw-filters .rechts > * { flex: none; }
+  /* de vier groottes van de tekst passen naast elkaar */
+  .tekstkeuze .keuze-rij span { padding-inline: 2px; font-size: min(.8rem, 3.1vw); }
+  /* de tabel "Woorden die u kent": smalle laatste kolom met kleine letters */
+  .kaart .ladder td:last-child { font-size: .8rem; line-height: 1.35; }
+  .kaart .ladder th { white-space: nowrap; }
+}
+@media (max-width: 380px) { .opties.beelden .optie { min-width: 80px; } }

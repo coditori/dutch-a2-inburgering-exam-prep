@@ -67,7 +67,7 @@
       el('span', { class: 'oogje' }, 'Inburgering A2'),
       nieuw
         ? [el('h2', { en: 'practice for the civic integration exam' }, 'Oefen voor het inburgeringsexamen'),
-          el('p', { en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.')]
+          el('p', { class: 'uitleg', en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.')]
         : [el('h2', { en: 'continue' }, 'Ga verder'),
           el('p', {}, tel.nu
             ? el('span', { en: 'cards to review today' }, `Vandaag: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'} om te herhalen.`)
@@ -79,6 +79,7 @@
         nieuw ? null : el('a', { class: 'knop licht', href: 'profiel.html', en: 'show your friends how far you are' }, teken('deel'), 'Deel uw voortgang'))),
     nieuw ? null : el('a', { class: 'ring', href: 'profiel.html', style: `--p:${procent}`, title: 'uw profiel', 'aria-label': `${procent} procent van de lessen gehaald. Ga naar uw profiel.` },
       el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))));
+  App.uitleg(document.getElementById('vandaag')); // de uitleg in het blauwe vak staat achter de i naast de kop
 
   // elk getal is een link naar het stuk van de pagina waar het over gaat
   const getal = (n, van, tekst, en, href) => el('a', { href }, el('b', {}, String(n), el('small', {}, ` / ${van}`)), el('span', { en }, tekst));
@@ -101,12 +102,13 @@
       el('span', { class: 'ex-icoon', 'aria-hidden': 'true' }, teken('mens')),
       el('div', {},
         el('h3', { en: 'log in and keep your progress' }, 'Log in en bewaar uw voortgang'),
-        el('p', { class: 'zacht klein', en: 'With Google. Then you lose nothing, everything is also on your other phone, and you have your own profile for your friends.' },
+        el('p', { class: 'zacht klein uitleg', en: 'With Google. Then you lose nothing, everything is also on your other phone, and you have your own profile for your friends.' },
           'Met Google. Dan raakt u niets kwijt, staat alles ook op uw andere telefoon, en hebt u een eigen profiel voor uw vrienden.'),
         s.fout ? el('p', { class: 'uitslag fout klein', en: 'Logging in did not work. Try again.' }, s.fout === 'venster' ? 'De browser hield het venster van Google tegen. Sta pop-ups toe en probeer het opnieuw.' : 'Inloggen is niet gelukt. Probeer het opnieuw.') : null),
       el('div', { class: 'knoppen', style: 'margin:0' },
         el('button', { type: 'button', class: 'knop', disabled: s.status === 'bezig', en: 'log in with Google', onclick: () => window.Account.login() }, 'Log in met Google'),
         el('button', { type: 'button', class: 'knop tekst klein', en: 'not now', onclick: () => { App.schrijf('account-tip-weg', SRS.vandaag() + 7); tip.textContent = ''; } }, 'Niet nu'))));
+    App.uitleg(tip); // de lange tekst staat achter de i naast de kop
   });
   // kwam er voortgang van het account (u logde in op een nieuw apparaat)? Dan de pagina opnieuw, met de nieuwe getallen.
   document.addEventListener('account-gegevens', () => location.reload());
