@@ -634,6 +634,7 @@ window.FA = {
 "Like the real exam: read the question first, then listen. You may listen again. No text, no slow button. You see the result at the end.": "مثل آزمون واقعی: اول سؤال را بخوانید، بعد گوش کنید. می‌توانید دوباره گوش کنید. بدون متن، بدون دکمه آهسته. نتیجه را در پایان می‌بینید.",
 "Like the real exam: read the question first, then the text. No word help during the test. You see the result at the end.": "مثل آزمون واقعی: اول سؤال را بخوانید، بعد متن را. در طول آزمون کمک لغت ندارید. نتیجه را در پایان می‌بینید.",
 "like this device": "مانند این دستگاه",
+"link copied": "پیوند کپی شد",
 "lip": "لب",
 "listen": "گوش کنید",
 "listen again": "دوباره گوش کنید",
