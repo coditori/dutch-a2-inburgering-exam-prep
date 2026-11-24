@@ -26,11 +26,8 @@
   const bewaar = () => App.schrijf('luisteren-bezig', stand);
   const verder = () => { Luister.stop(); stand.stap++; bewaar(); toon(); };
   const knopVerder = (tekst, en) => el('button', { class: 'knop', en: en || 'next', onclick: verder }, tekst || 'Verder');
-  function balk() {
-    const s = document.getElementById('stappen');
-    s.textContent = '';
-    stappen.forEach((_, i) => s.append(el('i', { class: i <= stand.stap ? 'aan' : '' })));
-  }
+  // de balk is klikbaar: terug naar elke stap waar u al was (stand.max)
+  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga: (i) => { Luister.stop(); stand.stap = i; bewaar(); toon(); } });
 
   // ---------- woorden ----------
   function toonWoorden() {
@@ -55,12 +52,12 @@
   function toonItem(ii) {
     const it = items[ii];
     const eersteNr = vragen.findIndex((q) => q.ii === ii);
-    const vraagDoel = el('div'), onder = el('div'), kijk = el('div');
+    const nav = el('div'), vraagDoel = el('div'), onder = el('div'), kijk = el('div');
     pagina.append(...[
       el('h2', { en: 'listen, then choose' }, `Luister en kies (${ii + 1} / ${items.length})`),
       les.trede >= 3 ? el('p', { class: 'zacht klein', en: 'Read the question first. Then listen.' }, 'Lees eerst de vraag. Luister daarna.') : null,
       it.context ? el('p', { class: 'context' }, App.woorden(it.context, nieuw)) : null,
-      Luister.speler(it.regels), vraagDoel, onder, kijk].filter(Boolean));
+      Luister.speler(it.regels), nav, vraagDoel, onder, kijk].filter(Boolean));
 
     function toonKijk() {
       const tr = Luister.transcript(it.regels, nieuw);
@@ -72,16 +69,25 @@
     }
     function toonVraag(k) {
       onder.textContent = '';
-      if (k >= it.vragen.length) { vraagDoel.textContent = ''; return toonKijk(); }
+      if (k >= it.vragen.length) return toonKijk(); // de laatste vraag blijft staan boven de tekst
+      kijk.textContent = '';
       const nr = eersteNr + k, v = it.vragen[k], al = stand.antwoorden[nr];
-      const na = (goed) => {
+      // bij meer vragen over één fragment: 1 2 3, klik om een vorige vraag terug te zien
+      const tekenNav = () => { nav.textContent = ''; if (it.vragen.length > 1) nav.append(App.vraagKnoppen(it.vragen.length, k, (i) => { const a = stand.antwoorden[eersteNr + i]; return a == null ? null : a === 0 ? 'goed' : 'fout'; }, toonVraag)); };
+      tekenNav();
+      const na = (goed, nieuwAntwoord) => {
+        const laatste = k === it.vragen.length - 1;
+        tekenNav();
         onder.textContent = '';
-        onder.append(el('p', { class: 'uitslag ' + (goed ? 'goed' : 'fout') }, goed ? '✔ Goed!' : '✘ Niet goed. ' + (v.typ ? 'Het goede antwoord: ' + v.typ : 'Het goede antwoord is groen.')),
-          el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: () => toonVraag(k + 1) }, 'Verder')));
+        onder.append(el('p', { class: 'uitslag ' + (goed ? 'goed' : 'fout') }, goed ? '✔ Goed!' : '✘ Niet goed. ' + (v.typ ? 'Het goede antwoord: ' + v.typ : 'Het goede antwoord is groen.')));
+        if (!nieuwAntwoord && laatste) return toonKijk(); // terugkijken: de tekst staat er meteen onder
+        const knop = el('button', { class: 'knop', en: 'next', onclick: () => toonVraag(k + 1) }, 'Verder');
+        onder.append(el('div', { class: 'knoppen' }, knop));
+        if (nieuwAntwoord && goed) App.goed(knop);
       };
       if (v.typ) { // typ wat u hoort (een getal, een tijd)
         const invoer = el('input', { class: 'typ', autocomplete: 'off', inputmode: 'text' });
-        const klaar = () => { if (invoer.disabled) return; invoer.disabled = true; const goed = schoon(invoer.value) === schoon(v.typ); stand.antwoorden[nr] = goed ? 0 : 1; bewaar(); na(goed); };
+        const klaar = () => { if (invoer.disabled) return; invoer.disabled = true; const goed = schoon(invoer.value) === schoon(v.typ); stand.antwoorden[nr] = goed ? 0 : 1; bewaar(); na(goed, true); };
         invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter') klaar(); });
         vraagDoel.textContent = '';
         vraagDoel.append(el('div', { class: 'vraag' }, el('p', { class: 'v', en: v.en || 'Type the number you hear (digits).' }, v.v || 'Typ het getal dat u hoort (in cijfers).'), invoer, ' ',
@@ -90,12 +96,12 @@
         return;
       }
       const blok = Lezen.vraag(vraagDoel, v, { nieuw, gekozen: al == null ? undefined : al, toonGoed: al != null,
-        op: (keuze) => { stand.antwoorden[nr] = keuze; bewaar(); blok.teken(keuze, true); na(keuze === 0); } });
+        op: (keuze) => { stand.antwoorden[nr] = keuze; bewaar(); blok.teken(keuze, true); na(keuze === 0, true); } });
       if (al != null) na(al === 0);
     }
     const schoon = (s) => String(s).toLowerCase().replace(/[\s€-]/g, '').replace(/,/g, '.').replace(/^0+(?=\d)/, '').replace(/[:.]/g, '.').replace(/uur$/, '');
     const open = it.vragen.findIndex((_, i) => stand.antwoorden[eersteNr + i] == null);
-    if (open < 0) toonKijk(); else toonVraag(open);
+    toonVraag(open < 0 ? it.vragen.length - 1 : open);
     if (open >= 0) Luister.speel(it.regels).catch(() => {}); // begint meteen (kan door de browser geblokkeerd zijn: dan ▶)
   }
 
@@ -175,8 +181,10 @@
   function toon() {
     App.sluitPop(); Luister.stop();
     pagina.textContent = '';
+    stand.stap = Math.max(0, Math.min(stand.stap, stappen.length - 1));
+    stand.max = Math.max(stand.max || 0, stand.stap);
     balk();
-    const s = stappen[stand.stap] || stappen[stappen.length - 1];
+    const s = stappen[stand.stap];
     if (s.soort === 'woorden') toonWoorden(); else if (s.soort === 'item') toonItem(s.ii);
     else if (s.soort === 'dictee') toonDictee(); else if (s.soort === 'zegna') toonZegNa(); else toonKlaar();
     window.scrollTo(0, 0);

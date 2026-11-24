@@ -29,11 +29,8 @@
   if (terugModus || !stand || stand.les !== les.id) stand = { les: les.id, stap: terugModus ? 1 : 0, goed: [], start: Date.now() };
   const bewaar = () => { if (!terugModus) App.schrijf('spreken-bezig', stand); };
 
-  function balk() {
-    const s = document.getElementById('stappen');
-    s.textContent = '';
-    for (let i = 0; i <= items.length + 1; i++) s.append(el('i', { class: i <= stand.stap ? 'aan' : '' }));
-  }
+  // de balk is klikbaar: terug naar elke stap waar u al was (stand.max). Bij "vragen van eerder" is er geen stap 0 (uitleg).
+  const balk = () => App.balk({ n: items.length + 2, nu: stand.stap, max: stand.max, min: terugModus ? 1 : 0, ga: (i) => { stand.stap = i; bewaar(); toon(); } });
   const verder = () => { stand.stap++; bewaar(); toon(); };
 
   function toonUitleg() {
@@ -160,6 +157,8 @@
   function toon() {
     App.sluitPop(); Spraak.stop();
     pagina.textContent = '';
+    stand.stap = Math.max(0, Math.min(stand.stap, items.length + 1));
+    stand.max = Math.max(stand.max || 0, stand.stap);
     balk();
     if (!items.length) { pagina.append(el('p', { class: 'kaart' }, 'Er zijn vandaag geen vragen die terugkomen.'), el('a', { class: 'knop', href: 'index.html' }, 'Overzicht')); return; }
     if (stand.stap === 0) toonUitleg();

@@ -3,7 +3,7 @@
 .weetje { text-align: center; min-height: 220px; }
 .weetje .vraagtekst { font-size: 1.2rem; font-weight: 700; }
 .weetje .antwoord { font-size: 1.1rem; margin-top: 12px; padding: 10px; background: var(--accent-zacht); border-radius: var(--rond); }
-.waarom { background: var(--geel); color: #1d2330; border-radius: var(--rond); padding: 8px 12px; margin-top: 10px; }
+.waarom { background: var(--geel); color: var(--tekst); border-radius: var(--rond); padding: 8px 12px; margin-top: 10px; }
 .stapjes { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
 .stapje { flex: 1; min-width: 86px; text-align: center; padding: 6px 4px; border: 1px solid var(--lijn); border-radius: 8px; text-decoration: none; color: var(--tekst); font-size: .85rem; background: var(--bg); }
 .stapje.klaar { background: var(--goed-zacht); border-color: var(--goed); }
@@ -20,3 +20,4 @@
 .kaartvak .stad.goed { fill: #1d7a46 !important; } .kaartvak .stad.fout { fill: #b3261e !important; }
 .kaartvak text { font: 11px system-ui, sans-serif; fill: #333; pointer-events: none; }
 .toetsvak { max-width: 760px; margin: 0 auto; padding: 14px 14px 100px; }
+@media (max-width: 560px) { .kplaat { font-size: 2.6rem; } .weetje { min-height: 180px; } .stapje { min-width: 70px; min-height: 40px; display: flex; align-items: center; justify-content: center; } }

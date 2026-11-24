@@ -5,27 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Instellingen</title>
 <link rel="stylesheet" href="shared/app.css">
+<script src="shared/thema.js"></script>
 </head>
 <body>
 <main>
+  <h2 data-en="look" style="margin-top:.4em">Uiterlijk</h2>
+  <div class="kaart">
+    <fieldset class="keuze" id="thema">
+      <legend class="zacht klein" data-en="theme" style="margin-bottom:8px">Thema</legend>
+      <label><input type="radio" name="thema" value="auto"><span data-en="like this device">🖥 Automatisch</span></label>
+      <label><input type="radio" name="thema" value="licht"><span data-en="light">☀ Licht</span></label>
+      <label><input type="radio" name="thema" value="donker"><span data-en="dark">🌙 Donker</span></label>
+    </fieldset>
+  </div>
+
   <h2 data-en="lessons">Lessen</h2>
   <div class="kaart">
     <label class="instelling"><input type="checkbox" id="open">
       <span><b data-en="open all lessons">Alle lessen open</b><br>
       <span class="zacht klein" data-en="No lock: you can open every lesson, trainer and test in all five exams. Your scores stay.">Geen slot: u kunt elke les, trainer en toets openen, in alle vijf examens. Uw scores blijven.</span></span></label>
-    <label class="instelling" style="border-bottom:0"><input type="checkbox" id="en">
+    <label class="instelling"><input type="checkbox" id="door">
+      <span><b data-en="go on automatically after a right answer">Vanzelf verder na een goed antwoord</b><br>
+      <span class="zacht klein" data-en="After a right answer you see “Goed antwoord!” and the next question comes by itself. After a wrong answer you click “Verder” yourself.">Na een goed antwoord ziet u “Goed antwoord!” en komt de volgende vraag vanzelf. Na een fout antwoord klikt u zelf op “Verder”.</span></span></label>
+    <label class="instelling"><input type="checkbox" id="en">
       <span><b data-en="show English with the buttons">Engels bij de knoppen</b><br>
       <span class="zacht klein">Dit is hetzelfde als de knop ❗ boven aan elke pagina.</span></span></label>
   </div>
 
-  <h2 data-en="your progress">Uw voortgang</h2>
+  <h2 data-en="your progress" id="voortgang">Uw voortgang</h2>
   <div class="kaart">
     <p data-en="Progress is saved in this browser, on this computer, for this address only. Another browser or another address (for example 127.0.0.1 instead of localhost) starts empty.">De voortgang staat in deze browser, op deze computer, alleen voor dit adres. Een andere browser of een ander adres (bijvoorbeeld 127.0.0.1 en niet localhost) begint leeg.</p>
     <table class="ladder" id="stand"></table>
     <div class="knoppen">
       <button class="knop licht" id="bewaar" data-en="save progress to a file">Bewaar in een bestand</button>
       <label class="knop licht" data-en="load progress from a file">Lees uit een bestand<input type="file" id="lees" accept="application/json" hidden></label>
-      <button class="knop licht" id="wis" data-en="delete all progress">Wis alles</button>
+    </div>
+  </div>
+
+  <h2 data-en="start again">Opnieuw beginnen</h2>
+  <div class="kaart">
+    <p data-en="Start one exam again with “Opnieuw” in the table above, or delete all progress here. Your settings stay. Tip: save your progress to a file first.">Begin één examen opnieuw met “Opnieuw” in de tabel hierboven, of wis hier alle voortgang. Uw instellingen blijven. Tip: bewaar uw voortgang eerst in een bestand.</p>
+    <div class="knoppen">
+      <button class="knop rood" id="wis" data-en="delete all progress and start again">Wis alle voortgang</button>
     </div>
     <p class="uitslag" id="melding"></p>
   </div>
@@ -46,10 +67,25 @@
   open.checked = App.instellingen().open;
   open.addEventListener('change', () => App.schrijf('instellingen', Object.assign(App.instellingen(), { open: open.checked })));
 
+  const door = document.getElementById('door');
+  door.checked = App.instellingen().door;
+  door.addEventListener('change', () => App.schrijf('instellingen', Object.assign(App.instellingen(), { door: door.checked })));
+
+  const themaKeuze = () => document.querySelectorAll('#thema input').forEach((r) => { r.checked = r.value === App.thema(); });
+  themaKeuze();
+  document.addEventListener('thema', themaKeuze); // ook als de knop ☀ / 🌙 in de kop is gebruikt
+  document.getElementById('thema').addEventListener('change', (e) => App.zetThema(e.target.value));
+
   const en = document.getElementById('en');
   en.checked = App.lees('en', false);
   en.addEventListener('change', () => { App.schrijf('en', en.checked); document.body.classList.toggle('en', en.checked); });
 
+  const zeg = (soort, tekst) => { melding.className = 'uitslag ' + soort; melding.textContent = tekst; };
+  // knop "Opnieuw" achter een regel: eerst vragen, dan wissen
+  const opnieuw = (wat, naam, en) => el('button', { class: 'knop licht klein', en: 'start again', onclick: async () => {
+    if (!await App.bevestig({ titel: `${naam} opnieuw beginnen?`, tekst: `Alle scores en lessen van ${naam} worden gewist. Dit kan niet terug.`, en: `All scores and lessons of ${en} will be deleted. This cannot be undone.`, ja: 'Wis' })) return;
+    App.wis(wat); stand(); zeg('goed', `✔ ${naam} begint opnieuw.`);
+  } }, 'Opnieuw');
   function stand() {
     const t = document.getElementById('stand');
     t.textContent = '';
@@ -58,11 +94,14 @@
       const lessen = Object.values(p.lessen || {});
       const gehaald = lessen.filter((r) => r && r.beste / r.totaal >= 0.8).length;
       const toetsen = Object.values(p.toets || {}).reduce((n, r) => n + (Array.isArray(r) ? r.length : 1), 0);
-      t.append(el('tr', {}, el('th', {}, x[0].toUpperCase() + x.slice(1)),
-        el('td', {}, `${gehaald} ${gehaald === 1 ? 'les' : 'lessen'} gehaald`), el('td', {}, `${toetsen} ${toetsen === 1 ? 'toets' : 'toetsen'} gedaan`)));
+      const naam = x === 'knm' ? 'KNM' : x[0].toUpperCase() + x.slice(1);
+      t.append(el('tr', {}, el('th', {}, naam),
+        el('td', {}, `${gehaald} ${gehaald === 1 ? 'les' : 'lessen'} gehaald`, el('br'), el('span', { class: 'zacht klein' }, `${toetsen} ${toetsen === 1 ? 'toets' : 'toetsen'} gedaan`)),
+        el('td', { style: 'text-align:right' }, opnieuw(x, naam, naam))));
     }
     const s = SRS.tel();
-    t.append(el('tr', {}, el('th', {}, 'Herhalen'), el('td', {}, `${s.totaal} kaarten`), el('td', {}, `${s.bekend} gekend`)));
+    t.append(el('tr', {}, el('th', { en: 'word cards' }, 'Herhalen'), el('td', {}, `${s.totaal} kaarten`, el('br'), el('span', { class: 'zacht klein' }, `${s.bekend} gekend`)),
+      el('td', { style: 'text-align:right' }, opnieuw('herhalen', 'Herhalen', 'the word cards'))));
   }
   stand();
 
@@ -83,20 +122,15 @@
       if (!sleutels.length) throw new Error('leeg');
       sleutels.forEach((k) => localStorage.setItem(k, o[k]));
       melding.className = 'uitslag goed'; melding.textContent = `✔ Voortgang gelezen (${sleutels.length} delen).`;
-      open.checked = App.instellingen().open; stand();
+      open.checked = App.instellingen().open; door.checked = App.instellingen().door; en.checked = App.lees('en', false); document.body.classList.toggle('en', en.checked); App.zetThema(App.thema()); stand();
     } catch (err) { melding.className = 'uitslag fout'; melding.textContent = '✘ Dit bestand is geen voortgang van deze site.'; }
     e.target.value = '';
   });
 
-  // wissen in twee stappen, zonder pop-up van de browser
-  const wis = document.getElementById('wis');
-  let zeker = false;
-  wis.addEventListener('click', () => {
-    if (!zeker) { zeker = true; wis.textContent = 'Zeker weten? Klik nog een keer'; wis.dataset.en = 'Are you sure? Click again'; setTimeout(() => { zeker = false; wis.textContent = 'Wis alles'; wis.dataset.en = 'delete all progress'; }, 5000); return; }
-    Object.keys(alles()).forEach((k) => localStorage.removeItem(k));
-    zeker = false; wis.textContent = 'Wis alles';
-    melding.className = 'uitslag goed'; melding.textContent = '✔ Alles is gewist.';
-    open.checked = false; en.checked = false; document.body.classList.remove('en'); stand();
+  document.getElementById('wis').addEventListener('click', async () => {
+    if (!await App.bevestig({ titel: 'Alle voortgang wissen?', tekst: 'Alle scores, lessen, toetsen, woordkaarten en uw eigen gegevens voor de formulieren worden gewist. Uw instellingen blijven. Dit kan niet terug.',
+      en: 'All scores, lessons, tests, word cards and your own form details will be deleted. Your settings stay. This cannot be undone.', ja: 'Wis alles' })) return;
+    App.wis(); stand(); zeg('goed', '✔ Alles is gewist. U begint opnieuw.');
   });
 })();
 </script>

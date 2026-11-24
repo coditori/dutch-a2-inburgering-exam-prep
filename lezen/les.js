@@ -23,11 +23,8 @@
   if (!stand || stand.les !== id) stand = { les: id, stap: 0, antwoorden: [], start: Date.now() };
   const bewaar = () => App.schrijf('lezen-bezig', stand);
 
-  function balk() {
-    const s = document.getElementById('stappen');
-    s.textContent = '';
-    stappen.forEach((_, i) => s.append(el('i', { class: i <= stand.stap ? 'aan' : '' })));
-  }
+  // de balk is klikbaar: terug naar elke stap waar u al was (stand.max)
+  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga: (i) => { stand.stap = i; bewaar(); toon(); } });
   function verder() { stand.stap++; bewaar(); toon(); }
   const knopVerder = (tekst, en) => el('button', { class: 'knop', en: en || 'next', onclick: verder }, tekst || 'Verder');
 
@@ -62,10 +59,11 @@
     const tekstDoel = el('div');
     const vraagDoel = el('div');
     const onder = el('div');
-    pagina.append(
+    const nav = el('div');
+    pagina.append(...[
       el('h2', { en: 'read, then answer' }, `2. Lees en kies (${ti + 1} / ${les.teksten.length})`),
       les.trede >= 4 ? el('p', { class: 'zacht klein', en: 'Read the question first. Then the text.' }, 'Lees eerst de vraag. Lees daarna de tekst.') : null,
-      tekstDoel, vraagDoel, onder);
+      tekstDoel, nav, vraagDoel, onder].filter(Boolean)); // append(null) zou het woord "null" tonen
     Lezen.tekst(tekstDoel, t, { nieuw });
 
     function toonVraag(k) {
@@ -74,21 +72,26 @@
       const nr = eersteNr + k;
       const v = eigen[k].v;
       const al = stand.antwoorden[nr];
+      // bij meer vragen over één tekst: 1 2 3, klik om een vorige vraag terug te zien
+      const tekenNav = () => { nav.textContent = ''; if (eigen.length > 1) nav.append(App.vraagKnoppen(eigen.length, k, (i) => { const a = stand.antwoorden[eersteNr + i]; return a == null ? null : a === 0 ? 'goed' : 'fout'; }, toonVraag)); };
+      tekenNav();
       const blok = Lezen.vraag(vraagDoel, v, {
         nieuw,
         gekozen: al == null ? undefined : al,
         toonGoed: al != null,
-        op: (keuze) => { stand.antwoorden[nr] = keuze; bewaar(); blok.teken(keuze, true); na(keuze); },
+        op: (keuze) => { stand.antwoorden[nr] = keuze; bewaar(); blok.teken(keuze, true); tekenNav(); na(keuze, true); },
       });
       Lezen.markeer(tekstDoel, null);
       if (al != null) na(al);
-      function na(keuze) {
+      function na(keuze, nieuwAntwoord) {
         Lezen.markeer(tekstDoel, v.b);
         onder.textContent = '';
-        onder.append(
+        const knop = el('button', { class: 'knop', en: 'next', onclick: () => toonVraag(k + 1) }, 'Verder');
+        onder.append(...[
           el('p', { class: 'uitslag ' + (keuze === 0 ? 'goed' : 'fout') }, keuze === 0 ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.'),
           v.b ? el('p', { class: 'zacht klein', en: 'The yellow sentence in the text holds the answer.' }, 'Het antwoord staat in de gele zin.') : null,
-          el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: () => toonVraag(k + 1) }, 'Verder')));
+          el('div', { class: 'knoppen' }, knop)].filter(Boolean));
+        if (nieuwAntwoord && keuze === 0) App.goed(knop);
       }
     }
     // eerste vraag van deze tekst die nog niet beantwoord is
@@ -142,8 +145,10 @@
   function toon() {
     App.sluitPop();
     pagina.textContent = '';
+    stand.stap = Math.max(0, Math.min(stand.stap, stappen.length - 1));
+    stand.max = Math.max(stand.max || 0, stand.stap);
     balk();
-    const s = stappen[stand.stap] || stappen[stappen.length - 1];
+    const s = stappen[stand.stap];
     if (s.soort === 'woorden') toonWoorden();
     else if (s.soort === 'tekst') toonTekst(s.ti);
     else if (s.soort === 'onthoud') toonOnthoud();
