@@ -127,8 +127,9 @@ def controleer_examen(lijst, examen, basis_per_trede, toon):
         trede = data.get("trede", 4)
         na = data.get("na")
         bekend = (geleerd_na.get(na, geleerd) if na else geleerd) | basis_per_trede.get(trede, set())
-        if pad.parent.name == "toets":
+        if pad.parent.name == "toets" or data.get("niveau") == "examen":
             # het echte examen heeft ook woorden die u niet kent: per tekst mogen er een paar in staan
+            # (ook voor een trainer met "niveau": "examen": die oefent juist de woorden van het examen)
             fouten = []
             eenheden = data.get("teksten") or data.get("items") or data.get("vragen") or []
             for ti, tekst in enumerate(eenheden):

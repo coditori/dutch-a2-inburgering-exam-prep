@@ -275,8 +275,8 @@
    "v": "Waar schrijft hij zich in?",
    "o": [
     "Bij een woningcorporatie.",
-    "Bij de Belastingdienst.",
-    "Bij een notaris."
+    "Bij een makelaar.",
+    "Bij de gemeente."
    ],
    "w": "Sociale huurwoningen zijn van woningcorporaties. Daar schrijft u zich in.",
    "beeld": "🏘️"
@@ -287,7 +287,7 @@
    "o": [
     "Een makelaar.",
     "De woningcorporatie.",
-    "Het UWV."
+    "De notaris."
    ],
    "w": "Een makelaar helpt bij het kopen en verkopen van huizen.",
    "beeld": "🏠"
@@ -297,8 +297,8 @@
    "v": "Wat moet zij doen?",
    "o": [
     "Haar nieuwe adres doorgeven aan de gemeente.",
-    "Niets: de gemeente weet het al.",
-    "Een brief sturen naar de politie."
+    "Niets: de verhuurder geeft het door aan de gemeente.",
+    "Haar nieuwe adres doorgeven aan de Belastingdienst."
    ],
    "w": "Een nieuw adres geeft u zelf door aan de gemeente waar u gaat wonen.",
    "beeld": "🚚"
@@ -308,8 +308,8 @@
    "v": "Wat kan hij aanvragen?",
    "o": [
     "Huurtoeslag bij de Belastingdienst.",
-    "Een hypotheek bij de bank.",
-    "Een verblijfsvergunning bij de gemeente."
+    "Huurtoeslag bij de gemeente.",
+    "Huurtoeslag bij de woningcorporatie."
    ],
    "w": "Huurtoeslag is geld van de overheid voor huurders die weinig verdienen.",
    "beeld": "💶"
@@ -319,8 +319,8 @@
    "v": "Wie belt zij?",
    "o": [
     "Het storingsnummer.",
-    "De politie.",
-    "De huisarts."
+    "112",
+    "De verhuurder."
    ],
    "w": "Bij een storing van energie belt u 0800 - 9009.",
    "beeld": "🔌"
@@ -330,8 +330,8 @@
    "v": "Wie moet de verwarming repareren?",
    "o": [
     "De verhuurder.",
-    "Tom zelf.",
-    "De gemeente."
+    "Tom zelf: de huurder betaalt alle reparaties.",
+    "Het energiebedrijf."
    ],
    "w": "Grote reparaties zijn voor de verhuurder. Meld het bij de verhuurder of de woningcorporatie.",
    "beeld": "🔧"
@@ -342,7 +342,7 @@
    "o": [
     "Een brief sturen aan de verhuurder en de opzegtermijn afwachten.",
     "De sleutel in de brievenbus doen en weggaan.",
-    "De gemeente bellen."
+    "Stoppen met het betalen van de huur."
    ],
    "w": "U zegt de huur op met een brief. Tijdens de opzegtermijn betaalt u nog huur.",
    "beeld": "📆"
@@ -353,7 +353,7 @@
    "o": [
     "Met de buren praten.",
     "De politie bellen.",
-    "Verhuizen."
+    "De woningcorporatie bellen."
    ],
    "w": "Eerst zelf praten. Helpt dat niet? Ga dan naar de woningcorporatie of de politie.",
    "beeld": "🔊"
@@ -374,8 +374,8 @@
    "v": "Welke verzekering betaalt het raam?",
    "o": [
     "De aansprakelijkheidsverzekering van Yusuf.",
-    "De zorgverzekering van Yusuf.",
-    "Geen verzekering: de gemeente betaalt."
+    "De inboedelverzekering van Yusuf.",
+    "De zorgverzekering van Yusuf."
    ],
    "w": "Ouders zijn verantwoordelijk voor hun kinderen. Hun aansprakelijkheidsverzekering betaalt.",
    "beeld": "🪟"
@@ -480,8 +480,8 @@
     "v": "Wie repareert dat?",
     "o": [
      "Sara zelf: het is een kleine reparatie.",
-     "De gemeente.",
-     "De notaris."
+     "De verhuurder: hij doet alle reparaties.",
+     "De Huurcommissie."
     ],
     "w": "Kleine reparaties doet en betaalt de huurder zelf.",
     "beeld": "🚰"
@@ -491,8 +491,8 @@
     "v": "Wat kan hij vragen?",
     "o": [
      "Kwijtschelding.",
-     "Een hypotheek.",
-     "Statiegeld."
+     "Huurtoeslag.",
+     "Bijstand."
     ],
     "w": "Met een heel klein inkomen kunt u kwijtschelding vragen bij de gemeente.",
     "beeld": "🏛️"
@@ -502,8 +502,8 @@
     "v": "Waar kan zij naartoe?",
     "o": [
      "Naar de Huurcommissie.",
-     "Naar het consultatiebureau.",
-     "Naar het UWV."
+     "Naar de notaris.",
+     "Naar de Belastingdienst."
     ],
     "w": "De Huurcommissie kijkt of de huur klopt.",
     "beeld": "⚖️"
@@ -514,7 +514,7 @@
     "o": [
      "Het energiebedrijf sluit de energie af.",
      "De gemeente betaalt de rekening.",
-     "Hij krijgt statiegeld terug."
+     "De verhuurder betaalt de rekening."
     ],
     "w": "Na een brief mag het energiebedrijf de energie afsluiten.",
     "beeld": "⚡"

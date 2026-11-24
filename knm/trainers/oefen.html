@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNM – trainer</title>
+<link rel="stylesheet" href="../../shared/app.css">
+<script src="../../shared/thema.js"></script>
+<link rel="stylesheet" href="../knm.css">
+</head>
+<body>
+<main><div id="pagina"></div></main>
+<script src="../../shared/woorden.js"></script>
+<script src="../../shared/srs.js"></script>
+<script src="../../shared/audio.js"></script>
+<script src="../../shared/app.js"></script>
+<script src="../../lezen/lezen.js"></script>
+<script src="../knm.js"></script>
+<script>
+// Twee trainers op examenniveau, één pagina: oefen.html?t=verwar (twee woorden die op elkaar lijken)
+// en oefen.html?t=lezen (kleine woorden in de vraag). Inhoud: verwar.json en lezen.json.
+(async () => {
+  const { el } = App;
+  const id = new URLSearchParams(location.search).get('t') === 'lezen' ? 'lezen' : 'verwar';
+  const data = await Lezen.json(`${id}.json`);
+  document.title = `KNM – ${data.titel}`;
+  App.kop(data.titel, '../index.html');
+  const pagina = document.getElementById('pagina');
+  const N = 15;
+  let rij, goed, nr;
+  const start = () => { rij = App.schud(data.items).slice(0, N); goed = 0; nr = 0; volgende(); };
+
+  function einde() {
+    const oud = KNM.P.trainers[id] || { beste: 0, keer: 0 };
+    KNM.P.trainers[id] = { beste: Math.max(oud.beste, goed), totaal: rij.length, keer: oud.keer + 1 }; KNM.bewaar();
+    pagina.append(el('div', { class: 'kaart midden' }, el('div', { class: 'groot' }, `${goed} / ${rij.length}`),
+      el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'again', onclick: start }, 'Nog een keer'),
+        el('button', { class: 'knop licht', en: 'the list', onclick: welkom }, 'De lijst'), el('a', { class: 'knop licht', href: '../index.html' }, 'Naar de thema\'s'))));
+  }
+  // na een antwoord: uitslag, uitleg en de knop Verder
+  function klaar(onder, ok, uitleg) {
+    if (ok) goed++;
+    nr++;
+    const verder = el('button', { class: 'knop', en: 'next', onclick: volgende }, 'Verder');
+    onder.append(el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.'), uitleg, el('div', { class: 'knoppen' }, verder));
+    if (ok) App.goed(verder);
+  }
+  const paarUitleg = (p) => el('div', { class: 'waarom' }, [p.a, p.b].map(([naam, wat]) => el('p', { style: 'margin:4px 0' }, el('b', {}, naam + ': '), wat)));
+
+  function volgende() {
+    pagina.textContent = '';
+    if (nr >= rij.length) return einde();
+    const item = rij[nr];
+    const onder = el('div');
+    pagina.append(el('p', { class: 'zacht klein' }, `${nr + 1} / ${rij.length}`));
+    if (data.paren) { // twee knoppen: de twee woorden van het paar
+      const p = data.paren[item.p];
+      const keuzes = App.schud(['a', 'b']);
+      const knoppen = keuzes.map((k) => el('button', { class: 'optie', onclick: () => {
+        knoppen.forEach((b, i) => { b.disabled = true; if (keuzes[i] === item.goed) b.classList.add('goed'); });
+        if (k !== item.goed) knoppen[keuzes.indexOf(k)].classList.add('fout');
+        klaar(onder, k === item.goed, paarUitleg(p));
+      } }, el('span', {}, p[k][0])));
+      pagina.append(el('div', { class: 'tekstvak soort-zin' }, App.woorden(item.v)),
+        el('p', { class: 'v', style: 'font-weight:700;margin-top:14px', en: 'Which word fits?' }, 'Welk woord past?'), el('div', {}, knoppen), onder);
+    } else { // gewone vraag met drie antwoorden
+      const doel = el('div');
+      pagina.append(doel, onder);
+      const blok = Lezen.vraag(doel, item, { op: (keuze) => { blok.teken(keuze, true); klaar(onder, keuze === 0, el('div', { class: 'waarom' }, el('b', { en: 'why' }, 'Waarom? '), App.woorden(item.w))); } });
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function welkom() {
+    pagina.textContent = '';
+    const lijst = data.paren
+      ? data.paren.map((p) => el('div', { class: 'kaart', style: 'padding:12px 16px;margin:8px 0' }, [p.a, p.b].map(([naam, wat]) => el('p', { style: 'margin:4px 0' }, el('b', {}, naam + ': '), wat))))
+      : data.woorden.map(([woord, wat, en]) => el('p', { style: 'margin:6px 0', title: en }, el('b', {}, woord + ': '), wat));
+    pagina.append(el('div', { class: 'kaart' }, el('p', {}, data.uitleg),
+        el('p', { class: 'zacht', en: 'Read the list first. Then: 15 questions.' }, 'Lees eerst de lijst. Daarna komen er 15 vragen.'),
+        el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: start }, 'Start'))),
+      el('h2', { en: 'the list' }, 'De lijst'), el('div', {}, lijst),
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: start }, 'Start')));
+    window.scrollTo(0, 0);
+  }
+  welkom();
+})();
+</script>
+</body>
+</html>

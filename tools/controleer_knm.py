@@ -8,6 +8,9 @@ Per thema: hoogstens 15 woorden met een zin met {gat}, 10 weetjes (vraag, antwoo
 Blok "meer" (stap d, uit het lesmateriaal van de gebruiker): 12-20 weetjes, 3-5 situaties,
 en hoogstens 8 eigen woorden (in "woorden" met "meer": true; max_nieuw = 15 + dat aantal).
 Per toets: 40 vragen, elk met thema, 3 antwoorden en een "waarom".
+Een toets met "niveau": "examen" (C en D) moet zo moeilijk zijn als het echte examen: bij minstens 15 vragen
+lijkt een fout antwoord sterk op het goede antwoord (de helft van de woorden is gelijk).
+Trainers verwar.json en lezen.json: elk item wijst naar een bestaand paar, of is een vraag met 3 antwoorden.
 """
 import json
 import re
@@ -17,6 +20,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent / "knm"
 THEMAS = {"gezondheid", "wonen", "werk", "onderwijs", "instanties", "omgang", "staat", "geschiedenis"}
 fouten = []
+
+
+def lijkt(v):
+    """True als een fout antwoord sterk op het goede lijkt: minstens 4 woorden en de helft van alle woorden gelijk"""
+    woorden = [set(re.findall(r"[\w'-]+", o.lower())) for o in v.get("o", [])]
+    if len(woorden) < 2 or len(woorden[0]) < 4:
+        return False
+    return any(len(woorden[0] & w) / len(woorden[0] | w) >= 0.5 for w in woorden[1:])
 
 
 def vraag_ok(waar, v, thema_nodig=False):
@@ -76,12 +87,26 @@ for p in sorted((ROOT / "toets").glob("*.json")):
         fouten.append(f"{p.name}: {len(d['vragen'])} vragen (moet 40 zijn)")
     for i, v in enumerate(d["vragen"]):
         vraag_ok(f"{p.name} vraag {i + 1}", v, True)
+    n = sum(1 for v in d["vragen"] if lijkt(v))
+    print(f"{p.name}: bij {n} van de {len(d['vragen'])} vragen lijkt een fout antwoord op het goede")
+    if d.get("niveau") == "examen" and n < 15:
+        fouten.append(f"{p.name}: examenniveau, maar maar {n} vragen met een fout antwoord dat op het goede lijkt (minstens 15)")
 
 d = json.loads((ROOT / "trainers" / "instantie.json").read_text(encoding="utf-8"))
 ids = {x["id"] for x in d["instanties"]}
 for it in d["items"]:
     if it["goed"] not in ids:
         fouten.append(f"instantie.json: onbekende instantie {it['goed']!r}")
+
+d = json.loads((ROOT / "trainers" / "verwar.json").read_text(encoding="utf-8"))
+for i, it in enumerate(d["items"]):
+    if not 0 <= it.get("p", -1) < len(d["paren"]) or it.get("goed") not in ("a", "b") or not it.get("v"):
+        fouten.append(f"verwar.json: item {i + 1} mist v, een bestaand paar (p) of goed (a/b)")
+for i in set(range(len(d["paren"]))) - {it["p"] for it in d["items"]}:
+    fouten.append(f"verwar.json: paar {i + 1} ({d['paren'][i]['a'][0]}) heeft geen item")
+d = json.loads((ROOT / "trainers" / "lezen.json").read_text(encoding="utf-8"))
+for i, it in enumerate(d["items"]):
+    vraag_ok(f"lezen.json item {i + 1}", it)
 
 for f in fouten:
     print("✗", f)

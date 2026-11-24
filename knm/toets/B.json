@@ -139,8 +139,8 @@
    "v": "Wat is het IJsselmeer?",
    "o": [
     "Een groot meer dat vroeger zee was.",
-    "Een provincie.",
-    "Een haven bij Rotterdam."
+    "Een zee tussen Nederland en Engeland.",
+    "Een polder in Flevoland."
    ],
    "w": "Door de Afsluitdijk werd de zee een meer: het IJsselmeer.",
    "beeld": "💧"
@@ -150,8 +150,8 @@
    "v": "In welke provincie ligt Maastricht?",
    "o": [
     "In Limburg.",
-    "In Groningen.",
-    "In Zeeland."
+    "In Noord-Brabant.",
+    "In Gelderland."
    ],
    "w": "Maastricht is de hoofdstad van de provincie Limburg.",
    "beeld": "🗺️"
@@ -186,7 +186,7 @@
    "o": [
     "Het aan de verhuurder vragen.",
     "Niets: het is zijn woning.",
-    "Een hypotheek nemen."
+    "Het melden aan de buren."
    ],
    "w": "Voor grote veranderingen in een huurwoning vraagt u eerst de verhuurder.",
    "beeld": "🏠"
@@ -197,8 +197,8 @@
    "v": "Wat kan hij aanvragen?",
    "o": [
     "Een urgentieverklaring.",
-    "Een rijbewijs.",
-    "Kinderbijslag."
+    "Huurtoeslag.",
+    "Een hypotheek."
    ],
    "w": "Met een urgentieverklaring krijgt u sneller een woning.",
    "beeld": "🏠"
@@ -302,8 +302,8 @@
    "v": "Welk geld krijgt hij van de overheid?",
    "o": [
     "AOW.",
-    "Kinderbijslag.",
-    "Studiefinanciering."
+    "WW.",
+    "Bijstand."
    ],
    "w": "De AOW is het pensioen van de overheid voor oudere mensen.",
    "beeld": "👴"
@@ -314,8 +314,8 @@
    "v": "Wat stuurt zij meestal?",
    "o": [
     "Een brief en haar cv.",
-    "Haar paspoort en haar loonstrook.",
-    "Een uittreksel van de gemeente."
+    "Haar cv en haar loonstrook.",
+    "Een brief en een uittreksel van de gemeente."
    ],
    "w": "Bij een sollicitatie stuurt u een brief en een cv.",
    "beeld": "✉️"
@@ -326,8 +326,8 @@
    "v": "Waar kan dat?",
    "o": [
     "In de ondernemingsraad.",
-    "In de gemeenteraad.",
-    "In de Tweede Kamer."
+    "In de personeelsvereniging.",
+    "In de vakbond."
    ],
    "w": "Een bedrijf met 50 of meer werknemers heeft een ondernemingsraad.",
    "beeld": "💼"
@@ -350,8 +350,8 @@
    "v": "Wie kan dat controleren?",
    "o": [
     "IDW.",
-    "De politie.",
-    "De woningcorporatie."
+    "De IND.",
+    "Het UWV."
    ],
    "w": "IDW (Internationale Diplomawaardering) vergelijkt uw diploma met Nederlandse diploma's.",
    "beeld": "🎓"
@@ -362,8 +362,8 @@
    "v": "Wat doet zij?",
    "o": [
     "Aangifte doen bij de politie en een nieuw bewijs aanvragen bij de gemeente.",
-    "Niets: zij wacht tot het terugkomt.",
-    "Een nieuw bewijs kopen bij de bank."
+    "Aangifte doen bij de gemeente en een nieuw bewijs aanvragen bij de politie.",
+    "Niets: zij wacht tot het terugkomt."
    ],
    "w": "Bij een gestolen paspoort of identiteitsbewijs doet u aangifte en vraagt u een nieuw aan.",
    "beeld": "🪪"
@@ -374,8 +374,8 @@
    "v": "Wat kan hij vragen?",
    "o": [
     "Of hij in termijnen mag betalen.",
-    "Of de politie betaalt.",
-    "Of hij een vergunning krijgt."
+    "Of hij kwijtschelding krijgt bij de gemeente.",
+    "Of het UWV de rekening betaalt."
    ],
    "w": "Kunt u niet alles in één keer betalen? Vraag dan om te betalen in termijnen.",
    "beeld": "💶"
@@ -386,7 +386,7 @@
    "v": "Wat heeft zij misschien nodig van de gemeente?",
    "o": [
     "Een vergunning.",
-    "Een verwijsbrief.",
+    "Een uittreksel.",
     "Een machtiging."
    ],
    "w": "Voor bouwen hebt u vaak een vergunning van de gemeente nodig.",
@@ -398,8 +398,8 @@
    "v": "Wie betaalt meestal de schade?",
    "o": [
     "De autoverzekering van de persoon die de fout maakte.",
-    "De gemeente.",
-    "De huisarts."
+    "De autoverzekering van Joep zelf, altijd.",
+    "De inboedelverzekering van Joep."
    ],
    "w": "Daarom is een autoverzekering verplicht voor iedereen met een auto.",
    "beeld": "🚗"
@@ -422,8 +422,8 @@
    "v": "Wat doet de IND?",
    "o": [
     "De IND beslist over verblijfsvergunningen.",
-    "De IND betaalt uitkeringen.",
-    "De IND verkoopt huizen."
+    "De IND regelt de inburgeringsexamens.",
+    "De IND geeft paspoorten aan Nederlanders."
    ],
    "w": "De IND is de dienst voor verblijfsvergunningen en naturalisatie.",
    "beeld": "📨"
@@ -457,8 +457,8 @@
    "v": "Waar kan haar dochter na school naartoe?",
    "o": [
     "Naar de buitenschoolse opvang.",
-    "Naar het consultatiebureau.",
-    "Naar de peuterspeelzaal."
+    "Naar de peuterspeelzaal.",
+    "Naar het kinderdagverblijf."
    ],
    "w": "De buitenschoolse opvang is voor kinderen van de basisschool, vóór en na school.",
    "beeld": "🎒"
@@ -506,7 +506,7 @@
    "o": [
     "Iedereen kiest zelf met wie hij trouwt.",
     "De ouders kiezen.",
-    "De gemeente kiest."
+    "De ouders kiezen tot hij 21 jaar is."
    ],
    "w": "Niemand mag u dwingen om te trouwen.",
    "beeld": "💍"
@@ -541,8 +541,8 @@
    "v": "Met wie praat zij eerst?",
    "o": [
     "Met de huisarts.",
-    "Met de politie.",
-    "Met de apotheek."
+    "Met een psycholoog in het ziekenhuis.",
+    "Met de bedrijfsarts."
    ],
    "w": "Ook met problemen in uw hoofd gaat u eerst naar de huisarts.",
    "beeld": "🩺"
@@ -553,8 +553,8 @@
    "v": "Welke verzekering betaalt dit misschien?",
    "o": [
     "De aanvullende verzekering.",
-    "De autoverzekering.",
-    "De inboedelverzekering."
+    "Niemand: hij betaalt altijd alles zelf.",
+    "De basisverzekering, na het eigen risico."
    ],
    "w": "Een aanvullende verzekering betaalt zorg die niet in de basisverzekering zit.",
    "beeld": "🩺"
@@ -565,8 +565,8 @@
    "v": "Waar krijgt de baby die?",
    "o": [
     "Bij het consultatiebureau.",
-    "Bij de apotheek.",
-    "Op de basisschool."
+    "Bij de huisartsenpost.",
+    "Bij de apotheek."
    ],
    "w": "Baby's en kleine kinderen krijgen hun prikken gratis bij het consultatiebureau.",
    "beeld": "💉"

@@ -33,7 +33,8 @@
   "Emma",
   "Yusuf",
   "Sam",
-  "Lisa"
+  "Lisa",
+  "SVB"
  ],
  "woorden": [
   {
@@ -295,8 +296,8 @@
    "v": "Waar vraagt hij een uitkering aan?",
    "o": [
     "Bij het UWV.",
-    "Bij de Belastingdienst.",
-    "Bij de vakbond."
+    "Bij de gemeente.",
+    "Bij de SVB."
    ],
    "w": "De WW-uitkering vraagt u aan bij het UWV.",
    "beeld": "🏭"
@@ -306,8 +307,8 @@
    "v": "Wat moet zij doen?",
    "o": [
     "Zich inschrijven bij de Kamer van Koophandel.",
-    "Lid worden van een vakbond.",
-    "Een uitkering aanvragen."
+    "Zich inschrijven bij het UWV.",
+    "Lid worden van een vakbond."
    ],
    "w": "Elk nieuw bedrijf moet zich inschrijven bij de Kamer van Koophandel.",
    "beeld": "🏪"
@@ -328,8 +329,8 @@
    "v": "Wie kan haar helpen?",
    "o": [
     "De vakbond.",
-    "De huisarts.",
-    "De woningcorporatie."
+    "De bedrijfsarts.",
+    "Het UWV."
    ],
    "w": "De vakbond helpt werknemers bij problemen met de werkgever.",
    "beeld": "✊"
@@ -350,8 +351,8 @@
    "v": "Met wie praat zij over weer gaan werken?",
    "o": [
     "Met de bedrijfsarts.",
-    "Met de notaris.",
-    "Met de gemeente."
+    "Met haar huisarts.",
+    "Met het UWV."
    ],
    "w": "De bedrijfsarts helpt zieke werknemers om weer te gaan werken.",
    "beeld": "🩺"
@@ -362,7 +363,7 @@
    "o": [
     "Solliciteren naar werk.",
     "Niets: hij mag thuis blijven.",
-    "Elke week naar de huisarts gaan."
+    "Zich inschrijven bij de Kamer van Koophandel."
    ],
    "w": "Met een WW-uitkering bent u verplicht om werk te zoeken.",
    "beeld": "🔎"
@@ -373,7 +374,7 @@
    "o": [
     "Bij een uitzendbureau.",
     "Bij de Kamer van Koophandel.",
-    "Bij de Belastingdienst."
+    "Bij de vakbond."
    ],
    "w": "Een uitzendbureau heeft veel tijdelijk werk.",
    "beeld": "🔎"
@@ -394,8 +395,8 @@
    "v": "Waar kan hij bijstand aanvragen?",
    "o": [
     "Bij de gemeente.",
-    "Bij de bank.",
-    "Bij het uitzendbureau."
+    "Bij de Belastingdienst.",
+    "Bij de SVB."
    ],
    "w": "Bijstand is van de gemeente, voor mensen zonder werk en zonder geld.",
    "beeld": "🆘"
@@ -511,8 +512,8 @@
     "v": "Wat moet hij doen?",
     "o": [
      "Het melden bij de gemeente.",
-     "Niets.",
-     "Het melden bij de vakbond."
+     "Het melden bij het UWV.",
+     "Niets: bijstand verandert niet door samenwonen."
     ],
     "w": "Met een uitkering meldt u elke verandering.",
     "beeld": "📣"

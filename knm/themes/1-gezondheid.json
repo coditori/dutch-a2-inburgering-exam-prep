@@ -19,7 +19,9 @@
   "soa-test",
   "Anna",
   "Tom",
-  "Mila"
+  "Mila",
+  "Duitsland",
+  "Engels"
  ],
  "woorden": [
   {
@@ -288,8 +290,8 @@
    "v": "Welk nummer belt Tim?",
    "o": [
     "112",
-    "Het nummer van de huisarts.",
-    "Het nummer van de apotheek."
+    "0900 - 8844",
+    "Het nummer van de huisartsenpost."
    ],
    "w": "Heeft iemand meteen hulp nodig? Bel dan altijd 112.",
    "beeld": "🚑"
@@ -300,20 +302,20 @@
    "o": [
     "De huisartsenpost.",
     "Haar eigen huisarts.",
-    "De tandarts."
+    "De spoedeisende hulp van het ziekenhuis."
    ],
    "w": "'s Nachts en in het weekend is de eigen huisarts dicht. Dan belt u de huisartsenpost.",
    "beeld": "🌙"
   },
   {
-   "sit": "Omar is 30 jaar. Hij komt in Nederland wonen en werken.",
-   "v": "Welke verzekering moet hij nemen?",
+   "sit": "Omar komt uit Duitsland. Daar had hij een zorgverzekering. Nu woont en werkt hij in Nederland.",
+   "v": "Wat is waar?",
    "o": [
-    "Een basisverzekering.",
-    "Een aanvullende verzekering.",
-    "Geen: dat mag hij zelf kiezen."
+    "Een zorgverzekering is verplicht en Omar moet een Nederlandse basisverzekering nemen.",
+    "Een zorgverzekering is verplicht, maar Omar mag de verzekering uit Duitsland houden.",
+    "Een zorgverzekering is niet verplicht: Omar mag zelf kiezen."
    ],
-   "w": "De basisverzekering is verplicht voor iedereen die in Nederland woont of werkt.",
+   "w": "Wie in Nederland woont of werkt, moet een Nederlandse basisverzekering nemen. De verzekering uit een ander land kunt u niet houden.",
    "beeld": "🛡️"
   },
   {
@@ -332,8 +334,8 @@
    "v": "Wie controleert of de baby goed groeit?",
    "o": [
     "Het consultatiebureau.",
-    "De gemeente.",
-    "De basisschool."
+    "De verloskundige.",
+    "De huisartsenpost."
    ],
    "w": "Het consultatiebureau controleert kinderen van 0 tot 4 jaar. Dat is gratis.",
    "beeld": "👶"
@@ -343,8 +345,8 @@
    "v": "Wat heeft hij nodig?",
    "o": [
     "Een verwijsbrief van de huisarts.",
-    "Een brief van zijn werkgever.",
-    "Een recept van de apotheek."
+    "Een recept van de huisarts.",
+    "Niets: hij kan zelf een afspraak maken."
    ],
    "w": "Zonder verwijsbrief van de huisarts kunt u niet naar de specialist.",
    "beeld": "📨"
@@ -353,9 +355,9 @@
    "sit": "De baas van Eva belt haar huisarts. Hij vraagt waarom Eva ziek is.",
    "v": "Wat doet de huisarts?",
    "o": [
-    "Hij vertelt niets.",
-    "Hij vertelt alles.",
-    "Hij vertelt alleen een beetje."
+    "Hij vertelt niets: hij heeft beroepsgeheim.",
+    "Hij vertelt het, want de baas betaalt het loon van Eva.",
+    "Hij vertelt alleen hoe lang Eva ziek blijft."
    ],
    "w": "De huisarts heeft een beroepsgeheim. Hij vertelt niets aan uw baas.",
    "beeld": "🤐"
@@ -364,9 +366,9 @@
    "sit": "Sam is 8 jaar. Hij gaat naar de tandarts voor controle.",
    "v": "Wie betaalt de tandarts?",
    "o": [
-    "De zorgverzekering: voor kinderen is het gratis.",
-    "De ouders van Sam betalen alles.",
-    "De school van Sam."
+    "De zorgverzekering: tot 18 jaar zit de tandarts in de basisverzekering.",
+    "De ouders: de tandarts zit nooit in de basisverzekering.",
+    "De zorgverzekering, maar eerst betalen de ouders het eigen risico."
    ],
    "w": "Kinderen tot 18 jaar zijn gratis verzekerd, ook voor de tandarts.",
    "beeld": "🦷"
@@ -376,8 +378,8 @@
    "v": "Wat kan het ziekenhuis doen?",
    "o": [
     "Een tolk regelen.",
-    "Fatima naar huis sturen.",
-    "Het gesprek aan de huisarts geven."
+    "Vragen of haar kind van 10 jaar helpt met de taal.",
+    "Het gesprek in het Engels doen."
    ],
    "w": "Een tolk helpt bij het gesprek als u de taal nog niet goed spreekt.",
    "beeld": "🗣️"
@@ -483,7 +485,7 @@
     "o": [
      "Anna zelf of haar tandartsverzekering.",
      "De basisverzekering betaalt alles.",
-     "De gemeente."
+     "De basisverzekering, na het eigen risico."
     ],
     "w": "Voor volwassenen zit de tandarts niet in de basisverzekering.",
     "beeld": "🦷"
@@ -505,7 +507,7 @@
     "o": [
      "De kraamhulp.",
      "Het consultatiebureau.",
-     "De basisschool."
+     "De thuiszorg."
     ],
     "w": "De kraamhulp regelt u zelf, vóór de bevalling.",
     "beeld": "👩‍🍼"

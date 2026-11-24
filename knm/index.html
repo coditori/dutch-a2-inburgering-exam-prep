@@ -17,7 +17,7 @@
   <div class="tegels" id="trainers"></div>
   <h2 data-en="mock exams: 40 questions, 45 minutes">Toetsen · 40 vragen, 45 minuten</h2>
   <div class="tegels" id="toetsen"></div>
-  <p class="zacht klein" data-en="Ready when: 32 of 40 or better on both tests here and on both DUO practice exams.">Klaar voor het examen: 32 van de 40 of meer op de twee toetsen hier én op de twee oefenexamens van DUO.</p>
+  <p class="zacht klein" data-en="Tests A and B are at the level of the DUO practice exams. Tests C and D are like the real exam: the answers look alike, so read every word. Ready when: 32 of 40 or better on all four tests and on both DUO practice exams.">Toets A en B zijn zo moeilijk als de oefenexamens van DUO. Toets C en D zijn zoals het echte examen: de antwoorden lijken op elkaar, dus lees elk woord. Klaar voor het examen: 32 van de 40 of meer op de vier toetsen hier én op de twee oefenexamens van DUO.</p>
   <p class="klein"><a href="https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp" target="_blank" rel="noopener">Oefenexamens van DUO</a> · <a href="BRONNEN.md">Bronnen van de feiten</a></p>
   <p class="klein"><a href="../instellingen.html" data-en="settings: open all lessons, English, progress">⚙ Instellingen: alle lessen open, Engels, voortgang</a></p>
 </main>
@@ -34,6 +34,8 @@
   const TRAINERS = [
     { id: 'instantie', titel: 'Instantie-trainer', uitleg: 'Waar moet u zijn? Gemeente, UWV, DUO …', na: '5-instanties-c' },
     { id: 'kaart', titel: 'Kaart-trainer', uitleg: 'Provincies, steden en buurlanden', na: '8-geschiedenis-a' },
+    { id: 'lezen', pagina: 'oefen.html?t=lezen', titel: 'De vraag lezen', uitleg: 'Kleine woorden: niet, hoeft niet, alleen als, uiterlijk …', na: null },
+    { id: 'verwar', pagina: 'oefen.html?t=verwar', titel: 'Verwarparen', uitleg: 'WW of bijstand? Eigen risico of premie?', na: '8-geschiedenis-c' },
   ];
   const [themas, toetsen] = await Promise.all([Lezen.json('themes/index.json'), Lezen.json('toets/index.json').catch(() => [])]);
   const P = KNM.P;
@@ -57,8 +59,8 @@
     })))));
 
   document.getElementById('trainers').append(...TRAINERS.map((t) => {
-    const r = P.trainers[t.id]; const open = P.open || KNM.gehaald(t.na);
-    return el('a', { class: 'tegel' + (open ? '' : ' slot') + (r ? ' klaar' : ''), href: `trainers/${t.id}.html` },
+    const r = P.trainers[t.id]; const open = P.open || !t.na || KNM.gehaald(t.na);
+    return el('a', { class: 'tegel' + (open ? '' : ' slot') + (r ? ' klaar' : ''), href: `trainers/${t.pagina || t.id + '.html'}` },
       el('b', {}, t.titel + (open ? '' : ' 🔒')), t.uitleg, el('div', { class: 'klein zacht' }, r ? `beste: ${r.beste} / ${r.totaal}` : ''));
   }));
   const klaar = KNM.allesKlaar(themas);

@@ -53,6 +53,30 @@ Gecontroleerd op 24 november 2026. Feiten met een getal of een naam kunnen veran
 - Kinderbijslag is hoger voor oudere kinderen; schoolboeken in het voortgezet onderwijs zijn gratis; seksuele voorlichting is verplicht; Stichting Leergeld.
 - Huurcommissie, sociaal raadslieden, Slachtofferhulp Nederland, Discriminatie.nl, Wmo via de gemeente, GGD voor een soa-test, WIA, Arbowet, EVC, AOV.
 
+## Toets C en D, de trainers "De vraag lezen" en "Verwarparen" (november 2026)
+
+Waarom: mensen die het echte examen deden, zeggen dat het moeilijker is dan de twee oefenexamens van DUO. De antwoorden lijken op elkaar: twee antwoorden beginnen met dezelfde regel en alleen het tweede deel is anders. Sinds 1 juli 2025 vraagt het examen meer naar kennis (welke instantie, welke regel, welke voorwaarde) en minder naar gewenst gedrag.
+
+Gelezen op 24 november 2026 (niets is overgenomen):
+
+- DUO Voorbeeldexamen KNM 1 en 2 (2025), alle 80 vragen, in de online examenomgeving.
+- harfchat.me/knm (studieboek in het Perzisch, 303 vragen): de lijst met paren die op elkaar lijken en de lijst met kleine woorden in de vraag gaven het idee voor de twee trainers.
+- inburgering.org, KNM practice exam guide: 40 vragen; de foute antwoorden daar zijn te makkelijk.
+- dutchreview.com en nt2.nl over de nieuwe eindtermen: nieuw zijn onder andere de Holocaust en antisemitisme, de wet gaat boven regels van een geloof, zelfbeschikking van vrouwen, DigiD en privacy, de praktijkondersteuner (POH) bij de huisarts, Keti Koti en het Suikerfeest.
+- Een voorbeeldvraag van iemand die het examen deed (zorgverzekering uit een ander land).
+- NIET gelezen: twee draden op Reddit (r/learndutch). Reddit is geblokkeerd voor de gebruikte hulpmiddelen.
+
+Feiten in toets C en D die NIET online zijn gecontroleerd (algemene kennis; zelf nakijken vóór het examen):
+
+- Zorg: geen eigen risico voor de huisarts; prikken voor kinderen zijn niet verplicht; wie niets invult in het Donorregister staat op "geen bezwaar"; de bedrijfsarts vertelt de werkgever niet welke ziekte iemand heeft; de tandarts zit vanaf 18 jaar niet in de basisverzekering; kinderen tot 18 jaar betalen geen premie.
+- Werk: de werkgever betaalt bij ziekte het loon door, maximaal twee jaar; minimumjeugdloon tot 21 jaar; ontslag bij te weinig werk met toestemming van het UWV; WW wordt lager als u een deel van de week werkt; vakantiegeld minstens 8%; in de proeftijd mogen beide kanten meteen stoppen; een werkgever mag niet vragen naar een zwangerschap; de werkgever geeft gratis een helm en de werknemer moet die dragen.
+- Instanties: rijexamen bij het CBR en rijbewijs bij de gemeente; naturalisatie aanvragen bij de gemeente, de IND beslist; belasting voor afval is van de gemeente; machtiging in plaats van uw DigiD delen; het Nibud geeft informatie over geld.
+- Wonen: kleine reparaties voor de huurder, grote voor de verhuurder; grofvuil naar de milieustraat; woonhuisverzekering voor het huis zelf; huurbescherming.
+- Onderwijs: een kind mag vanaf 4 jaar naar school; kwalificatieplicht tot 18 jaar (een vmbo-diploma is niet genoeg); bijzondere scholen krijgen geld van de overheid; verlof buiten de vakanties alleen met toestemming van de directeur; kinderopvangtoeslag alleen als beide ouders werken, leren of inburgeren; slaan in de opvoeding is verboden.
+- Staat: de regering is de koning met de ministers; de Provinciale Staten kiezen de Eerste Kamer; de officier van justitie beslist of een zaak naar de rechter gaat; de regering benoemt de burgemeester; de ministers zijn verantwoordelijk voor de koning; artikel 1 van de Grondwet; stempas en identiteitsbewijs bij het stemmen.
+- Omgang: eerst trouwen bij de gemeente, daarna in een kerk of moskee; met één persoon getrouwd zijn; discriminatie en bedreigen zijn strafbaar; Veilig Thuis.
+- Geschiedenis: VOC en handel met Azië; Afsluitdijk 1932; Anne Frank; meer dan 100.000 Joden uit Nederland vermoord; NAVO, Europese Unie en Verenigde Naties.
+
 ## Uit DEKKING.md bewust niet (of anders) overgenomen
 
 - "GBA", "CITO-toets", "Bureau Jeugdzorg", "commissaris van de koningin", de oude lijst van partijen, bedragen (385 euro, 30 euro inschrijfgeld): verouderd of te snel anders; de lessen gebruiken BRP, doorstroomtoets, "de gemeente", commissaris van de Koning en geen bedragen.

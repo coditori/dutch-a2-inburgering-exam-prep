@@ -404,8 +404,8 @@
    "v": "Welke stad heeft de grootste haven van Europa?",
    "o": [
     "Rotterdam",
-    "Utrecht",
-    "Maastricht"
+    "Amsterdam",
+    "Den Haag"
    ],
    "w": "De haven van Rotterdam is de grootste van Europa.",
    "beeld": "🚢"
@@ -414,8 +414,8 @@
    "v": "Welk land was vroeger een kolonie van Nederland?",
    "o": [
     "Indonesië",
-    "Duitsland",
-    "Engeland"
+    "Marokko",
+    "Turkije"
    ],
    "w": "Indonesië en Suriname waren vroeger kolonies van Nederland.",
    "beeld": "🌍"
@@ -559,8 +559,8 @@
     "v": "Welk land werd in 1975 onafhankelijk van Nederland?",
     "o": [
      "Suriname",
-     "België",
-     "Spanje"
+     "Indonesië",
+     "Curaçao"
     ],
     "w": "Suriname is onafhankelijk vanaf 1975, Indonesië vanaf 1949.",
     "beeld": "🕊️"
@@ -569,8 +569,8 @@
     "v": "Wat is De Nachtwacht?",
     "o": [
      "Een schilderij van Rembrandt.",
-     "Een eiland in Zeeland.",
-     "Het volkslied."
+     "Het volkslied van Nederland.",
+     "Een groep van het verzet in de oorlog."
     ],
     "w": "Rembrandt was een schilder uit de Gouden Eeuw.",
     "beeld": "🖼️"

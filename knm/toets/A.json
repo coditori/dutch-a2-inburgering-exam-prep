@@ -130,8 +130,8 @@
    "v": "Wanneer moet zij een zorgverzekering nemen?",
    "o": [
     "Binnen vier maanden.",
-    "Pas als zij ziek wordt.",
-    "Na twee jaar."
+    "Binnen vier weken.",
+    "Binnen één jaar."
    ],
    "w": "Iedereen die in Nederland komt wonen, moet binnen vier maanden een zorgverzekering hebben.",
    "beeld": "🩺"
@@ -143,7 +143,7 @@
    "o": [
     "Mo zelf.",
     "De verzekering.",
-    "De huisarts."
+    "Zijn werkgever."
    ],
    "w": "Het eigen risico is het eerste deel van de kosten dat u zelf betaalt.",
    "beeld": "💶"
@@ -154,8 +154,8 @@
    "v": "Wat kan helpen?",
    "o": [
     "Thuiszorg.",
-    "De spoedeisende hulp.",
-    "Het consultatiebureau."
+    "Kraamzorg.",
+    "De huisartsenpost."
    ],
    "w": "Thuiszorg helpt mensen thuis met zorg en met het huis.",
    "beeld": "👵"
@@ -166,8 +166,8 @@
    "v": "Naar wie gaat zij voor controles?",
    "o": [
     "Naar de verloskundige.",
-    "Naar de tandarts.",
-    "Naar de bedrijfsarts."
+    "Naar het consultatiebureau.",
+    "Naar de kraamhulp."
    ],
    "w": "De verloskundige controleert de vrouw en de baby vóór de geboorte.",
    "beeld": "🤰"
@@ -191,7 +191,7 @@
    "o": [
     "Buurtbemiddeling.",
     "De rechter.",
-    "De Belastingdienst."
+    "De Huurcommissie."
    ],
    "w": "Bij buurtbemiddeling helpen vrijwilligers buren om samen een oplossing te vinden.",
    "beeld": "🏘️"
@@ -214,8 +214,8 @@
    "v": "Waar vraagt hij een nieuw rijbewijs aan?",
    "o": [
     "Bij de gemeente.",
-    "Bij de politie.",
-    "Bij de Belastingdienst."
+    "Bij het CBR.",
+    "Bij de politie."
    ],
    "w": "Een rijbewijs vraagt u aan bij de gemeente.",
    "beeld": "🪪"
@@ -227,7 +227,7 @@
    "o": [
     "Haar nieuwe inkomen doorgeven aan de Belastingdienst.",
     "Niets: dat gaat automatisch.",
-    "Een nieuwe zorgverzekering nemen."
+    "Het doorgeven aan haar zorgverzekeraar."
    ],
    "w": "Verandert uw inkomen? Geef het door, dan krijgt u de goede toeslag.",
    "beeld": "💶"
@@ -239,7 +239,7 @@
    "o": [
     "Bezwaar maken.",
     "De boete niet betalen en wachten.",
-    "112 bellen."
+    "Aangifte doen bij de politie."
    ],
    "w": "Bent u het niet eens met een boete? Dan kunt u bezwaar maken.",
    "beeld": "✋"
@@ -250,8 +250,8 @@
    "v": "Wat doet hij?",
    "o": [
     "Een nieuw wachtwoord aanvragen op de website van DigiD.",
-    "Naar de politie gaan.",
-    "Een nieuwe DigiD kopen in een winkel."
+    "Naar de gemeente gaan voor een nieuw wachtwoord.",
+    "De DigiD van zijn vrouw gebruiken."
    ],
    "w": "DigiD is gratis. Een nieuw wachtwoord vraagt u online aan.",
    "beeld": "🔐"
@@ -263,7 +263,7 @@
    "o": [
     "0900 - 8844",
     "112",
-    "Het nummer van de brandweer."
+    "0800 - 7000"
    ],
    "w": "Geen haast? Bel de politie op 0900 - 8844. Bel 112 alleen als er nu gevaar is.",
    "beeld": "👮"
@@ -274,8 +274,8 @@
    "v": "Wat heeft hij nodig?",
    "o": [
     "Een bankrekening.",
-    "Een vergunning.",
-    "Een uittreksel."
+    "Een DigiD.",
+    "Een creditcard."
    ],
    "w": "Loon, huur en toeslagen gaan via een bankrekening.",
    "beeld": "🏦"
@@ -286,8 +286,8 @@
    "v": "Hoe heet dat?",
    "o": [
     "Naturalisatie.",
-    "Identificatieplicht.",
-    "Machtiging."
+    "Inburgering.",
+    "Een verblijfsvergunning."
    ],
    "w": "Door naturalisatie krijgt u de Nederlandse nationaliteit.",
    "beeld": "🇳🇱"
@@ -299,7 +299,7 @@
    "o": [
     "Een tijdelijk contract.",
     "Een vast contract.",
-    "Een contract zonder loon."
+    "Een nulurencontract."
    ],
    "w": "Een tijdelijk contract heeft een datum waarop het stopt.",
    "beeld": "💼"
@@ -322,8 +322,8 @@
    "v": "Wat doet hij als eerste?",
    "o": [
     "Zich inschrijven bij het UWV voor een WW-uitkering.",
-    "Een hypotheek aanvragen.",
-    "Naar de bedrijfsarts gaan."
+    "Bijstand aanvragen bij de gemeente.",
+    "Zich inschrijven bij de Kamer van Koophandel."
    ],
    "w": "Na ontslag vraagt u snel een WW-uitkering aan bij het UWV.",
    "beeld": "💼"
@@ -334,8 +334,8 @@
    "v": "Waar staat dat?",
    "o": [
     "In haar arbeidscontract of in de cao.",
-    "Op haar identiteitsbewijs.",
-    "In de grondwet."
+    "Op haar jaaropgaaf.",
+    "In de wet: iedereen heeft hetzelfde aantal vrije dagen."
    ],
    "w": "Loon, werktijden en vrije dagen staan in het arbeidscontract en in de cao.",
    "beeld": "💼"
@@ -347,7 +347,7 @@
    "o": [
     "De werkgever.",
     "Finn zelf.",
-    "De gemeente."
+    "De vakbond."
    ],
    "w": "De werkgever moet zorgen voor veilig en gezond werk.",
    "beeld": "🦺"
@@ -358,8 +358,8 @@
    "v": "Met wie praat zij daar eerst over?",
    "o": [
     "Met haar werkgever.",
-    "Met de huisarts.",
-    "Met de notaris."
+    "Met de bedrijfsarts.",
+    "Met het UWV."
    ],
    "w": "Veel werkgevers helpen met een cursus of een opleiding.",
    "beeld": "💼"
@@ -370,8 +370,8 @@
    "v": "Hoe heet dat papier?",
    "o": [
     "De jaaropgaaf.",
-    "De verwijsbrief.",
-    "Het uittreksel."
+    "De loonstrook.",
+    "Het arbeidscontract."
    ],
    "w": "De jaaropgaaf hebt u nodig voor de aangifte bij de Belastingdienst.",
    "beeld": "🧾"
@@ -383,7 +383,7 @@
    "o": [
     "Haar verzekeringen en haar pensioen.",
     "Niets: het UWV regelt alles.",
-    "Een ondernemingsraad."
+    "Alleen haar pensioen: de verzekeringen regelt de Kamer van Koophandel."
    ],
    "w": "Wie een eigen bedrijf heeft, regelt zelf verzekeringen en pensioen.",
    "beeld": "💼"
@@ -407,7 +407,7 @@
    "o": [
     "Bezwaar maken bij de verhuurder.",
     "Stoppen met het betalen van de huur.",
-    "112 bellen."
+    "Bezwaar maken bij de Belastingdienst."
    ],
    "w": "Tegen een hogere huur kunt u bezwaar maken bij de verhuurder.",
    "beeld": "🏠"
@@ -418,8 +418,8 @@
    "v": "Waar brengt hij ze naartoe?",
    "o": [
     "Naar de apotheek.",
-    "Bij het gft-afval.",
-    "In de container voor glas."
+    "Bij het restafval.",
+    "Bij het gft-afval."
    ],
    "w": "Oude medicijnen levert u in bij de apotheek. Ze horen niet bij het gewone afval.",
    "beeld": "💊"
@@ -430,8 +430,8 @@
    "v": "Bij wie tekenen zij de papieren voor het huis en de hypotheek?",
    "o": [
     "Bij de notaris.",
-    "Bij de huisarts.",
-    "Bij het UWV."
+    "Bij de makelaar.",
+    "Bij de bank."
    ],
    "w": "De koop van een huis wordt officieel bij de notaris.",
    "beeld": "🖋️"
@@ -442,8 +442,8 @@
    "v": "Welke verzekering betaalt nieuwe spullen?",
    "o": [
     "De inboedelverzekering.",
-    "De zorgverzekering.",
-    "De autoverzekering."
+    "De aansprakelijkheidsverzekering.",
+    "De woonhuisverzekering van de verhuurder."
    ],
    "w": "De inboedelverzekering is voor de spullen in uw huis.",
    "beeld": "🔥"
@@ -454,8 +454,8 @@
    "v": "Waar kan hij spelen en Nederlands leren vóór de basisschool?",
    "o": [
     "Op de peuterspeelzaal.",
-    "Op de universiteit.",
-    "Op het voortgezet onderwijs."
+    "Op de buitenschoolse opvang.",
+    "Op het consultatiebureau."
    ],
    "w": "Op de peuterspeelzaal spelen kinderen van 2 tot 4 jaar en leren zij Nederlands.",
    "beeld": "🎒"
@@ -478,8 +478,8 @@
    "v": "Naar welke school kan zij met dit diploma?",
    "o": [
     "Naar het hbo.",
-    "Naar de basisschool.",
-    "Alleen naar het vmbo."
+    "Naar de universiteit.",
+    "Alleen naar het mbo."
    ],
    "w": "Met een havo-diploma kunt u naar het hbo. Voor de universiteit is het vwo nodig.",
    "beeld": "🎓"
@@ -522,8 +522,8 @@
    "v": "Waarmee verdiende Nederland veel geld in de Gouden Eeuw?",
    "o": [
     "Met handel over zee.",
-    "Met auto's.",
-    "Met computers."
+    "Met gas uit Groningen.",
+    "Met de haven van Rotterdam."
    ],
    "w": "In de Gouden Eeuw handelde Nederland met veel landen over zee.",
    "beeld": "⛵"
@@ -533,8 +533,8 @@
    "v": "Wie kiezen de Tweede Kamer?",
    "o": [
     "Nederlanders van 18 jaar en ouder.",
-    "De koning en de ministers.",
-    "De burgemeesters."
+    "De leden van de Eerste Kamer.",
+    "Alle mensen van 18 jaar en ouder die in Nederland wonen."
    ],
    "w": "Bij de verkiezingen kiezen de burgers de 150 mensen van de Tweede Kamer.",
    "beeld": "🗳️"
@@ -556,8 +556,8 @@
    "v": "Wat doet de Tweede Kamer?",
    "o": [
     "De regering controleren en over wetten stemmen.",
-    "Straffen geven.",
-    "Paspoorten maken."
+    "De wetten uitvoeren.",
+    "Beslissen of iemand een straf krijgt."
    ],
    "w": "Het parlement controleert de regering en stemt over nieuwe wetten.",
    "beeld": "🏛️"
@@ -579,8 +579,8 @@
    "v": "Hoe heet de baas van een gemeente?",
    "o": [
     "De burgemeester.",
-    "De minister-president.",
-    "De notaris."
+    "De commissaris van de Koning.",
+    "De wethouder."
    ],
    "w": "Elke gemeente heeft een burgemeester en een gemeenteraad.",
    "beeld": "🎖️"
