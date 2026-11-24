@@ -14,16 +14,21 @@
 <script src="../shared/audio.js"></script>
 <script src="../shared/app.js"></script>
 <script>
-// Herhalen met Leitner-dozen: woorden (kaart omdraaien) en zinnen met een gat (typen).
+// Herhalen met Leitner-dozen: woorden en zinnen met een gat.
+// Een woordkaart vraagt altijd een antwoord dat de pagina zelf nakijkt (niet: "wist ik het?"). Zo werkt het:
+//   nieuw woord        -> eerst leren: woord, plaatje, betekenis en geluid. Daarna komt het in dezelfde ronde als vraag.
+//   vak 0 en 1         -> kiezen: u ziet het Nederlandse woord en kiest het plaatje of de betekenis (herkennen)
+//   vak 2 en hoger     -> typen: u ziet het plaatje en de betekenis en typt het Nederlandse woord (zelf maken: dat is moeilijker en blijft beter hangen)
+// Na elk antwoord: het goede antwoord met plaatje, betekenis en geluid. Fout? Dan komt de kaart in deze ronde nog een keer terug.
 (() => {
   const { el } = App;
   App.kop('Herhalen', 'index.html');
   const pagina = document.getElementById('pagina');
-  let rij = [], goed = 0, gedaan = 0;
+  let rij = [], goed = 0, gedaan = 0, totaal = 0;
 
   function start(kaarten) {
-    rij = App.schud(kaarten).slice(0, 30);
-    goed = 0; gedaan = 0;
+    rij = App.schud(kaarten).slice(0, 20);
+    goed = 0; gedaan = 0; totaal = rij.length;
     volgende();
   }
 
@@ -35,7 +40,9 @@
     pagina.append(
       el('div', { class: 'kaart' },
         el('h3', {}, `Vandaag: ${nu.length} ${nu.length === 1 ? 'kaart' : 'kaarten'}`),
-        el('p', { class: 'zacht', en: 'Wrong: back tomorrow. Right: back in 2, 4, 8, 16 days.' }, 'Fout: morgen terug. Goed: terug over 2, 4, 8, 16 dagen.'),
+        el('p', { class: 'zacht', en: 'You see a word and choose what it means. Do you know a word well? Then you type it yourself. You always see the right answer.' },
+          'U ziet een woord en kiest wat het betekent. Kent u een woord al goed? Dan typt u het zelf. U ziet altijd het goede antwoord.'),
+        el('p', { class: 'zacht klein', en: 'Wrong: the word comes again in this round, and tomorrow. Right: back in 2, 4, 8, 16 days.' }, 'Fout: het woord komt in deze ronde nog een keer, en morgen weer. Goed: terug over 2, 4, 8, 16 dagen.'),
         el('div', { class: 'knoppen' },
           el('button', { class: 'knop', disabled: !nu.length, en: 'start', onclick: () => start(nu) }, 'Begin'),
           el('button', { class: 'knop licht', en: '10 new words from the list', onclick: nieuweWoorden }, '+ 10 nieuwe woorden'),
@@ -57,7 +64,7 @@
         if (nieuw.length >= 10) break;
         if (r[0] !== t || (r[3] === 'werkwoord' && t > 2) || kaarten['w:' + r[1]]) continue;
         SRS.voegToe('w:' + r[1], { soort: 'w', nl: r[1] }, true);
-        nieuw.push({ id: 'w:' + r[1], soort: 'w', nl: r[1], box: 0 });
+        nieuw.push({ id: 'w:' + r[1], soort: 'w', nl: r[1], box: 0, nieuw: true });
       }
     }
     if (nieuw.length) start(nieuw); else begin();
@@ -75,21 +82,94 @@
           el('a', { class: 'knop', href: 'index.html' }, 'Naar de lessen'))));
       return;
     }
-    pagina.append(el('p', { class: 'zacht klein' }, `nog ${rij.length + 1}`));
-    const klaar = (ok) => { gedaan++; if (ok) goed++; if (!k.extra) SRS.antwoord(k.id, ok); volgende(); };
+    pagina.append(el('div', { class: 'balk', style: 'margin-bottom:6px' }, el('i', { style: `width:${totaal ? Math.round(100 * gedaan / totaal) : 0}%` })),
+      el('p', { class: 'zacht klein' }, `nog ${rij.length + 1}`));
+    // Het eerste antwoord telt (voor de uitslag en voor het vak). Fout? Dan komt de kaart aan het einde van de ronde terug, tot het goed is.
+    const klaar = (ok) => {
+      if (!k.herkans) { gedaan++; if (ok) goed++; if (!k.extra) SRS.antwoord(k.id, ok); }
+      if (!ok) rij.push(Object.assign({}, k, { herkans: true, geleerd: true }));
+      volgende();
+    };
     if (k.soort === 'z') zinKaart(k, klaar); else woordKaart(k, klaar);
   }
 
+  const WL = App.W.lijst;
+  // 'de koffie / de thee' -> ['koffie', 'thee']: elk van de vormen is goed, met of zonder lidwoord, zonder leestekens en hoofdletters
+  const kort = (t) => App.kaal(t).replace(/[.?!,]/g, '').replace(/\s+/g, ' ').trim().replace(/^(de|het|een) /, '');
+  const vormen = (nl) => nl.split(/\s+\/\s+|,\s+/).map(kort).filter(Boolean);
+
+  // na het antwoord: goed of fout, en altijd het woord met plaatje, betekenis en geluid
+  function nakijken(k, r, ok, klaar, uit) {
+    Spraak.zeg(k.nl);
+    const verder = el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder');
+    uit.textContent = '';
+    uit.append(
+      el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? 'right' : 'not right: this word comes back' }, ok ? '✔ Goed!' : '✘ Niet goed. Dit woord komt terug.'),
+      el('div', { class: 'kaart-antwoord' },
+        r[4] ? el('div', { class: 'beeld', 'aria-hidden': 'true' }, r[4]) : null,
+        el('div', {},
+          el('b', {}, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+          el('div', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
+          r[5] ? el('div', { class: 'klein zacht' }, r[5]) : null)),
+      el('div', { class: 'knoppen', style: 'justify-content:center' }, verder));
+    verder.focus();
+    if (ok) App.goed(verder);
+  }
+
   function woordKaart(k, klaar) {
-    const r = App.W.lijst[App.lemmaNr(k.nl)] || [];
-    const en = k.en || r[2] || '';
-    const beeld = k.beeld || r[4] || '';
-    const achter = el('div', { hidden: true },
-      beeld ? el('div', { class: 'beeld', style: 'font-size:3rem' }, beeld) : null,
-      r[5] ? el('p', { class: 'zacht' }, r[5]) : null,
-      el('p', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { enEl.hidden = false; } }, '❗')));
-    const enEl = el('p', { class: 'zacht', hidden: !!beeld, style: 'font-style:italic', hulp: en });
-    achter.append(enEl);
+    const nr = App.lemmaNr(k.nl), r = WL[nr];
+    if (!r) return losseKaart(k, klaar); // een woord dat niet (meer) in de woordenlijst staat
+    // een nieuw woord leert u eerst; de vraag komt daarna, in dezelfde ronde
+    if (k.nieuw && !k.geleerd) {
+      pagina.append(el('div', { class: 'kaart midden' },
+        el('p', { class: 'zacht', en: 'a new word: look, listen and say it' }, 'Een nieuw woord. Kijk, luister en zeg het na.'),
+        r[4] ? el('div', { class: 'beeld', style: 'font-size:3.4rem;line-height:1.2', 'aria-hidden': 'true' }, r[4]) : null,
+        el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+        el('p', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
+        r[5] ? el('p', { class: 'klein zacht' }, r[5]) : null,
+        el('div', { class: 'knoppen', style: 'justify-content:center' },
+          el('button', { class: 'knop', en: 'next', onclick: () => { rij.push(Object.assign({}, k, { geleerd: true })); totaal++; gedaan++; volgende(); } }, 'Verder'))));
+      return;
+    }
+    const uit = el('div');
+    // ----- typen (vak 2 en hoger): van plaatje en betekenis naar het Nederlandse woord -----
+    if (k.box >= 2 && !k.herkans) {
+      const goede = vormen(r[1]);
+      const invoer = el('input', { class: 'gat', style: 'width:min(16em,100%)', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'het Nederlandse woord' });
+      const stuur = () => { if (invoer.disabled) return; invoer.disabled = true; knoppen.remove(); nakijken(k, r, goede.includes(kort(invoer.value)), klaar, uit); };
+      const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' },
+        el('button', { class: 'knop', en: 'check', onclick: stuur }, 'Controleer'),
+        el('button', { class: 'knop licht', en: 'first letter', onclick: () => { invoer.value = r[1].replace(/^(de|het|een) /, '')[0]; invoer.focus(); } }, 'Eerste letter'));
+      invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter') stuur(); });
+      pagina.append(el('div', { class: 'kaart midden' },
+        el('p', { class: 'zacht', en: 'You know this word. Type it in Dutch.' }, 'Dit woord kent u al. Typ het in het Nederlands.'),
+        r[4] ? el('div', { class: 'beeld', style: 'font-size:3.4rem;line-height:1.2', 'aria-hidden': 'true' }, r[4]) : null,
+        el('p', { style: 'font-size:1.2rem;font-style:italic', hulp: r[2] }),
+        el('p', {}, invoer), knoppen, uit));
+      invoer.focus();
+      return;
+    }
+    // ----- kiezen: van het Nederlandse woord naar het plaatje (of de betekenis, als er geen plaatje is) -----
+    const metBeeld = !!r[4], waarde = (n) => (metBeeld ? WL[n][4] : WL[n][2]);
+    const gezien = new Set([waarde(nr)]), fout = [];
+    const kandidaten = App.schud(WL.map((_, n) => n).filter((n) => WL[n][0] === r[0]));
+    for (const n of kandidaten) { if (fout.length === 2) break; if (!waarde(n) || gezien.has(waarde(n))) continue; gezien.add(waarde(n)); fout.push(n); }
+    const opties = App.schud([nr, ...fout]);
+    const knoppen = opties.map((n) => el('button', { type: 'button', class: 'optie' + (metBeeld ? ' beeld' : ''), onclick: () => {
+      knoppen.forEach((b, i) => { b.disabled = true; if (opties[i] === nr) b.classList.add('goed'); });
+      if (n !== nr) knoppen[opties.indexOf(n)].classList.add('fout');
+      nakijken(k, r, n === nr, klaar, uit);
+    } }, metBeeld ? WL[n][4] : el('span', { hulp: WL[n][2] })));
+    pagina.append(el('div', { class: 'kaart midden' },
+      el('p', { class: 'zacht', en: metBeeld ? 'Which picture fits this word?' : 'What does this word mean?' }, metBeeld ? 'Welk plaatje past bij dit woord?' : 'Wat betekent dit woord?'),
+      el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+      el('div', { class: 'opties' + (metBeeld ? ' beelden' : ''), style: 'max-width:520px;margin:16px auto 0;text-align:left' }, knoppen),
+      uit));
+  }
+
+  // kaart zonder regel in de woordenlijst: omdraaien en zelf zeggen of u het wist (de pagina kan dit niet nakijken)
+  function losseKaart(k, klaar) {
+    const achter = el('div', { hidden: true }, k.beeld ? el('div', { class: 'beeld', style: 'font-size:3rem' }, k.beeld) : null, el('p', { class: 'zacht', style: 'font-style:italic', hulp: k.en || '' }));
     const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' },
       el('button', { class: 'knop', en: 'show', onclick: () => { achter.hidden = false; knoppen.textContent = ''; knoppen.append(
         el('button', { class: 'knop licht', en: 'I did not know it', onclick: () => klaar(false) }, '✘ Wist ik niet'),
