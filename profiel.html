@@ -150,7 +150,7 @@
     const invoer = el('input', { type: 'text', id: 'naam', maxlength: 30, autocomplete: 'given-name', enterkeyhint: 'done', placeholder: 'Uw naam', 'aria-label': 'uw naam', value: p.naam });
     invoer.addEventListener('input', () => {
       p.naam = App.schoneNaam(invoer.value);
-      App.schrijf('profiel', { naam: p.naam });
+      App.schrijf('profiel', p.naam ? { naam: p.naam, zelf: true, t: Date.now() } : {}); // zelf getypt: het account vervangt deze naam niet
       vak.textContent = ''; vak.append(kaart(p, true));
     });
     invoer.addEventListener('change', () => { if (g) A.sync(); }); // klaar met typen: de naam gaat naar het account

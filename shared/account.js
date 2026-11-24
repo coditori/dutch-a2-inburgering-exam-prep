@@ -51,7 +51,10 @@ window.Account = (() => {
     if (hier == null) return daar;
     const a = json(hier, {}), b = json(daar, {});
     if (EXAMENS.includes(sleutel)) return JSON.stringify(Object.assign({}, b, a, { lessen: besteVan(a.lessen, b.lessen), trainers: besteVan(a.trainers, b.trainers), toets: toetsenSamen(a.toets, b.toets) }));
-    if (sleutel === 'profiel') return JSON.stringify(a.naam ? a : b); // de naam in deze browser gaat voor
+    if (sleutel === 'profiel') { // een naam die de leerling zelf typte (zelf) gaat voor een naam van het account; twee getypte namen: de nieuwste
+      const rang = (x) => (x.naam ? (x.zelf ? 2 : 1) : 0);
+      return JSON.stringify(rang(b) > rang(a) || (rang(b) === 2 && rang(a) === 2 && (b.t || 0) > (a.t || 0)) ? b : a);
+    }
     return JSON.stringify(kaartenSamen(a, b));
   }
   const alles = () => { const o = {}; for (const k of SLEUTELS) { const v = lees(k); if (v != null) o[k] = v; } return o; };
@@ -113,10 +116,11 @@ window.Account = (() => {
       const daar = lees('account-wis') ? {} : ((await wolk.haal(g.uid)) || {});
       const samen = {};
       for (const k of SLEUTELS) { const v = voegSamen(k, hier[k], daar[k]); if (v != null) samen[k] = v; }
-      // De naam op de kaart: wat de leerling zelf typte, blijft altijd. Is er geen naam, dan de voornaam van het account als begin.
-      // "van" onthoudt van welk account die naam kwam: logt hier later een ander account in, dan krijgt de kaart de naam van dat account.
+      // De naam op de kaart. Typte de leerling zelf een naam (profiel.html zet dan zelf: true), dan blijft die altijd.
+      // Anders is het de voornaam van dit account. "van" onthoudt van welk account de naam kwam; een naam zonder "zelf" en van een
+      // ander account (of van vroeger, of van het demo-account) wordt dus vervangen.
       const pr = json(samen.profiel, {});
-      if (g.naam && (!pr.naam || (pr.van && pr.van !== g.uid) || lees('account-naam'))) samen.profiel = JSON.stringify({ naam: g.naam.split(' ')[0].slice(0, 30), van: g.uid });
+      if (g.naam && !(pr.naam && pr.zelf) && pr.van !== g.uid) samen.profiel = JSON.stringify({ naam: g.naam.split(' ')[0].slice(0, 30), van: g.uid });
       const anders = afdruk(samen) !== afdruk(hier);
       for (const k of SLEUTELS) if (samen[k] !== hier[k]) zet(k, samen[k]);
       const kaart = window.App.profielRij(await window.App.profielNu());
