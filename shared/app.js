@@ -20,7 +20,12 @@ window.App = (() => {
     if (EXAMENS.includes(k) && v && typeof v === 'object') v.open = instellingen().open;
     return v;
   };
-  const schrijf = (k, v) => { try { localStorage.setItem('dutch-exam:' + k, JSON.stringify(v)); } catch (e) { /* geen opslag */ } };
+  const werk = (v) => JSON.stringify([(v && v.lessen) || {}, (v && v.toets) || {}, (v && v.trainers) || {}]); // wat de leerling deed in een examen
+  const schrijf = (k, v) => {
+    // een les, een trainer of een oefenexamen erbij? Dan is vandaag een dag waarop u oefende (Dagen, verderop)
+    if (EXAMENS.includes(k) && werk(v) !== werk(ruw(k, null))) telDag();
+    try { localStorage.setItem('dutch-exam:' + k, JSON.stringify(v)); } catch (e) { /* geen opslag */ }
+  };
   // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter de knop Vertaling bij een woord.
   // De lessen hebben alleen Engels; shared/fa.js heeft bij elke Engelse tekst de Perzische. Geen Perzisch gevonden? Dan blijft het Engels staan.
   const hulptaal = () => (ruw('hulptaal', 'en') === 'fa' ? 'fa' : 'en');
@@ -392,7 +397,7 @@ window.App = (() => {
     }
   }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
   function goed(knop) {
-    reeks++;
+    reeks++; telDag(); // een goed antwoord: vandaag is een dag waarop u oefende
     if (reeks >= 3) toast(`🔥 ${reeks} goed op rij!`, 'right answers in a row'); else toast('✔ Goed antwoord!', 'correct answer');
     void toastEl.offsetWidth; // de sprong van de melding begint bij elk goed antwoord opnieuw
     toastEl.classList.add('pop'); toastEl.classList.toggle('vuur', reeks >= 3);
@@ -657,6 +662,66 @@ window.App = (() => {
       el('span', { class: 'ex-icoon', 'aria-hidden': 'true' }, teken(map)),
       el('div', {}, el('div', { class: 'balk' }, vul), el('span', { class: 'klein zacht', en: 'lessons passed' }, `${gedaan} van ${n} lessen gehaald`)));
   }
+  // ---------- de dagen waarop u oefende: de week met zeven rondjes en "4 dagen op rij" ----------
+  // Bewaard als een rij dagnummers (zoals SRS.vandaag). Een dag telt bij een goed antwoord, of als een les, trainer of oefenexamen bewaard wordt;
+  // alleen de site openen telt niet. Eén dag overslaan breekt de rij niet: wie ziek is of nachtdienst heeft, verliest niets.
+  // De eerste keer is de rij leeg: dan komen de dagen uit de datums van de lessen en oefenexamens die al bewaard zijn.
+  const Dagen = (() => {
+    const nr = (iso) => Math.floor(Date.parse(iso + 'T00:00:00Z') / 86400000);
+    function uitVoortgang() {
+      const s = new Set();
+      for (const m of EXAMENS) {
+        const P = ruw(m, {}) || {};
+        for (const r of Object.values(P.lessen || {})) if (r && r.datum) s.add(nr(r.datum));
+        for (const l of Object.values(P.toets || {})) for (const r of (Array.isArray(l) ? l : [])) if (r && r.datum) s.add(nr(r.datum));
+      }
+      return [...s].filter((d) => Number.isFinite(d)).sort((a, b) => a - b);
+    }
+    const lijst = () => { const v = ruw('dagen', null); return Array.isArray(v) ? v : uitVoortgang(); };
+    return {
+      tel() {
+        const t = window.SRS.vandaag(), l = lijst();
+        if (l.includes(t)) return;
+        l.push(t); l.sort((a, b) => a - b);
+        try { localStorage.setItem('dutch-exam:dagen', JSON.stringify(l.slice(-400))); } catch (e) { /* geen opslag */ }
+        document.dispatchEvent(new CustomEvent('dagen'));
+      },
+      // hoeveel dagen op rij, tot vandaag of gisteren. Eén lege dag ertussen mag (die telt zelf niet mee).
+      reeks() {
+        const s = new Set(lijst()), t = window.SRS.vandaag();
+        let d = [t, t - 1, t - 2].find((x) => s.has(x)), n = 0;
+        if (d == null) return 0;
+        for (;;) { if (s.has(d)) { n++; d--; } else if (s.has(d - 1)) d--; else break; }
+        return n;
+      },
+      // deze week, maandag tot en met zondag: [{ aan, vandaag, straks }]
+      week() {
+        const s = new Set(lijst()), t = window.SRS.vandaag(), ma = t - ((t + 3) % 7); // dag 0 was een donderdag
+        return [0, 1, 2, 3, 4, 5, 6].map((i) => ({ aan: s.has(ma + i), vandaag: ma + i === t, straks: ma + i > t }));
+      },
+      vandaag: () => lijst().includes(window.SRS.vandaag()),
+    };
+  })();
+  function telDag() { try { Dagen.tel(); } catch (e) { /* geen opslag */ } }
+  // Het vak met aanmoediging, in het blauwe vak op de startpagina en op de profielkaart.
+  //   procent = hoe ver u bent (klaarProcent), delen = de beste cijfers van de oefenexamens (0 tot 1, of null)
+  //   metDagen = ook de week en de rij dagen (alleen voor uw eigen voortgang: van een vriend weten we de dagen niet)
+  const MOED = [[100, 'U bent klaar voor het examen. Succes!', 'You are ready for the exam. Good luck!'], [75, 'Bijna klaar voor het examen. Nog een klein stukje!', 'Almost ready for the exam. Just a little more!'],
+    [50, 'U bent over de helft. Ga zo door!', 'You are past halfway. Keep going!'], [25, 'U bent al een heel eind. De helft komt in zicht!', 'You have come a long way. Halfway is in sight!'],
+    [1, 'Goed begin! Elke dag een beetje.', 'A good start! A little every day.'], [0, 'Begin vandaag: vijf minuten is genoeg.', 'Start today: five minutes is enough.']];
+  function aanmoediging(procent, delen, metDagen) {
+    const [, nl, en] = MOED.find(([v]) => procent >= v);
+    const tel = { goud: 0, zilver: 0, brons: 0 };
+    for (const d of delen || []) { const m = medaille(d); if (m) tel[m]++; }
+    const n = metDagen ? Dagen.reeks() : 0, LETTER = ['M', 'D', 'W', 'D', 'V', 'Z', 'Z'];
+    return el('div', { class: 'moed' },
+      metDagen ? el('div', { class: 'moed-week', dir: 'ltr', role: 'img', 'aria-label': `deze week oefende u op ${Dagen.week().filter((x) => x.aan).length} dagen` },
+        Dagen.week().map((x, i) => el('span', { class: 'moed-dag' + (x.aan ? ' aan' : '') + (x.vandaag ? ' vandaag' : '') + (x.straks ? ' straks' : '') }, el('i', {}, x.aan ? '✓' : ''), LETTER[i])),
+        n ? el('b', { class: 'moed-reeks', en: 'days in a row' }, `🔥 ${n} ${n === 1 ? 'dag' : 'dagen op rij'}`) : null) : null,
+      tel.goud + tel.zilver + tel.brons ? el('div', { class: 'moed-medailles', dir: 'ltr', 'aria-label': `uw medailles: ${tel.goud} goud, ${tel.zilver} zilver, ${tel.brons} brons` },
+        ['goud', 'zilver', 'brons'].filter((m) => tel[m]).map((m) => el('span', {}, medailleTeken(m), `× ${tel[m]}`))) : null,
+      metDagen ? el('p', { class: 'moed-tekst', en: Dagen.vandaag() ? en : en + ' Practise five minutes today.' }, Dagen.vandaag() ? '✔ Vandaag geoefend. ' + nl : nl + ' Oefen vandaag vijf minuten.') : null);
+  }
   // Hoe ver bent u, van 0 tot 100? Per examen telt het hoogste van twee: het deel van de lessen dat u haalde, of 100% als u een oefenexamen haalde.
   // Zo staat iemand die de basis al kent en direct een oefenexamen haalt niet op 0%. lijst = [{ n, gedaan, geslaagd }]
   const klaarProcent = (lijst) => Math.round(100 * lijst.reduce((s, x) => s + Math.max(x.n ? x.gedaan / x.n : 0, x.geslaagd ? 1 : 0), 0) / (lijst.length || 1));
@@ -707,5 +772,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

@@ -48,6 +48,7 @@
         el('span', { class: 'avatar', 'aria-hidden': 'true' }, (p.naam || '?').slice(0, 1)),
         el('div', {}, el('h2', {}, p.naam || (vanMij ? 'Uw naam' : 'Een vriend')), el('p', { en: 'is practising for the civic integration exam A2' }, 'oefent voor het inburgeringsexamen A2')),
         el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent klaar voor het examen` }, el('b', {}, `${procent}%`), el('span', { en: 'ready' }, 'klaar'))),
+      el('div', { class: 'pkaart-moed' }, App.aanmoediging(procent, p.examens.flatMap((x) => x.cijfers.map((c) => c[1] / 100)), vanMij)),
       p.examens.map((x, i) => {
         const map = App.EXAMENS[i], m = App.medaille(besteVan(x)); // m = de beste medaille van dit examen: die staat op het teken
         // de hele regel is een link naar de lessen en oefenexamens van dat examen

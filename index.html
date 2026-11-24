@@ -77,7 +77,8 @@
         : [el('h2', { en: 'continue' }, 'Ga verder'),
           el('p', {}, tel.nu
             ? el('span', { en: 'cards to review today' }, `Vandaag: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'} om te herhalen.`)
-            : el('span', { en: 'no cards to review today' }, 'Vandaag zijn er geen kaarten om te herhalen.'))],
+            : el('span', { en: 'no cards to review today' }, 'Vandaag zijn er geen kaarten om te herhalen.')),
+          App.aanmoediging(procent, EXAMENS.flatMap((x) => x.toetsen.map((t) => t.beste)), true)],
       el('div', { class: 'knoppen' },
         verder,
         nieuw ? el('a', { class: 'knop licht', href: '#kies', en: 'I already know the basics: take a practice exam' }, 'Ik ken de basis al: doe een oefenexamen') : null,
