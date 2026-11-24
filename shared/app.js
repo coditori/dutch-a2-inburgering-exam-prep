@@ -123,6 +123,7 @@ window.App = (() => {
     spreken: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
     knm: '<path d="M3 21h18"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/><path d="M12 3 2.5 8.5V10h19V8.5z"/>',
     pijl: '<path d="m9 18 6-6-6-6"/>',
+    mens: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -141,7 +142,7 @@ window.App = (() => {
     document.dispatchEvent(new CustomEvent('thema'));
   }
   function themaKnop() {
-    const k = el('button', { class: 'rond', onclick: () => zetThema(isDonker() ? 'licht' : 'donker') });
+    const k = el('button', { class: 'rond themaknop', onclick: () => zetThema(isDonker() ? 'licht' : 'donker') });
     const zet = () => { k.textContent = ''; k.append(teken(isDonker() ? 'zon' : 'maan')); k.title = isDonker() ? 'licht thema' : 'donker thema'; k.setAttribute('aria-label', k.title); };
     document.addEventListener('thema', zet);
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', zet);
@@ -282,6 +283,7 @@ window.App = (() => {
       }
       weg.forEach((k) => localStorage.removeItem(k));
     } catch (e) { /* geen opslag */ }
+    document.dispatchEvent(new CustomEvent('gewist')); // ingelogd? Dan gaat het ook weg bij het account (shared/account.js)
   }
 
   // ---------- de balk met examens: op de startpagina en op de vijf overzichten (niet in een les of toets) ----------
@@ -306,6 +308,7 @@ window.App = (() => {
       nav(),
       el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: () => deel() }, teken('deel')),
       themaKnop(),
+      el('a', { class: 'rond profielknop', href: WORTEL + 'profiel.html', title: 'profiel', 'aria-label': 'uw profiel' }, teken('mens')),
       el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
       taalKnop());
     // de kop krijgt een schaduw zodra de pagina rolt
@@ -319,6 +322,14 @@ window.App = (() => {
       el('a', { href: 'https://www.linkedin.com/in/coditori/', target: '_blank', rel: 'noopener' }, 'LinkedIn'),
       el('span', { class: 'versie', title: 'versie van de site' }, 'v' + VERSIE)));
     ververs();
+    // inloggen met Google (als de site dat heeft): laadt na de pagina, en zet de eerste letter van de naam op de knop Profiel
+    document.addEventListener('account', () => {
+      const g = window.Account && window.Account.staat.gebruiker, k = h.querySelector('.profielknop');
+      if (!k) return;
+      k.classList.toggle('in', !!g); k.textContent = '';
+      k.append(g ? ((ruw('profiel', {}) || {}).naam || g.naam || g.email || '?').trim().slice(0, 1).toUpperCase() : teken('mens'));
+    });
+    document.head.append(el('script', { src: WORTEL + 'shared/account.js' }));
     return h;
   }
 
@@ -343,6 +354,30 @@ window.App = (() => {
   }
 
   // cijfer tot 10 met één cijfer achter de komma: 30 van de 40 goed = 7,5
+  // ---------- het profiel: de kaart die de leerling deelt (profiel.html), en die bij het account bewaard wordt (account.js) ----------
+  // Als rij is de kaart kort genoeg voor een link: [1, naam, dag, woorden gekend, woorden totaal, [per examen: [gehaald, totaal, [[toets, cijfer × 10], ...]]]]
+  const MAX_NAAM = 30;
+  const schoneNaam = (s) => String(s == null ? '' : s).replace(/\s+/g, ' ').trim().slice(0, MAX_NAAM);
+  const heel = (x, max) => Math.max(0, Math.min(max, Math.round(Number(x)) || 0));
+  async function profielNu() {
+    const stand = tredeStand();
+    return { naam: schoneNaam((ruw('profiel', {}) || {}).naam), dag: window.SRS.vandaag(),
+      woorden: stand.reduce((s, t) => s + t.bekend, 0), woordenTotaal: stand.reduce((s, t) => s + t.totaal, 0),
+      examens: (await overzicht()).map((x) => ({ n: x.n, gedaan: x.gedaan, cijfers: x.toetsen.filter((t) => t.beste != null).map((t) => [t.id, Math.round(t.beste * 100)]) })) };
+  }
+  const profielRij = (p) => [1, p.naam, p.dag, p.woorden, p.woordenTotaal, p.examens.map((x) => [x.gedaan, x.n, x.cijfers])];
+  // Een rij van buiten (uit een link of van het account van iemand anders): streng controleren. null = niet goed.
+  function profielUit(d) {
+    if (!Array.isArray(d) || d[0] !== 1 || !Array.isArray(d[5]) || d[5].length !== EXAMENS.length) return null;
+    const woordenTotaal = heel(d[4], 99999);
+    return { naam: schoneNaam(d[1]), dag: heel(d[2], 99999), woordenTotaal, woorden: heel(d[3], woordenTotaal),
+      examens: d[5].map((x) => {
+        const n = heel(x && x[1], 999);
+        return { n, gedaan: heel(x && x[0], n),
+          cijfers: (Array.isArray(x && x[2]) ? x[2] : []).slice(0, 8).filter((c) => Array.isArray(c) && /^[A-Z]$/.test(c[0])).map((c) => [c[0], heel(c[1], 100)]) };
+      }) };
+  }
+
   const cijfer = (goed, totaal) => (totaal ? Math.round((goed / totaal) * 100) / 10 : 0).toFixed(1).replace('.', ',');
   // de uitslag van een toets: groot het cijfer, klein eronder hoeveel goed. wat = 'vragen goed' of 'punten'
   // Eronder de knop naar het profiel: daar deelt de leerling het cijfer met vrienden.
@@ -373,5 +408,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { VERSIE, W, lees, schrijf, kaal, el, teken, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, overzicht, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

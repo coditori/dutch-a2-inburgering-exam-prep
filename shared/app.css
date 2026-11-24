@@ -402,7 +402,7 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 @media (max-width: 800px) and (max-height: 700px) { body.geen-woorden .examen.twee.kort > section:first-child > div[style*="3rem"] { display: none; } }
 
 /* knop Delen in de kop. Tijdens een toets (de klok loopt) is hij weg: dan is er geen plek en hoeft het niet. */
-.kop:has(> b:not(:empty)) .deel { display: none; }
+.kop:has(> b:not(:empty)) .deel, .kop:has(> b:not(:empty)) .profielknop { display: none; }
 
 /* ---------- de balk met examens: Start, Lezen, Luisteren, Schrijven, Spreken, KNM ----------
    Alleen op de startpagina en de vijf overzichten (App.kop). Breed scherm: in de kop. Telefoon en tablet: vast onder aan het scherm. */
@@ -514,3 +514,23 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 }
 
 .knop .icoon { flex: none; }
+
+/* ---------- account: de knop Profiel in de kop, en inloggen met Google op de profielpagina ---------- */
+.kop .profielknop.in { background: var(--accent); color: var(--op-accent); width: 36px; height: 36px; margin: 0 4px; font-weight: 700; font-size: .95rem; }
+@media (hover: hover) { .kop .profielknop.in:hover { background: var(--accent); filter: brightness(1.1); } }
+/* telefoon: het thema kiest u bij Instellingen; zo is er plek voor de knop Profiel */
+@media (max-width: 560px) { .kop .themaknop { display: none; } }
+.acc { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.acc > div:first-of-type { flex: 1 1 220px; min-width: 0; }
+.acc h3 { margin: 0 0 2px; font-size: 1.05rem; }
+.acc p { margin: 0; }
+.acc .avatar { width: 44px; height: 44px; font-size: 1.1rem; background: var(--accent-zacht); color: var(--op-accent-zacht); border: 0; }
+.acc-status { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; color: var(--zacht); }
+.acc-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--omtrek); }
+.acc-status.bewaard::before { background: var(--goed); }
+.acc-status.fout::before { background: var(--fout); }
+.acc-status.bezig::before { animation: knipper 1s ease-in-out infinite; }
+@keyframes knipper { 50% { opacity: .25; } }
+.knop.rand { background: transparent; color: var(--tekst); border-color: var(--omtrek); }
+.knop.tekst { background: transparent; color: var(--zacht); padding-inline: 12px; font-weight: 500; }
+@media (hover: hover) { .knop.rand:hover:not(:disabled), .knop.tekst:hover:not(:disabled) { background: var(--vlak2); box-shadow: none; filter: none; } }

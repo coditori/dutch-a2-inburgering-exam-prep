@@ -15,49 +15,37 @@
 <script src="shared/app.js"></script>
 <script>
 // Het profiel: uw naam, uw lessen en uw cijfers op één kaart. U deelt de kaart met een link.
-// Er is geen server: de naam staat in deze browser, en de link heeft de gegevens zelf (achter #p=). Wie de link opent, ziet de kaart van dat moment.
+// Niet ingelogd: de naam staat in deze browser, en de link heeft de kaart zelf (achter #p=): de kaart van dat moment.
+// Ingelogd met Google (shared/account.js): de voortgang staat bij uw account, en de link (#u=) laat altijd de nieuwste kaart zien.
 (async () => {
   const { el, teken } = App;
   const kop = App.kop('Profiel', 'index.html');
-  kop.querySelector('.deel').remove(); // delen gaat hier met de grote knop: die deelt de kaart, niet deze lege pagina
+  kop.querySelector('.deel').remove(); // delen gaat hier met de grote knop: die deelt de kaart, niet deze pagina
+  kop.querySelector('.profielknop').remove(); // u bent er al
   const pagina = document.getElementById('pagina');
-  const MAX_NAAM = 30;
-  const schoon = (s) => String(s == null ? '' : s).replace(/\s+/g, ' ').trim().slice(0, MAX_NAAM);
-  const heel = (x, max) => Math.max(0, Math.min(max, Math.round(Number(x)) || 0));
 
-  // ---------- de gegevens in de link: kort, en bij het lezen streng gecontroleerd (de link komt van buiten) ----------
-  // [1, naam, dag, woorden gekend, woorden totaal, [per examen: [lessen gehaald, lessen totaal, [[toets, cijfer × 10], ...]]]]
+  // ---------- de kaart in een link: #p=... ----------
   const naarLink = (p) => {
-    const json = JSON.stringify([1, p.naam, p.dag, p.woorden, p.woordenTotaal, p.examens.map((x) => [x.gedaan, x.n, x.cijfers])]);
-    const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(json))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(App.profielRij(p))))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     return new URL('profiel.html#p=' + b64, App.WORTEL).href;
   };
   const uitLink = (hash) => {
     try {
       const b64 = hash.slice(3).replace(/-/g, '+').replace(/_/g, '/');
-      const d = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b64), (c) => c.charCodeAt(0))));
-      if (!Array.isArray(d) || d[0] !== 1 || !Array.isArray(d[5]) || d[5].length !== App.EXAMENS.length) return null;
-      const woordenTotaal = heel(d[4], 99999);
-      return { naam: schoon(d[1]), dag: heel(d[2], 99999), woordenTotaal, woorden: heel(d[3], woordenTotaal),
-        examens: d[5].map((x) => {
-          const n = heel(x && x[1], 999);
-          return { n, gedaan: heel(x && x[0], n),
-            cijfers: (Array.isArray(x && x[2]) ? x[2] : []).slice(0, 8).filter((c) => Array.isArray(c) && /^[A-Z]$/.test(c[0])).map((c) => [c[0], heel(c[1], 100)]) };
-        }) };
+      return App.profielUit(JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b64), (c) => c.charCodeAt(0)))));
     } catch (e) { return null; }
   };
 
   // ---------- de kaart ----------
   const NAMEN = { lezen: 'Lezen', luisteren: 'Luisteren', schrijven: 'Schrijven', spreken: 'Spreken', knm: 'KNM' };
   const komma = (c10) => (c10 / 10).toFixed(1).replace('.', ',');
+  const procentVan = (p) => Math.round(100 * p.examens.reduce((s, x) => s + x.gedaan, 0) / (p.examens.reduce((s, x) => s + x.n, 0) || 1));
   function kaart(p, vanMij) {
-    const totaal = p.examens.reduce((s, x) => s + x.n, 0), gedaan = p.examens.reduce((s, x) => s + x.gedaan, 0);
-    const procent = totaal ? Math.round(100 * gedaan / totaal) : 0;
-    const naam = p.naam || (vanMij ? 'Uw naam' : 'Een vriend');
+    const procent = procentVan(p);
     return el('article', { class: 'pkaart' },
       el('div', { class: 'pkaart-kop' },
         el('span', { class: 'avatar', 'aria-hidden': 'true' }, (p.naam || '?').slice(0, 1)),
-        el('div', {}, el('h2', {}, naam), el('p', { en: 'is practising for the civic integration exam A2' }, 'oefent voor het inburgeringsexamen A2')),
+        el('div', {}, el('h2', {}, p.naam || (vanMij ? 'Uw naam' : 'Een vriend')), el('p', { en: 'is practising for the civic integration exam A2' }, 'oefent voor het inburgeringsexamen A2')),
         el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` }, el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))),
       p.examens.map((x, i) => {
         const map = App.EXAMENS[i];
@@ -74,54 +62,112 @@
         el('span', {}, new Date(p.dag * 86400000).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }))));
   }
 
-  // ---------- mijn eigen gegevens, van nu ----------
-  async function mijn() {
-    const stand = App.tredeStand();
-    return { naam: schoon((App.lees('profiel', {}) || {}).naam), dag: SRS.vandaag(),
-      woorden: stand.reduce((s, t) => s + t.bekend, 0), woordenTotaal: stand.reduce((s, t) => s + t.totaal, 0),
-      examens: (await App.overzicht()).map((x) => ({ n: x.n, gedaan: x.gedaan, cijfers: x.toetsen.filter((t) => t.beste != null).map((t) => [t.id, Math.round(t.beste * 100)]) })) };
+  // ---------- het vak "account": inloggen met Google. Alleen als de site dat heeft (shared/config.json). ----------
+  const STATUS = {
+    bezig: ['Bezig met bewaren …', 'saving'],
+    bewaard: ['Bewaard bij uw account', 'saved to your account'],
+    fout: ['Niet bewaard: geen verbinding. Uw voortgang staat nog in deze browser.', 'not saved: no connection. Your progress is still in this browser.'],
+  };
+  function accountVak() {
+    const A = window.Account, s = A && A.staat;
+    if (!s || !s.beschikbaar) return null;
+    const g = s.gebruiker;
+    if (!g) return el('div', { class: 'kaart acc' },
+      el('div', {},
+        el('h3', { en: 'keep your progress' }, 'Bewaar uw voortgang'),
+        el('p', { class: 'zacht klein', en: 'Log in with Google. Then your lessons and marks are also on your other phone or computer, and your friends always see your newest card.' },
+          'Log in met Google. Dan staan uw lessen en cijfers ook op uw andere telefoon of computer, en zien uw vrienden altijd uw nieuwste kaart.'),
+        s.fout ? el('p', { class: 'uitslag fout klein', en: s.fout === 'venster' ? 'The browser stopped the Google window. Allow pop-ups for this site and try again.' : 'Logging in did not work. Try again.' },
+          s.fout === 'venster' ? 'De browser hield het venster van Google tegen. Sta pop-ups toe voor deze site en probeer het opnieuw.' : 'Inloggen is niet gelukt. Probeer het opnieuw.') : null),
+      el('button', { type: 'button', class: 'knop', disabled: s.status === 'bezig', en: 'log in with Google', onclick: () => A.login() }, 'Log in met Google'));
+    const [tekst, en] = STATUS[s.status] || STATUS.bezig;
+    return el('div', { class: 'kaart acc' },
+      el('span', { class: 'avatar', 'aria-hidden': 'true' }, (g.naam || g.email || '?').slice(0, 1)),
+      el('div', {},
+        el('h3', {}, g.naam || g.email),
+        g.naam && g.email ? el('p', { class: 'zacht klein' }, g.email) : null,
+        el('span', { class: 'acc-status ' + s.status, role: 'status', en }, tekst)),
+      el('div', { class: 'knoppen', style: 'margin:0' },
+        s.status === 'fout' ? el('button', { type: 'button', class: 'knop licht klein', en: 'try again', onclick: () => A.sync() }, 'Opnieuw') : null,
+        el('button', { type: 'button', class: 'knop rand klein', en: 'log out', onclick: () => A.loguit() }, 'Log uit')));
+  }
+  async function verwijderAccount() {
+    if (!await App.bevestig({ titel: 'Gegevens bij uw account verwijderen?', tekst: 'Uw voortgang en uw kaart gaan weg bij uw account, en u bent uitgelogd. De link naar uw kaart werkt dan niet meer. Uw voortgang in deze browser blijft.',
+      en: 'Your progress and your card are deleted from your account, and you are logged out. The link to your card stops working. Your progress in this browser stays.', ja: 'Verwijder' })) return;
+    await window.Account.verwijder();
+    App.toast('✔ Verwijderd', 'deleted');
   }
 
+  let beurt = 0;
   async function toon() {
-    pagina.textContent = '';
-    const gedeeld = location.hash.startsWith('#p=') ? uitLink(location.hash) : null;
+    const mijnBeurt = ++beurt; // een oudere toon() die nog wacht, tekent niets meer
+    const hash = location.hash;
 
-    // --- de kaart van iemand anders (u opende een link) ---
-    if (gedeeld) {
-      document.title = `${gedeeld.naam || 'Profiel'} – Nederlands A2`;
-      pagina.append(kaart(gedeeld, false),
-        el('div', { class: 'kaart midden' },
-          el('h3', { en: 'do you also want to practise?' }, 'Wilt u ook oefenen?'),
-          el('p', { class: 'zacht', en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.'),
-          el('div', { class: 'knoppen', style: 'justify-content:center' },
-            el('a', { class: 'knop', href: 'index.html', en: 'start practising' }, 'Begin met oefenen'),
-            el('a', { class: 'knop licht', href: 'profiel.html', en: 'make your own profile', onclick: (e) => { e.preventDefault(); history.replaceState(null, '', 'profiel.html'); toon(); } }, 'Maak uw eigen profiel'))));
-      return;
+    // --- de kaart van iemand anders: #p= (de kaart staat in de link) of #u= (de nieuwste kaart, van het account) ---
+    if (hash.startsWith('#p=') || hash.startsWith('#u=')) {
+      let p = null;
+      if (hash.startsWith('#p=')) p = uitLink(hash);
+      else {
+        pagina.textContent = ''; // het grijze skelet, zolang de kaart laadt
+        try {
+          for (let i = 0; i < 100 && !window.Account; i++) await new Promise((af) => setTimeout(af, 50)); // account.js laadt na de pagina
+          p = App.profielUit(await window.Account.kaartVan(hash.slice(3)));
+        } catch (e) { p = null; }
+      }
+      if (mijnBeurt !== beurt) return;
+      pagina.textContent = '';
+      if (p) {
+        document.title = `${p.naam || 'Profiel'} – Nederlands A2`;
+        pagina.append(kaart(p, false),
+          el('div', { class: 'kaart midden' },
+            el('h3', { en: 'do you also want to practise?' }, 'Wilt u ook oefenen?'),
+            el('p', { class: 'zacht', en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.'),
+            el('div', { class: 'knoppen', style: 'justify-content:center' },
+              el('a', { class: 'knop', href: 'index.html', en: 'start practising' }, 'Begin met oefenen'),
+              el('a', { class: 'knop licht', href: 'profiel.html', en: 'make your own profile', onclick: (e) => { e.preventDefault(); history.replaceState(null, '', 'profiel.html'); toon(); } }, 'Maak uw eigen profiel'))));
+        return;
+      }
+      pagina.append(el('p', { class: 'uitslag fout', en: 'This link does not work (any more). Ask for the link again.' }, 'Deze link werkt niet (meer). Vraag de link opnieuw.'));
     }
-    if (location.hash.startsWith('#p=')) pagina.append(el('p', { class: 'uitslag fout', en: 'This link is not complete. Ask for the link again.' }, 'Deze link is niet compleet. Vraag de link opnieuw.'));
 
-    // --- mijn eigen kaart: naam typen, kaart zien, delen ---
-    const p = await mijn();
+    // --- mijn eigen kaart: (inloggen,) naam typen, kaart zien, delen ---
+    const p = await App.profielNu();
+    if (mijnBeurt !== beurt) return;
+    const fout = pagina.querySelector('.uitslag.fout');
+    pagina.textContent = ''; if (fout) pagina.append(fout);
+    const A = window.Account, g = A && A.staat.gebruiker;
     const vak = el('div', {}, kaart(p, true));
-    const invoer = el('input', { type: 'text', id: 'naam', maxlength: MAX_NAAM, autocomplete: 'given-name', enterkeyhint: 'done', placeholder: 'Uw naam', 'aria-label': 'uw naam', value: p.naam });
+    const invoer = el('input', { type: 'text', id: 'naam', maxlength: 30, autocomplete: 'given-name', enterkeyhint: 'done', placeholder: 'Uw naam', 'aria-label': 'uw naam', value: p.naam });
     invoer.addEventListener('input', () => {
-      p.naam = schoon(invoer.value);
+      p.naam = App.schoneNaam(invoer.value);
       App.schrijf('profiel', { naam: p.naam });
       vak.textContent = ''; vak.append(kaart(p, true));
     });
-    const deel = () => {
-      if (!p.naam) { App.toast('Typ eerst uw naam', 'type your name first'); invoer.focus(); return; }
-      const procent = Math.round(100 * p.examens.reduce((s, x) => s + x.gedaan, 0) / (p.examens.reduce((s, x) => s + x.n, 0) || 1));
-      App.deel(naarLink(p), `${p.naam} oefent voor het inburgeringsexamen A2: ${procent}% van de lessen gehaald. Oefen ook!`);
-    };
+    invoer.addEventListener('change', () => { if (g) A.sync(); }); // klaar met typen: de naam gaat naar het account
     invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter') invoer.blur(); });
+    const deel = async () => {
+      if (!p.naam) { App.toast('Typ eerst uw naam', 'type your name first'); invoer.focus(); return; }
+      const tekst = `${p.naam} oefent voor het inburgeringsexamen A2: ${procentVan(p)}% van de lessen gehaald. Oefen ook!`;
+      // ingelogd en bewaard: de link naar de nieuwste kaart. Anders: de kaart van nu in de link zelf.
+      App.deel(g && A.staat.status === 'bewaard' ? new URL('profiel.html#u=' + g.uid, App.WORTEL).href : naarLink(p), tekst);
+    };
     pagina.append(
+      accountVak(),
       el('div', { class: 'pnaam' }, invoer, el('button', { type: 'button', class: 'knop', en: 'share with friends', onclick: deel }, teken('deel'), 'Deel met vrienden')),
       vak,
-      el('p', { class: 'zacht klein', en: 'Your name stays in this browser. Friends see this card only when you send them the link. The link shows the card of today: after more lessons, share it again.' },
-        'Uw naam blijft in deze browser. Vrienden zien deze kaart alleen als u de link stuurt. De link laat de kaart van vandaag zien: deel hem opnieuw als u meer lessen deed.'));
+      g
+        ? el('p', { class: 'zacht klein', en: 'Friends see this card only when you send them the link. The link always shows your newest card.' },
+          'Vrienden zien deze kaart alleen als u de link stuurt. De link laat altijd uw nieuwste kaart zien. ',
+          el('button', { type: 'button', class: 'knop tekst klein', en: 'delete my data from my account', onclick: verwijderAccount }, 'Verwijder mijn gegevens bij het account'))
+        : el('p', { class: 'zacht klein', en: 'Your name stays in this browser. Friends see this card only when you send them the link. The link shows the card of today: after more lessons, share it again.' },
+          'Uw naam blijft in deze browser. Vrienden zien deze kaart alleen als u de link stuurt. De link laat de kaart van vandaag zien: deel hem opnieuw als u meer lessen deed.'));
   }
   window.addEventListener('hashchange', toon);
+  // het account verandert (ingelogd, bewaard, uitgelogd) of er kwam voortgang van het account: opnieuw tekenen, maar niet terwijl u typt
+  let wacht = 0;
+  const later = () => { clearTimeout(wacht); wacht = setTimeout(() => { if (document.activeElement && document.activeElement.id === 'naam') later(); else toon(); }, 150); };
+  document.addEventListener('account', later);
+  document.addEventListener('account-gegevens', later);
   toon();
 })();
 </script>
