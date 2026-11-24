@@ -48,13 +48,15 @@
         el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` }, el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))),
       p.examens.map((x, i) => {
         const map = App.EXAMENS[i];
-        return el('div', { class: `prij k-${map}` },
+        // de hele regel is een link naar de lessen en oefenexamens van dat examen
+        return el('a', { class: `prij k-${map}`, href: `${map}/index.html`, 'aria-label': `${NAMEN[map]}: ${x.gedaan} van ${x.n} lessen. Ga naar ${NAMEN[map]}.` },
           el('span', { class: 'ex-icoon' }, teken(map)),
           el('div', {},
             el('div', { class: 'prij-naam' }, el('b', {}, NAMEN[map]), el('span', { class: 'klein zacht', en: 'lessons' }, `${x.gedaan} van ${x.n} lessen`)),
             el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` }))),
           el('div', { class: 'pcijfers', 'aria-label': x.cijfers.length ? 'cijfers van de oefenexamens' : null },
-            x.cijfers.map(([id, c]) => el('span', { class: 'pcijfer', title: `oefenexamen ${id}: ${komma(c)} van de 10` }, el('b', {}, komma(c)), el('span', {}, `examen ${id}`)))));
+            x.cijfers.map(([id, c]) => el('span', { class: 'pcijfer', title: `oefenexamen ${id}: ${komma(c)} van de 10` }, el('b', {}, komma(c)), el('span', {}, `examen ${id}`)))),
+          teken('pijl'));
       }),
       el('div', { class: 'pkaart-voet' },
         el('span', { en: 'words known' }, `${p.woorden} van ${p.woordenTotaal} woorden gekend`),
