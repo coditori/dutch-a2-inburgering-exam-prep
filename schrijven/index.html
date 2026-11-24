@@ -20,7 +20,7 @@
   <h2 data-en="full task sets: 4 tasks, 40 minutes, pen and paper">Sets · 4 opdrachten, 40 minuten, pen en papier</h2>
   <div class="tegels" id="toetsen"></div>
   <h2 data-en="the official DUO practice exams (PDF): do these last">Oefenexamens van DUO (pdf)</h2>
-  <div class="tegels">
+  <div class="tegels" id="duo">
     <a class="tegel" href="toets/schrijven1.pdf" target="_blank"><b>DUO 1</b>pdf</a>
     <a class="tegel" href="toets/schrijven2.pdf" target="_blank"><b>DUO 2</b>pdf</a>
     <a class="tegel" href="toets/schrijven3.pdf" target="_blank"><b>DUO 3</b>pdf</a>
@@ -37,6 +37,12 @@
 (async () => {
   const { el } = App;
   App.kop('Schrijven', '../index.html');
+  // De pdf's van DUO staan niet in de repository (ze zijn van de overheid), dus ook niet op de online versie.
+  // Ontbreken ze, dan gaan de tegels naar de pagina van DUO zelf.
+  fetch('toets/schrijven1.pdf', { method: 'HEAD' }).then((r) => r.ok).catch(() => false).then((er) => {
+    if (er) return;
+    document.querySelectorAll('#duo a').forEach((a) => { a.href = 'https://www.inburgeren.nl/en/taking-the-integration-exam/practicing.jsp'; a.rel = 'noopener'; a.lastChild.textContent = 'op inburgeren.nl'; });
+  });
   const TREDE = { 1: 'Trede 1 · woorden, zinnen, uw gegevens', 2: 'Trede 2 · een zin bouwen', 3: 'Trede 3 · e-mail en korte tekst', 4: 'Trede 4 · examen op papier' };
   const [lessen, toetsen] = await Promise.all([Schrijven.json('lessons/index.json'), Schrijven.json('toets/index.json').catch(() => [])]);
   const P = Schrijven.P;

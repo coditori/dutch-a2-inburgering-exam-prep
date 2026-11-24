@@ -216,6 +216,11 @@ window.App = (() => {
     const rol = () => document.body.classList.toggle('gerold', window.scrollY > 4);
     window.addEventListener('scroll', rol, { passive: true }); rol();
     document.body.prepend(h);
+    // voet: wie de site maakte. Niet in een toets: daar staat onderaan de vaste balk met de knoppen.
+    if (!location.pathname.includes('/toets/')) document.body.append(el('footer', { class: 'maker' },
+      el('span', { en: 'made by Ario' }, 'Gemaakt door Ario'),
+      el('a', { href: 'https://github.com/coditori', target: '_blank', rel: 'noopener' }, 'GitHub'),
+      el('a', { href: 'https://www.linkedin.com/in/coditori/', target: '_blank', rel: 'noopener' }, 'LinkedIn')));
     if (lees('en', false)) document.body.classList.add('en');
     return h;
   }
