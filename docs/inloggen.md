@@ -50,7 +50,9 @@ The menu names are those of the Firebase console in November 2026. Google moves 
 
 The browser needs the config to talk to Firebase, so every visitor of the published site can read it. That is how Firebase is designed: the config identifies the project, it is not a password. What protects the data is the rules above and the list of authorized domains.
 
-Keeping the file out of git is still possible, but then the published site needs it from somewhere else. GitHub Pages "deploy from a branch" only serves what is in the branch. The alternative is to publish with a GitHub Actions workflow that writes `shared/config.json` from a repository variable just before the upload. That means switching **Settings → Pages → Source** to "GitHub Actions".
+The file is not in git. The published site gets it from the workflow `.github/workflows/site.yml`: on every change to `main` it writes `shared/config.json` from the repository secret `SITE_CONFIG` and then publishes the site. For this, **Settings → Pages → Source** is set to "GitHub Actions".
+
+To change the config of the published site, replace the secret (`gh secret set SITE_CONFIG < shared/config.json`) and run the workflow "Site" again. Without the secret the site is published with login off.
 
 ## Trying the screens without Firebase
 
