@@ -52,14 +52,14 @@
   {
    "nl": "de vader",
    "en": "father",
-   "beeld": "👨‍👧",
+   "beeld": "👨👧",
    "zin": "Mijn vader heeft een auto.",
    "thema": "familie"
   },
   {
    "nl": "de moeder",
    "en": "mother",
-   "beeld": "👩‍👧",
+   "beeld": "👩👧",
    "zin": "Mijn moeder werkt in een winkel.",
    "thema": "familie"
   }
@@ -118,9 +118,9 @@
    "vragen": [
     {
      "o": [
-      "👨‍👧🏪",
-      "👩‍👧🏪",
-      "👨‍👧🚉"
+      "👨👧🏪",
+      "👩👧🏪",
+      "👨👧🚉"
      ]
     }
    ]
