@@ -18,3 +18,5 @@ table.zinnen { width: 100%; border-collapse: collapse; }
 table.zinnen td { padding: 6px 8px; border-bottom: 1px solid var(--lijn); vertical-align: middle; }
 audio { max-width: 100%; height: 36px; vertical-align: middle; }
 @media (max-width: 560px) { .scene .plaat { font-size: 2.2rem; padding: 14px 10px; } .opname > .knop { flex: 1 1 140px; } }
+@media (max-width: 380px) { .scene { gap: 8px; } .scene .plaat { min-width: 110px; font-size: 2rem; } .klemtoon { font-size: 1.35rem; } table.zinnen td { padding: 6px 4px; } }
+@media (max-width: 560px) { body.en .opname > .knop[data-en] { flex: 1 1 100%; border-radius: 24px; } }

@@ -12,3 +12,5 @@ input.dictee { font: inherit; width: 100%; padding: 8px 10px; border: 1px solid 
 input.typ { font: inherit; font-size: 1.4rem; width: 9em; max-width: 100%; padding: 8px 10px; border: 1px solid var(--omtrek); border-radius: 12px; background: var(--vlak); color: var(--tekst); }
 .dw { padding: 0 3px; border-radius: 3px; } .dw.goed { background: var(--goed-zacht); } .dw.fout { background: var(--fout-zacht); text-decoration: line-through; }
 @media (max-width: 560px) { .speler { gap: 8px; } .speler .knop { flex: 1 1 56px; min-width: 56px; } }
+/* met Engels aan: het Engels staat onder het teken, de knop wordt hoger in plaats van breder */
+body.en .speler .knop[data-en] { padding: 6px 12px; border-radius: 22px; min-height: 54px; }
