@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Profiel – Taal Klim</title>
+<title>Profiel</title>
 <link rel="stylesheet" href="shared/app.css">
 <script src="shared/thema.js"></script>
 </head>
@@ -141,7 +141,7 @@
       if (mijnBeurt !== beurt) return;
       pagina.textContent = '';
       if (p) {
-        document.title = `${p.naam || 'Profiel'} – Taal Klim`;
+        document.title = p.naam || 'Profiel'; // shared/thema.js zet de naam van de site erachter
         pagina.append(kaart(p, false),
           el('div', { class: 'kaart midden' },
             el('h3', { en: 'do you also want to practise?' }, 'Wilt u ook oefenen?'),
