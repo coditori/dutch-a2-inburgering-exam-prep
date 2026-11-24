@@ -27,7 +27,10 @@
   const verder = () => { Luister.stop(); stand.stap++; bewaar(); toon(); };
   const knopVerder = (tekst, en) => el('button', { class: 'knop', en: en || 'next', onclick: verder }, tekst || 'Verder');
   // de balk is klikbaar: terug naar elke stap waar u al was (stand.max)
-  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga: (i) => { Luister.stop(); stand.stap = i; bewaar(); toon(); } });
+  // Een stap met een foute vraag is rood: een klik brengt u terug, en met "Probeer opnieuw" maakt u de vraag nog een keer.
+  const foutInItem = (ii) => vragen.some((q, nr) => q.ii === ii && stand.antwoorden[nr] != null && stand.antwoorden[nr] !== 0);
+  const ga = (i) => { Luister.stop(); stand.stap = i; bewaar(); toon(); };
+  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga, staat: (i) => (stappen[i].soort === 'item' && foutInItem(stappen[i].ii) ? 'fout' : null) });
 
   // ---------- woorden ----------
   function toonWoorden() {
@@ -77,12 +80,15 @@
       tekenNav();
       const na = (goed, nieuwAntwoord) => {
         const laatste = k === it.vragen.length - 1;
-        tekenNav();
+        tekenNav(); balk();
+        const opnieuw = goed ? null : App.opnieuwKnop(() => { stand.antwoorden[nr] = null; bewaar(); balk(); toonVraag(k); });
         onder.textContent = '';
         onder.append(el('p', { class: 'uitslag ' + (goed ? 'goed' : 'fout') }, goed ? '✔ Goed!' : '✘ Niet goed. ' + (v.typ ? 'Het goede antwoord: ' + v.typ : 'Het goede antwoord is groen.')));
-        if (!nieuwAntwoord && laatste) return toonKijk(); // terugkijken: de tekst staat er meteen onder
-        const knop = el('button', { class: 'knop', en: 'next', onclick: () => toonVraag(k + 1) }, 'Verder');
-        onder.append(el('div', { class: 'knoppen' }, knop));
+        if (!nieuwAntwoord && laatste) { if (opnieuw) onder.append(el('div', { class: 'knoppen' }, opnieuw)); return toonKijk(); } // terugkijken: de tekst staat er meteen onder
+        // was de les al klaar, dan verbeterde u een vraag: na de laatste vraag terug naar de uitslag
+        const knop = stand.geteld && laatste ? el('button', { class: 'knop', en: 'back to the result', onclick: () => ga(stappen.length - 1) }, 'Naar de uitslag')
+          : el('button', { class: 'knop', en: 'next', onclick: () => toonVraag(k + 1) }, 'Verder');
+        onder.append(el('div', { class: 'knoppen' }, knop, opnieuw));
         if (nieuwAntwoord && goed) App.goed(knop);
       };
       if (v.typ) { // typ wat u hoort (een getal, een tijd)
@@ -164,13 +170,18 @@
     if (!stand.geteld) {
       Luister.P.lessen[les.id] = { score: goed, beste: Math.max(oud.beste, goed), totaal, keer: oud.keer + 1, dictee: dictProcent, datum: new Date().toISOString().slice(0, 10), sec: Math.round((Date.now() - stand.start) / 1000) };
       Luister.bewaar(); stand.geteld = true; bewaar();
+    } else if (Luister.P.lessen[les.id] && goed > Luister.P.lessen[les.id].score) { // een foute vraag verbeterd: de score gaat omhoog, het is geen nieuwe poging
+      Object.assign(Luister.P.lessen[les.id], { score: goed, beste: Math.max(oud.beste, goed) });
+      Luister.bewaar();
     }
     const gehaald = goed / totaal >= 0.8;
+    const fout = stappen.map((s, i) => ({ s, i })).filter((x) => x.s.soort === 'item' && foutInItem(x.s.ii)).map((x) => ({ naam: `Fragment ${x.s.ii + 1}`, ga: () => ga(x.i) }));
     const volgende = index[index.findIndex((l) => l.id === les.id) + 1];
     const weg = () => App.schrijf('luisteren-bezig', null);
     pagina.append(el('div', { class: 'kaart midden' },
       el('div', { class: 'groot' }, `${goed} / ${totaal}`),
-      el('p', { class: 'uitslag ' + (gehaald ? 'goed' : 'fout'), en: gehaald ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' }, gehaald ? '✔ Gehaald. De volgende les is open.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      el('p', { class: 'uitslag ' + (gehaald ? 'goed' : 'fout'), en: gehaald ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' }, gehaald ? '✔ Gehaald. De volgende les is open.' : fout.length ? 'U hebt 80% nodig. Verbeter de foute vragen, of doe de les nog een keer.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      App.foutKnoppen(fout),
       dictProcent != null ? el('p', { class: 'zacht' }, `Dictee: ${dictProcent}% van de woorden goed`) : null,
       el('div', { class: 'knoppen', style: 'justify-content:center' },
         gehaald && volgende ? el('a', { class: 'knop', href: `les.html?les=${volgende.id}`, en: 'next lesson', onclick: weg }, `Volgende les: ${volgende.id}`) : null,

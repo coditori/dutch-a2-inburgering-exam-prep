@@ -24,7 +24,11 @@
   const bewaar = () => App.schrijf('lezen-bezig', stand);
 
   // de balk is klikbaar: terug naar elke stap waar u al was (stand.max)
-  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga: (i) => { stand.stap = i; bewaar(); toon(); } });
+  // Een stap met een foute vraag is rood: een klik brengt u terug, en met "Probeer opnieuw" maakt u de vraag nog een keer.
+  const foutInTekst = (ti) => vragen.some((q, nr) => q.ti === ti && stand.antwoorden[nr] != null && stand.antwoorden[nr] !== 0);
+  const ga = (i) => { stand.stap = i; bewaar(); toon(); };
+  const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga, staat: (i) => (stappen[i].soort === 'tekst' && foutInTekst(stappen[i].ti) ? 'fout' : null) });
+  const naarUitslag = () => ga(stappen.length - 1);
   function verder() { stand.stap++; bewaar(); toon(); }
   const knopVerder = (tekst, en) => el('button', { class: 'knop', en: en || 'next', onclick: verder }, tekst || 'Verder');
 
@@ -68,7 +72,7 @@
 
     function toonVraag(k) {
       onder.textContent = '';
-      if (k >= eigen.length) return verder();
+      if (k >= eigen.length) return stand.geteld ? naarUitslag() : verder(); // de les was al klaar: u verbeterde een vraag, terug naar de uitslag
       const nr = eersteNr + k;
       const v = eigen[k].v;
       const al = stand.antwoorden[nr];
@@ -79,7 +83,7 @@
         nieuw,
         gekozen: al == null ? undefined : al,
         toonGoed: al != null,
-        op: (keuze) => { stand.antwoorden[nr] = keuze; bewaar(); blok.teken(keuze, true); tekenNav(); na(keuze, true); },
+        op: (keuze) => { stand.antwoorden[nr] = keuze; bewaar(); blok.teken(keuze, true); tekenNav(); balk(); na(keuze, true); },
       });
       Lezen.markeer(tekstDoel, null);
       if (al != null) na(al);
@@ -90,7 +94,8 @@
         onder.append(...[
           el('p', { class: 'uitslag ' + (keuze === 0 ? 'goed' : 'fout') }, keuze === 0 ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.'),
           v.b ? el('p', { class: 'zacht klein', en: 'The yellow sentence in the text holds the answer.' }, 'Het antwoord staat in de gele zin.') : null,
-          el('div', { class: 'knoppen' }, knop)].filter(Boolean));
+          el('div', { class: 'knoppen' }, knop,
+            keuze === 0 ? null : App.opnieuwKnop(() => { stand.antwoorden[nr] = null; bewaar(); balk(); toonVraag(k); }))].filter(Boolean));
         if (nieuwAntwoord && keuze === 0) App.goed(knop);
       }
     }
@@ -124,8 +129,12 @@
       Lezen.bewaar();
       stand.geteld = true;
       bewaar();
+    } else if (Lezen.P.lessen[les.id] && goed > Lezen.P.lessen[les.id].score) { // een foute vraag verbeterd: de score gaat omhoog, het is geen nieuwe poging
+      Object.assign(Lezen.P.lessen[les.id], { score: goed, beste: Math.max(oud.beste, goed) });
+      Lezen.bewaar();
     }
     const gehaald = goed / totaal >= 0.8;
+    const fout = les.teksten.map((_, ti) => ti).filter(foutInTekst).map((ti) => ({ naam: `Tekst ${ti + 1}`, ga: () => ga(ti + 1) }));
     const plek = index.findIndex((l) => l.id === les.id);
     const volgende = index[plek + 1];
     const opnieuw = el('button', { class: 'knop licht', en: 'again', onclick: () => { App.schrijf('lezen-bezig', null); location.reload(); } }, 'Nog een keer');
@@ -133,7 +142,8 @@
       el('div', { class: 'kaart midden' },
         el('div', { class: 'groot' }, `${goed} / ${totaal}`),
         el('p', { class: 'uitslag ' + (gehaald ? 'goed' : 'fout'), en: gehaald ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' },
-          gehaald ? '✔ Gehaald. De volgende les is open.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+          gehaald ? '✔ Gehaald. De volgende les is open.' : fout.length ? 'U hebt 80% nodig. Verbeter de foute vragen, of doe de les nog een keer.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+        App.foutKnoppen(fout),
         les.trede >= 4 ? el('p', { class: 'zacht klein' }, `Tijd: ${Math.floor(Lezen.P.lessen[les.id].sec / 60)} min ${Lezen.P.lessen[les.id].sec % 60} s`) : null,
         el('p', { class: 'zacht klein', en: 'Tomorrow: review the words and sentences.' }, 'Morgen: herhaal de woorden en de zinnen.'),
         el('div', { class: 'knoppen', style: 'justify-content:center' },

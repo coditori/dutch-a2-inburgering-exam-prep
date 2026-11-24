@@ -368,7 +368,9 @@ window.App = (() => {
   }
 
   // ---------- de balk met stappen boven een les ----------
-  // o = { n, nu, max, min, ga(i) }  max = verste stap waar de leerling al was. Klik op een stap t/m max, of Vorige / Volgende.
+  // o = { n, nu, max, min, ga(i), staat(i) }  max = verste stap waar de leerling al was. Klik op een stap t/m max, of Vorige / Volgende.
+  // staat(i) (mag weg) = 'fout' als de leerling in die stap een vraag fout had: de stap is dan rood en dikker. Een klik brengt de leerling terug.
+  // De balk tekent zichzelf opnieuw bij de gebeurtenis 'balk' (document): zo wordt een stap rood of weer blauw meteen na een antwoord.
   function balk(o) {
     const doel = document.getElementById('stappen');
     if (!doel) return;
@@ -377,8 +379,9 @@ window.App = (() => {
     const rij = el('div', { class: 'stappen-rij' });
     for (let i = 0; i < o.n; i++) {
       const kan = !!o.ga && i >= min && i <= max && i !== nu;
-      rij.append(el('button', { type: 'button', class: 'stap' + (i === nu ? ' nu' : i < nu ? ' aan' : i <= max ? ' geweest' : ''), disabled: !kan,
-        title: `stap ${i + 1}`, 'aria-label': `stap ${i + 1} van ${o.n}`, 'aria-current': i === nu ? 'step' : null, onclick: () => o.ga(i) }));
+      const fout = !!o.staat && i <= max && o.staat(i) === 'fout';
+      rij.append(el('button', { type: 'button', class: 'stap' + (i === nu ? ' nu' : i < nu ? ' aan' : i <= max ? ' geweest' : '') + (fout ? ' fout' : ''), disabled: !kan,
+        title: fout ? `stap ${i + 1}: fout, probeer opnieuw` : `stap ${i + 1}`, 'aria-label': `stap ${i + 1} van ${o.n}` + (fout ? ': fout, probeer opnieuw' : ''), 'aria-current': i === nu ? 'step' : null, onclick: () => o.ga(i) }));
     }
     doel.append(rij);
     if (o.ga && o.n > 1) doel.append(el('div', { class: 'stappen-nav' },
@@ -386,6 +389,12 @@ window.App = (() => {
       el('span', { class: 'zacht klein' }, `${nu + 1} / ${o.n}`),
       el('button', { type: 'button', class: 'knop licht klein', en: 'next', disabled: nu >= max, onclick: () => o.ga(nu + 1) }, 'Volgende')));
   }
+  // Na de uitslag van een les: de stappen met een foute vraag, als knoppen. lijst = [{ naam, ga }]. Leeg: niets (null).
+  const foutKnoppen = (lijst) => (lijst.length ? el('div', { class: 'foutlijst' },
+    el('p', { class: 'klein', en: 'These were wrong. Click one and try it again: your score goes up.' }, 'Deze waren fout. Klik erop en probeer het opnieuw: uw score gaat omhoog.'),
+    el('div', { class: 'foutlijst-rij' }, lijst.map((x) => el('button', { type: 'button', class: 'knop klein foutknop', onclick: x.ga }, x.naam)))) : null);
+  // de knop bij een fout antwoord in een les
+  const opnieuwKnop = (doe) => el('button', { type: 'button', class: 'knop licht', en: 'try again', onclick: doe }, 'Probeer opnieuw');
   // knoppen 1 2 3 voor de vragen bij één tekst. staat(i) = 'goed' | 'fout' | null (nog niet gedaan). Klik: terugkijken.
   function vraagKnoppen(n, nu, staat, ga) {
     let eerste = 0;
@@ -575,5 +584,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, bevestig, wis };
 })();

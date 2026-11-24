@@ -760,3 +760,10 @@ body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
 /* de drie knoppen op een woordkaart blijven op één regel, ook bij grote letters op een smalle telefoon */
 .wkaart .knoppen { flex-wrap: nowrap; gap: 6px; }
 .wkaart .rond { width: min(calc(40px * var(--schaal, 1)), 30%); height: auto; aspect-ratio: 1; flex: 0 1 auto; }
+/* ---------- een stap met een foute vraag: rood en dikker in de balk; na de uitslag een knop per foute stap (App.foutKnoppen) ---------- */
+.stap.fout::before { background: var(--fout); opacity: 1; top: 8px; height: 8px; border-radius: 4px; }
+.stap.fout.nu::before { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fout); }
+.foutlijst { margin: 16px 0 4px; padding: 14px 16px; border-radius: var(--rond); background: var(--fout-zacht); }
+.foutlijst p { margin: 0 0 10px; }
+.foutlijst-rij { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.knop.foutknop { background: var(--vlak); color: var(--fout); border-color: var(--fout); }
