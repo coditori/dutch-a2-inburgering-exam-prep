@@ -286,7 +286,7 @@ window.App = (() => {
   // wis('lezen') = alles van één examen · wis('herhalen') = de woordkaarten · wis() = alle voortgang.
   // De instellingen (thema, Engels, slot) blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
   // 'account-in' = deze browser is ingelogd (shared/account.js); de demo-sleutels zijn het nep-account van { "demo": true }
-  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'profiel', 'account-in', 'demo-in', 'demo-wolk', 'demo-kaart'];
+  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];
   function wis(wat) {
     const VOOR = 'dutch-exam:';
     try {

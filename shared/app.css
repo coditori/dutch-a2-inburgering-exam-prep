@@ -546,3 +546,7 @@ body.gerold .kop .profielknop.tip::after { box-shadow: 0 0 0 2px var(--vlak); }
 @media (hover: hover) { .kopmenu a:hover { background: var(--vlak2); } }
 /* op de startpagina en de overzichten is er geen knop Delen in de kop: delen doet u daar met uw profiel */
 body.met-nav .kop .deel { display: none; }
+/* profielpagina: het vak "account" houdt zijn plek vast, ook als we nog niet weten of u bent ingelogd */
+#accvak:empty { display: none; }
+#accvak .kaart { min-height: 104px; margin-top: 0; }
+#accvak .kaart.acc-skelet:empty { min-height: 104px; }

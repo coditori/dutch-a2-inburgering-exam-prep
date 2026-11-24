@@ -107,6 +107,18 @@
     App.toast('✔ Verwijderd', 'deleted');
   }
 
+  // Het vak "account" heeft een eigen plek op de pagina. Verandert alleen de status (bezig, bewaard), dan tekenen we alleen dit vak
+  // opnieuw: de rest van de pagina blijft staan. Weten we nog niet of de leerling is ingelogd, dan staat er een grijs vak van dezelfde hoogte.
+  let accVak = null, getekendVoor = null;
+  function vulAccount() {
+    if (!accVak) return;
+    const A = window.Account;
+    accVak.textContent = '';
+    if (!A || !A.staat.geladen) { if (App.lees('account-kan', null)) accVak.append(el('div', { class: 'kaart acc-skelet', 'aria-hidden': 'true' })); return; }
+    const vak = accountVak();
+    if (vak) accVak.append(vak);
+  }
+
   let beurt = 0;
   async function toon() {
     const mijnBeurt = ++beurt; // een oudere toon() die nog wacht, tekent niets meer
@@ -160,8 +172,10 @@
       // ingelogd en bewaard: de link naar de nieuwste kaart. Anders: de kaart van nu in de link zelf.
       App.deel(g && A.staat.status === 'bewaard' ? new URL('profiel.html#u=' + g.uid, App.WORTEL).href : naarLink(p), tekst);
     };
+    accVak = el('div', { id: 'accvak' }); getekendVoor = g ? g.uid : null;
+    vulAccount();
     pagina.append(...[
-      accountVak(), // null als de site geen inloggen heeft
+      accVak,
       el('div', { class: 'pnaam' }, invoer, el('button', { type: 'button', class: 'knop', en: 'share with friends', onclick: deel }, teken('deel'), 'Deel met vrienden')),
       vak,
       g
@@ -175,7 +189,11 @@
   // het account verandert (ingelogd, bewaard, uitgelogd) of er kwam voortgang van het account: opnieuw tekenen, maar niet terwijl u typt
   let wacht = 0;
   const later = () => { clearTimeout(wacht); wacht = setTimeout(() => { if (document.activeElement && document.activeElement.id === 'naam') later(); else toon(); }, 150); };
-  document.addEventListener('account', later);
+  // de hele pagina alleen opnieuw als er iemand anders is (ingelogd, uitgelogd); anders alleen het vak "account"
+  document.addEventListener('account', () => {
+    const g = window.Account.staat.gebruiker, uid = g ? g.uid : null;
+    if (accVak && accVak.isConnected && uid === getekendVoor) vulAccount(); else later();
+  });
   document.addEventListener('account-gegevens', later);
   toon();
 })();
