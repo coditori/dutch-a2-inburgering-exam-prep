@@ -91,7 +91,7 @@ body.en .kop .rond.taal { background: var(--accent-zacht); color: var(--op-accen
 @media (hover: hover) { .taalmenu button:hover { background: var(--vlak2); } }
 @media (hover: hover) { .rond:hover { background: var(--lijn); } .kop .rond:hover, .kop a.terug:hover { background: var(--vlak2); } }
 
-/* Engels alleen achter de knop EN (in de kop) of ❗ (bij een woord) */
+/* Engels alleen achter de knop EN (in de kop) of de knop Vertaling (bij een woord) */
 body.en [data-en]::after { content: " (" attr(data-en) ")"; color: var(--zacht); font-size: .8em; font-weight: 400; }
 body.en .knop[data-en]::after, body.en #toast[data-en]::after { color: inherit; opacity: .8; }
 /* in een knop staat het Engels onder het Nederlands: zo wordt de knop niet breder en breekt het Engels niet af per letter */
@@ -654,3 +654,97 @@ a.ring { color: inherit; text-decoration: none; border-radius: 50%; transition: 
 p.uitleg-tekst { margin-top: 8px; padding: 12px 16px; border-radius: var(--rond); background: var(--vlak2); color: var(--tekst); }
 h2 + p.uitleg-tekst { margin-top: -4px; margin-bottom: 14px; }
 @media (prefers-reduced-motion: reduce) { .uitleg-tekst:not([hidden]) { animation: none; } }
+
+/* ---------- knoppen bij een woord: luister, vertaling, bewaar (App.luisterKnop, App.vertaalKnop, App.bewaarKnop) ---------- */
+main .rond .icoon, #wpop .rond .icoon { width: 20px; height: 20px; }
+.rond[aria-pressed=true] { background: var(--accent-zacht); color: var(--op-accent-zacht); }
+.bewaarknop.aan { color: var(--accent); }
+.bewaarknop.aan .icoon { fill: currentColor; }
+.knop.bewaarknop.aan { background: var(--accent); color: var(--op-accent); }
+/* de of het in een eigen kleur: de = blauw, het = oranje */
+.lw { font-weight: 700; } .lw-de { color: var(--k-lezen); } .lw-het { color: var(--k-schrijven); }
+/* een woord in een tekst dat op uw lijst staat, en het woord waarvan het kaartje open is */
+.w.bewaard { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.w.open { background: var(--accent-zacht); color: var(--op-accent-zacht); }
+
+/* het kaartje bij een woord */
+#wpop { min-width: 240px; padding: 16px; animation: op .16s ease both; }
+#wpop .rij { display: flex; flex-direction: column; gap: 10px; }
+.wpop-kop { display: flex; align-items: center; gap: 12px; }
+.wpop-kop .beeld { font-size: 2.2rem; line-height: 1; }
+.wpop-woord { display: flex; flex-direction: column; min-width: 0; line-height: 1.35; }
+.wpop-woord b { font-size: 1.2rem; }
+#wpop .en { padding: 8px 12px; border-radius: 12px; background: var(--vlak2); color: var(--tekst); font-style: normal; }
+.wpop-knoppen { display: flex; align-items: center; gap: 8px; }
+.wpop-knoppen .bewaarknop { margin-inline-start: auto; }
+@media (max-width: 560px) {
+  /* telefoon: een blad onder aan het scherm, binnen bereik van de duim */
+  #wpop { position: fixed; top: auto !important; left: 8px !important; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); max-width: none; max-height: 60vh; overflow-y: auto; border-radius: 24px; padding: 20px; box-shadow: var(--schaduw3), 0 0 0 100vmax rgba(0,0,0,.18); }
+  body.met-nav #wpop { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  #wpop .rond { width: 48px; height: 48px; }
+  #wpop .knop.bewaarknop { min-height: 48px; padding-inline: 22px; font-size: 1rem; }
+}
+
+/* melding met een knop ("Ongedaan maken", "Bekijk"): rustig van kleur, en de knop is te klikken */
+#toast.met-knop { display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 20px; background: var(--tekst); color: var(--bg); }
+#toast.met-knop.aan { pointer-events: auto; }
+.toast-knop { flex: none; min-height: 36px; padding: 4px 14px; border: 0; border-radius: 999px; background: transparent; color: inherit; font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; display: inline-flex; align-items: center; }
+body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
+.menu-tel { margin-inline-start: auto; padding: 0 9px; border-radius: 999px; background: var(--accent-zacht); color: var(--op-accent-zacht); font-size: .8rem; font-weight: 700; }
+
+/* ---------- de pagina Mijn woorden (mijn-woorden.html) ---------- */
+.mw-kop { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 4px 0 14px; }
+.mw-kop h2 { margin: 0; font-size: 1.5rem; }
+.mw-balk { position: sticky; top: 64px; z-index: 4; display: flex; flex-direction: column; gap: 10px; margin: 0 -4px 14px; padding: 10px 4px; background: var(--bg); }
+.mw-zoek { position: relative; }
+.mw-zoek .icoon { position: absolute; top: 50%; left: 16px; width: 20px; height: 20px; transform: translateY(-50%); color: var(--zacht); pointer-events: none; }
+.mw-zoek input { width: 100%; min-height: 48px; padding: 8px 48px; border: 1px solid var(--lijn); border-radius: 999px; background: var(--vlak); color: var(--tekst); font: inherit; box-shadow: var(--schaduw1); }
+.mw-zoek input::-webkit-search-cancel-button { display: none; }
+.mw-zoek button { position: absolute; top: 50%; right: 6px; transform: translateY(-50%); background: transparent; }
+.mw-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mw-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 14px; border: 1px solid var(--lijn); border-radius: 999px; background: var(--vlak); color: var(--tekst); font: inherit; font-size: .9rem; cursor: pointer; }
+.mw-chip[aria-pressed=true] { background: var(--accent-zacht); color: var(--op-accent-zacht); border-color: transparent; font-weight: 600; }
+.mw-chip small { opacity: .7; font-size: .85em; }
+.mw-chip .icoon { width: 16px; height: 16px; }
+.mw-filters .rechts { margin-inline-start: auto; display: flex; gap: 8px; }
+.mw-lijst { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.mw-rij { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 4px 14px; padding: 14px 16px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; box-shadow: var(--schaduw1); animation: op .2s ease both; }
+.mw-rij > .beeld { grid-row: 1; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 16px; background: var(--vlak2); font-size: 1.8rem; line-height: 1; }
+.mw-rij > .beeld.leeg { font-size: 1.1rem; font-weight: 700; color: var(--zacht); }
+.mw-woord { min-width: 0; line-height: 1.35; }
+.mw-woord b { display: block; font-size: 1.2rem; }
+.mw-knoppen { display: flex; gap: 6px; }
+.mw-meer { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.mw-meer:empty { display: none; }
+.mw-vertaling { padding: 6px 12px; border-radius: 12px; background: var(--vlak2); width: fit-content; max-width: 100%; }
+.mw-zin { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--zacht); }
+.mw-zin .rond { width: 32px; height: 32px; background: transparent; }
+.mw-zin .rond .icoon { width: 18px; height: 18px; }
+.mw-notitie { display: flex; align-items: flex-start; gap: 8px; }
+.mw-notitie textarea { flex: 1; min-width: 0; min-height: 40px; padding: 8px 12px; border: 1px dashed var(--lijn); border-radius: 12px; background: transparent; color: var(--tekst); font: inherit; font-size: .95rem; line-height: 1.5; resize: none; overflow: hidden; field-sizing: content; }
+.mw-notitie textarea:not(:placeholder-shown) { border-style: solid; background: var(--geel); border-color: transparent; }
+.mw-notitie textarea:focus { background: var(--vlak); border-style: solid; }
+.mw-notitie .stand { flex: none; align-self: center; min-width: 4.5em; font-size: .8rem; color: var(--goed); opacity: 0; transition: opacity .2s; }
+.mw-notitie .stand.aan { opacity: 1; }
+.mw-leeg { text-align: center; padding: 36px 20px; }
+.mw-leeg .mw-teken { display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 24px; background: var(--accent-zacht); color: var(--op-accent-zacht); margin-bottom: 12px; }
+.mw-leeg .mw-teken .icoon { width: 34px; height: 34px; }
+.mw-leeg h3 { font-size: 1.25rem; }
+.mw-leeg ol { display: inline-block; text-align: start; margin: 4px 0 8px; padding-inline-start: 1.3em; }
+.mw-leeg .knoppen { justify-content: center; }
+.mw-voorbeeld { display: inline-flex; align-items: center; gap: 4px; padding: 0 8px; border-radius: 999px; background: var(--accent-zacht); color: var(--op-accent-zacht); font-weight: 600; vertical-align: middle; }
+.mw-voorbeeld .icoon { width: 16px; height: 16px; }
+.mw-account { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 18px 0 0; font-size: .9rem; color: var(--zacht); }
+.mw-account .icoon { width: 18px; height: 18px; flex: none; }
+@media (max-width: 560px) {
+  .mw-balk { top: 56px; }
+  .mw-rij { grid-template-columns: auto minmax(0, 1fr); padding: 12px; }
+  .mw-rij > .beeld { width: 44px; height: 44px; font-size: 1.5rem; border-radius: 14px; }
+  .mw-knoppen { grid-column: 1 / -1; justify-content: flex-end; }
+  .mw-meer { grid-column: 1 / -1; }
+  .mw-filters .rechts { margin-inline-start: 0; }
+}
+@media print { .mw-balk, .mw-knoppen, .mw-account, .mw-notitie .stand { display: none; } .mw-rij { box-shadow: none; break-inside: avoid; } }
+.wpop-lijst { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 12px -6px -6px; padding: 8px 10px; border-radius: 12px; color: var(--accent); font-size: .9rem; font-weight: 600; text-decoration: none; }
+.wpop-lijst .icoon { width: 18px; height: 18px; }
+@media (hover: hover) { .wpop-lijst:hover { background: var(--vlak2); } }

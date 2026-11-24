@@ -126,7 +126,7 @@ window.Spreken = (() => {
     const vakjes = o.punten.map((p) => { const i = el('input', { type: 'checkbox' }); return { i, rij: el('label', { en: p.en }, i, p.tekst) }; });
     const lijst = el('div', { class: 'lijstje', hidden: true }, el('p', { class: 'zacht klein', en: 'Tick what you did. The computer already ticked what it heard.' }, 'Zet een vinkje bij wat goed ging. De computer heeft al gekeken.'), vakjes.map((v) => v.rij));
     const modelVak = el('div', { class: 'model', hidden: true }, o.model.map((z) => el('p', {}, App.woorden(z))),
-      el('button', { class: 'knop licht klein', en: 'listen to the model', onclick: () => speel(o.model) }, '🔊 Luister'),
+      el('button', { class: 'knop licht klein', en: 'listen to the model', onclick: () => speel(o.model) }, App.teken('luid'), 'Luister'),
       ' ', el('button', { class: 'knop licht klein', en: 'slow', onclick: () => speel(o.model, 0.75) }, '🐢 Langzaam'));
     const verder = el('button', { class: 'knop', hidden: true, en: 'next', onclick: () => { Spraak.stop(); o.klaar(vakjes.every((v) => v.i.checked), laatste); } }, 'Verder');
     const zelf = el('button', { class: 'knop licht klein', en: 'no microphone: say it aloud and check yourself', onclick: toonCheck }, 'Zonder microfoon');

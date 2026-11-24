@@ -1,9 +1,9 @@
-// Gedeelde hulpjes: opslag, klikbare woorden met pop-up, de ❗-knop voor Engels.
+// Gedeelde hulpjes: opslag, klikbare woorden met pop-up, de knop voor de vertaling, en de lijst Mijn woorden.
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.20.3';
+  const VERSIE = '1.21.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -21,7 +21,7 @@ window.App = (() => {
     return v;
   };
   const schrijf = (k, v) => { try { localStorage.setItem('dutch-exam:' + k, JSON.stringify(v)); } catch (e) { /* geen opslag */ } };
-  // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter ❗ bij een woord.
+  // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter de knop Vertaling bij een woord.
   // De lessen hebben alleen Engels; shared/fa.js heeft bij elke Engelse tekst de Perzische. Geen Perzisch gevonden? Dan blijft het Engels staan.
   const hulptaal = () => (ruw('hulptaal', 'en') === 'fa' ? 'fa' : 'en');
   if (hulptaal() === 'fa') document.write('<script src="' + WORTEL + 'shared/fa.js?v=' + VERSIE + '"><\/script>'); // geladen vóór de scripts van de pagina
@@ -36,7 +36,7 @@ window.App = (() => {
     for (const [k, v] of Object.entries(props || {})) {
       if (k === 'class') e.className = v;
       else if (k === 'en') zetHulp(e, v);
-      else if (k === 'hulp') { e.dataset.hulp = v || ''; zetTekstHulp(e); } // de vertaling als tekst (achter ❗)
+      else if (k === 'hulp') { e.dataset.hulp = v || ''; zetTekstHulp(e); } // de vertaling als tekst (achter de knop Vertaling)
       else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
       else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
     }
@@ -70,7 +70,7 @@ window.App = (() => {
       if (m.index > vorige) f.append(tekst.slice(vorige, m.index));
       const nrs = W.vormen[kaal(m[0])] || [];
       if (nrs.length) {
-        const s = el('span', { class: 'w' + (nieuw && nrs.some((n) => nieuw.has(n)) ? ' nieuw' : '') }, m[0]);
+        const s = el('span', { class: 'w' + (nieuw && nrs.some((n) => nieuw.has(n)) ? ' nieuw' : '') + (nrs.some((n) => Mijn.heeft(W.lijst[n][1])) ? ' bewaard' : '') }, m[0]);
         f.append(s);
       } else f.append(m[0]);
       vorige = m.index + m[0].length;
@@ -79,35 +79,138 @@ window.App = (() => {
     return f;
   }
 
-  // pop-up bij een woord: plaatje + Nederlands eerst, Engels achter ❗
-  let pop = null;
-  function sluitPop() { if (pop) { pop.remove(); pop = null; } }
+  // ---------- Mijn woorden: de lijst die de leerling zelf maakt (pagina mijn-woorden.html) ----------
+  // Bewaard als { "het huis": { t, sinds, n, weg } }. De sleutel is het woord uit de woordenlijst, dus met de of het erbij.
+  //   sinds = wanneer bewaard, n = de notitie van de leerling, t = de laatste verandering, weg = van de lijst gehaald.
+  // Een weggehaald woord blijft als regel staan (weg: true): zo komt het niet terug van een ander apparaat (shared/account.js).
+  // Ingelogd met Google? Dan gaat de lijst mee naar het account. "Wis alle voortgang" laat de lijst staan: het zijn uw eigen aantekeningen.
+  const MAX_NOTITIE = 500;
+  const Mijn = (() => {
+    let kopie = null; // één keer lezen per pagina; een ander tabblad of het account maakt de kopie leeg
+    const alle = () => { if (!kopie) { const v = ruw('mijn-woorden', {}); kopie = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; } return kopie; };
+    const bewaar = () => { schrijf('mijn-woorden', kopie); document.dispatchEvent(new CustomEvent('mijn-woorden')); };
+    const leeg = () => { kopie = null; };
+    window.addEventListener('storage', (e) => { if (!e.key || e.key === 'dutch-exam:mijn-woorden') { leeg(); document.dispatchEvent(new CustomEvent('mijn-woorden-anders')); } });
+    document.addEventListener('account-gegevens', leeg);
+    document.addEventListener('gewist', leeg);
+    const heeft = (nl) => { const r = alle()[nl]; return !!r && !r.weg; };
+    return {
+      heeft,
+      // aan = true: op de lijst (en bij de woordkaarten van Herhalen). aan = false: van de lijst; de notitie blijft bewaard voor "Ongedaan maken".
+      zet(nl, aan) {
+        const a = alle(), nu = Date.now(), r = a[nl] || {};
+        if (aan === heeft(nl)) return;
+        a[nl] = aan ? { t: nu, sinds: nu, n: r.n || '' } : { t: nu, sinds: r.sinds || nu, n: r.n || '', weg: true };
+        if (aan) window.SRS.voegToe('w:' + nl, { soort: 'w', nl });
+        bewaar();
+      },
+      // na "Ongedaan maken": het woord staat er weer, met de oude datum en notitie
+      terug(nl) { const r = alle()[nl]; if (!r || !r.weg) return; delete r.weg; r.t = Date.now(); bewaar(); },
+      notitie(nl, tekst) {
+        const r = alle()[nl], n = String(tekst || '').slice(0, MAX_NOTITIE);
+        if (!r || r.weg || r.n === n) return;
+        r.n = n; r.t = Date.now(); bewaar();
+      },
+      // de lijst, nieuwste eerst: [{ nl, sinds, n, regel }]  regel = de regel uit de woordenlijst (of null: het woord staat er niet meer in)
+      lijst() {
+        const a = alle();
+        return Object.keys(a).filter((nl) => !a[nl].weg).map((nl) => {
+          const nr = lemmaNr(nl);
+          return { nl, sinds: a[nl].sinds || 0, n: a[nl].n || '', regel: nr < 0 || W.lijst[nr][1] !== nl ? null : zoekNr(nr) };
+        }).sort((x, y) => y.sinds - x.sinds);
+      },
+      tel: () => { const a = alle(); return Object.keys(a).filter((nl) => !a[nl].weg).length; },
+    };
+  })();
+  const zoekNr = (i) => ({ nr: i, trede: W.lijst[i][0], nl: W.lijst[i][1], en: W.lijst[i][2], thema: W.lijst[i][3], beeld: W.lijst[i][4], extra: W.lijst[i][5], zin: W.lijst[i][6] });
+  // "het huis" -> ['het', 'huis'];  "lopen" -> ['', 'lopen'];  "de koffie / de thee" -> ['de', 'koffie / de thee']
+  const lidwoord = (nl) => { const m = /^(de|het)\s+(.+)$/i.exec(nl); return m ? [m[1].toLowerCase(), m[2]] : ['', nl]; };
+  // het woord met het lidwoord in een eigen kleur: zo blijft de of het hangen
+  const metLidwoord = (nl) => { const [lw, rest] = lidwoord(nl); return lw ? [el('span', { class: 'lw lw-' + lw }, lw), ' ', rest] : [nl]; };
+  // zet het streepje onder de bewaarde woorden in de teksten van deze pagina opnieuw
+  function streepjes() {
+    document.querySelectorAll('.w').forEach((w) => w.classList.toggle('bewaard', (W.vormen[kaal(w.textContent)] || []).some((n) => Mijn.heeft(W.lijst[n][1]))));
+  }
+  document.addEventListener('mijn-woorden', streepjes);
+  document.addEventListener('mijn-woorden-anders', streepjes);
+
+  // ---------- drie knoppen die op veel plekken staan: luister, vertaling, bewaar ----------
+  // luisterKnop(doe)        een rondje met een luidspreker. doe = wat er gebeurt bij een klik.
+  // vertaalKnop(doel)       laat het element met de vertaling zien, of haalt het weer weg.
+  // bewaarKnop(nl, metTekst) zet het woord op de lijst Mijn woorden, of haalt het eraf. null als het woord niet in de woordenlijst staat.
+  const stil = (doe) => (e) => { e.stopPropagation(); doe(e); }; // een klik op de knop is geen klik op de kaart eromheen
+  const luisterKnop = (doe, naam) => el('button', { type: 'button', class: 'rond', title: 'luister', 'aria-label': naam || 'luister', onclick: stil(doe) }, teken('luid'));
+  function vertaalKnop(doel) {
+    const k = el('button', { type: 'button', class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', 'aria-pressed': String(!doel.hidden),
+      onclick: stil(() => { doel.hidden = !doel.hidden; k.setAttribute('aria-pressed', String(!doel.hidden)); }) }, teken('vertaal'));
+    return k;
+  }
+  function bewaarKnop(woord, metTekst) {
+    const nr = lemmaNr(woord);
+    if (nr < 0) return null; // niet in de woordenlijst: geen vertaling en geen geluid, dus niet te bewaren
+    const nl = W.lijst[nr][1];
+    const tekst = metTekst ? el('span', {}) : null;
+    const k = el('button', { type: 'button', class: metTekst ? 'knop licht klein bewaarknop' : 'rond bewaarknop', onclick: stil(() => {
+      const aan = !Mijn.heeft(nl);
+      Mijn.zet(nl, aan);
+      if (metTekst) return; // de knop zegt zelf "Bewaard"; een melding erbij is te veel
+      if (aan) toast('Bewaard in Mijn woorden', 'saved in My words', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-woorden.html' });
+      else toast('Van uw lijst gehaald', 'removed from your list', { naam: 'Ongedaan maken', en: 'undo', doe: () => Mijn.terug(nl) });
+    }) }, teken('bewaar'), tekst);
+    const zet = () => {
+      const aan = Mijn.heeft(nl);
+      k.classList.toggle('aan', aan); k.setAttribute('aria-pressed', String(aan));
+      k.title = aan ? 'haal van mijn woorden' : 'bewaar in mijn woorden'; k.setAttribute('aria-label', k.title);
+      if (tekst) { tekst.textContent = aan ? 'Bewaard' : 'Bewaar'; zetHulp(tekst, aan ? 'saved' : 'save'); }
+    };
+    zet();
+    const hoor = () => { if (k.isConnected) zet(); else { document.removeEventListener('mijn-woorden', hoor); document.removeEventListener('mijn-woorden-anders', hoor); } };
+    document.addEventListener('mijn-woorden', hoor); document.addEventListener('mijn-woorden-anders', hoor);
+    return k;
+  }
+
+  // ---------- het kaartje bij een woord in een tekst ----------
+  // Het woord met de of het, het plaatje, en drie knoppen: luister, vertaling, bewaar. De vertaling staat er pas na een klik.
+  // Breed scherm: het kaartje staat bij het woord (eronder, of erboven als daar geen plek is). Telefoon: een blad onder aan het scherm.
+  let pop = null, popDoel = null;
+  function sluitPop() { if (pop) { pop.remove(); pop = null; } if (popDoel) { popDoel.classList.remove('open'); popDoel = null; } }
   function toonPop(doel) {
+    if (popDoel === doel) return sluitPop(); // nog een klik op hetzelfde woord: weg
     sluitPop();
     const regels = zoek(doel.textContent);
     if (!regels.length) return;
-    pop = el('div', { id: 'wpop' }, regels.map((r) => {
+    pop = el('div', { id: 'wpop', role: 'dialog', 'aria-label': 'woord: ' + doel.textContent }, regels.map((r) => {
       const en = el('div', { class: 'en', hidden: true, hulp: r.en });
       window.SRS.voegToe('w:' + r.nl, { soort: 'w', nl: r.nl });
       return el('div', { class: 'rij' },
-        r.beeld ? el('div', { class: 'beeld' }, r.beeld) : null,
-        el('b', {}, r.nl), ' ',
-        el('button', { class: 'rond', title: 'luister', onclick: () => window.Spraak.zeg(r.nl) }, '🔊'), ' ',
-        el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'),
-        r.extra ? el('div', { class: 'klein zacht' }, r.extra) : null,
-        el('div', { class: 'klein zacht' }, r.thema),
-        en);
+        el('div', { class: 'wpop-kop' },
+          r.beeld ? el('span', { class: 'beeld', 'aria-hidden': 'true' }, r.beeld) : null,
+          el('div', { class: 'wpop-woord' }, el('b', {}, metLidwoord(r.nl)), el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')))),
+        en,
+        el('div', { class: 'wpop-knoppen' }, luisterKnop(() => window.Spraak.zeg(r.nl), 'luister naar ' + r.nl), vertaalKnop(en), bewaarKnop(r.nl, true)));
     }));
+    // onderaan: de weg naar de lijst, zodra er iets op staat
+    const naarLijst = el('a', { class: 'wpop-lijst', href: WORTEL + 'mijn-woorden.html' });
+    const zetLijst = () => { const n = Mijn.tel(); naarLijst.hidden = !n; naarLijst.textContent = ''; naarLijst.append(el('span', { en: 'my words' }, `Mijn woorden: ${n}`), teken('pijl')); };
+    zetLijst();
+    const hoor = () => { if (naarLijst.isConnected) zetLijst(); else document.removeEventListener('mijn-woorden', hoor); };
+    document.addEventListener('mijn-woorden', hoor);
+    pop.append(naarLijst);
     document.body.append(pop);
-    const b = doel.getBoundingClientRect();
-    pop.style.top = (window.scrollY + b.bottom + 6) + 'px';
+    popDoel = doel; doel.classList.add('open');
+    if (window.matchMedia('(max-width: 560px)').matches) return; // telefoon: het blad onderaan (shared/app.css)
+    const b = doel.getBoundingClientRect(), hoog = pop.offsetHeight;
+    const boven = b.bottom + 6 + hoog > window.innerHeight && b.top - 6 - hoog > 0;
+    pop.style.top = (window.scrollY + (boven ? b.top - 6 - hoog : b.bottom + 6)) + 'px';
     pop.style.left = Math.max(8, Math.min(window.scrollX + b.left, window.scrollX + document.documentElement.clientWidth - pop.offsetWidth - 8)) + 'px';
   }
   document.addEventListener('click', (e) => {
     if (pop && pop.contains(e.target)) return;
+    if (e.target.closest && e.target.closest('#toast')) return; // "Ongedaan maken" in de melding sluit het kaartje niet
     const w = e.target.closest && e.target.closest('.w');
     if (w && !document.body.classList.contains('geen-woorden')) toonPop(w); else sluitPop();
   });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') sluitPop(); });
 
   // ---------- tekens (lijn-iconen, 24 x 24) voor de knoppen in de kop ----------
   const TEKENS = {
@@ -126,6 +229,12 @@ window.App = (() => {
     pijl: '<path d="m9 18 6-6-6-6"/>',
     mens: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.01"/>',
+    // bij een woord of een zin: luister, vertaling, bewaar in Mijn woorden
+    luid: '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>',
+    vertaal: '<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+    bewaar: '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+    zoek: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+    kruis: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -156,6 +265,7 @@ window.App = (() => {
       const regel = (naam, t, en) => [teken(t), el('span', { en }, naam)];
       kopMenu = el('div', { class: 'taalmenu kopmenu', role: 'menu' },
         el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel: log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
+        el('a', { role: 'menuitem', href: WORTEL + 'mijn-woorden.html' }, regel('Mijn woorden', 'bewaar', 'my words'), Mijn.tel() ? el('span', { class: 'menu-tel' }, String(Mijn.tel())) : null),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html' }, regel('Instellingen', 'instel', 'settings')),
         el('button', { type: 'button', role: 'menuitem', onclick: () => { sluitKopMenu(); zetThema(isDonker() ? 'licht' : 'donker'); } },
           isDonker() ? regel('Licht thema', 'zon', 'light theme') : regel('Donker thema', 'maan', 'dark theme')));
@@ -226,14 +336,22 @@ window.App = (() => {
   }
 
   // ---------- melding "Goed antwoord!" ----------
+  // actie (mag weg) = { naam, en, doe } of { naam, en, href }: een knop in de melding, zoals "Ongedaan maken". De melding blijft dan langer staan.
   let toastEl = null, toastTik = 0;
-  function toast(tekst, en) {
+  function toast(tekst, en, actie) {
     if (!toastEl) { toastEl = el('div', { id: 'toast', role: 'status', 'aria-live': 'polite' }); document.body.append(toastEl); }
-    toastEl.textContent = tekst;
-    zetHulp(toastEl, en);
+    const weg = () => toastEl.classList.remove('aan');
+    toastEl.textContent = '';
+    const t = el('span', {}, tekst);
+    toastEl.append(t);
+    // zonder knop staat de hulp op de melding zelf (zoals altijd); met een knop bij de tekst, zodat ze voor de knop komt
+    zetHulp(actie ? t : toastEl, en); if (actie) zetHulp(toastEl, '');
+    if (actie) toastEl.append(actie.href ? el('a', { class: 'toast-knop', href: actie.href, en: actie.en }, actie.naam)
+      : el('button', { type: 'button', class: 'toast-knop', en: actie.en, onclick: () => { weg(); actie.doe(); } }, actie.naam));
+    toastEl.classList.toggle('met-knop', !!actie);
     toastEl.classList.add('aan');
     clearTimeout(toastTik);
-    toastTik = setTimeout(() => toastEl.classList.remove('aan'), 1400);
+    toastTik = setTimeout(weg, actie ? 5000 : 1400);
   }
   // Na een goed antwoord: groene melding, en de knop "Verder" wordt na een korte tijd vanzelf ingedrukt
   // (instelling "door"; staat de knop niet meer op de pagina, dan gebeurt er niets). Fout antwoord: niets, de leerling leest eerst.
@@ -286,9 +404,9 @@ window.App = (() => {
 
   // ---------- opnieuw beginnen ----------
   // wis('lezen') = alles van één examen, wis('herhalen') = de woordkaarten, wis() = alle voortgang.
-  // De instellingen (thema, Engels, slot) blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
+  // De instellingen (thema, Engels, slot) en de lijst Mijn woorden blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
   // 'account-in' = deze browser is ingelogd (shared/account.js); de demo-sleutels zijn het nep-account van { "demo": true }
-  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];
+  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'mijn-woorden', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];
   function wis(wat) {
     const VOOR = 'dutch-exam:';
     try {
@@ -337,7 +455,7 @@ window.App = (() => {
     });
   }
 
-  // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
+  // kop met terug-pijl, de knop Delen, het menu en de taal van de hulp
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
       terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('a', { class: 'merk-link', href: WORTEL + 'index.html', 'aria-label': NAAM + ': de startpagina' }, el('img', { class: 'merk', src: WORTEL + 'shared/icoon.svg?v=' + VERSIE, alt: '', width: 38, height: 38 })),
@@ -448,6 +566,6 @@ window.App = (() => {
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
-  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

@@ -38,13 +38,13 @@
       const kaart = el('div', { class: 'wkaart' },
         el('div', { class: 'beeld' }, w.beeld || '💬'), el('div', { class: 'nl' }, w.nl), zin, en,
         el('div', { class: 'knoppen', style: 'justify-content:center' },
-          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Luister.speel([{ s: 'A', t: zin.hidden ? w.nl : w.zin }]); } }, '🔊'),
-          el('button', { class: 'rond', title: 'Engels', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, '❗')));
+          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Luister.speel([{ s: 'A', t: zin.hidden ? w.nl : w.zin }]); } }, App.teken('luid')),
+          el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, App.teken('vertaal')), App.bewaarKnop(w.nl)));
       kaart.addEventListener('click', (e) => { if (e.target.closest('.w')) return; zin.hidden = !zin.hidden; kaart.classList.toggle('om', !zin.hidden); });
       return kaart;
     });
     pagina.append(el('h2', { en: 'words' }, 'Woorden'),
-      el('p', { class: 'zacht', en: 'Listen to every word first (🔊). Click a card for a sentence. ❗ = English.' }, 'Luister eerst naar elk woord (🔊). Klik op een kaart: u ziet een zin. ❗ = vertaling.'),
+      el('p', { class: 'zacht', en: 'Listen to every word first. Click a card for a sentence.' }, 'Luister eerst naar elk woord. Klik op een kaart: u ziet een zin.'),
       el('div', { class: 'wkaarten' }, kaarten), el('div', { class: 'knoppen' }, knopVerder()));
   }
 

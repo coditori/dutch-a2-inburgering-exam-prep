@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mijn woorden</title>
+<link rel="stylesheet" href="shared/app.css">
+<script src="shared/thema.js"></script>
+</head>
+<body>
+<main id="pagina"></main>
+<script src="shared/woorden.js"></script>
+<script src="shared/srs.js"></script>
+<script src="shared/audio.js"></script>
+<script src="shared/app.js"></script>
+<script>
+// Mijn woorden: de woorden die de leerling zelf bewaarde (de knop Bewaar bij een woord in een tekst of op een woordkaart).
+// Per woord: de of het in kleur, luisteren, de vertaling, een voorbeeldzin en een eigen notitie.
+// De lijst staat in deze browser (App.Mijn in shared/app.js). Ingelogd met Google: ook bij het account (shared/account.js).
+(() => {
+  const { el, teken, Mijn, kaal } = App;
+  App.kop('Mijn woorden', 'index.html');
+  const pagina = document.getElementById('pagina');
+
+  // wat de leerling koos op deze pagina: zoektekst, filter (alle / de / het / notitie), volgorde, en of de vertalingen open staan
+  const keuze = { zoek: '', filter: 'alle', az: false, vertaling: false };
+  const kop = el('div', { class: 'mw-kop' });
+  const filters = el('div', { class: 'mw-filters' });
+  const lijstDoel = el('div');
+  const accountDoel = el('p', { class: 'mw-account' });
+
+  // ---------- zoeken ----------
+  const veld = el('input', { type: 'search', placeholder: 'Zoek een woord', 'aria-label': 'zoek een woord', autocomplete: 'off', enterkeyhint: 'search' });
+  const wis = el('button', { type: 'button', class: 'rond', title: 'wis', 'aria-label': 'maak het zoekveld leeg', hidden: true, onclick: () => { veld.value = ''; keuze.zoek = ''; wis.hidden = true; toon(); veld.focus(); } }, teken('kruis'));
+  veld.addEventListener('input', () => { keuze.zoek = veld.value.trim(); wis.hidden = !veld.value; toon(); });
+  const balk = el('div', { class: 'mw-balk' }, el('div', { class: 'mw-zoek' }, teken('zoek'), veld, wis), filters);
+
+  // past het woord bij de zoektekst? Het Nederlands, het Engels, of de eigen notitie.
+  const past = (x, q) => !q || kaal(x.nl).includes(q) || (x.regel && kaal(x.regel.en).includes(q)) || kaal(x.n).includes(q);
+  const kern = (nl) => kaal(App.lidwoord(nl)[1]); // voor A tot Z: zonder de of het
+
+  // ---------- één woord ----------
+  function rij(x) {
+    const r = x.regel, [lw] = App.lidwoord(x.nl);
+    const vertaling = r ? el('div', { class: 'mw-vertaling', hidden: !keuze.vertaling, hulp: r.en }) : null;
+    // de notitie bewaart zichzelf: even wachten na de laatste letter, en bij het verlaten van het veld
+    const stand = el('span', { class: 'stand', role: 'status' }, 'Bewaard');
+    const notitie = el('textarea', { rows: 1, maxlength: App.MAX_NOTITIE, placeholder: 'Schrijf een notitie', 'aria-label': 'uw notitie bij ' + x.nl });
+    notitie.value = x.n;
+    const pas = () => { if (!CSS.supports('field-sizing', 'content')) { notitie.style.height = 'auto'; notitie.style.height = notitie.scrollHeight + 2 + 'px'; } };
+    let tik = 0;
+    const bewaar = () => { clearTimeout(tik); if (notitie.value === x.n) return; x.n = notitie.value; Mijn.notitie(x.nl, x.n); stand.classList.add('aan'); setTimeout(() => stand.classList.remove('aan'), 1500); };
+    notitie.addEventListener('input', () => { pas(); clearTimeout(tik); tik = setTimeout(bewaar, 700); });
+    notitie.addEventListener('blur', bewaar);
+    requestAnimationFrame(pas);
+    return el('li', { class: 'mw-rij' },
+      el('span', { class: 'beeld' + (r && r.beeld ? '' : ' leeg'), 'aria-hidden': 'true' }, (r && r.beeld) || lw || x.nl.slice(0, 1)),
+      el('div', { class: 'mw-woord' }, el('b', { lang: 'nl' }, App.metLidwoord(x.nl)), r ? el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')) : null),
+      el('div', { class: 'mw-knoppen' }, App.luisterKnop(() => Spraak.zeg(x.nl), 'luister naar ' + x.nl), vertaling ? App.vertaalKnop(vertaling) : null, App.bewaarKnop(x.nl)),
+      el('div', { class: 'mw-meer' },
+        vertaling,
+        r && r.zin ? el('p', { class: 'mw-zin' }, el('span', {}, App.woorden(r.zin)), App.luisterKnop(() => Spraak.zeg(r.zin), 'luister naar de zin')) : null,
+        el('div', { class: 'mw-notitie' }, notitie, stand)));
+  }
+
+  // ---------- nog geen woorden: uitleg hoe het werkt ----------
+  const leeg = () => el('div', { class: 'kaart mw-leeg' },
+    el('span', { class: 'mw-teken', 'aria-hidden': 'true' }, teken('bewaar')),
+    el('h3', { en: 'you have no words yet' }, 'U hebt nog geen woorden'),
+    el('p', { class: 'zacht', en: 'Keep the words you want to remember. This is how:' }, 'Bewaar de woorden die u wilt onthouden. Zo doet u dat:'),
+    el('ol', {},
+      el('li', { en: 'click a word in a text' }, 'Klik op een woord in een tekst.'),
+      el('li', { en: 'choose Save' }, 'Kies ', el('span', { class: 'mw-voorbeeld' }, teken('bewaar'), 'Bewaar'), '.'),
+      el('li', { en: 'the word is here, with de or het' }, 'Het woord staat hier, met de of het erbij.')),
+    el('div', { class: 'knoppen' },
+      el('a', { class: 'knop', href: 'lezen/index.html', en: 'go to reading' }, 'Ga naar Lezen'),
+      el('button', { type: 'button', class: 'knop licht', en: 'or search a word', onclick: () => veld.focus() }, 'Zoek een woord')));
+
+  // ---------- zoeken in de hele woordenlijst: een woord bewaren zonder dat u het in een tekst zag ----------
+  function uitDeLijst(q) {
+    if (q.length < 2) return null;
+    // eerst de woorden waar de zoektekst in het Nederlands staat, dan die met de zoektekst in de vertaling
+    const open = App.W.lijst.filter((r) => !Mijn.heeft(r[1]));
+    const inNl = open.filter((r) => kaal(r[1]).includes(q));
+    const gevonden = [...inNl, ...open.filter((r) => !inNl.includes(r) && kaal(r[2]).includes(q))].slice(0, 8);
+    if (!gevonden.length) return null;
+    return [el('h2', { en: 'from the word list' }, 'Uit de woordenlijst'),
+      el('ul', { class: 'mw-lijst' }, gevonden.map((r) => {
+        const [lw] = App.lidwoord(r[1]);
+        return el('li', { class: 'mw-rij' },
+          el('span', { class: 'beeld' + (r[4] ? '' : ' leeg'), 'aria-hidden': 'true' }, r[4] || lw || r[1].slice(0, 1)),
+          el('div', { class: 'mw-woord' }, el('b', { lang: 'nl' }, App.metLidwoord(r[1])), el('span', { class: 'klein zacht', hulp: r[2] })),
+          el('div', { class: 'mw-knoppen' }, App.luisterKnop(() => Spraak.zeg(r[1]), 'luister naar ' + r[1]), App.bewaarKnop(r[1], true)));
+      }))];
+  }
+
+  // ---------- de pagina tekenen ----------
+  let getekend = '';
+  const afdruk = () => Mijn.lijst().map((x) => x.nl).join('|'); // welke woorden staan op de lijst? Verandert dat, dan tekenen we opnieuw.
+  function toon() {
+    const alle = Mijn.lijst(), q = kaal(keuze.zoek);
+    getekend = afdruk();
+    const telDe = alle.filter((x) => App.lidwoord(x.nl)[0] === 'de').length, telHet = alle.filter((x) => App.lidwoord(x.nl)[0] === 'het').length, telN = alle.filter((x) => x.n).length;
+    if (keuze.filter !== 'alle' && !{ de: telDe, het: telHet, notitie: telN }[keuze.filter]) keuze.filter = 'alle';
+    kop.textContent = '';
+    kop.append(el('h2', {}, alle.length === 1 ? '1 woord' : `${alle.length} woorden`));
+    if (alle.length) kop.append(el('a', { class: 'knop licht klein', href: 'lezen/herhaal.html', en: 'practise with cards' }, 'Oefen met kaarten'));
+
+    const chip = (k, naam, n, en) => el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.filter === k), en, onclick: () => { keuze.filter = k; toon(); } }, naam, n == null ? null : el('small', {}, String(n)));
+    filters.textContent = '';
+    filters.hidden = !alle.length;
+    filters.append(...[chip('alle', 'Alle', alle.length, 'all'),
+      telDe ? chip('de', el('span', { class: 'lw lw-de' }, 'de'), telDe) : null,
+      telHet ? chip('het', el('span', { class: 'lw lw-het' }, 'het'), telHet) : null,
+      telN ? chip('notitie', 'Met notitie', telN, 'with a note') : null,
+      el('div', { class: 'rechts' },
+        el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.az), en: 'sort from A to Z', onclick: () => { keuze.az = !keuze.az; toon(); } }, 'A tot Z'),
+        el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.vertaling), en: 'show all translations', onclick: () => { keuze.vertaling = !keuze.vertaling; toon(); } }, teken('vertaal'), 'Vertaling'))].filter(Boolean));
+
+    let zichtbaar = alle.filter((x) => past(x, q) && (keuze.filter === 'alle' || (keuze.filter === 'notitie' ? !!x.n : App.lidwoord(x.nl)[0] === keuze.filter)));
+    if (keuze.az) zichtbaar = zichtbaar.slice().sort((a, b) => kern(a.nl).localeCompare(kern(b.nl), 'nl'));
+    const extra = uitDeLijst(q);
+    lijstDoel.textContent = '';
+    if (!alle.length && !q) lijstDoel.append(leeg());
+    else {
+      if (zichtbaar.length) lijstDoel.append(el('ul', { class: 'mw-lijst' }, zichtbaar.map(rij)));
+      else if (alle.length && !extra) lijstDoel.append(el('p', { class: 'zacht midden', en: 'no word found' }, q ? `Geen woord gevonden met "${keuze.zoek}".` : 'Geen woord gevonden.'));
+      else if (!extra) lijstDoel.append(el('p', { class: 'zacht midden', en: 'this word is not in the word list' }, `"${keuze.zoek}" staat niet in de woordenlijst.`));
+      if (extra) lijstDoel.append(...extra);
+    }
+  }
+  // Een woord erbij of eraf: opnieuw tekenen. Alleen een notitie veranderd: niets doen, de leerling typt misschien nog.
+  document.addEventListener('mijn-woorden', () => { if (afdruk() !== getekend) toon(); });
+  // De lijst veranderde ergens anders (ander tabblad, of het account): opnieuw tekenen, maar niet midden in het typen van een notitie.
+  const vanBuiten = () => { if (!(document.activeElement && document.activeElement.closest('.mw-notitie'))) toon(); };
+  document.addEventListener('mijn-woorden-anders', vanBuiten);
+  document.addEventListener('account-gegevens', vanBuiten);
+  document.addEventListener('hulptaal', () => { /* de vertalingen wisselen vanzelf mee (data-hulp) */ });
+
+  // ---------- waar de lijst bewaard wordt ----------
+  document.addEventListener('account', () => {
+    const s = window.Account.staat;
+    accountDoel.textContent = '';
+    if (!s.geladen) return;
+    if (s.gebruiker) accountDoel.append(teken('mens'), el('span', { en: 'your words and notes are kept with your Google account' },
+      s.status === 'fout' ? 'Bewaren bij uw account lukte niet. Uw woorden staan in deze browser.' : s.status === 'bezig' ? 'Bewaren bij uw account ...' : 'Uw woorden en notities staan bij uw Google-account.'));
+    else if (s.beschikbaar) accountDoel.append(teken('mens'), el('span', { en: 'your words are in this browser only. Log in with Google to keep them and see them on your phone too' }, 'Uw woorden staan alleen in deze browser.'),
+      el('button', { type: 'button', class: 'knop licht klein', disabled: s.status === 'bezig', en: 'log in with Google', onclick: () => window.Account.login() }, 'Log in met Google'));
+    else accountDoel.append(teken('info'), el('span', { en: 'your words are kept in this browser' }, 'Uw woorden staan in deze browser.'));
+  });
+
+  pagina.append(kop, balk, lijstDoel, accountDoel);
+  toon();
+})();
+</script>
+</body>
+</html>
