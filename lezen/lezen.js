@@ -80,7 +80,9 @@ window.Lezen = (() => {
     blok.append(v.v ? el('p', { class: 'v' }, App.woorden(v.v, o.nieuw)) : el('p', { class: 'v', en: 'Choose the picture.' }, 'Kies het plaatje.'));
     const rij = el('div', { class: 'opties' + (plaatjes ? ' beelden' : '') });
     const knoppen = volgorde.map((nr, plek) => {
-      const k = el('button', { class: 'optie' + (plaatjes ? ' beeld' : ''), type: 'button' },
+      // een antwoord zonder letters maar ook zonder plaatje (een telefoonnummer, een prijs, een tijd): groot, maar niet zo groot als een emoji
+      const getal = plaatjes && !/\p{Extended_Pictographic}|\[\[/u.test(v.o[nr]);
+      const k = el('button', { class: 'optie' + (plaatjes ? ' beeld' : '') + (getal ? ' getal' : ''), type: 'button' },
         plaatjes ? v.o[nr] : [el('span', { class: 'l' }, LETTERS[plek]), el('span', {}, v.o[nr])]);
       k.addEventListener('click', () => kies(nr));
       rij.append(k);

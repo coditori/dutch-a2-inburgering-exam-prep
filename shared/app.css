@@ -833,3 +833,5 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
   .voet .knop { flex: none; padding-inline: 14px; }
   .voet .knop.klein { min-height: 32px; padding: 2px 10px; }
 }
+/* een antwoord dat alleen uit cijfers bestaat (112, 0900 - 8844, 3.30): kleiner dan een plaatje, en het mag afbreken */
+.optie.beeld.getal { font-size: 1.6rem; font-weight: 600; white-space: normal; letter-spacing: 0; min-height: 72px; }
