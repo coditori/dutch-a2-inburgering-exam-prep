@@ -598,3 +598,37 @@ a.ring { color: inherit; text-decoration: none; border-radius: 50%; transition: 
 .merk-link { display: flex; flex: none; border-radius: 12px; }
 .pkaart-kop.kan { cursor: text; }
 .pkaart-voet a { color: inherit; text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; margin: -8px 0; }
+/* ---------- startpagina: de trap (vijf treden die omhoog gaan) en het spel van vijf woorden ---------- */
+.trap { display: flex; align-items: flex-end; gap: 8px; height: 190px; padding: 26px 18px 0; }
+.trap-trede { position: relative; flex: 1 1 0; min-width: 0; height: calc(44% + var(--h) * 14%); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0; padding: 10px 2px 0; border: 0; border-radius: 16px 16px 0 0; font: inherit; color: var(--tekst); cursor: pointer;
+  background: linear-gradient(to top, var(--accent-zacht) calc(var(--p) * 1%), var(--vlak2) 0); transition: filter .15s, box-shadow .15s; }
+.trap-trede b { font-size: 1.3rem; font-weight: 750; line-height: 1.2; }
+.trap-trede span { font-size: .78rem; font-weight: 600; color: var(--zacht); font-variant-numeric: tabular-nums; }
+.trap-trede.af { background: var(--goed-zacht); } .trap-trede.af b { color: var(--goed); }
+.trap-trede.gekozen { box-shadow: inset 0 3px 0 var(--accent), inset 3px 0 0 var(--accent), inset -3px 0 0 var(--accent); }
+.trap-trede.gekozen b { color: var(--accent); }
+/* het gouden bolletje uit het logo staat op de trede waar u bent */
+.trap-trede.nu::before { content: ""; position: absolute; top: -20px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #f5a524; box-shadow: 0 0 0 4px color-mix(in srgb, #f5a524 25%, transparent); animation: spring 1.6s ease-in-out infinite; }
+@keyframes spring { 50% { transform: translateY(-5px); } }
+@media (hover: hover) { .trap-trede:hover { filter: brightness(.96); } }
+.trap-trede:focus-visible { outline-offset: -2px; }
+.trap-paneel { padding: 18px; border-top: 3px solid var(--accent); }
+.trap-kop { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.trap-kop h3 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 2px; font-size: 1.2rem; }
+.trap-kop p { margin: 0; }
+.trap-kop .knoppen { margin: 0; }
+.trap-lijst { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--lijn); }
+.spel { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--lijn); }
+.spel-stippen { display: flex; gap: 6px; margin-bottom: 14px; }
+.spel.midden .spel-stippen { justify-content: center; }
+.spel-stippen i { width: 28px; height: 8px; border-radius: 999px; background: var(--vlak2); }
+.spel-stippen i.goed { background: var(--goed); } .spel-stippen i.fout { background: var(--fout); } .spel-stippen i.nu { background: var(--accent); }
+.spel-woord { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+.spel-woord span { font-size: 1.9rem; font-weight: 750; letter-spacing: -.02em; line-height: 1.2; }
+.spel .opties { max-width: 560px; }
+.spel .opties.beelden { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 560px) {
+  .trap { height: 160px; gap: 6px; padding: 24px 12px 0; } .trap-trede b { font-size: 1.1rem; } .trap-trede span { font-size: .7rem; }
+  .trap-paneel { padding: 14px; } .trap-kop .knoppen { width: 100%; } .spel-woord span { font-size: 1.55rem; }
+}
+@media (prefers-reduced-motion: reduce) { .trap-trede.nu::before { animation: none; } }

@@ -16,7 +16,7 @@
   <p class="zacht klein" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
   <div class="examens" id="examens"></div>
   <h2 id="woorden" data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden · de ladder</h2>
-  <p class="zacht klein" data-en="Click a step to see its words. Click a word: you hear it and see a picture. The word then comes back in your review cards.">Klik op een trede: u ziet de woorden. Klik op een woord: u hoort het en ziet een plaatje. Het woord komt daarna terug bij Herhalen.</p>
+  <p class="zacht klein" data-en="Choose a step and play: five words each time. Every right answer counts, and the step fills up.">Kies een trede en speel: vijf woorden per keer. Elk goed antwoord telt mee, en de trede loopt vol.</p>
   <div class="treden" id="ladder"></div>
   <p style="margin-top:20px"><a class="knop rand" href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
 </main>
@@ -137,48 +137,117 @@
         }))) : null);
   }));
 
-  // ---------- de ladder: de woorden per trede. Open een trede, klik op een woord (plaatje, geluid, vertaling). ----------
-  // Elk woord heeft een kleur: gekend (groen), bezig (u zag het al) of nieuw. Een klik op een woord zet het bij Herhalen (App: de pop-up).
-  const vak = SRS.alle(), doos = new Map(); // nummer van het woord -> vak in Herhalen
-  for (const id of Object.keys(vak)) { if (vak[id].soort !== 'w') continue; const nr = App.lemmaNr(vak[id].nl); if (nr >= 0 && !doos.has(nr)) doos.set(nr, vak[id].box); }
+  // ---------- de ladder: een trap van vijf treden, met op elke trede een spel van vijf woorden ----------
+  // Het spel gebruikt de kaarten van Herhalen (SRS): een goed antwoord zet het woord een vak verder, een fout antwoord terug naar het begin.
+  // Zo loopt de trede vol terwijl u speelt, en komen de woorden later terug bij Herhalen.
+  const WL = App.W.lijst, ladder = document.getElementById('ladder');
   const perTrede = TREDES.map(() => []);
-  App.W.lijst.forEach((r, nr) => { if (r[3] !== 'werkwoord' || r[0] <= 2) perTrede[r[0]].push(nr); }); // dezelfde woorden als in App.tredeStand
-  const nuTrede = stand.findIndex((x) => x.totaal && x.bekend < x.totaal); // de eerste trede die nog niet af is: daar bent u
-  const woord = (nr) => {
-    const r = App.W.lijst[nr], d = doos.get(nr);
-    return el('span', { class: 'wchip' + (d == null ? '' : d >= SRS.BEKEND ? ' gekend' : ' bezig') }, r[4] ? el('span', { 'aria-hidden': 'true' }, r[4] + ' ') : null, App.woorden(r[1]));
+  WL.forEach((r, nr) => { if (r[3] !== 'werkwoord' || r[0] <= 2) perTrede[r[0]].push(nr); }); // dezelfde woorden als in App.tredeStand
+  const kaarten = () => { // nummer van het woord -> de kaart in Herhalen
+    const vak = SRS.alle(), m = new Map();
+    for (const id of Object.keys(vak)) { if (vak[id].soort !== 'w') continue; const nr = App.lemmaNr(vak[id].nl); if (nr >= 0 && !m.has(nr)) m.set(nr, vak[id]); }
+    return m;
   };
-  document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => {
-    const x = stand[t], nrs = perTrede[t], p = x.totaal ? Math.round(100 * x.bekend / x.totaal) : 0, af = x.totaal && x.bekend >= x.totaal;
-    const lijst = el('div', { class: 'wchips' });
+  const eersteOpen = (st) => st.findIndex((x) => x.totaal && x.bekend < x.totaal); // de eerste trede die nog niet af is: daar bent u
+  let gekozen = Math.max(0, eersteOpen(stand)), lijstOpen = false;
+
+  function tekenLadder(inhoud) { // inhoud = wat er onder de knoppen staat: het spel, de uitslag, of niets
+    const st = App.tredeStand(), nu = eersteOpen(st), x = st[gekozen], [nl, en] = TREDES[gekozen];
+    const procent = (y) => (y.totaal ? Math.round(100 * y.bekend / y.totaal) : 0);
+    ladder.textContent = '';
+    ladder.append(
+      el('div', { class: 'trap', role: 'tablist', 'aria-label': 'de vijf treden' }, TREDES.map((_, t) => {
+        const af = st[t].totaal && st[t].bekend >= st[t].totaal;
+        return el('button', { type: 'button', role: 'tab', 'aria-selected': String(t === gekozen), 'aria-label': `Trede ${t}: ${procent(st[t])} procent gekend`,
+          class: 'trap-trede' + (t === gekozen ? ' gekozen' : '') + (t === nu ? ' nu' : '') + (af ? ' af' : ''), style: `--h:${t};--p:${procent(st[t])}`,
+          onclick: () => { gekozen = t; lijstOpen = false; tekenLadder(); } },
+          el('b', {}, af ? '✔' : String(t)), el('span', {}, `${procent(st[t])}%`));
+      })),
+      el('div', { class: 'trap-paneel', role: 'tabpanel' },
+        el('div', { class: 'trap-kop' },
+          el('div', {},
+            el('h3', {}, `Trede ${gekozen}`, gekozen === nu ? el('span', { class: 'trede-hier', en: 'you are here' }, 'u bent hier') : null),
+            el('p', { class: 'zacht', en }, nl),
+            el('p', { class: 'klein zacht', en: 'words known' }, `${x.bekend} van ${x.totaal} woorden gekend`)),
+          inhoud ? null : el('div', { class: 'knoppen' },
+            el('button', { type: 'button', class: 'knop', en: 'play: 5 words', onclick: speel }, '▶ Speel: 5 woorden'),
+            el('button', { type: 'button', class: 'knop rand', en: lijstOpen ? 'hide the words' : 'see the words', onclick: () => { lijstOpen = !lijstOpen; tekenLadder(); } }, lijstOpen ? 'Verberg de woorden' : 'Bekijk de woorden'))),
+        inhoud || null,
+        lijstOpen && !inhoud ? woordenlijst() : null));
+  }
+
+  // de woorden van de trede: gekend (groen), bezig (blauw) of nieuw. Een klik op een woord: plaatje, geluid en vertaling (de pop-up van App).
+  function woordenlijst() {
+    const k = kaarten(), nrs = perTrede[gekozen], lijst = el('div', { class: 'wchips' });
     let getoond = 0;
     const meer = el('button', { type: 'button', class: 'knop licht', en: 'more words', onclick: () => toon(60) }, 'Meer woorden');
-    function toon(n) { // de woorden komen pas op de pagina als de trede open gaat, en dan steeds een stuk erbij
-      lijst.append(...nrs.slice(getoond, getoond + n).map(woord));
+    function toon(n) {
+      lijst.append(...nrs.slice(getoond, getoond + n).map((nr) => {
+        const r = WL[nr], d = k.get(nr);
+        return el('span', { class: 'wchip' + (!d ? '' : d.box >= SRS.BEKEND ? ' gekend' : ' bezig') }, r[4] ? el('span', { 'aria-hidden': 'true' }, r[4] + ' ') : null, App.woorden(r[1]));
+      }));
       getoond = Math.min(nrs.length, getoond + n);
       meer.hidden = getoond >= nrs.length;
     }
-    const d = el('details', { class: 'trede' + (t === nuTrede ? ' nu' : '') + (af ? ' af' : '') },
-      el('summary', {},
-        el('span', { class: 'trede-nr', 'aria-hidden': 'true' }, af ? '✔' : String(t)),
-        el('span', { class: 'trede-naam' }, el('b', {}, `Trede ${t}`, t === nuTrede ? el('span', { class: 'trede-hier', en: 'you are here' }, 'u bent hier') : null), el('span', { class: 'zacht', en }, nl)),
-        el('span', { class: 'trede-stand' }, el('div', { class: 'balk' }, el('i', { style: `width:${p}%` })), el('span', { class: 'klein zacht' }, `${x.bekend} van ${x.totaal} woorden`)),
-        teken('pijl')),
-      el('div', { class: 'trede-in' },
-        el('p', { class: 'klein zacht trede-uitleg' },
-          el('span', { class: 'wchip gekend' }, 'gekend'), ' ', el('span', { class: 'wchip bezig' }, 'bezig'), ' ', el('span', { class: 'wchip' }, 'nieuw'),
-          el('span', { en: `${x.bekend} known, ${x.bezig - x.bekend} in progress, ${x.totaal - x.bezig} new` }, ` · ${x.bekend} gekend, ${x.bezig - x.bekend} bezig, ${x.totaal - x.bezig} nieuw`)),
-        lijst,
-        el('div', { class: 'knoppen' }, meer,
-          tel.nu ? el('a', { class: 'knop klein', href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`) : null)));
-    d.addEventListener('toggle', () => { if (d.open && !getoond) toon(24); });
-    return d;
-  }));
-  // een woord aangeklikt: het staat nu bij Herhalen, dus het krijgt de kleur "bezig"
-  document.getElementById('ladder').addEventListener('click', (e) => {
-    const w = e.target.closest('.w'), chip = w && w.closest('.wchip');
-    if (chip && !chip.classList.contains('gekend')) chip.classList.add('bezig');
-  });
+    toon(30);
+    lijst.addEventListener('click', (e) => { const chip = e.target.closest('.w') && e.target.closest('.wchip'); if (chip && !chip.classList.contains('gekend')) chip.classList.add('bezig'); });
+    return el('div', { class: 'trap-lijst' },
+      el('p', { class: 'klein zacht' }, el('span', { class: 'wchip gekend' }, 'gekend'), ' ', el('span', { class: 'wchip bezig' }, 'bezig'), ' ', el('span', { class: 'wchip' }, 'nieuw'),
+        el('span', { en: 'click a word: picture, sound and translation' }, ' · klik op een woord: plaatje, geluid en vertaling')),
+      lijst, el('div', { class: 'knoppen' }, meer));
+  }
+
+  // het spel: vijf woorden van de trede. Eerst de woorden die vandaag aan de beurt zijn, dan nieuwe, dan de rest.
+  function speel() {
+    const k = kaarten(), vandaag = SRS.vandaag(), nrs = perTrede[gekozen];
+    const rang = (nr) => { const d = k.get(nr); return !d ? 1 : d.due <= vandaag ? 0 : d.box < SRS.BEKEND ? 2 : 3; };
+    const rij = App.schud(nrs).sort((a, b) => rang(a) - rang(b)).slice(0, 5);
+    const uitslag = []; // per vraag: true (goed) of false
+    const stippen = () => el('div', { class: 'spel-stippen', 'aria-hidden': 'true' }, rij.map((_, i) => el('i', { class: i < uitslag.length ? (uitslag[i] ? 'goed' : 'fout') : i === uitslag.length ? 'nu' : '' })));
+
+    function vraag() {
+      const nr = rij[uitslag.length], r = WL[nr];
+      // Heeft het woord een plaatje, dan kiest u het plaatje. Anders kiest u de betekenis (in uw hulptaal).
+      const metBeeld = !!r[4], waarde = (n) => (metBeeld ? WL[n][4] : WL[n][2]);
+      const gezien = new Set([waarde(nr)]), fout = [];
+      for (const n of App.schud(nrs)) { if (fout.length === 2) break; if (!waarde(n) || gezien.has(waarde(n))) continue; gezien.add(waarde(n)); fout.push(n); }
+      const opties = App.schud([nr, ...fout]);
+      const verder = el('button', { type: 'button', class: 'knop', hidden: true, en: 'next', onclick: () => (uitslag.length < rij.length ? vraag() : klaar()) }, 'Verder');
+      const melding = el('p', { class: 'uitslag' });
+      const knoppen = opties.map((n) => el('button', { type: 'button', class: 'optie' + (metBeeld ? ' beeld' : ''), onclick: () => {
+        const goed = n === nr;
+        knoppen.forEach((b, i) => { b.disabled = true; if (opties[i] === nr) b.classList.add('goed'); });
+        if (!goed) knoppen[opties.indexOf(n)].classList.add('fout');
+        SRS.voegToe('w:' + r[1], { soort: 'w', nl: r[1] }, true);
+        SRS.antwoord('w:' + r[1], goed);
+        uitslag.push(goed);
+        melding.className = 'uitslag ' + (goed ? 'goed' : 'fout');
+        melding.textContent = goed ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.';
+        verder.hidden = false;
+        if (goed) App.goed(verder); else verder.focus();
+      } }, metBeeld ? WL[n][4] : el('span', { hulp: WL[n][2] })));
+      tekenLadder(el('div', { class: 'spel' },
+        stippen(),
+        el('div', { class: 'spel-woord' }, el('span', {}, r[1]), el('button', { type: 'button', class: 'rond', title: 'luister', 'aria-label': 'luister naar het woord', onclick: () => window.Spraak.zeg(r[1]) }, '🔊')),
+        el('p', { class: 'zacht', en: metBeeld ? 'Which picture fits?' : 'What does it mean?' }, metBeeld ? 'Welk plaatje past?' : 'Wat betekent dit?'),
+        el('div', { class: 'opties' + (metBeeld ? ' beelden' : '') }, knoppen),
+        melding,
+        el('div', { class: 'knoppen' }, verder, el('button', { type: 'button', class: 'knop tekst', en: 'stop', onclick: () => tekenLadder() }, 'Stop'))));
+    }
+    function klaar() {
+      const goed = uitslag.filter(Boolean).length;
+      tekenLadder(el('div', { class: 'spel midden' },
+        stippen(),
+        el('div', { class: 'groot' }, `${goed} / ${rij.length}`),
+        el('p', { en: goed === rij.length ? 'All right!' : goed >= 3 ? 'Well done. The other words come back.' : 'These words come back. Try again.' },
+          goed === rij.length ? 'Alles goed!' : goed >= 3 ? 'Goed gedaan. De andere woorden komen terug.' : 'Deze woorden komen terug. Probeer het nog een keer.'),
+        el('div', { class: 'knoppen', style: 'justify-content:center' },
+          el('button', { type: 'button', class: 'knop', en: '5 more words', onclick: speel }, '▶ Nog 5 woorden'),
+          el('button', { type: 'button', class: 'knop rand', en: 'done', onclick: () => tekenLadder() }, 'Klaar'))));
+    }
+    if (rij.length) vraag();
+  }
+  tekenLadder();
 })();
 </script>
 </body>
