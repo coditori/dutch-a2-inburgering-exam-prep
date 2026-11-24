@@ -500,7 +500,7 @@
     "v": "Vanaf hoeveel jaar moet u in de bus of de trein een identiteitsbewijs laten zien?",
     "a": "De regel is: vanaf 14 jaar. In de bus en de trein geldt het al vanaf 12 jaar, als u geen geldig kaartje hebt.",
     "en": "ID in public transport: general rule from 14; in bus and train from 12 if you have no valid ticket.",
-    "beeld": "🚆"
+    "beeld": "🚄"
    }
   ],
   "situaties": [
@@ -557,7 +557,7 @@
      "Nee, pas vanaf 18 jaar."
     ],
     "w": "De regel is 14 jaar, maar in de bus en de trein is het 12 jaar als u geen geldig kaartje hebt.",
-    "beeld": "🚆"
+    "beeld": "🚄"
    }
   ]
  }
