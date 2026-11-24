@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.23.1';
+  const VERSIE = '1.23.2';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -396,8 +396,20 @@ window.App = (() => {
   // de knop bij een fout antwoord in een les
   const opnieuwKnop = (doe) => el('button', { type: 'button', class: 'knop licht', en: 'try again', onclick: doe }, 'Probeer opnieuw');
   // Een les die u al haalde (80% of meer) is helemaal open: in de balk kunt u naar elke stap, ook als u de les opnieuw opent.
-  // r = het bewaarde resultaat van de les ({ beste, totaal }), n = het aantal stappen. Antwoord: de verste stap die open is (de uitslag zelf niet).
-  const vrijTot = (r, n) => (r && r.totaal && r.beste / r.totaal >= 0.8 ? Math.max(0, n - 2) : 0);
+  // r = het bewaarde resultaat van de les ({ beste, totaal }), n = het aantal stappen. Antwoord: de verste stap die open is. Dat is de laatste, de uitslag: wie daarheen springt, ziet zijn beste score van eerder (App.alGehaald).
+  const lesGehaald = (r) => !!r && !!r.totaal && r.beste / r.totaal >= 0.8;
+  const vrijTot = (r, n) => (lesGehaald(r) ? Math.max(0, n - 1) : 0);
+  // Rondkijken in een les die u al haalde telt niet als een nieuwe poging: anders stond er "0 / 5" na een paar klikken in de balk.
+  //   sprong(stand, i)   bij een klik in de balk naar stap i: onthoudt dat de leerling stappen oversloeg (stand.ver = de verste stap die gewoon bereikt is)
+  //   bladert(stand, r)  bij de uitslag: sloeg de leerling stappen over in een les die al gehaald is? Dan geen nieuwe score.
+  //   alGehaald(r, knoppen) het vak dat dan in plaats van de uitslag komt: de beste score van eerder.
+  const sprong = (stand, i) => { if (i > (stand.ver || 0)) stand.sprong = true; };
+  const bladert = (stand, r) => !!stand.sprong && !stand.geteld && lesGehaald(r);
+  const alGehaald = (r, knoppen) => el('div', { class: 'kaart midden' },
+    el('div', { class: 'groot' }, `${r.beste} / ${r.totaal}`),
+    el('p', { class: 'uitslag goed', en: 'You passed this lesson before. This is your best score.' }, '✔ Deze les haalde u al. Dit is uw beste score.'),
+    el('p', { class: 'zacht klein', en: 'You looked around without doing every step, so this time is not counted.' }, 'U keek rond zonder elke stap te doen. Daarom telt deze keer niet mee.'),
+    el('div', { class: 'knoppen', style: 'justify-content:center' }, knoppen));
   // knoppen 1 2 3 voor de vragen bij één tekst. staat(i) = 'goed' | 'fout' | null (nog niet gedaan). Klik: terugkijken.
   function vraagKnoppen(n, nu, staat, ga) {
     let eerste = 0;
@@ -587,5 +599,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, bevestig, wis };
+    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

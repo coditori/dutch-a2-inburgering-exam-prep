@@ -38,15 +38,18 @@
   const nieuw = new Set(thema.woorden.map((w) => App.lemmaNr(w.nl)).filter((n) => n >= 0));
   const rij = KNM.rij(themas);
   const volgende = rij[rij.indexOf(les) + 1];
+  let gesprongen = false; // sloeg de leerling kaarten over met de balk?
   // Een rij kaarten of vragen waarin u terug kunt (klik op de balk, of Vorige).
   // teken(i, al, bewaar, verder): al = het antwoord van eerder ({ goed, ... }) of undefined; bewaar(antwoord) onthoudt het; verder() = volgende.
   function reeks(n, teken, klaar) {
     const antw = [];
-    let max = App.vrijTot(KNM.P.lessen[les], n + 1); // deze stap haalde u al: alle kaarten en vragen zijn open
+    let ver = 0;
+    let max = App.vrijTot(KNM.P.lessen[les], n); // deze stap haalde u al: alle kaarten en vragen zijn open
     const ga = (i) => {
       if (i >= n) return klaar(antw.filter((a) => a && a.goed).length);
       max = Math.max(max, i);
-      App.balk({ n, nu: i, max, ga });
+      App.balk({ n, nu: i, max, ga: (j) => { if (j > ver) gesprongen = true; ga(j); } }); // een klik in de balk voorbij waar u gewoon kwam: rondkijken
+      ver = Math.max(ver, i);
       App.sluitPop(); Spraak.stop();
       pagina.textContent = '';
       teken(i, antw[i], (a) => { antw[i] = a; }, () => ga(i + 1));
@@ -56,6 +59,15 @@
   }
 
   function einde(goed, totaal, extra) {
+    // rondgekeken in een stap die al gehaald is (kaarten overgeslagen in de balk): geen nieuwe score
+    if (gesprongen && App.lesGehaald(KNM.P.lessen[les])) {
+      pagina.textContent = '';
+      App.balk({ n: 1, nu: 0 });
+      return pagina.append(App.alGehaald(KNM.P.lessen[les], [
+        volgende ? el('a', { class: 'knop', href: `thema.html?t=${volgende.slice(0, -2)}&stap=${volgende.slice(-1)}`, en: 'next' }, 'Volgende les') : null,
+        el('button', { class: 'knop licht', en: 'do the lesson again', onclick: () => location.reload() }, 'Doe de les opnieuw'),
+        el('a', { class: 'knop licht', href: 'index.html', en: 'overview' }, 'Overzicht')]));
+    }
     KNM.sla(les, goed, totaal);
     const ok = goed / totaal >= 0.8;
     pagina.textContent = '';
