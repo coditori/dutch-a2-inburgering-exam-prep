@@ -23,6 +23,7 @@ window.Luister = (() => {
   async function speel(regels, opties) {
     const o = opties || {};
     stop();
+    if (!Spraak.magSpelen()) { if (o.opEinde) o.opEinde(); return; } // de pagina is net geopend: geen geluid tot de leerling zelf klikt
     const mijn = loopNr;
     await klaar;
     for (let i = 0; i < regels.length; i++) {
