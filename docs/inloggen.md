@@ -22,8 +22,10 @@ Browser and account are merged, so nobody loses work: per lesson the best result
 
 ## Set-up
 
-1. Create a Firebase project. Turn on **Authentication → Google**. Add the address of the site (and `127.0.0.1` for local use) under **Authentication → Settings → Authorized domains**.
-2. Create a **Firestore Database** (production mode, region `europe-west4`) and paste these rules:
+The menu names are those of the Firebase console in November 2026. Google moves them now and then; the search box at the top of the console finds each page by name.
+
+1. Create a Firebase project. Open **Security → Authentication**, and turn on **Google** on the **Sign-in method** tab. Add the address of the site (and `127.0.0.1` for local use) under **Security → Authentication → Settings → Authorized domains**.
+2. Open **Databases & Storage → Firestore** and create a database (production mode, region `europe-west4`). Paste these rules on the **Rules** tab:
 
    ```
    rules_version = '2';
@@ -40,7 +42,7 @@ Browser and account are merged, so nobody loses work: per lesson the best result
    }
    ```
 
-3. Register a web app in the project settings and copy the `firebaseConfig` values into `shared/config.json`, in the shape of `shared/config.voorbeeld.json`.
+3. Register a web app in the project settings (the gear icon) and copy the `firebaseConfig` values into `shared/config.json`, in the shape of `shared/config.voorbeeld.json`.
 
 `shared/config.json` is in `.gitignore`, so it never lands in the repository.
 
