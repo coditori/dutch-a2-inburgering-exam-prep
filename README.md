@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-# Dutch A2 inburgering exam prep
+# Taal Klim: Dutch A2 inburgering exam prep
 
 Free practice site for the Dutch A2 civic integration exam (inburgeringsexamen), from almost zero to exam level.
 It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.

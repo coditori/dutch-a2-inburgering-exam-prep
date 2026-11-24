@@ -2,7 +2,7 @@
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
-  const VERSIE = '1.10.1';
+  const VERSIE = '1.11.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -319,7 +319,7 @@ window.App = (() => {
   // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
-      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('span', { class: 'merk', 'aria-hidden': 'true' }, 'A2'),
+      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('img', { class: 'merk', src: WORTEL + 'shared/icoon.svg', alt: '', width: 38, height: 38 }),
       el('h1', {}, titel),
       nav(),
       el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: () => deel() }, teken('deel')),
