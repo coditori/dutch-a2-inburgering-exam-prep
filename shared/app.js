@@ -16,13 +16,20 @@ window.App = (() => {
     return v;
   };
   const schrijf = (k, v) => { try { localStorage.setItem('dutch-exam:' + k, JSON.stringify(v)); } catch (e) { /* geen opslag */ } };
+  // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter ❗ bij een woord.
+  // De lessen hebben alleen Engels; shared/fa.js heeft bij elke Engelse tekst de Perzische. Geen Perzisch gevonden? Dan blijft het Engels staan.
+  const hulptaal = () => (ruw('hulptaal', 'en') === 'fa' ? 'fa' : 'en');
+  if (hulptaal() === 'fa') document.write('<script src="' + WORTEL + 'shared/fa.js"><\/script>'); // geladen vóór de scripts van de pagina
+  const fa = (en) => (hulptaal() === 'fa' && window.FA && typeof en === 'string' && window.FA[en]) || '';
+  const hulp = (en) => fa(en) || en || '';
+  const zetHulp = (e, en) => { if (en) e.dataset.en = en; else delete e.dataset.en; const f = fa(en); if (f) e.dataset.fa = f; else delete e.dataset.fa; };
   const kaal = (s) => s.toLowerCase().replace(/’/g, "'").normalize('NFD').replace(/[̀-ͯ]/g, '');
 
   function el(tag, props, ...kinderen) {
     const e = document.createElement(tag);
     for (const [k, v] of Object.entries(props || {})) {
       if (k === 'class') e.className = v;
-      else if (k === 'en') e.dataset.en = v;
+      else if (k === 'en') zetHulp(e, v);
       else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
       else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
     }
@@ -73,7 +80,7 @@ window.App = (() => {
     const regels = zoek(doel.textContent);
     if (!regels.length) return;
     pop = el('div', { id: 'wpop' }, regels.map((r) => {
-      const en = el('div', { class: 'en', hidden: true }, r.en);
+      const en = el('div', { class: 'en', hidden: true, dir: 'auto' }, hulp(r.en));
       window.SRS.voegToe('w:' + r.nl, { soort: 'w', nl: r.nl });
       return el('div', { class: 'rij' },
         r.beeld ? el('div', { class: 'beeld' }, r.beeld) : null,
@@ -132,7 +139,7 @@ window.App = (() => {
   function toast(tekst, en) {
     if (!toastEl) { toastEl = el('div', { id: 'toast', role: 'status', 'aria-live': 'polite' }); document.body.append(toastEl); }
     toastEl.textContent = tekst;
-    if (en) toastEl.dataset.en = en; else delete toastEl.dataset.en;
+    zetHulp(toastEl, en);
     toastEl.classList.add('aan');
     clearTimeout(toastTik);
     toastTik = setTimeout(() => toastEl.classList.remove('aan'), 1400);
@@ -189,7 +196,7 @@ window.App = (() => {
   // ---------- opnieuw beginnen ----------
   // wis('lezen') = alles van één examen · wis('herhalen') = de woordkaarten · wis() = alle voortgang.
   // De instellingen (thema, Engels, slot) blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
-  const BLIJFT = ['instellingen', 'en', 'thema'];
+  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal'];
   function wis(wat) {
     const VOOR = 'dutch-exam:';
     try {
@@ -211,7 +218,9 @@ window.App = (() => {
       el('h1', {}, titel),
       themaKnop(),
       el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
-      el('button', { class: 'rond taal', title: 'Engels aan / uit', 'aria-label': 'Engels aan / uit', onclick: () => { document.body.classList.toggle('en'); schrijf('en', document.body.classList.contains('en')); } }, 'EN'));
+      el('button', { class: 'rond taal', title: 'hulp in uw taal aan / uit', 'aria-label': 'hulp in uw taal aan / uit', onclick: () => { document.body.classList.toggle('en'); schrijf('en', document.body.classList.contains('en')); } }, hulptaal() === 'fa' ? 'FA' : 'EN'));
+    // Perzisch: ook bij de vaste teksten van de pagina (data-en in de html)
+    if (hulptaal() === 'fa') { document.body.classList.add('fa'); document.querySelectorAll('[data-en]').forEach((e) => zetHulp(e, e.dataset.en)); }
     // de kop krijgt een schaduw zodra de pagina rolt
     const rol = () => document.body.classList.toggle('gerold', window.scrollY > 4);
     window.addEventListener('scroll', rol, { passive: true }); rol();
@@ -247,6 +256,6 @@ window.App = (() => {
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
-  return { W, lees, schrijf, kaal, el, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { W, lees, schrijf, kaal, el, hulp, hulptaal, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

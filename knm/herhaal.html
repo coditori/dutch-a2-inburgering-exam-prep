@@ -53,7 +53,7 @@
     pagina.textContent = '';
     const k = rij.shift();
     if (!k) { pagina.append(el('div', { class: 'kaart midden' }, el('div', { class: 'groot' }, `${goed} / ${gedaan}`), el('p', {}, 'Klaar voor vandaag.'), el('div', { class: 'knoppen', style: 'justify-content:center' }, el('a', { class: 'knop', href: 'index.html' }, 'Naar de thema\'s')))); return; }
-    const en = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic' }, k.en || '');
+    const en = el('p', { class: 'zacht', hidden: true, dir: 'auto', style: 'font-style:italic' }, App.hulp(k.en));
     const achter = el('div', { hidden: true }, el('div', { class: 'antwoord' }, App.woorden(k.a)), el('p', {}, el('button', { class: 'rond', onclick: () => { en.hidden = !en.hidden; } }, '❗')), en);
     const klaar = (ok) => { gedaan++; if (ok) goed++; if (echt) KNM.Kaarten.antwoord(k.id, ok); volgende(); };
     const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'show the answer', onclick: () => {

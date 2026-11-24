@@ -74,6 +74,13 @@ body.en .knop[data-en]::after, body.en #toast[data-en]::after { color: inherit; 
 body.en .knop[data-en] { flex-direction: column; gap: 0; line-height: 1.25; padding-block: 6px; }
 body.en .knop[data-en]::after { content: "(" attr(data-en) ")"; font-size: .72em; overflow-wrap: normal; word-break: normal; max-width: 100%; }
 [data-en]::after { overflow-wrap: normal; }
+/* hulptaal Perzisch (instellingen): de hulp staat op een eigen regel onder het Nederlands, van rechts naar links.
+   Zonder Perzische tekst (geen data-fa) blijft het Engels tussen haakjes staan. */
+body.en.fa [data-fa]::after { content: attr(data-fa); display: block; direction: rtl; unicode-bidi: isolate; text-align: start; font-size: .85em; line-height: 1.7; font-weight: 400; letter-spacing: 0; }
+body.en.fa .knop[data-fa]::after { content: attr(data-fa); font-size: .78em; line-height: 1.5; text-align: center; }
+body.en.fa .midden [data-fa]::after, body.en.fa .midden[data-fa]::after, body.en.fa .keuze [data-fa]::after, body.en.fa #toast[data-fa]::after,
+body.en.fa .stapje[data-fa]::after, body.en.fa .weetje [data-fa]::after, body.en.fa .maker [data-fa]::after { text-align: center; }
+[dir=auto] { text-align: start; } .wkaart [dir=auto], .weetje [dir=auto], .midden [dir=auto] { text-align: center; }
 
 /* voet onder aan elke pagina: wie de site maakte. De inhoud vult de ruimte, de voet staat dus altijd onderaan. */
 body > main, body > #pagina { flex: 1 0 auto; }

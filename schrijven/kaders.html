@@ -41,7 +41,7 @@
   pagina.append(el('h2', { en: '12 fixed sentences' }, '12 vaste zinnen'));
   const lijst = el('div', { class: 'taak' });
   data.zinnen.forEach((z, i) => {
-    const en = el('span', { class: 'zacht klein', hidden: true }, ' — ' + z.en);
+    const en = el('span', { class: 'zacht klein', hidden: true }, ' — ', el('bdi', {}, App.hulp(z.en)));
     lijst.append(el('p', {}, `${i + 1}. `, el('b', {}, App.woorden(z.nl)), ' ', el('button', { class: 'rond niet-print', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'), en));
   });
   pagina.append(lijst);

@@ -82,7 +82,7 @@
 
   function woordKaart(k, klaar) {
     const r = App.W.lijst[App.lemmaNr(k.nl)] || [];
-    const en = k.en || r[2] || '';
+    const en = App.hulp(k.en || r[2] || '');
     const beeld = k.beeld || r[4] || '';
     const achter = el('div', { hidden: true },
       beeld ? el('div', { class: 'beeld', style: 'font-size:3rem' }, beeld) : null,
