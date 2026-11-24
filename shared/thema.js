@@ -11,6 +11,16 @@ window.SITE_NAAM = 'Taal Klim';
   else if (t === 'licht') document.documentElement.dataset.theme = 'light';
 })();
 
+// De grootte van de tekst (instellingen.html): klein, gewoon, groot of extra groot. Ook vóór het tekenen, zodat de pagina niet verspringt.
+// shared/app.css rekent alle letters, plaatjes en tekens om met --schaal.
+window.TEKST_SCHAAL = { klein: 0.9, gewoon: 1, groot: 1.15, extra: 1.3 };
+(() => {
+  let t = 'gewoon';
+  try { t = JSON.parse(localStorage.getItem('dutch-exam:tekst')) || 'gewoon'; } catch (e) { /* geen opslag */ }
+  const s = window.TEKST_SCHAAL[t];
+  if (s && s !== 1) document.documentElement.style.setProperty('--schaal', s);
+})();
+
 // Het teken van de site in het tabblad (en op het beginscherm van een iPhone). Hier, omdat dit bestand in de <head> van elke pagina staat.
 (() => {
   const map = new URL('.', document.currentScript.src).href; // de map shared/

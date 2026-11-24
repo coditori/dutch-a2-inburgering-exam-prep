@@ -252,6 +252,13 @@ window.App = (() => {
     if (t === 'donker') r.dataset.theme = 'dark'; else if (t === 'licht') r.dataset.theme = 'light'; else delete r.dataset.theme;
     document.dispatchEvent(new CustomEvent('thema'));
   }
+  // ---------- grootte van de tekst: 'klein', 'gewoon', 'groot' of 'extra'. shared/thema.js zet haar bij het laden. ----------
+  const tekst = () => { const t = ruw('tekst', 'gewoon'); return window.TEKST_SCHAAL && window.TEKST_SCHAAL[t] ? t : 'gewoon'; };
+  function zetTekst(t) {
+    const s = (window.TEKST_SCHAAL || {})[t] || 1;
+    schrijf('tekst', s === 1 ? 'gewoon' : t);
+    if (s === 1) document.documentElement.style.removeProperty('--schaal'); else document.documentElement.style.setProperty('--schaal', s);
+  }
   // ---------- het menu achter de knop Profiel in de kop: profiel, instellingen en het thema ----------
   // Eén knop in plaats van drie: zo staan er in de kop alleen nog Delen (in een les), deze knop en de hulptaal.
   let kopMenu = null;
@@ -407,6 +414,7 @@ window.App = (() => {
   // De instellingen (thema, Engels, slot) en de lijst Mijn woorden blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
   // 'account-in' = deze browser is ingelogd (shared/account.js); de demo-sleutels zijn het nep-account van { "demo": true }
   const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'mijn-woorden', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];
+  BLIJFT.push('tekst'); // de grootte van de tekst is ook een instelling
   function wis(wat) {
     const VOOR = 'dutch-exam:';
     try {
@@ -567,5 +575,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();
