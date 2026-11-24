@@ -44,10 +44,17 @@ def maak_woorden_js():
         for w in les.get("woorden", []):
             if w.get("beeld"):
                 beeld[kaal(w["nl"])] = w["beeld"]
+    # een voorbeeldzin bij het woord: de zin uit de eerste les waar het woord in staat (voor de woordkaarten bij Herhalen)
+    zin = {}
+    for pad, les in alle_lessen():
+        for w in les.get("woorden", []):
+            if w.get("zin"):
+                zin.setdefault(kaal(w["nl"]), w["zin"])
     rijen = []
     for it in lijst.items:
         b = [beeld[kaal(s)] for s in [it["nl"]] + sublemmas(it["nl"]) if kaal(s) in beeld]
-        rijen.append([it["trede"], it["nl"], it["en"], it["thema"], "".join(dict.fromkeys(b)), it["extra"]])
+        z = next((zin[kaal(s)] for s in [it["nl"]] + sublemmas(it["nl"]) if kaal(s) in zin), "")
+        rijen.append([it["trede"], it["nl"], it["en"], it["thema"], "".join(dict.fromkeys(b)), it["extra"], z])
     vormen = {k: v[:3] for k, v in lijst.vormen.items()}
     # vormen die in de teksten staan (meervoud, verkleinwoord, samenstelling) vooraf opzoeken
     inhoud = [d for _, d in alle_lessen()] + [d for x in EXAMENS for _, d in overig(x)]
@@ -63,7 +70,7 @@ def maak_woorden_js():
     uit.parent.mkdir(exist_ok=True)
     uit.write_text(
         "// GEGENEREERD door tools/bouw.py uit woorden/woorden.txt en woorden/werkwoorden-a2.tsv. Niet met de hand veranderen.\n"
-        "// lijst: [trede, nederlands, engels, thema, plaatje, extra]   vormen: woordvorm -> nummers in lijst\n"
+        "// lijst: [trede, nederlands, engels, thema, plaatje, extra, voorbeeldzin]   vormen: woordvorm -> nummers in lijst\n"
         "window.WOORDEN = " + json.dumps({"lijst": rijen, "vormen": vormen}, ensure_ascii=False, separators=(",", ":")) + ";\n",
         encoding="utf-8",
     )
