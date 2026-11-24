@@ -36,7 +36,20 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. Opening `index.html` as a file does not work, because the pages load their lessons with `fetch`.
 
-Any static file server works too, so you can also host it on GitHub Pages.
+Any static file server works too.
+
+## Online version (GitHub Pages)
+
+The site also runs online, without installing anything: https://ariogrey.com/dutch-a2-inburgering-exam-prep/
+
+Lessons, tests, trainers, audio and word review all work there. What is different from running it on your own computer:
+
+| Feature | Online |
+|---------|--------|
+| Speaking check (speech to text) | Uses the browser's own speech recognition, which exists in Chrome and Edge and sends your audio to Google. In other browsers you record, listen and check yourself. The local speech server below is meant for the site on your own computer. |
+| Official DUO writing exams | Not included. The "DUO 1–3" tiles open the practice page on inburgeren.nl instead. |
+| Your progress | Saved in the browser, per address. Progress made on `localhost` does not show up online, and the other way round. Move it with "Bewaar in een bestand" and "Lees uit een bestand" on the settings page (⚙). |
+| Recording your voice | Needs microphone permission for the site. |
 
 ## Optional: speech tools
 
