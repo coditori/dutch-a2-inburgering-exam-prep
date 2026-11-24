@@ -18,6 +18,7 @@ Logging in stays optional. Visitors who do not log in never load anything from G
 Not saved to the account: settings, half-finished lessons and exams, and the learner's own details for the writing form (name, address).
 
 Browser and account are merged, so nobody loses work: per lesson the best result, all exam attempts from both sides, per word card the highest box.
+Logging out saves everything to the account first and then empties the browser (progress and name), so the next person on that computer starts clean; logging in again brings it all back.
 "Wis alle voortgang" in the settings also clears the account. On the profile page a learner can delete everything from the account.
 
 ## Set-up
