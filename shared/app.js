@@ -2,7 +2,7 @@
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
-  const VERSIE = '1.11.0';
+  const VERSIE = '1.11.1';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -23,7 +23,7 @@ window.App = (() => {
   // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter ❗ bij een woord.
   // De lessen hebben alleen Engels; shared/fa.js heeft bij elke Engelse tekst de Perzische. Geen Perzisch gevonden? Dan blijft het Engels staan.
   const hulptaal = () => (ruw('hulptaal', 'en') === 'fa' ? 'fa' : 'en');
-  if (hulptaal() === 'fa') document.write('<script src="' + WORTEL + 'shared/fa.js"><\/script>'); // geladen vóór de scripts van de pagina
+  if (hulptaal() === 'fa') document.write('<script src="' + WORTEL + 'shared/fa.js?v=' + VERSIE + '"><\/script>'); // geladen vóór de scripts van de pagina
   const fa = (en) => (hulptaal() === 'fa' && window.FA && typeof en === 'string' && window.FA[en]) || '';
   const hulp = (en) => fa(en) || en || '';
   const zetHulp = (e, en) => { if (en) e.dataset.en = en; else delete e.dataset.en; const f = fa(en); if (f) e.dataset.fa = f; else delete e.dataset.fa; };
@@ -203,7 +203,7 @@ window.App = (() => {
     if (k === 'uit') schrijf('en', false); else { schrijf('en', true); schrijf('hulptaal', k); }
     if (k !== 'fa' || window.FA) return Promise.resolve(ververs());
     return new Promise((af) => {
-      const s = el('script', { src: WORTEL + 'shared/fa.js' });
+      const s = el('script', { src: WORTEL + 'shared/fa.js?v=' + VERSIE });
       s.onload = s.onerror = () => { ververs(); af(); };
       document.head.append(s);
     });
@@ -319,7 +319,7 @@ window.App = (() => {
   // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
-      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('img', { class: 'merk', src: WORTEL + 'shared/icoon.svg', alt: '', width: 38, height: 38 }),
+      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('img', { class: 'merk', src: WORTEL + 'shared/icoon.svg?v=' + VERSIE, alt: '', width: 38, height: 38 }),
       el('h1', {}, titel),
       nav(),
       el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: () => deel() }, teken('deel')),
@@ -344,7 +344,7 @@ window.App = (() => {
       k.classList.toggle('tip', !g && window.Account.staat.beschikbaar); // een stip: u kunt inloggen
       k.append(g ? ((ruw('profiel', {}) || {}).naam || g.naam || g.email || '?').trim().slice(0, 1).toUpperCase() : teken('mens'));
     });
-    document.head.append(el('script', { src: WORTEL + 'shared/account.js' }));
+    document.head.append(el('script', { src: WORTEL + 'shared/account.js?v=' + VERSIE }));
     return h;
   }
 
