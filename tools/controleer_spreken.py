@@ -79,7 +79,7 @@ def main():
     if len(lessen) != 26:
         print(f"✗ {len(lessen)} lessen (het plan heeft er 26)")
         totaal += 1
-    print(f"spreken: {len(lessen)} lessen gecontroleerd: {totaal} fouten; {zonder_geluid} teksten zonder mp3 (dan spreekt de browserstem)")
+    print(f"spreken: {len(lessen)} lessen gecontroleerd: {totaal} fouten; {zonder_geluid} teksten zonder mp3")
     sys.exit(1 if totaal else 0)
 
 
