@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profiel – Nederlands A2</title>
+<link rel="stylesheet" href="shared/app.css">
+<script src="shared/thema.js"></script>
+</head>
+<body>
+<main id="pagina"></main>
+<script src="shared/woorden.js"></script>
+<script src="shared/srs.js"></script>
+<script src="shared/audio.js"></script>
+<script src="shared/app.js"></script>
+<script>
+// Het profiel: uw naam, uw lessen en uw cijfers op één kaart. U deelt de kaart met een link.
+// Er is geen server: de naam staat in deze browser, en de link heeft de gegevens zelf (achter #p=). Wie de link opent, ziet de kaart van dat moment.
+(async () => {
+  const { el, teken } = App;
+  const kop = App.kop('Profiel', 'index.html');
+  kop.querySelector('.deel').remove(); // delen gaat hier met de grote knop: die deelt de kaart, niet deze lege pagina
+  const pagina = document.getElementById('pagina');
+  const MAX_NAAM = 30;
+  const schoon = (s) => String(s == null ? '' : s).replace(/\s+/g, ' ').trim().slice(0, MAX_NAAM);
+  const heel = (x, max) => Math.max(0, Math.min(max, Math.round(Number(x)) || 0));
+
+  // ---------- de gegevens in de link: kort, en bij het lezen streng gecontroleerd (de link komt van buiten) ----------
+  // [1, naam, dag, woorden gekend, woorden totaal, [per examen: [lessen gehaald, lessen totaal, [[toets, cijfer × 10], ...]]]]
+  const naarLink = (p) => {
+    const json = JSON.stringify([1, p.naam, p.dag, p.woorden, p.woordenTotaal, p.examens.map((x) => [x.gedaan, x.n, x.cijfers])]);
+    const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(json))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return new URL('profiel.html#p=' + b64, App.WORTEL).href;
+  };
+  const uitLink = (hash) => {
+    try {
+      const b64 = hash.slice(3).replace(/-/g, '+').replace(/_/g, '/');
+      const d = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b64), (c) => c.charCodeAt(0))));
+      if (!Array.isArray(d) || d[0] !== 1 || !Array.isArray(d[5]) || d[5].length !== App.EXAMENS.length) return null;
+      const woordenTotaal = heel(d[4], 99999);
+      return { naam: schoon(d[1]), dag: heel(d[2], 99999), woordenTotaal, woorden: heel(d[3], woordenTotaal),
+        examens: d[5].map((x) => {
+          const n = heel(x && x[1], 999);
+          return { n, gedaan: heel(x && x[0], n),
+            cijfers: (Array.isArray(x && x[2]) ? x[2] : []).slice(0, 8).filter((c) => Array.isArray(c) && /^[A-Z]$/.test(c[0])).map((c) => [c[0], heel(c[1], 100)]) };
+        }) };
+    } catch (e) { return null; }
+  };
+
+  // ---------- de kaart ----------
+  const NAMEN = { lezen: 'Lezen', luisteren: 'Luisteren', schrijven: 'Schrijven', spreken: 'Spreken', knm: 'KNM' };
+  const komma = (c10) => (c10 / 10).toFixed(1).replace('.', ',');
+  function kaart(p, vanMij) {
+    const totaal = p.examens.reduce((s, x) => s + x.n, 0), gedaan = p.examens.reduce((s, x) => s + x.gedaan, 0);
+    const procent = totaal ? Math.round(100 * gedaan / totaal) : 0;
+    const naam = p.naam || (vanMij ? 'Uw naam' : 'Een vriend');
+    return el('article', { class: 'pkaart' },
+      el('div', { class: 'pkaart-kop' },
+        el('span', { class: 'avatar', 'aria-hidden': 'true' }, (p.naam || '?').slice(0, 1)),
+        el('div', {}, el('h2', {}, naam), el('p', { en: 'is practising for the civic integration exam A2' }, 'oefent voor het inburgeringsexamen A2')),
+        el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` }, el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))),
+      p.examens.map((x, i) => {
+        const map = App.EXAMENS[i];
+        return el('div', { class: `prij k-${map}` },
+          el('span', { class: 'ex-icoon' }, teken(map)),
+          el('div', {},
+            el('div', { class: 'prij-naam' }, el('b', {}, NAMEN[map]), el('span', { class: 'klein zacht', en: 'lessons' }, `${x.gedaan} van ${x.n} lessen`)),
+            el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` }))),
+          el('div', { class: 'pcijfers', 'aria-label': x.cijfers.length ? 'cijfers van de oefenexamens' : null },
+            x.cijfers.map(([id, c]) => el('span', { class: 'pcijfer', title: `oefenexamen ${id}: ${komma(c)} van de 10` }, el('b', {}, komma(c)), el('span', {}, `examen ${id}`)))));
+      }),
+      el('div', { class: 'pkaart-voet' },
+        el('span', { en: 'words known' }, `${p.woorden} van ${p.woordenTotaal} woorden gekend`),
+        el('span', {}, new Date(p.dag * 86400000).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }))));
+  }
+
+  // ---------- mijn eigen gegevens, van nu ----------
+  async function mijn() {
+    const stand = App.tredeStand();
+    return { naam: schoon((App.lees('profiel', {}) || {}).naam), dag: SRS.vandaag(),
+      woorden: stand.reduce((s, t) => s + t.bekend, 0), woordenTotaal: stand.reduce((s, t) => s + t.totaal, 0),
+      examens: (await App.overzicht()).map((x) => ({ n: x.n, gedaan: x.gedaan, cijfers: x.toetsen.filter((t) => t.beste != null).map((t) => [t.id, Math.round(t.beste * 100)]) })) };
+  }
+
+  async function toon() {
+    pagina.textContent = '';
+    const gedeeld = location.hash.startsWith('#p=') ? uitLink(location.hash) : null;
+
+    // --- de kaart van iemand anders (u opende een link) ---
+    if (gedeeld) {
+      document.title = `${gedeeld.naam || 'Profiel'} – Nederlands A2`;
+      pagina.append(kaart(gedeeld, false),
+        el('div', { class: 'kaart midden' },
+          el('h3', { en: 'do you also want to practise?' }, 'Wilt u ook oefenen?'),
+          el('p', { class: 'zacht', en: 'Free and without an account. Lessons from zero, and practice exams with a clock.' }, 'Gratis en zonder account. Lessen vanaf nul, en oefenexamens met een klok.'),
+          el('div', { class: 'knoppen', style: 'justify-content:center' },
+            el('a', { class: 'knop', href: 'index.html', en: 'start practising' }, 'Begin met oefenen'),
+            el('a', { class: 'knop licht', href: 'profiel.html', en: 'make your own profile', onclick: (e) => { e.preventDefault(); history.replaceState(null, '', 'profiel.html'); toon(); } }, 'Maak uw eigen profiel'))));
+      return;
+    }
+    if (location.hash.startsWith('#p=')) pagina.append(el('p', { class: 'uitslag fout', en: 'This link is not complete. Ask for the link again.' }, 'Deze link is niet compleet. Vraag de link opnieuw.'));
+
+    // --- mijn eigen kaart: naam typen, kaart zien, delen ---
+    const p = await mijn();
+    const vak = el('div', {}, kaart(p, true));
+    const invoer = el('input', { type: 'text', id: 'naam', maxlength: MAX_NAAM, autocomplete: 'given-name', enterkeyhint: 'done', placeholder: 'Uw naam', 'aria-label': 'uw naam', value: p.naam });
+    invoer.addEventListener('input', () => {
+      p.naam = schoon(invoer.value);
+      App.schrijf('profiel', { naam: p.naam });
+      vak.textContent = ''; vak.append(kaart(p, true));
+    });
+    const deel = () => {
+      if (!p.naam) { App.toast('Typ eerst uw naam', 'type your name first'); invoer.focus(); return; }
+      const procent = Math.round(100 * p.examens.reduce((s, x) => s + x.gedaan, 0) / (p.examens.reduce((s, x) => s + x.n, 0) || 1));
+      App.deel(naarLink(p), `${p.naam} oefent voor het inburgeringsexamen A2: ${procent}% van de lessen gehaald. Oefen ook!`);
+    };
+    invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter') invoer.blur(); });
+    pagina.append(
+      el('div', { class: 'pnaam' }, invoer, el('button', { type: 'button', class: 'knop', en: 'share with friends', onclick: deel }, teken('deel'), 'Deel met vrienden')),
+      vak,
+      el('p', { class: 'zacht klein', en: 'Your name stays in this browser. Friends see this card only when you send them the link. The link shows the card of today: after more lessons, share it again.' },
+        'Uw naam blijft in deze browser. Vrienden zien deze kaart alleen als u de link stuurt. De link laat de kaart van vandaag zien: deel hem opnieuw als u meer lessen deed.'));
+  }
+  window.addEventListener('hashchange', toon);
+  toon();
+})();
+</script>
+</body>
+</html>
