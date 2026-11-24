@@ -23,6 +23,7 @@ window.App = (() => {
   const fa = (en) => (hulptaal() === 'fa' && window.FA && typeof en === 'string' && window.FA[en]) || '';
   const hulp = (en) => fa(en) || en || '';
   const zetHulp = (e, en) => { if (en) e.dataset.en = en; else delete e.dataset.en; const f = fa(en); if (f) e.dataset.fa = f; else delete e.dataset.fa; };
+  const zetTekstHulp = (e) => { const f = fa(e.dataset.hulp); e.textContent = f || e.dataset.hulp; e.dir = f ? 'rtl' : 'ltr'; }; // richting vast: rtl bij Perzisch
   const kaal = (s) => s.toLowerCase().replace(/’/g, "'").normalize('NFD').replace(/[̀-ͯ]/g, '');
 
   function el(tag, props, ...kinderen) {
@@ -30,6 +31,7 @@ window.App = (() => {
     for (const [k, v] of Object.entries(props || {})) {
       if (k === 'class') e.className = v;
       else if (k === 'en') zetHulp(e, v);
+      else if (k === 'hulp') { e.dataset.hulp = v || ''; zetTekstHulp(e); } // de vertaling als tekst (achter ❗)
       else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
       else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
     }
@@ -80,7 +82,7 @@ window.App = (() => {
     const regels = zoek(doel.textContent);
     if (!regels.length) return;
     pop = el('div', { id: 'wpop' }, regels.map((r) => {
-      const en = el('div', { class: 'en', hidden: true, dir: 'auto' }, hulp(r.en));
+      const en = el('div', { class: 'en', hidden: true, hulp: r.en });
       window.SRS.voegToe('w:' + r.nl, { soort: 'w', nl: r.nl });
       return el('div', { class: 'rij' },
         r.beeld ? el('div', { class: 'beeld' }, r.beeld) : null,
@@ -132,6 +134,42 @@ window.App = (() => {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', zet);
     zet();
     return k;
+  }
+
+  // ---------- de hulp kiezen: uit, Engels of Perzisch. Knop EN / FA in de kop, en de pagina Instellingen. ----------
+  let taalKnopEl = null, taalMenu = null;
+  const hulpAan = () => !!lees('en', false);
+  // zet de pagina zoals de keuze is: klassen op body, de hulp bij elk element, de tekst op de knop
+  function ververs() {
+    const b = document.body.classList;
+    b.toggle('en', hulpAan()); b.toggle('fa', hulptaal() === 'fa');
+    document.querySelectorAll('[data-en]').forEach((e) => zetHulp(e, e.dataset.en));
+    document.querySelectorAll('[data-hulp]').forEach(zetTekstHulp);
+    if (taalKnopEl) taalKnopEl.textContent = hulptaal() === 'fa' ? 'FA' : 'EN';
+    document.dispatchEvent(new CustomEvent('hulptaal'));
+  }
+  // k = 'uit' | 'en' | 'fa'. Perzisch laadt eerst shared/fa.js (als dat nog niet gebeurd is).
+  function kiesHulp(k) {
+    if (k === 'uit') schrijf('en', false); else { schrijf('en', true); schrijf('hulptaal', k); }
+    if (k !== 'fa' || window.FA) return Promise.resolve(ververs());
+    return new Promise((af) => {
+      const s = el('script', { src: WORTEL + 'shared/fa.js' });
+      s.onload = s.onerror = () => { ververs(); af(); };
+      document.head.append(s);
+    });
+  }
+  const sluitTaalMenu = () => { if (taalMenu) { taalMenu.remove(); taalMenu = null; } };
+  function taalKnop() {
+    taalKnopEl = el('button', { class: 'rond taal', title: 'taal van de hulp', 'aria-label': 'taal van de hulp: uit, Engels of Perzisch', 'aria-haspopup': 'menu', onclick: (e) => {
+      e.stopPropagation();
+      if (taalMenu) return sluitTaalMenu();
+      const nu = !hulpAan() ? 'uit' : hulptaal();
+      taalMenu = el('div', { class: 'taalmenu', role: 'menu' }, [['uit', 'Geen hulp'], ['en', 'English'], ['fa', 'فارسی']].map(([k, naam]) =>
+        el('button', { type: 'button', role: 'menuitemradio', 'aria-checked': String(k === nu), class: k === nu ? 'nu' : '', onclick: () => { sluitTaalMenu(); kiesHulp(k); } }, naam)));
+      taalKnopEl.parentNode.append(taalMenu);
+    } }, hulptaal() === 'fa' ? 'FA' : 'EN');
+    document.addEventListener('click', sluitTaalMenu);
+    return taalKnopEl;
   }
 
   // ---------- melding "Goed antwoord!" ----------
@@ -218,9 +256,7 @@ window.App = (() => {
       el('h1', {}, titel),
       themaKnop(),
       el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
-      el('button', { class: 'rond taal', title: 'hulp in uw taal aan / uit', 'aria-label': 'hulp in uw taal aan / uit', onclick: () => { document.body.classList.toggle('en'); schrijf('en', document.body.classList.contains('en')); } }, hulptaal() === 'fa' ? 'FA' : 'EN'));
-    // Perzisch: ook bij de vaste teksten van de pagina (data-en in de html)
-    if (hulptaal() === 'fa') { document.body.classList.add('fa'); document.querySelectorAll('[data-en]').forEach((e) => zetHulp(e, e.dataset.en)); }
+      taalKnop());
     // de kop krijgt een schaduw zodra de pagina rolt
     const rol = () => document.body.classList.toggle('gerold', window.scrollY > 4);
     window.addEventListener('scroll', rol, { passive: true }); rol();
@@ -230,7 +266,7 @@ window.App = (() => {
       el('span', { en: 'made by Ario' }, 'Gemaakt door Ario'),
       el('a', { href: 'https://github.com/coditori', target: '_blank', rel: 'noopener' }, 'GitHub'),
       el('a', { href: 'https://www.linkedin.com/in/coditori/', target: '_blank', rel: 'noopener' }, 'LinkedIn')));
-    if (lees('en', false)) document.body.classList.add('en');
+    ververs();
     return h;
   }
 
@@ -256,6 +292,6 @@ window.App = (() => {
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
-  return { W, lees, schrijf, kaal, el, hulp, hulptaal, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { W, lees, schrijf, kaal, el, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();

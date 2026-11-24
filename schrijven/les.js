@@ -43,7 +43,7 @@
         el('div', { class: 'wkaarten' }, les.woorden.map((w) => {
           SRS.voegToe('w:' + w.nl, { soort: 'w', nl: w.nl, en: w.en, beeld: w.beeld || '' });
           const zin = el('div', { class: 'zin', hidden: true }, App.woorden(w.zin || '', nieuw));
-          const en = el('div', { class: 'en', hidden: true, dir: 'auto' }, App.hulp(w.en));
+          const en = el('div', { class: 'en', hidden: true, hulp: w.en });
           const kaart = el('div', { class: 'wkaart' }, el('div', { class: 'beeld' }, w.beeld || '✏️'), el('div', { class: 'nl' }, w.nl), zin, en,
             el('div', { class: 'knoppen', style: 'justify-content:center' },
               el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(w.nl); } }, '🔊'),

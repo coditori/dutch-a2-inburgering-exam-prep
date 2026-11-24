@@ -13,9 +13,11 @@
   <div class="kaart">
     <fieldset class="keuze" id="thema">
       <legend class="zacht klein" data-en="theme">Thema</legend>
-      <label><input type="radio" name="thema" value="auto"><span data-en="like this device">Automatisch</span></label>
-      <label><input type="radio" name="thema" value="licht"><span data-en="light">Licht</span></label>
-      <label><input type="radio" name="thema" value="donker"><span data-en="dark">Donker</span></label>
+      <div class="keuze-rij">
+        <label><input type="radio" name="thema" value="auto"><span data-en="like this device">Automatisch</span></label>
+        <label><input type="radio" name="thema" value="licht"><span data-en="light">Licht</span></label>
+        <label><input type="radio" name="thema" value="donker"><span data-en="dark">Donker</span></label>
+      </div>
     </fieldset>
   </div>
 
@@ -36,8 +38,10 @@
   <div class="kaart">
     <fieldset class="keuze" id="hulptaal">
       <legend class="zacht klein" data-en="The lessons and the questions stay Dutch. This is the language of the help: with the buttons, in the explanation and behind ❗ with a word.">De lessen en de vragen blijven Nederlands. Dit is de taal van de hulp: bij de knoppen, bij de uitleg en achter ❗ bij een woord.</legend>
-      <label><input type="radio" name="hulptaal" value="en"><span>English</span></label>
-      <label><input type="radio" name="hulptaal" value="fa"><span>فارسی</span></label>
+      <div class="keuze-rij">
+        <label><input type="radio" name="hulptaal" value="en"><span>English</span></label>
+        <label><input type="radio" name="hulptaal" value="fa"><span>فارسی</span></label>
+      </div>
     </fieldset>
   </div>
 
@@ -87,12 +91,17 @@
 
   const en = document.getElementById('en');
   en.checked = App.lees('en', false);
-  en.addEventListener('change', () => { App.schrijf('en', en.checked); document.body.classList.toggle('en', en.checked); });
+  en.addEventListener('change', () => App.kiesHulp(en.checked ? App.hulptaal() : 'uit'));
 
   // taal van de hulp: Engels of Perzisch. Perzisch laadt shared/fa.js, daarom de pagina opnieuw laden.
   document.querySelectorAll('#hulptaal input').forEach((r) => {
     r.checked = r.value === App.hulptaal();
-    r.addEventListener('change', () => { App.schrijf('hulptaal', r.value); App.schrijf('en', true); location.reload(); });
+    r.addEventListener('change', () => App.kiesHulp(r.value));
+  });
+  // de knop EN / FA in de kop verandert dezelfde keuze: houd de schakelaar en de taal hier gelijk
+  document.addEventListener('hulptaal', () => {
+    document.getElementById('en').checked = App.hulpAan();
+    document.querySelectorAll('#hulptaal input').forEach((r) => { r.checked = r.value === App.hulptaal(); });
   });
 
   const zeg = (soort, tekst) => { melding.className = 'uitslag ' + soort; melding.textContent = tekst; };

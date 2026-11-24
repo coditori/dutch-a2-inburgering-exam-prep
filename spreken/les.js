@@ -43,7 +43,7 @@
         el('div', { class: 'wkaarten' }, les.woorden.map((w) => {
           SRS.voegToe('w:' + w.nl, { soort: 'w', nl: w.nl, en: w.en, beeld: w.beeld || '' });
           const zin = el('div', { class: 'zin', hidden: true }, App.woorden(w.zin || '', nieuw));
-          const en = el('div', { class: 'en', hidden: true, dir: 'auto' }, App.hulp(w.en));
+          const en = el('div', { class: 'en', hidden: true, hulp: w.en });
           const k = el('div', { class: 'wkaart' }, el('div', { class: 'beeld' }, w.beeld || '💬'), el('div', { class: 'nl' }, w.nl), zin, en,
             el('div', { class: 'knoppen', style: 'justify-content:center' },
               el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(zin.hidden ? w.nl : w.zin); } }, '🔊'),
@@ -75,7 +75,7 @@
         el('p', { class: 'zacht', en: 'Listen. Say it together with the voice. Then record and compare.' }, 'Luister. Zeg het samen met de stem. Neem daarna op en vergelijk.'),
         it.beeld ? el('div', { class: 'klemtoon' }, it.beeld) : null,
         el('p', { class: 'spreekvraag' }, App.woorden(it.tekst, nieuw)),
-        it.en ? (() => { const e = el('p', { class: 'zacht', hidden: true, dir: 'auto', style: 'font-style:italic' }, App.hulp(it.en)); return el('div', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { e.hidden = !e.hidden; } }, '❗'), e); })() : null,
+        it.en ? (() => { const e = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic', hulp: it.en }); return el('div', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { e.hidden = !e.hidden; } }, '❗'), e); })() : null,
         el('div', { class: 'knoppen', style: 'justify-content:center' },
           el('button', { class: 'knop licht', en: 'listen', onclick: () => Spreken.speel(it.tekst) }, '🔊 Luister'),
           el('button', { class: 'knop licht', en: 'slow', onclick: () => Spreken.speel(it.tekst, 0.75) }, '🐢 Langzaam'))));
@@ -121,7 +121,7 @@
       el('div', { class: 'knoppen' },
         el('button', { class: 'knop licht', en: 'listen to the question', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, '🔊 Vraag'),
         it.deel === 1 ? el('button', { class: 'knop licht', en: 'show the text', onclick: () => { tekst.hidden = !tekst.hidden; } }, '👁 Tekst') : null),
-      it.en ? (() => { const t = el('p', { class: 'tip', hidden: true, dir: 'auto' }, App.hulp(it.en)); return el('div', {}, el('button', { class: 'knop licht klein', title: 'tip (Engels)', onclick: () => { t.hidden = !t.hidden; } }, '❗ Tip'), t); })() : null));
+      it.en ? (() => { const t = el('p', { class: 'tip', hidden: true, hulp: it.en }); return el('div', {}, el('button', { class: 'knop licht klein', title: 'tip (Engels)', onclick: () => { t.hidden = !t.hidden; } }, '❗ Tip'), t); })() : null));
     Spreken.speel(Spreken.vraagTekst(it));
     Spreken.opnameBlok(onder, Object.assign(Spreken.punten(it), { klaar: (ok) => klaarMetItem(i, ok) }));
   }
