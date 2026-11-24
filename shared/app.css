@@ -109,7 +109,7 @@ bdi[data-hulp] { text-align: inherit; }
 /* voet onder aan elke pagina: wie de site maakte. De inhoud vult de ruimte, de voet staat dus altijd onderaan. */
 body > main, body > #pagina { flex: 1 0 auto; }
 .maker { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; padding: 20px 16px calc(24px + env(safe-area-inset-bottom)); border-top: 1px solid var(--lijn); color: var(--zacht); font-size: .875rem; }
-.maker a { font-weight: 500; text-decoration: none; }
+.maker a { font-weight: 500; text-decoration: none; padding: 10px 6px; margin: -10px -6px; }
 @media (hover: hover) { .maker a:hover { text-decoration: underline; } }
 @media print { .maker { display: none; } }
 
@@ -441,7 +441,7 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 .ring span { font-size: .72rem; opacity: .85; }
 /* drie getallen onder het grote vak */
 .cijfers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 12px 0 0; }
-.cijfers > div { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; padding: 14px 18px; box-shadow: var(--schaduw1); min-width: 0; }
+.cijfers > * { display: block; color: var(--tekst); text-decoration: none; transition: box-shadow .2s, border-color .2s, transform .2s; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; padding: 14px 18px; box-shadow: var(--schaduw1); min-width: 0; }
 .cijfers b { display: block; font-size: 1.55rem; font-weight: 750; letter-spacing: -.03em; line-height: 1.2; font-variant-numeric: tabular-nums; }
 .cijfers b small { font-size: .55em; font-weight: 600; color: var(--zacht); letter-spacing: 0; }
 .cijfers span { display: block; color: var(--zacht); font-size: .85rem; line-height: 1.3; -webkit-hyphens: auto; hyphens: auto; }
@@ -451,13 +451,14 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 .ex:nth-child(-n+2) { grid-column: span 3; }
 .ex.k-lezen { --k: var(--k-lezen); } .ex.k-luisteren { --k: var(--k-luisteren); } .ex.k-schrijven { --k: var(--k-schrijven); } .ex.k-spreken { --k: var(--k-spreken); } .ex.k-knm { --k: var(--k-knm); }
 @media (hover: hover) { .ex:hover { box-shadow: var(--schaduw2); border-color: var(--k); transform: translateY(-2px); } }
-.ex-kop { display: flex; align-items: center; gap: 14px; color: var(--tekst); text-decoration: none; border-radius: 14px; }
+.ex-kop { display: flex; align-items: center; gap: 14px; }
+.ex-link { display: flex; flex-direction: column; gap: 14px; color: var(--tekst); text-decoration: none; border-radius: 14px; }
 .ex-icoon { display: flex; align-items: center; justify-content: center; flex: none; width: 48px; height: 48px; border-radius: 15px; color: var(--k); background: var(--vlak2); background: color-mix(in srgb, var(--k) 14%, transparent); }
 .ex-icoon .icoon { width: 26px; height: 26px; }
 .ex-naam { flex: 1; min-width: 0; line-height: 1.3; }
 .ex-naam b { display: block; font-size: 1.15rem; font-weight: 700; letter-spacing: -.015em; }
 .ex-kop > .icoon { flex: none; width: 20px; height: 20px; color: var(--zacht); transition: transform .2s, color .2s; }
-@media (hover: hover) { .ex-kop:hover > .icoon { transform: translateX(3px); color: var(--k); } }
+@media (hover: hover) { .ex-link:hover .ex-kop > .icoon { transform: translateX(3px); color: var(--k); } }
 .ex .balk > i { background: var(--k); }
 .ex-stand { display: flex; align-items: center; gap: 10px; }
 .ex-stand .balk { flex: 1; }
@@ -475,13 +476,13 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
   .held-rij { gap: 14px; align-items: flex-start; }
   .ring { width: 84px; height: 84px; } .ring b { font-size: 1.2rem; } .ring span { font-size: .62rem; }
   .ring::before { -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px)); mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px)); }
-  .cijfers { gap: 8px; } .cijfers > div { padding: 12px; border-radius: 16px; } .cijfers b { font-size: 1.25rem; } .cijfers span { font-size: .75rem; }
+  .cijfers { gap: 8px; } .cijfers > * { padding: 12px; border-radius: 16px; } .cijfers b { font-size: 1.25rem; } .cijfers span { font-size: .75rem; }
 }
 /* de inhoud komt zacht in beeld */
 @keyframes op { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.examens > .ex, .cijfers > div, #vandaag.kaart > * { animation: op .4s cubic-bezier(.2,.8,.2,1) both; }
+.examens > .ex, .cijfers > *, #vandaag.kaart > * { animation: op .4s cubic-bezier(.2,.8,.2,1) both; }
 .examens > .ex:nth-child(2) { animation-delay: .04s; } .examens > .ex:nth-child(3) { animation-delay: .08s; } .examens > .ex:nth-child(4) { animation-delay: .12s; } .examens > .ex:nth-child(5) { animation-delay: .16s; }
-@media (prefers-reduced-motion: reduce) { .examens > .ex, .cijfers > div, #vandaag.kaart > * { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .examens > .ex, .cijfers > *, #vandaag.kaart > * { animation: none; } }
 
 /* ---------- profiel: de kaart die de leerling deelt met vrienden (profiel.html) ---------- */
 .knop .icoon { width: 18px; height: 18px; }
@@ -588,3 +589,12 @@ a.prij:focus-visible { outline-offset: -2px; }
   .trede > summary > .icoon { grid-column: 3; grid-row: 1; }
   .trede-in { padding: 0 14px 16px; }
 }
+/* ---------- klikken: wat eruitziet als een knop, is er ook een ---------- */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (hover: hover) { .cijfers > a:hover { box-shadow: var(--schaduw2); border-color: var(--omtrek); transform: translateY(-2px); } }
+a.ring { color: inherit; text-decoration: none; border-radius: 50%; transition: transform .2s; }
+@media (hover: hover) { a.ring:hover { transform: scale(1.05); } }
+.merk-link { display: flex; flex: none; border-radius: 12px; }
+.pkaart-kop.kan { cursor: text; }
+.pkaart-voet a { color: inherit; text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; margin: -8px 0; }

@@ -15,10 +15,10 @@
   <h2 id="kies" data-en="the five exams">De vijf examens</h2>
   <p class="zacht klein" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
   <div class="examens" id="examens"></div>
-  <h2 data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden · de ladder</h2>
+  <h2 id="woorden" data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden · de ladder</h2>
   <p class="zacht klein" data-en="Click a step to see its words. Click a word: you hear it and see a picture. The word then comes back in your review cards.">Klik op een trede: u ziet de woorden. Klik op een woord: u hoort het en ziet een plaatje. Het woord komt daarna terug bij Herhalen.</p>
   <div class="treden" id="ladder"></div>
-  <p class="klein" style="margin-top:28px"><a href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
+  <p style="margin-top:20px"><a class="knop rand" href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
 </main>
 <script src="shared/woorden.js"></script>
 <script src="shared/srs.js"></script>
@@ -77,14 +77,15 @@
         nieuw ? el('a', { class: 'knop licht', href: '#kies', en: 'take a practice exam' }, 'Doe een oefenexamen') : null,
         tel.nu ? el('a', { class: 'knop licht', href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`) : null,
         nieuw ? null : el('a', { class: 'knop licht', href: 'profiel.html', en: 'show your friends how far you are' }, teken('deel'), 'Deel uw voortgang'))),
-    nieuw ? null : el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` },
+    nieuw ? null : el('a', { class: 'ring', href: 'profiel.html', style: `--p:${procent}`, title: 'uw profiel', 'aria-label': `${procent} procent van de lessen gehaald. Ga naar uw profiel.` },
       el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))));
 
-  const getal = (n, van, tekst, en) => el('div', {}, el('b', {}, String(n), el('small', {}, ` / ${van}`)), el('span', { en }, tekst));
+  // elk getal is een link naar het stuk van de pagina waar het over gaat
+  const getal = (n, van, tekst, en, href) => el('a', { href }, el('b', {}, String(n), el('small', {}, ` / ${van}`)), el('span', { en }, tekst));
   document.getElementById('cijfers').append(
-    getal(gedaan, totaal, 'lessen gehaald', 'lessons passed'),
-    getal(woordenBekend, woordenTotaal, 'woorden gekend', 'words known'),
-    getal(nToetsGedaan, nToetsen, 'oefenexamens gedaan', 'practice exams done'));
+    getal(gedaan, totaal, 'lessen gehaald', 'lessons passed', '#kies'),
+    getal(woordenBekend, woordenTotaal, 'woorden gekend', 'words known', '#woorden'),
+    getal(nToetsGedaan, nToetsen, 'oefenexamens gedaan', 'practice exams done', '#kies'));
 
   // ---------- inloggen met Google (als de site dat heeft, shared/account.js): het vak staat er zolang u niet bent ingelogd ----------
   // "Niet nu" haalt het een week weg. De stip op de knop Profiel blijft.
@@ -118,13 +119,14 @@
     const p = x.n ? Math.round(100 * x.gedaan / x.n) : 0;
     const vragen = x.toetsen.length ? x.toetsen[0].vragen : 0;
     return el('article', { class: `ex k-${x.map}` },
-      el('a', { class: 'ex-kop', href: x.href, 'aria-label': `${x.naam}: de lessen` },
+      // de kop én de voortgang zijn samen één link naar de lessen
+      el('a', { class: 'ex-link', href: x.href, 'aria-label': `${x.naam}: ${x.gedaan} van ${x.n} lessen gehaald. Ga naar de lessen.` }, el('div', { class: 'ex-kop' },
         el('span', { class: 'ex-icoon' }, teken(x.map)),
         el('span', { class: 'ex-naam' }, el('b', {}, x.naam), el('span', { class: 'klein zacht', en: watEn }, wat)),
         teken('pijl')),
       el('div', {},
         el('div', { class: 'ex-stand' }, el('div', { class: 'balk' }, el('i', { style: `width:${p}%` })), el('span', {}, `${p}%`)),
-        el('span', { class: 'klein zacht', en: 'lessons passed' }, `${x.gedaan} van ${x.n} lessen gehaald`)),
+        el('span', { class: 'klein zacht', en: 'lessons passed' }, `${x.gedaan} van ${x.n} lessen gehaald`))),
       x.toetsen.length ? el('div', { class: 'ex-toets' },
         el('span', { class: 'klein zacht', en: `practice exam: ${vragen} ${soortEn}, ${minuten} minutes` }, `Oefenexamen · ${vragen} ${soort} · ${minuten} min`),
         el('div', { class: 'toetsknoppen' }, x.toetsen.map((t) => {
@@ -150,7 +152,7 @@
     const x = stand[t], nrs = perTrede[t], p = x.totaal ? Math.round(100 * x.bekend / x.totaal) : 0, af = x.totaal && x.bekend >= x.totaal;
     const lijst = el('div', { class: 'wchips' });
     let getoond = 0;
-    const meer = el('button', { type: 'button', class: 'knop licht klein', en: 'more words', onclick: () => toon(60) }, 'Meer woorden');
+    const meer = el('button', { type: 'button', class: 'knop licht', en: 'more words', onclick: () => toon(60) }, 'Meer woorden');
     function toon(n) { // de woorden komen pas op de pagina als de trede open gaat, en dan steeds een stuk erbij
       lijst.append(...nrs.slice(getoond, getoond + n).map(woord));
       getoond = Math.min(nrs.length, getoond + n);

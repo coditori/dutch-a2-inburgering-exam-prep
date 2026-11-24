@@ -319,7 +319,7 @@ window.App = (() => {
   // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
-      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('img', { class: 'merk', src: WORTEL + 'shared/icoon.svg?v=' + VERSIE, alt: '', width: 38, height: 38 }),
+      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('a', { class: 'merk-link', href: WORTEL + 'index.html', 'aria-label': 'Taal Klim: de startpagina' }, el('img', { class: 'merk', src: WORTEL + 'shared/icoon.svg?v=' + VERSIE, alt: '', width: 38, height: 38 })),
       el('h1', {}, titel),
       nav(),
       el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: () => deel() }, teken('deel')),

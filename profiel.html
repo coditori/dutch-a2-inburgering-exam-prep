@@ -42,7 +42,8 @@
   function kaart(p, vanMij) {
     const procent = procentVan(p);
     return el('article', { class: 'pkaart' },
-      el('div', { class: 'pkaart-kop' },
+      // op uw eigen kaart: een klik op de naam of het rondje zet de cursor in het naamveld
+      el('div', { class: 'pkaart-kop' + (vanMij ? ' kan' : ''), onclick: vanMij ? (e) => { if (!e.target.closest('.ring')) { const v = document.getElementById('naam'); if (v) { v.focus(); v.select(); } } } : null },
         el('span', { class: 'avatar', 'aria-hidden': 'true' }, (p.naam || '?').slice(0, 1)),
         el('div', {}, el('h2', {}, p.naam || (vanMij ? 'Uw naam' : 'Een vriend')), el('p', { en: 'is practising for the civic integration exam A2' }, 'oefent voor het inburgeringsexamen A2')),
         el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` }, el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))),
@@ -59,7 +60,7 @@
           teken('pijl'));
       }),
       el('div', { class: 'pkaart-voet' },
-        el('span', { en: 'words known' }, `${p.woorden} van ${p.woordenTotaal} woorden gekend`),
+        el('a', { href: 'index.html#woorden', en: 'words known: see the words' }, `${p.woorden} van ${p.woordenTotaal} woorden gekend`),
         el('span', {}, new Date(p.dag * 86400000).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }))));
   }
 
