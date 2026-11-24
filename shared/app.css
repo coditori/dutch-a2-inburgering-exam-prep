@@ -891,3 +891,15 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 @keyframes fout-schud { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
 #toast.pop { animation: toast-sprong .4s cubic-bezier(.2, 1.6, .4, 1); } #toast.vuur { font-size: 1.1rem; padding-inline: 28px; }
 @keyframes toast-sprong { 45% { scale: 1.14; } }
+/* aanmoediging (App.aanmoediging): de week in zeven rondjes, de rij dagen, uw medailles en een zin. In het blauwe vak en op de profielkaart. */
+.moed { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin: 14px 0 4px; }
+.moed-week { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px; }
+.moed-dag { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: .68rem; font-weight: 600; opacity: .8; }
+.moed-dag i { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; border: 2px solid currentColor; font-style: normal; font-size: .9rem; font-weight: 800; opacity: .45; }
+.moed-dag.aan i { opacity: 1; background: currentColor; -webkit-text-fill-color: var(--moed-op, var(--vlak)); }
+.moed-dag.vandaag i { opacity: 1; box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 30%, transparent); } .moed-dag.straks { opacity: .45; }
+.moed-reeks { margin-left: 6px; align-self: center; font-size: 1.05rem; font-weight: 750; white-space: nowrap; }
+.moed-medailles { display: flex; gap: 12px; font-weight: 700; font-variant-numeric: tabular-nums; } .moed-medailles span { display: inline-flex; align-items: center; gap: 4px; } .moed-medailles .medaille { width: 26px; height: 26px; }
+.moed-tekst { flex-basis: 100%; margin: 0; font-weight: 600; }
+#vandaag .moed { --moed-op: #3346d3; } #vandaag .moed .m-lint { fill: #fff; } #vandaag.kaart.groot-held .moed-tekst { font-size: 1rem; }
+.pkaart-moed { padding: 4px 20px 12px; } .pkaart-moed .moed:empty { display: none; } .pkaart-moed:has(.moed:empty) { display: none; }

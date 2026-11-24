@@ -1,6 +1,19 @@
 // Perzische hulp: bij elke Engelse hulptekst de Perzische. Geladen door shared/app.js als de hulptaal Perzisch is.
 // Nieuwe Engelse tekst in een les? Draai tools/controleer_fa.py: dat toont wat hier nog ontbreekt.
 window.FA = {
+"days in a row": "روز پشت سر هم",
+"You are ready for the exam. Good luck!": "برای آزمون آماده‌اید. موفق باشید!",
+"You are ready for the exam. Good luck! Practise five minutes today.": "برای آزمون آماده‌اید. موفق باشید! امروز پنج دقیقه تمرین کنید.",
+"Almost ready for the exam. Just a little more!": "تقریباً برای آزمون آماده‌اید. فقط کمی دیگر!",
+"Almost ready for the exam. Just a little more! Practise five minutes today.": "تقریباً برای آزمون آماده‌اید. فقط کمی دیگر! امروز پنج دقیقه تمرین کنید.",
+"You are past halfway. Keep going!": "از نیمه گذشته‌اید. ادامه بدهید!",
+"You are past halfway. Keep going! Practise five minutes today.": "از نیمه گذشته‌اید. ادامه بدهید! امروز پنج دقیقه تمرین کنید.",
+"You have come a long way. Halfway is in sight!": "راه زیادی آمده‌اید. نیمه راه نزدیک است!",
+"You have come a long way. Halfway is in sight! Practise five minutes today.": "راه زیادی آمده‌اید. نیمه راه نزدیک است! امروز پنج دقیقه تمرین کنید.",
+"A good start! A little every day.": "شروع خوبی است! هر روز کمی.",
+"A good start! A little every day. Practise five minutes today.": "شروع خوبی است! هر روز کمی. امروز پنج دقیقه تمرین کنید.",
+"Start today: five minutes is enough.": "همین امروز شروع کنید: پنج دقیقه کافی است.",
+"Start today: five minutes is enough. Practise five minutes today.": "همین امروز شروع کنید: پنج دقیقه کافی است. امروز پنج دقیقه تمرین کنید.",
 "Choose the voice that reads the words and the sentences. Click the speaker to hear a voice. The conversations in Luisteren and the questions in Spreken keep their own voices.": "صدایی را انتخاب کنید که کلمه‌ها و جمله‌ها را می‌خواند. برای شنیدن یک صدا روی بلندگو کلیک کنید. گفتگوهای Luisteren و سؤال‌های Spreken صدای خودشان را نگه می‌دارند.",
 "choose the voice": "انتخاب صدا",
 "voice": "صدا",
