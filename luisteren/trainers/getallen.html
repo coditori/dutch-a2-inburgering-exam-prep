@@ -27,7 +27,7 @@
     uitleg: 'U hoort een getal, een prijs of een tijd. Typ het in cijfers. Let op: in het Nederlands komt het laatste cijfer eerst (vijfenveertig = 45).',
     uitlegEn: 'You hear a number, a price or a time. Type it in digits. Note: Dutch says the last digit first (vijfenveertig = 45).',
     teken(doel, item, klaar) {
-      const regels = [{ s: 'A', t: item.t }];
+      const regels = [{ s: 'A', v: 1, t: item.t }];
       const invoer = el('input', { class: 'typ', autocomplete: 'off' });
       const af = () => { if (invoer.disabled) return; invoer.disabled = true; knop.remove();
         klaar(schoon(invoer.value) === schoon(item.goed), el('p', {}, el('b', {}, item.goed), ' = ', item.t)); };

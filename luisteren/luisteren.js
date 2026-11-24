@@ -29,9 +29,10 @@ window.Luister = (() => {
     for (let i = 0; i < regels.length; i++) {
       if (mijn !== loopNr) return;
       if (o.opRegel) o.opRegel(i);
-      let url = await Spraak.adres(sleutel(regels[i], o.langzaam));
+      const vast = { vast: !regels[i].v }; // v = de verteller (de gekozen stem); anders een rol in een gesprek: altijd dezelfde stem
+      let url = await Spraak.adres(sleutel(regels[i], o.langzaam), vast);
       let tempo = 1;
-      if (!url && o.langzaam) { url = await Spraak.adres(sleutel(regels[i], false)); tempo = 0.75; }
+      if (!url && o.langzaam) { url = await Spraak.adres(sleutel(regels[i], false), vast); tempo = 0.75; }
       await new Promise((af) => {
         if (!url) return af(); // geen opname: stil (nooit de stem van de browser)
         audio = new Audio(url);

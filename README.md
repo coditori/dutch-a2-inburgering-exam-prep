@@ -80,12 +80,19 @@ tools/.venv/bin/python tools/stt_server.py
 
 Run it next to the web server. Without it, the speaking pages use Chrome's speech recognition, or you check yourself.
 
-**Make audio for new lessons** (text to speech with Piper; each voice is about 60 MB):
+**Make audio for new lessons.** The narrator (every word and sentence with a speaker button) has four voices from Google Cloud
+Text-to-Speech, listed in `shared/stemmen.json`. Put a key in `tools/google-sleutel.txt` (not in git):
+
+```bash
+tools/.venv/bin/python tools/tts_stemmen.py --ja   # all narrator voices, only what is missing (run one voice at a time with --stem)
+python3 tools/controleer_stemmen.py                # does every voice have every text?
+```
+
+The roles in the Luisteren dialogues and the questions in Spreken have fixed voices, made with Piper (each voice is about 60 MB):
 
 ```bash
 tools/.venv/bin/python -m piper.download_voices nl_NL-ronnie-medium nl_NL-pim-medium nl_BE-nathalie-medium --data-dir tools/voices
-tools/.venv/bin/python tools/tts.py            # words and sentences
-tools/.venv/bin/python tools/tts_luisteren.py  # also: tts_spreken.py, tts_knm.py
+tools/.venv/bin/python tools/tts_luisteren.py  # also: tts_spreken.py
 ```
 
 ## Add or change a lesson

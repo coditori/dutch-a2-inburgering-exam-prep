@@ -41,7 +41,7 @@
       const kaart = el('div', { class: 'wkaart' },
         el('div', { class: 'beeld' }, w.beeld || '💬'), el('div', { class: 'nl' }, w.nl), zin, en,
         el('div', { class: 'knoppen', style: 'justify-content:center' },
-          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Luister.speel([{ s: 'A', t: zin.hidden ? w.nl : w.zin }]); } }, App.teken('luid')),
+          el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Luister.speel([{ s: 'A', v: 1, t: zin.hidden ? w.nl : w.zin }]); } }, App.teken('luid')),
           el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: (e) => { e.stopPropagation(); en.hidden = !en.hidden; } }, App.teken('vertaal')), App.bewaarKnop(w.nl)));
       kaart.addEventListener('click', (e) => { if (e.target.closest('.w')) return; zin.hidden = !zin.hidden; kaart.classList.toggle('om', !zin.hidden); });
       return kaart;
@@ -116,7 +116,7 @@
     pagina.append(el('h2', { en: 'dictation' }, 'Dictee'),
       el('p', { class: 'zacht', en: 'Listen and type what you hear. Capital letters and full stops do not count.' }, 'Luister en typ wat u hoort. Hoofdletters en punten tellen niet.'));
     dictee.forEach((zin, i) => {
-      const regels = [{ s: 'A', t: zin }];
+      const regels = [{ s: 'A', v: 1, t: zin }];
       const invoer = el('input', { class: 'dictee', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' });
       const uit = el('div');
       const toonUitslag = (r) => { uit.textContent = ''; uit.append(el('p', {}, r.woorden.flatMap((x) => [el('span', { class: 'dw ' + (x.goed ? 'goed' : 'fout') }, x.w), ' ']), el('b', {}, ` ${r.procent}%`))); };
@@ -134,7 +134,7 @@
     pagina.append(el('h2', { en: 'repeat aloud' }, 'Zeg na'),
       el('p', { class: 'zacht', en: 'Listen, then say the sentence aloud. You can record yourself and compare.' }, 'Luister en zeg de zin hardop na. U kunt uzelf opnemen en vergelijken.'));
     dictee.forEach((zin) => {
-      const regels = [{ s: 'A', t: zin }];
+      const regels = [{ s: 'A', v: 1, t: zin }];
       const terug = el('span');
       let rec = null;
       const knop = el('button', { class: 'knop licht', en: 'record / stop', onclick: async () => {

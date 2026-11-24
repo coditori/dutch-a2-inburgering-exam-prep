@@ -21,3 +21,7 @@ schrijven/toets/*.pdf
 
 # login with Google: the Firebase settings of the live site. Not in git; see docs/inloggen.md
 shared/config.json
+
+# key for ElevenLabs (tools/tts_stemmen.py)
+tools/elevenlabs-sleutel.txt
+tools/google-sleutel.txt

@@ -1,0 +1,9 @@
+{
+ "standaard": "vindemiatrix",
+ "stemmen": [
+  {"id": "vindemiatrix", "naam": "Vindemiatrix", "soort": "vrouw", "google": "nl-NL-Chirp3-HD-Vindemiatrix"},
+  {"id": "leda", "naam": "Leda", "soort": "vrouw", "google": "nl-NL-Chirp3-HD-Leda"},
+  {"id": "algenib", "naam": "Algenib", "soort": "man", "google": "nl-NL-Chirp3-HD-Algenib"},
+  {"id": "puck", "naam": "Puck", "soort": "man", "google": "nl-NL-Chirp3-HD-Puck"}
+ ]
+}

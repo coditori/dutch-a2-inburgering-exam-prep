@@ -269,6 +269,12 @@ input:disabled, textarea:disabled { opacity: .7; }
 .instelling input[type=checkbox]:checked { background: var(--accent); border-color: var(--accent); }
 .instelling input[type=checkbox]:checked::before { left: 22px; width: 24px; height: 24px; background: var(--op-accent); }
 /* keuze uit drie: aan elkaar vast */
+/* de stem van de verteller (instellingen.html): per stem een regel met een keuzerondje en een luidspreker */
+.stemrij { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--lijn); }
+.stemrij:last-child { border-bottom: 0; padding-bottom: 0; }
+.stemrij label { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; }
+.stemrij input { flex: none; width: 22px; height: 22px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+
 /* de knoppen staan in een div (.keuze-rij): een fieldset zelf als flex werkt niet goed in Safari op de iPhone */
 .keuze { display: block; border: 0; padding: 0; margin: 0; min-width: 0; min-inline-size: 0; }
 .keuze-rij { display: flex; width: 100%; }

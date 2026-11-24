@@ -6,7 +6,8 @@
 - elke les: minstens 5 vragen; elke vraag heeft 3 of 4 verschillende antwoorden of een "typ"-antwoord; elke regel heeft een stem A, B of C
 - elke les: 2 dictee-zinnen
 - elke toets: 25 vragen
-- bij elke regel hoort een mp3 in luisteren/audio/index.json (draai anders tools/tts_luisteren.py)
+- bij elke regel van een gesprek hoort een mp3 in luisteren/audio/index.json (draai anders tools/tts_luisteren.py);
+  wat de verteller voorleest (dictee, trainers getallen en paren) controleert tools/controleer_stemmen.py
 """
 import json
 import sys
@@ -58,9 +59,6 @@ for pad, les in lessen("luisteren"):
         fouten.append(f"{les['id']}: {n} vragen (minstens 5)")
     if len(les.get("dictee", [])) != 2:
         fouten.append(f"{les['id']}: {len(les.get('dictee', []))} dictee-zinnen (moet 2 zijn)")
-    for z in les.get("dictee", []):
-        heeft_audio("A", z)
-        heeft_audio("A", z, True)
 for pad, data in overig("luisteren"):
     if pad.parent.name == "toets":
         n = sum(controleer_item(pad.name, i, it, False) for i, it in enumerate(data["items"]))
@@ -68,8 +66,8 @@ for pad, data in overig("luisteren"):
             fouten.append(f"{pad.name}: {n} vragen (moet 25 zijn)")
     else:
         for it in data["items"]:
-            for t in ([it["t"]] if "t" in it else it.get("vormen", [])):
-                heeft_audio(it.get("s", "A"), t)
+            if "t" in it and any("s" in x for x in data["items"]):  # een trainer met rollen (nietwel); de rest leest de verteller voor
+                heeft_audio(it.get("s", "A"), it["t"])
 for f in fouten:
     print("✗", f)
 print(f"{len(lessen('luisteren'))} lessen, {len(overig('luisteren'))} trainers/toetsen: {len(fouten)} fouten in de vorm, {mist} regels zonder mp3")
