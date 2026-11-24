@@ -95,6 +95,20 @@ window.App = (() => {
     if (w && !document.body.classList.contains('geen-woorden')) toonPop(w); else sluitPop();
   });
 
+  // ---------- tekens (lijn-iconen, 24 x 24) voor de knoppen in de kop ----------
+  const TEKENS = {
+    terug: '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
+    zon: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+    maan: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    instel: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M2 14h4M10 8h4M18 16h4"/>',
+  };
+  function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('class', 'icoon'); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = TEKENS[naam];
+    return s;
+  }
+
   // ---------- thema: 'auto' (zoals het apparaat), 'licht' of 'donker'. shared/thema.js zet het bij het laden. ----------
   const thema = () => ruw('thema', 'auto');
   const isDonker = () => { const t = thema(); return t === 'donker' || (t !== 'licht' && window.matchMedia('(prefers-color-scheme: dark)').matches); };
@@ -106,10 +120,10 @@ window.App = (() => {
   }
   function themaKnop() {
     const k = el('button', { class: 'rond', onclick: () => zetThema(isDonker() ? 'licht' : 'donker') });
-    const teken = () => { k.textContent = isDonker() ? '☀' : '🌙'; k.title = isDonker() ? 'licht thema' : 'donker thema'; k.setAttribute('aria-label', k.title); };
-    document.addEventListener('thema', teken);
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', teken);
-    teken();
+    const zet = () => { k.textContent = ''; k.append(teken(isDonker() ? 'zon' : 'maan')); k.title = isDonker() ? 'licht thema' : 'donker thema'; k.setAttribute('aria-label', k.title); };
+    document.addEventListener('thema', zet);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', zet);
+    zet();
     return k;
   }
 
@@ -193,11 +207,14 @@ window.App = (() => {
   // kop met terug-pijl en de ❗-knop (Engels bij de knoppen van de pagina)
   function kop(titel, terug) {
     const h = el('header', { class: 'kop' },
-      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, '←') : null,
+      terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : null,
       el('h1', {}, titel),
       themaKnop(),
-      el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, '⚙'),
-      el('button', { class: 'rond', title: 'Engels aan / uit', 'aria-label': 'Engels aan / uit', onclick: () => { document.body.classList.toggle('en'); schrijf('en', document.body.classList.contains('en')); } }, '❗'));
+      el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
+      el('button', { class: 'rond taal', title: 'Engels aan / uit', 'aria-label': 'Engels aan / uit', onclick: () => { document.body.classList.toggle('en'); schrijf('en', document.body.classList.contains('en')); } }, 'EN'));
+    // de kop krijgt een schaduw zodra de pagina rolt
+    const rol = () => document.body.classList.toggle('gerold', window.scrollY > 4);
+    window.addEventListener('scroll', rol, { passive: true }); rol();
     document.body.prepend(h);
     if (lees('en', false)) document.body.classList.add('en');
     return h;

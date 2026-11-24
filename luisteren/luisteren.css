@@ -1,14 +1,14 @@
 /* Alleen voor luisteren. De rest komt uit shared/app.css. */
 .speler { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
-.speler .knop { min-width: 64px; text-align: center; font-size: 1.2rem; }
+.speler .knop { min-width: 64px; padding-inline: 16px; text-align: center; font-size: 1.2rem; }
 .speler .bezig { color: var(--zacht); font-size: .9rem; }
 .context { color: var(--zacht); margin: 0 0 6px; }
 .transcript { background: var(--vlak); border: 1px solid var(--lijn); border-radius: var(--rond); padding: 12px 16px; margin-top: 12px; }
 .transcript p { margin: 0 0 .5em; padding: 2px 6px; border-radius: 6px; }
-.transcript p.nu { background: var(--accent-zacht); }
+.transcript p.nu { background: var(--accent-zacht); color: var(--op-accent-zacht); }
 .transcript .wie { font-weight: 700; margin-right: 6px; }
-.transcript .w.nu { background: var(--geel); }
-input.dictee { font: inherit; width: 100%; padding: 8px 10px; border: 2px solid var(--accent); border-radius: 8px; background: var(--vlak); color: var(--tekst); }
-input.typ { font: inherit; font-size: 1.4rem; width: 9em; max-width: 100%; padding: 8px 10px; border: 2px solid var(--accent); border-radius: 8px; background: var(--vlak); color: var(--tekst); }
+.transcript .w.nu { background: var(--geel); color: var(--tekst); }
+input.dictee { font: inherit; width: 100%; padding: 8px 10px; border: 1px solid var(--omtrek); border-radius: 12px; background: var(--vlak); color: var(--tekst); }
+input.typ { font: inherit; font-size: 1.4rem; width: 9em; max-width: 100%; padding: 8px 10px; border: 1px solid var(--omtrek); border-radius: 12px; background: var(--vlak); color: var(--tekst); }
 .dw { padding: 0 3px; border-radius: 3px; } .dw.goed { background: var(--goed-zacht); } .dw.fout { background: var(--fout-zacht); text-decoration: line-through; }
 @media (max-width: 560px) { .speler { gap: 8px; } .speler .knop { flex: 1 1 56px; min-width: 56px; } }

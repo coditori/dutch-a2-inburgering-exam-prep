@@ -2,12 +2,13 @@
 .kplaat { font-size: 3.2rem; text-align: center; line-height: 1.3; margin: 4px 0 10px; }
 .weetje { text-align: center; min-height: 220px; }
 .weetje .vraagtekst { font-size: 1.2rem; font-weight: 700; }
-.weetje .antwoord { font-size: 1.1rem; margin-top: 12px; padding: 10px; background: var(--accent-zacht); border-radius: var(--rond); }
-.waarom { background: var(--geel); color: var(--tekst); border-radius: var(--rond); padding: 8px 12px; margin-top: 10px; }
-.stapjes { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-.stapje { flex: 1; min-width: 86px; text-align: center; padding: 6px 4px; border: 1px solid var(--lijn); border-radius: 8px; text-decoration: none; color: var(--tekst); font-size: .85rem; background: var(--bg); }
-.stapje.klaar { background: var(--goed-zacht); border-color: var(--goed); }
-.stapje.nu { border: 2px solid var(--accent); }
+.weetje .antwoord { font-size: 1.1rem; margin-top: 14px; padding: 14px; background: var(--accent-zacht); color: var(--op-accent-zacht); border-radius: var(--rond); }
+.waarom { background: var(--geel); color: var(--tekst); border-radius: var(--rond); padding: 12px 16px; margin-top: 12px; }
+.stapjes { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.stapje { flex: 1; min-width: 86px; text-align: center; padding: 8px 6px; border-radius: 12px; text-decoration: none; color: var(--tekst); font-size: .875rem; font-weight: 500; background: var(--vlak2); transition: background .15s; }
+@media (hover: hover) { .stapje:hover { background: var(--lijn); } }
+.stapje.klaar { background: var(--goed-zacht); }
+.stapje.nu { background: var(--accent-zacht); color: var(--op-accent-zacht); }
 .stapje.slot { opacity: .45; pointer-events: none; }
 .themakaart h3 { margin: 0; }
 .kaartvak svg { width: 100%; max-height: 70vh; background: #cfe6f5; border-radius: var(--rond); }
