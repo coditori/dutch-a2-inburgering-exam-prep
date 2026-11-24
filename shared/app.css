@@ -133,6 +133,7 @@ body > main, body > #pagina { flex: 1 0 auto; }
 #vandaag.kaart > * { position: relative; z-index: 1; }
 #vandaag.kaart h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .3em; }
 #vandaag.kaart p { opacity: .92; }
+#vandaag.kaart .zacht { color: inherit; opacity: .85; }
 #vandaag.kaart .knop { background: #fff; color: #2a37b8; }
 #vandaag.kaart .knop.licht { background: rgba(255,255,255,.16); color: #fff; }
 /* de belangrijkste knop (de volgende les) staat altijd vooraan */
