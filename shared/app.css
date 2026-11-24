@@ -534,3 +534,10 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 .knop.rand { background: transparent; color: var(--tekst); border-color: var(--omtrek); }
 .knop.tekst { background: transparent; color: var(--zacht); padding-inline: 12px; font-weight: 500; }
 @media (hover: hover) { .knop.rand:hover:not(:disabled), .knop.tekst:hover:not(:disabled) { background: var(--vlak2); box-shadow: none; filter: none; } }
+/* nog niet ingelogd: een stip op de knop Profiel, en op de startpagina het vak "Log in en bewaar uw voortgang" */
+.kop .profielknop.tip { position: relative; }
+.kop .profielknop.tip::after { content: ""; position: absolute; top: 8px; right: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--fout); box-shadow: 0 0 0 2px var(--bg); }
+body.gerold .kop .profielknop.tip::after { box-shadow: 0 0 0 2px var(--vlak); }
+#accounttip:empty { display: none; }
+#accounttip .acc { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--schaduw1); }
+#accounttip .ex-icoon { color: var(--accent); background: var(--accent-zacht); }

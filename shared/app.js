@@ -2,7 +2,7 @@
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
-  const VERSIE = '1.8.0';
+  const VERSIE = '1.9.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -327,6 +327,7 @@ window.App = (() => {
       const g = window.Account && window.Account.staat.gebruiker, k = h.querySelector('.profielknop');
       if (!k) return;
       k.classList.toggle('in', !!g); k.textContent = '';
+      k.classList.toggle('tip', !g && window.Account.staat.beschikbaar); // een stip: u kunt inloggen
       k.append(g ? ((ruw('profiel', {}) || {}).naam || g.naam || g.email || '?').trim().slice(0, 1).toUpperCase() : teken('mens'));
     });
     document.head.append(el('script', { src: WORTEL + 'shared/account.js' }));

@@ -127,13 +127,8 @@ window.Account = (() => {
 
   // ---------- begin ----------
   const klaar = (async () => {
-    // config.json: één keer per bezoek ophalen (sessionStorage), niet op elke pagina
-    let tekst = null;
-    try { tekst = sessionStorage.getItem(VOOR + 'config'); } catch (e) { /* geen opslag */ }
-    if (tekst == null) {
-      tekst = await fetch(window.App.WORTEL + 'shared/config.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.text() : '')).catch(() => '');
-      try { sessionStorage.setItem(VOOR + 'config', tekst); } catch (e) { /* geen opslag */ }
-    }
+    // Niet onthouden tussen pagina's: een oude kopie (bijvoorbeeld het demo-account) zou dan blijven hangen.
+    const tekst = await fetch(window.App.WORTEL + 'shared/config.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.text() : '')).catch(() => '');
     const config = json(tekst, null);
     if (!config || !(config.demo || (config.firebase && config.firebase.apiKey))) return;
     staat.beschikbaar = true; staat.demo = !!config.demo;
