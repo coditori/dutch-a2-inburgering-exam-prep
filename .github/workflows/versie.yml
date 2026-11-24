@@ -1,0 +1,48 @@
+# Elke pull request naar main krijgt vanzelf een nieuwe versie.
+# De versie staat in shared/app.js (const VERSIE) en onder aan elke pagina van de site.
+#   tak feat/...            -> minor  (1.2.0 -> 1.3.0)
+#   tak major/... breaking/ -> major  (1.2.0 -> 2.0.0)
+#   elke andere tak         -> patch  (1.2.0 -> 1.2.1)
+# De robot zet de nieuwe versie als commit op de tak van de pull request (nooit direct op main).
+# Staat de versie al hoger dan op main, dan doet hij niets: één verhoging per pull request.
+name: Versie
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: versie-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  verhoog:
+    # alleen voor takken in deze repo: een fork mag hier niet schrijven
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Verhoog de versie als dat nog niet gedaan is
+        env:
+          TAK: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git fetch --quiet origin main
+          basis=$(git show origin/main:shared/app.js | python3 tools/versie.py --lees-stdin)
+          python3 tools/versie.py --na "${basis:-geen}" --tak "$TAK"
+          if git diff --quiet -- shared/app.js; then
+            echo "Geen verandering."
+            exit 0
+          fi
+          versie=$(python3 tools/versie.py)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --quiet -m "Versie $versie" -- shared/app.js
+          git push --quiet origin "HEAD:refs/heads/$TAK"
+          echo "Versie $versie staat op $TAK."

@@ -63,6 +63,7 @@
     </div>
     <p class="uitslag" id="melding"></p>
   </div>
+  <p class="zacht klein midden" id="versie"></p>
 </main>
 <script src="shared/woorden.js"></script>
 <script src="shared/srs.js"></script>
@@ -103,6 +104,8 @@
     document.getElementById('en').checked = App.hulpAan();
     document.querySelectorAll('#hulptaal input').forEach((r) => { r.checked = r.value === App.hulptaal(); });
   });
+
+  document.getElementById('versie').textContent = 'Versie ' + App.VERSIE;
 
   const zeg = (soort, tekst) => { melding.className = 'uitslag ' + soort; melding.textContent = tekst; };
   // knop "Opnieuw" achter een regel: eerst vragen, dan wissen

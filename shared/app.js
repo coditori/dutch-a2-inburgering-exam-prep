@@ -1,6 +1,8 @@
 // Gedeelde hulpjes: opslag, klikbare woorden met pop-up, de ❗-knop voor Engels.
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
+  // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
+  const VERSIE = '1.1.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -265,7 +267,8 @@ window.App = (() => {
     if (!location.pathname.includes('/toets/')) document.body.append(el('footer', { class: 'maker' },
       el('span', { en: 'made by Ario' }, 'Gemaakt door Ario'),
       el('a', { href: 'https://github.com/coditori', target: '_blank', rel: 'noopener' }, 'GitHub'),
-      el('a', { href: 'https://www.linkedin.com/in/coditori/', target: '_blank', rel: 'noopener' }, 'LinkedIn')));
+      el('a', { href: 'https://www.linkedin.com/in/coditori/', target: '_blank', rel: 'noopener' }, 'LinkedIn'),
+      el('span', { class: 'versie', title: 'versie van de site' }, 'v' + VERSIE)));
     ververs();
     return h;
   }
@@ -299,6 +302,6 @@ window.App = (() => {
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
-  return { W, lees, schrijf, kaal, el, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { VERSIE, W, lees, schrijf, kaal, el, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     cijfer, cijferBlok, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();
