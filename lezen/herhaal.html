@@ -107,7 +107,7 @@
     Spraak.zeg(k.nl);
     const verder = el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder');
     uit.textContent = '';
-    uit.append(
+    uit.append(...[ // een lege waarde (geen zin) mag niet als tekst op de pagina komen
       el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? 'right' : 'not right: this word comes back' }, ok ? '✔ Goed!' : '✘ Niet goed. Dit woord komt terug.'),
       el('div', { class: 'kaart-antwoord' },
         r[4] ? el('div', { class: 'beeld', 'aria-hidden': 'true' }, r[4]) : null,
@@ -116,7 +116,7 @@
           el('div', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
           r[5] ? el('div', { class: 'klein zacht' }, r[5]) : null)),
       zinStaatEr ? null : zinRegel(r),
-      el('div', { class: 'knoppen', style: 'justify-content:center' }, verder));
+      el('div', { class: 'knoppen', style: 'justify-content:center' }, verder)].filter(Boolean));
     verder.focus();
     if (ok) App.goed(verder);
   }
