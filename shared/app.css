@@ -46,11 +46,16 @@ a { color: var(--accent); text-underline-offset: 3px; }
 b, strong, th { font-weight: 600; }
 .zacht { color: var(--zacht); } .klein { font-size: .875rem; } .midden { text-align: center; }
 [hidden] { display: none !important; }
+/* lange Nederlandse woorden (aansprakelijkheidsverzekering) blijven binnen hun vak: eerst afbreken op een lettergreep, anders waar het moet */
+body { overflow-wrap: break-word; }
+.kop h1, .tegel, .wkaart, .optie, .stapje, .kaart h3, main h2, .tekstvak.soort-zin, td, th { -webkit-hyphens: auto; hyphens: auto; }
+.tegel, .wkaart, .optie > span:last-child, .kaart, .tekstvak.soort-zin { overflow-wrap: anywhere; min-width: 0; }
+img, svg, video, canvas, table { max-width: 100%; }
 
 /* ---------- kop: de balk boven aan elke pagina ---------- */
 .kop { display: flex; align-items: center; gap: 4px; min-height: 64px; padding: 8px max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left)); background: var(--bg); position: sticky; top: 0; z-index: 5; transition: background .2s, box-shadow .2s; }
 body.gerold .kop { background: var(--vlak); box-shadow: var(--schaduw2); }
-.kop h1 { flex: 1; min-width: 0; margin: 0 8px; font-size: 1.3rem; font-weight: 400; line-height: 1.25; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.kop h1 { flex: 1; min-width: 0; margin: 0 8px; font-size: 1.3rem; font-weight: 400; line-height: 1.25; overflow-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .kop .klok { font-weight: 500; font-variant-numeric: tabular-nums; margin: 0 8px; white-space: nowrap; }
 .icoon { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; }
 /* ronde knop met alleen een teken */
@@ -65,6 +70,10 @@ body.en .kop .rond.taal { background: var(--accent-zacht); color: var(--op-accen
 /* Engels alleen achter de knop EN (in de kop) of ❗ (bij een woord) */
 body.en [data-en]::after { content: " (" attr(data-en) ")"; color: var(--zacht); font-size: .8em; font-weight: 400; }
 body.en .knop[data-en]::after, body.en #toast[data-en]::after { color: inherit; opacity: .8; }
+/* in een knop staat het Engels onder het Nederlands: zo wordt de knop niet breder en breekt het Engels niet af per letter */
+body.en .knop[data-en] { flex-direction: column; gap: 0; line-height: 1.25; padding-block: 6px; }
+body.en .knop[data-en]::after { content: "(" attr(data-en) ")"; font-size: .72em; overflow-wrap: normal; word-break: normal; max-width: 100%; }
+[data-en]::after { overflow-wrap: normal; }
 
 /* voet onder aan elke pagina: wie de site maakte. De inhoud vult de ruimte, de voet staat dus altijd onderaan. */
 body > main, body > #pagina { flex: 1 0 auto; }
@@ -188,6 +197,7 @@ input:disabled, textarea:disabled { opacity: .7; }
 .stap:disabled { cursor: default; }
 @media (hover: hover) { .stap:not(:disabled):hover::before { top: 8px; height: 8px; border-radius: 4px; } }
 .stappen-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 2px; }
+.stappen-nav > span { white-space: nowrap; flex: none; }
 .stappen-nav .knop { background: transparent; color: var(--accent); padding: 4px 12px; box-shadow: none; }
 .stappen-nav .knop:disabled { visibility: hidden; }
 @media (hover: hover) { .stappen-nav .knop:hover:not(:disabled) { background: var(--accent-zacht); color: var(--op-accent-zacht); box-shadow: none; filter: none; } }
@@ -268,6 +278,57 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
   .optie.beeld { font-size: 2.2rem; min-height: 84px; }
   .tekstvak.soort-zin { font-size: 1.15rem; padding: 20px 14px; }
   .groot { font-size: 2rem; }
+  .ladder .balk { min-width: 0; }
+  .ladder th { white-space: normal; }
+  .optie { gap: 12px; padding: 12px 14px; }
+  .voet { padding-top: 8px; gap: 8px; } .voet .knop { padding-inline: 16px; }
+  #toast { white-space: normal; text-align: center; width: max-content; }
+}
+/* kleine telefoon (iPhone SE, 320 tot 380 breed): alles iets kleiner, zodat er niets afbreekt of uitsteekt */
+@media (max-width: 380px) {
+  html { font-size: 16px; }
+  main { padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)); }
+  .kop { padding-inline: 6px; } .kop h1 { font-size: 1rem; margin: 0 2px; }
+  .kop .rond, .kop a.terug { width: 36px; height: 36px; } .kop .icoon { width: 22px; height: 22px; }
+  .kaart { padding: 14px; } #vandaag.kaart { padding: 16px; border-radius: 20px; }
+  .knop { padding-inline: 18px; }
+  .wkaarten, .tegels { gap: 8px; }
+  .wkaart { padding: 10px 4px; } .wkaart .nl { font-size: .94rem; line-height: 1.3; }
+  .tegel { padding: 12px 10px; } .tegel.examen-tegel { padding: 12px; }
+  .ladder td, .ladder th { padding: 8px 8px; font-size: .94rem; }
+  .keuze span { font-size: .8rem; padding: 8px 2px; gap: 2px; }
+  .optie { gap: 10px; padding: 10px 12px; } .optie .l { width: 28px; height: 28px; }
+  .opties.beelden { gap: 8px; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); }
+  .instelling { gap: 10px; }
+  .raster { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px; }
+  dialog.vraagvenster { padding: 18px; border-radius: 20px; }
 }
 /* breed scherm */
 @media (min-width: 1200px) { main { max-width: 940px; } }
+
+/* ---------- skelet: grijze blokken zolang de inhoud nog laadt ----------
+   Een vak dat nog leeg is, toont twee blokken met een lichte glans. Zodra de pagina het vak vult, zijn ze weg (:empty geldt niet meer). */
+@keyframes glans { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+#pagina:empty::before, #pagina:empty::after, #themas:empty::before, #themas:empty::after, div#ladder:empty::before, div#ladder:empty::after,
+.tegels:empty::before, .tegels:empty::after, .kaart:empty::before, .kaart:empty::after {
+  content: ""; display: block; border-radius: var(--rond);
+  background: linear-gradient(100deg, var(--vlak2) 40%, var(--lijn) 50%, var(--vlak2) 60%) 0 0 / 200% 100%;
+  animation: glans 1.4s linear infinite;
+}
+#pagina:empty::before { height: 28px; width: 60%; margin: 8px 0 16px; }
+#pagina:empty::after { height: 240px; border-radius: 20px; }
+#themas:empty::before, #themas:empty::after, div#ladder:empty::before, div#ladder:empty::after { height: 112px; border-radius: 20px; margin: 12px 0; }
+.tegels:empty::before, .tegels:empty::after { min-height: 92px; }
+.kaart:empty { min-height: 132px; }
+.kaart:empty::before { height: 24px; width: 45%; margin-bottom: 14px; }
+.kaart:empty::after { height: 44px; border-radius: 999px; }
+#vandaag.kaart:empty::before, #vandaag.kaart:empty::after { opacity: .5; }
+@media (prefers-reduced-motion: reduce) { *::before, *::after { animation: none !important; } }
+/* kleine telefoon: de balk onder een toets blijft één rij (het nummer van de vraag staat boven de knop Overzicht) */
+@media (max-width: 380px) {
+  .voet { flex-wrap: nowrap; gap: 6px; padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right)); }
+  .voet > span { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; font-size: .9rem; }
+  .voet .knop { padding: 4px 12px; min-height: 40px; font-size: .9rem; flex: none; }
+  .voet .knop.klein { min-height: 32px; padding: 2px 10px; }
+  body.en .voet .knop[data-en]::after { display: none; }
+}
