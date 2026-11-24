@@ -14,6 +14,7 @@
   <div class="cijfers" id="cijfers"></div>
   <h2 id="kies" data-en="the five exams">De vijf examens</h2>
   <p class="zacht klein uitleg" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
+  <p class="basis-tip" id="basis"><span data-en="Do you already know the basics? Click A, B, C or D: you take a practice exam right away and you get a mark and a medal. You pass with a 6.">Kent u de basis al? Klik op A, B, C of D: u doet direct een oefenexamen en krijgt een cijfer en een medaille. U slaagt met een 6.</span></p>
   <div class="examens" id="examens"></div>
   <h2 id="woorden" data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden: de ladder</h2>
   <p class="zacht klein uitleg" data-en="Choose a step and play: five words each time. Every right answer counts, and the step fills up.">Kies een trede en speel: vijf woorden per keer. Elk goed antwoord telt mee, en de trede loopt vol.</p>
@@ -61,7 +62,12 @@
   const verder = volgende
     ? el('a', { class: 'knop', href: `lezen/les.html?les=${volgende.id}`, en: nieuw ? 'start with the first reading lesson' : 'next reading lesson' }, nieuw ? 'Begin met les 1' : `Lezen ${volgende.id}: ${volgende.titel}`)
     : ander ? el('a', { class: 'knop', href: ander.href, en: 'continue' }, `Verder met ${ander.naam}`) : null;
-  const procent = totaal ? Math.round(100 * gedaan / totaal) : 0;
+  // hoe ver u bent: per examen de lessen, of 100% als u een oefenexamen haalde (App.klaarProcent)
+  const procent = App.klaarProcent(EXAMENS.map((x) => ({ n: x.n, gedaan: x.gedaan, geslaagd: x.toetsen.some((t) => App.medaille(t.beste)) })));
+  const nToetsGeslaagd = EXAMENS.reduce((s, x) => s + x.toetsen.filter((t) => App.medaille(t.beste)).length, 0);
+  // de drie medailles met hun cijfer, naast de zin over de oefenexamens: brons 6,0, zilver 7,5, goud 9,0
+  document.getElementById('basis').append(el('span', { class: 'medaille-legenda', dir: 'ltr', 'aria-label': 'brons vanaf 6,0, zilver vanaf 7,5, goud vanaf 9,0' },
+    [['brons', '6,0'], ['zilver', '7,5'], ['goud', '9,0']].map(([m, c]) => el('span', {}, App.medailleTeken(m), c))));
   document.getElementById('vandaag').append(el('div', { class: 'held-rij' },
     el('div', {},
       el('span', { class: 'oogje' }, 'Inburgering A2'),
@@ -74,11 +80,11 @@
             : el('span', { en: 'no cards to review today' }, 'Vandaag zijn er geen kaarten om te herhalen.'))],
       el('div', { class: 'knoppen' },
         verder,
-        nieuw ? el('a', { class: 'knop licht', href: '#kies', en: 'take a practice exam' }, 'Doe een oefenexamen') : null,
+        nieuw ? el('a', { class: 'knop licht', href: '#kies', en: 'I already know the basics: take a practice exam' }, 'Ik ken de basis al: doe een oefenexamen') : null,
         tel.nu ? el('a', { class: 'knop licht', href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`) : null,
         nieuw ? null : el('a', { class: 'knop licht', href: 'profiel.html', en: 'show your friends how far you are' }, teken('deel'), 'Deel uw voortgang'))),
-    nieuw ? null : el('a', { class: 'ring', href: 'profiel.html', style: `--p:${procent}`, title: 'uw profiel', 'aria-label': `${procent} procent van de lessen gehaald. Ga naar uw profiel.` },
-      el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))));
+    nieuw ? null : el('a', { class: 'ring', href: 'profiel.html', style: `--p:${procent}`, title: 'uw profiel', 'aria-label': `${procent} procent klaar voor het examen. Ga naar uw profiel.` },
+      el('b', {}, `${procent}%`), el('span', { en: 'ready' }, 'klaar'))));
   App.uitleg(document.getElementById('vandaag')); // de uitleg in het blauwe vak staat achter de i naast de kop
 
   // elk getal is een link naar het stuk van de pagina waar het over gaat
@@ -86,7 +92,7 @@
   document.getElementById('cijfers').append(
     getal(gedaan, totaal, 'lessen gehaald', 'lessons passed', '#kies'),
     getal(woordenBekend, woordenTotaal, 'woorden gekend', 'words known', '#woorden'),
-    getal(nToetsGedaan, nToetsen, 'oefenexamens gedaan', 'practice exams done', '#kies'));
+    getal(nToetsGeslaagd, nToetsen, 'oefenexamens geslaagd', 'practice exams passed', '#kies'));
 
   // ---------- inloggen met Google (als de site dat heeft, shared/account.js): het vak staat er zolang u niet bent ingelogd ----------
   // "Niet nu" haalt het een week weg. De stip op de knop Profiel blijft.
@@ -133,9 +139,11 @@
         el('span', { class: 'klein zacht', en: `practice exam: ${vragen} ${soortEn}, ${minuten} minutes` }, `Oefenexamen: ${vragen} ${soort}, ${minuten} min`),
         el('div', { class: 'toetsknoppen' }, x.toetsen.map((t) => {
           // het beste cijfer als u de toets al deed
-          const beste = t.beste;
-          return el('a', { class: 'toetsknop' + (beste != null ? ' gedaan' : ''), href: `${x.map}/toets/toets.html?t=${t.id}`, title: t.titel, 'aria-label': `${x.naam} ${t.titel}` },
-            el('b', {}, t.id), beste == null ? null : el('span', {}, App.cijfer(beste, 1)));
+          // geslaagd (6,0 of hoger)? Dan de medaille. Anders een lege plek: die is nog te halen.
+          const beste = t.beste, m = App.medaille(beste);
+          return el('a', { class: 'toetsknop' + (m ? ' gedaan' : ''), href: `${x.map}/toets/toets.html?t=${t.id}`, title: t.titel,
+            'aria-label': `${x.naam} ${t.titel}` + (beste == null ? '' : `: ${App.cijfer(beste, 1)}` + (m ? `, ${m}` : ', nog niet geslaagd')) },
+            App.medailleTeken(m), el('b', {}, t.id), beste == null ? null : el('span', {}, App.cijfer(beste, 1)));
         }))) : null);
   }));
 
@@ -202,6 +210,7 @@
   // het spel: vijf woorden van de trede. Eerst de woorden die vandaag aan de beurt zijn, dan nieuwe, dan de rest.
   function speel() {
     const k = kaarten(), vandaag = SRS.vandaag(), nrs = perTrede[gekozen];
+    const voor = App.tredeStand()[gekozen].bekend; // om aan het einde te laten zien hoeveel woorden erbij kwamen
     const rang = (nr) => { const d = k.get(nr); return !d ? 1 : d.due <= vandaag ? 0 : d.box < SRS.BEKEND ? 2 : 3; };
     const rij = App.schud(nrs).sort((a, b) => rang(a) - rang(b)).slice(0, 5);
     const uitslag = []; // per vraag: true (goed) of false
@@ -237,12 +246,13 @@
         el('div', { class: 'knoppen' }, verder, el('button', { type: 'button', class: 'knop tekst', en: 'stop', onclick: () => tekenLadder() }, 'Stop'))));
     }
     function klaar() {
-      const goed = uitslag.filter(Boolean).length;
+      const goed = uitslag.filter(Boolean).length, erbij = App.tredeStand()[gekozen].bekend - voor;
       tekenLadder(el('div', { class: 'spel midden' },
         stippen(),
         el('div', { class: 'groot' }, `${goed} / ${rij.length}`),
         el('p', { en: goed === rij.length ? 'All right!' : goed >= 3 ? 'Well done. The other words come back.' : 'These words come back. Try again.' },
           goed === rij.length ? 'Alles goed!' : goed >= 3 ? 'Goed gedaan. De andere woorden komen terug.' : 'Deze woorden komen terug. Probeer het nog een keer.'),
+        erbij > 0 ? el('p', { class: 'record', en: 'more words known on this step' }, `★ +${erbij} ${erbij === 1 ? 'woord' : 'woorden'} gekend op trede ${gekozen}`) : null,
         el('div', { class: 'knoppen', style: 'justify-content:center' },
           el('button', { type: 'button', class: 'knop', en: '5 more words', onclick: speel }, 'Nog 5 woorden'),
           el('button', { type: 'button', class: 'knop rand', en: 'done', onclick: () => tekenLadder() }, 'Klaar'))));

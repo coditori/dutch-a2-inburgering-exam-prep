@@ -94,16 +94,14 @@
     stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000));
     stand.score = vragen.filter((_, i) => stand.antwoorden[i] === 0).length;
     (Luister.P.toets[id] = Luister.P.toets[id] || []).push({ score: stand.score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
-    Luister.bewaar(); bewaar(); uitslag();
+    Luister.bewaar(); bewaar(); uitslag(); App.vier(stand.score / vragen.length);
   }
   function uitslag(kijk) {
     document.body.classList.remove('geen-woorden');
     clearInterval(tik); Luister.stop(); klok.textContent = '';
-    const goedGenoeg = stand.score >= 19;
     pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
-      ...App.cijferBlok(stand.score, vragen.length),
-      el('p', { class: 'midden uitslag ' + (goedGenoeg ? 'goed' : 'fout'), en: goedGenoeg ? '19 or more: exam level.' : 'Goal: 19 of 25. Look at the red questions.' }, goedGenoeg ? '✔ 19 of meer: examenniveau.' : 'Doel: 19 van de 25. Bekijk de rode vragen.'),
+      ...App.cijferBlok(stand.score, vragen.length, null, { eerder: (Luister.P.toets[id] || []).slice(0, -1).map((r) => r.score / (r.totaal || vragen.length)) }),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en de tekst van het gesprek.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('luisteren-toets-bezig', null); welkom(); } }, 'Nog een keer'),

@@ -375,14 +375,27 @@ window.App = (() => {
     if (actie) toastEl.append(actie.href ? el('a', { class: 'toast-knop', href: actie.href, en: actie.en }, actie.naam)
       : el('button', { type: 'button', class: 'toast-knop', en: actie.en, onclick: () => { weg(); actie.doe(); } }, actie.naam));
     toastEl.classList.toggle('met-knop', !!actie);
+    toastEl.classList.remove('pop', 'vuur');
     toastEl.classList.add('aan');
     clearTimeout(toastTik);
     toastTik = setTimeout(weg, actie ? 5000 : 1400);
   }
   // Na een goed antwoord: groene melding, en de knop "Verder" wordt na een korte tijd vanzelf ingedrukt
   // (instelling "door"; staat de knop niet meer op de pagina, dan gebeurt er niets). Fout antwoord: niets, de leerling leest eerst.
+  // Drie of meer goede antwoorden na elkaar: de melding telt mee ("3 goed op rij!") met een vlam. Een fout antwoord begint opnieuw bij nul.
+  // Een fout antwoord heeft geen eigen functie: de pagina's zetten de klasse "fout" op het antwoord of op de uitslag. Daar kijken we naar.
+  let reeks = 0;
+  const FOUT = '.optie.fout, .uitslag.fout, input.fout';
+  if (window.MutationObserver) new MutationObserver((lijst) => {
+    for (const m of lijst) for (const n of (m.type === 'attributes' ? [m.target] : m.addedNodes)) {
+      if (n.nodeType === 1 && (n.matches(FOUT) || (m.type === 'childList' && n.querySelector(FOUT)))) reeks = 0;
+    }
+  }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
   function goed(knop) {
-    toast('✔ Goed antwoord!', 'correct answer');
+    reeks++;
+    if (reeks >= 3) toast(`🔥 ${reeks} goed op rij!`, 'right answers in a row'); else toast('✔ Goed antwoord!', 'correct answer');
+    void toastEl.offsetWidth; // de sprong van de melding begint bij elk goed antwoord opnieuw
+    toastEl.classList.add('pop'); toastEl.classList.toggle('vuur', reeks >= 3);
     if (knop && instellingen().door) setTimeout(() => { if (knop.isConnected && !knop.disabled) knop.click(); }, 1100);
   }
 
@@ -569,7 +582,7 @@ window.App = (() => {
     const stand = tredeStand();
     return { naam: schoneNaam((ruw('profiel', {}) || {}).naam), dag: window.SRS.vandaag(),
       woorden: stand.reduce((s, t) => s + t.bekend, 0), woordenTotaal: stand.reduce((s, t) => s + t.totaal, 0),
-      examens: (await overzicht()).map((x) => ({ n: x.n, gedaan: x.gedaan, cijfers: x.toetsen.filter((t) => t.beste != null).map((t) => [t.id, Math.round(t.beste * 100)]) })) };
+      examens: (await overzicht()).map((x) => ({ n: x.n, gedaan: x.gedaan, cijfers: x.toetsen.filter((t) => t.beste != null).map((t) => [t.id, honderd(t.beste)]) })) };
   }
   const profielRij = (p) => [1, p.naam, p.dag, p.woorden, p.woordenTotaal, p.examens.map((x) => [x.gedaan, x.n, x.cijfers])];
   // Een rij van buiten (uit een link of van het account van iemand anders): streng controleren. null = niet goed.
@@ -584,13 +597,89 @@ window.App = (() => {
       }) };
   }
 
-  const cijfer = (goed, totaal) => (totaal ? Math.round((goed / totaal) * 100) / 10 : 0).toFixed(1).replace('.', ',');
+  // Het cijfer wordt naar beneden afgerond: 5,96 is een 5,9 en geen 6,0. Zo staat er nooit "6,0" bij een toets die niet gehaald is.
+  const honderd = (deel) => Math.floor(deel * 100 + 1e-9);
+  const cijfer = (goed, totaal) => (totaal ? honderd(goed / totaal) / 10 : 0).toFixed(1).replace('.', ',');
+
+  // ---------- medailles voor de oefenexamens ----------
+  // Geslaagd is 6,0 of hoger (60% goed), net als op het echte examen: dat is brons. Zilver vanaf 7,5 en goud vanaf 9,0.
+  // deel = het deel goed, van 0 tot 1 (0,75 = cijfer 7,5). Antwoord: 'brons' | 'zilver' | 'goud', of null: (nog) niet geslaagd.
+  const MEDAILLES = [['goud', 0.9, 'gold'], ['zilver', 0.75, 'silver'], ['brons', 0.6, 'bronze']];
+  const medaille = (deel) => { const m = deel == null ? null : MEDAILLES.find((x) => deel + 1e-9 >= x[1]); return m ? m[0] : null; };
+  // De tekening: een lint met een schijf. Goud heeft een ster, zilver een ring, brons een vinkje: zo ziet u het verschil ook zonder kleur.
+  // Zonder soort (null): een lege plek met een stippellijn, voor een oefenexamen dat u nog niet haalde.
+  const MEDAILLE_VORM = { goud: '<path class="m-teken m-vol" d="m12 10.4 1.35 2.8 3.05.4-2.25 2.1.55 3L12 17.3l-2.7 1.4.55-3-2.25-2.1 3.05-.4z"/>',
+    zilver: '<circle class="m-teken" cx="12" cy="15" r="3.6"/>', brons: '<path class="m-teken" d="m9.4 15.1 1.8 1.8 3.4-3.6"/>' };
+  function medailleTeken(soort) { // vaste tekst, geen invoer van buiten
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('class', 'medaille m-' + (MEDAILLE_VORM[soort] ? soort : 'leeg')); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = '<path class="m-lint" d="M7.5 2h3.2l2 4.6-2.6 2zM16.5 2h-3.2l-2 4.6 2.6 2z"/><circle class="m-schijf" cx="12" cy="15" r="7"/>' + (MEDAILLE_VORM[soort] || '');
+    return s;
+  }
+  // De lijn van 0 tot 10 met uw cijfer als stip. De streep bij 6 is "geslaagd"; bij 6, 7,5 en 9 staat de medaille die u daar krijgt.
+  // eerder = de delen (0 tot 1) van uw eerdere pogingen: vage stippen, zodat u ziet of u vooruit gaat.
+  function slaagBalk(deel, eerder) {
+    const pct = (d) => Math.max(0, Math.min(100, d * 100));
+    return el('div', { class: 'slaagbalk' + (medaille(deel) ? ' geslaagd' : ''), dir: 'ltr', role: 'img', 'aria-label': `uw cijfer op een lijn van 0 tot 10. Geslaagd vanaf 6,0.` },
+      el('div', { class: 'slaag-medailles' }, MEDAILLES.map(([m, v]) => el('span', { class: deel + 1e-9 >= v ? 'aan' : '', style: `left:${v * 100}%` }, medailleTeken(m), el('small', {}, cijfer(v, 1))))),
+      el('div', { class: 'slaag-spoor' },
+        el('i', { class: 'slaag-vul', style: `width:${pct(deel)}%` }),
+        el('i', { class: 'slaag-streep', style: 'left:60%' }),
+        (eerder || []).map((d) => el('i', { class: 'slaag-stip oud', style: `left:${pct(d)}%` })),
+        el('i', { class: 'slaag-stip', style: `left:${pct(deel)}%` })));
+  }
+  // Feest na een gehaald oefenexamen: de medaille springt, er valt confetti en de telefoon trilt kort.
+  // Alleen als er een medaille is, en niet als het apparaat om minder beweging vraagt.
+  function vier(deel) {
+    if (!medaille(deel)) return;
+    const groot = document.querySelector('.medaille-groot');
+    if (groot) groot.classList.add('spring');
+    confetti(46);
+  }
+  function confetti(aantal) {
+    try { if (navigator.vibrate) navigator.vibrate(70); } catch (e) { /* geen trilling */ }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const KLEUR = ['#f2b21b', '#3b4fe0', '#16a34a', '#e2476b', '#7c3aed', '#fb923c'];
+    const vak = el('div', { class: 'confetti', 'aria-hidden': 'true' }, Array.from({ length: aantal }, (_, i) => el('i', {
+      style: `left:${Math.random() * 100}%;background:${KLEUR[i % KLEUR.length]};animation-delay:${(Math.random() * 0.5).toFixed(2)}s;animation-duration:${(1.5 + Math.random()).toFixed(2)}s;--draai:${Math.round(Math.random() * 720 - 360)}deg;--opzij:${Math.round(Math.random() * 120 - 60)}px` })));
+    document.body.append(vak);
+    setTimeout(() => vak.remove(), 3200);
+  }
+  // Na een les: het teken van het examen met een balk "13 van 38 lessen". Haalde u net een nieuwe les? Dan loopt de balk een stukje vol
+  // en valt er een beetje confetti (minder dan bij een oefenexamen). Wat al gevierd is staat in 'feest': opnieuw laden viert niet nog een keer.
+  function lesVoortgang(map, n, gehaald) {
+    const gedaan = Math.min(n, Object.values(lees(map, {}).lessen || {}).filter(lesGehaald).length);
+    const oud = ruw('feest', {}) || {}, was = oud[map] == null ? gedaan - 1 : oud[map], nieuw = !!gehaald && gedaan > was;
+    const pct = (g) => (n ? Math.round(100 * Math.max(0, g) / n) : 0);
+    const vul = el('i', { style: `width:${pct(nieuw ? gedaan - 1 : gedaan)}%` });
+    if (nieuw) { oud[map] = gedaan; schrijf('feest', oud); setTimeout(() => { vul.style.width = pct(gedaan) + '%'; confetti(18); }, 300); }
+    return el('div', { class: 'les-voortgang' + (nieuw ? ' nieuw' : ''), style: `--k:var(--k-${map})` },
+      el('span', { class: 'ex-icoon', 'aria-hidden': 'true' }, teken(map)),
+      el('div', {}, el('div', { class: 'balk' }, vul), el('span', { class: 'klein zacht', en: 'lessons passed' }, `${gedaan} van ${n} lessen gehaald`)));
+  }
+  // Hoe ver bent u, van 0 tot 100? Per examen telt het hoogste van twee: het deel van de lessen dat u haalde, of 100% als u een oefenexamen haalde.
+  // Zo staat iemand die de basis al kent en direct een oefenexamen haalt niet op 0%. lijst = [{ n, gedaan, geslaagd }]
+  const klaarProcent = (lijst) => Math.round(100 * lijst.reduce((s, x) => s + Math.max(x.n ? x.gedaan / x.n : 0, x.geslaagd ? 1 : 0), 0) / (lijst.length || 1));
   // de uitslag van een toets: groot het cijfer, klein eronder hoeveel goed. wat = 'vragen goed' of 'punten'
   // Eronder de knop naar het profiel: daar deelt de leerling het cijfer met vrienden.
-  const cijferBlok = (goed, totaal, wat) => [
-    el('div', { class: 'groot midden' }, cijfer(goed, totaal), el('span', { class: 'cijfer-van' }, ' / 10')),
-    el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
-    el('p', { class: 'midden' }, el('a', { class: 'knop licht klein', href: WORTEL + 'profiel.html', en: 'share your mark with friends' }, teken('deel'), 'Deel uw cijfer'))];
+  // Erboven de medaille (of een lege plek), eronder de lijn met de streep bij 6: zo ziet u zonder te lezen of u geslaagd bent.
+  // o (mag weg) = { eerder: [delen van eerdere pogingen], zelf: true als de leerling zelf nakeek (Schrijven, Spreken) }
+  function cijferBlok(goed, totaal, wat, o) {
+    o = o || {};
+    const deel = totaal ? goed / totaal : 0, m = medaille(deel), eerder = (o.eerder || []).filter((d) => d != null && isFinite(d));
+    const nodig = Math.max(1, Math.ceil(0.6 * totaal - 1e-9) - goed);
+    const naam = m ? MEDAILLES.find((x) => x[0] === m) : null;
+    return [
+      el('div', { class: 'medaille-groot midden' }, medailleTeken(m)),
+      el('div', { class: 'groot midden' }, cijfer(goed, totaal), el('span', { class: 'cijfer-van' }, ' / 10')),
+      slaagBalk(deel, eerder),
+      m ? el('p', { class: 'midden uitslag goed', en: `Congratulations, you passed! Your medal: ${naam[2]}.` }, `Gefeliciteerd, u bent geslaagd! Uw medaille: ${m}.`)
+        : el('p', { class: 'midden uitslag fout', en: 'Not passed yet. You pass with a 6.0. Look at what went wrong and try again later.' }, `Nog niet geslaagd. U slaagt met een 6,0: nog ${nodig} erbij.`),
+      eerder.length && deel > Math.max(...eerder) + 1e-9 ? el('p', { class: 'midden record', en: 'your best mark so far' }, '★ Uw beste cijfer tot nu toe!') : null,
+      el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
+      o.zelf ? el('p', { class: 'midden zacht klein', en: 'You checked this yourself. In the real exam a person marks it.' }, 'U keek dit zelf na. Op het examen kijkt een mens het na.') : null,
+      el('p', { class: 'midden' }, el('a', { class: 'knop licht klein', href: WORTEL + 'profiel.html', en: 'share your mark with friends' }, teken('deel'), 'Deel uw cijfer'))].filter(Boolean);
+  }
 
   // ---------- overzicht van de vijf examens: lessen, toetsen en wat de leerling al deed (startpagina en profiel) ----------
   const NAMEN = { lezen: 'Lezen', luisteren: 'Luisteren', schrijven: 'Schrijven', spreken: 'Spreken', knm: 'KNM' };
@@ -618,5 +707,5 @@ window.App = (() => {
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

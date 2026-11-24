@@ -161,6 +161,7 @@
       el('div', { class: 'groot' }, `${goed} / ${totaal}`),
       el('p', { class: 'zacht klein', en: 'Typing and tiles count when right the first time. A writing task counts when the check is all green without looking at the model.' }, 'Typen en tegels tellen als ze de eerste keer goed zijn. Een schrijfopdracht telt als de controle goed is zonder het voorbeeld.'),
       el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' }, ok ? '✔ Gehaald. De volgende les is open.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      App.lesVoortgang('schrijven', index.length, ok),
       el('div', { class: 'knoppen', style: 'justify-content:center' },
         ok && volgende ? el('a', { class: 'knop', href: `les.html?les=${volgende.id}`, onclick: weg }, `Volgende les: ${volgende.id}`) : null,
         el('button', { class: 'knop licht', en: 'again', onclick: () => { weg(); location.reload(); } }, 'Nog een keer'),

@@ -841,3 +841,53 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 }
 /* een antwoord dat alleen uit cijfers bestaat (112, 0900 - 8844, 3.30): kleiner dan een plaatje, en het mag afbreken */
 .optie.beeld.getal { font-size: 1.6rem; font-weight: 600; white-space: normal; letter-spacing: 0; min-height: 72px; }
+
+/* ---------- medailles voor de oefenexamens (App.medailleTeken): brons 6,0, zilver 7,5, goud 9,0 ---------- */
+/* Elke medaille heeft een eigen teken (vinkje, ring, ster): het verschil is er ook zonder kleur. Leeg = een plek met een stippellijn. */
+.medaille { flex: none; width: 1.5em; height: 1.5em; vertical-align: -.35em; }
+.medaille .m-lint { fill: var(--accent); }
+.medaille .m-teken { fill: none; stroke: #fff; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.medaille .m-teken.m-vol { fill: #fff; stroke: none; }
+.medaille.m-brons .m-schijf { fill: #b4672d; } .medaille.m-zilver .m-schijf { fill: #7f8b9b; } .medaille.m-goud .m-schijf { fill: #d99a06; }
+.medaille.m-leeg .m-lint { fill: var(--lijn); }
+.medaille.m-leeg .m-schijf { fill: none; stroke: var(--omtrek); stroke-width: 1.3; stroke-dasharray: 2.4 2.4; opacity: .7; }
+.medaille-groot { margin-bottom: 4px; } .medaille-groot .medaille { width: 96px; height: 96px; }
+.medaille-groot.spring .medaille { animation: m-spring .8s cubic-bezier(.2, 1.7, .4, 1) both; }
+@keyframes m-spring { from { transform: scale(.2) rotate(-25deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.record { color: var(--nieuw); font-weight: 650; }
+/* de lijn van 0 tot 10: de streep bij 6 is "geslaagd", de dikke stip is uw cijfer, de kleine stippen zijn eerdere pogingen */
+.slaagbalk { max-width: 420px; margin: 14px auto 12px; padding: 0 16px; }
+.slaag-medailles { position: relative; height: 44px; }
+.slaag-medailles > span { position: absolute; bottom: 4px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; opacity: .4; line-height: 1.1; }
+.slaag-medailles > span.aan { opacity: 1; }
+.slaag-medailles .medaille { width: 24px; height: 24px; } .slaag-medailles small { font-size: .7rem; color: var(--zacht); font-variant-numeric: tabular-nums; }
+.slaag-spoor { position: relative; height: 12px; border-radius: 6px; background: var(--vlak2); }
+.slaag-vul { position: absolute; inset: 0 auto 0 0; border-radius: 6px; background: var(--fout); }
+.slaag-streep { position: absolute; top: -6px; bottom: -6px; width: 3px; margin-left: -1.5px; border-radius: 2px; background: var(--tekst); }
+.slaag-stip { position: absolute; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: var(--vlak); border: 5px solid var(--fout); }
+.slaag-stip.oud { width: 10px; height: 10px; margin: -5px 0 0 -5px; border: 0; background: var(--omtrek); opacity: .6; }
+.slaagbalk.geslaagd .slaag-vul { background: var(--goed); } .slaagbalk.geslaagd .slaag-stip:not(.oud) { border-color: var(--goed); }
+/* confetti na een gehaald oefenexamen (App.vier); niet als het apparaat om minder beweging vraagt */
+.confetti { position: fixed; inset: 0; z-index: 60; overflow: hidden; pointer-events: none; }
+.confetti i { position: absolute; top: -16px; width: 9px; height: 14px; border-radius: 2px; animation: confetti-val linear both; }
+@keyframes confetti-val { to { transform: translate(var(--opzij, 0), 106vh) rotate(var(--draai, 360deg)); } }
+/* op de knoppen A, B, C, D, op de tegels en op het profiel */
+.toetsknop { min-height: 66px; } .toetsknop .medaille { width: 22px; height: 22px; }
+.tegel b .medaille { width: 1.35em; height: 1.35em; }
+.pcijfer .medaille { width: 20px; height: 20px; } .pcijfer.niet { background: var(--vlak2); }
+.prij .ex-icoon { position: relative; }
+.ex-medaille { position: absolute; right: -7px; bottom: -7px; display: flex; border-radius: 50%; background: var(--vlak); }
+.ex-medaille .medaille { width: 22px; height: 22px; }
+.basis-tip { margin: 0 0 12px; }
+.medaille-legenda { display: inline-flex; gap: 10px; margin-inline-start: 10px; vertical-align: middle; font-size: .85rem; color: var(--zacht); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.medaille-legenda > span { display: inline-flex; align-items: center; gap: 3px; }
+/* na een les: het teken van het examen met de balk van de lessen (App.lesVoortgang) */
+.les-voortgang { display: flex; align-items: center; gap: 12px; max-width: 360px; margin: 14px auto; text-align: start; }
+.les-voortgang > div { flex: 1; min-width: 0; } .les-voortgang .balk { height: 10px; margin-bottom: 4px; } .les-voortgang .balk > i { background: var(--k, var(--accent)); transition-duration: .9s; }
+.les-voortgang.nieuw .ex-icoon { animation: m-spring .8s cubic-bezier(.2, 1.7, .4, 1) both; }
+/* een antwoord in een les: het goede antwoord springt even, een fout antwoord schudt; de melding springt mee, en groeit bij 3 goed op rij */
+.optie.goed { animation: goed-sprong .35s cubic-bezier(.2, 1.6, .4, 1); } .optie.fout { animation: fout-schud .35s; }
+@keyframes goed-sprong { 40% { transform: scale(1.04); } }
+@keyframes fout-schud { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+#toast.pop { animation: toast-sprong .4s cubic-bezier(.2, 1.6, .4, 1); } #toast.vuur { font-size: 1.1rem; padding-inline: 28px; }
+@keyframes toast-sprong { 45% { scale: 1.14; } }

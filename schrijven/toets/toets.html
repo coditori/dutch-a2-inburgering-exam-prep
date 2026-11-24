@@ -88,13 +88,16 @@
     const tel = () => Object.values(stand.vinken).filter(Boolean).length;
     function tekenUitslag() {
       uitslag.textContent = '';
-      uitslag.append(...App.cijferBlok(tel(), totaal, 'punten'),
+      uitslag.append(...App.cijferBlok(tel(), totaal, 'punten', { zelf: true, eerder: (Schrijven.P.toets[id] || []).map((r) => r.score / (r.totaal || totaal)) }),
         el('p', { class: 'zacht' }, `Tijd: ${stand.minuten} minuten` + (stand.minuten > MINUTEN ? ' (te lang: het examen is 40 minuten)' : '')),
         el('div', { class: 'knoppen', style: 'justify-content:center' },
-          el('button', { class: 'knop', en: 'save the result', onclick: () => {
+          el('button', { class: 'knop', en: 'save the result', onclick: (e) => {
+            e.currentTarget.disabled = true; // één keer bewaren, ook bij twee klikken
             (Schrijven.P.toets[id] = Schrijven.P.toets[id] || []).push({ score: tel(), totaal, minuten: stand.minuten, datum: new Date().toISOString().slice(0, 10) });
             if (les) { const oud = Schrijven.P.lessen[les] || { beste: 0, keer: 0 }; Schrijven.P.lessen[les] = { score: tel(), beste: Math.max(oud.beste, tel()), totaal, keer: oud.keer + 1, datum: new Date().toISOString().slice(0, 10) }; }
-            Schrijven.bewaar(); App.schrijf('schrijven-toets-bezig', null); location.href = '../index.html';
+            Schrijven.bewaar(); App.schrijf('schrijven-toets-bezig', null);
+            const deel = tel() / totaal; App.vier(deel); // een medaille? Dan eerst het feest, daarna naar het overzicht
+            setTimeout(() => { location.href = '../index.html'; }, App.medaille(deel) ? 1900 : 0);
           } }, 'Bewaar de uitslag'),
           el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('schrijven-toets-bezig', null); welkom(); } }, 'Nog een keer')));
     }

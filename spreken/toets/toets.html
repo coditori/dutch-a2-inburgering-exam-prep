@@ -149,19 +149,21 @@
 
   function uitslag() {
     const score = vragen.filter((_, i) => stand.goed[i]).length;
+    const eerst = !stand.geteld; // net klaar: dan is er feest bij een medaille
     if (!stand.geteld) {
       (Spreken.P.toets[id] = Spreken.P.toets[id] || []).push({ score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
       Spreken.bewaar(); stand.geteld = true; bewaar();
     }
-    const ok = score >= 13;
+    const ok = !!App.medaille(score / vragen.length);
     pagina.append(el('main', {}, el('div', { class: 'kaart midden' },
-      ...App.cijferBlok(score, vragen.length, 'vragen met twee goede antwoorden'),
+      ...App.cijferBlok(score, vragen.length, 'vragen met twee goede antwoorden', { eerder: (Spreken.P.toets[id] || []).slice(0, -1).map((r) => r.score / (r.totaal || vragen.length)) }),
       el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: 'Your own check against the model answers. A real examiner also judges grammar and pronunciation.' }, ok ? '✔ Op de meeste vragen gaf u twee goede antwoorden.' : 'Let op: geef op elke vraag antwoord op de twee delen.'),
       el('p', { class: 'zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Dit is uw eigen controle. Op het examen kijkt een mens ook naar grammatica en uitspraak.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: stand.goed[i] ? 'goed' : 'fout', disabled: true }, String(i + 1)))),
       el('div', { class: 'knoppen', style: 'justify-content:center' },
         el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('spreken-toets-bezig', null); welkom(); } }, 'Nog een keer'),
         el('a', { class: 'knop', href: '../index.html' }, 'Naar de lessen')))));
+    if (eerst) App.vier(score / vragen.length);
   }
 
   if (!stand) welkom(); else if (stand.klaar) nakijken(); else examen();
