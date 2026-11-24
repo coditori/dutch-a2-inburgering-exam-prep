@@ -11,7 +11,7 @@ window.Account = (() => {
   const VOOR = 'dutch-exam:';
   // Dit gaat naar het account. Niet: de andere instellingen, half gemaakte lessen en toetsen, en uw eigen gegevens voor het formulier (naam, adres).
   const EXAMENS = ['lezen', 'luisteren', 'schrijven', 'spreken', 'knm'];
-  const SLEUTELS = [...EXAMENS, 'srs', 'knm-kaarten', 'profiel', 'mijn-woorden', 'stem']; // stem = de gekozen verteller (shared/audio.js)
+  const SLEUTELS = [...EXAMENS, 'srs', 'knm-kaarten', 'profiel', 'mijn-woorden', 'stem', 'dagen']; // stem = de gekozen verteller (shared/audio.js)
   const FIREBASE = 'https://www.gstatic.com/firebasejs/10.12.2/';
   const lees = (k) => { try { return localStorage.getItem(VOOR + k); } catch (e) { return null; } };
   const zet = (k, v) => { try { if (v == null) localStorage.removeItem(VOOR + k); else localStorage.setItem(VOOR + k, v); } catch (e) { /* geen opslag */ } };
@@ -61,6 +61,7 @@ window.Account = (() => {
       for (const nl of Object.keys(b)) if (a[nl] && ((b[nl] && b[nl].t) || 0) > ((a[nl] && a[nl].t) || 0)) uit[nl] = b[nl];
       return JSON.stringify(uit);
     }
+    if (sleutel === 'dagen') return JSON.stringify([...new Set([...(Array.isArray(a) ? a : []), ...(Array.isArray(b) ? b : [])])].sort((x, y) => x - y).slice(-400)); // de dagen waarop u oefende: van beide apparaten
     if (sleutel === 'stem') return JSON.stringify((b.t || 0) > (a.t || 0) ? b : a); // de keuze die het laatst gemaakt is
     return JSON.stringify(kaartenSamen(a, b));
   }

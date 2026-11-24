@@ -151,6 +151,7 @@
         el('div', { class: 'groot' }, `${goed} / ${totaal}`),
         el('p', { class: 'uitslag ' + (gehaald ? 'goed' : 'fout'), en: gehaald ? 'Passed. The next lesson is open.' : 'You need 80%. Do the lesson again.' },
           gehaald ? '✔ Gehaald. De volgende les is open.' : fout.length ? 'U hebt 80% nodig. Verbeter de foute vragen, of doe de les nog een keer.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+          App.lesVoortgang('lezen', index.length, gehaald),
         App.foutKnoppen(fout),
         les.trede >= 4 ? el('p', { class: 'zacht klein' }, `Tijd: ${Math.floor(Lezen.P.lessen[les.id].sec / 60)} min ${Lezen.P.lessen[les.id].sec % 60} s`) : null,
         el('p', { class: 'zacht klein', en: 'Tomorrow: review the words and sentences.' }, 'Morgen: herhaal de woorden en de zinnen.'),

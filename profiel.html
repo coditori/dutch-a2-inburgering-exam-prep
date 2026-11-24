@@ -38,7 +38,8 @@
   // ---------- de kaart ----------
   const NAMEN = { lezen: 'Lezen', luisteren: 'Luisteren', schrijven: 'Schrijven', spreken: 'Spreken', knm: 'KNM' };
   const komma = (c10) => (c10 / 10).toFixed(1).replace('.', ',');
-  const procentVan = (p) => Math.round(100 * p.examens.reduce((s, x) => s + x.gedaan, 0) / (p.examens.reduce((s, x) => s + x.n, 0) || 1));
+  const besteVan = (x) => (x.cijfers.length ? Math.max(...x.cijfers.map((c) => c[1])) / 100 : null); // het beste oefenexamen van dit examen, van 0 tot 1
+  const procentVan = (p) => App.klaarProcent(p.examens.map((x) => ({ n: x.n, gedaan: x.gedaan, geslaagd: !!App.medaille(besteVan(x)) })));
   function kaart(p, vanMij) {
     const procent = procentVan(p);
     return el('article', { class: 'pkaart' },
@@ -46,17 +47,18 @@
       el('div', { class: 'pkaart-kop' + (vanMij ? ' kan' : ''), onclick: vanMij ? (e) => { if (!e.target.closest('.ring')) { const v = document.getElementById('naam'); if (v) { v.focus(); v.select(); } } } : null },
         el('span', { class: 'avatar', 'aria-hidden': 'true' }, (p.naam || '?').slice(0, 1)),
         el('div', {}, el('h2', {}, p.naam || (vanMij ? 'Uw naam' : 'Een vriend')), el('p', { en: 'is practising for the civic integration exam A2' }, 'oefent voor het inburgeringsexamen A2')),
-        el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent van de lessen gehaald` }, el('b', {}, `${procent}%`), el('span', { en: 'lessons' }, 'lessen'))),
+        el('div', { class: 'ring', style: `--p:${procent}`, role: 'img', 'aria-label': `${procent} procent klaar voor het examen` }, el('b', {}, `${procent}%`), el('span', { en: 'ready' }, 'klaar'))),
+      el('div', { class: 'pkaart-moed' }, App.aanmoediging(procent, p.examens.flatMap((x) => x.cijfers.map((c) => c[1] / 100)), vanMij)),
       p.examens.map((x, i) => {
-        const map = App.EXAMENS[i];
+        const map = App.EXAMENS[i], m = App.medaille(besteVan(x)); // m = de beste medaille van dit examen: die staat op het teken
         // de hele regel is een link naar de lessen en oefenexamens van dat examen
         return el('a', { class: `prij k-${map}`, href: `${map}/index.html`, 'aria-label': `${NAMEN[map]}: ${x.gedaan} van ${x.n} lessen. Ga naar ${NAMEN[map]}.` },
-          el('span', { class: 'ex-icoon' }, teken(map)),
+          el('span', { class: 'ex-icoon' }, teken(map), m ? el('span', { class: 'ex-medaille', title: 'geslaagd: ' + m }, App.medailleTeken(m)) : null),
           el('div', {},
             el('div', { class: 'prij-naam' }, el('b', {}, NAMEN[map]), el('span', { class: 'klein zacht', en: 'lessons' }, `${x.gedaan} van ${x.n} lessen`)),
             el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` }))),
           el('div', { class: 'pcijfers', 'aria-label': x.cijfers.length ? 'cijfers van de oefenexamens' : null },
-            x.cijfers.map(([id, c]) => el('span', { class: 'pcijfer', title: `oefenexamen ${id}: ${komma(c)} van de 10` }, el('b', {}, komma(c)), el('span', {}, `examen ${id}`)))),
+            x.cijfers.map(([id, c]) => el('span', { class: 'pcijfer' + (c >= 60 ? '' : ' niet'), title: `oefenexamen ${id}: ${komma(c)} van de 10` + (c >= 60 ? ', ' + App.medaille(c / 100) : '') }, App.medailleTeken(App.medaille(c / 100)), el('b', {}, komma(c)), el('span', {}, `examen ${id}`)))),
           teken('pijl'));
       }),
       el('div', { class: 'pkaart-voet' },
@@ -171,7 +173,7 @@
     invoer.addEventListener('keydown', (e) => { if (e.key === 'Enter') invoer.blur(); });
     const deel = async () => {
       if (!p.naam) { App.toast('Typ eerst uw naam', 'type your name first'); invoer.focus(); return; }
-      const tekst = `${p.naam} oefent voor het inburgeringsexamen A2: ${procentVan(p)}% van de lessen gehaald. Oefen ook!`;
+      const tekst = `${p.naam} oefent voor het inburgeringsexamen A2: ${procentVan(p)}% klaar voor het examen. Oefen ook!`;
       // ingelogd en bewaard: de link naar de nieuwste kaart. Anders: de kaart van nu in de link zelf.
       App.deel(g && A.staat.status === 'bewaard' ? new URL('profiel.html#u=' + g.uid, App.WORTEL).href : naarLink(p), tekst);
     };

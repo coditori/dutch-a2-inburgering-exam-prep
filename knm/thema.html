@@ -75,6 +75,7 @@
     pagina.append(el('div', { class: 'kaart midden' },
       el('div', { class: 'groot' }, `${goed} / ${totaal}`),
       el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: ok ? 'Passed. The next lesson is open.' : 'You need 80%. Do it again.' }, ok ? '✔ Gehaald. De volgende les is open.' : 'U hebt 80% nodig. Doe de les nog een keer.'),
+      App.lesVoortgang('knm', 4 * themas.length, ok),
       extra || null,
       el('div', { class: 'knoppen', style: 'justify-content:center' },
         ok && volgende ? el('a', { class: 'knop', href: `thema.html?t=${volgende.slice(0, -2)}&stap=${volgende.slice(-1)}`, en: 'next' }, 'Volgende les') : null,
