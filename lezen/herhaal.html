@@ -16,7 +16,8 @@
 <script>
 // Herhalen met Leitner-dozen: woorden en zinnen met een gat.
 // Een woordkaart vraagt altijd een antwoord dat de pagina zelf nakijkt (niet: "wist ik het?"). Zo werkt het:
-//   nieuw woord        -> eerst leren: woord, plaatje, betekenis en geluid. Daarna komt het in dezelfde ronde als vraag.
+// Een kaart is nooit alleen een woord: er staat een plaatje bij en een korte zin uit de les (als het woord die heeft), en u hoort het woord.
+//   nieuw woord        -> eerst leren: woord, plaatje, zin, betekenis en geluid. Daarna komt het in dezelfde ronde als vraag.
 //   vak 0 en 1         -> kiezen: u ziet het Nederlandse woord en kiest het plaatje of de betekenis (herkennen)
 //   vak 2 en hoger     -> typen: u ziet het plaatje en de betekenis en typt het Nederlandse woord (zelf maken: dat is moeilijker en blijft beter hangen)
 // Na elk antwoord: het goede antwoord met plaatje, betekenis en geluid. Fout? Dan komt de kaart in deze ronde nog een keer terug.
@@ -98,8 +99,11 @@
   const kort = (t) => App.kaal(t).replace(/[.?!,]/g, '').replace(/\s+/g, ' ').trim().replace(/^(de|het|een) /, '');
   const vormen = (nl) => nl.split(/\s+\/\s+|,\s+/).map(kort).filter(Boolean);
 
+  // de voorbeeldzin van het woord (uit de les), met een knop om hem te horen. Geen zin? Dan niets.
+  const zinRegel = (r) => (r[6] ? el('p', { class: 'kaart-zin' }, el('span', {}, r[6]), ' ', el('button', { class: 'rond', title: 'luister naar de zin', 'aria-label': 'luister naar de zin', onclick: () => Spraak.zeg(r[6]) }, '🔊')) : null);
+
   // na het antwoord: goed of fout, en altijd het woord met plaatje, betekenis en geluid
-  function nakijken(k, r, ok, klaar, uit) {
+  function nakijken(k, r, ok, klaar, uit, zinStaatEr) { // zinStaatEr: de zin stond al bij de vraag
     Spraak.zeg(k.nl);
     const verder = el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder');
     uit.textContent = '';
@@ -111,6 +115,7 @@
           el('b', {}, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
           el('div', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
           r[5] ? el('div', { class: 'klein zacht' }, r[5]) : null)),
+      zinStaatEr ? null : zinRegel(r),
       el('div', { class: 'knoppen', style: 'justify-content:center' }, verder));
     verder.focus();
     if (ok) App.goed(verder);
@@ -121,12 +126,14 @@
     if (!r) return losseKaart(k, klaar); // een woord dat niet (meer) in de woordenlijst staat
     // een nieuw woord leert u eerst; de vraag komt daarna, in dezelfde ronde
     if (k.nieuw && !k.geleerd) {
+      Spraak.zeg(k.nl);
       pagina.append(el('div', { class: 'kaart midden' },
         el('p', { class: 'zacht', en: 'a new word: look, listen and say it' }, 'Een nieuw woord. Kijk, luister en zeg het na.'),
         r[4] ? el('div', { class: 'beeld', style: 'font-size:3.4rem;line-height:1.2', 'aria-hidden': 'true' }, r[4]) : null,
         el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
         el('p', { class: 'zacht', style: 'font-style:italic', hulp: r[2] }),
         r[5] ? el('p', { class: 'klein zacht' }, r[5]) : null,
+        zinRegel(r),
         el('div', { class: 'knoppen', style: 'justify-content:center' },
           el('button', { class: 'knop', en: 'next', onclick: () => { rij.push(Object.assign({}, k, { geleerd: true })); totaal++; gedaan++; volgende(); } }, 'Verder'))));
       return;
@@ -158,11 +165,12 @@
     const knoppen = opties.map((n) => el('button', { type: 'button', class: 'optie' + (metBeeld ? ' beeld' : ''), onclick: () => {
       knoppen.forEach((b, i) => { b.disabled = true; if (opties[i] === nr) b.classList.add('goed'); });
       if (n !== nr) knoppen[opties.indexOf(n)].classList.add('fout');
-      nakijken(k, r, n === nr, klaar, uit);
+      nakijken(k, r, n === nr, klaar, uit, true);
     } }, metBeeld ? WL[n][4] : el('span', { hulp: WL[n][2] })));
     pagina.append(el('div', { class: 'kaart midden' },
       el('p', { class: 'zacht', en: metBeeld ? 'Which picture fits this word?' : 'What does this word mean?' }, metBeeld ? 'Welk plaatje past bij dit woord?' : 'Wat betekent dit woord?'),
       el('div', { class: 'groot' }, k.nl, ' ', el('button', { class: 'rond', title: 'luister', 'aria-label': 'luister', onclick: () => Spraak.zeg(k.nl) }, '🔊')),
+      zinRegel(r), // het woord in een zin: zo ziet u hoe het gebruikt wordt
       el('div', { class: 'opties' + (metBeeld ? ' beelden' : ''), style: 'max-width:520px;margin:16px auto 0;text-align:left' }, knoppen),
       uit));
   }
