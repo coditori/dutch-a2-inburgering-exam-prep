@@ -18,7 +18,8 @@ window.Account = (() => {
   const json = (s, d) => { try { const v = JSON.parse(s); return v == null ? d : v; } catch (e) { return d; } };
 
   // status: 'uit' (niet ingelogd) | 'bezig' | 'bewaard' | 'fout'
-  const staat = { beschikbaar: false, demo: false, gebruiker: null, status: 'uit', fout: '' };
+  // geladen: false zolang we nog niet weten of er een account is en of de leerling is ingelogd (de pagina toont dan een grijs vak)
+  const staat = { geladen: false, beschikbaar: false, demo: false, gebruiker: null, status: 'uit', fout: '' };
   const meld = () => document.dispatchEvent(new CustomEvent('account'));
   const zetStatus = (status, fout) => { staat.status = status; staat.fout = fout || ''; meld(); };
 
@@ -152,7 +153,11 @@ window.Account = (() => {
       if (!g) zetStatus('uit'); else if (g.uid !== was) sync(); else meld();
       af();
     }));
-  })().catch(() => { /* geen config, geen account */ }).then(meld);
+  })().catch(() => { /* geen config, geen account */ }).then(() => {
+    staat.geladen = true;
+    zet('account-kan', staat.beschikbaar ? '1' : null); // voor de volgende pagina: is er een vak "account" om plek voor te houden?
+    meld();
+  });
 
   // Verliet de leerling de pagina met nieuwe voortgang? Dan nog één keer bewaren.
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && staat.gebruiker && lees('account-afdruk') !== afdruk(alles())) sync(); });
