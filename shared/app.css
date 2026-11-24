@@ -556,3 +556,35 @@ a.prij > .icoon { width: 20px; height: 20px; color: var(--zacht); transition: tr
 a.prij:focus-visible { outline-offset: -2px; }
 @media (hover: hover) { a.prij:hover { background: var(--vlak2); } a.prij:hover > .icoon { transform: translateX(3px); color: var(--k); } }
 @media (max-width: 560px) { a.prij { grid-template-columns: 40px minmax(0, 1fr) 20px; } a.prij > .icoon { grid-row: 1; grid-column: 3; } }
+/* ---------- startpagina: de ladder met woorden. Elke trede gaat open; de woorden zijn klikbaar. ---------- */
+.treden { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; box-shadow: var(--schaduw1); overflow: hidden; }
+.trede + .trede { border-top: 1px solid var(--lijn); }
+.trede > summary { display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(120px, 28%) 20px; align-items: center; gap: 4px 14px; padding: 14px 18px; cursor: pointer; list-style: none; transition: background .15s; }
+.trede > summary::-webkit-details-marker { display: none; }
+@media (hover: hover) { .trede > summary:hover { background: var(--vlak2); } }
+.trede > summary:focus-visible { outline-offset: -2px; }
+.trede > summary > .icoon { width: 20px; height: 20px; color: var(--zacht); transition: transform .2s; }
+.trede[open] > summary > .icoon { transform: rotate(90deg); }
+.trede-nr { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--vlak2); color: var(--zacht); font-weight: 700; }
+.trede.nu .trede-nr { background: var(--accent); color: var(--op-accent); }
+.trede.af .trede-nr { background: var(--goed-zacht); color: var(--goed); }
+.trede-naam { min-width: 0; line-height: 1.35; }
+.trede-naam b { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.trede-naam > span { display: block; font-size: .9rem; }
+.trede-hier { padding: 1px 10px; border-radius: 999px; background: var(--accent-zacht); color: var(--op-accent-zacht); font-size: .72rem; font-weight: 700; }
+.trede-stand .balk { margin-bottom: 3px; }
+.trede.af .balk > i { background: var(--goed); }
+.trede-in { padding: 2px 18px 18px; }
+.trede-uitleg { margin: 0 0 12px; }
+.wchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.wchip { display: inline-block; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--lijn); background: var(--vlak); font-size: .95rem; line-height: 1.4; }
+.wchip.bezig { background: var(--accent-zacht); color: var(--op-accent-zacht); border-color: transparent; }
+.wchip.gekend { background: var(--goed-zacht); border-color: transparent; }
+.trede-uitleg .wchip { font-size: .75rem; padding: 1px 9px; }
+.trede-in .knoppen { margin-top: 14px; }
+@media (max-width: 560px) {
+  .trede > summary { grid-template-columns: 34px minmax(0, 1fr) 20px; padding: 12px 14px; }
+  .trede-stand { grid-column: 2; grid-row: 2; }
+  .trede > summary > .icoon { grid-column: 3; grid-row: 1; }
+  .trede-in { padding: 0 14px 16px; }
+}

@@ -16,7 +16,8 @@
   <p class="zacht klein" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
   <div class="examens" id="examens"></div>
   <h2 data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden · de ladder</h2>
-  <table class="ladder" id="ladder"></table>
+  <p class="zacht klein" data-en="Click a step to see its words. Click a word: you hear it and see a picture. The word then comes back in your review cards.">Klik op een trede: u ziet de woorden. Klik op een woord: u hoort het en ziet een plaatje. Het woord komt daarna terug bij Herhalen.</p>
+  <div class="treden" id="ladder"></div>
   <p class="klein" style="margin-top:28px"><a href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
 </main>
 <script src="shared/woorden.js"></script>
@@ -134,12 +135,48 @@
         }))) : null);
   }));
 
-  // ---------- de ladder: hoeveel woorden kent u per trede? ----------
-  document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => el('tr', {},
-    el('th', { class: stand[t].totaal && stand[t].bekend >= stand[t].totaal ? 'klaar' : '', 'aria-label': `Trede ${t}` }, el('span', { class: 'trede-nr' }, String(t))),
-    el('td', { en }, nl),
-    el('td', { style: 'width:30%' }, el('div', { class: 'balk' }, el('i', { style: `width:${stand[t].totaal ? Math.round(100 * stand[t].bekend / stand[t].totaal) : 0}%` })),
-      el('span', { class: 'klein zacht' }, `${stand[t].bekend} van ${stand[t].totaal} woorden`)))));
+  // ---------- de ladder: de woorden per trede. Open een trede, klik op een woord (plaatje, geluid, vertaling). ----------
+  // Elk woord heeft een kleur: gekend (groen), bezig (u zag het al) of nieuw. Een klik op een woord zet het bij Herhalen (App: de pop-up).
+  const vak = SRS.alle(), doos = new Map(); // nummer van het woord -> vak in Herhalen
+  for (const id of Object.keys(vak)) { if (vak[id].soort !== 'w') continue; const nr = App.lemmaNr(vak[id].nl); if (nr >= 0 && !doos.has(nr)) doos.set(nr, vak[id].box); }
+  const perTrede = TREDES.map(() => []);
+  App.W.lijst.forEach((r, nr) => { if (r[3] !== 'werkwoord' || r[0] <= 2) perTrede[r[0]].push(nr); }); // dezelfde woorden als in App.tredeStand
+  const nuTrede = stand.findIndex((x) => x.totaal && x.bekend < x.totaal); // de eerste trede die nog niet af is: daar bent u
+  const woord = (nr) => {
+    const r = App.W.lijst[nr], d = doos.get(nr);
+    return el('span', { class: 'wchip' + (d == null ? '' : d >= SRS.BEKEND ? ' gekend' : ' bezig') }, r[4] ? el('span', { 'aria-hidden': 'true' }, r[4] + ' ') : null, App.woorden(r[1]));
+  };
+  document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => {
+    const x = stand[t], nrs = perTrede[t], p = x.totaal ? Math.round(100 * x.bekend / x.totaal) : 0, af = x.totaal && x.bekend >= x.totaal;
+    const lijst = el('div', { class: 'wchips' });
+    let getoond = 0;
+    const meer = el('button', { type: 'button', class: 'knop licht klein', en: 'more words', onclick: () => toon(60) }, 'Meer woorden');
+    function toon(n) { // de woorden komen pas op de pagina als de trede open gaat, en dan steeds een stuk erbij
+      lijst.append(...nrs.slice(getoond, getoond + n).map(woord));
+      getoond = Math.min(nrs.length, getoond + n);
+      meer.hidden = getoond >= nrs.length;
+    }
+    const d = el('details', { class: 'trede' + (t === nuTrede ? ' nu' : '') + (af ? ' af' : '') },
+      el('summary', {},
+        el('span', { class: 'trede-nr', 'aria-hidden': 'true' }, af ? '✔' : String(t)),
+        el('span', { class: 'trede-naam' }, el('b', {}, `Trede ${t}`, t === nuTrede ? el('span', { class: 'trede-hier', en: 'you are here' }, 'u bent hier') : null), el('span', { class: 'zacht', en }, nl)),
+        el('span', { class: 'trede-stand' }, el('div', { class: 'balk' }, el('i', { style: `width:${p}%` })), el('span', { class: 'klein zacht' }, `${x.bekend} van ${x.totaal} woorden`)),
+        teken('pijl')),
+      el('div', { class: 'trede-in' },
+        el('p', { class: 'klein zacht trede-uitleg' },
+          el('span', { class: 'wchip gekend' }, 'gekend'), ' ', el('span', { class: 'wchip bezig' }, 'bezig'), ' ', el('span', { class: 'wchip' }, 'nieuw'),
+          el('span', { en: `${x.bekend} known, ${x.bezig - x.bekend} in progress, ${x.totaal - x.bezig} new` }, ` · ${x.bekend} gekend, ${x.bezig - x.bekend} bezig, ${x.totaal - x.bezig} nieuw`)),
+        lijst,
+        el('div', { class: 'knoppen' }, meer,
+          tel.nu ? el('a', { class: 'knop klein', href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`) : null)));
+    d.addEventListener('toggle', () => { if (d.open && !getoond) toon(24); });
+    return d;
+  }));
+  // een woord aangeklikt: het staat nu bij Herhalen, dus het krijgt de kleur "bezig"
+  document.getElementById('ladder').addEventListener('click', (e) => {
+    const w = e.target.closest('.w'), chip = w && w.closest('.wchip');
+    if (chip && !chip.classList.contains('gekend')) chip.classList.add('bezig');
+  });
 })();
 </script>
 </body>
