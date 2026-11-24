@@ -31,7 +31,7 @@
       const knoppen = item.vormen.map((w, i) => el('button', { class: 'optie', onclick: () => {
         knoppen.forEach((k, j) => { k.disabled = true; if (j === welk) k.classList.add('goed'); });
         if (i !== welk) knoppen[i].classList.add('fout');
-        const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = ${item.en[0]} · ${item.vormen[1]} = ${item.en[1]}`);
+        const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = `, el('bdi', { hulp: item.en[0] }), ` · ${item.vormen[1]} = `, el('bdi', { hulp: item.en[1] }));
         klaar(i === welk, el('p', {}, el('button', { class: 'rond', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, '🔊'), ` ${item.vormen[0]} – ${item.vormen[1]} `,
           el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗'), en));
       } }, el('span', { class: 'l' }, 'AB'[i]), el('span', {}, w)));

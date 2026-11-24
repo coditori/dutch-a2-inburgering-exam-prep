@@ -28,7 +28,7 @@
     el('div', { class: 'patroon' }, p.patroon),
     p.uitleg ? el('p', { class: 'zacht klein', en: p.uitleg_en || '' }, p.uitleg) : null,
     el('table', { class: 'zinnen' }, p.zinnen.map((z) => {
-      const en = el('span', { class: 'zacht klein', hidden: true, style: 'font-style:italic' }, ' ' + z.en);
+      const en = el('span', { class: 'zacht klein', hidden: true, style: 'font-style:italic' }, ' ', el('bdi', { hulp: z.en }));
       return el('tr', {}, el('td', {}, App.woorden(z.nl), en),
         el('td', { style: 'white-space:nowrap;text-align:right' },
           el('button', { class: 'rond', title: 'luister', onclick: () => Spreken.speel(z.nl) }, '🔊'), ' ',

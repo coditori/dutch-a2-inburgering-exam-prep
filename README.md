@@ -19,6 +19,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - Works on phone, tablet and desktop, with a light and a dark theme (☀ / 🌙 in the header, or automatic).
 - After a right answer the next question comes by itself; you can click back to earlier steps and questions of a lesson.
 - Start again per exam or completely on the settings page (⚙).
+- Help in English or Persian (فارسی): with the buttons, in the explanations and behind ❗ with a word. Choose the language on the settings page; the lessons themselves stay Dutch.
 
 The study plan and the plan per exam are in [`plans/`](plans/0-masterplan.md).
 
@@ -85,6 +86,7 @@ Lessons are JSON files in `<exam>/lessons/` (KNM: `knm/themes/`). After a change
 ```bash
 python3 tools/bouw.py        # rebuild shared/woorden.js and the lesson lists
 python3 tools/controleer.py  # check that the lesson only uses allowed words
+python3 tools/controleer_fa.py -v  # list English help texts that have no Persian yet (add them to shared/fa.js)
 ```
 
 ## Version

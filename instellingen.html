@@ -13,9 +13,11 @@
   <div class="kaart">
     <fieldset class="keuze" id="thema">
       <legend class="zacht klein" data-en="theme">Thema</legend>
-      <label><input type="radio" name="thema" value="auto"><span data-en="like this device">Automatisch</span></label>
-      <label><input type="radio" name="thema" value="licht"><span data-en="light">Licht</span></label>
-      <label><input type="radio" name="thema" value="donker"><span data-en="dark">Donker</span></label>
+      <div class="keuze-rij">
+        <label><input type="radio" name="thema" value="auto"><span data-en="like this device">Automatisch</span></label>
+        <label><input type="radio" name="thema" value="licht"><span data-en="light">Licht</span></label>
+        <label><input type="radio" name="thema" value="donker"><span data-en="dark">Donker</span></label>
+      </div>
     </fieldset>
   </div>
 
@@ -28,8 +30,19 @@
       <span><b data-en="go on automatically after a right answer">Vanzelf verder na een goed antwoord</b><br>
       <span class="zacht klein" data-en="After a right answer you see “Goed antwoord!” and the next question comes by itself. After a wrong answer you click “Verder” yourself.">Na een goed antwoord ziet u “Goed antwoord!” en komt de volgende vraag vanzelf. Na een fout antwoord klikt u zelf op “Verder”.</span></span></label>
     <label class="instelling"><input type="checkbox" id="en">
-      <span><b data-en="show English with the buttons">Engels bij de knoppen</b><br>
-      <span class="zacht klein">Dit is hetzelfde als de knop EN boven aan elke pagina.</span></span></label>
+      <span><b data-en="show help in your language with the buttons">Hulp in uw taal bij de knoppen</b><br>
+      <span class="zacht klein" data-en="This is the same as the button EN or FA at the top of every page.">Dit is hetzelfde als de knop EN of FA boven aan elke pagina.</span></span></label>
+  </div>
+
+  <h2 data-en="help language">Taal van de hulp</h2>
+  <div class="kaart">
+    <fieldset class="keuze" id="hulptaal">
+      <legend class="zacht klein" data-en="The lessons and the questions stay Dutch. This is the language of the help: with the buttons, in the explanation and behind ❗ with a word.">De lessen en de vragen blijven Nederlands. Dit is de taal van de hulp: bij de knoppen, bij de uitleg en achter ❗ bij een woord.</legend>
+      <div class="keuze-rij">
+        <label><input type="radio" name="hulptaal" value="en"><span>English</span></label>
+        <label><input type="radio" name="hulptaal" value="fa"><span>فارسی</span></label>
+      </div>
+    </fieldset>
   </div>
 
   <h2 data-en="your progress" id="voortgang">Uw voortgang</h2>
@@ -79,7 +92,18 @@
 
   const en = document.getElementById('en');
   en.checked = App.lees('en', false);
-  en.addEventListener('change', () => { App.schrijf('en', en.checked); document.body.classList.toggle('en', en.checked); });
+  en.addEventListener('change', () => App.kiesHulp(en.checked ? App.hulptaal() : 'uit'));
+
+  // taal van de hulp: Engels of Perzisch. Perzisch laadt shared/fa.js, daarom de pagina opnieuw laden.
+  document.querySelectorAll('#hulptaal input').forEach((r) => {
+    r.checked = r.value === App.hulptaal();
+    r.addEventListener('change', () => App.kiesHulp(r.value));
+  });
+  // de knop EN / FA in de kop verandert dezelfde keuze: houd de schakelaar en de taal hier gelijk
+  document.addEventListener('hulptaal', () => {
+    document.getElementById('en').checked = App.hulpAan();
+    document.querySelectorAll('#hulptaal input').forEach((r) => { r.checked = r.value === App.hulptaal(); });
+  });
 
   document.getElementById('versie').textContent = 'Versie ' + App.VERSIE;
 

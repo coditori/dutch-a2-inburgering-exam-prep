@@ -79,7 +79,7 @@
     const kaarten = lijst.map((w) => {
       SRS.voegToe('w:' + w.nl, { soort: 'w', nl: w.nl, en: w.en, beeld: w.beeld || '' });
       const z = el('div', { class: 'zin', hidden: true }, App.woorden(zin(w), nieuw));
-      const en = el('div', { class: 'en', hidden: true }, w.en);
+      const en = el('div', { class: 'en', hidden: true, hulp: w.en });
       const k = el('div', { class: 'wkaart' }, el('div', { class: 'beeld' }, w.beeld || '💬'), el('div', { class: 'nl' }, w.nl), z, en,
         el('div', { class: 'knoppen', style: 'justify-content:center' },
           el('button', { class: 'rond', title: 'luister', onclick: (e) => { e.stopPropagation(); Spraak.zeg(z.hidden ? w.nl : zin(w)); } }, '🔊'),
@@ -89,7 +89,7 @@
     });
     pagina.textContent = '';
     pagina.append(el('h2', { en: 'words of this theme' }, 'Woorden van dit thema'),
-      el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English. Then: a short test.' }, 'Klik op een kaart: u ziet een zin. ❗ = Engels. Daarna komt een korte test.'),
+      el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English. Then: a short test.' }, 'Klik op een kaart: u ziet een zin. ❗ = vertaling. Daarna komt een korte test.'),
       el('div', { class: 'wkaarten' }, kaarten),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: verder }, knop)));
   }
@@ -122,7 +122,7 @@
     reeks(lijst.length, (i, al, bewaar, verder) => {
       const k = lijst[i]; const id = `${tid}:${voor}${i}`;
       KNM.Kaarten.voegToe(id);
-      const en = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic' }, k.en || '');
+      const en = el('p', { class: 'zacht', hidden: true, style: 'font-style:italic', hulp: k.en });
       const achter = el('div', { hidden: !al }, el('div', { class: 'antwoord' }, App.woorden(k.a, nieuw)), el('p', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { en.hidden = !en.hidden; } }, '❗')), en);
       const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' });
       if (al) { // terugkijken: het antwoord staat er al

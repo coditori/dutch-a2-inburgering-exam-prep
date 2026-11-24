@@ -65,6 +65,11 @@ body.gerold .kop { background: var(--vlak); box-shadow: var(--schaduw2); }
 .kop a.terug { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; flex: none; transition: background .15s; }
 .kop .rond.taal { font-size: .8rem; font-weight: 700; letter-spacing: .04em; }
 body.en .kop .rond.taal { background: var(--accent-zacht); color: var(--op-accent-zacht); }
+/* menu onder de knop EN / FA: geen hulp, Engels of Perzisch */
+.taalmenu { position: absolute; top: calc(100% - 4px); right: max(8px, env(safe-area-inset-right)); z-index: 30; display: flex; flex-direction: column; min-width: 168px; padding: 6px; background: var(--vlak); border-radius: var(--rond); box-shadow: var(--schaduw3); }
+.taalmenu button { font: inherit; text-align: start; padding: 10px 14px; min-height: 44px; border: 0; border-radius: 10px; background: transparent; color: var(--tekst); cursor: pointer; }
+.taalmenu button.nu { background: var(--accent-zacht); color: var(--op-accent-zacht); font-weight: 600; }
+@media (hover: hover) { .taalmenu button:hover { background: var(--vlak2); } }
 @media (hover: hover) { .rond:hover { background: var(--lijn); } .kop .rond:hover, .kop a.terug:hover { background: var(--vlak2); } }
 
 /* Engels alleen achter de knop EN (in de kop) of ❗ (bij een woord) */
@@ -74,6 +79,13 @@ body.en .knop[data-en]::after, body.en #toast[data-en]::after { color: inherit; 
 body.en .knop[data-en] { flex-direction: column; gap: 0; line-height: 1.25; padding-block: 6px; }
 body.en .knop[data-en]::after { content: "(" attr(data-en) ")"; font-size: .72em; overflow-wrap: normal; word-break: normal; max-width: 100%; }
 [data-en]::after { overflow-wrap: normal; }
+/* hulptaal Perzisch (instellingen of de knop EN / FA): net als het Engels tussen haakjes achter het Nederlands.
+   De tekens \2068 en \2069 houden het Perzisch bij elkaar, zodat de haakjes goed blijven staan in een regel van links naar rechts.
+   Zonder Perzische tekst (geen data-fa) blijft het Engels staan. */
+body.en.fa [data-fa]::after { content: " (\2068" attr(data-fa) "\2069)"; }
+body.en.fa .knop[data-fa]::after { content: "(\2068" attr(data-fa) "\2069)"; }
+[data-hulp][dir=rtl] { text-align: right; } .wkaart [data-hulp], .weetje [data-hulp], .midden [data-hulp] { text-align: center; }
+bdi[data-hulp] { text-align: inherit; }
 
 /* voet onder aan elke pagina: wie de site maakte. De inhoud vult de ruimte, de voet staat dus altijd onderaan. */
 body > main, body > #pagina { flex: 1 0 auto; }
@@ -231,11 +243,13 @@ input:disabled, textarea:disabled { opacity: .7; }
 .instelling input[type=checkbox]:checked { background: var(--accent); border-color: var(--accent); }
 .instelling input[type=checkbox]:checked::before { left: 22px; width: 24px; height: 24px; background: var(--op-accent); }
 /* keuze uit drie: aan elkaar vast */
-.keuze { display: flex; border: 0; padding: 0; margin: 0; min-width: 0; }
-.keuze legend { padding: 0; margin-bottom: 10px; }
-.keuze label { flex: 1 1 0; min-width: 0; }
+/* de knoppen staan in een div (.keuze-rij): een fieldset zelf als flex werkt niet goed in Safari op de iPhone */
+.keuze { display: block; border: 0; padding: 0; margin: 0; min-width: 0; min-inline-size: 0; }
+.keuze-rij { display: flex; width: 100%; }
+.keuze legend { padding: 0; margin-bottom: 10px; width: 100%; max-width: 100%; white-space: normal; }
+.keuze label { flex: 1 1 0; min-width: 0; display: block; position: relative; }
 .keuze input { position: absolute; opacity: 0; pointer-events: none; }
-.keuze span { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 8px 10px; border: 1px solid var(--omtrek); margin-left: -1px; background: transparent; cursor: pointer; font-weight: 500; font-size: .95rem; transition: background .15s; }
+.keuze span { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; line-height: 1.25; gap: 0; height: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid var(--omtrek); margin-left: -1px; background: transparent; cursor: pointer; font-weight: 500; font-size: .95rem; transition: background .15s; }
 .keuze label:first-of-type span { border-radius: 999px 0 0 999px; margin-left: 0; }
 .keuze label:last-of-type span { border-radius: 0 999px 999px 0; }
 .keuze input:checked + span { background: var(--accent-zacht); color: var(--op-accent-zacht); }

@@ -88,7 +88,7 @@
       beeld ? el('div', { class: 'beeld', style: 'font-size:3rem' }, beeld) : null,
       r[5] ? el('p', { class: 'zacht' }, r[5]) : null,
       el('p', {}, el('button', { class: 'rond', title: 'Engels', onclick: () => { enEl.hidden = false; } }, '❗')));
-    const enEl = el('p', { class: 'zacht', hidden: !!beeld, style: 'font-style:italic' }, en);
+    const enEl = el('p', { class: 'zacht', hidden: !!beeld, style: 'font-style:italic', hulp: en });
     achter.append(enEl);
     const knoppen = el('div', { class: 'knoppen', style: 'justify-content:center' },
       el('button', { class: 'knop', en: 'show', onclick: () => { achter.hidden = false; knoppen.textContent = ''; knoppen.append(

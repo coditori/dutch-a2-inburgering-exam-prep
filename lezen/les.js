@@ -33,7 +33,7 @@
     const kaarten = les.woorden.map((w) => {
       SRS.voegToe('w:' + w.nl, { soort: 'w', nl: w.nl, en: w.en, beeld: w.beeld || '' });
       const zin = el('div', { class: 'zin', hidden: true }, App.woorden(w.zin, nieuw));
-      const en = el('div', { class: 'en', hidden: true }, w.en);
+      const en = el('div', { class: 'en', hidden: true, hulp: w.en });
       const kaart = el('div', { class: 'wkaart' },
         el('div', { class: 'beeld' }, w.beeld || '💬'),
         el('div', { class: 'nl' }, w.nl),
@@ -46,7 +46,7 @@
     });
     pagina.append(
       el('h2', { en: 'words' }, '1. Woorden'),
-      el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English.' }, 'Klik op een kaart: u ziet een zin. ❗ = Engels.'),
+      el('p', { class: 'zacht', en: 'Click a card for a sentence. ❗ = English.' }, 'Klik op een kaart: u ziet een zin. ❗ = vertaling.'),
       el('div', { class: 'wkaarten' }, kaarten),
       el('div', { class: 'knoppen' }, knopVerder()));
   }
