@@ -27,6 +27,13 @@ window.Spraak = (() => {
     speechSynthesis.speak(u);
   }
 
+  // Geluid begint nooit vanzelf bij het openen of verversen van een pagina: pas nadat de leerling op DEZE pagina heeft geklikt,
+  // getikt of een toets heeft ingedrukt. Daarna mag een oefening het volgende woord zelf laten horen (na "Verder" bijvoorbeeld).
+  // We houden dit zelf bij: de browser onthoudt een klik soms over een verversing heen, en zou het geluid dan toch starten.
+  let geklikt = false;
+  for (const soort of ['pointerdown', 'keydown']) window.addEventListener(soort, () => { geklikt = true; }, { capture: true, passive: true });
+  const magSpelen = () => geklikt;
+
   const extra = []; // lijsten van een examen: Spraak.map('audio/') in luisteren/ of spreken/
 
   return {
@@ -47,6 +54,7 @@ window.Spraak = (() => {
     // speelt de mp3 (sleutel) of anders de browserstem (tekst). snelheid: 1 = gewoon, 0.75 = langzaam. Geeft de Audio terug (of null).
     async zeg(tekst, opties) {
       const o = opties || {};
+      if (!magSpelen()) return null; // de pagina is net geopend: stil, tot de leerling zelf klikt
       const url = await this.adres(o.sleutel || tekst);
       if (speler) speler.pause();
       if (!url) { browserStem(tekst); return null; }
@@ -58,6 +66,7 @@ window.Spraak = (() => {
       return speler;
     },
     stop() { if (speler) speler.pause(); if ('speechSynthesis' in window) speechSynthesis.cancel(); },
+    magSpelen,
     nlStem, // de Nederlandse stem van de browser of null (voor luisteren/luisteren.js)
   };
 })();
