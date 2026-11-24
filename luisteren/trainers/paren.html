@@ -27,12 +27,12 @@
     uitleg: 'U hoort één woord. Twee woorden lijken op elkaar. Welk woord hoort u?', uitlegEn: 'You hear one word. Two words sound alike. Which one do you hear?',
     teken(doel, item, klaar) {
       const welk = Math.random() < 0.5 ? 0 : 1;
-      const regels = [{ s: 'A', t: item.vormen[welk] }];
+      const regels = [{ s: 'A', v: 1, t: item.vormen[welk] }];
       const knoppen = item.vormen.map((w, i) => el('button', { class: 'optie', onclick: () => {
         knoppen.forEach((k, j) => { k.disabled = true; if (j === welk) k.classList.add('goed'); });
         if (i !== welk) knoppen[i].classList.add('fout');
         const en = el('span', { class: 'zacht', hidden: true }, ` ${item.vormen[0]} = `, el('bdi', { hulp: item.en[0] }), `, ${item.vormen[1]} = `, el('bdi', { hulp: item.en[1] }));
-        klaar(i === welk, el('p', {}, el('button', { class: 'rond', title: 'luister', onclick: () => Luister.speel([{ s: 'A', t: item.vormen[0] }, { s: 'A', t: item.vormen[1] }]) }, App.teken('luid')), ` ${item.vormen[0]} / ${item.vormen[1]} `,
+        klaar(i === welk, el('p', {}, el('button', { class: 'rond', title: 'luister', onclick: () => Luister.speel([{ s: 'A', v: 1, t: item.vormen[0] }, { s: 'A', v: 1, t: item.vormen[1] }]) }, App.teken('luid')), ` ${item.vormen[0]} / ${item.vormen[1]} `,
           el('button', { class: 'rond', title: 'vertaling', 'aria-label': 'vertaling', onclick: () => { en.hidden = !en.hidden; } }, App.teken('vertaal')), en));
       } }, el('span', { class: 'l' }, 'AB'[i]), el('span', {}, w)));
       doel.append(Luister.speler(regels), el('div', { class: 'opties' }, knoppen));

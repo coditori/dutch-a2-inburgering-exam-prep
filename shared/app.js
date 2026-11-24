@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.23.3';
+  const VERSIE = '1.24.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -235,6 +235,7 @@ window.App = (() => {
     zon: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
     maan: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
     instel: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M2 14h4M10 8h4M18 16h4"/>',
+    stem: '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>',
     deel: '<path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
     // de balk met examens en de startpagina
     huis: '<path d="m3 10.5 9-7.5 9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/>',
@@ -281,7 +282,7 @@ window.App = (() => {
   let kopMenu = null;
   const sluitKopMenu = () => { if (kopMenu) { kopMenu.remove(); kopMenu = null; } };
   function profielKnop() {
-    const k = el('button', { type: 'button', class: 'rond profielknop', title: 'menu', 'aria-label': 'menu: profiel, instellingen en thema', 'aria-haspopup': 'menu', onclick: (e) => {
+    const k = el('button', { type: 'button', class: 'rond profielknop', title: 'menu', 'aria-label': 'menu: profiel, instellingen, stem en thema', 'aria-haspopup': 'menu', onclick: (e) => {
       e.stopPropagation();
       if (kopMenu) return sluitKopMenu();
       sluitTaalMenu();
@@ -291,6 +292,7 @@ window.App = (() => {
         el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel: log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
         el('a', { role: 'menuitem', href: WORTEL + 'mijn-woorden.html' }, regel('Mijn woorden', 'bewaar', 'my words'), Mijn.tel() ? el('span', { class: 'menu-tel' }, String(Mijn.tel())) : null),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html' }, regel('Instellingen', 'instel', 'settings')),
+        el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html#stem' }, regel('Stem kiezen', 'stem', 'choose the voice')),
         el('button', { type: 'button', role: 'menuitem', onclick: () => { sluitKopMenu(); zetThema(isDonker() ? 'licht' : 'donker'); } },
           isDonker() ? regel('Licht thema', 'zon', 'light theme') : regel('Donker thema', 'maan', 'dark theme')));
       k.parentNode.append(kopMenu);
@@ -454,7 +456,7 @@ window.App = (() => {
   // wis('lezen') = alles van één examen, wis('herhalen') = de woordkaarten, wis() = alle voortgang.
   // De instellingen (thema, Engels, slot) en de lijst Mijn woorden blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
   // 'account-in' = deze browser is ingelogd (shared/account.js); de demo-sleutels zijn het nep-account van { "demo": true }
-  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'mijn-woorden', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];
+  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'stem', 'mijn-woorden', 'profiel', 'account-in', 'account-kan', 'demo-in', 'demo-wolk', 'demo-kaart'];
   BLIJFT.push('tekst'); // de grootte van de tekst is ook een instelling
   function wis(wat) {
     const VOOR = 'dutch-exam:';

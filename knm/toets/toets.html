@@ -28,6 +28,7 @@
   let toets;
   try { toets = await Lezen.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
   const kop = App.kop(`KNM: ${toets.titel}`, '../index.html');
+  Spraak.map('../audio/'); // de opnamen van de vragen staan in knm/audio/
   const klok = el('b');
   kop.insertBefore(klok, kop.lastChild);
   const vragen = toets.vragen;

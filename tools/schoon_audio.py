@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Maakt het begin en het einde van elke mp3 stil.
 
-    python3 tools/schoon_audio.py [map ...]      # zonder map: alle mappen audio/ van de site
+    python3 tools/schoon_audio.py [map ...]      # zonder map: alle mappen audio/ van de site, ook die van de vertellers (audio/<stem>/)
 
 De stem (Piper) laat voor en na de spraak wat ruis staan, en het bestand houdt daar midden in op. Dat hoor je als
 ruis of een tik na het woord. Dit script zoekt per bestand waar de spraak begint en eindigt, laat het geluid daar
@@ -56,7 +56,7 @@ def maak_schoon(pad):
 
 
 def main():
-    mappen = [Path(a) for a in sys.argv[1:]] or sorted(p for p in ROOT.glob("*/audio") if p.is_dir())
+    mappen = [Path(a) for a in sys.argv[1:]] or sorted(p for patroon in ("*/audio", "*/audio/*") for p in ROOT.glob(patroon) if p.is_dir())
     for m in mappen:
         bestanden = sorted(m.glob("*.mp3"))
         n = sum(maak_schoon(p) for p in bestanden)

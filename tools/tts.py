@@ -1,26 +1,14 @@
 #!/usr/bin/env python3
-"""Maakt mp3's voor alle woorden van de site (stem: Piper, nl_NL-ronnie-medium):
+"""De teksten met een luidspreker-knop die bij alle examens horen (shared/audio/<stem>/):
 de woordkaarten van de lessen van alle vijf examens met hun zin, de onthoud-zinnen van Lezen,
 en elk woord van de woordenlijst (shared/woorden.js) met zijn voorbeeldzin. Draai eerst tools/bouw.py.
 
-Eén keer klaarzetten (Piper heeft Python 3.12 nodig):
-    uv venv --python 3.12 tools/.venv
-    uv pip install --python tools/.venv/bin/python piper-tts
-    tools/.venv/bin/python -m piper.download_voices nl_NL-ronnie-medium --data-dir tools/voices
-
-Draaien (slaat over wat er al is):
-    tools/.venv/bin/python tools/tts.py
-
-Uitvoer: shared/audio/<code>.mp3 en shared/audio/index.json (tekst -> bestand).
-Staat een tekst niet in index.json, dan gebruikt de pagina de stem van de browser. Die klinkt op veel computers slecht
-(een robotstem, soms met ruis). Daarom heeft elk woord dat een leerling kan aanklikken hier een mp3.
+Dit script maakt zelf geen opnamen: dat doet tools/tts_stemmen.py, voor elke stem uit shared/stemmen.json.
+Staat een tekst niet in de index.json van een stem, dan blijft het stil: de site gebruikt nooit de stem van de browser.
+Daarom heeft elk woord dat een leerling kan aanklikken een mp3 (tools/controleer_stemmen.py kijkt of dat klopt).
 """
-import hashlib
 import json
-import subprocess
 import sys
-import tempfile
-import wave
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -28,12 +16,11 @@ import re  # noqa: E402
 
 from woordenlib import EXAMENS, ROOT, lessen  # noqa: E402  (de teksten en gesprekken van Luisteren, Spreken en KNM: zie tools/ttslib.py)
 
-STEM = ROOT / "tools" / "voices" / "nl_NL-ronnie-medium.onnx"
-UIT = ROOT / "shared" / "audio"
+PROEF = "Goedemorgen. Ik lees de woorden en de zinnen voor."  # de proef van een stem op de pagina Instellingen (shared/audio.js: PROEF)
 
 
 def teksten():
-    uit = []
+    uit = [PROEF]
     for x in EXAMENS:
         for _, les in lessen(x):
             for w in les.get("woorden", []) or []:
@@ -55,29 +42,3 @@ def uitspraak(t):
     t = re.sub(r"\s*\.\.\.\s*", ", ", t)
     t = re.sub(r"[()]", "", t)
     return re.sub(r"\s+", " ", re.sub(r",\s*([,.?!])", r"\1", t)).strip(" ,") or t
-
-
-def main():
-    from piper import PiperVoice
-    stem = PiperVoice.load(str(STEM))
-    UIT.mkdir(parents=True, exist_ok=True)
-    index_pad = UIT / "index.json"
-    index = json.loads(index_pad.read_text(encoding="utf-8")) if index_pad.exists() else {}
-    nieuw = 0
-    for t in teksten():
-        naam = hashlib.sha1(t.encode("utf-8")).hexdigest()[:12] + ".mp3"
-        if index.get(t) == naam and (UIT / naam).exists():
-            continue
-        with tempfile.NamedTemporaryFile(suffix=".wav") as tmp:
-            with wave.open(tmp.name, "wb") as w:
-                stem.synthesize_wav(uitspraak(t), w)
-            # het einde loopt zacht weg (80 ms): Piper laat aan het einde wat ruis staan, en zonder dit eindigt het bestand met een tik
-            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", tmp.name, "-af", "areverse,afade=t=in:d=0.08,areverse", "-ac", "1", "-b:a", "48k", str(UIT / naam)], check=True)
-        index[t] = naam
-        nieuw += 1
-    index_pad.write_text(json.dumps(index, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
-    print(f"{nieuw} nieuwe mp3's, {len(index)} in totaal in {UIT}")
-
-
-if __name__ == "__main__":
-    main()

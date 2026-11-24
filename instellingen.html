@@ -21,6 +21,12 @@
     </fieldset>
   </div>
 
+  <h2 data-en="voice" id="stem">Stem</h2>
+  <div class="kaart">
+    <p class="zacht klein" style="margin-top:0" data-en="Choose the voice that reads the words and the sentences. Click the speaker to hear a voice. The conversations in Luisteren and the questions in Spreken keep their own voices.">Kies de stem die de woorden en de zinnen voorleest. Klik op de luidspreker om een stem te horen. De gesprekken bij Luisteren en de vragen bij Spreken houden hun eigen stemmen.</p>
+    <div id="stemmen" role="radiogroup" aria-label="stem"></div>
+  </div>
+
   <h2 data-en="lessons">Lessen</h2>
   <div class="kaart">
     <label class="instelling"><input type="checkbox" id="open">
@@ -103,6 +109,21 @@
   themaKeuze();
   document.addEventListener('thema', themaKeuze); // ook als de knop ☀ / 🌙 in de kop is gebruikt
   document.getElementById('thema').addEventListener('change', (e) => App.zetThema(e.target.value));
+
+  // de stem van de verteller: de lijst staat in shared/stemmen.json, de keuze in Spraak (shared/audio.js)
+  const stemDoel = document.getElementById('stemmen');
+  const stemKeuze = () => stemDoel.querySelectorAll('input').forEach((r) => { r.checked = r.value === Spraak.stem(); });
+  fetch('shared/stemmen.json', { cache: 'no-cache' }).then((r) => r.json()).then((lijst) => {
+    for (const s of lijst.stemmen) {
+      stemDoel.append(el('div', { class: 'stemrij' },
+        el('label', {}, el('input', { type: 'radio', name: 'stem', value: s.id, onchange: () => Spraak.kiesStem(s.id) }),
+          el('span', {}, el('b', {}, s.naam), ' ', el('span', { class: 'zacht', en: s.soort === 'vrouw' ? 'woman' : 'man' }, s.soort))),
+        el('button', { type: 'button', class: 'rond', title: 'luister', 'aria-label': 'luister naar ' + s.naam, onclick: () => Spraak.proef(s.id) }, App.teken('luid'))));
+    }
+    stemKeuze();
+    if (location.hash === '#stem') document.getElementById('stem').scrollIntoView();
+  }).catch(() => { /* geen lijst: geen keuze */ });
+  document.addEventListener('account-gegevens', stemKeuze); // de keuze kwam van het account
 
   const en = document.getElementById('en');
   en.checked = App.lees('en', false);

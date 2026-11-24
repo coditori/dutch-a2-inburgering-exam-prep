@@ -1,6 +1,9 @@
 // Perzische hulp: bij elke Engelse hulptekst de Perzische. Geladen door shared/app.js als de hulptaal Perzisch is.
 // Nieuwe Engelse tekst in een les? Draai tools/controleer_fa.py: dat toont wat hier nog ontbreekt.
 window.FA = {
+"Choose the voice that reads the words and the sentences. Click the speaker to hear a voice. The conversations in Luisteren and the questions in Spreken keep their own voices.": "صدایی را انتخاب کنید که کلمه‌ها و جمله‌ها را می‌خواند. برای شنیدن یک صدا روی بلندگو کلیک کنید. گفتگوهای Luisteren و سؤال‌های Spreken صدای خودشان را نگه می‌دارند.",
+"choose the voice": "انتخاب صدا",
+"voice": "صدا",
 "'een leuk programma' (het-word: no -e after 'een').": "'een leuk programma' (کلمه het: بعد از 'een' بدون -e).",
 "'Hij moet zijn baas bellen': moet + verb at the end.": "'Hij moet zijn baas bellen': moet + فعل در آخر.",
 "'Hoe vaak u dat doet' is about you: 'Ik zwem één keer per week' or 'Ik zwem nooit'.": "'Hoe vaak u dat doet' درباره شما است: 'Ik zwem één keer per week' یا 'Ik zwem nooit'.",
