@@ -823,3 +823,13 @@ body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
 
 /* eigen tekeningen tussen de emoji (shared/plaatjes/, in een les geschreven als [[keuken]]): even groot als een emoji */
 .plaatje { display: inline-block; height: 1.15em; width: 1.15em; vertical-align: -0.2em; }
+/* Staat de hulp aan (knop EN / FA)? Dan staat de vertaling meteen op elke woordkaart van een les, zonder klik. */
+body.en .wkaart .en[hidden] { display: block !important; }
+body.en .wkaart .rond[title=vertaling] { display: none; }
+/* de balk onder een oefenexamen (Vorige, 1 / 25, Overzicht, Volgende): op elke telefoon op één regel */
+@media (max-width: 560px) {
+  .voet { flex-wrap: nowrap; gap: 8px; }
+  .voet > span { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; font-size: .9rem; }
+  .voet .knop { flex: none; padding-inline: 14px; }
+  .voet .knop.klein { min-height: 32px; padding: 2px 10px; }
+}
