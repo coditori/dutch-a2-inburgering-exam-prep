@@ -29,7 +29,7 @@
   // de balk is klikbaar: terug naar elke stap waar u al was (stand.max)
   // Een stap met een foute vraag is rood: een klik brengt u terug, en met "Probeer opnieuw" maakt u de vraag nog een keer.
   const foutInItem = (ii) => vragen.some((q, nr) => q.ii === ii && stand.antwoorden[nr] != null && stand.antwoorden[nr] !== 0);
-  const ga = (i) => { Luister.stop(); stand.stap = i; bewaar(); toon(); };
+  const ga = (i) => { Luister.stop(); App.sprong(stand, i); stand.stap = i; bewaar(); toon(); };
   const balk = () => App.balk({ n: stappen.length, nu: stand.stap, max: stand.max, ga, staat: (i) => (stappen[i].soort === 'item' && foutInItem(stappen[i].ii) ? 'fout' : null) });
 
   // ---------- woorden ----------
@@ -167,6 +167,14 @@
     const oud = Luister.P.lessen[les.id] || { beste: 0, keer: 0 };
     const dict = stand.dictee.filter(Boolean);
     const dictProcent = dict.length ? Math.round(dict.reduce((n, d) => n + d.procent, 0) / dict.length) : null;
+    // rondgekeken in een les die al gehaald is, en niet alle vragen gemaakt: geen nieuwe score
+    if (App.bladert(stand, oud) && vragen.some((_, i) => stand.antwoorden[i] == null)) {
+      const volgende = index[index.findIndex((l) => l.id === les.id) + 1], weg = () => App.schrijf('luisteren-bezig', null);
+      return pagina.append(App.alGehaald(oud, [
+      volgende ? el('a', { class: 'knop', href: `les.html?les=${volgende.id}`, en: 'next lesson', onclick: weg }, `Volgende les: ${volgende.id}`) : null,
+      el('button', { class: 'knop licht', en: 'do the lesson again', onclick: () => { weg(); location.reload(); } }, 'Doe de les opnieuw'),
+      el('a', { class: 'knop licht', href: 'index.html', en: 'overview', onclick: weg }, 'Overzicht')]));
+    }
     if (!stand.geteld) {
       Luister.P.lessen[les.id] = { score: goed, beste: Math.max(oud.beste, goed), totaal, keer: oud.keer + 1, dictee: dictProcent, datum: new Date().toISOString().slice(0, 10), sec: Math.round((Date.now() - stand.start) / 1000) };
       Luister.bewaar(); stand.geteld = true; bewaar();
@@ -194,6 +202,7 @@
     pagina.textContent = '';
     stand.stap = Math.max(0, Math.min(stand.stap, stappen.length - 1));
     stand.max = Math.max(stand.max || 0, stand.stap, App.vrijTot(Luister.P.lessen[les.id], stappen.length)); // een les die u al haalde is helemaal open
+    stand.ver = Math.max(stand.ver || 0, stand.stap);
     balk();
     const s = stappen[stand.stap];
     if (s.soort === 'woorden') toonWoorden(); else if (s.soort === 'item') toonItem(s.ii);

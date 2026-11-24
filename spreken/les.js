@@ -30,7 +30,7 @@
   const bewaar = () => { if (!terugModus) App.schrijf('spreken-bezig', stand); };
 
   // de balk is klikbaar: terug naar elke stap waar u al was (stand.max). Bij "vragen van eerder" is er geen stap 0 (uitleg).
-  const balk = () => App.balk({ n: items.length + 2, nu: stand.stap, max: stand.max, min: terugModus ? 1 : 0, ga: (i) => { stand.stap = i; bewaar(); toon(); } });
+  const balk = () => App.balk({ n: items.length + 2, nu: stand.stap, max: stand.max, min: terugModus ? 1 : 0, ga: (i) => { App.sprong(stand, i); stand.stap = i; bewaar(); toon(); } });
   const verder = () => { stand.stap++; bewaar(); toon(); };
 
   function toonUitleg() {
@@ -136,6 +136,14 @@
       return;
     }
     const oud = Spreken.P.lessen[les.id] || { beste: 0, keer: 0 };
+    // rondgekeken in een les die al gehaald is (stappen overgeslagen in de balk): geen nieuwe score
+    if (App.bladert(stand, oud)) {
+      const volgende = index[index.findIndex((l) => l.id === les.id) + 1], weg = () => App.schrijf('spreken-bezig', null);
+      return pagina.append(App.alGehaald(oud, [
+      volgende ? el('a', { class: 'knop', href: `les.html?les=${volgende.id}`, en: 'next lesson', onclick: weg }, `Volgende les: ${volgende.id}`) : null,
+      el('button', { class: 'knop licht', en: 'do the lesson again', onclick: () => { weg(); location.reload(); } }, 'Doe de les opnieuw'),
+      el('a', { class: 'knop licht', href: 'index.html', en: 'overview', onclick: weg }, 'Overzicht')]));
+    }
     if (!stand.geteld) {
       Spreken.P.lessen[les.id] = { score: goed, beste: Math.max(oud.beste, goed), totaal, keer: oud.keer + 1, datum: new Date().toISOString().slice(0, 10) };
       Spreken.bewaar();
@@ -159,6 +167,7 @@
     pagina.textContent = '';
     stand.stap = Math.max(0, Math.min(stand.stap, items.length + 1));
     stand.max = Math.max(stand.max || 0, stand.stap, App.vrijTot(Spreken.P.lessen[les.id], items.length + 2)); // een les die u al haalde is helemaal open
+    stand.ver = Math.max(stand.ver || 0, stand.stap);
     balk();
     if (!items.length) { pagina.append(el('p', { class: 'kaart' }, 'Er zijn vandaag geen vragen die terugkomen.'), el('a', { class: 'knop', href: 'index.html' }, 'Overzicht')); return; }
     if (stand.stap === 0) toonUitleg();
