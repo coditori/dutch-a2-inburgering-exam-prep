@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.23.2';
+  const VERSIE = '1.23.3';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -40,8 +40,18 @@ window.App = (() => {
       else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
       else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
     }
-    for (const k of kinderen.flat()) if (k != null && k !== false) e.append(k);
+    for (const k of kinderen.flat()) if (k != null && k !== false) e.append(typeof k === 'string' && k.includes('[[') ? metPlaatjes(k) : k);
     return e;
+  }
+  // Eigen plaatjes. Voor een keuken, een kamer of een tafel bestaat geen emoji; daar staat in de les "[[keuken]]".
+  // Dat wordt de tekening shared/plaatjes/keuken.svg, even groot als een emoji ernaast. De rest van de tekst blijft tekst.
+  function metPlaatjes(tekst) {
+    const f = document.createDocumentFragment();
+    tekst.split(/\[\[([a-z-]+)\]\]/).forEach((stuk, i) => {
+      if (i % 2) f.append(el('img', { class: 'plaatje', src: WORTEL + 'shared/plaatjes/' + stuk + '.svg', alt: '', draggable: 'false' }));
+      else if (stuk) f.append(stuk);
+    });
+    return f;
   }
 
   // woord -> regels uit de woordenlijst
@@ -59,6 +69,13 @@ window.App = (() => {
     }
     const nr = lemmas[kaal(nl).trim()];
     return nr == null ? -1 : nr;
+  }
+
+  // Het nummer van een regel van de woordenlijst. Eerst de hele regel ("duur / goedkoop"), anders een deel ervan ("de koffie").
+  let regelNrs = null;
+  function lijstNr(nl) {
+    if (!regelNrs) { regelNrs = new Map(); W.lijst.forEach((r, i) => { if (!regelNrs.has(r[1])) regelNrs.set(r[1], i); }); }
+    return regelNrs.has(nl) ? regelNrs.get(nl) : lemmaNr(nl);
   }
 
   // tekst -> stukjes met klikbare woorden. nieuw = Set met regelnummers van de nieuwe woorden van de les
@@ -115,7 +132,7 @@ window.App = (() => {
       lijst() {
         const a = alle();
         return Object.keys(a).filter((nl) => !a[nl].weg).map((nl) => {
-          const nr = lemmaNr(nl);
+          const nr = lijstNr(nl);
           return { nl, sinds: a[nl].sinds || 0, n: a[nl].n || '', regel: nr < 0 || W.lijst[nr][1] !== nl ? null : zoekNr(nr) };
         }).sort((x, y) => y.sinds - x.sinds);
       },
@@ -146,7 +163,7 @@ window.App = (() => {
     return k;
   }
   function bewaarKnop(woord, metTekst) {
-    const nr = lemmaNr(woord);
+    const nr = lijstNr(woord);
     if (nr < 0) return null; // niet in de woordenlijst: geen vertaling en geen geluid, dus niet te bewaren
     const nl = W.lijst[nr][1];
     const tekst = metTekst ? el('span', {}) : null;

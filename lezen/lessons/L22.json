@@ -28,7 +28,7 @@
   {
    "nl": "de wasmachine",
    "en": "washing machine",
-   "beeld": "🧺",
+   "beeld": "[[wasmachine]]",
    "zin": "De wasmachine staat in de badkamer.",
    "thema": "wonen"
   },
@@ -55,7 +55,7 @@
   {
    "nl": "verkopen",
    "en": "to sell",
-   "beeld": "💱",
+   "beeld": "🏷️💶",
    "zin": "Ik verkoop mijn oude auto.",
    "thema": "winkelen"
   },

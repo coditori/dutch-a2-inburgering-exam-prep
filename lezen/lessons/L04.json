@@ -7,21 +7,21 @@
   {
    "nl": "de kamer",
    "en": "room",
-   "beeld": "🛋️",
+   "beeld": "[[kamer]]",
    "zin": "Mijn kamer is klein.",
    "thema": "wonen"
   },
   {
    "nl": "de keuken",
    "en": "kitchen",
-   "beeld": "🍳",
+   "beeld": "[[keuken]]",
    "zin": "De keuken is nieuw.",
    "thema": "wonen"
   },
   {
    "nl": "de tafel",
    "en": "table",
-   "beeld": "🍽️",
+   "beeld": "[[tafel]]",
    "zin": "Het eten staat op tafel.",
    "thema": "wonen"
   },
@@ -87,7 +87,7 @@
      "o": [
       "👵🪑🌳",
       "👵🛏️🌳",
-      "👵🪑🍳"
+      "👵🪑[[keuken]]"
      ]
     }
    ]
@@ -115,9 +115,9 @@
    "vragen": [
     {
      "o": [
-      "👨🍳",
+      "👨🍳[[keuken]]",
       "👨🛏️",
-      "👩🍳"
+      "👩🍳[[keuken]]"
      ]
     }
    ]
@@ -130,9 +130,9 @@
    "vragen": [
     {
      "o": [
-      "🍞🍽️🛋️",
-      "🧀🍽️🛋️",
-      "🍞🍽️🌳"
+      "🍞[[tafel]][[kamer]]",
+      "🧀[[tafel]][[kamer]]",
+      "🍞[[tafel]]🌳"
      ]
     }
    ]

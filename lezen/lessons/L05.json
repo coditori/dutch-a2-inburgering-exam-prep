@@ -35,7 +35,7 @@
   {
    "nl": "de avond",
    "en": "evening",
-   "beeld": "🌆",
+   "beeld": "🌃",
    "zin": "In de avond ben ik moe.",
    "thema": "tijd"
   },
@@ -49,7 +49,7 @@
   {
    "nl": "het weekend",
    "en": "weekend",
-   "beeld": "🎈",
+   "beeld": "📅🎉",
    "zin": "In het weekend ben ik vrij.",
    "thema": "tijd"
   },
@@ -87,7 +87,7 @@
      "o": [
       "🌅☕",
       "🌙☕",
-      "🌅🍵"
+      "🌅🫖"
      ]
     }
    ]
@@ -100,9 +100,9 @@
    "vragen": [
     {
      "o": [
-      "🕗🌆🍽️",
-      "🕗🌅🍽️",
-      "🕑🌆🍽️"
+      "8:00 🌃🍽️",
+      "8:00 🌅🍽️",
+      "11:00 🌃🍽️"
      ]
     }
    ]

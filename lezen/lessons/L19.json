@@ -21,14 +21,14 @@
   {
    "nl": "de apotheek",
    "en": "pharmacy",
-   "beeld": "💊",
+   "beeld": "💊🏪",
    "zin": "Ik haal een medicijn bij de apotheek.",
    "thema": "gezondheid"
   },
   {
    "nl": "het medicijn",
    "en": "medicine",
-   "beeld": "🧴",
+   "beeld": "💊",
    "zin": "Dit medicijn helpt goed.",
    "thema": "gezondheid"
   },

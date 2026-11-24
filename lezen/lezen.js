@@ -73,14 +73,16 @@ window.Lezen = (() => {
   function vraag(doel, v, opties) {
     const o = opties || {};
     const volgorde = o.volgorde || App.schud(v.o.map((_, i) => i));
-    const plaatjes = v.o.every((x) => !/[A-Za-z]/.test(x));
+    const plaatjes = v.o.every((x) => !/[A-Za-z]/.test(x.replace(/\[\[[a-z-]+\]\]/g, ''))); // [[kamer]] is een eigen tekening (App.el), geen tekst
     doel.textContent = '';
     const blok = el('div', { class: 'vraag' });
     if (v.sit) blok.append(el('p', { class: 'sit' }, App.woorden(v.sit, o.nieuw)));
     blok.append(v.v ? el('p', { class: 'v' }, App.woorden(v.v, o.nieuw)) : el('p', { class: 'v', en: 'Choose the picture.' }, 'Kies het plaatje.'));
     const rij = el('div', { class: 'opties' + (plaatjes ? ' beelden' : '') });
     const knoppen = volgorde.map((nr, plek) => {
-      const k = el('button', { class: 'optie' + (plaatjes ? ' beeld' : ''), type: 'button' },
+      // een antwoord zonder letters maar ook zonder plaatje (een telefoonnummer, een prijs, een tijd): groot, maar niet zo groot als een emoji
+      const getal = plaatjes && !/\p{Extended_Pictographic}|\[\[/u.test(v.o[nr]);
+      const k = el('button', { class: 'optie' + (plaatjes ? ' beeld' : '') + (getal ? ' getal' : ''), type: 'button' },
         plaatjes ? v.o[nr] : [el('span', { class: 'l' }, LETTERS[plek]), el('span', {}, v.o[nr])]);
       k.addEventListener('click', () => kies(nr));
       rij.append(k);

@@ -58,7 +58,7 @@
   {
    "nl": "de markt",
    "en": "market",
-   "beeld": "⛺",
+   "beeld": "[[markt]]",
    "zin": "De markt is op maandag.",
    "thema": "winkelen"
   },
@@ -112,8 +112,8 @@
    "vragen": [
     {
      "o": [
-      "👩🛍️⛺",
-      "👨🛍️⛺",
+      "👩🛍️[[markt]]",
+      "👨🛍️[[markt]]",
       "👩🛍️🚉"
      ]
     }

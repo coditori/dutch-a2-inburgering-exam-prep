@@ -57,14 +57,14 @@
   {
    "nl": "de weg",
    "en": "road / way",
-   "beeld": "🛤️",
+   "beeld": "🛣️",
    "zin": "De weg is dicht.",
    "thema": "vervoer"
   },
   {
    "nl": "de chauffeur",
    "en": "driver",
-   "beeld": "🧑‍✈️",
+   "beeld": "🧑‍✈️🚌",
    "zin": "De chauffeur van de bus helpt u.",
    "thema": "vervoer"
   }
