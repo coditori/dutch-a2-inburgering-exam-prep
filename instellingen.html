@@ -34,6 +34,20 @@
       <span class="zacht klein" data-en="This is the same as the button EN or FA at the top of every page.">Dit is hetzelfde als de knop EN of FA boven aan elke pagina.</span></span></label>
   </div>
 
+  <h2 data-en="text size" id="tekst-kop">Grootte van de tekst</h2>
+  <div class="kaart">
+    <fieldset class="keuze tekstkeuze" id="tekst">
+      <legend class="zacht klein" data-en="Bigger letters, pictures and buttons on every page. Choose what reads easily for you.">Grotere letters, plaatjes en knoppen op elke pagina. Kies wat u goed kunt lezen.</legend>
+      <div class="keuze-rij">
+        <label><input type="radio" name="tekst" value="klein"><span data-en="small"><b style="font-size:.9em" aria-hidden="true">Aa</b>Klein</span></label>
+        <label><input type="radio" name="tekst" value="gewoon"><span data-en="normal"><b style="font-size:1.1em" aria-hidden="true">Aa</b>Gewoon</span></label>
+        <label><input type="radio" name="tekst" value="groot"><span data-en="large"><b style="font-size:1.35em" aria-hidden="true">Aa</b>Groot</span></label>
+        <label><input type="radio" name="tekst" value="extra"><span data-en="extra large"><b style="font-size:1.6em" aria-hidden="true">Aa</b>Extra groot</span></label>
+      </div>
+    </fieldset>
+    <p class="tekstproef" id="tekstproef"><span aria-hidden="true">🚲</span> Zij gaat met de fiets naar de winkel.</p>
+  </div>
+
   <h2 data-en="help language">Taal van de hulp</h2>
   <div class="kaart">
     <fieldset class="keuze" id="hulptaal">
@@ -103,6 +117,12 @@
   document.addEventListener('hulptaal', () => {
     document.getElementById('en').checked = App.hulpAan();
     document.querySelectorAll('#hulptaal input').forEach((r) => { r.checked = r.value === App.hulptaal(); });
+  });
+
+  // grootte van de tekst: meteen te zien, op deze pagina en daarna op alle andere
+  document.querySelectorAll('#tekst input').forEach((r) => {
+    r.checked = r.value === App.tekst();
+    r.addEventListener('change', () => App.zetTekst(r.value));
   });
 
   document.getElementById('versie').textContent = 'Versie ' + App.VERSIE;
