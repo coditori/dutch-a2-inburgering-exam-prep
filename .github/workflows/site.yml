@@ -43,7 +43,18 @@ jobs:
       # zo haalt de browser na een nieuwe versie de nieuwe bestanden, ook als hij de oude lang mag bewaren.
       - name: Verse scripts en stijl voor elke bezoeker
         run: python3 tools/cachebreker.py "${GITHUB_SHA::8}" .
-      - uses: actions/configure-pages@v5
+      - id: pages
+        uses: actions/configure-pages@v5
+      # Wat WhatsApp en andere apps laten zien bij een link naar de site: titel, tekst en plaatje (tools/deelkaart.py)
+      - name: Deelkaart in elke pagina
+        env:
+          ADRES: ${{ steps.pages.outputs.base_url }}
+        run: |
+          if [ -z "$ADRES" ]; then
+            echo "Het adres van de site is onbekend: geen deelkaart deze keer."
+            exit 0
+          fi
+          python3 tools/deelkaart.py "$ADRES" .
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
