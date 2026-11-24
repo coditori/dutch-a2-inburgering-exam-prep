@@ -402,7 +402,7 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 @media (max-width: 800px) and (max-height: 700px) { body.geen-woorden .examen.twee.kort > section:first-child > div[style*="3rem"] { display: none; } }
 
 /* knop Delen in de kop. Tijdens een toets (de klok loopt) is hij weg: dan is er geen plek en hoeft het niet. */
-.kop:has(> b:not(:empty)) .deel, .kop:has(> b:not(:empty)) .profielknop { display: none; }
+.kop:has(> b:not(:empty)) .deel { display: none; }
 
 /* ---------- de balk met examens: Start, Lezen, Luisteren, Schrijven, Spreken, KNM ----------
    Alleen op de startpagina en de vijf overzichten (App.kop). Breed scherm: in de kop. Telefoon en tablet: vast onder aan het scherm. */
@@ -518,8 +518,6 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 /* ---------- account: de knop Profiel in de kop, en inloggen met Google op de profielpagina ---------- */
 .kop .profielknop.in { background: var(--accent); color: var(--op-accent); width: 36px; height: 36px; margin: 0 4px; font-weight: 700; font-size: .95rem; }
 @media (hover: hover) { .kop .profielknop.in:hover { background: var(--accent); filter: brightness(1.1); } }
-/* telefoon: het thema kiest u bij Instellingen; zo is er plek voor de knop Profiel */
-@media (max-width: 560px) { .kop .themaknop { display: none; } }
 .acc { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .acc > div:first-of-type { flex: 1 1 220px; min-width: 0; }
 .acc h3 { margin: 0 0 2px; font-size: 1.05rem; }
@@ -541,3 +539,10 @@ body.gerold .kop .profielknop.tip::after { box-shadow: 0 0 0 2px var(--vlak); }
 #accounttip:empty { display: none; }
 #accounttip .acc { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--schaduw1); }
 #accounttip .ex-icoon { color: var(--accent); background: var(--accent-zacht); }
+/* het menu achter de knop Profiel: profiel, instellingen, thema. Zelfde vak als het taalmenu, met een teken voor elke regel. */
+.kopmenu { right: max(52px, calc(44px + env(safe-area-inset-right))); min-width: 220px; }
+.kopmenu a, .kopmenu button { display: flex; align-items: center; gap: 12px; font: inherit; text-align: start; padding: 10px 14px; min-height: 44px; border: 0; border-radius: 10px; background: transparent; color: var(--tekst); text-decoration: none; cursor: pointer; }
+.kopmenu .icoon { width: 20px; height: 20px; flex: none; color: var(--zacht); }
+@media (hover: hover) { .kopmenu a:hover { background: var(--vlak2); } }
+/* op de startpagina en de overzichten is er geen knop Delen in de kop: delen doet u daar met uw profiel */
+body.met-nav .kop .deel { display: none; }
