@@ -158,7 +158,7 @@
     App.sluitPop(); Spraak.stop();
     pagina.textContent = '';
     stand.stap = Math.max(0, Math.min(stand.stap, items.length + 1));
-    stand.max = Math.max(stand.max || 0, stand.stap);
+    stand.max = Math.max(stand.max || 0, stand.stap, App.vrijTot(Spreken.P.lessen[les.id], items.length + 2)); // een les die u al haalde is helemaal open
     balk();
     if (!items.length) { pagina.append(el('p', { class: 'kaart' }, 'Er zijn vandaag geen vragen die terugkomen.'), el('a', { class: 'knop', href: 'index.html' }, 'Overzicht')); return; }
     if (stand.stap === 0) toonUitleg();

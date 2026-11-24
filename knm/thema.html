@@ -42,7 +42,7 @@
   // teken(i, al, bewaar, verder): al = het antwoord van eerder ({ goed, ... }) of undefined; bewaar(antwoord) onthoudt het; verder() = volgende.
   function reeks(n, teken, klaar) {
     const antw = [];
-    let max = 0;
+    let max = App.vrijTot(KNM.P.lessen[les], n + 1); // deze stap haalde u al: alle kaarten en vragen zijn open
     const ga = (i) => {
       if (i >= n) return klaar(antw.filter((a) => a && a.goed).length);
       max = Math.max(max, i);
