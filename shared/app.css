@@ -482,3 +482,35 @@ button, a, label, .wkaart { touch-action: manipulation; -webkit-tap-highlight-co
 .examens > .ex, .cijfers > div, #vandaag.kaart > * { animation: op .4s cubic-bezier(.2,.8,.2,1) both; }
 .examens > .ex:nth-child(2) { animation-delay: .04s; } .examens > .ex:nth-child(3) { animation-delay: .08s; } .examens > .ex:nth-child(4) { animation-delay: .12s; } .examens > .ex:nth-child(5) { animation-delay: .16s; }
 @media (prefers-reduced-motion: reduce) { .examens > .ex, .cijfers > div, #vandaag.kaart > * { animation: none; } }
+
+/* ---------- profiel: de kaart die de leerling deelt met vrienden (profiel.html) ---------- */
+.knop .icoon { width: 18px; height: 18px; }
+.pkaart { margin: 12px 0; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 28px; box-shadow: var(--schaduw2); overflow: hidden; }
+.pkaart-kop { position: relative; display: flex; align-items: center; gap: 16px; padding: 28px; background: var(--held); color: #fff; }
+.pkaart-kop > div:not(.ring) { flex: 1; min-width: 0; }
+.pkaart-kop h2 { margin: 0; font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem); font-weight: 750; letter-spacing: -.025em; line-height: 1.15; overflow-wrap: anywhere; }
+.pkaart-kop p { margin: 4px 0 0; opacity: .9; }
+.pkaart-kop [data-en]::after { color: inherit; opacity: .8; }
+.avatar { display: flex; align-items: center; justify-content: center; flex: none; width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,.2); border: 2px solid rgba(255,255,255,.55); font-size: 1.7rem; font-weight: 750; text-transform: uppercase; }
+.prij { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 4px 14px; padding: 14px 20px; border-top: 1px solid var(--lijn); --k: var(--accent); }
+.prij.k-lezen { --k: var(--k-lezen); } .prij.k-luisteren { --k: var(--k-luisteren); } .prij.k-schrijven { --k: var(--k-schrijven); } .prij.k-spreken { --k: var(--k-spreken); } .prij.k-knm { --k: var(--k-knm); }
+.prij .ex-icoon { width: 44px; height: 44px; border-radius: 14px; }
+.prij .ex-icoon .icoon { width: 24px; height: 24px; }
+.prij .balk { margin-top: 6px; } .prij .balk > i { background: var(--k); }
+.prij-naam { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.pcijfers { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.pcijfer { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 46px; padding: 4px 8px; border-radius: 12px; background: var(--goed-zacht); line-height: 1.15; }
+.pcijfer b { font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; } .pcijfer span { font-size: .68rem; color: var(--zacht); }
+.pkaart-voet { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 12px 20px; border-top: 1px solid var(--lijn); background: var(--vlak2); color: var(--zacht); font-size: .85rem; }
+.pnaam { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.pnaam input { flex: 1 1 200px; min-width: 0; min-height: 48px; padding: 8px 18px; font: inherit; font-size: 1.05rem; border: 1px solid var(--omtrek); border-radius: 999px; background: var(--vlak); color: var(--tekst); }
+.pnaam .knop { min-height: 48px; }
+@media (max-width: 560px) {
+  .pkaart { border-radius: 24px; } .pkaart-kop { padding: 20px; gap: 12px; } .avatar { width: 52px; height: 52px; font-size: 1.4rem; }
+  .pkaart-kop .ring { width: 72px; height: 72px; } .pkaart-kop .ring b { font-size: 1.05rem; } .pkaart-kop .ring span { display: none; }
+  .prij { grid-template-columns: 40px minmax(0, 1fr); padding: 12px 16px; gap: 4px 12px; } .prij .ex-icoon { width: 40px; height: 40px; }
+  .pcijfers { grid-column: 2; justify-content: flex-start; margin-top: 6px; } .pcijfers:empty { display: none; }
+  .pkaart-voet { padding: 12px 16px; }
+}
+
+.knop .icoon { flex: none; }

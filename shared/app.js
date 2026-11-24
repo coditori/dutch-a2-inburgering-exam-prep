@@ -2,7 +2,7 @@
 // Nodig: woorden.js, srs.js en audio.js staan vóór dit bestand in de pagina.
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
-  const VERSIE = '1.4.0';
+  const VERSIE = '1.5.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -157,9 +157,9 @@ window.App = (() => {
     u.hash = '';
     return u.href;
   }
-  function deel() {
-    const url = deelLink();
-    if (navigator.share) return navigator.share({ title: document.title, url }).catch(() => { /* de gebruiker sloot het venster */ });
+  function deel(eigenUrl, tekst) { // zonder eigenUrl: de link van deze pagina
+    const url = typeof eigenUrl === 'string' ? eigenUrl : deelLink();
+    if (navigator.share) return navigator.share(Object.assign({ title: document.title, url }, tekst ? { text: tekst } : {})).catch(() => { /* de gebruiker sloot het venster */ });
     const klaar = () => toast('✔ Link gekopieerd', 'link copied');
     const metVeld = () => { // oude browser of geen toestemming voor het klembord
       const v = el('input', { value: url, readonly: true, style: 'position:fixed;opacity:0' });
@@ -269,7 +269,7 @@ window.App = (() => {
   // ---------- opnieuw beginnen ----------
   // wis('lezen') = alles van één examen · wis('herhalen') = de woordkaarten · wis() = alle voortgang.
   // De instellingen (thema, Engels, slot) blijven altijd; uw eigen gegevens voor het formulier blijven bij wis('schrijven').
-  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal'];
+  const BLIJFT = ['instellingen', 'en', 'thema', 'hulptaal', 'profiel'];
   function wis(wat) {
     const VOOR = 'dutch-exam:';
     try {
@@ -304,7 +304,7 @@ window.App = (() => {
       terug ? el('a', { class: 'terug', href: terug, title: 'terug', 'aria-label': 'terug' }, teken('terug')) : el('span', { class: 'merk', 'aria-hidden': 'true' }, 'A2'),
       el('h1', {}, titel),
       nav(),
-      el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: deel }, teken('deel')),
+      el('button', { class: 'rond deel', title: 'deel deze pagina', 'aria-label': 'deel deze pagina', onclick: () => deel() }, teken('deel')),
       themaKnop(),
       el('a', { class: 'rond instel', href: WORTEL + 'instellingen.html', title: 'instellingen', 'aria-label': 'instellingen' }, teken('instel')),
       taalKnop());
@@ -345,12 +345,33 @@ window.App = (() => {
   // cijfer tot 10 met één cijfer achter de komma: 30 van de 40 goed = 7,5
   const cijfer = (goed, totaal) => (totaal ? Math.round((goed / totaal) * 100) / 10 : 0).toFixed(1).replace('.', ',');
   // de uitslag van een toets: groot het cijfer, klein eronder hoeveel goed. wat = 'vragen goed' of 'punten'
+  // Eronder de knop naar het profiel: daar deelt de leerling het cijfer met vrienden.
   const cijferBlok = (goed, totaal, wat) => [
     el('div', { class: 'groot midden' }, cijfer(goed, totaal), el('span', { class: 'cijfer-van' }, ' / 10')),
-    el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`)];
+    el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
+    el('p', { class: 'midden' }, el('a', { class: 'knop licht klein', href: WORTEL + 'profiel.html', en: 'share your mark with friends' }, teken('deel'), 'Deel uw cijfer'))];
+
+  // ---------- overzicht van de vijf examens: lessen, toetsen en wat de leerling al deed (startpagina en profiel) ----------
+  const NAMEN = { lezen: 'Lezen', luisteren: 'Luisteren', schrijven: 'Schrijven', spreken: 'Spreken', knm: 'KNM' };
+  const haal = (pad) => fetch(WORTEL + pad, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
+  function overzicht() {
+    return Promise.all(EXAMENS.map(async (map) => {
+      // lessen staan in lessons/ ; bij KNM in themes/ (elk thema = 4 stappen: woorden, weetjes, situaties, meer weetjes)
+      // een examen is klaar als de map een index.html heeft
+      const [klaar, lessen, themas, toetsen] = await Promise.all([
+        fetch(`${WORTEL}${map}/index.html`, { method: 'HEAD' }).then((r) => r.ok).catch(() => false),
+        haal(`${map}/lessons/index.json`), haal(`${map}/themes/index.json`), haal(`${map}/toets/index.json`)]);
+      const P = lees(map, {});
+      const n = lessen.length || 4 * themas.length;
+      const gedaan = Math.min(n, Object.values(P.lessen || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length);
+      // per toets het beste resultaat als deel van 1 (0,75 = cijfer 7,5); null = nog niet gedaan
+      const beste = (t) => { const r = (P.toets || {})[t.id] || []; return r.length ? Math.max(...r.map((y) => y.score / (y.totaal || t.vragen || 1))) : null; };
+      return { naam: NAMEN[map], map, href: `${map}/index.html`, klaar, n, gedaan, lessen, toetsen: toetsen.map((t) => Object.assign({ beste: beste(t) }, t)) };
+    }));
+  }
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
   return { VERSIE, W, lees, schrijf, kaal, el, teken, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
+    cijfer, cijferBlok, overzicht, deel, deelLink, thema, zetThema, isDonker, toast, goed, balk, vraagKnoppen, bevestig, wis };
 })();
