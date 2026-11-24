@@ -1,6 +1,7 @@
 // Perzische hulp: bij elke Engelse hulptekst de Perzische. Geladen door shared/app.js als de hulptaal Perzisch is.
 // Nieuwe Engelse tekst in een les? Draai tools/controleer_fa.py: dat toont wat hier nog ontbreekt.
 window.FA = {
+"right answers in a row": "جواب درست پشت سر هم",
 "Do you already know the basics? Click A, B, C or D: you take a practice exam right away and you get a mark and a medal. You pass with a 6.": "اصول اولیه را بلدید؟ روی A، B، C یا D کلیک کنید: همین حالا یک آزمون تمرینی می‌دهید و نمره و مدال می‌گیرید. با نمره ۶ قبول می‌شوید.",
 "I already know the basics: take a practice exam": "اصول اولیه را بلدم: آزمون تمرینی بده",
 "ready": "آماده",

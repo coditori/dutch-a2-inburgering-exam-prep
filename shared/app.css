@@ -879,3 +879,9 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .les-voortgang { display: flex; align-items: center; gap: 12px; max-width: 360px; margin: 14px auto; text-align: start; }
 .les-voortgang > div { flex: 1; min-width: 0; } .les-voortgang .balk { height: 10px; margin-bottom: 4px; } .les-voortgang .balk > i { background: var(--k, var(--accent)); transition-duration: .9s; }
 .les-voortgang.nieuw .ex-icoon { animation: m-spring .8s cubic-bezier(.2, 1.7, .4, 1) both; }
+/* een antwoord in een les: het goede antwoord springt even, een fout antwoord schudt; de melding springt mee, en groeit bij 3 goed op rij */
+.optie.goed { animation: goed-sprong .35s cubic-bezier(.2, 1.6, .4, 1); } .optie.fout { animation: fout-schud .35s; }
+@keyframes goed-sprong { 40% { transform: scale(1.04); } }
+@keyframes fout-schud { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+#toast.pop { animation: toast-sprong .4s cubic-bezier(.2, 1.6, .4, 1); } #toast.vuur { font-size: 1.1rem; padding-inline: 28px; }
+@keyframes toast-sprong { 45% { scale: 1.14; } }

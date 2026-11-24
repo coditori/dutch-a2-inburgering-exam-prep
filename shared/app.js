@@ -373,14 +373,27 @@ window.App = (() => {
     if (actie) toastEl.append(actie.href ? el('a', { class: 'toast-knop', href: actie.href, en: actie.en }, actie.naam)
       : el('button', { type: 'button', class: 'toast-knop', en: actie.en, onclick: () => { weg(); actie.doe(); } }, actie.naam));
     toastEl.classList.toggle('met-knop', !!actie);
+    toastEl.classList.remove('pop', 'vuur');
     toastEl.classList.add('aan');
     clearTimeout(toastTik);
     toastTik = setTimeout(weg, actie ? 5000 : 1400);
   }
   // Na een goed antwoord: groene melding, en de knop "Verder" wordt na een korte tijd vanzelf ingedrukt
   // (instelling "door"; staat de knop niet meer op de pagina, dan gebeurt er niets). Fout antwoord: niets, de leerling leest eerst.
+  // Drie of meer goede antwoorden na elkaar: de melding telt mee ("3 goed op rij!") met een vlam. Een fout antwoord begint opnieuw bij nul.
+  // Een fout antwoord heeft geen eigen functie: de pagina's zetten de klasse "fout" op het antwoord of op de uitslag. Daar kijken we naar.
+  let reeks = 0;
+  const FOUT = '.optie.fout, .uitslag.fout, input.fout';
+  if (window.MutationObserver) new MutationObserver((lijst) => {
+    for (const m of lijst) for (const n of (m.type === 'attributes' ? [m.target] : m.addedNodes)) {
+      if (n.nodeType === 1 && (n.matches(FOUT) || (m.type === 'childList' && n.querySelector(FOUT)))) reeks = 0;
+    }
+  }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
   function goed(knop) {
-    toast('✔ Goed antwoord!', 'correct answer');
+    reeks++;
+    if (reeks >= 3) toast(`🔥 ${reeks} goed op rij!`, 'right answers in a row'); else toast('✔ Goed antwoord!', 'correct answer');
+    void toastEl.offsetWidth; // de sprong van de melding begint bij elk goed antwoord opnieuw
+    toastEl.classList.add('pop'); toastEl.classList.toggle('vuur', reeks >= 3);
     if (knop && instellingen().door) setTimeout(() => { if (knop.isConnected && !knop.disabled) knop.click(); }, 1100);
   }
 
