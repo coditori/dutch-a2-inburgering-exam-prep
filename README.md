@@ -7,6 +7,8 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 
 ![A reading lesson: word cards with audio](docs/screenshot-les.png)
 
+![On a phone: the start page in the dark theme, and a KNM question after a right answer](docs/screenshot-mobiel.png)
+
 ## What is in it
 
 - 150 short lessons: Lezen 38, Luisteren 30, Schrijven 24, Spreken 26, KNM 32.

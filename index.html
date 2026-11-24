@@ -10,10 +10,10 @@
 <body>
 <main>
   <div class="kaart" id="vandaag"></div>
-  <h2 data-en="the ladder: the same 5 steps in every exam">De ladder</h2>
-  <table class="ladder" id="ladder"></table>
   <h2 data-en="the five exams">De vijf examens</h2>
   <div class="tegels" id="examens"></div>
+  <h2 data-en="the ladder: the same 5 steps in every exam">De ladder</h2>
+  <table class="ladder" id="ladder"></table>
   <p class="klein" style="margin-top:28px"><a href="instellingen.html#voortgang" data-en="see your progress or start again">Uw voortgang bekijken of opnieuw beginnen</a></p>
 </main>
 <script src="shared/woorden.js"></script>
@@ -41,7 +41,7 @@
       try { n = n || keer * (await (await fetch(`${map}/${pad}/index.json`, { cache: 'no-cache' })).json()).length; } catch (e) { /* deze map is er niet */ }
     }
     const gedaan = Object.values((App.lees(map, {}).lessen) || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length;
-    return { naam, href: `${map}/index.html`, klaar, n, gedaan };
+    return { naam, href: `${map}/index.html`, klaar, n, gedaan, beeld: { Lezen: '📖', Luisteren: '🎧', Schrijven: '✍️', Spreken: '💬', KNM: '🏛️' }[naam] };
   }));
   const stand = App.tredeStand();
   document.getElementById('ladder').append(...TREDES.map(([nl, en], t) => el('tr', {},
@@ -63,8 +63,9 @@
       volgende ? el('a', { class: 'knop', href: `lezen/les.html?les=${volgende.id}`, en: 'next reading lesson' }, `Lezen ${volgende.id}: ${volgende.titel}`) : null));
 
   document.getElementById('examens').append(...EXAMENS.map((x) => x.klaar
-    ? el('a', { class: 'tegel nu', href: x.href }, el('b', {}, x.naam), x.n ? `${x.gedaan} van ${x.n} lessen` : '')
-    : el('div', { class: 'tegel slot' }, el('b', {}, x.naam), el('span', { en: 'not ready yet' }, 'nog niet klaar'))));
+    ? el('a', { class: 'tegel examen-tegel', href: x.href }, el('span', { class: 'tegel-icoon' }, x.beeld), el('b', {}, x.naam),
+      el('span', { class: 'klein zacht' }, x.n ? `${x.gedaan} van ${x.n} lessen` : ''), el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` })))
+    : el('div', { class: 'tegel examen-tegel slot' }, el('span', { class: 'tegel-icoon' }, x.beeld), el('b', {}, x.naam), el('span', { class: 'klein zacht', en: 'not ready yet' }, 'nog niet klaar'))));
 })();
 </script>
 </body>
