@@ -32,10 +32,11 @@ window.Luister = (() => {
       let tempo = 1;
       if (!url && o.langzaam) { url = await Spraak.adres(sleutel(regels[i], false)); tempo = 0.75; }
       await new Promise((af) => {
-        if (!url) { // geen mp3: stem van de browser
-          if (!('speechSynthesis' in window)) return af();
+        if (!url) { // geen mp3: de Nederlandse stem van de browser. Heeft de browser die niet, dan stil (nooit een stem in een andere taal).
+          const stem = Spraak.nlStem();
+          if (!stem) return af();
           const u = new SpeechSynthesisUtterance(regels[i].t);
-          u.lang = 'nl-NL'; u.rate = o.langzaam ? 0.7 : 0.95; u.onend = af; u.onerror = af;
+          u.voice = stem; u.lang = stem.lang; u.rate = o.langzaam ? 0.7 : 0.95; u.onend = af; u.onerror = af;
           speechSynthesis.speak(u);
           return;
         }

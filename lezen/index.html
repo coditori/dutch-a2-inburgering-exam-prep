@@ -41,7 +41,8 @@
   const tel = SRS.tel();
   const klaar = lessen.filter((l) => Lezen.gehaald(l.id)).length;
   document.getElementById('vandaag').append(
-    el('h3', { en: 'today' }, 'Vandaag'),
+    ...App.sectieKop('lezen'), // het teken en de naam van dit examen: zo ziet u waar u bent
+   
     el('p', {}, `${klaar} van ${lessen.length} lessen gehaald.`),
     el('div', { class: 'knoppen' },
       el('a', { class: 'knop' + (tel.nu ? '' : ' licht'), href: 'herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`),

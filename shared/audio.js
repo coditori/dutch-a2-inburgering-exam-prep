@@ -1,15 +1,22 @@
-// Spraak: eerst een mp3 van Piper (shared/audio/, gemaakt door tools/tts.py),
-// anders de stem van de browser (speechSynthesis, nl-NL).
+// Spraak: een mp3 van Piper (shared/audio/, gemaakt door tools/tts.py). Elk woord en elke zin van de site heeft er een.
+// Is er toch geen mp3, dan de stem van de browser, maar ALLEEN als de browser een Nederlandse stem heeft.
+// Veel computers hebben die niet: dan leest een Engelse stem het Nederlands voor, en dat is erger dan stilte. Dan dus: stil.
 window.Spraak = (() => {
   const basis = new URL('audio/', document.currentScript.src).href;
   let lijst = null;
   const laad = fetch(basis + 'index.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({})).then((j) => { lijst = j; });
   let speler = null;
 
+  // de Nederlandse stem van de browser, of null. De lijst met stemmen komt soms pas later (voiceschanged).
+  const kan = 'speechSynthesis' in window;
+  const nlStem = () => (kan ? speechSynthesis.getVoices().find((v) => /^nl[-_]NL/i.test(v.lang)) || speechSynthesis.getVoices().find((v) => /^nl\b/i.test(v.lang)) || null : null);
+  if (kan) { speechSynthesis.getVoices(); if (speechSynthesis.addEventListener) speechSynthesis.addEventListener('voiceschanged', () => speechSynthesis.getVoices()); }
   function browserStem(tekst) {
-    if (!('speechSynthesis' in window)) return;
+    const stem = nlStem();
+    if (!stem) return; // geen Nederlandse stem: liever stil dan een andere taal
     const u = new SpeechSynthesisUtterance(tekst);
-    u.lang = 'nl-NL';
+    u.voice = stem;
+    u.lang = stem.lang;
     u.rate = 0.9;
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
@@ -40,9 +47,12 @@ window.Spraak = (() => {
       if (!url) { browserStem(tekst); return null; }
       speler = new Audio(url);
       speler.playbackRate = o.snelheid || 1;
-      speler.play().catch(() => browserStem(tekst));
+      // Mag het geluid nog niet spelen (de browser wacht op een klik, bijvoorbeeld net na het laden van de pagina), dan blijft het stil:
+      // de leerling klikt op de knop met de luidspreker. Alleen als het bestand zelf niet werkt, proberen we de Nederlandse browserstem.
+      speler.play().catch((e) => { if (!e || e.name !== 'NotAllowedError') browserStem(tekst); });
       return speler;
     },
     stop() { if (speler) speler.pause(); if ('speechSynthesis' in window) speechSynthesis.cancel(); },
+    nlStem, // de Nederlandse stem van de browser of null (voor luisteren/luisteren.js)
   };
 })();

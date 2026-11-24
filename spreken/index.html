@@ -34,7 +34,8 @@
   const eerste = lessen.find((l, i) => !Spreken.gehaald(l.id) && Spreken.isOpen(lessen, i));
   const terug = Spreken.terug.nu().length;
   document.getElementById('vandaag').append(
-    el('h3', { en: 'today' }, 'Vandaag'),
+    ...App.sectieKop('spreken'), // het teken en de naam van dit examen: zo ziet u waar u bent
+   
     el('p', {}, `${lessen.filter((l) => Spreken.gehaald(l.id)).length} van ${lessen.length} lessen gehaald.`),
     el('div', { class: 'knoppen' },
       el('a', { class: 'knop' + (terug ? '' : ' licht'), href: 'les.html?terug=1', en: 'questions that come back today' }, `Terug vandaag: ${terug} ${terug === 1 ? 'vraag' : 'vragen'}`),
