@@ -51,7 +51,7 @@ window.Account = (() => {
     if (hier == null) return daar;
     const a = json(hier, {}), b = json(daar, {});
     if (EXAMENS.includes(sleutel)) return JSON.stringify(Object.assign({}, b, a, { lessen: besteVan(a.lessen, b.lessen), trainers: besteVan(a.trainers, b.trainers), toets: toetsenSamen(a.toets, b.toets) }));
-    if (sleutel === 'profiel') return JSON.stringify({ naam: a.naam || b.naam || '' });
+    if (sleutel === 'profiel') return JSON.stringify(a.naam ? a : b); // de naam in deze browser gaat voor
     return JSON.stringify(kaartenSamen(a, b));
   }
   const alles = () => { const o = {}; for (const k of SLEUTELS) { const v = lees(k); if (v != null) o[k] = v; } return o; };
@@ -113,12 +113,15 @@ window.Account = (() => {
       const daar = lees('account-wis') ? {} : ((await wolk.haal(g.uid)) || {});
       const samen = {};
       for (const k of SLEUTELS) { const v = voegSamen(k, hier[k], daar[k]); if (v != null) samen[k] = v; }
-      if (!json(samen.profiel, {}).naam && g.naam) samen.profiel = JSON.stringify({ naam: g.naam.split(' ')[0].slice(0, 30) }); // de voornaam van Google als begin
+      // De naam op de kaart: wat de leerling zelf typte, blijft altijd. Is er geen naam, dan de voornaam van het account als begin.
+      // "van" onthoudt van welk account die naam kwam: logt hier later een ander account in, dan krijgt de kaart de naam van dat account.
+      const pr = json(samen.profiel, {});
+      if (g.naam && (!pr.naam || (pr.van && pr.van !== g.uid) || lees('account-naam'))) samen.profiel = JSON.stringify({ naam: g.naam.split(' ')[0].slice(0, 30), van: g.uid });
       const anders = afdruk(samen) !== afdruk(hier);
       for (const k of SLEUTELS) if (samen[k] !== hier[k]) zet(k, samen[k]);
       const kaart = window.App.profielRij(await window.App.profielNu());
       if (afdruk(samen) !== afdruk(daar) || lees('account-kaart') !== JSON.stringify(kaart)) await wolk.bewaar(g.uid, samen, kaart);
-      zet('account-wis', null); zet('account-afdruk', afdruk(samen)); zet('account-kaart', JSON.stringify(kaart));
+      zet('account-wis', null); zet('account-naam', null); zet('account-afdruk', afdruk(samen)); zet('account-kaart', JSON.stringify(kaart));
       zetStatus('bewaard');
       if (anders) document.dispatchEvent(new CustomEvent('account-gegevens')); // de pagina kan zich opnieuw tekenen
     } catch (e) { zetStatus('fout', String((e && e.message) || e)); }
@@ -132,6 +135,12 @@ window.Account = (() => {
     const config = json(tekst, null);
     if (!config || !(config.demo || (config.firebase && config.firebase.apiKey))) return;
     staat.beschikbaar = true; staat.demo = !!config.demo;
+    // Resten van het demo-account horen niet bij een echte site: weg ermee, ook de naam die het demo-account op de kaart zette.
+    if (!config.demo && (lees('demo-wolk') != null || lees('demo-kaart') != null || lees('demo-in') != null)) {
+      // De demo-naam kan ook al bij het echte account bewaard zijn: 'account-naam' zegt tegen maakGelijk dat de naam van het account moet komen.
+      if (json(lees('profiel'), {}).naam === 'Sara') { zet('profiel', null); zet('account-naam', '1'); }
+      for (const k of ['demo-wolk', 'demo-kaart', 'demo-in', 'account-afdruk', 'account-kaart']) zet(k, null);
+    }
     wolk = config.demo ? demoWolk() : firebaseWolk(config.firebase);
     await new Promise((af) => wolk.start((g) => {
       const was = staat.gebruiker && staat.gebruiker.uid;
