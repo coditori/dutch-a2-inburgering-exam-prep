@@ -89,6 +89,10 @@ python3 tools/controleer.py  # check that the lesson only uses allowed words
 python3 tools/controleer_fa.py -v  # list English help texts that have no Persian yet (add them to shared/fa.js)
 ```
 
+## Version
+
+The version is one line in `shared/app.js` (`const VERSIE`) and is shown at the bottom of every page. You do not change it by hand: the workflow `.github/workflows/versie.yml` bumps it once per pull request and commits it to the PR branch. A branch named `feat/...` gives a minor bump, `major/...` a major bump, any other name a patch bump. By hand: `python3 tools/versie.py --verhoog patch`.
+
 ## Contributing
 
 **Changes go to a feature branch, never directly to `main`.** Create a branch, push it and open a pull request.
