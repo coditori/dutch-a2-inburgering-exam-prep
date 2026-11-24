@@ -1,0 +1,602 @@
+{
+ "id": "C",
+ "trede": 4,
+ "na": "8-geschiedenis",
+ "titel": "Toets C · zoals het echte examen",
+ "niveau": "examen",
+ "namen": [
+  "Ario",
+  "Noor",
+  "Sem",
+  "Lisa",
+  "Lars",
+  "Eva",
+  "Karim",
+  "Mila",
+  "Tom",
+  "Daan",
+  "Kim",
+  "Sara",
+  "Peter",
+  "Sam",
+  "Lena",
+  "Omar",
+  "Fatima",
+  "Yusuf",
+  "Bas",
+  "Ali",
+  "Stef",
+  "Yara",
+  "Emma",
+  "Hana",
+  "Anna",
+  "Tim",
+  "Duitsland",
+  "Marokko",
+  "Rotterdam",
+  "Utrecht",
+  "Zwolle",
+  "Amsterdam",
+  "Den",
+  "Haag",
+  "Zeeland",
+  "Suriname",
+  "Antillen",
+  "Curaçao",
+  "Azië",
+  "Spanje",
+  "Europa",
+  "Engeland",
+  "UWV",
+  "SVB",
+  "DUO",
+  "IND",
+  "CBR",
+  "DigiD",
+  "POH",
+  "WW",
+  "WW-uitkering",
+  "AOW",
+  "Nibud",
+  "NAVO",
+  "VOC",
+  "Donorregister",
+  "Belastingdienst",
+  "Koophandel",
+  "Huurcommissie",
+  "Provinciale",
+  "Staten",
+  "Tweede",
+  "Eerste",
+  "Kamer",
+  "Wereldoorlog",
+  "Tachtigjarige",
+  "Oorlog",
+  "Koninkrijk",
+  "Nederlanden",
+  "Nederlander",
+  "Nederlandse",
+  "Turkse",
+  "Joden",
+  "Joods",
+  "Joodse",
+  "Duitsers",
+  "Keti",
+  "Koti",
+  "Koningsdag",
+  "Suikerfeest",
+  "ramadan",
+  "Deltawerken",
+  "Afsluitdijk",
+  "Grondwet",
+  "Veilig",
+  "Thuis",
+  "Juridisch",
+  "Loket",
+  "Anne",
+  "Frank",
+  "Aruba",
+  "Sint",
+  "Maarten",
+  "Bonaire",
+  "Eustatius",
+  "Saba",
+  "der",
+  "Europese",
+  "Unie",
+  "Verenigde",
+  "Naties",
+  "Zuid-Holland",
+  "Zuiderzee",
+  "IJsselmeer",
+  "Gouden",
+  "Eeuw",
+  "Holocaust",
+  "Dodenherdenking",
+  "Bevrijdingsdag",
+  "vmbo",
+  "vmbo-diploma",
+  "mbo",
+  "mbo-diploma",
+  "hbo",
+  "vwo",
+  "zzp'er"
+ ],
+ "vragen": [
+  {
+   "thema": "gezondheid",
+   "sit": "Ario komt uit Duitsland. Daar had hij een zorgverzekering. Nu woont en werkt hij in Nederland.",
+   "v": "Wat is waar?",
+   "o": [
+    "Een zorgverzekering is verplicht en Ario moet een Nederlandse zorgverzekering nemen.",
+    "Een zorgverzekering is verplicht, maar de verzekering uit Duitsland is genoeg.",
+    "Een zorgverzekering is in Nederland niet verplicht."
+   ],
+   "w": "Wie in Nederland woont of werkt, moet binnen vier maanden een Nederlandse basisverzekering nemen. Een verzekering uit een ander land is niet genoeg.",
+   "beeld": "🏥"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Bij de huisarts van Noor werkt een praktijkondersteuner (POH).",
+   "v": "Wat doet een praktijkondersteuner?",
+   "o": [
+    "Hij helpt mensen met een lange ziekte, zoals diabetes, en mensen met psychische problemen.",
+    "Hij neemt de telefoon op en maakt de afspraken.",
+    "Hij werkt als specialist in het ziekenhuis."
+   ],
+   "w": "De praktijkondersteuner (POH) werkt bij de huisarts. Hij helpt bij lange ziektes en bij psychische problemen. De assistente neemt de telefoon op.",
+   "beeld": "🩺"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Sem is 40 jaar. Hij gaat eerst naar de huisarts en daarna naar het ziekenhuis voor een foto.",
+   "v": "Waarvoor betaalt hij eigen risico?",
+   "o": [
+    "Alleen voor het ziekenhuis: de huisarts valt niet onder het eigen risico.",
+    "Voor de huisarts en voor het ziekenhuis.",
+    "Alleen voor de huisarts: het ziekenhuis valt niet onder het eigen risico."
+   ],
+   "w": "Voor de huisarts betaalt u geen eigen risico. Voor het ziekenhuis en voor medicijnen wel.",
+   "beeld": "💶"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "De baby van Lisa krijgt een uitnodiging voor prikken tegen ziektes.",
+   "v": "Wat is waar over deze prikken?",
+   "o": [
+    "Ze zijn niet verplicht en ze zijn gratis.",
+    "Ze zijn verplicht en ze zijn gratis.",
+    "Ze zijn niet verplicht en de ouders betalen ze zelf."
+   ],
+   "w": "De prikken voor kinderen zijn gratis. Ze zijn niet verplicht: de ouders kiezen zelf.",
+   "beeld": "💉"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Lars is 25 jaar. Hij heeft geen keuze ingevuld in het Donorregister.",
+   "v": "Wat staat er dan bij zijn naam?",
+   "o": [
+    "'Geen bezwaar': hij is orgaandonor.",
+    "'Nee': hij is geen orgaandonor.",
+    "Niets: zijn familie kiest later."
+   ],
+   "w": "Iedereen van 18 jaar en ouder staat in het Donorregister. Vult u niets in? Dan staat er 'geen bezwaar tegen orgaandonatie'. U kunt uw keuze altijd veranderen.",
+   "beeld": "🫀"
+  },
+  {
+   "thema": "gezondheid",
+   "sit": "Eva is ziek en praat met de bedrijfsarts. Haar werkgever wil weten wat er aan de hand is.",
+   "v": "Wat mag de bedrijfsarts aan de werkgever vertellen?",
+   "o": [
+    "Alleen welk werk Eva wel en niet kan doen.",
+    "Welke ziekte Eva heeft en welk werk zij kan doen.",
+    "Niets: de werkgever mag ook niet weten wanneer Eva weer kan werken."
+   ],
+   "w": "De bedrijfsarts heeft beroepsgeheim. Hij vertelt niet welke ziekte u hebt, alleen wat u wel en niet kunt doen op het werk.",
+   "beeld": "🤐"
+  },
+  {
+   "thema": "werk",
+   "sit": "Karim heeft vijf jaar in een fabriek gewerkt. Het bedrijf gaat dicht en hij verliest zijn baan.",
+   "v": "Welke uitkering vraagt hij aan, en waar?",
+   "o": [
+    "Een WW-uitkering bij het UWV.",
+    "Een WW-uitkering bij de gemeente.",
+    "Bijstand bij het UWV."
+   ],
+   "w": "Hebt u gewerkt en verliest u uw baan? Dan vraagt u WW aan bij het UWV. Bijstand is van de gemeente, voor mensen zonder ander inkomen.",
+   "beeld": "🏭"
+  },
+  {
+   "thema": "werk",
+   "sit": "Mila heeft een nulurencontract bij een restaurant.",
+   "v": "Wat betekent dat?",
+   "o": [
+    "Zij heeft geen vast aantal uren: zij werkt als het restaurant haar belt.",
+    "Zij werkt nul uren en krijgt toch elke maand loon.",
+    "Zij heeft een contract zonder einddatum met vaste werkdagen."
+   ],
+   "w": "Bij een nulurencontract zijn er geen vaste uren. U krijgt loon voor de uren die u werkt.",
+   "beeld": "🍽️"
+  },
+  {
+   "thema": "werk",
+   "sit": "In het bedrijf van Tom werken 120 mensen.",
+   "v": "Wie praat met de directie over belangrijke plannen van het bedrijf?",
+   "o": [
+    "De ondernemingsraad.",
+    "De personeelsvereniging.",
+    "De Kamer van Koophandel."
+   ],
+   "w": "De ondernemingsraad praat mee over de plannen van het bedrijf. De personeelsvereniging organiseert leuke activiteiten.",
+   "beeld": "🗣️"
+  },
+  {
+   "thema": "werk",
+   "sit": "Daan heeft een vast contract. Hij is al drie maanden ziek.",
+   "v": "Wie betaalt nu zijn loon?",
+   "o": [
+    "Zijn werkgever betaalt het loon door.",
+    "Het UWV betaalt het loon door.",
+    "Zijn zorgverzekering betaalt het loon door."
+   ],
+   "w": "Bij ziekte betaalt de werkgever het loon door, maximaal twee jaar. Pas daarna kan er een uitkering van het UWV komen.",
+   "beeld": "🤒"
+  },
+  {
+   "thema": "werk",
+   "sit": "Kim is 17 jaar. Zij werkt op zaterdag in een supermarkt. Zij verdient minder per uur dan haar collega van 30 jaar.",
+   "v": "Mag dat?",
+   "o": [
+    "Ja, voor jongeren is er een lager minimumloon.",
+    "Nee, het minimumloon is voor iedereen hetzelfde.",
+    "Ja, een werkgever mag zelf kiezen hoeveel hij betaalt."
+   ],
+   "w": "Het gewone minimumloon is voor mensen van 21 jaar en ouder. Voor jongeren is er een lager minimumjeugdloon. Minder dan dat mag niet.",
+   "beeld": "🛒"
+  },
+  {
+   "thema": "werk",
+   "sit": "Sara werkt bij een bedrijf. Over haar loon moet belasting betaald worden.",
+   "v": "Hoe gaat dat?",
+   "o": [
+    "De werkgever haalt de belasting van het loon af en betaalt die aan de Belastingdienst.",
+    "De werkgever betaalt het hele loon en Sara betaalt elke maand zelf aan de Belastingdienst.",
+    "De werkgever haalt de belasting van het loon af en betaalt die aan het UWV."
+   ],
+   "w": "Het brutoloon is het loon vóór belasting. De werkgever haalt belasting en premies eraf en betaalt die aan de Belastingdienst. U krijgt het nettoloon.",
+   "beeld": "🧾"
+  },
+  {
+   "thema": "werk",
+   "sit": "Het bedrijf van Peter heeft minder werk. De werkgever wil Peter ontslaan. Peter heeft een vast contract en is het er niet mee eens.",
+   "v": "Wat heeft de werkgever nodig?",
+   "o": [
+    "Toestemming van het UWV.",
+    "Toestemming van de gemeente.",
+    "Niets: een werkgever mag altijd meteen ontslag geven."
+   ],
+   "w": "Een werkgever mag iemand met een vast contract niet zomaar ontslaan. Is er te weinig werk? Dan heeft hij toestemming van het UWV nodig.",
+   "beeld": "📄"
+  },
+  {
+   "thema": "werk",
+   "sit": "Noor heeft een WW-uitkering. Zij vindt werk voor twee dagen per week.",
+   "v": "Wat moet zij doen?",
+   "o": [
+    "Het doorgeven aan het UWV: haar uitkering wordt lager.",
+    "Het doorgeven aan het UWV: haar uitkering stopt helemaal.",
+    "Niets: bij twee dagen werk verandert de uitkering niet."
+   ],
+   "w": "Elke verandering geeft u door aan het UWV. Werkt u een deel van de week? Dan krijgt u nog WW voor de uren zonder werk.",
+   "beeld": "📅"
+  },
+  {
+   "thema": "instanties",
+   "sit": "De oma van Sam kan niet goed met de computer werken. Zij wil dat Sam haar belastingaangifte doet.",
+   "v": "Hoe doen zij dat goed?",
+   "o": [
+    "Oma geeft Sam een machtiging. Sam logt in met zijn eigen DigiD.",
+    "Oma geeft Sam haar DigiD en haar wachtwoord. Sam logt in met de DigiD van oma.",
+    "Dat kan niet: iedereen moet zelf de aangifte doen."
+   ],
+   "w": "Uw DigiD is alleen van u: geef uw wachtwoord aan niemand. Met een machtiging mag iemand anders iets voor u regelen met zijn eigen DigiD.",
+   "beeld": "🔐"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Tom en Eva hebben een zoon van 6 jaar. Zij werken allebei en verdienen veel.",
+   "v": "Krijgen zij kinderbijslag?",
+   "o": [
+    "Ja, kinderbijslag hangt niet af van het inkomen.",
+    "Nee, kinderbijslag hangt af van het inkomen.",
+    "Alleen als hun zoon naar de kinderopvang gaat."
+   ],
+   "w": "Alle ouders met een kind tot 18 jaar krijgen kinderbijslag van de SVB. Toeslagen van de Belastingdienst hangen wel af van het inkomen.",
+   "beeld": "👨‍👩‍👦"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Lena wil haar rijbewijs halen.",
+   "v": "Waar doet zij het examen en waar vraagt zij daarna het rijbewijs aan?",
+   "o": [
+    "Het examen bij het CBR, het rijbewijs bij de gemeente.",
+    "Het examen bij de gemeente, het rijbewijs bij het CBR.",
+    "Het examen en het rijbewijs bij de rijschool."
+   ],
+   "w": "Het rijexamen doet u bij het CBR. Bent u geslaagd? Dan vraagt u het rijbewijs aan bij de gemeente.",
+   "beeld": "🚗"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Omar krijgt een bericht op zijn telefoon: 'Belastingdienst: u moet vandaag € 240 betalen. Klik op de link.'",
+   "v": "Wat kan hij het beste doen?",
+   "o": [
+    "Niet op de link klikken: de Belastingdienst vraagt nooit zo om geld.",
+    "Op de link klikken en zijn DigiD invullen om te kijken of het waar is.",
+    "Meteen betalen: anders krijgt hij een boete."
+   ],
+   "w": "Dit bericht is niet echt. De overheid vraagt nooit om geld of om uw DigiD met een link in een bericht. Zo beschermt u uw gegevens.",
+   "beeld": "📱"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Fatima woont zes jaar in Nederland. Zij wil Nederlander worden.",
+   "v": "Hoe gaat dat?",
+   "o": [
+    "Zij vraagt het aan bij de gemeente; de IND beslist.",
+    "Zij vraagt het aan bij de IND; de gemeente beslist.",
+    "Zij vraagt het aan bij DUO; de gemeente beslist."
+   ],
+   "w": "Naturalisatie vraagt u aan bij de gemeente. De IND controleert alles en beslist.",
+   "beeld": "🇳🇱"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Yusuf heeft een koophuis en een auto.",
+   "v": "Aan wie betaalt hij belasting voor het ophalen van het afval?",
+   "o": [
+    "Aan de gemeente.",
+    "Aan de Belastingdienst.",
+    "Aan het waterschap."
+   ],
+   "w": "De belasting voor afval is van de gemeente. De belasting voor de auto en over het loon is van de Belastingdienst. Het waterschap krijgt belasting voor dijken en schoon water.",
+   "beeld": "🗑️"
+  },
+  {
+   "thema": "instanties",
+   "sit": "Mila komt thuis. Zij ziet dat er een man in haar huis is die spullen pakt.",
+   "v": "Welk nummer belt zij?",
+   "o": [
+    "112, want de inbreker is er nog.",
+    "0900 - 8844, want er is niemand in gevaar.",
+    "0800 - 7000, want zij wil aangifte doen."
+   ],
+   "w": "Is de dader er nog of is er gevaar? Bel 112. Is de dader al weg? Bel dan 0900 - 8844. Met 0800 - 7000 meldt u een misdaad zonder uw naam.",
+   "beeld": "🚨"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Bas huurt een woning. De cv-ketel is kapot en er is een lamp in de gang kapot.",
+   "v": "Wie betaalt wat?",
+   "o": [
+    "De verhuurder betaalt de cv-ketel, Bas betaalt de lamp.",
+    "De verhuurder betaalt de cv-ketel en de lamp.",
+    "Bas betaalt de cv-ketel en de lamp."
+   ],
+   "w": "Grote reparaties zijn voor de verhuurder. Kleine reparaties, zoals een lamp of een kraan, betaalt de huurder zelf.",
+   "beeld": "🔧"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Lisa heeft een oude bank. Die past niet in de container.",
+   "v": "Wat doet zij?",
+   "o": [
+    "Zij brengt de bank naar de milieustraat of maakt een afspraak met de gemeente.",
+    "Zij zet de bank naast de container.",
+    "Zij zet de bank bij het oud papier."
+   ],
+   "w": "Grote spullen zijn grofvuil. U brengt ze naar de milieustraat, of de gemeente haalt ze op na een afspraak. Naast de container zetten kan een boete geven.",
+   "beeld": "🛋️"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Peter heeft een koophuis. Door een storm is het dak kapot.",
+   "v": "Welke verzekering betaalt de schade aan het dak?",
+   "o": [
+    "De woonhuisverzekering.",
+    "De inboedelverzekering.",
+    "De aansprakelijkheidsverzekering."
+   ],
+   "w": "De woonhuisverzekering is voor het huis zelf. De inboedelverzekering is voor uw spullen in het huis. De aansprakelijkheidsverzekering is voor schade die u bij anderen maakt.",
+   "beeld": "🌪️"
+  },
+  {
+   "thema": "wonen",
+   "sit": "Ali huurt al drie jaar een woning. Hij betaalt altijd op tijd. De verhuurder zegt: 'Mijn zoon wil hier wonen. U moet volgende week weg.'",
+   "v": "Wat is waar?",
+   "o": [
+    "Ali hoeft niet zomaar weg: een huurder is beschermd door de wet.",
+    "Ali moet weg: de woning is van de verhuurder.",
+    "Ali moet weg, maar hij krijgt een maand de tijd."
+   ],
+   "w": "Een huurder heeft huurbescherming. De verhuurder mag de huur niet zomaar stoppen. Zijn zij het niet eens? Dan beslist de rechter.",
+   "beeld": "🏠"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "De zoon van Ali wordt volgende week 4 jaar.",
+   "v": "Wat is waar?",
+   "o": [
+    "Hij mag naar de basisschool, maar het is nog niet verplicht.",
+    "Hij moet naar de basisschool: de leerplicht begint bij 4 jaar.",
+    "Hij mag nog niet naar de basisschool: dat kan pas vanaf 5 jaar."
+   ],
+   "w": "Een kind mag naar school vanaf 4 jaar. De leerplicht begint bij 5 jaar.",
+   "beeld": "🎒"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "Stef is 17 jaar. Hij heeft een vmbo-diploma en wil stoppen met school om te gaan werken.",
+   "v": "Mag dat?",
+   "o": [
+    "Nee, met alleen een vmbo-diploma moet hij tot 18 jaar onderwijs volgen.",
+    "Ja, want hij heeft een diploma.",
+    "Ja, want de leerplicht stopt bij 16 jaar."
+   ],
+   "w": "Na de leerplicht komt de kwalificatieplicht: tot 18 jaar moet u onderwijs volgen, of u hebt een diploma van havo, vwo of mbo (niveau 2 of hoger). Een vmbo-diploma is niet genoeg.",
+   "beeld": "📜"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "De dochter van Yara gaat naar een islamitische basisschool.",
+   "v": "Wie betaalt deze school?",
+   "o": [
+    "De overheid, net als bij een openbare school.",
+    "De ouders: alleen openbare scholen krijgen geld van de overheid.",
+    "De moskee."
+   ],
+   "w": "Openbare en bijzondere scholen krijgen allebei geld van de overheid. Een bijzondere school werkt vanuit een geloof of een idee over onderwijs.",
+   "beeld": "🕌"
+  },
+  {
+   "thema": "onderwijs",
+   "sit": "De ouders van Mila willen in mei twee weken naar hun familie in Marokko. Het is geen schoolvakantie. Mila is 9 jaar.",
+   "v": "Mag Mila mee?",
+   "o": [
+    "Alleen met toestemming van de directeur van de school.",
+    "Ja, als de ouders het op tijd aan de juf vertellen.",
+    "Ja, elk kind mag twee weken per jaar extra vrij."
+   ],
+   "w": "Buiten de schoolvakanties mag een kind niet zomaar weg. De directeur moet toestemming geven. Zonder toestemming kunnen de ouders een boete krijgen.",
+   "beeld": "✈️"
+  },
+  {
+   "thema": "omgang",
+   "sit": "Een man zegt: 'Van mijn geloof mag ik met twee vrouwen trouwen.'",
+   "v": "Mag dat in Nederland?",
+   "o": [
+    "Nee, de wet gaat boven de regels van een geloof: u mag met één persoon getrouwd zijn.",
+    "Ja, door de vrijheid van geloof mag dat.",
+    "Ja, maar alleen als de eerste vrouw het goedvindt."
+   ],
+   "w": "Iedereen mag zijn geloof kiezen. Maar de Nederlandse wet gaat boven de regels van een geloof of een cultuur.",
+   "beeld": "⚖️"
+  },
+  {
+   "thema": "omgang",
+   "sit": "Noor en Karim willen trouwen in de moskee.",
+   "v": "Wat is waar?",
+   "o": [
+    "Zij moeten eerst bij de gemeente trouwen; daarna mag het in de moskee.",
+    "Zij mogen eerst in de moskee trouwen; daarna melden zij het bij de gemeente.",
+    "Zij moeten kiezen: bij de gemeente of in de moskee."
+   ],
+   "w": "Alleen het huwelijk bij de gemeente is officieel. Trouwen in een kerk of moskee mag pas daarna.",
+   "beeld": "💍"
+  },
+  {
+   "thema": "omgang",
+   "sit": "Een man roept op straat dat alle Joden weg moeten uit Nederland. Hij zegt: 'Dat is mijn mening.'",
+   "v": "Mag dat?",
+   "o": [
+    "Nee, de vrijheid van mening heeft grenzen: discriminatie is strafbaar.",
+    "Ja, door de vrijheid van mening mag u alles zeggen.",
+    "Het is alleen strafbaar op internet, niet op straat."
+   ],
+   "w": "U mag uw mening geven, maar discriminatie en bedreigen zijn verboden. Haat tegen Joden heet antisemitisme.",
+   "beeld": "🗯️"
+  },
+  {
+   "thema": "staat",
+   "v": "Wie vormen samen de regering van Nederland?",
+   "o": [
+    "De koning en de ministers.",
+    "De ministers en de Tweede Kamer.",
+    "De Tweede Kamer en de Eerste Kamer."
+   ],
+   "w": "De regering is de koning met de ministers. De Tweede Kamer en de Eerste Kamer zijn samen het parlement: dat controleert de regering.",
+   "beeld": "👑"
+  },
+  {
+   "thema": "staat",
+   "v": "Hoe worden de leden van de Eerste Kamer gekozen?",
+   "o": [
+    "Door de leden van de Provinciale Staten.",
+    "Direct door alle Nederlanders van 18 jaar en ouder.",
+    "Door de leden van de Tweede Kamer."
+   ],
+   "w": "De burgers kiezen de Tweede Kamer en de Provinciale Staten direct. De leden van de Provinciale Staten kiezen daarna de Eerste Kamer.",
+   "beeld": "🗳️"
+  },
+  {
+   "thema": "staat",
+   "sit": "Yusuf heeft de Turkse nationaliteit. Hij woont zes jaar met een verblijfsvergunning in Rotterdam.",
+   "v": "Voor welke verkiezingen mag hij stemmen?",
+   "o": [
+    "Voor de gemeenteraad, maar niet voor de Tweede Kamer.",
+    "Voor de gemeenteraad en voor de Tweede Kamer.",
+    "Voor geen enkele verkiezing: hij heeft geen Nederlands paspoort."
+   ],
+   "w": "Voor de Tweede Kamer mogen alleen Nederlanders stemmen. Voor de gemeenteraad mag u ook stemmen als u vijf jaar met een verblijfsvergunning in Nederland woont.",
+   "beeld": "🪪"
+  },
+  {
+   "thema": "staat",
+   "sit": "De politie neemt een man mee: hij heeft iets gestolen.",
+   "v": "Wie beslist of deze man voor de rechter moet komen?",
+   "o": [
+    "De officier van justitie.",
+    "De politie.",
+    "De burgemeester."
+   ],
+   "w": "De politie zoekt uit wat er is gebeurd. De officier van justitie beslist of de man naar de rechter moet. De rechter beslist over de straf.",
+   "beeld": "👮"
+  },
+  {
+   "thema": "staat",
+   "v": "Hoe krijgt een gemeente een burgemeester?",
+   "o": [
+    "De regering benoemt de burgemeester: de inwoners kiezen hem niet.",
+    "De inwoners kiezen de burgemeester elke vier jaar.",
+    "De commissaris van de Koning kiest elk jaar een nieuwe burgemeester."
+   ],
+   "w": "De inwoners kiezen de gemeenteraad. De burgemeester wordt niet gekozen door de inwoners: de regering benoemt hem.",
+   "beeld": "🏛️"
+  },
+  {
+   "thema": "geschiedenis",
+   "v": "Wat is het verschil tussen 4 mei en 5 mei?",
+   "o": [
+    "Op 4 mei herdenkt Nederland de doden van de oorlog; op 5 mei viert Nederland de vrijheid.",
+    "Op 4 mei viert Nederland de vrijheid; op 5 mei herdenkt Nederland de doden van de oorlog.",
+    "Op 4 mei herdenkt Nederland de doden van de oorlog; op 5 mei is het Koningsdag."
+   ],
+   "w": "4 mei is de Dodenherdenking: om 20.00 uur is het twee minuten stil. 5 mei is Bevrijdingsdag. Koningsdag is op 27 april.",
+   "beeld": "🕯️"
+  },
+  {
+   "thema": "geschiedenis",
+   "v": "Wat is Curaçao?",
+   "o": [
+    "Een land binnen het Koninkrijk der Nederlanden.",
+    "Een bijzondere gemeente van Nederland.",
+    "Een provincie van Nederland."
+   ],
+   "w": "Het Koninkrijk heeft vier landen: Nederland, Aruba, Curaçao en Sint Maarten. Bonaire, Sint Eustatius en Saba zijn bijzondere gemeenten van Nederland.",
+   "beeld": "🏝️"
+  },
+  {
+   "thema": "geschiedenis",
+   "sit": "Anne Frank was een Joods meisje. In de Tweede Wereldoorlog schreef zij een dagboek.",
+   "v": "Waarom zat zij met haar familie verstopt in een huis in Amsterdam?",
+   "o": [
+    "Omdat de Duitsers Joden oppakten en naar kampen brachten.",
+    "Omdat er in Amsterdam elke nacht bommen vielen.",
+    "Omdat haar vader bij het leger van Engeland werkte."
+   ],
+   "w": "In de Tweede Wereldoorlog zijn meer dan 100.000 Joden uit Nederland vermoord in kampen. Dat heet de Holocaust.",
+   "beeld": "📔"
+  }
+ ]
+}

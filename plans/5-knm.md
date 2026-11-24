@@ -52,6 +52,16 @@ Order of themes, easiest Dutch first: Gezondheid → Wonen → Werk → Onderwij
 - netinnederland.nl has videos per exam subject (recommended by DUO).
 - Open practice elsewhere: examklaar.nl KNM exams; HayrullahC's 220-question KNM bank (site only, no license to copy).
 
+## Update November 2026 — real-exam level
+
+People who took the real exam say it is harder than the two DUO practice exams: the answers are close in meaning, and since 1 July 2025 the exam asks for facts (which organisation, which rule, which condition) more than for polite behaviour. So:
+
+- The wrong answers of 110 existing questions (themes, Toets A and B) are now real organisations, rules or numbers from the same area.
+- **Toets C and D** (40 questions each): two answers often start with the same true rule and differ only in the second half. They cover the topics of the new curriculum. `tools/controleer_knm.py` checks that at least 15 questions per test have a wrong answer that shares half its words with the right one.
+- **De vraag lezen** (trainer, always open): the small words that flip an answer — niet, hoeft niet, alleen als, uiterlijk, tot, minstens.
+- **Verwarparen** (trainer): 24 pairs that are easy to mix up — WW/bijstand, kinderbijslag/kinderopvangtoeslag, eigen risico/premie.
+- Ready when: 32/40 or better on A, B, C and D and on both DUO practice exams.
+
 ## Folder
 ```
 knm/
@@ -59,7 +69,8 @@ knm/
   thema.html             template, loads themes/gezondheid.json ...
   themes/*.json          { woorden[], weetjes[], situaties[] }
   trainers/              kaart.html, instantie.html
-  toets/                 A.json, B.json (40 questions, 45 min timer)
+  trainers/              + oefen.html with lezen.json and verwar.json (exam level)
+  toets/                 A.json, B.json (DUO level), C.json, D.json (real-exam level); 40 questions, 45 min timer
 ```
 
 ## Ready when

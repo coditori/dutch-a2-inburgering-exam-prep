@@ -37,7 +37,9 @@
   "Koti",
   "Suriname",
   "carnaval",
-  "Tim"
+  "Tim",
+  "Juridisch",
+  "Loket"
  ],
  "woorden": [
   {
@@ -371,8 +373,8 @@
    "v": "Mag hij dat zeggen?",
    "o": [
     "Ja, iedereen mag zijn mening geven.",
-    "Nee, dat is verboden.",
-    "Alleen thuis."
+    "Nee, slechte dingen zeggen over de overheid is verboden.",
+    "Alleen als hij een Nederlands paspoort heeft."
    ],
    "w": "In Nederland is er vrijheid van mening.",
    "beeld": "🗣️"
@@ -382,8 +384,8 @@
    "v": "Wat geeft Noor hun vaak te eten?",
    "o": [
     "Beschuit met muisjes.",
-    "Soep met brood.",
-    "Kaas met fruit."
+    "Oliebollen.",
+    "Soep met brood."
    ],
    "w": "Beschuit met muisjes is de traditie bij een nieuwe baby.",
    "beeld": "🍘"
@@ -404,8 +406,8 @@
    "v": "Wat kan hij doen?",
    "o": [
     "Lid worden van een vereniging.",
-    "Een vergunning aanvragen.",
-    "Naar het gemeentehuis gaan."
+    "Lid worden van een vakbond.",
+    "Lid worden van een partij."
    ],
    "w": "Bij een vereniging sport u samen en leert u mensen kennen.",
    "beeld": "⚽"
@@ -532,7 +534,7 @@
     "v": "Wat kunnen zij doen?",
     "o": [
      "Een samenlevingscontract maken bij de notaris.",
-     "Een hypotheek aanvragen.",
+     "Zich samen inschrijven bij de gemeente: meer is niet nodig.",
      "Niets: dat kan alleen als u trouwt."
     ],
     "w": "Afspraken over samenwonen staan in een samenlevingscontract.",
@@ -543,8 +545,8 @@
     "v": "Wie kan haar gratis helpen?",
     "o": [
      "Slachtofferhulp Nederland.",
-     "De Kamer van Koophandel.",
-     "De woningcorporatie."
+     "Het Juridisch Loket.",
+     "Veilig Thuis."
     ],
     "w": "Slachtofferhulp Nederland helpt slachtoffers gratis.",
     "beeld": "🤝"

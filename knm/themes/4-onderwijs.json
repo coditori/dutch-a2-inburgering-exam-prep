@@ -339,8 +339,8 @@
    "v": "Met wie praat Karim eerst?",
    "o": [
     "Met de juf of de meester van zijn zoon.",
-    "Met de politie.",
-    "Met de gemeente."
+    "Met de leerplichtambtenaar.",
+    "Met de huisarts."
    ],
    "w": "Bij problemen op school praat u eerst met de juf of de meester.",
    "beeld": "👩‍🏫"
@@ -361,8 +361,8 @@
    "v": "Welk geld krijgen zij voor de kosten van hun kind?",
    "o": [
     "Kinderbijslag van de SVB.",
-    "Een WW-uitkering van het UWV.",
-    "Huurtoeslag van de gemeente."
+    "Kinderbijslag van de Belastingdienst.",
+    "Studiefinanciering van DUO."
    ],
    "w": "Alle ouders met kinderen tot 18 jaar krijgen kinderbijslag van de SVB.",
    "beeld": "👶"
@@ -373,7 +373,7 @@
    "o": [
     "Ja, de ouderbijdrage is niet verplicht.",
     "Nee, zonder geld mag hij niet mee.",
-    "Alleen als de buren betalen."
+    "Alleen als de ouders later betalen."
    ],
    "w": "De ouderbijdrage is niet verplicht. Alle kinderen mogen meedoen.",
    "beeld": "🚌"
@@ -383,8 +383,8 @@
    "v": "Wie kan er bij Peter op bezoek komen?",
    "o": [
     "De leerplichtambtenaar.",
-    "De notaris.",
-    "De bedrijfsarts."
+    "De huisarts.",
+    "De politie."
    ],
    "w": "De leerplichtambtenaar controleert of kinderen naar school gaan.",
    "beeld": "👮"
@@ -394,8 +394,8 @@
    "v": "Naar welke school kan zij nu?",
    "o": [
     "Naar het mbo.",
-    "Naar de universiteit.",
-    "Naar de basisschool."
+    "Naar het hbo.",
+    "Naar de universiteit."
    ],
    "w": "Na het vmbo gaat u naar het mbo. Voor de universiteit is een vwo-diploma nodig.",
    "beeld": "🎓"
@@ -507,7 +507,7 @@
     "o": [
      "Zij vragen toestemming aan de school.",
      "Zij houden Noor thuis zonder iets te zeggen.",
-     "Zij bellen de gemeente."
+     "Zij sturen een brief aan de leerplichtambtenaar."
     ],
     "w": "Buiten de vakanties mag een vrije dag alleen met toestemming van de school.",
     "beeld": "📅"
@@ -517,8 +517,8 @@
     "v": "Waar kan hij extra hulp met de taal krijgen?",
     "o": [
      "Op de voorschool.",
-     "Op het voortgezet onderwijs.",
-     "Bij de leerplichtambtenaar."
+     "Op de buitenschoolse opvang.",
+     "Op de basisschool."
     ],
     "w": "De voorschool helpt kleine kinderen met de Nederlandse taal.",
     "beeld": "🔤"

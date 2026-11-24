@@ -300,8 +300,8 @@
    "v": "Wie geeft Tom een straf?",
    "o": [
     "De rechter.",
-    "De burgemeester.",
-    "De baas van de winkel."
+    "De politie.",
+    "De burgemeester."
    ],
    "w": "Alleen de rechter mag een straf geven.",
    "beeld": "👩‍⚖️"
@@ -333,8 +333,8 @@
    "v": "Voor welke verkiezingen gaat zij stemmen?",
    "o": [
     "Voor de gemeenteraad.",
-    "Voor de Europese Unie.",
-    "Voor het waterschap."
+    "Voor de Provinciale Staten.",
+    "Voor de Tweede Kamer."
    ],
    "w": "De gemeenteraad maakt de plannen voor de stad of het dorp.",
    "beeld": "🏘️"
@@ -344,8 +344,8 @@
    "v": "Wie moet de wet goedkeuren?",
    "o": [
     "Het parlement.",
-    "Alleen de koning.",
-    "De politie."
+    "De rechter.",
+    "De gemeenteraad."
    ],
    "w": "Een wet is er pas als de Tweede en de Eerste Kamer ja zeggen.",
    "beeld": "📜"
@@ -366,8 +366,8 @@
    "v": "Waar heeft Daan recht op?",
    "o": [
     "Op hulp van een advocaat.",
-    "Op een nieuw paspoort.",
-    "Op een uitkering."
+    "Op hulp van een notaris.",
+    "Op hulp van de burgemeester."
    ],
    "w": "Iedereen heeft recht op hulp van een advocaat.",
    "beeld": "⚖️"
@@ -388,8 +388,8 @@
    "v": "Wie is dan de baas van de politie in de gemeente?",
    "o": [
     "De burgemeester.",
-    "De koning.",
-    "De rechter."
+    "De minister-president.",
+    "De gemeenteraad."
    ],
    "w": "De burgemeester is verantwoordelijk voor een veilige gemeente.",
    "beeld": "🎖️"

@@ -298,8 +298,8 @@
    "v": "Waar vraagt zij een nieuw paspoort aan?",
    "o": [
     "Bij de gemeente.",
-    "Bij de politie.",
-    "Bij de Belastingdienst."
+    "Bij de IND.",
+    "Bij de politie."
    ],
    "w": "Een paspoort, een identiteitsbewijs en een rijbewijs vraagt u aan bij de gemeente.",
    "beeld": "🪪"
@@ -310,7 +310,7 @@
    "o": [
     "Aangifte doen bij de politie.",
     "112 bellen.",
-    "Bezwaar maken bij de gemeente."
+    "Aangifte doen bij de gemeente."
    ],
    "w": "Is er iets gestolen? Dan doet u aangifte bij de politie. 112 is alleen als er meteen hulp nodig is.",
    "beeld": "🚲"
@@ -320,8 +320,8 @@
    "v": "Waar schrijft zij haar baby in?",
    "o": [
     "Bij de gemeente.",
-    "Bij het UWV.",
-    "Bij de bank."
+    "Bij het consultatiebureau.",
+    "Bij de IND."
    ],
    "w": "Een nieuwe baby meldt u binnen drie dagen bij de gemeente.",
    "beeld": "👶"
@@ -353,8 +353,8 @@
    "v": "Wat heeft hij nodig?",
    "o": [
     "Zijn DigiD.",
-    "Zijn rijbewijs.",
-    "Een vergunning."
+    "Zijn burgerservicenummer en zijn postcode.",
+    "Zijn paspoort."
    ],
    "w": "Voor websites van de overheid hebt u DigiD nodig.",
    "beeld": "🔐"
@@ -364,8 +364,8 @@
    "v": "Waar kan zij gratis hulp vragen?",
    "o": [
     "Bij het Juridisch Loket.",
-    "Bij de Kamer van Koophandel.",
-    "Bij de apotheek."
+    "Bij een advocaat.",
+    "Bij een notaris."
    ],
    "w": "Het Juridisch Loket geeft gratis hulp bij vragen over de wet.",
    "beeld": "⚖️"
@@ -375,8 +375,8 @@
    "v": "Wat moet hij regelen?",
    "o": [
     "Een autoverzekering.",
-    "Een inboedelverzekering.",
-    "Een vergunning van de politie."
+    "Een reisverzekering.",
+    "Een inboedelverzekering."
    ],
    "w": "Een autoverzekering is verplicht voor iedereen met een auto.",
    "beeld": "🚗"
@@ -387,7 +387,7 @@
    "o": [
     "Bij de gemeente.",
     "Bij de notaris.",
-    "Bij de politie."
+    "Bij de rechter."
    ],
    "w": "Trouwen doet u bij de gemeente. U meldt het daar eerst.",
    "beeld": "💍"
@@ -398,7 +398,7 @@
    "o": [
     "112",
     "0900 - 8844",
-    "Het nummer van de gemeente."
+    "0800 - 7000"
    ],
    "w": "Gebeurt het nu? Bel dan 112. Hoeft de politie niet meteen te komen? Dan belt u 0900 - 8844.",
    "beeld": "🚨"
@@ -509,8 +509,8 @@
     "v": "Waar wordt dat gemeld?",
     "o": [
      "Bij de gemeente.",
-     "Bij het UWV.",
-     "Bij de bank."
+     "Bij de Belastingdienst.",
+     "Bij de IND."
     ],
     "w": "Trouwen, scheiden, een baby en verhuizen: de gemeente moet het weten.",
     "beeld": "💔"
@@ -542,8 +542,8 @@
     "v": "Waar vraagt hij hulp?",
     "o": [
      "Bij de gemeente.",
-     "Bij de Kamer van Koophandel.",
-     "Bij de huisarts."
+     "Bij de Belastingdienst.",
+     "Bij het UWV."
     ],
     "w": "De gemeente helpt gratis bij schulden.",
     "beeld": "📉"
