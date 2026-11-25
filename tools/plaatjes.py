@@ -17,6 +17,7 @@ import base64
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -87,9 +88,18 @@ def model():
     sys.exit("Deze sleutel mag geen beelden maken (geen Imagen- of beeldmodel gevonden).")
 
 
+# Woorden voor mensen in een beschrijving. Staat er geen mens in (een stoel, een tas, appels, een hotelkamer), dan vragen we
+# uitdrukkelijk om een foto zonder mensen: anders zet het model er vaak iemand bij.
+MENS = re.compile(r"\b(man|men|woman|women|people|person|child|children|kid|boy|girl|family|worker|workers|student|students|teacher|"
+                  r"nurse|doctor|mother|father|son|daughter|baby|couple|friends|colleague|colleagues|clerk|receptionist|employee|"
+                  r"employees|customer|customers|passengers|neighbour|neighbours|crowd|crowds|someone|he|she|they|hand|hands|adult|"
+                  r"adults|pupils|officer|police|mayor|judge|king|parents|guest|guests|visitors|cyclist|cyclists|driver|drivers|"
+                  r"cook|mechanic|designer|journalist|reporters|administrator|director|staff)\b", re.I)
+
+
 def maak(naam, soort, beschrijving):
     """geeft de bytes van een png"""
-    prompt = STIJL + beschrijving
+    prompt = STIJL + beschrijving + ("" if MENS.search(beschrijving) else " There are no people in the photo.")
     if soort == "predict":
         d = vraag(f"/{naam}:predict", {"instances": [{"prompt": prompt}], "parameters": {"sampleCount": 1, "aspectRatio": "4:3"}})
         return base64.b64decode(d["predictions"][0]["bytesBase64Encoded"])
