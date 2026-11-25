@@ -390,6 +390,96 @@ class Lijst:
                     return d[:-1] + [tok[len(voor):]]
         return None
 
+    # ---------- welke regel past bij een woord in een zin ----------
+    # Een vorm kan bij meer regels horen: "bel" bij bellen en opbellen, "is" bij zijn en "hoe laat is het?".
+    # Hier staat per vorm en regel HOE ze bij elkaar horen; shared/app.js kijkt in de zin welke regels passen:
+    #   ""  = altijd (het woord zelf, of een vorm ervan)
+    #   "p" = een woordgroep: alleen als de andere woorden ook in de zin staan (samen)
+    #   "s" = een werkwoord met een los deel (opbellen bij "bel"): alleen als het losse deel later in de zin staat
+    #   "q" = het losse deel zelf ("op" bij opbellen): alleen als het werkwoord eerder in de zin staat
+    #   "x" = alleen als niets anders past (een getal of maand die niet in de regel zelf staat: "mei" bij "januari ... december")
+    def partikels(self, i):
+        """de losse delen van een werkwoord: opbellen -> ['op']; 'aanmelden / afmelden' -> ['aan', 'af']"""
+        it = self.items[i]
+        if it.get("ww"):
+            return [it["los"]] if it.get("los") else []
+        if not hasattr(self, "_alle_partikels"):
+            self._alle_partikels = {x["los"] for x in self.items if x.get("los")}
+        enkel = [s for s in (kaal(x) for x in sublemmas(it["nl"])) if " " not in s]
+        return [p for p in dict.fromkeys(kaal(v) for v in it["vormen"])
+                if p in self._alle_partikels and any(s.startswith(p) and len(s) > len(p) + 2 for s in enkel)]
+
+    @staticmethod
+    def _inhoud(tekst):
+        """de woorden zonder de, het en een; alleen lidwoorden ('de / het'): die dan wel"""
+        t = tokens(tekst)
+        return [w for w in t if w not in LIDWOORDEN] or t
+
+    def soort(self, tok, i):
+        it = self.items[i]
+        eigen = {w for s in sublemmas(it["nl"]) for w in tokens(s)}
+        los = self.partikels(i)
+        if los:
+            if tok in los:
+                return "q"
+            return "" if tok in eigen or any(tok.startswith(p) for p in los) else "s"
+        if it.get("ww"):
+            return ""
+        if tok not in set(tokens(it["nl"])) | {kaal(v) for v in it["vormen"]}:
+            # een getal of maand die niet in de regel zelf staat: bij de regel waar hij thuishoort telt hij gewoon mee
+            # ("vier" is 1-20, niet alleen vieren), bij de andere regels alleen als niets anders past
+            return "" if self._reeks(tok) == i else "x"
+        if it["thema"] == "getal" or it["nl"].startswith("januari") or tok in {kaal(v) for v in it["vormen"]}:
+            return ""  # een reeks (een, twee, drie ... twintig) of een vorm die in woorden.txt bij de regel staat
+        return "" if any(self._inhoud(s) == [tok] for s in sublemmas(it["nl"])) else "p"
+
+    def _reeks(self, tok):
+        """de regel waar een getal of maand bij hoort: vier -> 'een, twee, drie ... twintig', zestig -> 'dertig, veertig ...',
+        derde -> 'eerste, tweede, derde', mei -> 'januari ... december'"""
+        if not hasattr(self, "_reeksen"):
+            self._reeksen = {}
+            rijen = [(i, it) for i, it in enumerate(self.items) if it["thema"] == "getal" or it["nl"].startswith("januari")]
+            groepen = [(MAANDEN, "december"), (GETALLEN[GETALLEN.index("eerste"):], "eerste"),
+                       (TIENTALLEN + ["honderd", "duizend"], "dertig"), (GETALLEN[:GETALLEN.index("eerste")], "twee")]
+            for vormen, kenmerk in groepen:
+                rij = next((i for i, it in rijen if kenmerk in tokens(it["nl"])), None)
+                for v in vormen:
+                    self._reeksen.setdefault(v, rij)
+        return self._reeksen.get(tok)
+
+    def getypt(self, tok):
+        """[(regel, soort)] voor een vorm. Het woord zelf (zonder de of het) eerst: 'niet' voor 'wel / niet'."""
+        paren = [(i, self.soort(tok, i), tok) for i in self.vormen.get(tok, [])]
+        # geen regel die altijd past ("vrije" staat alleen in "de vrije tijd")? Dan ook het woord waar het van komt: vrij
+        if all(s == "p" for _, s, _ in paren):  # niet bij korte losse delen: "mee" is geen vorm van "me"
+            gezien = {i for i, _, _ in paren}
+            for k in stammen(tok):
+                for i in self.vormen.get(k, []):
+                    s = self.soort(k, i)
+                    # een vorm die alleen via de stam gevonden is, is geen werkwoordsvorm: "pasje" is niet aanpassen
+                    if i not in gezien and s not in ("s", "q"):
+                        gezien.add(i)
+                        paren.append((i, s, k))
+        precies = lambda p: p[1] == "" and self._inhoud(self.items[p[0]]["nl"]) == [p[2]]
+        return [(i, s) for i, s, _ in sorted(paren, key=lambda p: not precies(p))]
+
+    def samen(self, i):
+        """de woordgroepen van een regel, per woord de vormen die in de zin mogen staan. Een werkwoord begint met *:
+        'nodig hebben' -> [['nodig', '*hebben heb hebt heeft had hadden gehad']] (een werkwoord mag overal in de zin staan)"""
+        if not hasattr(self, "_ww"):
+            self._ww = {it["nl"]: j for j, it in enumerate(self.items) if it.get("ww")}
+        uit = []
+        for s in sublemmas(self.items[i]["nl"]):
+            inhoud = self._inhoud(s)
+            if len(inhoud) < 2:
+                continue
+            groep = []
+            for w in inhoud:
+                j = self._ww.get(w)
+                groep.append("*" + " ".join(dict.fromkeys([w] + [kaal(v) for v in self.items[j]["vormen"]])) if j is not None else w)
+            uit.append(groep)
+        return uit
+
     def trede(self, i):
         return self.items[i]["trede"]
 

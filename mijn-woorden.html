@@ -54,13 +54,23 @@
     notitie.addEventListener('input', () => { pas(); clearTimeout(tik); tik = setTimeout(bewaar, 700); });
     notitie.addEventListener('blur', bewaar);
     requestAnimationFrame(pas);
+    // de zin: waar de leerling het woord bewaarde (met dat woord vet), anders de voorbeeldzin uit de les.
+    // Een luisterknop alleen als er een opname van de zin is.
+    const zin = x.z || (r && r.zin) || '';
+    let zinRegel = null;
+    if (zin) {
+      const knop = App.luisterKnop(() => Spraak.zeg(zin), 'luister naar de zin');
+      zinRegel = el('p', { class: 'mw-zin' }, el('span', {}, App.woorden(zin)), knop);
+      if (x.z && x.v) { const hier = [...zinRegel.querySelectorAll('.w')].find((w) => kaal(w.textContent) === x.v); if (hier) hier.classList.add('hier'); }
+      Spraak.adres(zin).then((u) => { if (!u) knop.hidden = true; });
+    }
     return el('li', { class: 'mw-rij' },
       el('span', { class: 'beeld' + (r && r.beeld ? '' : ' leeg'), 'aria-hidden': 'true' }, (r && r.beeld) || lw || x.nl.slice(0, 1)),
       el('div', { class: 'mw-woord' }, el('b', { lang: 'nl' }, App.metLidwoord(x.nl)), App.delenRegel(x.nl), r ? el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')) : null),
       el('div', { class: 'mw-knoppen' }, App.luisterKnop(() => Spraak.zeg(x.nl), 'luister naar ' + x.nl), vertaling ? App.vertaalKnop(vertaling) : null, App.bewaarKnop(x.nl)),
       el('div', { class: 'mw-meer' },
         vertaling,
-        r && r.zin ? el('p', { class: 'mw-zin' }, el('span', {}, App.woorden(r.zin)), App.luisterKnop(() => Spraak.zeg(r.zin), 'luister naar de zin')) : null,
+        zinRegel,
         el('div', { class: 'mw-notitie' }, notitie, stand)));
   }
 
