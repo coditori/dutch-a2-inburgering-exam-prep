@@ -164,7 +164,7 @@
         huidig.vak)),
       el('div', { class: 'voet' },
         el('button', { class: 'knop', disabled: nr === 0, onclick: () => ga(nr - 1) }, 'Vorige'),
-        el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht'), ' ', App.vlagKnop(stand.vlag, nr, bewaar)),
+        el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', App.overzichtKnop(overzicht), ' ', App.vlagKnop(stand.vlag, nr, bewaar)),
         nr < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(nr + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     Spreken.speel(Spreken.vraagTekst(it)); // de vraag speelt vanzelf, zoals bij DUO
     window.scrollTo(0, 0);

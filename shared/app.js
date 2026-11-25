@@ -281,6 +281,7 @@ window.App = (() => {
     klok: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/>',
     zacht: '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/>',
     vlag: '<path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/>',
+    raster: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -896,7 +897,8 @@ window.App = (() => {
       vorige = s;
       if (s <= 0) { clearInterval(tik); if (o.op0) o.op0(); }
     }
-    o.kop.insertBefore(knop, o.kop.lastChild);
+    const h1 = o.kop.querySelector('h1');
+    o.kop.insertBefore(knop, h1 ? h1.nextSibling : o.kop.lastChild); // in het midden van de balk (CSS), zoals bij DUO
     const tik = setInterval(toon, 1000);
     toon();
     return { stop() { clearInterval(tik); knop.remove(); } };
@@ -929,12 +931,12 @@ window.App = (() => {
       blokjes,
       el('button', { type: 'button', class: 'vol-knop', title: 'harder', 'aria-label': 'harder', onclick: () => zet(volumeStap + 1) }, teken('luid')));
     zet(volumeStap);
-    kop.insertBefore(vak, kop.lastChild);
+    kop.insertBefore(vak, kop.querySelector('.deel') || kop.lastChild); // links van delen, profiel en taal: die staan op elke pagina op dezelfde plek
     return vak;
   }
   // Een vraag markeren, om er later naar terug te gaan (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
   function vlagKnop(vlaggen, nr, bewaar) {
-    const k = el('button', { type: 'button', class: 'knop klein licht vlag-knop', 'aria-pressed': String(!!vlaggen[nr]), en: 'mark this question: you see it in the overview' }, teken('vlag'), 'Markeer');
+    const k = el('button', { type: 'button', class: 'voet-icoon vlag-knop', title: 'Markeer deze vraag', 'aria-label': 'markeer deze vraag', 'aria-pressed': String(!!vlaggen[nr]) }, teken('bewaar'));
     k.addEventListener('click', () => {
       if (vlaggen[nr]) delete vlaggen[nr]; else vlaggen[nr] = true;
       k.setAttribute('aria-pressed', String(!!vlaggen[nr]));
@@ -942,6 +944,8 @@ window.App = (() => {
     });
     return k;
   }
+  // het overzicht van alle vragen: een raster, zoals de knop van DUO
+  const overzichtKnop = (op) => el('button', { type: 'button', class: 'voet-icoon', title: 'Overzicht', 'aria-label': 'overzicht van alle vragen', onclick: op }, teken('raster'));
   // Foto's bij de oefenexamens, zoals DUO echte foto's gebruikt (gemaakt door tools/plaatjes.py, in shared/fotos/).
   // foto(beschrijving, reserve): een plek met het plaatje van emoji (reserve); is er een foto bij de beschrijving, dan komt die ervoor in de plaats.
   let fotoLijst = null;
@@ -984,5 +988,5 @@ window.App = (() => {
   }
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, overzichtKnop, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

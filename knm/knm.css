@@ -28,7 +28,7 @@
 /* de vraag van een KNM-toets zoals bij DUO: links de foto, luisteren en de vraag; rechts de drie antwoorden */
 .knm-examen > section { min-height: 0; }
 .knm-examen .kplaat { margin: 0 0 10px; }
-.knm-examen .kplaat .met-foto img { max-width: 100%; max-height: 52vh; width: auto; object-fit: cover; }
+.knm-examen .kplaat .met-foto img { max-width: 100%; max-height: 40vh; width: auto; object-fit: cover; } /* de vraag onder de foto blijft op het scherm */
 .knm-stam { margin-top: 10px; font-size: 1.1rem; }
 .knm-stam .v { font-weight: 650; }
 .knm-antwoorden { display: flex; flex-direction: column; justify-content: center; }

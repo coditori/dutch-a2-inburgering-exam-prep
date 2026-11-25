@@ -68,7 +68,7 @@
     pagina.append(el('div', { class: 'examen twee kort' }, links, rechts),
       el('div', { class: 'voet' },
         el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, 'Vorige'),
-        el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht'), ' ', App.vlagKnop(stand.vlag, stand.nu, bewaar)),
+        el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ', App.overzichtKnop(overzicht), ' ', App.vlagKnop(stand.vlag, stand.nu, bewaar)),
         stand.nu < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     const intro = el('p', { class: 'intro' }, it.context);
     const opdracht = el('p', { class: 'lees-eerst' }, 'Lees eerst de vraag.', el('br'), 'Luister daarna naar de tekst.');

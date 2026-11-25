@@ -40,3 +40,6 @@ audio { max-width: 100%; height: 36px; vertical-align: middle; }
 /* het oefenexamen Spreken zoals bij DUO: van boven naar beneden, de plaatjes boven en de opname eronder */
 .examen.boven-onder { grid-template-columns: 1fr; max-width: 980px; }
 .examen.boven-onder > section { min-height: 0; }
+/* foto en opname samen op het scherm, zoals bij DUO: de foto's niet hoger dan ongeveer een derde van het scherm */
+.examen.boven-onder .scene .plaat .met-foto img { max-height: 34vh; width: auto; max-width: 100%; }
+.examen.boven-onder .lees-eerst p { margin: 4px 0 0; }

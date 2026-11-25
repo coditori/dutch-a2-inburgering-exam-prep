@@ -965,3 +965,13 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .raster-groep .raster-kop { margin: 0 0 4px; font-size: .85rem; color: var(--zacht); }
 .raster-groep .raster { display: flex; gap: 8px; }
 .raster-groep .raster button { width: 44px; }
+/* onder in een oefenexamen: het overzicht (raster) en markeren (bladwijzer) als teken, zoals bij DUO */
+.voet-icoon { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 12px; background: transparent; color: var(--tekst); cursor: pointer; vertical-align: middle; }
+.voet-icoon .icoon { width: 26px; height: 26px; }
+@media (hover: hover) { .voet-icoon:hover { background: var(--vlak2); } }
+.voet-icoon.vlag-knop[aria-pressed="true"] { color: var(--nieuw); }
+.voet-icoon.vlag-knop[aria-pressed="true"] .icoon { fill: currentColor; }
+/* de klok in het midden van de balk (zoals bij DUO); op een smal scherm gewoon in de rij */
+@media (min-width: 900px) { .kop .klok { position: absolute; left: 50%; transform: translateX(-50%); } }
+/* op een telefoon: geen volumeknop (de telefoon heeft eigen knoppen voor het volume) */
+@media (max-width: 560px) { .kop .volume { display: none; } }
