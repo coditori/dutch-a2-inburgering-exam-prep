@@ -730,6 +730,9 @@ body.en #toast.met-knop [data-en]::after { color: inherit; opacity: .75; }
 .mw-knoppen { display: flex; gap: 6px; }
 .mw-meer { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .mw-meer:empty { display: none; }
+.mw-meer:not(:has(> :not([hidden]))) { display: none; } /* alles erin verborgen (geen zin, geen notitie): geen lege regel */
+/* onder een lange lijst: "25 van 150" en de knop Meer woorden */
+.mw-meer-rij { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 16px 0 8px; overflow-anchor: none; } /* de nieuwe woorden komen onder u, de knop schuift mee naar beneden */
 .mw-vertaling { padding: 6px 12px; border-radius: 12px; background: var(--vlak2); width: fit-content; max-width: 100%; }
 .mw-zin { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--zacht); }
 .mw-zin .rond { width: calc(32px * var(--schaal, 1)); height: calc(32px * var(--schaal, 1)); background: transparent; }

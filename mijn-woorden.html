@@ -23,8 +23,11 @@
   App.kop('Mijn woorden', 'index.html');
   const pagina = document.getElementById('pagina');
 
-  // wat de leerling koos op deze pagina: zoektekst, filter (alle / de / het / notitie), volgorde, en of de vertalingen open staan
-  const keuze = { zoek: '', filter: 'alle', az: false, vertaling: false };
+  // wat de leerling koos op deze pagina: zoektekst, filter (alle / de / het / notitie), volgorde, of de vertalingen open staan,
+  // en hoeveel woorden er staan. Een lange lijst is geen lange rol: eerst PER woorden, met "Meer woorden" komen er PER bij.
+  // Zoeken en de filters gaan altijd over alle woorden; ook dan komen de gevonden woorden PER tegelijk.
+  const PER = 25;
+  const keuze = { zoek: '', filter: 'alle', az: false, vertaling: false, aantal: PER };
   const kop = el('div', { class: 'mw-kop' });
   const filters = el('div', { class: 'mw-filters' });
   const lijstDoel = el('div');
@@ -32,12 +35,12 @@
 
   // ---------- zoeken ----------
   const veld = el('input', { type: 'search', placeholder: 'Zoek een woord', 'aria-label': 'zoek een woord', autocomplete: 'off', enterkeyhint: 'search' });
-  const wis = el('button', { type: 'button', class: 'rond', title: 'wis', 'aria-label': 'maak het zoekveld leeg', hidden: true, onclick: () => { veld.value = ''; keuze.zoek = ''; wis.hidden = true; toon(); veld.focus(); } }, teken('kruis'));
-  veld.addEventListener('input', () => { keuze.zoek = veld.value.trim(); wis.hidden = !veld.value; toon(); });
+  const wis = el('button', { type: 'button', class: 'rond', title: 'wis', 'aria-label': 'maak het zoekveld leeg', hidden: true, onclick: () => { veld.value = ''; keuze.zoek = ''; keuze.aantal = PER; wis.hidden = true; toon(); veld.focus(); } }, teken('kruis'));
+  veld.addEventListener('input', () => { keuze.zoek = veld.value.trim(); keuze.aantal = PER; wis.hidden = !veld.value; toon(); });
   const balk = el('div', { class: 'mw-balk' }, el('div', { class: 'mw-zoek' }, teken('zoek'), veld, wis), filters);
 
-  // past het woord bij de zoektekst? Het Nederlands, het Engels, of de eigen notitie.
-  const past = (x, q) => !q || kaal(x.nl).includes(q) || (x.regel && kaal(x.regel.en).includes(q)) || kaal(x.n).includes(q);
+  // past het woord bij de zoektekst? Het Nederlands, het Engels, de eigen notitie, of de zin waar het woord bewaard werd.
+  const past = (x, q) => !q || kaal(x.nl).includes(q) || (x.regel && kaal(x.regel.en).includes(q)) || kaal(x.n).includes(q) || kaal(x.z || '').includes(q);
   const kern = (nl) => kaal(App.lidwoord(nl)[1]); // voor A tot Z: zonder de of het
 
   // ---------- één woord ----------
@@ -54,6 +57,10 @@
     notitie.addEventListener('input', () => { pas(); clearTimeout(tik); tik = setTimeout(bewaar, 700); });
     notitie.addEventListener('blur', bewaar);
     requestAnimationFrame(pas);
+    // Het vak voor de notitie staat er alleen als er een notitie is. De knop met de pen zet het eronder (en de cursor erin).
+    const notitieVak = el('div', { class: 'mw-notitie', hidden: !x.n }, notitie, stand);
+    const pen = el('button', { type: 'button', class: 'rond', title: 'notitie', 'aria-label': 'schrijf een notitie bij ' + x.nl,
+      onclick: () => { notitieVak.hidden = false; pas(); notitie.focus(); } }, teken('schrijven'));
     // de zin: waar de leerling het woord bewaarde (met dat woord vet), anders de voorbeeldzin uit de les.
     // Een luisterknop alleen als er een opname van de zin is.
     const zin = x.z || (r && r.zin) || '';
@@ -67,11 +74,11 @@
     return el('li', { class: 'mw-rij' },
       el('span', { class: 'beeld' + (r && r.beeld ? '' : ' leeg'), 'aria-hidden': 'true' }, (r && r.beeld) || lw || x.nl.slice(0, 1)),
       el('div', { class: 'mw-woord' }, el('b', { lang: 'nl' }, App.metLidwoord(x.nl)), App.delenRegel(x.nl), r ? el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')) : null),
-      el('div', { class: 'mw-knoppen' }, App.luisterKnop(() => Spraak.zeg(x.nl), 'luister naar ' + x.nl), vertaling ? App.vertaalKnop(vertaling) : null, App.bewaarKnop(x.nl)),
+      el('div', { class: 'mw-knoppen' }, App.luisterKnop(() => Spraak.zeg(x.nl), 'luister naar ' + x.nl), vertaling ? App.vertaalKnop(vertaling) : null, pen, App.bewaarKnop(x.nl)),
       el('div', { class: 'mw-meer' },
         vertaling,
         zinRegel,
-        el('div', { class: 'mw-notitie' }, notitie, stand)));
+        notitieVak));
   }
 
   // ---------- nog geen woorden: uitleg hoe het werkt ----------
@@ -117,7 +124,7 @@
     kop.append(el('h2', {}, alle.length === 1 ? '1 woord' : `${alle.length} woorden`));
     if (alle.length) kop.append(el('a', { class: 'knop licht klein', href: 'lezen/herhaal.html', en: 'practise with cards' }, 'Oefen met kaarten'));
 
-    const chip = (k, naam, n, en) => el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.filter === k), en, onclick: () => { keuze.filter = k; toon(); } }, naam, n == null ? null : el('small', {}, String(n)));
+    const chip = (k, naam, n, en) => el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.filter === k), en, onclick: () => { keuze.filter = k; keuze.aantal = PER; toon(); } }, naam, n == null ? null : el('small', {}, String(n)));
     filters.textContent = '';
     filters.hidden = !alle.length;
     filters.append(...[chip('alle', 'Alle', alle.length, 'all'),
@@ -125,7 +132,7 @@
       telHet ? chip('het', el('span', { class: 'lw lw-het' }, 'het'), telHet) : null,
       telN ? chip('notitie', 'Met notitie', telN, 'with a note') : null,
       el('div', { class: 'rechts' },
-        el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.az), en: 'sort from A to Z', onclick: () => { keuze.az = !keuze.az; toon(); } }, 'A tot Z'),
+        el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.az), en: 'sort from A to Z', onclick: () => { keuze.az = !keuze.az; keuze.aantal = PER; toon(); } }, 'A tot Z'),
         el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.vertaling), en: 'show all translations', onclick: () => { keuze.vertaling = !keuze.vertaling; toon(); } }, teken('vertaal'), 'Vertaling'))].filter(Boolean));
 
     let zichtbaar = alle.filter((x) => past(x, q) && (keuze.filter === 'alle' || (keuze.filter === 'notitie' ? !!x.n : App.lidwoord(x.nl)[0] === keuze.filter)));
@@ -134,7 +141,21 @@
     lijstDoel.textContent = '';
     if (!alle.length && !q) lijstDoel.append(leeg());
     else {
-      if (zichtbaar.length) lijstDoel.append(el('ul', { class: 'mw-lijst' }, zichtbaar.map(rij)));
+      if (zichtbaar.length) {
+        // PER tegelijk; "Meer woorden" zet de volgende eronder, zonder de lijst opnieuw te tekenen (u blijft waar u was)
+        const ul = el('ul', { class: 'mw-lijst' }, zichtbaar.slice(0, keuze.aantal).map(rij));
+        const teller = el('span', { class: 'zacht klein' });
+        const meer = el('button', { type: 'button', class: 'knop licht', en: 'more words', onclick: () => {
+          const van = keuze.aantal;
+          keuze.aantal += PER;
+          ul.append(...zichtbaar.slice(van, keuze.aantal).map(rij));
+          zetTeller();
+        } }, 'Meer woorden');
+        const onder = el('div', { class: 'mw-meer-rij' }, teller, meer);
+        const zetTeller = () => { const n = Math.min(keuze.aantal, zichtbaar.length); teller.textContent = `${n} van ${zichtbaar.length}`; onder.hidden = n >= zichtbaar.length; };
+        zetTeller();
+        lijstDoel.append(ul, onder);
+      }
       else if (alle.length && !extra) lijstDoel.append(el('p', { class: 'zacht midden', en: 'no word found' }, q ? `Geen woord gevonden met "${keuze.zoek}".` : 'Geen woord gevonden.'));
       else if (!extra) lijstDoel.append(el('p', { class: 'zacht midden', en: 'this word is not in the word list' }, `"${keuze.zoek}" staat niet in de woordenlijst.`));
       if (extra) lijstDoel.append(...extra);
