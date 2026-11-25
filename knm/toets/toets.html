@@ -66,26 +66,8 @@
     if (!stand.klaar) teken();
   }
   const voorlezen = (v) => [v.sit, v.v].filter(Boolean).join(' ');
-  // de vraag en daarna elk antwoord, in de volgorde op het scherm; wat nu klinkt krijgt een rand. Een andere vraag of stop: het houdt op.
-  let leesNr = 0;
-  async function leesVoor(v, nr) {
-    const mijn = ++leesNr;
-    Spraak.stop();
-    const doelen = [document.querySelector('.knm-stam'), ...document.querySelectorAll('.knm-antwoorden .optie')];
-    const teksten = [voorlezen(v), ...stand.volgorde[nr].map((i) => v.o[i])];
-    for (const [i, t] of teksten.entries()) {
-      if (mijn !== leesNr) break;
-      doelen.forEach((d, j) => d && d.classList.toggle('speelt', i === j));
-      const a = await Spraak.zeg(t);
-      if (!a) continue;
-      await new Promise((af) => { a.addEventListener('ended', af); a.addEventListener('error', af); a.addEventListener('pause', af); });
-      await new Promise((af) => setTimeout(af, 250));
-    }
-    if (mijn === leesNr) doelen.forEach((d) => d && d.classList.remove('speelt'));
-  }
-
   function teken() {
-    leesNr++; Spraak.stop();
+    Spraak.stop();
     const s = schermen[stand.nu];
     const vak = el('div', { class: 'toetsvak' });
     pagina.textContent = '';
@@ -100,18 +82,21 @@
     const blok = Lezen.vraag(vraagDoel, v, { volgorde: stand.volgorde[s.nr], gekozen: stand.antwoorden[s.nr], op: (keuze) => { stand.antwoorden[s.nr] = keuze; bewaar(); blok.teken(keuze, false); } });
     const stam = el('div', { class: 'vraag knm-stam' }, ...vraagDoel.querySelectorAll('.vraag > .sit, .vraag > .v'));
     vak.className = 'examen knm-examen';
+    // zoals bij DUO: de vraag en daarna elk antwoord worden voorgelezen, vanzelf; wat nu klinkt krijgt een rand
+    const doelen = [stam, ...vraagDoel.querySelectorAll('.optie')];
+    const speler = App.reeksSpeler([{ sleutel: voorlezen(v) }, ...stand.volgorde[s.nr].map((i) => ({ sleutel: v.o[i] }))],
+      { opDeel: (i) => doelen.forEach((d, j) => d.classList.toggle('speelt', i === j)) });
     vak.append(
-      el('section', {}, el('div', { class: 'kplaat' }, App.foto(v.foto, v.beeld || '🇳🇱')),
-        el('p', { class: 'midden' }, el('button', { class: 'knop licht klein', en: 'listen to the question and the answers', onclick: () => leesVoor(v, s.nr) }, App.teken('luid'), 'Luister')), stam),
+      el('section', {}, el('div', { class: 'kplaat' }, App.foto(v.foto, v.beeld || '🇳🇱')), speler.vak, stam),
       el('section', { class: 'knm-antwoorden' }, vraagDoel));
     window.scrollTo(0, 0);
-    leesVoor(v, s.nr); // zoals bij DUO: de vraag en elk antwoord worden voorgelezen
+    speler.speel();
   }
   function ga(n) { stand.nu = n; bewaar(); teken(); }
   const schermVan = (nr) => schermen.findIndex((s) => s.nr === nr);
 
   function overzicht() {
-    leesNr++; Spraak.stop();
+    Spraak.stop();
     const open = vragen.filter((_, i) => stand.antwoorden[i] == null).length;
     pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
@@ -124,7 +109,7 @@
   }
   function inleveren() {
     if (stand.klaar) return;
-    stopKlok(); leesNr++; Spraak.stop();
+    stopKlok(); Spraak.stop();
     stand.klaar = true;
     stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000));
     stand.score = vragen.filter((_, i) => stand.antwoorden[i] === 0).length;
@@ -139,12 +124,13 @@
       ...App.cijferBlok(stand.score, vragen.length, null, { map: 'knm', beantwoord: vragen.filter((_, i) => stand.antwoorden[i] != null).length,
         eerder: (KNM.P.toets[id] || []).slice(0, -1).map((r) => App.cijferDeel('knm', r.score, r.totaal || vragen.length)) }),
       perThema(),
+      App.bewaarVragenRij('knm', id, vragen.map((v, i) => [i, v.v]).filter(([i]) => stand.antwoorden[i] !== 0), vragen.map((v, i) => [i, v.v]).filter(([i]) => (stand.vlag || {})[i])),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en waarom.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('knm-toets-bezig', null); welkom(); } }, 'Nog een keer'), el('a', { class: 'knop', href: '../index.html' }, 'Naar de thema\'s')))));
     if (kijk != null) {
       const v = vragen[kijk]; const doel = el('div');
-      pagina.append(el('div', { class: 'toetsvak', style: 'padding-bottom:20px' }, el('div', { class: 'kaart' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}, ${THEMA[v.thema] || v.thema}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')), el('div', { class: 'kplaat' }, App.foto(v.foto, v.beeld || '🇳🇱')), doel,
+      pagina.append(el('div', { class: 'toetsvak', style: 'padding-bottom:20px' }, el('div', { class: 'kaart' }, el('div', { class: 'kijk-kop' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}, ${THEMA[v.thema] || v.thema}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')), App.bewaarVraagKnop('knm', id, kijk, v.v)), el('div', { class: 'kplaat' }, App.foto(v.foto, v.beeld || '🇳🇱')), doel,
         el('div', { class: 'waarom' }, el('b', {}, 'Waarom? '), App.woorden(v.w || '')))));
       Lezen.vraag(doel, v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
     }

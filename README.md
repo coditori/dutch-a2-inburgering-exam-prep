@@ -21,6 +21,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - 150 short lessons: Lezen 38, Luisteren 30, Schrijven 24, Spreken 26, KNM 32.
 - A ladder of 5 steps (trede 0-4). A lesson only uses words from its own step or lower; new words are marked and clickable.
 - Word review with spaced repetition. Progress is saved in your browser, there is no account.
+- After a practice exam, save the questions you got wrong or marked (or one by one) in My questions (`mijn-vragen.html`): one list for all exams, to practise them again, together or per exam.
 - Click any word for its card: listen, translation, save to your own list (My words). A compound word also shows its parts: ziekenhuis = zieken + huis.
 - Dutch audio for every word, sentence and listening text (already included as mp3).
 - Level and vocabulary are calibrated on the official DUO practice exams.

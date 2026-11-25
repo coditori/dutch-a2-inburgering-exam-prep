@@ -121,6 +121,7 @@
       ...App.cijferBlok(stand.score, n, null, { map: 'lezen', beantwoord: vragen.filter((_, i) => stand.antwoorden[i] != null).length,
         eerder: (Lezen.P.toets[id] || []).slice(0, -1).map((r) => App.cijferDeel('lezen', r.score, r.totaal || vragen.length)) }),
       perSoort(),
+      App.bewaarVragenRij('lezen', id, vragen.map((q, i) => [i, q.v.v]).filter(([i]) => stand.antwoorden[i] !== 0), vragen.map((q, i) => [i, q.v.v]).filter(([i]) => (stand.vlag || {})[i])),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag en de zin met het antwoord.`),
       raster,
       el('div', { class: 'knoppen' },
@@ -131,7 +132,7 @@
       pagina.append(el('div', { class: 'examen', style: 'padding-bottom:20px' }, links, rechts));
       Lezen.tekst(links, toets.teksten[q.ti], {});
       Lezen.vraag(rechts, q.v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
-      rechts.prepend(el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')));
+      rechts.prepend(el('div', { class: 'kijk-kop' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')), App.bewaarVraagKnop('lezen', id, kijk, q.v.v)));
       Lezen.markeer(links, q.v.b);
     }
   }

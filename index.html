@@ -92,6 +92,7 @@
         verder,
         nieuw ? el('a', { class: 'knop licht', href: '#kies', en: 'I already know the basics: take a practice exam' }, 'Ik ken de basis al: doe een oefenexamen') : null,
         tel.nu ? el('a', { class: 'knop licht', href: 'lezen/herhaal.html', en: 'review' }, `Herhalen: ${tel.nu} ${tel.nu === 1 ? 'kaart' : 'kaarten'}`) : null,
+        App.MijnVragen.tel() ? el('a', { class: 'knop licht', href: 'mijn-vragen.html', en: 'practise the questions you saved' }, `Mijn vragen: ${App.MijnVragen.tel()}`) : null,
         nieuw ? null : el('a', { class: 'knop licht', href: 'profiel.html', en: 'show your friends how far you are' }, teken('deel'), 'Deel uw voortgang'))),
     nieuw ? null : el('a', { class: 'ring', href: 'profiel.html', style: `--p:${procent}`, title: 'uw profiel', 'aria-label': `${procent} procent klaar voor het examen. Ga naar uw profiel.` },
       el('b', {}, `${procent}%`), el('span', { en: 'ready' }, 'klaar'))));

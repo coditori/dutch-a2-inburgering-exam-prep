@@ -119,6 +119,7 @@
       ...App.cijferBlok(stand.score, vragen.length, null, { map: 'luisteren', beantwoord: vragen.filter((_, i) => stand.antwoorden[i] != null).length,
         eerder: (Luister.P.toets[id] || []).slice(0, -1).map((r) => App.cijferDeel('luisteren', r.score, r.totaal || vragen.length)) }),
       perSoort(),
+      App.bewaarVragenRij('luisteren', id, vragen.map((q, i) => [i, q.v.v]).filter(([i]) => stand.antwoorden[i] !== 0), vragen.map((q, i) => [i, q.v.v]).filter(([i]) => (stand.vlag || {})[i])),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en de tekst van het gesprek.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('luisteren-toets-bezig', null); welkom(); } }, 'Nog een keer'),
@@ -130,7 +131,7 @@
       pagina.append(el('div', { class: 'examen', style: 'padding-bottom:20px' }, links, rechts));
       links.append(el('p', { class: 'intro' }, it.context), Luister.speler(it.regels, { opRegel: tr.opRegel, opTijd: tr.opTijd }), tr.vak);
       Lezen.vraag(rechts, q.v, { volgorde: stand.volgorde[kijk], gekozen: stand.antwoorden[kijk], toonGoed: true });
-      rechts.prepend(el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')));
+      rechts.prepend(el('div', { class: 'kijk-kop' }, el('p', { class: 'zacht klein' }, `Vraag ${kijk + 1}` + (stand.antwoorden[kijk] == null ? ', niet beantwoord' : '')), App.bewaarVraagKnop('luisteren', id, kijk, q.v.v)));
     }
   }
   // per soort vraag: hoeveel goed; de zwakste soort krijgt een knop naar een trainer

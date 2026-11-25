@@ -975,3 +975,41 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 @media (min-width: 900px) { .kop .klok { position: absolute; left: 50%; transform: translateX(-50%); } }
 /* op een telefoon: geen volumeknop (de telefoon heeft eigen knoppen voor het volume) */
 @media (max-width: 560px) { .kop .volume { display: none; } }
+/* Mijn vragen: bewaren na een oefenexamen */
+.bewaar-rij { margin: 18px auto 4px; text-align: center; }
+.kijk-kop { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.kijk-kop p { margin: 0; }
+.bewaar-vraag .icoon, .bewaar-rij .icoon { width: 18px; height: 18px; }
+.bewaar-vraag[aria-pressed="true"] { color: var(--nieuw); }
+.bewaar-vraag[aria-pressed="true"] .icoon { fill: currentColor; }
+/* de speler van een oefenexamen, zoals bij DUO (App.reeksSpeler): 10 seconden terug, spelen of pauze in een ring, 10 seconden verder */
+.examen-speler { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 14px 0; }
+.speel-knop { position: relative; width: 64px; height: 64px; border: 0; border-radius: 50%; background: var(--accent); color: var(--op-accent); cursor: pointer; display: grid; place-items: center; font: inherit; font-size: 1.2rem; }
+.speel-ring { position: absolute; inset: 0; width: 64px; height: 64px; transform: rotate(-90deg); }
+.speel-ring circle { fill: none; stroke-width: 4; }
+.speel-ring .ring-achter { stroke: color-mix(in srgb, var(--op-accent) 25%, transparent); }
+.speel-ring .ring-voor { stroke: var(--op-accent); stroke-linecap: round; transition: stroke-dasharray .25s linear; }
+.speel-teken { position: relative; }
+.speel-teken .icoon { width: 24px; height: 24px; }
+.spring-knop { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--tekst); cursor: pointer; }
+.spring-knop .icoon { width: 30px; height: 30px; }
+@media (hover: hover) { .spring-knop:hover { background: var(--vlak2); } }
+/* Mijn vragen (mijn-vragen.html) */
+.mv-filters { margin: 12px 0; }
+.mv-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 4px 14px 4px 6px; border: 1px solid var(--lijn); border-radius: 999px; background: var(--vlak); color: var(--tekst); font: inherit; cursor: pointer; }
+.mv-chip.k-alle { padding-left: 14px; }
+.mv-chip b { font-variant-numeric: tabular-nums; background: var(--vlak2); border-radius: 999px; padding: 0 8px; font-size: .85rem; }
+.mv-chip.aan { border-color: var(--accent); background: var(--accent-zacht); color: var(--op-accent-zacht); font-weight: 600; }
+.mv-icoon { display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 10px; color: var(--k, var(--accent)); background: var(--vlak2); background: color-mix(in srgb, var(--k, var(--accent)) 14%, transparent); }
+.mv-icoon .icoon { width: 18px; height: 18px; }
+.k-lezen { --k: var(--k-lezen); } .k-luisteren { --k: var(--k-luisteren); } .k-knm { --k: var(--k-knm); }
+.mv-lijst { display: grid; gap: 10px; }
+.mv-kaart { margin: 0; }
+.mv-kaart-kop { display: flex; align-items: center; gap: 10px; }
+.mv-vraag { margin: 8px 0 4px; }
+.mv-kaart .knoppen { margin-top: 6px; }
+.mv-kaart .knop, .mv-leeg .knop { display: inline-flex; align-items: center; gap: 6px; }
+.mv-kaart .knop .icoon { width: 18px; height: 18px; }
+.mv-leeg { text-align: center; }
+.mv-leeg-teken .icoon { width: 48px; height: 48px; margin: 0 auto; color: var(--zacht); }
+.mv-leeg .knoppen { justify-content: center; }

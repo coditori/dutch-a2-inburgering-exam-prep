@@ -150,6 +150,8 @@
     const tekst = el('div', { hidden: it.deel === 1 }, it.sit ? el('p', {}, it.sit) : null, el('p', { class: 'spreekvraag' }, it.vraag));
     const hint = { 2: 'Gebruik het plaatje.', 3: 'Kies een van de plaatjes.', 4: 'Gebruik alle plaatjes.' }[it.deel];
     huidig = opnemer(nr);
+    // de vraag speelt vanzelf, zoals bij DUO; terug, spelen en verder met de speler
+    const speler = App.reeksSpeler([{ sleutel: Spreken.vraagTekst(it), vast: true }]);
     pagina.textContent = '';
     // zoals bij DUO van boven naar beneden: eerst de video of de plaatjes, daaronder de vraag en de opname
     pagina.append(el('div', { class: 'examen boven-onder' },
@@ -158,15 +160,13 @@
         Spreken.scene(it.beelden, it.fotos),
         it.deel === 1 ? el('div', { class: 'scene' }, el('div', { class: 'plaat' }, App.foto(it.foto, '🧑‍💼🎥'))) : null),
       el('section', {}, tekst, hint ? el('p', { class: 'zacht' }, hint) : null,
-        el('div', { class: 'knoppen' },
-          el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, App.teken('luid'), 'Luister nog een keer'),
-          el('button', { class: 'knop licht', en: 'stop', onclick: () => Spraak.stop() }, '■')),
+        speler.vak,
         huidig.vak)),
       el('div', { class: 'voet' },
         el('button', { class: 'knop', disabled: nr === 0, onclick: () => ga(nr - 1) }, 'Vorige'),
         el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', App.overzichtKnop(overzicht), ' ', App.vlagKnop(stand.vlag, nr, bewaar)),
         nr < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(nr + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
-    Spreken.speel(Spreken.vraagTekst(it)); // de vraag speelt vanzelf, zoals bij DUO
+    speler.speel(); // de vraag speelt vanzelf, zoals bij DUO
     window.scrollTo(0, 0);
   }
   function ga(n) { stand.nu = n; bewaar(); teken(); }

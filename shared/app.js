@@ -281,6 +281,10 @@ window.App = (() => {
     klok: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/>',
     zacht: '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/>',
     vlag: '<path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/>',
+    speel: '<path d="M8 5v14l11-7z" fill="currentColor"/>',
+    pauze: '<path d="M8 5v14M16 5v14" stroke-width="3.2"/>',
+    terug10: '<path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 3.5v4.5h4.5"/><text x="12.4" y="15.3" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" stroke="none">10</text>',
+    verder10: '<path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5v4.5h-4.5"/><text x="11.6" y="15.3" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" stroke="none">10</text>',
     raster: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
@@ -320,6 +324,7 @@ window.App = (() => {
       kopMenu = el('div', { class: 'taalmenu kopmenu', role: 'menu' },
         el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel: log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
         el('a', { role: 'menuitem', href: WORTEL + 'mijn-woorden.html' }, regel('Mijn woorden', 'bewaar', 'my words'), Mijn.tel() ? el('span', { class: 'menu-tel' }, String(Mijn.tel())) : null),
+        el('a', { role: 'menuitem', href: WORTEL + 'mijn-vragen.html' }, regel('Mijn vragen', 'vlag', 'my questions'), MijnVragen.tel() ? el('span', { class: 'menu-tel' }, String(MijnVragen.tel())) : null),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html' }, regel('Instellingen', 'instel', 'settings')),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html#stem' }, regel('Stem kiezen', 'stem', 'choose the voice')),
         el('button', { type: 'button', role: 'menuitem', onclick: () => { sluitKopMenu(); zetThema(isDonker() ? 'licht' : 'donker'); } },
@@ -872,7 +877,9 @@ window.App = (() => {
     const w = opties.map(ordeWaarde);
     const soorten = new Set(w.filter((x) => x && x[0] !== 'rest').map((x) => x[0]));
     if (w.every(Boolean) && soorten.size === 1 && w.filter((x) => x[0] !== 'rest').length >= 2) return nrs.sort((a, b) => w[a][1] - w[b][1]);
-    if (o && o.alfabet) return nrs.sort((a, b) => kaal(opties[a]).localeCompare(kaal(opties[b]), 'nl'));
+    // op alfabet; maar "Ja ..." altijd eerst en "Nee ..." altijd laatst, zoals bij DUO (Ja / Alleen als ... / Nee)
+    const plek = (t) => (/^ja\b/.test(kaal(t)) ? 0 : /^nee\b/.test(kaal(t)) ? 2 : 1);
+    if (o && o.alfabet) return nrs.sort((a, b) => plek(opties[a]) - plek(opties[b]) || kaal(opties[a]).localeCompare(kaal(opties[b]), 'nl'));
     return schud(nrs);
   }
 
@@ -944,6 +951,144 @@ window.App = (() => {
     });
     return k;
   }
+  // ---------- Mijn vragen: vragen uit de oefenexamens die de leerling bewaarde, om later te oefenen (pagina mijn-vragen.html) ----------
+  // Uit elk examen samen in één lijst. Sleutel "map|toets|nummer"; v = de tekst van de vraag, zodat de pagina ziet of de vraag nog dezelfde is.
+  // Alleen in deze browser (net als de voortgang zonder account).
+  const MijnVragen = {
+    alle() { const v = ruw('mijn-vragen', {}); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; },
+    sleutel: (map, toets, nr) => `${map}|${toets}|${nr}`,
+    heeft(map, toets, nr) { return !!this.alle()[this.sleutel(map, toets, nr)]; },
+    zet(map, toets, nr, v, aan) {
+      const a = this.alle(), k = this.sleutel(map, toets, nr);
+      if (aan) a[k] = { map, toets, nr, v, d: window.SRS.vandaag() }; else delete a[k];
+      schrijf('mijn-vragen', a);
+      document.dispatchEvent(new CustomEvent('mijn-vragen'));
+    },
+    // meer vragen tegelijk (de foute vragen, of de gemarkeerde): lijst = [[nr, vraagtekst], ...]; geeft hoeveel er nieuw bij kwamen
+    zetVeel(map, toets, lijst) {
+      const a = this.alle(); let nieuw = 0;
+      for (const [nr, v] of lijst) { const k = this.sleutel(map, toets, nr); if (!a[k]) { a[k] = { map, toets, nr, v, d: window.SRS.vandaag() }; nieuw++; } }
+      schrijf('mijn-vragen', a);
+      document.dispatchEvent(new CustomEvent('mijn-vragen'));
+      return nieuw;
+    },
+    tel() { return Object.keys(this.alle()).length; },
+  };
+  // de bladwijzer bij een vraag na het oefenexamen: bewaar de vraag in Mijn vragen, of haal hem eraf
+  function bewaarVraagKnop(map, toets, nr, v) {
+    const k = el('button', { type: 'button', class: 'knop licht klein bewaar-vraag' });
+    const zet = () => {
+      const aan = MijnVragen.heeft(map, toets, nr);
+      k.textContent = '';
+      k.setAttribute('aria-pressed', String(aan));
+      k.append(teken('bewaar'), el('span', { en: aan ? 'saved in My questions' : 'save in My questions, to practise later' }, aan ? 'Bewaard in Mijn vragen' : 'Bewaar in Mijn vragen'));
+    };
+    k.addEventListener('click', () => {
+      const aan = !MijnVragen.heeft(map, toets, nr);
+      MijnVragen.zet(map, toets, nr, v, aan);
+      zet();
+      if (aan) toast('Bewaard in Mijn vragen', 'saved in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+    });
+    zet();
+    return k;
+  }
+  // op de uitslag: in één klik de foute vragen, of de gemarkeerde vragen bewaren. fout / gemarkeerd = [[nr, vraagtekst], ...]
+  function bewaarVragenRij(map, toets, fout, gemarkeerd) {
+    if (!fout.length && !gemarkeerd.length) return null;
+    const knop = (lijst, tekst, en) => (lijst.length ? el('button', { type: 'button', class: 'knop licht', en, onclick: (e) => {
+      const n = MijnVragen.zetVeel(map, toets, lijst);
+      e.currentTarget.disabled = true;
+      toast(n ? `${n} ${n === 1 ? 'vraag' : 'vragen'} bewaard in Mijn vragen` : 'Deze vragen stonden al in Mijn vragen', 'saved in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+    } }, teken('bewaar'), `${tekst} (${lijst.length})`) : null);
+    return el('div', { class: 'bewaar-rij' },
+      el('p', { class: 'zacht klein', en: 'Save questions to practise them again later, together with questions from the other exams.' }, 'Bewaar vragen om ze later nog een keer te oefenen, samen met vragen uit de andere examens.'),
+      el('div', { class: 'knoppen', style: 'justify-content:center' },
+        knop(fout, 'Bewaar de foute vragen', 'save the questions you got wrong'),
+        knop(gemarkeerd, 'Bewaar de gemarkeerde vragen', 'save the questions you marked')));
+  }
+  // ---------- de speler van een oefenexamen, zoals bij DUO ----------
+  // Speelt opnamen na elkaar (bij Luisteren: inleiding, opdracht, fragment, vraag, antwoorden; bij KNM: de vraag en elk antwoord;
+  // bij Spreken: de vraag). Knoppen zoals bij DUO: 10 seconden terug, spelen of pauze in een ring die laat zien hoe ver het is,
+  // 10 seconden verder. Geen snelheid en geen tekst; opnieuw spelen mag zo vaak als u wilt. Alleen tekens, zonder hulptekst.
+  // delen = [{ sleutel, vast, anders: [{ sleutel, vast }] }] (anders = de delen als de sleutel geen opname heeft)
+  // o = { opDeel(i): licht op wat nu speelt (-1 = niets), klaar: een belofte waarop eerst gewacht wordt (de mappen met opnamen) }
+  let huidigeReeks = null;
+  const stopReeks = () => { if (huidigeReeks) huidigeReeks.pauze(); };
+  function reeksSpeler(delen, o) {
+    o = o || {};
+    stopReeks();
+    let lijst = null, nu = 0, speelt = false;
+    const R = 20, OMTREK = 2 * Math.PI * R;
+    const ns = 'http://www.w3.org/2000/svg';
+    const boog = document.createElementNS(ns, 'circle');
+    boog.setAttribute('cx', '24'); boog.setAttribute('cy', '24'); boog.setAttribute('r', String(R)); boog.setAttribute('class', 'ring-voor');
+    boog.style.strokeDasharray = `0 ${OMTREK}`;
+    const ring = document.createElementNS(ns, 'svg');
+    ring.setAttribute('viewBox', '0 0 48 48'); ring.setAttribute('class', 'speel-ring'); ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = `<circle cx="24" cy="24" r="${R}" class="ring-achter"/>`;
+    ring.append(boog);
+    const speelTeken = el('span', { class: 'speel-teken' }, teken('speel'));
+    const knop = el('button', { type: 'button', class: 'speel-knop', 'aria-label': 'spelen of pauze', title: 'spelen / pauze', onclick: () => (speelt ? pauze() : speel()) }, ring, speelTeken);
+    const terug = el('button', { type: 'button', class: 'spring-knop', 'aria-label': '10 seconden terug', title: '10 seconden terug', onclick: () => spring(-10) }, teken('terug10'));
+    const verder = el('button', { type: 'button', class: 'spring-knop', 'aria-label': '10 seconden verder', title: '10 seconden verder', onclick: () => spring(10) }, teken('verder10'));
+    const vak = el('div', { class: 'examen-speler' }, terug, knop, verder);
+    async function adresVan(d) { return window.Spraak.adres(d.sleutel, d.vast ? { vast: true } : undefined); }
+    async function laad() {
+      if (lijst) return lijst;
+      if (o.klaar) await o.klaar;
+      const uit = [];
+      for (const [i, d] of delen.entries()) {
+        const url = await adresVan(d);
+        if (url) uit.push({ url, deel: i });
+        else for (const x of d.anders || []) { const u = await adresVan(x); if (u) uit.push({ url: u, deel: i }); }
+      }
+      for (const x of uit) {
+        x.a = new Audio(x.url);
+        x.a.preload = 'auto';
+        x.duur = 0;
+        x.a.addEventListener('loadedmetadata', () => { x.duur = x.a.duration || 0; toon(); });
+        x.a.addEventListener('timeupdate', toon);
+        x.a.addEventListener('ended', () => { if (lijst[nu] !== x) return; if (nu < lijst.length - 1) { nu++; lijst[nu].a.currentTime = 0; start(); } else klaarMet(); });
+      }
+      lijst = uit;
+      return lijst;
+    }
+    const totaal = () => (lijst || []).reduce((t, x) => t + x.duur, 0);
+    const plek = () => (lijst || []).slice(0, nu).reduce((t, x) => t + x.duur, 0) + (lijst && lijst[nu] ? lijst[nu].a.currentTime : 0);
+    function toon() {
+      const t = totaal(), deel = t ? Math.min(1, plek() / t) : 0;
+      boog.style.strokeDasharray = `${deel * OMTREK} ${OMTREK}`;
+      speelTeken.textContent = ''; speelTeken.append(teken(speelt ? 'pauze' : 'speel'));
+      if (o.opDeel) o.opDeel(speelt && lijst && lijst[nu] ? lijst[nu].deel : -1);
+    }
+    function start() { if (!lijst[nu]) return; speelt = true; lijst[nu].a.play().catch(() => { speelt = false; toon(); }); toon(); }
+    function klaarMet() { speelt = false; nu = 0; toon(); boog.style.strokeDasharray = `${OMTREK} ${OMTREK}`; }
+    async function speel() {
+      if (!window.Spraak.magSpelen()) return; // de pagina is net geopend: geen geluid tot de leerling zelf klikt
+      stopReeks(); spraakStop();
+      huidigeReeks = api;
+      await laad();
+      if (!lijst.length || huidigeReeks !== api) return;
+      start();
+    }
+    function pauze() { speelt = false; if (lijst && lijst[nu]) lijst[nu].a.pause(); toon(); }
+    async function spring(sec) {
+      await laad();
+      if (!lijst.length) return;
+      const was = speelt;
+      if (lijst[nu]) lijst[nu].a.pause();
+      let doel = Math.max(0, Math.min(totaal() - 0.1, plek() + sec));
+      nu = 0;
+      while (nu < lijst.length - 1 && doel >= lijst[nu].duur) { doel -= lijst[nu].duur; nu++; }
+      lijst[nu].a.currentTime = Math.max(0, doel);
+      if (was) start(); else toon();
+    }
+    const api = { vak, speel, pauze };
+    return api;
+  }
+  // Spraak.stop() stopt ook een speler van een oefenexamen (een andere vraag, het overzicht, inleveren)
+  const spraakStop = window.Spraak ? window.Spraak.stop.bind(window.Spraak) : () => {};
+  if (window.Spraak) window.Spraak.stop = () => { spraakStop(); stopReeks(); };
   // het overzicht van alle vragen: een raster, zoals de knop van DUO
   const overzichtKnop = (op) => el('button', { type: 'button', class: 'voet-icoon', title: 'Overzicht', 'aria-label': 'overzicht van alle vragen', onclick: op }, teken('raster'));
   // Foto's bij de oefenexamens, zoals DUO echte foto's gebruikt (gemaakt door tools/plaatjes.py, in shared/fotos/).
@@ -988,5 +1133,5 @@ window.App = (() => {
   }
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, overzichtKnop, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, overzichtKnop, reeksSpeler, stopReeks, MijnVragen, bewaarVraagKnop, bewaarVragenRij, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();
