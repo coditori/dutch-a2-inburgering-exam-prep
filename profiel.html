@@ -51,12 +51,13 @@
       el('div', { class: 'pkaart-moed' }, App.aanmoediging(procent, p.examens.flatMap((x) => x.cijfers.map((c) => c[1] / 100)), vanMij)),
       p.examens.map((x, i) => {
         const map = App.EXAMENS[i], m = App.medaille(besteVan(x)); // m = de beste medaille van dit examen: die staat op het teken
+        const pct = x.n ? Math.round(100 * x.gedaan / x.n) : 0; // net als op de startpagina: het deel van de lessen dat gehaald is
         // de hele regel is een link naar de lessen en oefenexamens van dat examen
-        return el('a', { class: `prij k-${map}`, href: `${map}/index.html`, 'aria-label': `${NAMEN[map]}: ${x.gedaan} van ${x.n} lessen. Ga naar ${NAMEN[map]}.` },
+        return el('a', { class: `prij k-${map}`, href: `${map}/index.html`, 'aria-label': `${NAMEN[map]}: ${pct} procent, ${x.gedaan} van ${x.n} lessen. Ga naar ${NAMEN[map]}.` },
           el('span', { class: 'ex-icoon' }, teken(map), m ? el('span', { class: 'ex-medaille', title: 'geslaagd: ' + m }, App.medailleTeken(m)) : null),
           el('div', {},
             el('div', { class: 'prij-naam' }, el('b', {}, NAMEN[map]), el('span', { class: 'klein zacht', en: 'lessons' }, `${x.gedaan} van ${x.n} lessen`)),
-            el('div', { class: 'balk' }, el('i', { style: `width:${x.n ? Math.round(100 * x.gedaan / x.n) : 0}%` }))),
+            el('div', { class: 'ex-stand' }, el('div', { class: 'balk' }, el('i', { style: `width:${pct}%` })), el('span', {}, `${pct}%`))),
           el('div', { class: 'pcijfers', 'aria-label': x.cijfers.length ? 'cijfers van de oefenexamens' : null },
             x.cijfers.map(([id, c]) => el('span', { class: 'pcijfer' + (c >= 60 ? '' : ' niet'), title: `oefenexamen ${id}: ${komma(c)} van de 10` + (c >= 60 ? ', ' + App.medaille(c / 100) : '') }, App.medailleTeken(App.medaille(c / 100)), el('b', {}, komma(c)), el('span', {}, `examen ${id}`)))),
           teken('pijl'));
