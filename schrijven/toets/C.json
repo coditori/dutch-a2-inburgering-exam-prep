@@ -57,7 +57,9 @@
    ],
    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
    "aanhef": "Beste meneer Bos,",
-   "afsluiting": "Vriendelijke groet,"
+   "afsluiting": "Vriendelijke groet,",
+   "aan": "meneer Bos",
+   "onderwerp": "De verwarming is kapot"
   },
   {
    "soort": "tekst",
@@ -181,7 +183,8 @@
    "opdracht": "Schrijf drie dingen op. Schrijf in hele zinnen.",
    "aanhef": "Hallo Omar,",
    "extra": "Alvast bedankt!",
-   "afsluiting": "Groeten,"
+   "afsluiting": "Groeten,",
+   "aan": "Omar"
   }
  ]
 }

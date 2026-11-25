@@ -57,7 +57,9 @@
    ],
    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
    "aanhef": "Hallo Mila,",
-   "afsluiting": "Groetjes,"
+   "afsluiting": "Groetjes,",
+   "aan": "Mila",
+   "onderwerp": "Een fiets lenen"
   },
   {
    "soort": "formulier",
@@ -176,7 +178,9 @@
    ],
    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
    "aanhef": "Beste mevrouw De Wit,",
-   "afsluiting": "Vriendelijke groet,"
+   "afsluiting": "Vriendelijke groet,",
+   "aan": "mevrouw De Wit",
+   "onderwerp": "De toets van morgen"
   }
  ]
 }

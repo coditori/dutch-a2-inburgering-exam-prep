@@ -57,7 +57,9 @@
    ],
    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
    "aanhef": "Beste mevrouw Bakker,",
-   "afsluiting": "Vriendelijke groet,"
+   "afsluiting": "Vriendelijke groet,",
+   "aan": "mevrouw Bakker",
+   "onderwerp": "Afspraak bij de tandarts"
   },
   {
    "soort": "tekst",
@@ -174,7 +176,9 @@
    ],
    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
    "aanhef": "Hallo Sam,",
-   "afsluiting": "Groetjes,"
+   "afsluiting": "Groetjes,",
+   "aan": "Sam",
+   "onderwerp": "Later op het werk"
   }
  ]
 }
