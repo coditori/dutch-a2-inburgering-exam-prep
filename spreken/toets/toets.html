@@ -16,76 +16,139 @@
 <script src="../../shared/app.js"></script>
 <script src="../../spreken/spreken.js"></script>
 <script>
-// Toets in de vorm van het examen: 16 vragen in 4 onderdelen, 35 minuten. U mag opnieuw luisteren, opnieuw opnemen en terug.
-// toets.html?t=A laadt A.json. De klok en de plek blijven bewaard als de pagina opnieuw laadt; de opnames zelf niet.
+// Toets in de vorm van het examen, zoals de oefenexamens van DUO: 16 vragen in 4 onderdelen, 35 minuten.
+// De vraag speelt vanzelf. Opnemen: hoogstens 1 minuut per vraag (de opname stopt vanzelf), u ziet hoe lang u al spreekt,
+// u kunt uw opname beluisteren, verwijderen en opnieuw opnemen, en terug naar een eerdere vraag.
+// Nakijken zoals het beoordelingsmodel van DUO: per vraag 12 punten (antwoord 0-3, woorden 0-2, grammatica 0-2, vloeiend 0-2,
+// samenhang 0-1, uitspraak 0-2). Geen antwoord op de vraag (0) = 0 punten voor die vraag. Totaal 16 x 12 = 192.
+// Hier kijkt de leerling zelf na: per vraag het antwoord en de samenhang, en aan het einde één keer het Nederlands (woorden, grammatica,
+// vloeiend, uitspraak). toets.html?t=A laadt A.json. De klok en de plek blijven bewaard als de pagina opnieuw laadt; de opnames zelf niet.
 (async () => {
   const { el } = App;
-  const MINUTEN = 35;
+  const MINUTEN = 35, MAX_SEC = 60;
   const ONDERDEEL = {
-    1: ['Onderdeel 1 - vragen met een video', 'Op het examen vraagt een man of vrouw iets in een video. Hier hoort u alleen de stem. U moet antwoord geven.'],
-    2: ['Onderdeel 2 - vragen met 1 plaatje', 'U ziet vier vragen met één plaatje. Geef antwoord op de vragen. Gebruik steeds het plaatje.'],
-    3: ['Onderdeel 3 - vragen met 2 plaatjes', 'U ziet vier vragen met twee plaatjes. Geef antwoord op de vragen. U kiest steeds één plaatje.'],
-    4: ['Onderdeel 4 - vragen met 3 plaatjes', 'U ziet vier vragen met drie plaatjes. Vertel iets bij elk plaatje.'],
+    1: ['Onderdeel 1: vragen met een video', 'U ziet vier video\'s. Een man of een vrouw vraagt iets. U moet antwoord geven. Op het examen ziet u de persoon in een video; hier hoort u alleen de stem. De vraag staat niet op het scherm.'],
+    2: ['Onderdeel 2: vragen met 1 plaatje', 'U ziet vier vragen met één plaatje. Geef antwoord op de vragen. Gebruik steeds het plaatje.'],
+    3: ['Onderdeel 3: vragen met 2 plaatjes', 'U ziet vier vragen met twee plaatjes. Geef antwoord op de vragen. U kiest steeds één plaatje.'],
+    4: ['Onderdeel 4: vragen met 3 plaatjes', 'U ziet vier vragen met drie plaatjes. Gebruik alle plaatjes. Vertel iets bij elk plaatje.'],
   };
+  // het beoordelingsmodel van DUO, in eenvoudige woorden. [sleutel, naam, en, [[punten, tekst, en], ...]]
+  const ANTWOORD = [[0, 'Geen antwoord, of niet op de vraag', 'no answer, or not about the question'], [1, 'Eén deel, of niet duidelijk', 'one part, or not clear'],
+    [2, 'Twee delen: een goed antwoord', 'both parts: a good answer'], [3, 'Twee delen, heel duidelijk en goed', 'both parts, very clear and very good']];
+  const SAMEN = [[0, 'Losse woorden of zinnen', 'loose words or sentences'], [1, 'Met en, maar, want, omdat of hij, zij, dat', 'with en, maar, want, omdat, or hij, zij, dat']];
+  const TAAL = [
+    ['w', 'Woorden', 'words', [[0, 'Alleen woorden uit de vraag', 'only words from the question'], [1, 'Eenvoudige eigen woorden', 'simple words of my own'], [2, 'Veel verschillende woorden', 'many different words']]],
+    ['g', 'Grammatica', 'grammar', [[0, 'Veel fouten', 'many mistakes'], [1, 'Een paar fouten', 'some mistakes'], [2, 'Bijna geen fouten', 'almost no mistakes']]],
+    ['v', 'Vloeiend', 'fluency', [[0, 'Veel lange stiltes', 'many long silences'], [1, 'Soms een stilte of opnieuw beginnen', 'sometimes a silence or a new start'], [2, 'Vloeiend', 'fluent']]],
+    ['u', 'Uitspraak', 'pronunciation', [[0, 'Moeilijk te verstaan', 'hard to understand'], [1, 'Een docent verstaat mij goed', 'a teacher understands me well'], [2, 'Iedereen verstaat mij', 'everybody understands me']]],
+  ];
   const id = new URLSearchParams(location.search).get('t') || 'A';
   const pagina = document.getElementById('pagina');
   await Spraak.map('../audio/');
   let toets;
   try { toets = await Spreken.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
   const kop = App.kop(`Spreken: ${toets.titel}`, '../index.html');
-  const klok = el('b', { class: 'klok' });
-  kop.insertBefore(klok, kop.lastChild);
   const vragen = toets.items;
-  const opnames = {}; // nr -> { url, tekst } (alleen in het geheugen)
+  const opnames = {}; // nr -> { url, tekst, sec } (alleen in het geheugen)
+  const TOTAAL = vragen.length * 12;
 
   let stand = App.lees('spreken-toets-bezig', null);
   if (!stand || stand.id !== id) stand = null;
   const bewaar = () => App.schrijf('spreken-toets-bezig', stand);
-  let tik = null;
-  const rest = () => Math.max(0, MINUTEN * 60 - Math.floor((Date.now() - stand.start) / 1000));
-  function tekenKlok() { const s = rest(); klok.textContent = `⏱ ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; if (s <= 0) inleveren(); }
+  let klok = null;
+  const stopKlok = () => { if (klok) klok.stop(); klok = null; };
+  const tijd = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
   function welkom() {
-    pagina.textContent = ''; klok.textContent = '';
+    pagina.textContent = ''; stopKlok();
     const eerder = Spreken.P.toets[id] || [];
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
       el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
-      el('p', {}, `De toets heeft ${vragen.length} vragen in vier onderdelen: vragen met een video, met 1 plaatje, met 2 plaatjes en met 3 plaatjes. U mag ${MINUTEN} minuten over de toets doen.`),
-      el('p', { class: 'zacht', en: 'You may listen again, record again and go back. Always answer both parts of the question. At the end you check each answer with the model.' },
-        'U mag opnieuw luisteren, opnieuw opnemen en terug gaan. Geef altijd antwoord op de twee delen van de vraag. Aan het einde controleert u elk antwoord met het voorbeeld.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
-      el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now(), nu: 0, gedaan: {}, goed: {} }; bewaar(); examen(); } }, 'Start')))));
+      el('p', {}, `De toets heeft ${vragen.length} vragen in vier onderdelen: vragen met een video, met 1 plaatje, met 2 plaatjes en met 3 plaatjes. U hebt ${MINUTEN} minuten.`),
+      el('p', { class: 'zacht', en: 'As in the DUO practice exam: the question plays by itself. You speak at most 1 minute per question. You may listen again, record again and go back. Always answer both parts of the question.' },
+        'Net als bij DUO: de vraag speelt vanzelf. U spreekt hoogstens 1 minuut per vraag. U mag opnieuw luisteren, opnieuw opnemen en terug gaan. Geef altijd antwoord op de twee delen van de vraag.'),
+      el('p', { class: 'zacht klein', en: 'Use a headset if you have one. In the exam room other people speak at the same time.' }, 'Gebruik een koptelefoon met microfoon als u die hebt. Op het examen praten de andere mensen in de zaal tegelijk.'),
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijferVan('spreken', r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
+      el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now(), nu: 0, gedaan: {}, vlag: {}, punten: {}, taal: {} }; bewaar(); examen(); } }, 'Start')))));
   }
 
-  function examen() { clearInterval(tik); tik = setInterval(tekenKlok, 1000); tekenKlok(); if (!stand.klaar) teken(); }
+  function examen() {
+    stand.vlag = stand.vlag || {};
+    stopKlok();
+    klok = App.examenKlok({ kop, minuten: MINUTEN, start: stand.start, op0: inleveren });
+    if (!stand.klaar) teken();
+  }
 
-  function teken() {
-    Spraak.stop();
-    const nr = stand.nu, it = vragen[nr];
-    const eersteVanDeel = nr === 0 || vragen[nr - 1].deel !== it.deel;
-    const tekst = el('div', { hidden: it.deel === 1 }, it.sit ? el('p', {}, it.sit) : null, el('p', { class: 'spreekvraag' }, it.vraag));
-    const hint = { 2: 'Gebruik het plaatje.', 3: 'Kies een van de plaatjes.', 4: 'Gebruik alle plaatjes.' }[it.deel];
-    const opnameVak = el('div');
-    let rec = null;
-    const knop = el('button', { class: 'knop' }, opnames[nr] ? '⏺ Opnieuw opnemen' : '⏺ Opnemen');
-    const status = el('span', { class: 'zacht klein' }, stand.gedaan[nr] ? '✔ antwoord gegeven' : '');
-    const speler = el('div', {}, opnames[nr] ? el('audio', { controls: true, src: opnames[nr].url }) : null);
-    knop.addEventListener('click', async () => {
-      if (rec) {
-        knop.disabled = true; status.textContent = 'even wachten...';
-        const r = rec; rec = null;
-        opnames[nr] = await r.stop();
-        stand.gedaan[nr] = true; bewaar();
-        knop.disabled = false; knop.classList.remove('rood', 'bezig'); knop.textContent = '⏺ Opnieuw opnemen'; status.textContent = '✔ antwoord gegeven';
-        speler.textContent = ''; speler.append(el('audio', { controls: true, src: opnames[nr].url }));
+  // de opname van één vraag: zoals de opnemer van DUO. Opnemen, de tijd loopt (tot 1:00), stop, beluister, verwijder en opnieuw.
+  function opnemer(nr) {
+    const vak = el('div', { class: 'opnemer' });
+    let rec = null, tik = null, begin = 0;
+    const teller = el('span', { class: 'opn-tijd', 'aria-live': 'off' });
+    const balk = el('i');
+    function stopTik() { clearInterval(tik); tik = null; }
+    async function stop() {
+      if (!rec) return;
+      stopTik();
+      const r = rec; rec = null;
+      const sec = Math.min(MAX_SEC, (Date.now() - begin) / 1000);
+      toon('bezig');
+      const uit = await r.stop();
+      opnames[nr] = Object.assign(uit, { sec });
+      stand.gedaan[nr] = true; bewaar();
+      toon();
+    }
+    async function start() {
+      Spraak.stop();
+      try { rec = await Spreken.opnemer(); } catch (e) { toon('geen'); return; }
+      begin = Date.now();
+      toon('loopt');
+      tik = setInterval(() => {
+        const s = (Date.now() - begin) / 1000;
+        teller.textContent = `${tijd(s)} / ${tijd(MAX_SEC)}`;
+        balk.style.width = `${Math.min(100, 100 * s / MAX_SEC)}%`;
+        if (s >= MAX_SEC) stop(); // na 1 minuut stopt de opname vanzelf, zoals bij DUO
+      }, 200);
+    }
+    function toon(staat) {
+      vak.textContent = '';
+      const o = opnames[nr];
+      if (staat === 'loopt') {
+        teller.textContent = `${tijd(0)} / ${tijd(MAX_SEC)}`; balk.style.width = '0%';
+        vak.append(el('div', { class: 'opname' }, el('button', { class: 'knop rood bezig', en: 'stop recording', onclick: stop }, '⏹ Stop'), teller),
+          el('div', { class: 'opn-balk' }, balk));
         return;
       }
-      Spraak.stop();
-      try { rec = await Spreken.opnemer(); knop.textContent = '⏹ Stop'; knop.classList.add('rood', 'bezig'); status.textContent = 'opname loopt...'; }
-      catch (e) { status.textContent = 'Geen microfoon: zeg uw antwoord hardop en klik op "Hardop gezegd".'; }
-    });
-    const hardop = el('button', { class: 'knop licht klein', en: 'no microphone: I said it aloud', onclick: () => { stand.gedaan[nr] = true; bewaar(); status.textContent = '✔ antwoord gegeven'; } }, 'Hardop gezegd');
-    opnameVak.append(el('div', { class: 'opname' }, knop, hardop, status), speler);
+      if (staat === 'bezig') { vak.append(el('p', { class: 'zacht' }, 'even wachten...')); return; }
+      if (o) {
+        vak.append(el('p', { class: 'zacht klein' }, `✔ Uw opname: ${tijd(o.sec || 0)}`),
+          el('audio', { controls: true, src: o.url }),
+          el('div', { class: 'opname' }, el('button', { class: 'knop licht', en: 'delete and record again', onclick: async () => {
+            const ja = await App.bevestig({ titel: 'Opname verwijderen?', tekst: 'Weet u zeker dat u de opname wilt verwijderen? Daarna kunt u opnieuw opnemen.', en: 'Delete the recording? Then you can record again.', ja: 'Verwijderen' });
+            if (!ja) return;
+            delete opnames[nr]; delete stand.gedaan[nr]; bewaar(); toon();
+          } }, 'Verwijder de opname')));
+        return;
+      }
+      vak.append(...[el('div', { class: 'opname' },
+        el('button', { class: 'knop', en: 'record your answer (at most 1 minute)', onclick: start }, '⏺ Opnemen'),
+        el('span', { class: 'zacht klein' }, stand.gedaan[nr] ? '✔ antwoord gegeven' : `hoogstens ${tijd(MAX_SEC)}`),
+        el('button', { class: 'knop licht klein', en: 'no microphone: I said it aloud', onclick: () => { stand.gedaan[nr] = true; bewaar(); toon(); } }, 'Hardop gezegd')),
+        staat === 'geen' ? el('p', { class: 'tip' }, 'Geen microfoon: zeg uw antwoord hardop en klik op "Hardop gezegd".') : null].filter(Boolean)); // append(null) zou "null" tonen
+    }
+    toon();
+    return { vak, weg: () => { stopTik(); if (rec) { const r = rec; rec = null; r.stop().then((uit) => { opnames[nr] = Object.assign(uit, { sec: Math.min(MAX_SEC, (Date.now() - begin) / 1000) }); stand.gedaan[nr] = true; bewaar(); }); } } };
+  }
+
+  let huidig = null; // de opnemer op het scherm: stopt als de leerling naar een andere vraag gaat
+  function teken() {
+    Spraak.stop();
+    if (huidig) huidig.weg();
+    const nr = stand.nu, it = vragen[nr];
+    const eersteVanDeel = nr === 0 || vragen[nr - 1].deel !== it.deel;
+    // onderdeel 1: de vraag staat niet op het scherm (op het examen zegt iemand hem in een video)
+    const tekst = el('div', { hidden: it.deel === 1 }, it.sit ? el('p', {}, it.sit) : null, el('p', { class: 'spreekvraag' }, it.vraag));
+    const hint = { 2: 'Gebruik het plaatje.', 3: 'Kies een van de plaatjes.', 4: 'Gebruik alle plaatjes.' }[it.deel];
+    huidig = opnemer(nr);
     pagina.textContent = '';
     pagina.append(el('div', { class: 'examen' },
       el('section', {},
@@ -93,80 +156,130 @@
         Spreken.scene(it.beelden),
         it.deel === 1 ? el('div', { class: 'scene' }, el('div', { class: 'plaat' }, '🧑‍💼🎥')) : null),
       el('section', {}, tekst, hint ? el('p', { class: 'zacht' }, hint) : null,
-        el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, App.teken('luid'), 'Luister naar de vraag')),
-        opnameVak)),
+        el('div', { class: 'knoppen' },
+          el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, App.teken('luid'), 'Luister nog een keer'),
+          el('button', { class: 'knop licht', en: 'stop', onclick: () => Spraak.stop() }, '■')),
+        huidig.vak)),
       el('div', { class: 'voet' },
         el('button', { class: 'knop', disabled: nr === 0, onclick: () => ga(nr - 1) }, 'Vorige'),
-        el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht')),
+        el('span', {}, el('b', {}, `${nr + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht'), ' ', App.vlagKnop(stand.vlag, nr, bewaar)),
         nr < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(nr + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
-    Spreken.speel(Spreken.vraagTekst(it));
+    Spreken.speel(Spreken.vraagTekst(it)); // de vraag speelt vanzelf, zoals bij DUO
     window.scrollTo(0, 0);
   }
   function ga(n) { stand.nu = n; bewaar(); teken(); }
 
   function overzicht() {
     Spraak.stop();
+    if (huidig) { huidig.weg(); huidig = null; }
     const open = vragen.filter((_, i) => !stand.gedaan[i]).length;
     pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
       el('h2', { style: 'margin-top:0' }, 'Overzicht'),
       el('p', {}, open ? `U hebt op ${open} ${open === 1 ? 'vraag' : 'vragen'} nog geen antwoord gegeven.` : 'U hebt op alle vragen antwoord gegeven.'),
-      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: stand.gedaan[i] ? 'af' : '', onclick: () => ga(i) }, String(i + 1)))),
+      Object.keys(stand.vlag).length ? el('p', { class: 'zacht klein', en: 'a dot = a question you marked' }, 'Een stip: een vraag die u markeerde.') : null,
+      el('div', { class: 'raster' }, [1, 2, 3, 4].flatMap((d) => [el('p', { class: 'raster-kop' }, ONDERDEEL[d][0]),
+        ...vragen.map((it, i) => (it.deel !== d ? null : el('button', { class: (stand.gedaan[i] ? 'af' : '') + (stand.vlag[i] ? ' vlag' : ''), onclick: () => ga(i) }, String(i + 1))))])),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', onclick: teken }, 'Terug naar de vraag'), el('button', { class: 'knop', en: 'hand in and check your answers', onclick: inleveren }, 'Inleveren')))));
   }
 
   function inleveren() {
     if (stand.klaar) return;
-    clearInterval(tik);
+    stopKlok(); Spraak.stop();
+    if (huidig) { huidig.weg(); huidig = null; }
     stand.klaar = true; stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000)); stand.kijk = 0;
+    stand.punten = stand.punten || {}; stand.taal = stand.taal || {};
     bewaar(); nakijken();
   }
 
-  // na de toets: elk antwoord naast het voorbeeld leggen
+  // knoppen met punten: [[punten, tekst, en], ...]; gekozen = punten of null
+  function keuze(rij, gekozen, op) {
+    const knoppen = rij.map(([p, t, en]) => el('button', { type: 'button', class: 'pnt' + (gekozen === p ? ' aan' : ''), 'aria-pressed': String(gekozen === p), en,
+      onclick: () => { knoppen.forEach((k) => { k.classList.remove('aan'); k.setAttribute('aria-pressed', 'false'); }); knoppen[rij.findIndex((x) => x[0] === p)].classList.add('aan'); knoppen[rij.findIndex((x) => x[0] === p)].setAttribute('aria-pressed', 'true'); op(p); } },
+      el('b', {}, String(p)), el('span', {}, t)));
+    return el('div', { class: 'pnt-rij' }, knoppen);
+  }
+  // wat de computer al kan zien in wat hij hoorde: twee delen beantwoord? En, maar, want, omdat?
+  function voorstel(it, o) {
+    if (!o || !o.tekst) return {};
+    const p = Spreken.punten(it).auto(o.tekst);
+    const delen = p.slice(0, -1).filter(Boolean).length, nodig = Math.max(1, p.length - 1);
+    return { a: delen >= nodig ? 2 : delen ? 1 : 0, c: /\b(en|maar|want|omdat|dus|als|dan|hij|zij|ze|dat|die|het)\b/i.test(o.tekst) ? 1 : 0 };
+  }
+
+  // na de toets: elke vraag naast het voorbeeld leggen, en zelf de punten geven voor het antwoord en de samenhang
   function nakijken() {
-    Spraak.stop(); klok.textContent = '';
+    Spraak.stop(); stopKlok();
     const nr = stand.kijk;
     pagina.textContent = '';
-    if (nr >= vragen.length) return uitslag();
+    if (nr >= vragen.length) return taalScherm();
     const it = vragen[nr], p = Spreken.punten(it), o = opnames[nr];
-    const vakjes = p.punten.map((x) => { const i = el('input', { type: 'checkbox' }); return { i, rij: el('label', { en: x.en }, i, x.tekst) }; });
-    if (o && o.tekst) p.auto(o.tekst).forEach((ok, i) => { vakjes[i].i.checked = ok; });
+    const pt = stand.punten[nr] = Object.assign(voorstel(it, o), stand.punten[nr] || {});
+    if (!stand.gedaan[nr]) { pt.a = 0; pt.c = 0; }
+    const verder = el('button', { class: 'knop', en: 'next', disabled: pt.a == null || pt.c == null, onclick: () => {
+      if (pt.a < 2 && it.les) Spreken.terug.fout(it.les); // deze vraag komt terug bij de lessen
+      stand.kijk++; bewaar(); nakijken();
+    } }, 'Verder');
+    const klaar = () => { verder.disabled = pt.a == null || pt.c == null; bewaar(); };
     pagina.append(el('main', {}, el('p', { class: 'zacht klein' }, `Nakijken: vraag ${nr + 1} van ${vragen.length}`), el('div', { class: 'kaart' },
       Spreken.scene(it.beelden), it.sit ? el('p', {}, App.woorden(it.sit)) : null, el('p', { class: 'spreekvraag' }, App.woorden(it.vraag)),
-      !stand.gedaan[nr] ? el('p', { class: 'uitslag fout' }, 'Geen antwoord gegeven.') : null,
-      o ? el('p', {}, 'Uw opname: ', el('audio', { controls: true, src: o.url })) : stand.gedaan[nr] ? el('p', { class: 'tip', en: 'The recording is gone (page reloaded) or you answered without microphone.' }, 'Er is geen opname meer. Controleer uit uw hoofd.') : null,
+      !stand.gedaan[nr] ? el('p', { class: 'uitslag fout' }, 'Geen antwoord gegeven: 0 punten.') : null,
+      o ? el('p', {}, `Uw opname (${tijd(o.sec || 0)}): `, el('audio', { controls: true, src: o.url })) : stand.gedaan[nr] ? el('p', { class: 'tip', en: 'The recording is gone (page reloaded) or you answered without microphone.' }, 'Er is geen opname meer. Kijk na uit uw hoofd.') : null,
       o && o.tekst ? el('div', { class: 'gehoord' }, el('span', { class: 'zacht klein' }, 'De computer hoorde: '), o.tekst) : null,
-      el('div', { class: 'lijstje' }, vakjes.map((v) => v.rij)),
-      el('div', { class: 'model' }, el('p', { class: 'zacht klein', en: 'model answer' }, 'Voorbeeld:'), p.model.map((z) => el('p', {}, App.woorden(z))),
+      el('div', { class: 'model' }, el('p', { class: 'zacht klein', en: 'model answer: this is enough for 2 points' }, 'Voorbeeld van een goed antwoord:'), p.model.map((z) => el('p', {}, App.woorden(z))),
         el('button', { class: 'knop licht klein', onclick: () => Spreken.speel(p.model) }, App.teken('luid'), 'Luister')),
-      el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'next', onclick: () => {
-        stand.goed[nr] = !!stand.gedaan[nr] && vakjes.every((v) => v.i.checked);
-        if (!stand.goed[nr] && it.les) Spreken.terug.fout(it.les);
-        stand.kijk++; bewaar(); nakijken();
-      } }, 'Verder')))));
+      stand.gedaan[nr] ? [
+        el('h3', { en: 'your answer: did you answer both parts of the question?' }, 'Uw antwoord'),
+        keuze(ANTWOORD, pt.a, (x) => { pt.a = x; klaar(); }),
+        el('h3', { en: 'did you connect your sentences?' }, 'Samenhang'),
+        keuze(SAMEN, pt.c, (x) => { pt.c = x; klaar(); }),
+        o && o.tekst ? el('p', { class: 'zacht klein', en: 'The computer chose a first answer from what it heard. Change it if it is wrong.' }, 'De computer koos al iets uit wat hij hoorde. Klopt het niet? Kies zelf.') : null] : null,
+      el('div', { class: 'knoppen' }, verder))));
+    bewaar();
     window.scrollTo(0, 0);
   }
 
+  // daarna één keer: hoe was uw Nederlands? Dat telt voor elke vraag waarop u antwoord gaf.
+  function taalScherm() {
+    pagina.textContent = '';
+    const tl = stand.taal;
+    const verder = el('button', { class: 'knop', en: 'see your result', disabled: TAAL.some(([k]) => tl[k] == null), onclick: () => { bewaar(); uitslag(); } }, 'Naar de uitslag');
+    pagina.append(el('main', {}, el('div', { class: 'kaart' },
+      el('h2', { style: 'margin-top:0', en: 'your Dutch: think of all your answers' }, 'Uw Nederlands'),
+      el('p', { class: 'zacht', en: 'In the exam a person looks at six things in every answer. You checked the answer and the connection per question. Now choose once for all your answers.' },
+        'Op het examen kijkt een mens bij elk antwoord naar zes dingen. Het antwoord en de samenhang keek u al na. Kies nu één keer voor al uw antwoorden samen.'),
+      TAAL.flatMap(([k, naam, en, rij]) => [el('h3', { en }, naam), keuze(rij, tl[k] == null ? null : tl[k], (x) => { tl[k] = x; verder.disabled = TAAL.some(([kk]) => tl[kk] == null); bewaar(); })]),
+      el('div', { class: 'knoppen' }, verder))));
+    window.scrollTo(0, 0);
+  }
+
+  // de punten van één vraag (0 tot 12). Geen antwoord op de vraag = 0 voor alles, zoals in het model van DUO.
+  const puntenVan = (i) => { const pt = stand.punten[i] || {}; if (!stand.gedaan[i] || !pt.a) return 0; return pt.a + (pt.c || 0) + TAAL.reduce((s, [k]) => s + (stand.taal[k] || 0), 0); };
+
   function uitslag() {
-    const score = vragen.filter((_, i) => stand.goed[i]).length;
-    const eerst = !stand.geteld; // net klaar: dan is er feest bij een medaille
+    const score = vragen.reduce((s, _, i) => s + puntenVan(i), 0);
+    const eerst = !stand.geteld;
     if (!stand.geteld) {
-      (Spreken.P.toets[id] = Spreken.P.toets[id] || []).push({ score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
+      (Spreken.P.toets[id] = Spreken.P.toets[id] || []).push({ score, totaal: TOTAAL, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
       Spreken.bewaar(); stand.geteld = true; bewaar();
     }
-    const ok = !!App.medaille(score / vragen.length);
+    const goedGenoeg = (i) => puntenVan(i) >= 7 && (stand.punten[i] || {}).a >= 2; // het niveau "voldoende"
+    pagina.textContent = '';
     pagina.append(el('main', {}, el('div', { class: 'kaart midden' },
-      ...App.cijferBlok(score, vragen.length, 'vragen met twee goede antwoorden', { eerder: (Spreken.P.toets[id] || []).slice(0, -1).map((r) => r.score / (r.totaal || vragen.length)) }),
-      el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout'), en: 'Your own check against the model answers. A real examiner also judges grammar and pronunciation.' }, ok ? '✔ Op de meeste vragen gaf u twee goede antwoorden.' : 'Let op: geef op elke vraag antwoord op de twee delen.'),
-      el('p', { class: 'zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Dit is uw eigen controle. Op het examen kijkt een mens ook naar grammatica en uitspraak.`),
-      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: stand.goed[i] ? 'goed' : 'fout', disabled: true }, String(i + 1)))),
+      ...App.cijferBlok(score, TOTAAL, 'punten', { map: 'spreken', zelf: true, eerder: (Spreken.P.toets[id] || []).slice(0, -1).map((r) => App.cijferDeel('spreken', r.score, r.totaal || TOTAAL)) }),
+      el('p', { class: 'zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Groen: een vraag met 7 of meer punten en een goed antwoord.`),
+      el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: goedGenoeg(i) ? 'goed' : 'fout', disabled: true, title: `${puntenVan(i)} van 12 punten` }, String(i + 1)))),
+      App.perSoort([1, 2, 3, 4].map((d) => ({ naam: ONDERDEEL[d][0].replace(/^Onderdeel \d: /, ''), goed: vragen.filter((it, i) => it.deel === d && goedGenoeg(i)).length,
+        totaal: vragen.filter((it) => it.deel === d).length, href: '../index.html', hrefNaam: 'Oefen dit in de lessen' })), 'Per onderdeel'),
       el('div', { class: 'knoppen', style: 'justify-content:center' },
         el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('spreken-toets-bezig', null); welkom(); } }, 'Nog een keer'),
         el('a', { class: 'knop', href: '../index.html' }, 'Naar de lessen')))));
-    if (eerst) App.vier(score / vragen.length);
+    if (eerst) App.vier(App.cijferDeel('spreken', score, TOTAAL));
   }
 
-  if (!stand) welkom(); else if (stand.klaar) nakijken(); else examen();
+  if (!stand) welkom();
+  else if (stand.klaar) { stand.punten = stand.punten || {}; stand.taal = stand.taal || {}; if (stand.geteld) uitslag(); else nakijken(); }
+  else { stand.gedaan = stand.gedaan || {}; examen(); }
 })();
 </script>
 </body>

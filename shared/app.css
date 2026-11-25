@@ -911,3 +911,32 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .moed-tekst { flex-basis: 100%; margin: 0; font-weight: 600; }
 #vandaag .moed { --moed-op: #3346d3; } #vandaag .moed .m-lint { fill: #fff; } #vandaag.kaart.groot-held .moed-tekst { font-size: 1rem; }
 .pkaart-moed { padding: 4px 20px 12px; } .pkaart-moed .moed:empty { display: none; } .pkaart-moed:has(.moed:empty) { display: none; }
+/* het oefenexamen zoals bij DUO: de klok achter een knop, een vraag markeren, de kans om te slagen, en per soort vraag de punten */
+.kop .klok { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 12px; border: 1px solid var(--lijn); border-radius: 999px; background: var(--vlak); color: var(--tekst); font: inherit; font-weight: 600; font-variant-numeric: tabular-nums; cursor: pointer; }
+.kop .klok .icoon { width: 20px; height: 20px; }
+.kop .klok .klok-tijd:empty { display: none; }
+.kop .klok.bijna { border-color: var(--fout); color: var(--fout); }
+.vlag-knop[aria-pressed="true"] { background: var(--geel); color: var(--tekst); }
+.vlag-knop .icoon { width: 18px; height: 18px; }
+.raster button.vlag { position: relative; }
+.raster button.vlag::after { content: ""; position: absolute; top: -5px; right: -5px; width: 12px; height: 12px; border-radius: 50%; background: var(--nieuw); border: 2px solid var(--vlak); }
+.raster-groep { display: contents; }
+.raster .raster-kop { grid-column: 1 / -1; margin: 8px 0 0; font-size: .85rem; color: var(--zacht); }
+.kans { max-width: 460px; margin: 14px auto; }
+.kans-balk { display: flex; gap: 3px; margin-top: 8px; }
+.kans-balk > span { min-width: 54px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 6px; opacity: .45; font-variant-numeric: tabular-nums; }
+.kans-balk > span small { font-size: .72rem; color: var(--tekst); }
+.kans-balk > span.nu { opacity: 1; outline: 3px solid var(--tekst); outline-offset: 1px; }
+.kans-0 { background: var(--fout-zacht); } .kans-1 { background: #ffd8a8; } .kans-2 { background: var(--geel); } .kans-3 { background: var(--goed-zacht); }
+:root[data-theme="dark"] .kans-1 { background: #6b3a00; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kans-1 { background: #6b3a00; } }
+.kans-zin { font-weight: 600; }
+.per-soort { max-width: 520px; margin: 20px auto 6px; text-align: start; }
+.per-soort h3 { margin: 0 0 8px; font-size: 1rem; }
+.ps-rij { display: grid; grid-template-columns: minmax(90px, 9em) 1fr auto; align-items: center; gap: 10px; padding: 5px 0; }
+.ps-rij.zwak .ps-naam { font-weight: 700; color: var(--fout); }
+.ps-naam { font-size: .92rem; overflow-wrap: anywhere; }
+.ps-balk { display: flex; flex-wrap: wrap; gap: 3px; }
+.ps-balk i { width: 14px; height: 14px; border-radius: 4px; background: var(--fout-zacht); border: 1px solid var(--fout); }
+.ps-balk i.goed { background: var(--goed); border-color: var(--goed); }
+.ps-tel { font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--zacht); }

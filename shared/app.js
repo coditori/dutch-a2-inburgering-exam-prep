@@ -275,6 +275,9 @@ window.App = (() => {
     bewaar: '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
     zoek: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
     kruis: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    // het oefenexamen: de klok en de vlag (een vraag markeren om later terug te komen)
+    klok: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/>',
+    vlag: '<path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -386,7 +389,7 @@ window.App = (() => {
   // ---------- melding "Goed antwoord!" ----------
   // actie (mag weg) = { naam, en, doe } of { naam, en, href }: een knop in de melding, zoals "Ongedaan maken". De melding blijft dan langer staan.
   let toastEl = null, toastTik = 0;
-  function toast(tekst, en, actie) {
+  function toast(tekst, en, actie, ms) {
     if (!toastEl) { toastEl = el('div', { id: 'toast', role: 'status', 'aria-live': 'polite' }); document.body.append(toastEl); }
     const weg = () => toastEl.classList.remove('aan');
     toastEl.textContent = '';
@@ -400,7 +403,7 @@ window.App = (() => {
     toastEl.classList.remove('pop', 'vuur');
     toastEl.classList.add('aan');
     clearTimeout(toastTik);
-    toastTik = setTimeout(weg, actie ? 5000 : 1400);
+    toastTik = setTimeout(weg, ms || (actie ? 5000 : 1400));
   }
   // Na een goed antwoord: groene melding, en de knop "Verder" wordt na een korte tijd vanzelf ingedrukt
   // (instelling "door"; staat de knop niet meer op de pagina, dan gebeurt er niets). Fout antwoord: niets, de leerling leest eerst.
@@ -623,6 +626,43 @@ window.App = (() => {
   const honderd = (deel) => Math.floor(deel * 100 + 1e-9);
   const cijfer = (goed, totaal) => (totaal ? honderd(goed / totaal) / 10 : 0).toFixed(1).replace('.', ',');
 
+  // ---------- het cijfer zoals op het echte examen ----------
+  // U slaagt met een 6. Maar een 6 is niet 60% goed: DUO legt de grens (de cesuur) per examen vast, en die ligt hoger.
+  // De oefenexamens van DUO laten de grens zien: KNM "minimaal 28 van de 40 goed"; bij Lezen begint "een redelijke kans" bij 17 van de 25,
+  // bij Luisteren "een kans" bij 19 van de 25. Schrijven en Spreken: het niveau "voldoende" op elk punt van het beoordelingsmodel van DUO
+  // (Schrijven: 22 van de 37 punten; Spreken: 7 van de 12 punten per vraag). Die grens is hier een 6,0. Daaronder loopt het cijfer van 1 tot 6,
+  // daarboven van 6 tot 10. Bronnen: research_notes/ (niet in git) en plans/0-masterplan.md.
+  const CESUUR = { lezen: [17, 25], luisteren: [19, 25], knm: [28, 40], schrijven: [22, 37], spreken: [7, 12] };
+  const grens = (map) => (CESUUR[map] ? CESUUR[map][0] / CESUUR[map][1] : 0.6);
+  // het cijfer als deel van 1 (0,6 = 6,0): daarmee werken de medailles, de lijn en het profiel
+  function cijferDeel(map, goed, totaal) {
+    if (!totaal) return 0;
+    const p = Math.max(0, Math.min(1, goed / totaal)), c = grens(map);
+    return p + 1e-9 >= c ? 0.6 + 0.4 * Math.max(0, p - c) / (1 - c) : 0.1 + 0.5 * p / c;
+  }
+  const cijferVan = (map, goed, totaal) => cijfer(cijferDeel(map, goed, totaal), 1);
+  // het beste cijfer (deel van 1) uit een lijst pogingen [{ score, totaal }], of null als er nog geen poging is
+  const besteDeel = (map, lijst, totaal) => ((lijst || []).length ? Math.max(...lijst.map((x) => cijferDeel(map, x.score, x.totaal || totaal || 1))) : null);
+  const nodigVoor = (map, totaal) => Math.ceil(grens(map) * totaal - 1e-9); // zoveel goed (of punten) is een 6,0
+  // De oefenexamens van DUO zeggen na afloop hoe groot de kans is dat u slaagt voor het echte examen. Dezelfde stappen, bij 25 vragen.
+  const KANS = {
+    lezen: [0, 13, 17, 23],
+    luisteren: [0, 16, 19, 22],
+  };
+  const KANS_TEKST = [['geen kans', 'no chance'], ['een kleine kans', 'a small chance'], ['een redelijke kans', 'a fair chance'], ['een grote kans', 'a good chance']];
+  function kansBalk(map, goed, totaal) {
+    if (map === 'knm') return el('p', { class: 'midden kans-zin', en: 'DUO practice exam: you need at least 28 of the 40 right.' },
+      `Op het oefenexamen van DUO hebt u minimaal 28 van de 40 vragen goed nodig. U had er ${Math.round(goed * 40 / (totaal || 40))} goed.`);
+    if (!KANS[map]) return null;
+    const n = (x) => Math.round(x * 25 / (totaal || 25)), g = n(goed), stap = KANS[map].filter((v) => g >= v).length - 1;
+    const van = (i) => KANS[map][i] / 25, tot = (i) => (i < 3 ? KANS[map][i + 1] / 25 : 1);
+    return el('div', { class: 'kans' },
+      el('p', { class: 'midden', en: `DUO practice exam: with this score you have ${KANS_TEKST[stap][1]} to pass the real exam.` },
+        'Volgens DUO hebt u met deze score ', el('b', {}, KANS_TEKST[stap][0]), ' om te slagen voor het echte examen.'),
+      el('div', { class: 'kans-balk', dir: 'ltr', role: 'img', 'aria-label': `kans om te slagen: ${KANS_TEKST[stap][0]}` },
+        KANS_TEKST.map((t, i) => el('span', { class: `kans-${i}` + (i === stap ? ' nu' : ''), style: `flex:${tot(i) - van(i)}` }, el('small', {}, `${KANS[map][i]}${i < 3 ? '-' + (KANS[map][i + 1] - 1) : '-25'}`)))));
+  }
+
   // ---------- medailles voor de oefenexamens ----------
   // Geslaagd is 6,0 of hoger (60% goed), net als op het echte examen: dat is brons. Zilver vanaf 7,5 en goud vanaf 9,0.
   // deel = het deel goed, van 0 tot 1 (0,75 = cijfer 7,5). Antwoord: 'brons' | 'zilver' | 'goud', of null: (nog) niet geslaagd.
@@ -746,19 +786,25 @@ window.App = (() => {
   // Eronder de knop naar het profiel: daar deelt de leerling het cijfer met vrienden.
   // Erboven de medaille (of een lege plek), eronder de lijn met de streep bij 6: zo ziet u zonder te lezen of u geslaagd bent.
   // o (mag weg) = { eerder: [delen van eerdere pogingen], zelf: true als de leerling zelf nakeek (Schrijven, Spreken) }
+  // o.map = het examen: het cijfer volgt de grens van DUO (CESUUR). o.beantwoord = hoeveel vragen de leerling beantwoordde (zoals bij DUO).
+  // o.eerder = de eerdere pogingen, al als cijfer (deel van 1).
   function cijferBlok(goed, totaal, wat, o) {
     o = o || {};
-    const deel = totaal ? goed / totaal : 0, m = medaille(deel), eerder = (o.eerder || []).filter((d) => d != null && isFinite(d));
-    const nodig = Math.max(1, Math.ceil(0.6 * totaal - 1e-9) - goed);
+    const deel = cijferDeel(o.map, goed, totaal), m = medaille(deel), eerder = (o.eerder || []).filter((d) => d != null && isFinite(d));
+    const nodig = Math.max(1, nodigVoor(o.map, totaal) - goed);
     const naam = m ? MEDAILLES.find((x) => x[0] === m) : null;
     return [
       el('div', { class: 'medaille-groot midden' }, medailleTeken(m)),
-      el('div', { class: 'groot midden' }, cijfer(goed, totaal), el('span', { class: 'cijfer-van' }, ' / 10')),
+      el('div', { class: 'groot midden' }, cijfer(deel, 1), el('span', { class: 'cijfer-van' }, ' / 10')),
       slaagBalk(deel, eerder),
       m ? el('p', { class: 'midden uitslag goed', en: `Congratulations, you passed! Your medal: ${naam[2]}.` }, `Gefeliciteerd, u bent geslaagd! Uw medaille: ${m}.`)
-        : el('p', { class: 'midden uitslag fout', en: 'Not passed yet. You pass with a 6.0. Look at what went wrong and try again later.' }, `Nog niet geslaagd. U slaagt met een 6,0: nog ${nodig} erbij.`),
+        : el('p', { class: 'midden uitslag fout', en: `Not passed yet. You pass with a 6.0: ${nodig} more ${wat === 'punten' ? 'points' : 'right'}.` }, `Nog niet geslaagd. U slaagt met een 6,0: nog ${nodig} ${wat === 'punten' ? (nodig === 1 ? 'punt' : 'punten') : 'goed'} erbij.`),
       eerder.length && deel > Math.max(...eerder) + 1e-9 ? el('p', { class: 'midden record', en: 'your best mark so far' }, '★ Uw beste cijfer tot nu toe!') : null,
-      el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
+      o.beantwoord != null ? el('p', { class: 'midden zacht', en: 'answered / right, as on the DUO practice exam' }, `U hebt ${o.beantwoord} van de ${totaal} vragen beantwoord. U hebt er ${goed} goed.`)
+        : el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
+      kansBalk(o.map, goed, totaal),
+      el('p', { class: 'midden zacht klein', en: `You pass with a 6.0. Here a 6.0 is ${nodigVoor(o.map, totaal)} of ${totaal}: the pass line of DUO, not 60%.` },
+        `Een 6,0 is hier ${nodigVoor(o.map, totaal)} van de ${totaal} ${wat === 'punten' ? 'punten' : 'goed'}: de grens van DUO.`),
       o.zelf ? el('p', { class: 'midden zacht klein', en: 'You checked this yourself. In the real exam a person marks it.' }, 'U keek dit zelf na. Op het examen kijkt een mens het na.') : null,
       el('p', { class: 'midden' }, el('a', { class: 'knop licht klein', href: WORTEL + 'profiel.html', en: 'share your mark with friends' }, teken('deel'), 'Deel uw cijfer'))].filter(Boolean);
   }
@@ -781,13 +827,113 @@ window.App = (() => {
       const n = lessen.length || 4 * themas.length;
       const gedaan = Math.min(n, Object.values(P.lessen || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length);
       // per toets het beste resultaat als deel van 1 (0,75 = cijfer 7,5); null = nog niet gedaan
-      const beste = (t) => { const r = (P.toets || {})[t.id] || []; return r.length ? Math.max(...r.map((y) => y.score / (y.totaal || t.vragen || 1))) : null; };
+      const beste = (t) => { const r = (P.toets || {})[t.id] || []; return r.length ? Math.max(...r.map((y) => cijferDeel(map, y.score, y.totaal || t.vragen || 1))) : null; };
       return { naam: NAMEN[map], map, href: `${map}/index.html`, klaar, n, gedaan, lessen, toetsen: toetsen.map((t) => Object.assign({ beste: beste(t) }, t)) };
     }));
   }
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
+  // ---------- het oefenexamen: zoals de oefenexamens van DUO ----------
+  // De volgorde van de antwoorden. Bij DUO staan getallen, prijzen, tijden, dagen en datums op volgorde, van klein naar groot;
+  // "niets" of "geen" staat dan achteraan. Bij KNM staan de andere antwoorden op alfabet. Anders: door elkaar, elke keer anders.
+  // Geeft de nummers van de antwoorden (0 = het goede antwoord in de data) in de volgorde op het scherm.
+  const DAGEN = ['maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'];
+  const MAANDEN = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+  const TELWOORD = { een: 1, twee: 2, drie: 3, vier: 4, vijf: 5, zes: 6, zeven: 7, acht: 8, negen: 9, tien: 10, elf: 11, twaalf: 12, dertien: 13, veertien: 14,
+    vijftien: 15, zestien: 16, zeventien: 17, achttien: 18, negentien: 19, twintig: 20, dertig: 30, veertig: 40, vijftig: 50, zestig: 60, zeventig: 70, tachtig: 80, negentig: 90, honderd: 100 };
+  const telwoord = (w) => {
+    if (TELWOORD[w] != null && w !== 'een') return TELWOORD[w];
+    const m = /^(een|twee|drie|vier|vijf|zes|zeven|acht|negen)en(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)$/.exec(w);
+    return m ? TELWOORD[m[1]] + TELWOORD[m[2]] : null;
+  };
+  const RESTJE = /^(niets|niks|geen|geen van (deze|allen)|nooit|niemand|nergens)\b/;
+  // [soort, waarde] van één antwoord, of null als het geen getal, tijd, dag of datum is
+  function ordeWaarde(tekst) {
+    const t = kaal(String(tekst)).replace(/\[\[[a-z-]+\]\]/g, '').trim();
+    if (RESTJE.test(t)) return ['rest', Infinity];
+    let m = /\b(\d{1,2})[.:](\d{2})\b/.exec(t);
+    if (m && !/€|euro/.test(t)) return ['tijd', +m[1] * 60 + +m[2]];
+    m = /\b(\d{1,2}) (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\b/.exec(t);
+    if (m) return ['datum', MAANDEN.indexOf(m[2]) * 32 + +m[1]];
+    const dag = DAGEN.findIndex((d) => new RegExp('\\b' + d + '\\b').test(t));
+    if (dag >= 0 && t.split(/\s+/).length <= 3) return ['dag', dag];
+    m = /\d+(?:[.,]\d+)?/.exec(t.replace(/(\d)\.(\d{3})\b/g, '$1$2'));
+    if (m) return ['getal', parseFloat(m[0].replace(',', '.'))];
+    for (const w of t.split(/[^a-z]+/)) { const n = telwoord(w); if (n != null) return ['getal', n]; }
+    return null;
+  }
+  function volgorde(opties, o) {
+    const nrs = opties.map((_, i) => i);
+    const w = opties.map(ordeWaarde);
+    const soorten = new Set(w.filter((x) => x && x[0] !== 'rest').map((x) => x[0]));
+    if (w.every(Boolean) && soorten.size === 1 && w.filter((x) => x[0] !== 'rest').length >= 2) return nrs.sort((a, b) => w[a][1] - w[b][1]);
+    if (o && o.alfabet) return nrs.sort((a, b) => kaal(opties[a]).localeCompare(kaal(opties[b]), 'nl'));
+    return schud(nrs);
+  }
+
+  // De klok van een oefenexamen. Zoals bij DUO: een melding als er nog 15 minuten en nog 1 minuut over zijn.
+  // verborgen = de tijd staat achter de knop met de klok (DUO Luisteren en KNM); een klik laat de tijd zien of verbergt hem.
+  // o = { kop, minuten, start (ms), verborgen, op0() }. Geeft { stop() }.
+  function examenKlok(o) {
+    let zien = !o.verborgen, vorige = null;
+    const tijd = el('span', { class: 'klok-tijd' });
+    const knop = el('button', { type: 'button', class: 'klok', title: 'tijd', 'aria-label': 'laat de tijd zien of verberg de tijd', en: 'time left: click to show or hide' }, teken('klok'), tijd);
+    knop.addEventListener('click', () => { zien = !zien; toon(); });
+    const rest = () => Math.max(0, o.minuten * 60 - Math.floor((Date.now() - o.start) / 1000));
+    function toon() {
+      const s = rest();
+      tijd.textContent = zien ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : '';
+      knop.classList.toggle('bijna', s <= 60);
+      if (vorige != null) for (const m of [15, 1]) {
+        if (vorige > m * 60 && s <= m * 60) toast(m === 1 ? 'Let op: nog 1 minuut.' : 'Let op: nog 15 minuten.', m === 1 ? 'one minute left' : '15 minutes left', null, 6000);
+      }
+      vorige = s;
+      if (s <= 0) { clearInterval(tik); if (o.op0) o.op0(); }
+    }
+    o.kop.insertBefore(knop, o.kop.lastChild);
+    const tik = setInterval(toon, 1000);
+    toon();
+    return { stop() { clearInterval(tik); knop.remove(); } };
+  }
+  // Een vraag markeren, om er later naar terug te gaan (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
+  function vlagKnop(vlaggen, nr, bewaar) {
+    const k = el('button', { type: 'button', class: 'knop klein licht vlag-knop', 'aria-pressed': String(!!vlaggen[nr]), en: 'mark this question: you see it in the overview' }, teken('vlag'), 'Markeer');
+    k.addEventListener('click', () => {
+      if (vlaggen[nr]) delete vlaggen[nr]; else vlaggen[nr] = true;
+      k.setAttribute('aria-pressed', String(!!vlaggen[nr]));
+      bewaar();
+    });
+    return k;
+  }
+  // Wat vraagt een vraag? Uit de vraagwoorden: een tijd, een getal of prijs, een reden, wat iemand moet doen, wie, waar, of de rest.
+  const VRAAGSOORT = [
+    ['tijd', /\b(wanneer|hoe laat|welke dag|welke datum|hoe lang|vanaf wanneer|tot wanneer|welk uur)\b/, 'een tijd of dag', 'a time or day'],
+    ['getal', /\b(hoeveel|wat kost|hoe duur|welk nummer|welk telefoonnummer|hoe oud)\b/, 'een getal of prijs', 'a number or price'],
+    ['reden', /\bwaarom\b/, 'een reden: waarom?', 'a reason: why?'],
+    ['doen', /\bwat (moet|moeten|kan|kunnen|mag|mogen|gaat|gaan|wil|willen|doet|doen)\b/, 'wat moet of gaat iemand doen?', 'what must or will someone do?'],
+    ['wie', /\b(wie|met wie|voor wie|aan wie)\b/, 'wie?', 'who?'],
+    ['waar', /\b(waar|waarheen|naar welke|in welke|op welke plek)\b/, 'waar?', 'where?'],
+  ];
+  function vraagSoort(tekst) {
+    const t = kaal(String(tekst || ''));
+    const r = VRAAGSOORT.find(([, re]) => re.test(t));
+    return r ? { id: r[0], naam: r[2], en: r[3] } : { id: 'rest', naam: 'de tekst begrijpen', en: 'understand the text' };
+  }
+  // Na het oefenexamen: per soort vraag hoeveel goed. rijen = [{ naam, en, goed, totaal, href, hrefNaam }]. De zwakste soort krijgt een knop.
+  function perSoort(rijen, titel) {
+    rijen = rijen.filter((r) => r.totaal);
+    if (rijen.length < 2) return null;
+    const zwak = rijen.slice().sort((a, b) => a.goed / a.totaal - b.goed / b.totaal)[0];
+    return el('div', { class: 'per-soort' },
+      el('h3', { en: 'where did your points go?' }, titel || 'Waar gingen de punten heen?'),
+      rijen.map((r) => el('div', { class: 'ps-rij' + (r === zwak && r.goed < r.totaal ? ' zwak' : '') },
+        el('span', { class: 'ps-naam', en: r.en }, r.naam),
+        el('span', { class: 'ps-balk', role: 'img', 'aria-label': `${r.goed} van ${r.totaal} goed` }, Array.from({ length: r.totaal }, (_, i) => el('i', { class: i < r.goed ? 'goed' : '' }))),
+        el('span', { class: 'ps-tel' }, `${r.goed}/${r.totaal}`))),
+      zwak.goed < zwak.totaal && zwak.href ? el('p', { class: 'knoppen' }, el('a', { class: 'knop licht', href: zwak.href, en: 'practise this' }, zwak.hrefNaam || `Oefen: ${zwak.naam}`)) : null);
+  }
+
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, vlagKnop, perSoort, vraagSoort, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();
