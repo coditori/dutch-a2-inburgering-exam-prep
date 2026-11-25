@@ -55,7 +55,7 @@
     document.body.classList.add('geen-woorden');
     stand.vlag = stand.vlag || {};
     stopKlok();
-    klok = App.examenKlok({ kop, minuten: MINUTEN, start: stand.start, op0: inleveren });
+    klok = App.examenKlok({ kop, minuten: MINUTEN, start: stand.start, verborgen: true, op0: inleveren }); // de tijd achter de klok, zoals bij DUO
     if (stand && !stand.klaar) tekenVraag();
   }
 

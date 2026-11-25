@@ -37,3 +37,6 @@ audio { max-width: 100%; height: 36px; vertical-align: middle; }
 .scene:has(> .plaat:nth-child(3)) .plaat:has(.met-foto) { max-width: 290px; }
 .scene .plaat .met-foto img { max-width: 100%; border-radius: 10px; }
 .scene .plaat:has(.met-foto) small { margin-top: 4px; }
+/* het oefenexamen Spreken zoals bij DUO: van boven naar beneden, de plaatjes boven en de opname eronder */
+.examen.boven-onder { grid-template-columns: 1fr; max-width: 980px; }
+.examen.boven-onder > section { min-height: 0; }

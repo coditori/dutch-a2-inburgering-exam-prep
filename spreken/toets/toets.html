@@ -75,7 +75,7 @@
   function examen() {
     stand.vlag = stand.vlag || {};
     stopKlok();
-    klok = App.examenKlok({ kop, minuten: MINUTEN, start: stand.start, op0: inleveren });
+    klok = App.examenKlok({ kop, minuten: MINUTEN, start: stand.start, verborgen: true, op0: inleveren }); // de tijd achter de klok, zoals bij DUO
     if (!stand.klaar) teken();
   }
 
@@ -150,7 +150,8 @@
     const hint = { 2: 'Gebruik het plaatje.', 3: 'Kies een van de plaatjes.', 4: 'Gebruik alle plaatjes.' }[it.deel];
     huidig = opnemer(nr);
     pagina.textContent = '';
-    pagina.append(el('div', { class: 'examen' },
+    // zoals bij DUO van boven naar beneden: eerst de video of de plaatjes, daaronder de vraag en de opname
+    pagina.append(el('div', { class: 'examen boven-onder' },
       el('section', {},
         eersteVanDeel ? el('div', { class: 'lees-eerst' }, el('b', {}, ONDERDEEL[it.deel][0]), el('p', { class: 'zacht' }, ONDERDEEL[it.deel][1])) : el('p', { class: 'zacht klein' }, ONDERDEEL[it.deel][0]),
         Spreken.scene(it.beelden, it.fotos),
