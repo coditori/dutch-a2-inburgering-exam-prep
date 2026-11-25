@@ -5,6 +5,7 @@
     python3 tools/controleer.py -v       # ook aantal woorden per tekst
 
     python3 tools/controleer.py spreken  # alleen dit examen (lezen telt altijd mee voor de woorden)
+    python3 tools/controleer.py --betekenis weer   # elke zin met "weer" en de betekenis die woorden/betekenis.txt kiest
 
 Regel: een les van trede N gebruikt alleen woorden van trede <= N, woorden uit eerdere lessen
 van hetzelfde examen, woorden uit de lessen van Lezen tot en met trede N (Lezen is de basis),
@@ -154,8 +155,33 @@ def controleer_examen(lijst, examen, basis_per_trede, toon):
     return totaal, per_trede
 
 
+def toon_betekenis(lijst, woord):
+    """elke zin met het woord, met de regel die woorden/betekenis.txt kiest (en welk patroon). Om na te lezen."""
+    woord = kaal(woord)
+    if woord not in lijst.kies():
+        sys.exit(f"'{woord}' staat niet in woorden/betekenis.txt")
+    gezien, per = set(), {}
+    for x in EXAMENS:
+        for pad, data in lessen(x) + overig(x):
+            for _, s in strings(data):
+                for zin in re.split(r"(?<=[.!?])\s+", s):
+                    toks, komma = lijst.zin_tokens(zin)
+                    for i, t in enumerate(toks):
+                        if t == woord and (zin, i) not in gezien:
+                            gezien.add((zin, i))
+                            nr, waarom = lijst.kies_in_zin(woord, toks, komma, i)
+                            per.setdefault(lijst.items[nr]["nl"], []).append(f"{zin.strip()[:100]}   [{waarom}]")
+    for nl, zinnen in per.items():
+        print(f"\n{woord} = {nl}: {len(zinnen)} zinnen")
+        for z in sorted(zinnen):
+            print("   ", z)
+
+
 def main():
     lijst = Lijst()
+    lijst.kies()  # stopt met een duidelijke fout als woorden/betekenis.txt niet klopt
+    if "--betekenis" in sys.argv:
+        return toon_betekenis(lijst, sys.argv[sys.argv.index("--betekenis") + 1])
     kies = [a for a in sys.argv[1:] if a in EXAMENS] or EXAMENS
     # Lezen eerst: de woorden uit de lessen van Lezen zijn de basis voor de andere examens
     fouten, lezen_per_trede = controleer_examen(lijst, "lezen", {}, "lezen" in kies)

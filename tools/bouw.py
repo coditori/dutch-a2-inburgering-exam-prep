@@ -8,6 +8,7 @@
 3. Per examen worden lessons/index.json en toets/index.json gemaakt (lijst voor de startpagina).
 """
 import json
+import re
 
 import fcntl
 
@@ -50,6 +51,24 @@ def maak_woorden_js():
         for w in les.get("woorden", []):
             if w.get("zin"):
                 zin.setdefault(kaal(w["nl"]), w["zin"])
+    # een betekenis uit woorden/betekenis.txt zonder eigen voorbeeldzin (weer = again): de kortste zin (minstens 4 woorden) uit een les
+    # waarin het kaartje die betekenis kiest. Geen zin met een gat ({...}), een plaatje ([[...]]), een kopje of een opsomming.
+    kort = {}
+    for pad, les in alle_lessen():
+        for _, s in strings(les):
+            if "{" in s or "[[" in s or s.startswith(("#", "-")):
+                continue
+            for z in re.split(r"(?<=[.!?])\s+", s):
+                if not z.endswith((".", "?", "!")):
+                    continue
+                toks, komma = lijst.zin_tokens(z)
+                for i, t in enumerate(toks):
+                    keuze = lijst.kies_in_zin(t, toks, komma, i)
+                    k = keuze and kaal(lijst.items[keuze[0]]["nl"])
+                    if k and len(toks) >= 4 and (k not in kort or len(z) < len(kort[k])):
+                        kort[k] = z
+    for k, z in kort.items():
+        zin.setdefault(k, z)
     rijen = []
     for it in lijst.items:
         b = [beeld[kaal(s)] for s in [it["nl"]] + sublemmas(it["nl"]) if kaal(s) in beeld]
@@ -89,7 +108,9 @@ def maak_woorden_js():
         "// delen: samengesteld woord -> waar het volgende deel begint (ziekenhuis: [6] = zieken + huis; zie woorden/samenstellingen.txt)\n"
         "// vormen: een nummer past altijd; [nummer, soort] alleen in de goede zin (p woordgroep, s/q los deel, x als niets anders past, d deel)\n"
         "// samen: regel -> de woorden van de woordgroep (* = werkwoord)   los: regel -> de losse delen (opbellen: op)\n"
-        "window.WOORDEN = " + json.dumps({"lijst": rijen, "vormen": vormen, "delen": delen, "samen": samen, "los": los}, ensure_ascii=False, separators=(",", ":")) + ";\n",
+        "// kies: woord -> s (de standaard) en r (per regel de patronen), uit woorden/betekenis.txt (weer: het weer of weer)\n"
+        "window.WOORDEN = " + json.dumps({"lijst": rijen, "vormen": vormen, "delen": delen, "samen": samen, "los": los, "kies": lijst.kies()},
+                                         ensure_ascii=False, separators=(",", ":")) + ";\n",
         encoding="utf-8",
     )
     return len(rijen), len(vormen), len(delen)

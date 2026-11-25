@@ -403,6 +403,23 @@
 4 | Op het plaatje zie ik ... | In the picture I see ... | spreken
 4 | Kunt u dat herhalen? | Can you repeat that? | spreken
 
+# ---------- NOG EEN BETEKENIS, EN KLEINE WOORDEN DIE EEN EIGEN REGEL MISTEN ----------
+# Hetzelfde woord, een andere betekenis: welke in een zin past, staat in woorden/betekenis.txt (weer: het weer of weer).
+1 | weer | again / back (weer thuis = back home) | tijd
+1 | mee | along / with (ga je mee? = are you coming along?) | plaats
+1 | terug | back | plaats
+1 | lang | long | eigenschap
+1 | achter | behind | plaats
+2 | nodig | needed / necessary | algemeen
+2 | schoon | clean | eigenschap
+2 | tegen | against / to (zeg het tegen mij = tell me) | verbinden
+2 | pas | not until / only (pas om drie uur = not before three) | tijd
+2 | de pas | card / pass (bankpas, OV-pas) | winkelen
+2 | eens | ever / once (wel eens = sometimes) | tijd
+3 | het eens zijn | to agree (het eens zijn met = to agree with) | algemeen
+3 | het risico | risk | gezondheid | risico's
+3 | het lid | member | algemeen | leden
+
 # ---------- UIT DE LESSEN (automatisch toegevoegd door tools/bouw.py) ----------
 1 | de baby | baby | familie | baby's
 1 | de euro | euro | winkelen | euro's
@@ -412,7 +429,7 @@
 1 | de tijd | time | tijd
 1 | aan | to / on / at | voorzetsel
 2 | het bordje | sign | lezen
-2 | dan | then | verbinden
+2 | dan | then / than (groter dan = bigger than) | verbinden
 2 | de ingang | entrance | plaats
 2 | de uitgang | exit | plaats
 2 | de klant | customer | winkelen
@@ -570,7 +587,7 @@
 4 | de fout | mistake | algemeen | fouten
 4 | het moment | moment | tijd | momenten
 4 | sommige | some | hoeveel
-4 | toch | still / anyway | verbinden
+4 | toch | still / anyway (..., toch? = ..., right?) | verbinden
 4 | de last | trouble / nuisance | wonen
 4 | de bestelling | order | winkelen
 4 | de garantie | guarantee / warranty | winkelen
