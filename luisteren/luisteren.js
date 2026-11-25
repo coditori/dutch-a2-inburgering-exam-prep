@@ -2,9 +2,10 @@
 // De vraag-knoppen en het laden van JSON komen uit ../lezen/lezen.js (Lezen.vraag, Lezen.json).
 window.Luister = (() => {
   const { el } = App;
-  // spreker -> stem van Piper (tools/tts_luisteren.py gebruikt dezelfde tabel)
-  const STEM = { A: 'nl_NL-ronnie-medium', B: 'nl_BE-nathalie-medium', C: 'nl_NL-pim-medium' };
-  const NAAM = { A: 'man', B: 'vrouw', C: 'man 2' };
+  // spreker -> stem van Google (tools/tts_luisteren.py gebruikt dezelfde tabel). VERTELLER: de sleutel van wat de verteller voorleest.
+  const STEM = { A: 'nl-NL-Chirp3-HD-Charon', B: 'nl-NL-Chirp3-HD-Kore', C: 'nl-NL-Chirp3-HD-Iapetus', D: 'nl-NL-Chirp3-HD-Aoede' };
+  const VERTELLER = 'nl_NL-ronnie-medium';
+  const NAAM = { A: 'man', B: 'vrouw', C: 'man 2', D: 'vrouw 2' };
 
   const P = Object.assign({ lessen: {}, toets: {}, trainers: {} }, App.lees('luisteren', {}));
   const bewaar = () => App.schrijf('luisteren', P);
@@ -14,10 +15,12 @@ window.Luister = (() => {
   const naLes = (id) => alles() || P.open || !id || gehaald(id);
 
   const klaar = Spraak.map(new URL('audio/', document.currentScript.src).href);
-  const sleutel = (regel, langzaam) => STEM[regel.s || 'A'] + (langzaam ? '|langzaam|' : '|') + regel.t;
+  const sleutel = (regel, langzaam) => (regel.v ? VERTELLER : STEM[regel.s || 'A']) + (langzaam ? '|langzaam|' : '|') + regel.t;
+  // een heel fragment van een toets in één mp3 (tools/tts_luisteren.py maakt dezelfde sleutel)
+  const fragmentSleutel = (regels) => 'fragment|' + regels.map((r) => `${r.s || 'A'}:${r.t}`).join('\n');
 
-  let loopNr = 0, audio = null;
-  function stop() { loopNr++; if (audio) audio.pause(); audio = null; }
+  let loopNr = 0, audio = null, ketting = null;
+  function stop() { loopNr++; if (audio) audio.pause(); audio = null; if (ketting) ketting.pauze(); }
 
   // speelt de regels na elkaar. opties: { langzaam, opRegel(i), opTijd(i, deel 0..1), opEinde() }
   async function speel(regels, opties) {
@@ -59,6 +62,90 @@ window.Luister = (() => {
       el('button', { class: 'knop licht', title: 'nog een keer', en: 'again', onclick: () => start(laatst) }, '↻'),
       el('button', { class: 'knop licht', title: 'stop', onclick: () => { stop(); bezig.textContent = ''; } }, '■'),
       bezig);
+  }
+
+  // ---------- de speler van het oefenexamen, zoals bij DUO ----------
+  // Opent een vraag, dan speelt alles vanzelf na elkaar: de inleiding, de opdracht, het fragment, de vraag en elk antwoord.
+  // Knoppen: 10 seconden terug, spelen of pauze (in een ring die laat zien hoe ver het is), 10 seconden verder. Geen snelheid en
+  // geen tekst. Opnieuw spelen mag zo vaak als u wilt: na het einde begint spelen weer bij het begin.
+  // delen = [{ tekst } (de verteller) | { regels } (het fragment)]; o = { opDeel(i): licht op wat nu speelt (-1 = niets) }
+  const INSTRUCTIE = 'Lees eerst de vraag. Luister daarna naar de tekst.';
+  function examenSpeler(delen, o) {
+    o = o || {};
+    if (ketting) ketting.pauze();
+    let lijst = null, nu = 0, speelt = false;
+    const R = 20, OMTREK = 2 * Math.PI * R;
+    const boog = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    boog.setAttribute('cx', '24'); boog.setAttribute('cy', '24'); boog.setAttribute('r', String(R)); boog.setAttribute('class', 'ring-voor');
+    boog.style.strokeDasharray = `0 ${OMTREK}`;
+    const ring = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ring.setAttribute('viewBox', '0 0 48 48'); ring.setAttribute('class', 'speel-ring'); ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = `<circle cx="24" cy="24" r="${R}" class="ring-achter"/>`;
+    ring.append(boog);
+    const teken = el('span', { class: 'speel-teken' }, '▶');
+    const knop = el('button', { type: 'button', class: 'speel-knop', 'aria-label': 'spelen of pauze', en: 'play / pause', onclick: () => (speelt ? pauze() : speel()) }, ring, teken);
+    const terug = el('button', { type: 'button', class: 'knop licht klein', 'aria-label': '10 seconden terug', en: '10 seconds back', onclick: () => spring(-10) }, '↺ 10');
+    const verder = el('button', { type: 'button', class: 'knop licht klein', 'aria-label': '10 seconden verder', en: '10 seconds forward', onclick: () => spring(10) }, '10 ↻');
+    const vak = el('div', { class: 'examen-speler' }, terug, knop, verder);
+
+    // de adressen van de opnamen. Een fragment zonder eigen mp3: de regels een voor een.
+    async function laad() {
+      if (lijst) return lijst;
+      await klaar;
+      const uit = [];
+      for (const [i, d] of delen.entries()) {
+        if (d.regels) {
+          const url = await Spraak.adres(fragmentSleutel(d.regels), { vast: true });
+          if (url) uit.push({ url, deel: i });
+          else for (const r of d.regels) { const u = await Spraak.adres(sleutel(r, false), { vast: true }); if (u) uit.push({ url: u, deel: i }); }
+        } else {
+          const url = await Spraak.adres(`${VERTELLER}|${d.tekst}`);
+          if (url) uit.push({ url, deel: i });
+        }
+      }
+      for (const x of uit) {
+        x.a = new Audio(x.url);
+        x.a.preload = 'auto';
+        x.duur = 0;
+        x.a.addEventListener('loadedmetadata', () => { x.duur = x.a.duration || 0; toon(); });
+        x.a.addEventListener('timeupdate', toon);
+        x.a.addEventListener('ended', () => { if (lijst[nu] !== x) return; if (nu < lijst.length - 1) { nu++; lijst[nu].a.currentTime = 0; start(); } else klaarMet(); });
+      }
+      lijst = uit;
+      return lijst;
+    }
+    const totaal = () => (lijst || []).reduce((s, x) => s + x.duur, 0);
+    const plek = () => (lijst || []).slice(0, nu).reduce((s, x) => s + x.duur, 0) + (lijst && lijst[nu] ? lijst[nu].a.currentTime : 0);
+    function toon() {
+      const t = totaal(), deel = t ? Math.min(1, plek() / t) : 0;
+      boog.style.strokeDasharray = `${deel * OMTREK} ${OMTREK}`;
+      teken.textContent = speelt ? '❚❚' : '▶';
+      if (o.opDeel) o.opDeel(speelt && lijst && lijst[nu] ? lijst[nu].deel : -1);
+    }
+    function start() { if (!lijst[nu]) return; speelt = true; lijst[nu].a.play().catch(() => { speelt = false; toon(); }); toon(); }
+    function klaarMet() { speelt = false; nu = 0; toon(); boog.style.strokeDasharray = `${OMTREK} ${OMTREK}`; }
+    async function speel() {
+      if (!Spraak.magSpelen()) return; // de pagina is net geopend: geen geluid tot de leerling zelf klikt
+      stop();
+      ketting = api;
+      await laad();
+      if (!lijst.length) return;
+      start();
+    }
+    function pauze() { speelt = false; if (lijst && lijst[nu]) lijst[nu].a.pause(); toon(); }
+    async function spring(sec) {
+      await laad();
+      if (!lijst.length) return;
+      const was = speelt;
+      if (lijst[nu]) lijst[nu].a.pause();
+      let doel = Math.max(0, Math.min(totaal() - 0.1, plek() + sec));
+      nu = 0;
+      while (nu < lijst.length - 1 && doel >= lijst[nu].duur) { doel -= lijst[nu].duur; nu++; }
+      lijst[nu].a.currentTime = Math.max(0, doel);
+      if (was) start(); else toon();
+    }
+    const api = { vak, speel, pauze };
+    return api;
   }
 
   // transcript: elke regel een alinea; woorden lichten op tijdens het afspelen. Klik op een woord: pop-up (hoor het woord met de knop Luister).
@@ -134,5 +221,5 @@ window.Luister = (() => {
     doel.append(el('div', { class: 'kaart' }, el('p', { en: o.uitlegEn }, o.uitleg), el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: begin }, 'Start'))));
   }
 
-  return { P, bewaar, gehaald, isOpen, naLes, speel, stop, speler, transcript, vergelijk, ronde, STEM, NAAM };
+  return { P, bewaar, gehaald, isOpen, naLes, speel, stop, speler, examenSpeler, INSTRUCTIE, transcript, vergelijk, ronde, STEM, NAAM };
 })();

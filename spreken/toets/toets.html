@@ -153,8 +153,8 @@
     pagina.append(el('div', { class: 'examen' },
       el('section', {},
         eersteVanDeel ? el('div', { class: 'lees-eerst' }, el('b', {}, ONDERDEEL[it.deel][0]), el('p', { class: 'zacht' }, ONDERDEEL[it.deel][1])) : el('p', { class: 'zacht klein' }, ONDERDEEL[it.deel][0]),
-        Spreken.scene(it.beelden),
-        it.deel === 1 ? el('div', { class: 'scene' }, el('div', { class: 'plaat' }, '🧑‍💼🎥')) : null),
+        Spreken.scene(it.beelden, it.fotos),
+        it.deel === 1 ? el('div', { class: 'scene' }, el('div', { class: 'plaat' }, App.foto(it.foto, '🧑‍💼🎥'))) : null),
       el('section', {}, tekst, hint ? el('p', { class: 'zacht' }, hint) : null,
         el('div', { class: 'knoppen' },
           el('button', { class: 'knop licht', en: 'listen again', onclick: () => Spreken.speel(Spreken.vraagTekst(it)) }, App.teken('luid'), 'Luister nog een keer'),
@@ -222,7 +222,7 @@
     } }, 'Verder');
     const klaar = () => { verder.disabled = pt.a == null || pt.c == null; bewaar(); };
     pagina.append(el('main', {}, el('p', { class: 'zacht klein' }, `Nakijken: vraag ${nr + 1} van ${vragen.length}`), el('div', { class: 'kaart' },
-      Spreken.scene(it.beelden), it.sit ? el('p', {}, App.woorden(it.sit)) : null, el('p', { class: 'spreekvraag' }, App.woorden(it.vraag)),
+      Spreken.scene(it.beelden, it.fotos), it.sit ? el('p', {}, App.woorden(it.sit)) : null, el('p', { class: 'spreekvraag' }, App.woorden(it.vraag)),
       !stand.gedaan[nr] ? el('p', { class: 'uitslag fout' }, 'Geen antwoord gegeven: 0 punten.') : null,
       o ? el('p', {}, `Uw opname (${tijd(o.sec || 0)}): `, el('audio', { controls: true, src: o.url })) : stand.gedaan[nr] ? el('p', { class: 'tip', en: 'The recording is gone (page reloaded) or you answered without microphone.' }, 'Er is geen opname meer. Kijk na uit uw hoofd.') : null,
       o && o.tekst ? el('div', { class: 'gehoord' }, el('span', { class: 'zacht klein' }, 'De computer hoorde: '), o.tekst) : null,

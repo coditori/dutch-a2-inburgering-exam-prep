@@ -110,9 +110,10 @@ window.Spreken = (() => {
   }
 
   // ---------- plaatjes ----------
-  function scene(beelden) {
+  // fotos = de beschrijvingen van de foto's (tools/plaatjes.py); is er een foto, dan staat die er in plaats van de emoji
+  function scene(beelden, fotos) {
     if (!beelden || !beelden.length) return null;
-    return el('div', { class: 'scene' }, beelden.map((b, i) => el('div', { class: 'plaat' }, b, beelden.length > 1 ? el('small', {}, `plaatje ${i + 1}`) : null)));
+    return el('div', { class: 'scene' }, beelden.map((b, i) => el('div', { class: 'plaat' }, App.foto((fotos || [])[i], b), beelden.length > 1 ? el('small', {}, `plaatje ${i + 1}`) : null)));
   }
 
   // ---------- het opname-blok ----------

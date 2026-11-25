@@ -947,3 +947,8 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .mijn-knop.aan { border: 1px solid var(--k, var(--accent)); background: var(--vlak); color: var(--tekst); font-weight: 600; }
 .mijn-knop.k-lezen { --k: var(--k-lezen); } .mijn-knop.k-luisteren { --k: var(--k-luisteren); } .mijn-knop.k-schrijven { --k: var(--k-schrijven); } .mijn-knop.k-spreken { --k: var(--k-spreken); } .mijn-knop.k-knm { --k: var(--k-knm); }
 .ex.niet-nodig { filter: grayscale(.7) opacity(.6); } /* niet met opacity: de animatie "op" zet die al */
+/* een foto bij een oefenexamen (App.foto); zonder foto blijft het plaatje van emoji staan */
+.foto-plek.met-foto { display: block; line-height: 0; }
+.foto-plek.met-foto img { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; border-radius: 12px; }
+.scene .plaat:has(.met-foto) { padding: 8px; white-space: normal; font-size: 1rem; }
+.kplaat:has(.met-foto) { font-size: 1rem; }

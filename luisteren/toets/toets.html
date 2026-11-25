@@ -42,8 +42,8 @@
     pagina.append(el('main', {}, el('div', { class: 'kaart' },
       el('h2', { style: 'margin-top:0' }, `Welkom bij ${toets.titel}`),
       el('p', {}, `U moet in deze toets ${vragen.length} vragen beantwoorden. U hebt ${MINUTEN} minuten.`),
-      el('p', { class: 'zacht', en: 'Like the real exam: read the question first, then listen. You may listen again. No text, no slow button. You see the result at the end.' },
-        'Net als het echte examen: lees eerst de vraag, luister daarna. U mag nog een keer luisteren. Er is geen tekst en geen langzame knop. De uitslag ziet u aan het einde.'),
+      el('p', { class: 'zacht', en: 'Like the DUO practice exam: when a question opens, everything plays by itself: the intro, the fragment, the question and the answers. You may listen again as often as you want, and go 10 seconds back or forward. No text, no slow button. You see the result at the end.' },
+        'Net als bij DUO: bij elke vraag speelt alles vanzelf: de inleiding, het fragment, de vraag en de antwoorden. U mag zo vaak luisteren als u wilt, en 10 seconden terug of verder. Er is geen tekst en geen langzame knop. De uitslag ziet u aan het einde.'),
       eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijferVan('luisteren', r.score, r.totaal)} (${r.datum})`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => {
         stand = { id, start: Date.now(), nu: 0, antwoorden: {}, vlag: {}, volgorde: vragen.map((q) => App.volgorde(q.v.o)) };
@@ -69,14 +69,21 @@
         el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, 'Vorige'),
         el('span', {}, el('b', {}, `${stand.nu + 1} / ${vragen.length}`), ' ', el('button', { class: 'knop klein', en: 'overview', onclick: overzicht }, 'Overzicht'), ' ', App.vlagKnop(stand.vlag, stand.nu, bewaar)),
         stand.nu < vragen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
-    links.append(el('p', { class: 'intro' }, it.context),
-      el('p', { class: 'lees-eerst' }, 'Lees eerst de vraag.', el('br'), 'Luister daarna naar de tekst.'),
-      el('div', { style: 'font-size:3rem;text-align:center' }, it.soort === 'voicemail' ? '📞' : it.soort === 'radio' ? '📻' : it.soort === 'nieuws' ? '📺' : '🗣️'),
-      Luister.speler(it.regels, { langzaam: false }));
+    const intro = el('p', { class: 'intro' }, it.context);
+    const opdracht = el('p', { class: 'lees-eerst' }, 'Lees eerst de vraag.', el('br'), 'Luister daarna naar de tekst.');
+    const beeld = el('div', { class: 'fragment-beeld' }, App.foto(it.foto, it.soort === 'voicemail' ? '📞' : it.soort === 'radio' ? '📻' : it.soort === 'nieuws' ? '📺' : '🗣️'));
     rechts.append(vraagDoel);
-    const blok = Lezen.vraag(vraagDoel, q.v, { volgorde: stand.volgorde[stand.nu], gekozen: stand.antwoorden[stand.nu],
+    const volgorde = stand.volgorde[stand.nu];
+    const blok = Lezen.vraag(vraagDoel, q.v, { volgorde, gekozen: stand.antwoorden[stand.nu],
       op: (keuze) => { stand.antwoorden[stand.nu] = keuze; bewaar(); blok.teken(keuze, false); } });
+    // zoals bij DUO: alles speelt vanzelf na elkaar; wat nu speelt krijgt een rand
+    const doelen = [intro, opdracht, beeld, vraagDoel.querySelector('.vraag'), ...vraagDoel.querySelectorAll('.optie')];
+    const speler = Luister.examenSpeler([{ tekst: it.context }, { tekst: Luister.INSTRUCTIE }, { regels: it.regels },
+      { tekst: [q.v.sit, q.v.v].filter(Boolean).join(' ') }, ...volgorde.map((nr) => ({ tekst: q.v.o[nr] }))],
+    { opDeel: (i) => doelen.forEach((d, j) => d && d.classList.toggle('speelt', i === j)) });
+    links.append(intro, opdracht, beeld, speler.vak);
     window.scrollTo(0, 0);
+    speler.speel();
   }
   function ga(n) { stand.nu = n; bewaar(); tekenVraag(); }
 

@@ -908,6 +908,19 @@ window.App = (() => {
     });
     return k;
   }
+  // Foto's bij de oefenexamens, zoals DUO echte foto's gebruikt (gemaakt door tools/plaatjes.py, in shared/fotos/).
+  // foto(beschrijving, reserve): een plek met het plaatje van emoji (reserve); is er een foto bij de beschrijving, dan komt die ervoor in de plaats.
+  let fotoLijst = null;
+  const fotoIndex = () => (fotoLijst = fotoLijst || fetch(WORTEL + 'shared/fotos/index.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+  function foto(beschrijving, reserve) {
+    const vak = el('span', { class: 'foto-plek' }, reserve || '');
+    if (beschrijving) fotoIndex().then((l) => {
+      if (!l[beschrijving]) return;
+      vak.textContent = ''; vak.classList.add('met-foto');
+      vak.append(el('img', { src: WORTEL + 'shared/fotos/' + l[beschrijving], alt: '', draggable: 'false' }));
+    });
+    return vak;
+  }
   // Wat vraagt een vraag? Uit de vraagwoorden: een tijd, een getal of prijs, een reden, wat iemand moet doen, wie, waar, of de rest.
   const VRAAGSOORT = [
     ['tijd', /\b(wanneer|hoe laat|welke dag|welke datum|hoe lang|vanaf wanneer|tot wanneer|welk uur)\b/, 'een tijd of dag', 'a time or day'],
@@ -937,5 +950,5 @@ window.App = (() => {
   }
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, vlagKnop, perSoort, vraagSoort, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, vlagKnop, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

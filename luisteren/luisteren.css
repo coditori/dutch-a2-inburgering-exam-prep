@@ -14,3 +14,13 @@ input.typ { font: inherit; font-size: 1.4rem; width: 9em; max-width: 100%; paddi
 @media (max-width: 560px) { .speler { gap: 8px; } .speler .knop { flex: 1 1 56px; min-width: 56px; } }
 /* met Engels aan: het Engels staat onder het teken, de knop wordt hoger in plaats van breder */
 body.en .speler .knop[data-en] { padding: 6px 12px; border-radius: 22px; min-height: 54px; }
+/* de speler van het oefenexamen, zoals bij DUO: 10 seconden terug, spelen of pauze in een ring, 10 seconden verder */
+.examen-speler { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 14px 0; }
+.speel-knop { position: relative; width: 64px; height: 64px; border: 0; border-radius: 50%; background: var(--accent); color: var(--op-accent); cursor: pointer; display: grid; place-items: center; font: inherit; font-size: 1.2rem; }
+.speel-ring { position: absolute; inset: 0; width: 64px; height: 64px; transform: rotate(-90deg); }
+.speel-ring circle { fill: none; stroke-width: 4; }
+.speel-ring .ring-achter { stroke: color-mix(in srgb, var(--op-accent) 25%, transparent); }
+.speel-ring .ring-voor { stroke: var(--op-accent); stroke-linecap: round; transition: stroke-dasharray .25s linear; }
+.speel-teken { position: relative; }
+.fragment-beeld { font-size: 3rem; text-align: center; border-radius: var(--rond); }
+.speelt { outline: 3px solid #f08c00; outline-offset: 3px; border-radius: 10px; }
