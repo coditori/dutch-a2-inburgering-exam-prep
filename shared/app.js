@@ -106,11 +106,14 @@ window.App = (() => {
       || ((toks[j - 1].t === 'en' || toks[j - 1].t === 'of') && (ONDERWERP.has(w.t) || isWerkwoord(w.t)));
     const deel = toks.map((w, j) => (j && nieuw(w, j) ? ++stuk : stuk));
     const na = toks.map((w, j) => zin.slice(w.b, j + 1 < toks.length ? toks[j + 1].a : zin.length)); // wat er na elk woord staat: een getal, "..."
-    return { zin: zin.trim(), toks: toks.map((w) => w.t), deel, na, i: Math.max(0, i) };
+    let k = 0;
+    const komma = toks.map((w, j) => (j && /[,;:()–—]|\s-\s/.test(zin.slice(toks[j - 1].b, w.a)) ? ++k : k)); // alleen leestekens (de patronen van betekenis.txt)
+    return { zin: zin.trim(), toks: toks.map((w) => w.t), deel, komma, na, i: Math.max(0, i) };
   }
   // de zin rond een woord op de pagina. Zo telt de hele zin mee, ook als hij in stukjes op het scherm staat (een gat, een cel).
+  const BLOK = '.zin, p, li, td, th, h1, h2, h3, h4, h5, h6, label, button, div'; // het stuk tekst rond een woord op de pagina
   function contextBij(span) {
-    const blok = span.closest('.zin, p, li, td, th, h1, h2, h3, h4, h5, h6, label, button, div') || span.parentNode;
+    const blok = span.closest(BLOK) || span.parentNode;
     const r = document.createRange();
     r.selectNodeContents(blok);
     r.setEnd(span, 0);
@@ -127,8 +130,12 @@ window.App = (() => {
   };
   // mee, toe, weg, terug ... zijn nooit een voorzetsel (dat is met, tot): "Emma gaat mee het water in"
   const ALTIJD_LOS = new Set('mee toe weg terug thuis neer open schoon kennis plaats deel bekend eruit mede'.split(' '));
+  // "Schrijf in hele zinnen": een bijvoeglijk naamwoord (op -e) en dan een zelfstandig naamwoord: ook een voorzetsel
+  const bijNaamwoord = (ctx, j) => j + 2 < ctx.toks.length && ctx.deel[j + 2] === ctx.deel[j] && /e$/.test(ctx.toks[j + 1])
+    && !isWerkwoord(ctx.toks[j + 1]) && isNaamwoord(ctx.toks[j + 2]) && !BEPALERS.has(ctx.toks[j + 2]);
   const losDeel = (ctx, j) => !/^\s*(\d|\.\.\.|…)/.test((ctx.na || [])[j] || '') // "op 0900 - 8844", "Ik ga in ...": een voorzetsel
-    && (ALTIJD_LOS.has(ctx.toks[j]) || j + 1 >= ctx.toks.length || ctx.deel[j + 1] !== ctx.deel[j] || ctx.toks[j + 1] === 'te' || !isNaamwoord(ctx.toks[j + 1]));
+    && (ALTIJD_LOS.has(ctx.toks[j]) || j + 1 >= ctx.toks.length || ctx.deel[j + 1] !== ctx.deel[j] || ctx.toks[j + 1] === 'te'
+      || (!isNaamwoord(ctx.toks[j + 1]) && !bijNaamwoord(ctx, j)));
   // "Ik vind jouw idee niet goed" is een mening, geen goedvinden: deze delen tellen alleen aan elkaar (goedvinden, goedgevonden)
   const ALLEEN_VAST = new Set(['goed']);
   // werkwoord (i) en los deel (j) in hetzelfde stuk van de zin: het deel erna ("Ik bel je op"), ervoor met te ("om het op te lossen"),
@@ -142,9 +149,15 @@ window.App = (() => {
   }
   // de andere woorden van een woordgroep staan ook in de zin, in hetzelfde stuk en in dezelfde volgorde.
   // Een werkwoord (*) mag overal in dat stuk staan: "Ik heb een pen nodig". "Als dat niet kan, leg ik ..." is geen "Kan ik ... ?".
+  // Een vraag (^ vooraan, "Kan ik ... ?") alleen aan het begin van de zin, of na één voorzetsel ("Tot hoe laat is ...?").
+  // "Woensdag kan ik wel." is geen "Kan ik ... ?".
+  const VOOR_VRAAG = new Set('tot om vanaf sinds van voor na in op met bij'.split(' '));
   function samenPast(nr, ctx, i) {
     const toks = ctx.toks.map((t, j) => (ctx.deel[j] === ctx.deel[i] ? t : '')); // woorden uit een ander stuk tellen niet
-    return ((W.samen || {})[nr] || []).some((groep) => {
+    return ((W.samen || {})[nr] || []).some((alleGroepen) => {
+      const vraag = alleGroepen[0] === '^', groep = vraag ? alleGroepen.slice(1) : alleGroepen;
+      const eerste = groep[0].replace(/^\*/, '').split(' ');
+      if (vraag && !eerste.includes(ctx.toks[0]) && !(VOOR_VRAAG.has(ctx.toks[0]) && eerste.includes(ctx.toks[1]))) return false;
       const g = groep.map((s) => ({ ww: s[0] === '*', vormen: s.replace(/^\*/, '').split(' ') }));
       const k = g.findIndex((x) => x.vormen.includes(toks[i]));
       if (k < 0) return false;
@@ -176,6 +189,35 @@ window.App = (() => {
     if (r.soort === 'q') return dichtst(toks.map((t, j) => j).filter((j) => regelsVan(toks[j]).some((x) => x.nr === r.nr && x.soort === 's') && losPast(ctx, j, i, r.nr))); // "op": staat "bel" erbij?
     return -1;
   }
+  // ---------- woorden/betekenis.txt: weer is "het weer" in "het weer is slecht", maar "weer" (again) in "Neem uw afval weer mee" ----------
+  // W.kies: woord -> { s: de standaard, r: [[regel, [patronen]]] }. Een patroon: "het [weer]", "op [zijn] *", "^ [zijn] NAAM".
+  // Dezelfde regels als tools/woordenlib.py (patroon_past): tools/controleer.py --betekenis weer toont wat hier gekozen wordt.
+  const isNW = (t) => !BEPALERS.has(t) && regelsVan(t).some((r) => r.soort !== 'x' && /^(de|het) [^/]/.test(W.lijst[r.nr][1]));
+  const isMV = (t) => /(en|s)$/.test(t) && isNW(t) && !regelsVan(t).some((r) => /^(de|het) [^/]/.test(W.lijst[r.nr][1]) && kaal(W.lijst[r.nr][1]).split(' ').slice(1).join(' ') === t);
+  const patronen = {};
+  function patroonPast(p, ctx, i) {
+    const alle = patronen[p] || (patronen[p] = p.split(' '));
+    const beginZin = alle[0] === '^', d = beginZin ? alle.slice(1) : alle;
+    const b = i - d.findIndex((x) => x[0] === '[');
+    if (b < 0 || b + d.length > ctx.toks.length || (beginZin && b !== 0)) return false;
+    return d.every((x, j) => {
+      const t = ctx.toks[b + j];
+      if (ctx.komma && ctx.komma[b + j] !== ctx.komma[i]) return false; // niet over een komma heen
+      if (x[0] === '[' || x === '*') return true;
+      if (x === 'NW') return isNW(t);
+      if (x === 'MV') return isMV(t);
+      if (x === 'NAAM') return !regelsVan(t).length;
+      return kaal(x) === t;
+    });
+  }
+  // { nr, patroon }: de regel die een patroon kiest (patroon: true), of de standaard (patroon: false). null: het woord staat er niet in.
+  function kiesRegel(vorm, ctx) {
+    const k = (W.kies || {})[vorm];
+    if (!k) return null;
+    for (const [nr, ps] of k.r) if (ps.some((p) => patroonPast(p, ctx, ctx.i))) return { nr, patroon: true };
+    return k.s == null ? null : { nr: k.s, patroon: false };
+  }
+
   // De betekenissen van een woord in een zin: { hoofd: [nummers], ook: [nummers] }.
   // hoofd = wat bij deze zin past (een samengesteld woord: alle delen), ook = de andere betekenissen (achter "Ook" op het kaartje).
   // Wat niet bij de zin past, staat er niet bij: "komt" is komen, niet ook aankomen, afkomen en binnenkomen.
@@ -191,6 +233,9 @@ window.App = (() => {
     let lijst = [...zeker, ...gewoon];
     if (!lijst.length) lijst = alle.filter((r) => r.soort === 'x').slice(0, 1).map((r) => r.nr);
     if (!lijst.length) lijst = alle.map((r) => r.nr); // niets past bij de zin: dan alles, zoals het woord in de lijst staat
+    // betekenis.txt: een patroon dat past gaat voor alles; de standaard alleen als er niets zeker is ("Bent u het niet eens" blijft de woordgroep)
+    const keuze = kiesRegel(vorm, c);
+    if (keuze && (keuze.patroon || !zeker.length)) lijst = [keuze.nr, ...lijst];
     lijst = [...new Set(lijst)];
     return { hoofd: lijst.slice(0, 1), ook: lijst.slice(1) };
   }
@@ -220,18 +265,31 @@ window.App = (() => {
   function woorden(tekst, nieuw) {
     const f = document.createDocumentFragment();
     let vorige = 0;
+    const spans = [];
+    const zet = (s, b) => { // data-n: de betekenis die bij de zin past, zodat streepjes() na het bewaren niet alles opnieuw hoeft uit te zoeken
+      s.dataset.n = b.hoofd.join(',');
+      s.classList.toggle('nieuw', !!nieuw && [...b.hoofd, ...b.ook].some((n) => nieuw.has(n)));
+      s.classList.toggle('bewaard', b.hoofd.some((n) => Mijn.heeft(W.lijst[n][1])));
+    };
     for (const w of woordenIn(tekst)) {
       if (w.a > vorige) f.append(tekst.slice(vorige, w.a));
       const stuk = tekst.slice(w.a, w.b);
       if (regelsVan(w.t).length) {
-        const b = betekenis(w.t, context(tekst, w.a));
-        const isNieuw = nieuw && [...b.hoofd, ...b.ook].some((n) => nieuw.has(n));
-        // data-n: de betekenis die bij de zin past, zodat streepjes() na het bewaren niet alles opnieuw hoeft uit te zoeken
-        f.append(el('span', { class: 'w' + (isNieuw ? ' nieuw' : '') + (b.hoofd.some((n) => Mijn.heeft(W.lijst[n][1])) ? ' bewaard' : ''), 'data-n': b.hoofd.join(',') }, stuk));
+        const s = el('span', { class: 'w' }, stuk);
+        zet(s, betekenis(w.t, context(tekst, w.a)));
+        spans.push(s);
+        f.append(s);
       } else f.append(stuk);
       vorige = w.b;
     }
     if (vorige < tekst.length) f.append(tekst.slice(vorige));
+    // Staat deze tekst in stukjes op de pagina (een zin met een gat: "Geef dat binnen vier weken {door}")? Kijk dan opnieuw
+    // met de hele zin, zoals het kaartje doet: dan is "Geef" doorgeven, niet geven. Een hele zin of regel: niets te doen.
+    if (spans.length) requestAnimationFrame(() => {
+      const eerste = spans.find((s) => s.isConnected), blok = eerste && eerste.closest(BLOK);
+      if (!blok || blok.textContent.trim() === tekst.trim()) return;
+      spans.forEach((s) => { if (s.isConnected) zet(s, betekenisBij(s)); });
+    });
     return f;
   }
 
@@ -1295,6 +1353,6 @@ window.App = (() => {
       zwak.goed < zwak.totaal && zwak.href ? el('p', { class: 'knoppen' }, el('a', { class: 'knop licht', href: zwak.href, en: 'practise this' }, zwak.hrefNaam || `Oefen: ${zwak.naam}`)) : null);
   }
 
-  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, betekenis, context, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, betekenis, context, kiesRegel, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, overzichtKnop, reeksSpeler, stopReeks, MijnVragen, bewaarVraagKnop, bewaarVragenRij, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

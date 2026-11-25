@@ -14,6 +14,7 @@ WERKWOORDEN = ROOT / "woorden" / "werkwoorden-a2.tsv"
 NAMEN = ROOT / "woorden" / "namen.txt"
 PLAATJES = ROOT / "woorden" / "plaatjes.txt"
 SAMENSTELLINGEN = ROOT / "woorden" / "samenstellingen.txt"
+BETEKENIS = ROOT / "woorden" / "betekenis.txt"
 
 KLINKERS = "aeiou"
 LIDWOORDEN = {"de", "het", "een"}
@@ -236,6 +237,17 @@ class Lijst:
 
     def __init__(self):
         self.items = lees_woorden() + lees_werkwoorden()
+        # een werkwoord met een los deel uit woorden.txt (afspreken: spreek af, sprak af): ook het werkwoord zonder dat deel,
+        # zodat "Wat spreken zij af?" afspreken is. In woorden.txt staan alleen de vormen die er zelf bij geschreven zijn.
+        alle_los = {it["los"] for it in self.items if it.get("los")}
+        for it in self.items:
+            if it.get("ww") or not it["vormen"]:
+                continue
+            eigen = {kaal(v) for v in it["vormen"]}
+            for s in (kaal(x) for x in sublemmas(it["nl"])):
+                p = next((p for p in eigen & alle_los if s.startswith(p) and len(s) > len(p) + 2 and " " not in s), None)
+                if p and s[len(p):] not in eigen:
+                    it["vormen"].append(s[len(p):])
         self.namen = lees_namen()
         self.vormen = {}
         self.lemma = {}
@@ -469,16 +481,127 @@ class Lijst:
         if not hasattr(self, "_ww"):
             self._ww = {it["nl"]: j for j, it in enumerate(self.items) if it.get("ww")}
         uit = []
-        for s in sublemmas(self.items[i]["nl"]):
+        ruw = re.split(r"\s+/\s+|,\s+", self.items[i]["nl"])
+        for n, s in enumerate(sublemmas(self.items[i]["nl"])):
             inhoud = self._inhoud(s)
             if len(inhoud) < 2:
                 continue
-            groep = []
+            # een vraag ("Kan ik ... ?", "hoe laat is het?") alleen aan het begin van de zin: ^ vooraan
+            groep = ["^"] if n < len(ruw) and ruw[n].strip().endswith("?") else []
             for w in inhoud:
                 j = self._ww.get(w)
                 groep.append("*" + " ".join(dict.fromkeys([w] + [kaal(v) for v in self.items[j]["vormen"]])) if j is not None else w)
             uit.append(groep)
         return uit
+
+    # ---------- woorden/betekenis.txt: welke betekenis in welke zin (weer: het weer of weer) ----------
+    def kies(self):
+        """{vorm: {"s": regel (de standaard), "r": [[regel, [patroon, ...]], ...]}}. Stopt met een duidelijke fout als iets niet klopt."""
+        if hasattr(self, "_kies"):
+            return self._kies
+        uit = {}
+        if BETEKENIS.exists():
+            for nr, regel in enumerate(BETEKENIS.read_text(encoding="utf-8").splitlines(), 1):
+                if not regel.strip() or regel.startswith("#"):
+                    continue
+                fout = lambda m: SystemExit(f"woorden/betekenis.txt regel {nr}: {m}\n   {regel}")
+                if "=" not in regel:
+                    raise fout("geen = (woord = regel uit woorden.txt)")
+                vorm, rest = [x.strip() for x in regel.split("=", 1)]
+                nl, _, pats = rest.partition(":")
+                vorm, nl = kaal(vorm), nl.strip()
+                i = next((j for j, it in enumerate(self.items) if it["nl"] == nl), None)
+                if i is None:
+                    raise fout(f"'{nl}' staat niet in woorden.txt (precies zo, met de of het)")
+                if i not in [j for j, _ in self.getypt(vorm)]:
+                    raise fout(f"'{nl}' is geen betekenis van '{vorm}' (bouw.py kent die vorm niet bij die regel)")
+                k = uit.setdefault(vorm, {"s": None, "r": []})
+                if not pats.strip():
+                    if k["s"] is not None:
+                        raise fout(f"'{vorm}' heeft al een standaard")
+                    k["s"] = i
+                    continue
+                patronen = [p.strip() for p in pats.split("|") if p.strip()]
+                for p in patronen:
+                    delen = p.split()
+                    if sum(1 for d in delen if d.startswith("[")) != 1 or f"[{vorm}]" not in [kaal(d) for d in delen]:
+                        raise fout(f"patroon '{p}': zet het woord '{vorm}' er precies één keer in, tussen [ ]")
+                    if "^" in delen[1:]:
+                        raise fout(f"patroon '{p}': ^ (begin van de zin) mag alleen vooraan")
+                k["r"].append([i, patronen])
+        self._kies = uit
+        return uit
+
+    def _regels_van(self, tok):
+        """de regels van een vorm zoals shared/woorden.js ze heeft: ook de delen van een samengesteld woord"""
+        g = [i for i, s in self.getypt(tok) if s != "x"]
+        if g:
+            return g
+        z = self.zoek(tok)
+        return [deel[0] for deel in z[0]] if z else []
+
+    def is_nw(self, tok):
+        """NW in een patroon: een regel met de of het (ook een deel van een samengesteld woord), geen lidwoord of 'de / het'"""
+        return tok not in LIDWOORDEN and any(re.match(r"^(de|het) [^/]", self.items[i]["nl"]) for i in self._regels_van(tok))
+
+    def is_mv(self, tok):
+        """MV in een patroon: een zelfstandig naamwoord in het meervoud: niet het woord zelf (kast), wel kasten, medewerkers"""
+        if not re.search(r"(en|s)$", tok) or not self.is_nw(tok):
+            return False
+        return not any(re.match(r"^(de|het) [^/]", self.items[i]["nl"]) and kaal(self.items[i]["nl"]).split(" ", 1)[1] == tok
+                       for i in self._regels_van(tok))
+
+    @staticmethod
+    def zin_tokens(zin):
+        """alle woorden van een zin zoals shared/app.js ze telt (ook losse letters), met per woord het stuk tussen de leestekens"""
+        toks, komma, stuk, vorige = [], [], 0, None
+        for m in re.finditer(r"[a-zà-ÿ]+(?:['’-][a-zà-ÿ]+)*", kaal(zin)):
+            if vorige is not None and re.search(r"[,;:()–—]|\s-\s", zin[vorige:m.start()]):
+                stuk += 1
+            toks.append(m.group(0).strip("'-"))
+            komma.append(stuk)
+            vorige = m.end()
+        return toks, komma
+
+    def patroon_past(self, p, toks, komma, i):
+        """past patroon p (uit woorden/betekenis.txt) rond toks[i]? Zelfde regels als shared/app.js (patroonPast)."""
+        delen = p.split()
+        begin_zin = delen[0] == "^"
+        if begin_zin:
+            delen = delen[1:]
+        plek = next(j for j, d in enumerate(delen) if d.startswith("["))
+        b = i - plek
+        if b < 0 or b + len(delen) > len(toks) or (begin_zin and b != 0):
+            return False
+        for j, d in enumerate(delen):
+            t = toks[b + j]
+            if komma[b + j] != komma[i]:
+                return False
+            if d.startswith("[") or d == "*":
+                continue
+            if d == "NW":
+                if not self.is_nw(t):
+                    return False
+            elif d == "NAAM":
+                if self._regels_van(t):
+                    return False
+            elif d == "MV":
+                if not self.is_mv(t):
+                    return False
+            elif kaal(d) != t:
+                return False
+        return True
+
+    def kies_in_zin(self, vorm, toks, komma, i):
+        """de regel die woorden/betekenis.txt kiest voor toks[i], en het patroon (of 'standaard'); None als het woord er niet in staat"""
+        k = self.kies().get(vorm)
+        if not k:
+            return None
+        for nr, patronen in k["r"]:
+            for p in patronen:
+                if self.patroon_past(p, toks, komma, i):
+                    return nr, p
+        return (k["s"], "standaard") if k["s"] is not None else None
 
     def trede(self, i):
         return self.items[i]["trede"]
