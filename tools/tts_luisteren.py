@@ -9,7 +9,7 @@ Slaat over wat er al is. De sleutel in luisteren/audio/index.json is "stem|tekst
 Elke toets krijgt ook een mp3 per fragment: alle regels achter elkaar, zoals de video of het geluid bij DUO (sleutel "fragment|...",
 in luisteren/audio/fragment/). Wat de verteller voorleest (woordkaart, dictee, trainers, en bij de toetsen de inleiding, de vraag en
 de antwoorden, zoals DUO) staat per stem in luisteren/audio/<stem>/, met de sleutel VERTELLER: die opnamen maakt tools/tts_stemmen.py.
-Daarna: opnamen die niet meer gebruikt worden, gaan weg (alleen in luisteren/audio/ zelf, niet die van de verteller).
+Met --opruimen gaan daarna de opnamen weg die niet meer gebruikt worden (alleen in luisteren/audio/ zelf, niet die van de verteller).
 """
 import sys
 from pathlib import Path
@@ -138,4 +138,5 @@ if __name__ == "__main__":
         sys.exit("Dit kost tegoed bij Google. Draai met --ja om de opnamen te maken.")
     n = sum(maak_google(open_[s], UIT, STEM[s], sleutel_met_stem=True) for s in STEM)
     n += fragmenten()
-    print(f"{n} nieuwe mp3's in {UIT}; {opruimen()} oude mp3's weg")
+    weg = opruimen() if "--opruimen" in sys.argv else 0
+    print(f"{n} nieuwe mp3's in {UIT}" + (f"; {weg} oude mp3's weg" if weg else "; oude opnamen blijven staan (weg met --opruimen)"))

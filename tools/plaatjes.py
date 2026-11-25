@@ -29,8 +29,10 @@ ROOT = Path(__file__).resolve().parent.parent
 UIT = ROOT / "shared" / "fotos"
 API = "https://generativelanguage.googleapis.com/v1beta"
 # elke foto krijgt dezelfde stijl: gewone mensen, gewone plekken in Nederland, geen tekst in het beeld
-STIJL = ("Realistic documentary-style photograph, natural light, everyday life in the Netherlands, ordinary adults and children "
-         "of diverse backgrounds, simple uncluttered composition, no text, no letters, no numbers, no signs, no logos, no watermark. Scene: ")
+# Let op: niet om "kinderen" vragen in de stijl, anders zet het model kinderen in scènes waar ze niet horen (bij een machine bijvoorbeeld).
+STIJL = ("Realistic documentary-style photograph, natural light, everyday life in the Netherlands, ordinary people of diverse "
+         "backgrounds, simple uncluttered composition. Show only the people the scene describes; no children unless the scene "
+         "mentions them. No text, no letters, no numbers, no signs, no logos, no watermark. Scene: ")
 
 
 def sleutel():

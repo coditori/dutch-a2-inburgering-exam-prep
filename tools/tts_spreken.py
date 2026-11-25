@@ -5,7 +5,8 @@
     python3 tools/tts_spreken.py --ja     # maakt het (dit kost tegoed bij Google; sleutel in tools/google-sleutel.txt)
 
 Elke vraag krijgt een vaste stem: twee mannen en twee vrouwen, gekozen uit de tekst zelf (op het examen vraagt een man of een vrouw
-iets in een video). Uitvoer: spreken/audio/*.mp3 + index.json (tekst -> bestand). Opnamen die niet meer gebruikt worden, gaan weg.
+iets in een video). Uitvoer: spreken/audio/*.mp3 + index.json (tekst -> bestand). Met --opruimen gaan opnamen weg die niet meer
+gebruikt worden.
 De voorbeeldantwoorden, nazeg-zinnen, woorden en patronen leest de verteller voor: die opnamen maakt tools/tts_stemmen.py,
 per stem in spreken/audio/<stem>/.
 """
@@ -82,6 +83,9 @@ def main():
     if "--ja" not in sys.argv:
         sys.exit("Dit kost tegoed bij Google. Draai met --ja om de opnamen te maken.")
     n = sum(maak_google([t], MAP, stem_van(t)) for t in open_)
+    if "--opruimen" not in sys.argv:
+        print(f"{n} nieuwe mp3's; oude opnamen blijven staan (weg met --opruimen)")
+        return
     # opruimen: alleen de vragen die er nog zijn, en hun mp3's
     index = {k: v for k, v in json.loads(index_pad.read_text(encoding="utf-8")).items() if k in set(vragen)}
     index_pad.write_text(json.dumps(index, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
