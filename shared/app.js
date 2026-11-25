@@ -3,7 +3,7 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.25.0';
+  const VERSIE = '1.26.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
@@ -101,6 +101,20 @@ window.App = (() => {
     return f;
   }
 
+  // ---------- samengestelde woorden: ziekenhuis = zieken + huis ----------
+  // W.delen (gemaakt door tools/bouw.py): woord -> de plekken waar een nieuw deel begint. De delen staan er zoals ze in het woord staan,
+  // één keer gesplitst: zorgtoeslag = zorg + toeslag. Geen samenstelling: null.
+  function delen(woord) {
+    const plek = (W.delen || {})[kaal(woord)];
+    return plek ? [0, ...plek].map((p, i) => woord.slice(p, plek[i])) : null;
+  }
+  // De regel "zieken + huis" voor elk samengesteld woord in een tekst ("de huisarts / de tandarts" geeft er twee). Niets te splitsen: null.
+  function delenRegel(tekst) {
+    const rijen = (String(tekst).match(TOKEN) || []).map(delen).filter(Boolean);
+    return rijen.length ? el('div', { class: 'delen', lang: 'nl', en: 'the parts of this word' },
+      rijen.map((d) => el('span', { class: 'delen-woord' }, d.flatMap((stuk, i) => [i ? el('i', {}, '+') : null, el('span', {}, stuk)])))) : null;
+  }
+
   // ---------- Mijn woorden: de lijst die de leerling zelf maakt (pagina mijn-woorden.html) ----------
   // Bewaard als { "het huis": { t, sinds, n, weg } }. De sleutel is het woord uit de woordenlijst, dus met de of het erbij.
   //   sinds = wanneer bewaard, n = de notitie van de leerling, t = de laatste verandering, weg = van de lijst gehaald.
@@ -193,6 +207,7 @@ window.App = (() => {
 
   // ---------- het kaartje bij een woord in een tekst ----------
   // Het woord met de of het, het plaatje, en drie knoppen: luister, vertaling, bewaar. De vertaling staat er pas na een klik.
+  // Een samengesteld woord (ziekenhuis, fietsenwinkel) heeft bovenaan de losse delen: zieken + huis.
   // Breed scherm: het kaartje staat bij het woord (eronder, of erboven als daar geen plek is). Telefoon: een blad onder aan het scherm.
   let pop = null, popDoel = null;
   function sluitPop() { if (pop) { pop.remove(); pop = null; } if (popDoel) { popDoel.classList.remove('open'); popDoel = null; } }
@@ -211,6 +226,8 @@ window.App = (() => {
         en,
         el('div', { class: 'wpop-knoppen' }, luisterKnop(() => window.Spraak.zeg(r.nl), 'luister naar ' + r.nl), vertaalKnop(en), bewaarKnop(r.nl, true)));
     }));
+    const losseDelen = delenRegel(doel.textContent);
+    if (losseDelen) pop.prepend(losseDelen);
     // onderaan: de weg naar de lijst, zodra er iets op staat
     const naarLijst = el('a', { class: 'wpop-lijst', href: WORTEL + 'mijn-woorden.html' });
     const zetLijst = () => { const n = Mijn.tel(); naarLijst.hidden = !n; naarLijst.textContent = ''; naarLijst.append(el('span', { en: 'my words' }, `Mijn woorden: ${n}`), teken('pijl')); };
@@ -771,6 +788,6 @@ window.App = (() => {
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
-  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     cijfer, cijferBlok, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

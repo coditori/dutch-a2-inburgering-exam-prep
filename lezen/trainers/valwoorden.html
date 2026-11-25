@@ -29,7 +29,7 @@
       const knoppen = zinnen.map((z, i) => el('button', { class: 'optie', onclick: () => {
         knoppen.forEach((k, j) => { k.disabled = true; if (j === goed) k.classList.add('goed'); });
         if (i !== goed) knoppen[i].classList.add('fout');
-        klaar(i === goed, el('p', { class: 'zacht' }, 'Let op het woord: ', el('span', { class: 'gatwoord' }, item.val)));
+        klaar(i === goed, el('p', { class: 'zacht' }, 'Let op het woord: ', el('span', { class: 'gatwoord' }, App.woorden(item.val))));
       } }, el('span', { class: 'l' }, 'AB'[i]), el('span', {}, z)));
       doel.append(el('div', { class: 'opties' }, knoppen), el('p', { class: 'v', style: 'font-weight:700;margin-top:16px' }, 'Wat past? ', App.woorden(item.v)));
     },

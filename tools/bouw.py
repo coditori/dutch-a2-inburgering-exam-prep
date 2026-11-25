@@ -4,7 +4,7 @@
     python3 tools/bouw.py
 
 1. Nieuwe woorden uit de lessen komen in woorden/woorden.txt (met trede en thema).
-2. shared/woorden.js wordt gemaakt uit woorden.txt + werkwoorden-a2.tsv.
+2. shared/woorden.js wordt gemaakt uit woorden.txt + werkwoorden-a2.tsv (en de samengestelde woorden: woorden/samenstellingen.txt).
 3. Per examen worden lessons/index.json en toets/index.json gemaakt (lijst voor de startpagina).
 """
 import json
@@ -66,15 +66,22 @@ def maak_woorden_js():
                 gevonden = lijst.zoek(t)
                 if gevonden:
                     vormen[t] = list(dict.fromkeys(deel[0] for deel in gevonden[0]))[:3]
+    # samengestelde woorden (ziekenhuis = zieken + huis): per woordvorm de plekken waar een nieuw deel begint
+    delen = {}
+    for t in vormen:
+        d = lijst.delen(t)
+        if d:
+            delen[t] = [len("".join(d[:i])) for i in range(1, len(d))]
     uit = ROOT / "shared" / "woorden.js"
     uit.parent.mkdir(exist_ok=True)
     uit.write_text(
         "// GEGENEREERD door tools/bouw.py uit woorden/woorden.txt en woorden/werkwoorden-a2.tsv. Niet met de hand veranderen.\n"
         "// lijst: [trede, nederlands, engels, thema, plaatje, extra, voorbeeldzin]   vormen: woordvorm -> nummers in lijst\n"
-        "window.WOORDEN = " + json.dumps({"lijst": rijen, "vormen": vormen}, ensure_ascii=False, separators=(",", ":")) + ";\n",
+        "// delen: samengesteld woord -> waar het volgende deel begint (ziekenhuis: [6] = zieken + huis; zie woorden/samenstellingen.txt)\n"
+        "window.WOORDEN = " + json.dumps({"lijst": rijen, "vormen": vormen, "delen": delen}, ensure_ascii=False, separators=(",", ":")) + ";\n",
         encoding="utf-8",
     )
-    return len(rijen), len(vormen)
+    return len(rijen), len(vormen), len(delen)
 
 
 def maak_indexen():
@@ -109,8 +116,8 @@ if __name__ == "__main__":
         print(f"woorden.txt: {len(nieuw)} nieuwe woorden toegevoegd")
         for r in nieuw:
             print("   +", r)
-        n, v = maak_woorden_js()
-        print(f"shared/woorden.js: {n} woorden, {v} vormen")
+        n, v, s = maak_woorden_js()
+        print(f"shared/woorden.js: {n} woorden, {v} vormen, {s} samenstellingen")
         for x, (ln, tn) in maak_indexen().items():
             if ln or tn:
                 print(f"{x}: {ln} lessen, {tn} toetsen in de index")

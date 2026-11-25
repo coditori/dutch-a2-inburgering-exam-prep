@@ -1189,6 +1189,7 @@ window.FA = {
 "The local server is not running. This browser uses its own speech recognition (Chrome sends audio to Google).": "سرور محلی در حال اجرا نیست. این مرورگر از تشخیص گفتار خودش استفاده می‌کند (Chrome صدا را به Google می‌فرستد).",
 "The local speech server is running (faster-whisper).": "سرور محلی گفتار در حال اجراست (faster-whisper).",
 "the official DUO practice exams (PDF): do these last": "آزمون‌های تمرینی رسمی DUO (PDF): این‌ها را آخر از همه انجام دهید",
+"the parts of this word": "بخش‌های این کلمه",
 "The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. The aanhef and afsluiting are already on the paper, as in the real exam.": "آزمون واقعی با قلم و کاغذ است. تکلیف‌ها را چاپ کنید، یا اینجا بخوانید و روی کاغذ خودتان بنویسید. aanhef و afsluiting مثل آزمون واقعی از قبل روی کاغذ هستند.",
 "The recording is gone (page reloaded) or you answered without microphone.": "صدای ضبط‌شده از بین رفته است (صفحه دوباره بارگذاری شده) یا بدون میکروفون جواب داده‌اید.",
 "the resistance": "جنبش مقاومت",

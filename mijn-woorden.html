@@ -16,6 +16,7 @@
 <script>
 // Mijn woorden: de woorden die de leerling zelf bewaarde (de knop Bewaar bij een woord in een tekst of op een woordkaart).
 // Per woord: de of het in kleur, luisteren, de vertaling, een voorbeeldzin en een eigen notitie.
+// Een samengesteld woord heeft de losse delen eronder: het ziekenhuis, zieken + huis (App.delenRegel).
 // De lijst staat in deze browser (App.Mijn in shared/app.js). Ingelogd met Google: ook bij het account (shared/account.js).
 (() => {
   const { el, teken, Mijn, kaal } = App;
@@ -55,7 +56,7 @@
     requestAnimationFrame(pas);
     return el('li', { class: 'mw-rij' },
       el('span', { class: 'beeld' + (r && r.beeld ? '' : ' leeg'), 'aria-hidden': 'true' }, (r && r.beeld) || lw || x.nl.slice(0, 1)),
-      el('div', { class: 'mw-woord' }, el('b', { lang: 'nl' }, App.metLidwoord(x.nl)), r ? el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')) : null),
+      el('div', { class: 'mw-woord' }, el('b', { lang: 'nl' }, App.metLidwoord(x.nl)), App.delenRegel(x.nl), r ? el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')) : null),
       el('div', { class: 'mw-knoppen' }, App.luisterKnop(() => Spraak.zeg(x.nl), 'luister naar ' + x.nl), vertaling ? App.vertaalKnop(vertaling) : null, App.bewaarKnop(x.nl)),
       el('div', { class: 'mw-meer' },
         vertaling,

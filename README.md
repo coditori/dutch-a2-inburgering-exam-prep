@@ -21,6 +21,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - 150 short lessons: Lezen 38, Luisteren 30, Schrijven 24, Spreken 26, KNM 32.
 - A ladder of 5 steps (trede 0-4). A lesson only uses words from its own step or lower; new words are marked and clickable.
 - Word review with spaced repetition. Progress is saved in your browser, there is no account.
+- Click any word for its card: listen, translation, save to your own list (My words). A compound word also shows its parts: ziekenhuis = zieken + huis.
 - Dutch audio for every word, sentence and listening text (already included as mp3).
 - Level and vocabulary are calibrated on the official DUO practice exams.
 - Works on phone, tablet and desktop, with a light and a dark theme (☀ / 🌙 in the header, or automatic).
@@ -104,6 +105,8 @@ python3 tools/bouw.py        # rebuild shared/woorden.js and the lesson lists
 python3 tools/controleer.py  # check that the lesson only uses allowed words
 python3 tools/controleer_fa.py -v  # list English help texts that have no Persian yet (add them to shared/fa.js)
 ```
+
+Compound words (ziekenhuis = zieken + huis) are split by `tools/bouw.py` when both parts are in the word list. A split that is missing or wrong goes in `woorden/samenstellingen.txt`.
 
 ## Version
 

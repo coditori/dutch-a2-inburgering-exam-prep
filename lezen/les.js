@@ -113,7 +113,8 @@
       el('div', { class: 'kaart' }, les.onthoud.map((z) => {
         const [voor, woord, na] = z.split(/[{}]/);
         const hele = voor + woord + na;
-        return el('p', {}, App.woorden(voor, nieuw), el('span', { class: 'gatwoord' }, woord), App.woorden(na, nieuw), ' ',
+        // het gele woord is ook een gewoon woord: een klik geeft het kaartje met luister, vertaling en bewaar
+        return el('p', {}, App.woorden(voor, nieuw), el('span', { class: 'gatwoord' }, App.woorden(woord, nieuw)), App.woorden(na, nieuw), ' ',
           el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(hele) }, App.teken('luid')));
       })),
       el('div', { class: 'knoppen' }, knopVerder('Klaar', 'done')));
