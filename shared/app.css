@@ -940,3 +940,10 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .ps-balk i { width: 14px; height: 14px; border-radius: 4px; background: var(--fout-zacht); border: 1px solid var(--fout); }
 .ps-balk i.goed { background: var(--goed); border-color: var(--goed); }
 .ps-tel { font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--zacht); }
+/* de startpagina: welke examens moet u nog doen? */
+.mijn-examens { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+.mijn-knop { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 12px 4px 6px; border: 1px dashed var(--lijn); border-radius: 999px; background: transparent; color: var(--zacht); font: inherit; font-size: .92rem; cursor: pointer; }
+.mijn-knop .ex-icoon { width: 30px; height: 30px; }
+.mijn-knop.aan { border: 1px solid var(--k, var(--accent)); background: var(--vlak); color: var(--tekst); font-weight: 600; }
+.mijn-knop.k-lezen { --k: var(--k-lezen); } .mijn-knop.k-luisteren { --k: var(--k-luisteren); } .mijn-knop.k-schrijven { --k: var(--k-schrijven); } .mijn-knop.k-spreken { --k: var(--k-spreken); } .mijn-knop.k-knm { --k: var(--k-knm); }
+.ex.niet-nodig { filter: grayscale(.7) opacity(.6); } /* niet met opacity: de animatie "op" zet die al */

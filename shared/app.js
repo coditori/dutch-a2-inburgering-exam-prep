@@ -10,11 +10,10 @@ window.App = (() => {
   const WORTEL = new URL('../', document.currentScript.src).href; // de hoofdmap van de site
   const EXAMENS = ['lezen', 'luisteren', 'schrijven', 'spreken', 'knm'];
   const ruw = (k, d) => { try { const v = JSON.parse(localStorage.getItem('dutch-exam:' + k)); return v == null ? d : v; } catch (e) { return d; } };
-  // Instellingen gelden voor alle examens (pagina instellingen.html). "open" = alle lessen zonder slot.
+  // Instellingen gelden voor alle examens (pagina instellingen.html). "open" = alle lessen zonder slot: dat is nu altijd zo.
+  // De leerling kiest zelf: elke les, trainer en toets is open (de volgende les staat wel voorop, met de klasse "nu").
   // "door" = na een goed antwoord gaat de pagina vanzelf naar de volgende vraag.
-  // Een gedeelde link (knop Delen) heeft ?deel=1: dan is die les of toets open, ook als de ontvanger de lessen ervoor niet deed. Dit wordt niet bewaard.
-  const GEDEELD = new URLSearchParams(location.search).has('deel');
-  const instellingen = () => { const i = Object.assign({ open: false, door: true }, ruw('instellingen', {})); if (GEDEELD) i.open = true; return i; };
+  const instellingen = () => { const i = Object.assign({ door: true }, ruw('instellingen', {})); i.open = true; return i; };
   const lees = (k, d) => {
     const v = ruw(k, d);
     if (EXAMENS.includes(k) && v && typeof v === 'object') v.open = instellingen().open;
@@ -23,7 +22,10 @@ window.App = (() => {
   const werk = (v) => JSON.stringify([(v && v.lessen) || {}, (v && v.toets) || {}, (v && v.trainers) || {}]); // wat de leerling deed in een examen
   const schrijf = (k, v) => {
     // een les, een trainer of een oefenexamen erbij? Dan is vandaag een dag waarop u oefende (Dagen, verderop)
-    if (EXAMENS.includes(k) && werk(v) !== werk(ruw(k, null))) telDag();
+    if (EXAMENS.includes(k) && werk(v) !== werk(ruw(k, null))) {
+      telDag();
+      try { localStorage.setItem('dutch-exam:laatst', JSON.stringify(k)); } catch (e) { /* geen opslag */ } // het examen waar de leerling het laatst aan werkte
+    }
     try { localStorage.setItem('dutch-exam:' + k, JSON.stringify(v)); } catch (e) { /* geen opslag */ }
   };
   // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter de knop Vertaling bij een woord.

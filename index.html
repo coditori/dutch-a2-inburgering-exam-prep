@@ -14,6 +14,7 @@
   <div class="cijfers" id="cijfers"></div>
   <h2 id="kies" data-en="the five exams">De vijf examens</h2>
   <p class="zacht klein uitleg" data-en="Click the name for the lessons, from zero to exam level. Or click A, B, C or D for a practice exam: like the real exam, with a clock and your mark (up to 10) at the end. You do not need to do the lessons first.">Klik op de naam voor de lessen: van nul tot het examen. Of klik op A, B, C of D voor een oefenexamen: net als het echte examen, met een klok en aan het einde uw cijfer (tot 10). U hoeft niet eerst de lessen te doen.</p>
+  <div class="mijn-examens" id="mijn" role="group" aria-label="welke examens moet u nog doen?"></div>
   <p class="basis-tip" id="basis"><span data-en="Do you already know the basics? Click A, B, C or D: you take a practice exam right away and you get a mark and a medal. You pass with a 6.">Kent u de basis al? Klik op A, B, C of D: u doet direct een oefenexamen en krijgt een cijfer en een medaille. U slaagt met een 6.</span></p>
   <div class="examens" id="examens"></div>
   <h2 id="woorden" data-en="your words: the ladder has the same 5 steps in every exam">Uw woorden: de ladder</h2>
@@ -55,15 +56,23 @@
   const tel = SRS.tel();
   const nieuw = !gedaan && !nToetsGedaan && !tel.totaal; // eerste bezoek: nog niets gedaan
 
-  const lezen = EXAMENS[0];
-  const pLezen = (App.lees('lezen', {}).lessen) || {};
-  const volgende = lezen.lessen.find((l) => { const r = pLezen[l.id]; return !(r && r.beste / r.totaal >= 0.8); });
-  const ander = EXAMENS.find((x) => x.klaar && x.gedaan < x.n); // Lezen klaar? Dan verder met het volgende examen.
-  const verder = volgende
-    ? el('a', { class: 'knop', href: `lezen/les.html?les=${volgende.id}`, en: nieuw ? 'start with the first reading lesson' : 'next reading lesson' }, nieuw ? 'Begin met les 1' : `Lezen ${volgende.id}: ${volgende.titel}`)
-    : ander ? el('a', { class: 'knop', href: ander.href, en: 'continue' }, `Verder met ${ander.naam}`) : null;
-  // hoe ver u bent: per examen de lessen, of 100% als u een oefenexamen haalde (App.klaarProcent)
-  const procent = App.klaarProcent(EXAMENS.map((x) => ({ n: x.n, gedaan: x.gedaan, geslaagd: x.toetsen.some((t) => App.medaille(t.beste)) })));
+  // De examens die de leerling nog moet doen (de knoppen boven de vijf examens). Niets gekozen = alle vijf.
+  const mijnKeus = (App.instellingen().examens || []).filter((m) => App.EXAMENS.includes(m));
+  const MIJN = EXAMENS.filter((x) => x.klaar && (!mijnKeus.length || mijnKeus.includes(x.map)));
+  // "Ga verder": de volgende les van het examen waar u het laatst aan werkte; daarna de andere examens die u nog moet doen.
+  const laatst = App.lees('laatst', null);
+  const volgendeVan = (x) => { const P = (App.lees(x.map, {}).lessen) || {}; return x.lessen.find((l) => { const r = P[l.id]; return !(r && r.beste / r.totaal >= 0.8); }); };
+  let verder = null;
+  for (const x of [...MIJN.filter((y) => y.map === laatst), ...MIJN.filter((y) => y.map !== laatst)]) {
+    const l = volgendeVan(x);
+    if (l) {
+      verder = el('a', { class: 'knop', href: `${x.map}/les.html?les=${l.id}`, en: nieuw ? 'start with the first lesson' : 'next lesson' }, nieuw ? 'Begin met les 1' : `${x.naam} ${l.id}: ${l.titel}`);
+      break;
+    }
+    if (!x.lessen.length && x.gedaan < x.n) { verder = el('a', { class: 'knop', href: x.href, en: 'continue' }, `Verder met ${x.naam}`); break; }
+  }
+  // hoe ver u bent: per examen dat u nog moet doen de lessen, of 100% als u een oefenexamen haalde (App.klaarProcent)
+  const procent = App.klaarProcent(MIJN.map((x) => ({ n: x.n, gedaan: x.gedaan, geslaagd: x.toetsen.some((t) => App.medaille(t.beste)) })));
   const nToetsGeslaagd = EXAMENS.reduce((s, x) => s + x.toetsen.filter((t) => App.medaille(t.beste)).length, 0);
   // de drie medailles met hun cijfer, naast de zin over de oefenexamens: brons 6,0, zilver 7,5, goud 9,0
   document.getElementById('basis').append(el('span', { class: 'medaille-legenda', dir: 'ltr', 'aria-label': 'brons vanaf 6,0, zilver vanaf 7,5, goud vanaf 9,0' },
@@ -121,13 +130,26 @@
   document.addEventListener('account-gegevens', () => location.reload());
 
   // ---------- de vijf examens: de lessen (klik op de naam) en de oefenexamens A, B, C ... ----------
+  // ---------- welke examens moet u nog doen? Een knop per examen. Uit = dat examen hebt u al, of u hoeft het niet te doen. ----------
+  document.getElementById('mijn').append(el('span', { class: 'klein zacht', en: 'the exams you still have to take' }, 'Ik moet nog doen:'),
+    ...EXAMENS.filter((x) => x.klaar).map((x) => {
+      const aan = !mijnKeus.length || mijnKeus.includes(x.map);
+      return el('button', { type: 'button', class: `mijn-knop k-${x.map}` + (aan ? ' aan' : ''), 'aria-pressed': String(aan), en: aan ? 'click: I do not need this exam (any more)' : 'click: I still need this exam',
+        onclick: () => {
+          const nu = (mijnKeus.length ? mijnKeus : App.EXAMENS.slice()).filter((m) => m !== x.map);
+          if (!aan) nu.push(x.map);
+          App.schrijf('instellingen', Object.assign(App.instellingen(), { examens: nu.length ? nu : [] }));
+          location.reload();
+        } }, el('span', { class: 'ex-icoon', 'aria-hidden': 'true' }, teken(x.map)), x.naam, aan ? ' ✓' : '');
+    }));
+
   document.getElementById('examens').append(...EXAMENS.map((x) => {
     const [wat, watEn, minuten, soort, soortEn] = INFO[x.map];
     if (!x.klaar) return el('div', { class: `ex slot k-${x.map}` }, el('div', { class: 'ex-kop' },
       el('span', { class: 'ex-icoon' }, teken(x.map)), el('span', { class: 'ex-naam' }, el('b', {}, x.naam), el('span', { class: 'klein zacht', en: 'not ready yet' }, 'nog niet klaar'))));
     const p = x.n ? Math.round(100 * x.gedaan / x.n) : 0;
     const vragen = x.toetsen.length ? x.toetsen[0].vragen : 0;
-    return el('article', { class: `ex k-${x.map}` },
+    return el('article', { class: `ex k-${x.map}` + (mijnKeus.length && !mijnKeus.includes(x.map) ? ' niet-nodig' : '') },
       // de kop én de voortgang zijn samen één link naar de lessen
       el('a', { class: 'ex-link', href: x.href, 'aria-label': `${x.naam}: ${x.gedaan} van ${x.n} lessen gehaald. Ga naar de lessen.` }, el('div', { class: 'ex-kop' },
         el('span', { class: 'ex-icoon' }, teken(x.map)),

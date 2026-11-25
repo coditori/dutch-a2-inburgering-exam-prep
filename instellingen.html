@@ -29,9 +29,6 @@
 
   <h2 data-en="lessons">Lessen</h2>
   <div class="kaart">
-    <label class="instelling"><input type="checkbox" id="open">
-      <span><b data-en="open all lessons">Alle lessen open</b><br>
-      <span class="zacht klein" data-en="No lock: you can open every lesson, trainer and test in all five exams. Your scores stay.">Geen slot: u kunt elke les, trainer en toets openen, in alle vijf examens. Uw scores blijven.</span></span></label>
     <label class="instelling"><input type="checkbox" id="door">
       <span><b data-en="go on automatically after a right answer">Vanzelf verder na een goed antwoord</b><br>
       <span class="zacht klein" data-en="After a right answer you see 'Goed antwoord!' and the next question comes by itself. After a wrong answer you click 'Verder' yourself.">Na een goed antwoord ziet u 'Goed antwoord!' en komt de volgende vraag vanzelf. Na een fout antwoord klikt u zelf op 'Verder'.</span></span></label>
@@ -96,10 +93,6 @@
   App.kop('Instellingen', 'index.html');
   const VOOR = 'dutch-exam:';
   const melding = document.getElementById('melding');
-
-  const open = document.getElementById('open');
-  open.checked = App.instellingen().open;
-  open.addEventListener('change', () => App.schrijf('instellingen', Object.assign(App.instellingen(), { open: open.checked })));
 
   const door = document.getElementById('door');
   door.checked = App.instellingen().door;
@@ -190,7 +183,7 @@
       if (!sleutels.length) throw new Error('leeg');
       sleutels.forEach((k) => localStorage.setItem(k, o[k]));
       melding.className = 'uitslag goed'; melding.textContent = `✔ Voortgang gelezen (${sleutels.length} delen).`;
-      open.checked = App.instellingen().open; door.checked = App.instellingen().door; en.checked = App.lees('en', false); document.body.classList.toggle('en', en.checked); App.zetThema(App.thema()); stand();
+      door.checked = App.instellingen().door; en.checked = App.lees('en', false); document.body.classList.toggle('en', en.checked); App.zetThema(App.thema()); stand();
     } catch (err) { melding.className = 'uitslag fout'; melding.textContent = '✘ Dit bestand is geen voortgang van deze site.'; }
     e.target.value = '';
   });
