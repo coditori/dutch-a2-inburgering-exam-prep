@@ -40,9 +40,6 @@
     const l = d.items.flatMap((it) => it.vragen.map((v) => ({ v, it }))); return l[x.nr] ? Object.assign({ toets: d }, l[x.nr]) : null;
   }
 
-  // is het oefenexamen van deze vraag nog bezig? Dan nog niet oefenen: dat zou het goede antwoord laten zien tijdens het examen.
-  const bezig = (x) => { const s = App.lees(`${x.map}-toets-bezig`, null); return !!s && s.id === x.toets && !s.klaar; };
-
   let filter = 'alle';
   const lijst = () => Object.values(MijnVragen.alle()).filter((x) => NAAM[x.map]).sort((a, b) => (b.d || 0) - (a.d || 0) || a.map.localeCompare(b.map) || a.toets.localeCompare(b.toets) || a.nr - b.nr);
   const zichtbaar = () => lijst().filter((x) => filter === 'alle' || x.map === filter);
@@ -70,8 +67,8 @@
     main.append(el('div', { class: 'mw-filters mv-filters', role: 'group', 'aria-label': 'filter per examen' },
       ['alle', 'lezen', 'luisteren', 'knm'].filter((m) => m === 'alle' || tel(m)).map((m) => el('button', { type: 'button', class: `mv-chip k-${m}` + (filter === m ? ' aan' : ''), 'aria-pressed': String(filter === m),
         onclick: () => { filter = m; toonLijst(); } }, m === 'alle' ? null : el('span', { class: 'mv-icoon', 'aria-hidden': 'true' }, teken(m)), m === 'alle' ? 'Alle' : NAAM[m], el('b', {}, String(m === 'alle' ? alle.length : tel(m)))))));
-    const z = zichtbaar(), klaar = z.filter((x) => !bezig(x));
-    if (klaar.length) main.append(el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'practise all these questions, one after the other', onclick: () => oefen(klaar, 0, []) }, `Oefen ${klaar.length === 1 ? 'deze vraag' : `alle ${klaar.length} vragen`}`)));
+    const z = zichtbaar();
+    main.append(el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'practise all these questions, one after the other', onclick: () => oefen(z, 0, []) }, `Oefen ${z.length === 1 ? 'deze vraag' : `alle ${z.length} vragen`}`)));
     const vak = el('div', { class: 'mv-lijst' });
     main.append(vak);
     for (const x of z) {
@@ -83,10 +80,8 @@
         el('div', { class: 'mv-kaart-kop' }, el('span', { class: 'mv-icoon', 'aria-hidden': 'true' }, teken(x.map)),
           el('span', { class: 'klein zacht' }, `${NAAM[x.map]}, toets ${x.toets}, vraag ${x.nr + 1}` + (x.map === 'knm' && q ? `, ${THEMA[q.v.thema] || q.v.thema}` : ''))),
         el('p', { class: 'mv-vraag' }, veranderd ? el('span', { class: 'zacht', en: 'this question was changed or removed' }, 'Deze vraag is veranderd of bestaat niet meer.') : [q.v.sit ? q.v.sit + ' ' : '', el('b', {}, q.v.v)]),
-        bezig(x) ? el('p', { class: 'tip', en: 'This practice exam is still running. Hand it in first; then you can practise this question here.' }, 'Dit oefenexamen is nog bezig. Lever het eerst in; daarna oefent u deze vraag hier.') : null,
         el('div', { class: 'knoppen' },
-          bezig(x) ? el('a', { class: 'knop licht klein', href: `${x.map}/toets/toets.html?t=${x.toets}`, en: 'go back to the exam' }, 'Terug naar het examen')
-            : veranderd ? null : el('button', { class: 'knop licht klein', en: 'practise this question', onclick: () => oefen([x], 0, []) }, 'Oefen'),
+          veranderd ? null : el('button', { class: 'knop licht klein', en: 'practise this question', onclick: () => oefen([x], 0, []) }, 'Oefen'),
           el('button', { class: 'knop tekst klein', en: 'remove from My questions', onclick: () => { MijnVragen.zet(x.map, x.toets, x.nr, x.v, false); toonLijst(); } }, teken('kruis'), 'Haal van de lijst')));
     }
     main.append(el('p', { class: 'zacht klein', en: 'Your questions are kept in this browser.' }, 'Uw vragen staan in deze browser.'));
