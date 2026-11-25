@@ -941,13 +941,18 @@ window.App = (() => {
     kop.insertBefore(vak, kop.querySelector('.deel') || kop.lastChild); // links van delen, profiel en taal: die staan op elke pagina op dezelfde plek
     return vak;
   }
-  // Een vraag markeren, om er later naar terug te gaan (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
-  function vlagKnop(vlaggen, nr, bewaar) {
-    const k = el('button', { type: 'button', class: 'voet-icoon vlag-knop', title: 'Markeer deze vraag: u ziet hem in het overzicht, en na het inleveren in Mijn vragen', 'aria-label': 'markeer deze vraag', 'aria-pressed': String(!!vlaggen[nr]) }, teken('bewaar'));
+  // Een vraag markeren (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
+  // mv = { map, toets, v } (Lezen, Luisteren, KNM): de gemarkeerde vraag staat meteen ook in Mijn vragen, en gaat eraf als de vlag weg is.
+  function vlagKnop(vlaggen, nr, bewaar, mv) {
+    const k = el('button', { type: 'button', class: 'voet-icoon vlag-knop', title: mv ? 'Markeer deze vraag: u ziet hem in het overzicht en in Mijn vragen' : 'Markeer deze vraag: u ziet hem in het overzicht', 'aria-label': 'markeer deze vraag', 'aria-pressed': String(!!vlaggen[nr]) }, teken('bewaar'));
     k.addEventListener('click', () => {
       if (vlaggen[nr]) delete vlaggen[nr]; else vlaggen[nr] = true;
       k.setAttribute('aria-pressed', String(!!vlaggen[nr]));
       bewaar();
+      if (mv) {
+        MijnVragen.zet(mv.map, mv.toets, nr, mv.v, !!vlaggen[nr]);
+        if (vlaggen[nr]) toast('Gemarkeerd: ook in Mijn vragen', 'marked: also in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+      }
     });
     return k;
   }

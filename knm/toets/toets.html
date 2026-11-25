@@ -73,7 +73,7 @@
     pagina.textContent = '';
     pagina.append(vak, el('div', { class: 'voet' },
       el('button', { class: 'knop', disabled: stand.nu === 0, onclick: () => ga(stand.nu - 1) }, 'Vorige'),
-      el('span', {}, s.intro ? '' : el('b', {}, `${s.nr + 1} / ${vragen.length} `), App.overzichtKnop(overzicht), s.intro ? null : [' ', App.vlagKnop(stand.vlag, s.nr, bewaar)]),
+      el('span', {}, s.intro ? '' : el('b', {}, `${s.nr + 1} / ${vragen.length} `), App.overzichtKnop(overzicht), s.intro ? null : [' ', App.vlagKnop(stand.vlag, s.nr, bewaar, { map: 'knm', toets: id, v: vragen[s.nr].v })]),
       stand.nu < schermen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     if (s.intro) { vak.append(el('div', { class: 'kaart' }, el('p', { style: 'font-size:1.15rem' }, `De volgende vragen gaan over het thema '${THEMA[s.intro] || s.intro}'.`), el('p', { class: 'zacht' }, "Klik op 'Volgende'."))); return; }
     const v = vragen[s.nr];
