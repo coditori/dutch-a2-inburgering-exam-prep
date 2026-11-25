@@ -24,6 +24,8 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - Click any word for its card: listen, translation, save to your own list (My words). A compound word also shows its parts: ziekenhuis = zieken + huis.
 - Dutch audio for every word, sentence and listening text (already included as mp3).
 - Level and vocabulary are calibrated on the official DUO practice exams.
+- The practice exams work like DUO's own practice exams: the same number of questions, time, parts and answer options; a clock that warns at 15 and 1 minute; questions you can mark; Luisteren plays the intro, fragment, question and answers by itself, with 10 seconds back and forward; KNM reads every question and answer aloud; Spreken records at most 1 minute per question; Schrijven is on paper that looks like DUO's.
+- Your mark follows DUO's pass line, not 60%: a 6,0 is 17 of 25 for Lezen, 19 of 25 for Luisteren and 28 of 40 for KNM (what DUO's own practice exams show), and the "voldoende" level of DUO's scoring model for Schrijven and Spreken. After a practice exam you see DUO's chance of passing and where your points went.
 - Works on phone, tablet and desktop, with a light and a dark theme (☀ / 🌙 in the header, or automatic).
 - After a right answer the next question comes by itself; you can click back to earlier steps and questions of a lesson.
 - Start again per exam or completely on the settings page (⚙).
@@ -81,20 +83,33 @@ tools/.venv/bin/python tools/stt_server.py
 
 Run it next to the web server. Without it, the speaking pages use Chrome's speech recognition, or you check yourself.
 
-**Make audio for new lessons.** The narrator (every word and sentence with a speaker button) has four voices from Google Cloud
-Text-to-Speech, listed in `shared/stemmen.json`. Put a key in `tools/google-sleutel.txt` (not in git):
+**Make audio for new lessons.** All voices come from Google Cloud Text-to-Speech. Put a key in `tools/google-sleutel.txt` (not in git).
+The narrator (every word and sentence with a speaker button, and the questions and answers of the practice exams) has four voices,
+listed in `shared/stemmen.json`:
 
 ```bash
 tools/.venv/bin/python tools/tts_stemmen.py --ja   # all narrator voices, only what is missing (run one voice at a time with --stem)
 python3 tools/controleer_stemmen.py                # does every voice have every text?
 ```
 
-The roles in the Luisteren dialogues and the questions in Spreken have fixed voices, made with Piper (each voice is about 60 MB):
+The roles in the Luisteren dialogues (two men, two women) and the questions in Spreken have their own fixed voices. Without `--ja`
+the scripts only show what is missing; `--ja` makes it, which uses credit at Google:
 
 ```bash
-tools/.venv/bin/python -m piper.download_voices nl_NL-ronnie-medium nl_NL-pim-medium nl_BE-nathalie-medium --data-dir tools/voices
-tools/.venv/bin/python tools/tts_luisteren.py  # also: tts_spreken.py
+python3 tools/tts_luisteren.py --ja   # the roles, and one recording per fragment of a practice exam
+python3 tools/tts_spreken.py --ja     # the speaking questions
 ```
+
+**Photos for the practice exams.** DUO uses real photos. Each question of the KNM, Spreken and Luisteren practice exams has a
+description (`foto` / `fotos` in the JSON); `tools/plaatjes.py` turns them into photos with a Google image model. Put a key from
+[Google AI Studio](https://aistudio.google.com/apikey) in `tools/gemini-sleutel.txt` (not in git; image generation needs billing):
+
+```bash
+python3 tools/plaatjes.py --proef 3   # three photos, to look at first
+python3 tools/plaatjes.py --ja        # all missing photos
+```
+
+Without photos the pages show the emoji pictures.
 
 ## Add or change a lesson
 
