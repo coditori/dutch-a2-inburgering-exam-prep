@@ -29,6 +29,36 @@
  ],
  "items": [
   {
+   "soort": "tekst",
+   "kop": "Mijn stad",
+   "situatie": "U krijgt elke week een krant van de wijk. Iedereen uit de buurt mag iets voor deze krant schrijven. U schrijft over de stad of het dorp waar u woont.",
+   "punten": [
+    {
+     "p": "Waar woont u?",
+     "model": "Ik woon in Utrecht.",
+     "val": [
+      "woon"
+     ]
+    },
+    {
+     "p": "Wat kunt u doen in uw stad of dorp?",
+     "model": "In mijn stad kan ik goed winkelen en er is een mooi park.",
+     "val": [
+      "kan|kunt|er is|er zijn"
+     ]
+    },
+    {
+     "p": "Wat vindt u van uw stad of dorp?",
+     "model": "Ik vind mijn stad mooi, maar het is er wel druk.",
+     "val": [
+      "vind|mooi|leuk|druk|rustig|gezellig"
+     ]
+    }
+   ],
+   "opdracht": "Schrijf minimaal drie zinnen op. Schrijf in hele zinnen.",
+   "begin": "Dit is mijn tekst over mijn stad:"
+  },
+  {
    "soort": "email",
    "kop": "Een cadeau voor Lisa",
    "situatie": "Uw collega Lisa heeft volgende week haar verjaardag. U wilt samen met de collega's een cadeau kopen. U schrijft een e-mail aan uw collega Omar.",
@@ -57,38 +87,9 @@
    ],
    "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
    "aanhef": "Hallo Omar,",
-   "afsluiting": "Groetjes,"
-  },
-  {
-   "soort": "email",
-   "kop": "Mijn zoon is ziek",
-   "situatie": "Uw zoon is ziek. Hij kan morgen niet naar school. U schrijft een e-mail aan zijn juf, mevrouw Jansen.",
-   "punten": [
-    {
-     "p": "Schrijf dat uw zoon morgen niet naar school komt.",
-     "model": "Mijn zoon Tom kan morgen niet naar school komen.",
-     "val": [
-      "niet .*(kom|school)|blijft thuis"
-     ]
-    },
-    {
-     "p": "Schrijf waarom hij niet komt.",
-     "model": "Hij is ziek en hij heeft koorts.",
-     "val": [
-      "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|koorts|pijn|verkouden|griep"
-     ]
-    },
-    {
-     "p": "Schrijf wanneer hij weer naar school komt.",
-     "model": "Ik denk dat hij maandag weer naar school komt.",
-     "val": [
-      "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)|weer|beter"
-     ]
-    }
-   ],
-   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
-   "aanhef": "Beste mevrouw Jansen,",
-   "afsluiting": "Vriendelijke groet,"
+   "afsluiting": "Groetjes,",
+   "aan": "Omar",
+   "onderwerp": "Een cadeau voor Lisa"
   },
   {
    "soort": "formulier",
@@ -147,34 +148,37 @@
    ]
   },
   {
-   "soort": "tekst",
-   "kop": "Mijn stad",
-   "situatie": "U krijgt elke week een krant van de wijk. Iedereen uit de buurt mag iets voor deze krant schrijven. U schrijft over de stad of het dorp waar u woont.",
+   "soort": "email",
+   "kop": "Mijn zoon is ziek",
+   "situatie": "Uw zoon is ziek. Hij kan morgen niet naar school. U schrijft een e-mail aan zijn juf, mevrouw Jansen.",
    "punten": [
     {
-     "p": "Waar woont u?",
-     "model": "Ik woon in Utrecht.",
+     "p": "Schrijf dat uw zoon morgen niet naar school komt.",
+     "model": "Mijn zoon Tom kan morgen niet naar school komen.",
      "val": [
-      "woon"
+      "niet .*(kom|school)|blijft thuis"
      ]
     },
     {
-     "p": "Wat kunt u doen in uw stad of dorp?",
-     "model": "In mijn stad kan ik goed winkelen en er is een mooi park.",
+     "p": "Schrijf waarom hij niet komt.",
+     "model": "Hij is ziek en hij heeft koorts.",
      "val": [
-      "kan|kunt|er is|er zijn"
+      "want|omdat|daarom|moet|ziek|werk|afspraak|dokter|kind|zoon|dochter|feest|koorts|pijn|verkouden|griep"
      ]
     },
     {
-     "p": "Wat vindt u van uw stad of dorp?",
-     "model": "Ik vind mijn stad mooi, maar het is er wel druk.",
+     "p": "Schrijf wanneer hij weer naar school komt.",
+     "model": "Ik denk dat hij maandag weer naar school komt.",
      "val": [
-      "vind|mooi|leuk|druk|rustig|gezellig"
+      "maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag|zondag|morgen|vandaag|volgende week|\\d{1,2} (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)|weer|beter"
      ]
     }
    ],
-   "opdracht": "Schrijf minimaal drie zinnen op. Schrijf in hele zinnen.",
-   "begin": "Dit is mijn tekst over mijn stad:"
+   "opdracht": "Schrijf de e-mail. Schrijf in hele zinnen.",
+   "aanhef": "Beste mevrouw Jansen,",
+   "afsluiting": "Vriendelijke groet,",
+   "aan": "mevrouw Jansen",
+   "onderwerp": "Mijn zoon is ziek"
   }
  ]
 }

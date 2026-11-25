@@ -7,9 +7,10 @@ Per thema: hoogstens 15 woorden met een zin met {gat}, 10 weetjes (vraag, antwoo
 10 situaties met precies 3 verschillende antwoorden en een "waarom".
 Blok "meer" (stap d, uit het lesmateriaal van de gebruiker): 12-20 weetjes, 3-5 situaties,
 en hoogstens 8 eigen woorden (in "woorden" met "meer": true; max_nieuw = 15 + dat aantal).
-Per toets: 40 vragen, elk met thema, 3 antwoorden en een "waarom".
-Een toets met "niveau": "examen" (C en D) moet zo moeilijk zijn als het echte examen: bij minstens 15 vragen
-lijkt een fout antwoord sterk op het goede antwoord (de helft van de woorden is gelijk).
+Per toets de vorm van de twee oefenexamens KNM 2025 van DUO: 40 vragen, elk met thema, 3 antwoorden,
+een "waarom" en een "foto" (Engelse beschrijving van de foto). Geen vraag "wat is waar". Korte antwoorden:
+gemiddeld hoogstens 6 woorden per antwoord en geen antwoord langer dan 10 woorden. Korte vragen: situatie (sit)
+plus vraag (v) samen hoogstens 30 woorden. (DUO: gemiddeld 3,9 woorden per antwoord en 13,5 per vraag.)
 Trainers verwar.json en lezen.json: elk item wijst naar een bestaand paar, of is een vraag met 3 antwoorden.
 """
 import json
@@ -22,12 +23,14 @@ THEMAS = {"gezondheid", "wonen", "werk", "onderwijs", "instanties", "omgang", "s
 fouten = []
 
 
-def lijkt(v):
-    """True als een fout antwoord sterk op het goede lijkt: minstens 4 woorden en de helft van alle woorden gelijk"""
-    woorden = [set(re.findall(r"[\w'-]+", o.lower())) for o in v.get("o", [])]
-    if len(woorden) < 2 or len(woorden[0]) < 4:
-        return False
-    return any(len(woorden[0] & w) / len(woorden[0] | w) >= 0.5 for w in woorden[1:])
+MAX_STAM = 30          # woorden in sit + v
+MAX_ANTWOORD = 10      # woorden in één antwoord
+MAX_GEM_ANTWOORD = 6   # gemiddeld aantal woorden per antwoord in een toets
+
+
+def n_woorden(tekst):
+    """aantal woorden: alles tussen spaties met een letter of een cijfer ("€ 200" is 1 woord)"""
+    return sum(1 for t in tekst.split() if re.search(r"[^\W_]", t))
 
 
 def vraag_ok(waar, v, thema_nodig=False):
@@ -85,12 +88,26 @@ for p in sorted((ROOT / "toets").glob("*.json")):
     d = json.loads(p.read_text(encoding="utf-8"))
     if len(d["vragen"]) != 40:
         fouten.append(f"{p.name}: {len(d['vragen'])} vragen (moet 40 zijn)")
+    antwoorden, stammen = [], []
     for i, v in enumerate(d["vragen"]):
-        vraag_ok(f"{p.name} vraag {i + 1}", v, True)
-    n = sum(1 for v in d["vragen"] if lijkt(v))
-    print(f"{p.name}: bij {n} van de {len(d['vragen'])} vragen lijkt een fout antwoord op het goede")
-    if d.get("niveau") == "examen" and n < 15:
-        fouten.append(f"{p.name}: examenniveau, maar maar {n} vragen met een fout antwoord dat op het goede lijkt (minstens 15)")
+        waar = f"{p.name} vraag {i + 1}"
+        vraag_ok(waar, v, True)
+        stam = f"{v.get('sit', '')} {v.get('v', '')}"
+        stammen.append(n_woorden(stam))
+        if "wat is waar" in stam.lower():
+            fouten.append(f"{waar}: 'wat is waar' (DUO stelt die vraag nooit)")
+        if stammen[-1] > MAX_STAM:
+            fouten.append(f"{waar}: situatie en vraag hebben {stammen[-1]} woorden (maximaal {MAX_STAM})")
+        for o in v.get("o", []):
+            antwoorden.append(n_woorden(o))
+            if antwoorden[-1] > MAX_ANTWOORD:
+                fouten.append(f"{waar}: antwoord van {antwoorden[-1]} woorden (maximaal {MAX_ANTWOORD}): {o!r}")
+        if not v.get("foto"):
+            fouten.append(f"{waar}: mist foto (Engelse beschrijving van de foto)")
+    gem = sum(antwoorden) / max(1, len(antwoorden))
+    print(f"{p.name}: gemiddeld {sum(stammen) / max(1, len(stammen)):.1f} woorden per vraag, {gem:.1f} per antwoord")
+    if gem > MAX_GEM_ANTWOORD:
+        fouten.append(f"{p.name}: antwoorden hebben gemiddeld {gem:.1f} woorden (maximaal {MAX_GEM_ANTWOORD})")
 
 d = json.loads((ROOT / "trainers" / "instantie.json").read_text(encoding="utf-8"))
 ids = {x["id"] for x in d["instanties"]}

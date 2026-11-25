@@ -25,3 +25,5 @@ shared/config.json
 # key for ElevenLabs (tools/tts_stemmen.py)
 tools/elevenlabs-sleutel.txt
 tools/google-sleutel.txt
+# key for Google AI Studio / Gemini (tools/plaatjes.py: pictures for the practice exams)
+tools/gemini-sleutel.txt

@@ -2,9 +2,10 @@
 // De vraag-knoppen en het laden van JSON komen uit ../lezen/lezen.js (Lezen.vraag, Lezen.json).
 window.Luister = (() => {
   const { el } = App;
-  // spreker -> stem van Piper (tools/tts_luisteren.py gebruikt dezelfde tabel)
-  const STEM = { A: 'nl_NL-ronnie-medium', B: 'nl_BE-nathalie-medium', C: 'nl_NL-pim-medium' };
-  const NAAM = { A: 'man', B: 'vrouw', C: 'man 2' };
+  // spreker -> stem van Google (tools/tts_luisteren.py gebruikt dezelfde tabel). VERTELLER: de sleutel van wat de verteller voorleest.
+  const STEM = { A: 'nl-NL-Chirp3-HD-Charon', B: 'nl-NL-Chirp3-HD-Kore', C: 'nl-NL-Chirp3-HD-Iapetus', D: 'nl-NL-Chirp3-HD-Aoede' };
+  const VERTELLER = 'nl_NL-ronnie-medium';
+  const NAAM = { A: 'man', B: 'vrouw', C: 'man 2', D: 'vrouw 2' };
 
   const P = Object.assign({ lessen: {}, toets: {}, trainers: {} }, App.lees('luisteren', {}));
   const bewaar = () => App.schrijf('luisteren', P);
@@ -14,10 +15,12 @@ window.Luister = (() => {
   const naLes = (id) => alles() || P.open || !id || gehaald(id);
 
   const klaar = Spraak.map(new URL('audio/', document.currentScript.src).href);
-  const sleutel = (regel, langzaam) => STEM[regel.s || 'A'] + (langzaam ? '|langzaam|' : '|') + regel.t;
+  const sleutel = (regel, langzaam) => (regel.v ? VERTELLER : STEM[regel.s || 'A']) + (langzaam ? '|langzaam|' : '|') + regel.t;
+  // een heel fragment van een toets in één mp3 (tools/tts_luisteren.py maakt dezelfde sleutel)
+  const fragmentSleutel = (regels) => 'fragment|' + regels.map((r) => `${r.s || 'A'}:${r.t}`).join('\n');
 
   let loopNr = 0, audio = null;
-  function stop() { loopNr++; if (audio) audio.pause(); audio = null; }
+  function stop() { loopNr++; if (audio) audio.pause(); audio = null; App.stopReeks(); }
 
   // speelt de regels na elkaar. opties: { langzaam, opRegel(i), opTijd(i, deel 0..1), opEinde() }
   async function speel(regels, opties) {
@@ -59,6 +62,15 @@ window.Luister = (() => {
       el('button', { class: 'knop licht', title: 'nog een keer', en: 'again', onclick: () => start(laatst) }, '↻'),
       el('button', { class: 'knop licht', title: 'stop', onclick: () => { stop(); bezig.textContent = ''; } }, '■'),
       bezig);
+  }
+
+  // ---------- de speler van het oefenexamen, zoals bij DUO (App.reeksSpeler) ----------
+  // delen = [{ tekst } (de verteller) | { regels } (het fragment)]. Een fragment zonder eigen mp3: de regels een voor een.
+  const INSTRUCTIE = 'Lees eerst de vraag. Luister daarna naar de tekst.';
+  function examenSpeler(delen, o) {
+    return App.reeksSpeler(delen.map((d) => (d.regels
+      ? { sleutel: fragmentSleutel(d.regels), vast: true, anders: d.regels.map((r) => ({ sleutel: sleutel(r, false), vast: true })) }
+      : { sleutel: `${VERTELLER}|${d.tekst}` })), Object.assign({ klaar }, o));
   }
 
   // transcript: elke regel een alinea; woorden lichten op tijdens het afspelen. Klik op een woord: pop-up (hoor het woord met de knop Luister).
@@ -134,5 +146,5 @@ window.Luister = (() => {
     doel.append(el('div', { class: 'kaart' }, el('p', { en: o.uitlegEn }, o.uitleg), el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: begin }, 'Start'))));
   }
 
-  return { P, bewaar, gehaald, isOpen, naLes, speel, stop, speler, transcript, vergelijk, ronde, STEM, NAAM };
+  return { P, bewaar, gehaald, isOpen, naLes, speel, stop, speler, examenSpeler, INSTRUCTIE, transcript, vergelijk, ronde, STEM, NAAM };
 })();

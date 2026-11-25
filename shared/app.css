@@ -247,7 +247,7 @@ input:disabled, textarea:disabled { opacity: .7; }
 /* ---------- toets: examen-indeling ---------- */
 .examen { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 1400px; margin: 0 auto; padding: 16px 16px 100px; }
 .examen > section { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; padding: 20px; min-height: 60vh; box-shadow: var(--schaduw1); }
-.examen .tekstvak { border: 0; padding: 0; box-shadow: none; }
+.examen .tekstvak { border: 0; padding: 0 4px; box-shadow: none; } /* een beetje ruimte: anders valt de linkerkant van een vette T weg (overflow) */
 .examen .lees-eerst { border-bottom: 1px solid var(--lijn); padding-bottom: 10px; margin-bottom: 14px; }
 .voet { position: fixed; left: 0; right: 0; bottom: 0; background: var(--vlak); color: var(--tekst); box-shadow: 0 -1px 3px rgba(0,0,0,.18); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); gap: 10px; z-index: 6; }
 .raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 8px; }
@@ -911,3 +911,110 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .moed-tekst { flex-basis: 100%; margin: 0; font-weight: 600; }
 #vandaag .moed { --moed-op: #3346d3; } #vandaag .moed .m-lint { fill: #fff; } #vandaag.kaart.groot-held .moed-tekst { font-size: 1rem; }
 .pkaart-moed { padding: 4px 20px 12px; } .pkaart-moed .moed:empty { display: none; } .pkaart-moed:has(.moed:empty) { display: none; }
+/* het oefenexamen zoals bij DUO: de klok achter een knop, een vraag markeren, de kans om te slagen, en per soort vraag de punten */
+.kop .klok { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 12px; border: 1px solid var(--lijn); border-radius: 999px; background: var(--vlak); color: var(--tekst); font: inherit; font-weight: 600; font-variant-numeric: tabular-nums; cursor: pointer; }
+.kop .klok .icoon { width: 20px; height: 20px; }
+.kop .klok .klok-tijd:empty { display: none; }
+.kop .klok.bijna { border-color: var(--fout); color: var(--fout); }
+.vlag-knop[aria-pressed="true"] { background: var(--geel); color: var(--tekst); }
+.vlag-knop .icoon { width: 18px; height: 18px; }
+.raster button.vlag { position: relative; }
+.raster button.vlag::after { content: ""; position: absolute; top: -5px; right: -5px; width: 12px; height: 12px; border-radius: 50%; background: var(--nieuw); border: 2px solid var(--vlak); }
+.raster .raster-kop { grid-column: 1 / -1; margin: 8px 0 0; font-size: .85rem; color: var(--zacht); }
+.kans { max-width: 460px; margin: 14px auto; }
+.kans-balk { display: flex; gap: 3px; margin-top: 8px; }
+.kans-balk > span { min-width: 54px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 6px; opacity: .45; font-variant-numeric: tabular-nums; }
+.kans-balk > span small { font-size: .72rem; color: var(--tekst); }
+.kans-balk > span.nu { opacity: 1; outline: 3px solid var(--tekst); outline-offset: 1px; }
+.kans-0 { background: var(--fout-zacht); } .kans-1 { background: #ffd8a8; } .kans-2 { background: var(--geel); } .kans-3 { background: var(--goed-zacht); }
+:root[data-theme="dark"] .kans-1 { background: #6b3a00; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kans-1 { background: #6b3a00; } }
+.kans-zin { font-weight: 600; }
+.per-soort { max-width: 520px; margin: 20px auto 6px; text-align: start; }
+.per-soort h3 { margin: 0 0 8px; font-size: 1rem; }
+.ps-rij { display: grid; grid-template-columns: minmax(90px, 9em) 1fr auto; align-items: center; gap: 10px; padding: 5px 0; }
+.ps-rij.zwak .ps-naam { font-weight: 700; color: var(--fout); }
+.ps-naam { font-size: .92rem; overflow-wrap: anywhere; }
+.ps-balk { display: flex; flex-wrap: wrap; gap: 3px; }
+.ps-balk i { width: 14px; height: 14px; border-radius: 4px; background: var(--fout-zacht); border: 1px solid var(--fout); }
+.ps-balk i.goed { background: var(--goed); border-color: var(--goed); }
+.ps-tel { font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--zacht); }
+/* de startpagina: welke examens moet u nog doen? */
+.mijn-examens { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+.mijn-knop { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 12px 4px 6px; border: 1px dashed var(--lijn); border-radius: 999px; background: transparent; color: var(--zacht); font: inherit; font-size: .92rem; cursor: pointer; }
+.mijn-knop .ex-icoon { width: 30px; height: 30px; }
+.mijn-knop.aan { border: 1px solid var(--k, var(--accent)); background: var(--vlak); color: var(--tekst); font-weight: 600; }
+.mijn-knop.k-lezen { --k: var(--k-lezen); } .mijn-knop.k-luisteren { --k: var(--k-luisteren); } .mijn-knop.k-schrijven { --k: var(--k-schrijven); } .mijn-knop.k-spreken { --k: var(--k-spreken); } .mijn-knop.k-knm { --k: var(--k-knm); }
+.ex.niet-nodig { filter: grayscale(.7) opacity(.6); } /* niet met opacity: de animatie "op" zet die al */
+/* een foto bij een oefenexamen (App.foto); zonder foto blijft het plaatje van emoji staan */
+.foto-plek.met-foto { display: block; line-height: 0; }
+.foto-plek.met-foto img { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; border-radius: 12px; }
+.scene .plaat:has(.met-foto) { padding: 8px; white-space: normal; font-size: 1rem; }
+.kplaat:has(.met-foto) { font-size: 1rem; }
+/* het volume van een oefenexamen, zoals bij DUO: zacht, 7 blokjes, hard */
+.kop .volume { display: inline-flex; align-items: center; gap: 2px; margin: 0 6px; }
+.vol-knop { display: inline-grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--tekst); cursor: pointer; }
+.vol-knop .icoon { width: 20px; height: 20px; }
+@media (hover: hover) { .vol-knop:hover { background: var(--vlak2); } }
+.vol-blokjes { display: inline-flex; gap: 2px; }
+.vol-blokjes i { width: 6px; height: 10px; border-radius: 1px; background: var(--lijn); }
+.vol-blokjes i.aan { background: var(--tekst); }
+@media (max-width: 560px) { .vol-blokjes i { width: 4px; } .vol-knop { width: 32px; height: 32px; } .kop .volume { margin: 0 2px; } }
+/* het overzicht per fragment of per onderdeel: de groepen naast elkaar, zoals bij DUO */
+.raster-groepen { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.raster-groep .raster-kop { margin: 0 0 4px; font-size: .85rem; color: var(--zacht); }
+.raster-groep .raster { display: flex; gap: 8px; }
+.raster-groep .raster button { width: 44px; }
+/* onder in een oefenexamen: het overzicht (raster) en markeren (bladwijzer) als teken, zoals bij DUO */
+.voet-icoon { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 12px; background: transparent; color: var(--tekst); cursor: pointer; vertical-align: middle; }
+.voet-icoon .icoon { width: 26px; height: 26px; }
+@media (hover: hover) { .voet-icoon:hover { background: var(--vlak2); } }
+.voet-icoon.vlag-knop[aria-pressed="true"] { color: var(--nieuw); }
+.voet-icoon.vlag-knop[aria-pressed="true"] .icoon { fill: currentColor; }
+/* de klok in het midden van de balk (zoals bij DUO); op een smal scherm gewoon in de rij */
+@media (min-width: 900px) { .kop .klok { position: absolute; left: 50%; transform: translateX(-50%); } }
+/* op een telefoon: geen volumeknop (de telefoon heeft eigen knoppen voor het volume) */
+@media (max-width: 560px) { .kop .volume { display: none; } }
+/* Mijn vragen: bewaren na een oefenexamen */
+.bewaar-rij { margin: 18px auto 4px; text-align: center; }
+.kijk-kop { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.kijk-kop p { margin: 0; }
+.bewaar-vraag .icoon, .bewaar-rij .icoon { width: 18px; height: 18px; }
+.bewaar-vraag[aria-pressed="true"] { color: var(--nieuw); }
+.bewaar-vraag[aria-pressed="true"] .icoon { fill: currentColor; }
+/* de speler van een oefenexamen, zoals bij DUO (App.reeksSpeler): 10 seconden terug, spelen of pauze in een ring, 10 seconden verder */
+.examen-speler { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 14px 0; }
+.speel-knop { position: relative; width: 64px; height: 64px; border: 0; border-radius: 50%; background: var(--accent); color: var(--op-accent); cursor: pointer; display: grid; place-items: center; font: inherit; font-size: 1.2rem; }
+.speel-ring { position: absolute; inset: 0; width: 64px; height: 64px; transform: rotate(-90deg); }
+.speel-ring circle { fill: none; stroke-width: 4; }
+.speel-ring .ring-achter { stroke: color-mix(in srgb, var(--op-accent) 25%, transparent); }
+.speel-ring .ring-voor { stroke: var(--op-accent); stroke-linecap: round; transition: stroke-dasharray .25s linear; }
+.speel-teken { position: relative; }
+.speel-teken .icoon { width: 24px; height: 24px; }
+.spring-knop { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--tekst); cursor: pointer; }
+.spring-knop .icoon { width: 30px; height: 30px; }
+@media (hover: hover) { .spring-knop:hover { background: var(--vlak2); } }
+/* Mijn vragen (mijn-vragen.html) */
+.mv-filters { margin: 12px 0; }
+.mv-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 4px 14px 4px 6px; border: 1px solid var(--lijn); border-radius: 999px; background: var(--vlak); color: var(--tekst); font: inherit; cursor: pointer; }
+.mv-chip.k-alle { padding-left: 14px; }
+.mv-chip b { font-variant-numeric: tabular-nums; background: var(--vlak2); border-radius: 999px; padding: 0 8px; font-size: .85rem; }
+.mv-chip.aan { border-color: var(--accent); background: var(--accent-zacht); color: var(--op-accent-zacht); font-weight: 600; }
+.mv-icoon { display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 10px; color: var(--k, var(--accent)); background: var(--vlak2); background: color-mix(in srgb, var(--k, var(--accent)) 14%, transparent); }
+.mv-icoon .icoon { width: 18px; height: 18px; }
+.k-lezen { --k: var(--k-lezen); } .k-luisteren { --k: var(--k-luisteren); } .k-knm { --k: var(--k-knm); }
+.mv-lijst { display: grid; gap: 10px; }
+.mv-kaart { margin: 0; }
+.mv-kaart-kop { display: flex; align-items: center; gap: 10px; }
+.mv-vraag { margin: 8px 0 4px; }
+.mv-kaart .knoppen { margin-top: 6px; }
+.mv-kaart .knop, .mv-leeg .knop { display: inline-flex; align-items: center; gap: 6px; }
+.mv-kaart .knop .icoon { width: 18px; height: 18px; }
+.mv-leeg { text-align: center; }
+.mv-leeg-teken .icoon { width: 48px; height: 48px; margin: 0 auto; color: var(--zacht); }
+.mv-leeg .knoppen { justify-content: center; }
+.bewaar-gemarkeerd { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; font-weight: 600; color: var(--nieuw); }
+.bewaar-gemarkeerd .icoon { width: 20px; height: 20px; fill: currentColor; }
+/* in een oefenexamen staat de melding boven de balk onderaan: anders ligt hij over de knoppen (markeren, overzicht, volgende) */
+body:has(.voet) #toast { bottom: calc(96px + env(safe-area-inset-bottom)); }
+@media (max-width: 560px) { body:has(.voet) #toast { bottom: calc(132px + env(safe-area-inset-bottom)); } }

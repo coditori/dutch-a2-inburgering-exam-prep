@@ -38,6 +38,11 @@ def item_fouten(it, toets=False):
                 f.append(f"sleutel: {n} delen (moet {3 if deel == 4 else 2} zijn, geen lege)")
             if deel == 4 and len(it["model"]) != 3:
                 f.append("onderdeel 4 moet 3 voorbeeldzinnen hebben (één per plaatje)")
+        # toets: een Engelse beschrijving per foto (voor het maken van de foto's); onderdeel 1: de spreker in de video
+        if toets and deel == 1 and not it.get("foto"):
+            f.append("onderdeel 1 zonder foto (beschrijving van de spreker)")
+        if toets and deel > 1 and len(it.get("fotos", [])) != PLAATJES[deel]:
+            f.append(f"fotos: {len(it.get('fotos', []))} beschrijvingen (moet {PLAATJES[deel]} zijn, één per plaatje)")
         if toets and it.get("les"):
             les, _, nr = it["les"].partition(":")
             pad = ROOT / "lessons" / f"{les}.json"
@@ -50,10 +55,13 @@ def item_fouten(it, toets=False):
 
 def main():
     totaal = 0
+    # de vragen hebben vaste stemmen (spreken/audio/index.json); de voorbeelden en nazeg-zinnen leest de verteller
+    # (spreken/audio/<stem>/index.json, hier de standaard-stem uit shared/stemmen.json)
     index = {}
-    ipad = ROOT / "audio" / "index.json"
-    if ipad.exists():
-        index = json.loads(ipad.read_text(encoding="utf-8"))
+    standaard = json.loads((ROOT.parent / "shared" / "stemmen.json").read_text(encoding="utf-8"))["standaard"]
+    for ipad in (ROOT / "audio" / "index.json", ROOT / "audio" / standaard / "index.json"):
+        if ipad.exists():
+            index.update(json.loads(ipad.read_text(encoding="utf-8")))
     zonder_geluid = 0
     lessen = sorted((ROOT / "lessons").glob("P*.json"))
     for pad in lessen + sorted(p for p in (ROOT / "toets").glob("*.json") if p.name != "index.json"):

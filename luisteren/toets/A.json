@@ -33,561 +33,698 @@
  ],
  "items": [
   {
-   "context": "Sara ziet haar buurman Karim in de supermarkt. Zij praten met elkaar.",
+   "context": "Sara ziet haar buurman Karim op straat. Zij praten even met elkaar.",
    "soort": "gesprek",
+   "foto": "A woman in her thirties with a shopping bag and a man in his thirties in a work jacket chat on a quiet street of brick terraced houses on a sunny afternoon.",
    "regels": [
     {
      "s": "B",
-     "t": "Hé Karim, hoe gaat het? Ik zie je weinig."
+     "t": "Hallo Karim! Ik heb je lang niet gezien. Hoe gaat het met je?"
     },
     {
-     "s": "C",
-     "t": "Goed, maar druk. Ik heb een nieuwe baan. Ik werk nu in het ziekenhuis, in de keuken."
-    },
-    {
-     "s": "B",
-     "t": "Leuk! Is het ver?"
-    },
-    {
-     "s": "C",
-     "t": "Nee, twintig minuten met de fiets. Maar ik begin elke dag om zes uur."
+     "s": "A",
+     "t": "Goed, dank je. Maar ik heb het druk. Ik heb een nieuwe baan, bij de bakker in de Stationsstraat."
     },
     {
      "s": "B",
-     "t": "Zo vroeg! En je vrouw? Werkt zij nog in de bibliotheek?"
+     "t": "O, leuk! Je werkte eerst in de supermarkt, toch?"
     },
     {
-     "s": "C",
-     "t": "Nee, zij is gestopt. Over twee maanden krijgen wij een baby."
-    },
-    {
-     "s": "B",
-     "t": "Wat mooi! Zeg, zaterdag geven wij een feest voor de verjaardag van Tom. Komen jullie ook?"
-    },
-    {
-     "s": "C",
-     "t": "Zaterdag moet ik werken tot vijf uur. Hoe laat begint het?"
+     "s": "A",
+     "t": "Ja, drie jaar. Maar bij de bakker verdien ik meer. Ik moet wel elke dag om vijf uur 's ochtends beginnen."
     },
     {
      "s": "B",
-     "t": "Om zeven uur."
+     "t": "Zo vroeg! Zeg, zaterdag geven wij een feest. Tom wordt veertig. Kom je ook? Het begint om acht uur."
     },
     {
-     "s": "C",
-     "t": "Dan komen wij graag."
+     "s": "A",
+     "t": "Zaterdag? Dan help ik mijn broer. Hij gaat verhuizen. Wij zijn pas om negen uur 's avonds klaar."
+    },
+    {
+     "s": "B",
+     "t": "Dat is niet erg. Kom dan gewoon later, om tien uur. Het feest gaat lang door."
+    },
+    {
+     "s": "A",
+     "t": "Goed, dan kom ik na het verhuizen."
+    },
+    {
+     "s": "B",
+     "t": "Fijn. Kun je misschien twee stoelen meenemen? Wij hebben er te weinig."
+    },
+    {
+     "s": "A",
+     "t": "Natuurlijk, dat doe ik."
     }
    ],
    "vragen": [
     {
      "v": "Waar werkt Karim nu?",
      "o": [
-      "in het ziekenhuis",
-      "in de supermarkt",
-      "in de bibliotheek"
+      "Bij de bakker.",
+      "In de supermarkt.",
+      "Bij zijn broer."
      ]
     },
     {
-     "v": "Waarom werkt de vrouw van Karim niet meer?",
+     "v": "Hoe laat komt Karim naar het feest?",
      "o": [
-      "Zij krijgt over twee maanden een baby.",
-      "Zij heeft een nieuwe baan.",
-      "Zij is ziek."
+      "Om 22.00 uur.",
+      "Om 20.00 uur.",
+      "Om 21.00 uur."
      ]
     },
     {
-     "v": "Wanneer komen Karim en zijn vrouw naar het feest?",
+     "v": "Wat vraagt Sara aan Karim?",
      "o": [
-      "zaterdag om zeven uur",
-      "zaterdag om vijf uur",
-      "zondag om zeven uur",
-      "Zij komen niet."
+      "Of hij stoelen wil meenemen.",
+      "Of hij brood van de bakker wil meenemen.",
+      "Of hij met verhuizen wil helpen."
      ]
     }
    ]
   },
   {
-   "context": "Peter heeft een bericht op zijn voicemail van de fietsenwinkel.",
-   "soort": "voicemail",
-   "regels": [
-    {
-     "s": "A",
-     "t": "Goedemiddag meneer Bakker, met Bas van de fietsenwinkel. Uw fiets is klaar."
-    },
-    {
-     "s": "A",
-     "t": "Wij hebben de remmen gemaakt en een nieuw licht op de fiets gezet."
-    },
-    {
-     "s": "A",
-     "t": "De kosten zijn vijfenveertig euro, niet vijfendertig euro, want het licht was duurder."
-    },
-    {
-     "s": "A",
-     "t": "U kunt de fiets vandaag ophalen tot zes uur. Morgen zijn wij gesloten."
-    },
-    {
-     "s": "A",
-     "t": "Vrijdag zijn wij weer open, vanaf negen uur. Tot ziens."
-    }
-   ],
-   "vragen": [
-    {
-     "v": "Hoeveel moet Peter betalen?",
-     "o": [
-      "vijfenveertig euro",
-      "vijfendertig euro",
-      "vijfenvijftig euro"
-     ]
-    },
-    {
-     "sit": "Peter hoort het bericht om zeven uur 's avonds.",
-     "v": "Wanneer kan Peter zijn fiets ophalen?",
-     "o": [
-      "op vrijdag vanaf negen uur",
-      "morgen vanaf negen uur",
-      "vandaag nog",
-      "morgen tot zes uur"
-     ]
-    }
-   ]
-  },
-  {
-   "context": "Fatima is op de school van haar zoon. Zij praat met meester Jan.",
-   "soort": "gesprek",
-   "regels": [
-    {
-     "s": "A",
-     "t": "Goedemiddag mevrouw Yilmaz. Op twaalf juni gaan wij met groep zeven een dag naar Amsterdam. Wij zoeken ouders die meegaan."
-    },
-    {
-     "s": "B",
-     "t": "Dat wil ik wel. Hoe gaan jullie?"
-    },
-    {
-     "s": "A",
-     "t": "Met de trein. Wij vertrekken om kwart voor negen van het station. De kinderen moeten om half negen bij de school zijn. Wij lopen samen naar het station."
-    },
-    {
-     "s": "B",
-     "t": "En wat moet mijn zoon meenemen?"
-    },
-    {
-     "s": "A",
-     "t": "Eten en drinken voor de lunch. Geld is niet nodig, de school betaalt alles."
-    },
-    {
-     "s": "B",
-     "t": "Hoe laat zijn wij terug?"
-    },
-    {
-     "s": "A",
-     "t": "Om vier uur zijn wij weer op school."
-    },
-    {
-     "s": "B",
-     "t": "Goed. Ik ga mee."
-    },
-    {
-     "s": "A",
-     "t": "Mooi. Dan schrijf ik uw naam op."
-    }
-   ],
-   "vragen": [
-    {
-     "v": "Hoe gaat de groep naar Amsterdam?",
-     "o": [
-      "met de trein",
-      "met de bus",
-      "met auto's van ouders"
-     ]
-    },
-    {
-     "v": "Hoe laat moeten de kinderen bij de school zijn?",
-     "o": [
-      "om half negen",
-      "om kwart voor negen",
-      "om negen uur",
-      "om vier uur"
-     ]
-    },
-    {
-     "v": "Wat moeten de kinderen meenemen?",
-     "o": [
-      "eten en drinken",
-      "geld",
-      "een kaartje voor de trein"
-     ]
-    }
-   ]
-  },
-  {
-   "context": "Noor staat op het station. Zij hoort een mededeling.",
+   "context": "Omar zoekt werk. Hij kijkt op internet naar een filmpje van een schoonmaakbedrijf.",
    "soort": "mededeling",
+   "foto": "A smiling woman in her fifties in a plain dark blue work shirt stands in a bright, empty office in the evening and speaks to the camera, with a cleaning trolley beside her.",
    "regels": [
     {
      "s": "B",
-     "t": "Beste reizigers, de trein naar Rotterdam van tien voor drie vertrekt vandaag niet van spoor vier, maar van spoor zeven."
+     "t": "Hallo, welkom bij Schoonmaakbedrijf Smit. Ik ben Maria Smit. Ik vertel u graag iets over ons bedrijf."
     },
     {
      "s": "B",
-     "t": "Deze trein stopt niet in Gouda."
+     "t": "Wij maken al twintig jaar kantoren, scholen en ziekenhuizen schoon, in Utrecht en in Amsterdam."
     },
     {
      "s": "B",
-     "t": "Reizigers naar Gouda nemen de trein van kwart over drie, van spoor vier."
+     "t": "Wij hebben nu bijna driehonderd medewerkers. Zij komen uit meer dan dertig landen."
+    },
+    {
+     "s": "B",
+     "t": "Bij ons werkt u vroeg in de ochtend of in de avond. Dan is er niemand op kantoor. Hebt u kinderen? Dan is dat vaak heel handig."
+    },
+    {
+     "s": "B",
+     "t": "Ervaring is niet nodig. U krijgt eerst een cursus van twee dagen. Daar leert u alles over het werk en over veilig werken."
+    },
+    {
+     "s": "B",
+     "t": "Spreekt u een beetje Nederlands? Dat is genoeg. Wij geven ook gratis les Nederlands, één keer per week, na het werk."
+    },
+    {
+     "s": "B",
+     "t": "Wilt u bij ons werken? Vul dan het formulier op onze website in. U hoeft ons niet te bellen. Wij nodigen u binnen een week uit voor een gesprek."
+    },
+    {
+     "s": "B",
+     "t": "Tot ziens bij Schoonmaakbedrijf Smit!"
     }
    ],
    "vragen": [
     {
-     "v": "Van welk spoor vertrekt de trein naar Rotterdam?",
+     "v": "Wat zegt Maria Smit over de lessen Nederlands?",
      "o": [
-      "spoor zeven",
-      "spoor vier",
-      "spoor drie"
+      "Ze zijn gratis.",
+      "Ze zijn verplicht.",
+      "Ze duren twee dagen."
      ]
     },
     {
-     "sit": "Noor wil naar Gouda.",
-     "v": "Hoe laat vertrekt haar trein?",
+     "v": "Hoe kunt u bij dit bedrijf solliciteren?",
      "o": [
-      "om kwart over drie",
-      "om tien voor drie",
-      "om kwart voor drie"
+      "Met een formulier op de website.",
+      "Met een telefoongesprek.",
+      "Met een brief en een cv."
      ]
     }
    ]
   },
   {
-   "context": "Omar werkt in een winkel. Hij praat met zijn baas, mevrouw De Vries.",
+   "context": "Yusuf heeft een probleem met de verwarming. Hij belt de woningcorporatie.",
    "soort": "gesprek",
+   "foto": "A man in his forties wearing a thick sweater stands next to a radiator in a simple living room and talks on his mobile phone.",
    "regels": [
     {
      "s": "B",
-     "t": "Omar, kan ik je iets vragen? Lisa is volgende week op vakantie. Kun jij een paar dagen extra werken?"
+     "t": "Woningcorporatie Thuis, goedemorgen. U spreekt met Lisa."
     },
     {
-     "s": "C",
-     "t": "Welke dagen?"
-    },
-    {
-     "s": "B",
-     "t": "Maandag, woensdag en vrijdag."
-    },
-    {
-     "s": "C",
-     "t": "Maandag en vrijdag kan ik. Woensdag heb ik les Nederlands, die wil ik niet missen."
+     "s": "A",
+     "t": "Goedemorgen, met Yusuf Yilmaz, van de Lindelaan nummer twaalf. Ik bel over de verwarming. Die doet het niet meer."
     },
     {
      "s": "B",
-     "t": "Dat begrijp ik. Dan vraag ik Yusuf voor woensdag. Je werkt van negen tot vijf."
+     "t": "Dat is niet fijn. Wanneer is dat begonnen?"
     },
     {
-     "s": "C",
-     "t": "Krijg ik de extra uren betaald, of krijg ik later vrij?"
-    },
-    {
-     "s": "B",
-     "t": "Je mag kiezen."
-    },
-    {
-     "s": "C",
-     "t": "Dan krijg ik ze liever betaald."
+     "s": "A",
+     "t": "Gisteren, in de avond. Het is nu erg koud in huis. En wij hebben een baby."
     },
     {
      "s": "B",
-     "t": "Goed, dan zet ik dat in het rooster."
+     "t": "Ik begrijp het. Hebt u nog wel warm water?"
+    },
+    {
+     "s": "A",
+     "t": "Ja, de douche doet het wel. Alleen de verwarming niet."
+    },
+    {
+     "s": "B",
+     "t": "Goed. Dan maak ik een afspraak met de monteur. Kan het morgen, tussen acht en twaalf uur?"
+    },
+    {
+     "s": "A",
+     "t": "Morgenochtend moet ik werken. Kan het ook in de middag?"
+    },
+    {
+     "s": "B",
+     "t": "Even kijken. Nee, morgenmiddag kan de monteur niet meer. Donderdagmiddag kan wel, tussen één en vijf uur."
+    },
+    {
+     "s": "A",
+     "t": "Donderdag? Dat is pas over drie dagen. Dan hebben wij nog drie dagen geen verwarming."
+    },
+    {
+     "s": "B",
+     "t": "Wacht, ik zie hier nog iets. Morgen om vier uur kan de monteur toch komen. Een andere afspraak gaat niet door."
+    },
+    {
+     "s": "A",
+     "t": "Fijn, dan ben ik thuis."
+    },
+    {
+     "s": "B",
+     "t": "Er moet wel iemand thuis zijn, anders kan de monteur niet naar binnen. Staat er een kast voor de verwarming?"
+    },
+    {
+     "s": "A",
+     "t": "Ja, een kleine kast."
+    },
+    {
+     "s": "B",
+     "t": "Zet die kast dan alvast op een andere plek. Dan kan de monteur goed werken."
+    },
+    {
+     "s": "A",
+     "t": "Dat doe ik. Moet ik voor de reparatie betalen?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, de reparatie is gratis. Die betaalt de woningcorporatie."
     }
    ],
    "vragen": [
     {
-     "v": "Waarom moet Omar extra werken?",
+     "v": "Wanneer komt de monteur?",
      "o": [
-      "Een collega is op vakantie.",
-      "Een collega is ziek.",
-      "Het is erg druk in de winkel."
+      "Morgen om 16.00 uur.",
+      "Morgen tussen 8.00 en 12.00 uur.",
+      "Donderdag tussen 13.00 en 17.00 uur."
      ]
     },
     {
-     "v": "Op welke dagen gaat Omar extra werken?",
+     "v": "Wat moet Yusuf van Lisa doen?",
      "o": [
-      "maandag en vrijdag",
-      "maandag, woensdag en vrijdag",
-      "alleen woensdag",
-      "woensdag en vrijdag"
-     ]
-    },
-    {
-     "v": "Wat kiest Omar voor de extra uren?",
-     "o": [
-      "geld",
-      "vrije dagen",
-      "een cursus"
+      "Een kast op een andere plek zetten.",
+      "De verwarming uit zetten.",
+      "De douche niet gebruiken.",
+      "Geld voor de reparatie klaarleggen."
      ]
     }
    ]
   },
   {
-   "context": "Eva luistert naar de radio. Zij hoort het nieuws over het verkeer.",
-   "soort": "radio",
-   "regels": [
-    {
-     "s": "A",
-     "t": "Goedemorgen. Het is druk op de weg."
-    },
-    {
-     "s": "A",
-     "t": "Op de weg van Utrecht naar Amsterdam hebt u ongeveer twintig minuten vertraging. Er staat een kapotte auto op de weg."
-    },
-    {
-     "s": "A",
-     "t": "In Rotterdam is het centrum vandaag dicht voor auto's. Er is een groot feest in de stad."
-    },
-    {
-     "s": "A",
-     "t": "Gaat u naar het centrum? Neem dan de tram of de bus."
-    }
-   ],
-   "vragen": [
-    {
-     "v": "Waarom is er vertraging tussen Utrecht en Amsterdam?",
-     "o": [
-      "Er staat een kapotte auto op de weg.",
-      "Er wordt aan de weg gewerkt.",
-      "Er is een feest."
-     ]
-    },
-    {
-     "v": "Hoe kunt u vandaag het beste naar het centrum van Rotterdam gaan?",
-     "o": [
-      "met de tram of de bus",
-      "met de auto",
-      "met de trein"
-     ]
-    }
-   ]
-  },
-  {
-   "context": "Daan belt de gemeente.",
+   "context": "Fatima drinkt koffie in het buurthuis. Haar buren Maria en Jan praten over de speeltuin.",
    "soort": "gesprek",
+   "foto": "In a bright community centre with coffee cups on a long table, a woman in her forties and a grey-haired man talk while a younger woman in a headscarf listens.",
    "regels": [
     {
      "s": "B",
-     "t": "Gemeente Zwolle, goedemorgen."
+     "t": "Jan, weet jij waarom de speeltuin in de Parkstraat dicht is?"
     },
     {
      "s": "A",
-     "t": "Goedemorgen, met Daan Visser. Mijn rijbewijs is bijna niet meer geldig. Hoe krijg ik een nieuw rijbewijs?"
+     "t": "Ja, ik heb een brief van de gemeente gekregen. De gemeente maakt de speeltuin nieuw."
     },
     {
      "s": "B",
-     "t": "U moet een afspraak maken en naar het gemeentehuis komen. Dat kan op internet of nu met mij."
+     "t": "Mooi. Maar waar moeten de kinderen nu spelen?"
     },
     {
      "s": "A",
-     "t": "Nu graag."
+     "t": "In het park bij het station. Dat is niet zo dichtbij, maar het is wel veilig."
     },
     {
      "s": "B",
-     "t": "Kunt u donderdag om tien uur?"
+     "t": "En hoe lang duurt het werk?"
     },
     {
      "s": "A",
-     "t": "Nee, dan werk ik. Kan het na vijf uur?"
+     "t": "Vier weken, denk ik. Nee, wacht, ik heb de brief hier. Zes weken. Het begint maandag."
     },
     {
      "s": "B",
-     "t": "Alleen op dinsdag zijn wij 's avonds open. Dinsdag om half zeven?"
+     "t": "Zes weken! Gelukkig is het dan nog geen zomervakantie."
     },
     {
      "s": "A",
-     "t": "Ja, dat kan."
-    },
-    {
-     "s": "B",
-     "t": "Neem uw oude rijbewijs en een nieuwe foto mee. Het kost eenenvijftig euro. U kunt alleen met de pinpas betalen."
-    },
-    {
-     "s": "A",
-     "t": "En wanneer is het rijbewijs klaar?"
-    },
-    {
-     "s": "B",
-     "t": "Na vijf werkdagen. U moet het zelf komen halen."
+     "t": "Nee. En als de speeltuin klaar is, geeft de buurt een feest voor alle kinderen."
     }
    ],
    "vragen": [
     {
-     "v": "Wanneer is de afspraak van Daan?",
+     "v": "Waar kunnen de kinderen nu spelen?",
      "o": [
-      "dinsdag om half zeven",
-      "donderdag om tien uur",
-      "donderdag na vijf uur",
-      "dinsdag om tien uur"
+      "In het park bij het station.",
+      "In de speeltuin in de Parkstraat.",
+      "In de tuin van het buurthuis."
      ]
     },
     {
-     "v": "Wat moet Daan meenemen?",
+     "v": "Hoe lang duurt het werk aan de speeltuin?",
      "o": [
-      "zijn oude rijbewijs en een foto",
-      "zijn paspoort en een foto",
-      "alleen zijn pinpas"
-     ]
-    },
-    {
-     "v": "Hoe krijgt Daan zijn nieuwe rijbewijs?",
-     "o": [
-      "Hij haalt het zelf op.",
-      "De gemeente stuurt het naar zijn huis.",
-      "Hij krijgt het meteen mee."
+      "Zes weken.",
+      "Vier weken.",
+      "Acht weken."
      ]
     }
    ]
   },
   {
-   "context": "Lena luistert naar een bericht van haar vriendin Emma.",
+   "context": "Lena kijkt naar het nieuws op televisie.",
+   "soort": "nieuws",
+   "foto": "A male news presenter in a suit sits at a studio desk, with an inset picture of a modern hospital entrance on the screen behind him.",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Goedenavond. In Zwolle gaat de huisartsenpost verhuizen."
+    },
+    {
+     "s": "A",
+     "t": "De huisartsenpost zit nu nog in een oud gebouw in de Stationsstraat. Vanaf één maart zit hij in het ziekenhuis, naast de spoedeisende hulp."
+    },
+    {
+     "s": "A",
+     "t": "Het oude gebouw was te klein. Er was te weinig plek voor alle dokters en assistentes. In het ziekenhuis is meer plek."
+    },
+    {
+     "s": "A",
+     "t": "U gaat naar de huisartsenpost als u 's avonds, 's nachts of in het weekend snel een dokter nodig hebt."
+    },
+    {
+     "s": "A",
+     "t": "Ga er niet zonder afspraak naartoe. Bel altijd eerst. Het telefoonnummer van de huisartsenpost blijft hetzelfde."
+    },
+    {
+     "s": "A",
+     "t": "Komt u met de auto? Bij het ziekenhuis kunt u parkeren. Dat kost twee euro per uur. Maar voor bezoekers van de huisartsenpost zijn de eerste twee uur gratis."
+    },
+    {
+     "s": "A",
+     "t": "Komt u liever met de bus? Bus vier stopt voor de deur van het ziekenhuis."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Waarom gaat de huisartsenpost verhuizen?",
+     "o": [
+      "Het oude gebouw is te klein.",
+      "Het ziekenhuis is te ver weg.",
+      "Er is te weinig plek om te parkeren."
+     ]
+    },
+    {
+     "v": "Wat moet u doen als u naar de huisartsenpost wilt?",
+     "o": [
+      "Eerst bellen.",
+      "Een afspraak maken op internet.",
+      "Naar de spoedeisende hulp gaan."
+     ]
+    },
+    {
+     "sit": "Peter gaat 's avonds met de auto naar de huisartsenpost. Hij is er een uur.",
+     "v": "Hoeveel moet Peter betalen voor het parkeren?",
+     "o": [
+      "Niets.",
+      "2 euro.",
+      "4 euro."
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Bas werkt in een restaurant. Hij luistert naar een bericht van een klant.",
    "soort": "voicemail",
+   "foto": "A young man in a white kitchen jacket stands behind the bar of an empty restaurant in the afternoon and listens to a phone held to his ear.",
    "regels": [
     {
      "s": "B",
-     "t": "Hoi Lena, met Emma. Ik bel over morgen."
+     "t": "Goedemiddag, u spreekt met Emma de Vries. Ik wil graag een tafel reserveren voor zaterdag twaalf april. Het is voor de verjaardag van mijn moeder."
     },
     {
      "s": "B",
-     "t": "Wij gaan samen sporten om zeven uur, maar ik moet langer werken. Kan het een uur later? Dan ben ik er wel."
+     "t": "Wij komen met tien personen. O nee, wacht, mijn broer komt ook, met zijn vrouw. Dus wij zijn met twaalf personen."
     },
     {
      "s": "B",
-     "t": "En neem je mijn boek mee? Dat ligt nog bij je thuis."
+     "t": "Wij willen graag om zes uur eten. Mijn moeder is al oud. Zij gaat graag vroeg naar huis."
     },
     {
      "s": "B",
-     "t": "Stuur mij even een bericht of acht uur goed is. Doei!"
+     "t": "Twee personen eten geen vlees. Hebt u ook vegetarisch eten?"
+    },
+    {
+     "s": "B",
+     "t": "Wilt u mij terugbellen? Mijn nummer is nul zes, twaalf, vierendertig, zesenvijftig, achtenzeventig. Dank u wel."
     }
    ],
    "vragen": [
     {
-     "v": "Wat vraagt Emma?",
+     "v": "Voor hoeveel personen wil Emma een tafel?",
      "o": [
-      "of zij een uur later kunnen sporten",
-      "of Lena langer kan werken",
-      "of zij op een andere dag kunnen sporten"
+      "Voor 12 personen.",
+      "Voor 10 personen.",
+      "Voor 2 personen."
      ]
     },
     {
-     "v": "Wat moet Lena meenemen?",
+     "v": "Waarom wil Emma om zes uur eten?",
      "o": [
-      "het boek van Emma",
-      "haar sportkleren",
-      "een bericht"
+      "Haar moeder wil vroeg naar huis.",
+      "Haar broer komt later.",
+      "Het restaurant is dan nog rustig."
+     ]
+    },
+    {
+     "v": "Wat wil Emma weten?",
+     "o": [
+      "Of er vegetarisch eten is.",
+      "Hoe laat het restaurant open is.",
+      "Hoeveel het eten kost."
      ]
     }
    ]
   },
   {
-   "context": "Meneer Smit is bij de huisarts.",
+   "context": "Ali doet een cursus Nederlands. Na de les praat hij met zijn docent.",
    "soort": "gesprek",
+   "foto": "In a classroom after the lesson, a man in his thirties sits at a desk with a notebook and talks with his female teacher in her fifties, who holds a stack of papers.",
    "regels": [
     {
-     "s": "B",
-     "t": "Goedemorgen meneer Smit. Wat is het probleem?"
-    },
-    {
-     "s": "C",
-     "t": "Ik heb pijn in mijn rug, dokter. Ik kan slecht slapen."
+     "s": "A",
+     "t": "Mevrouw Jansen, hebt u even tijd? Ik heb een vraag over het examen."
     },
     {
      "s": "B",
-     "t": "Hoe lang hebt u die pijn al?"
+     "t": "Natuurlijk, Ali. Ga zitten. Wat wil je weten?"
     },
     {
-     "s": "C",
-     "t": "Ongeveer drie weken. Het begon na de verhuizing van mijn dochter. Ik heb veel dozen gedragen."
-    },
-    {
-     "s": "B",
-     "t": "Hebt u al iets gedaan?"
-    },
-    {
-     "s": "C",
-     "t": "Ik heb een week in bed gelegen, maar dat hielp niet."
+     "s": "A",
+     "t": "Ik wil in juni examen doen. Denkt u dat ik klaar ben?"
     },
     {
      "s": "B",
-     "t": "Nee, in bed liggen is niet goed. U moet elke dag bewegen: wandelen of fietsen. Ik geef u ook een recept voor een medicijn. Dat neemt u twee keer per dag."
+     "t": "Ik heb je toetsen van deze maand bekeken. Lezen gaat heel goed. Je had negen van de tien vragen goed. Luisteren gaat ook goed."
     },
     {
-     "s": "C",
-     "t": "Moet ik naar het ziekenhuis?"
+     "s": "A",
+     "t": "En spreken? Dat vind ik zelf het moeilijkst."
     },
     {
      "s": "B",
-     "t": "Nee, nog niet. Kom over tien dagen terug. Is de pijn dan niet minder? Dan krijgt u een verwijzing."
+     "t": "Nee hoor, spreken gaat goed. Je praat rustig en ik begrijp je goed. Maar schrijven is nog moeilijk voor je."
+    },
+    {
+     "s": "A",
+     "t": "Schrijven? Maar ik schrijf toch goede zinnen?"
+    },
+    {
+     "s": "B",
+     "t": "Ja, je zinnen zijn goed. Maar je vergeet vaak de hoofdletters en de punten. En je schrijft vaak te weinig. Je moet minstens drie zinnen schrijven."
+    },
+    {
+     "s": "A",
+     "t": "Dus ik kan me nog niet aanmelden voor juni?"
+    },
+    {
+     "s": "B",
+     "t": "Voor lezen, luisteren en spreken wel. Voor schrijven moet je nog een maand wachten. Doe dat examen in juli."
+    },
+    {
+     "s": "A",
+     "t": "Goed. Hoe kan ik nog beter leren schrijven?"
+    },
+    {
+     "s": "B",
+     "t": "Schrijf elke week een paar korte berichten, bijvoorbeeld een e-mail aan een vriend. Neem ze mee naar de les. Dan kijk ik ze na."
+    },
+    {
+     "s": "A",
+     "t": "Dat doe ik. Dank u wel, mevrouw Jansen."
     }
    ],
    "vragen": [
     {
-     "v": "Hoe is de pijn van meneer Smit begonnen?",
+     "v": "Wat is volgens de docent nog moeilijk voor Ali?",
      "o": [
-      "Hij heeft veel dozen gedragen.",
-      "Hij heeft te veel gefietst.",
-      "Hij heeft slecht geslapen."
+      "Schrijven.",
+      "Spreken.",
+      "Lezen.",
+      "Luisteren."
      ]
     },
     {
-     "v": "Wat moet meneer Smit doen van de dokter?",
+     "v": "Wanneer doet Ali het examen schrijven?",
      "o": [
-      "elke dag bewegen",
-      "een week in bed liggen",
-      "naar het ziekenhuis gaan",
-      "stoppen met werken"
-     ]
-    },
-    {
-     "v": "Wanneer krijgt meneer Smit een verwijzing?",
-     "o": [
-      "als de pijn over tien dagen niet minder is",
-      "vandaag",
-      "over drie weken"
+      "In juli.",
+      "In juni.",
+      "In mei."
      ]
     }
    ]
   },
   {
-   "context": "Mila werkt in een fabriek. Haar leidinggevende vertelt iets aan het team.",
-   "soort": "mededeling",
+   "context": "Noor heeft een bericht van haar vriendin Eva op haar telefoon.",
+   "soort": "voicemail",
+   "foto": "A woman in her twenties sits at a kitchen table at home and listens to a message on her smartphone, with a child's drawing and a cup of tea on the table.",
    "regels": [
     {
-     "s": "C",
-     "t": "Goedemorgen allemaal. Even luisteren."
+     "s": "B",
+     "t": "Hoi Noor, met Eva. Ik bel over woensdag. Wij gaan toch met de kinderen naar het zwembad?"
     },
     {
-     "s": "C",
-     "t": "Volgende week dinsdag komt er een nieuwe machine. Daarom is de fabriek op dinsdag gesloten. Iedereen is die dag vrij en u krijgt wel loon."
+     "s": "B",
+     "t": "Ik heb op de website gekeken. Het zwembad in de Parkstraat is woensdag de hele dag dicht. Ze maken het schoon."
     },
     {
-     "s": "C",
-     "t": "Op woensdag krijgt u een cursus over de nieuwe machine. De cursus begint om acht uur, een uur later dan op andere dagen. De cursus is verplicht."
+     "s": "B",
+     "t": "Maar er is ook een zwembad bij het station. Dat is groter, en er is een klein bad voor kleine kinderen."
     },
     {
-     "s": "C",
-     "t": "Hebt u vragen? Kom dan na de pauze naar mijn kantoor."
+     "s": "B",
+     "t": "Zullen we daar naartoe gaan? Het is niet zo dichtbij, maar met de bus is het maar tien minuten."
+    },
+    {
+     "s": "B",
+     "t": "Ik wil om twee uur gaan. O nee, wacht. Mijn dochter heeft woensdag tot drie uur gym. Laten we dan om half vier gaan."
+    },
+    {
+     "s": "B",
+     "t": "Wij kunnen samen de bus nemen. Ik wacht om kwart over drie bij de bushalte voor de bibliotheek."
+    },
+    {
+     "s": "B",
+     "t": "Kinderen betalen drie euro en volwassenen vijf euro. Neem wel geld mee, want je kunt daar niet met je pinpas betalen."
+    },
+    {
+     "s": "B",
+     "t": "Stuur je me even een bericht? Doei!"
     }
    ],
    "vragen": [
     {
-     "v": "Waarom is de fabriek dinsdag gesloten?",
+     "v": "Naar welk zwembad gaan Noor en Eva?",
      "o": [
-      "Er komt een nieuwe machine.",
-      "Er is een cursus.",
-      "Het is een feestdag."
+      "Naar het zwembad bij het station.",
+      "Naar het zwembad in de Parkstraat.",
+      "Naar het zwembad bij de bibliotheek."
      ]
     },
     {
-     "v": "Hoe laat beginnen de medewerkers op andere dagen?",
+     "v": "Hoe laat wacht Eva bij de bushalte?",
      "o": [
-      "om zeven uur",
-      "om acht uur",
-      "om negen uur"
+      "Om 15.15 uur.",
+      "Om 14.00 uur.",
+      "Om 15.00 uur.",
+      "Om 15.30 uur."
+     ]
+    },
+    {
+     "v": "Wat moet Noor meenemen?",
+     "o": [
+      "Geld.",
+      "Haar pinpas.",
+      "Kaartjes voor de bus."
+     ]
+    }
+   ]
+  },
+  {
+   "context": "Mila doet een computercursus. Aan het einde van de les vertelt de docent iets.",
+   "soort": "instructie",
+   "foto": "A male teacher in his forties stands at the front of a computer classroom and speaks to a group of adult students sitting behind their computers.",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Goed, dat was het voor vandaag. Luister nog even, want ik heb twee dingen voor volgende week."
+    },
+    {
+     "s": "A",
+     "t": "Eerst het huiswerk. Jullie maken thuis op de computer een brief aan de gemeente. Schrijf over een probleem in jullie straat, bijvoorbeeld over afval of over lawaai."
+    },
+    {
+     "s": "A",
+     "t": "De brief is niet lang: tien tot vijftien zinnen. En vergeet de aanhef en de afsluiting niet. Die hebben we vandaag geleerd."
+    },
+    {
+     "s": "A",
+     "t": "Stuur de brief niet met de e-mail naar mij. Neem de brief op papier mee naar de les. Dan kijken we er samen naar."
+    },
+    {
+     "s": "A",
+     "t": "Heb je thuis geen computer? Dat is geen probleem. Kom dan een half uur voor de les. Dan kun je de brief hier maken."
+    },
+    {
+     "s": "A",
+     "t": "Dan het tweede punt. Volgende week hebben we geen les in dit lokaal. Hier komen nieuwe computers."
+    },
+    {
+     "s": "A",
+     "t": "We zitten dan in lokaal vier, op de tweede verdieping. Nee, sorry, het is de derde verdieping. Lokaal vier is boven de bibliotheek."
+    },
+    {
+     "s": "A",
+     "t": "De les begint wel op dezelfde tijd, om zeven uur."
+    },
+    {
+     "s": "A",
+     "t": "Zijn er nog vragen? Nee? Dan zie ik jullie volgende week. Fijne avond!"
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat moeten de cursisten voor volgende week doen?",
+     "o": [
+      "Een brief schrijven en die op papier meenemen.",
+      "Een brief schrijven en die met de e-mail sturen.",
+      "Een brief naar de gemeente sturen."
+     ]
+    },
+    {
+     "v": "Waar is de les volgende week?",
+     "o": [
+      "In lokaal vier, op de derde verdieping.",
+      "In lokaal vier, op de tweede verdieping.",
+      "In dit lokaal, op de tweede verdieping.",
+      "In de bibliotheek."
+     ]
+    }
+   ]
+  },
+  {
+   "context": "De kinderen van Sara en Fatima zitten in groep vijf. Zij praten met meester Tom.",
+   "soort": "gesprek",
+   "foto": "In a primary school classroom with small chairs, a male teacher in his thirties talks with two mothers, one in a headscarf, near the door at the end of the school day.",
+   "regels": [
+    {
+     "s": "A",
+     "t": "Goedemiddag. Hebben jullie de brief over het zomerfeest al gelezen?"
+    },
+    {
+     "s": "B",
+     "t": "Nee, nog niet. Wanneer is het feest?"
+    },
+    {
+     "s": "A",
+     "t": "Op vrijdag vijf juli. Wij zoeken nog ouders die willen helpen."
+    },
+    {
+     "s": "D",
+     "t": "Wat moeten de ouders dan doen?"
+    },
+    {
+     "s": "A",
+     "t": "Elke familie neemt iets te eten mee, voor ongeveer tien personen. Het liefst iets uit uw eigen land. Dan hebben we een grote tafel met eten uit veel verschillende landen."
+    },
+    {
+     "s": "B",
+     "t": "Wat leuk! Ik maak wel een taart. Hoe laat begint het feest?"
+    },
+    {
+     "s": "A",
+     "t": "Om vier uur. Maar de ouders die helpen, komen om twee uur. Dan zetten we samen de tafels en de stoelen buiten."
+    },
+    {
+     "s": "D",
+     "t": "Om twee uur? Dan moet ik nog werken. Ik ben pas om drie uur klaar."
+    },
+    {
+     "s": "A",
+     "t": "Dat is geen probleem. Kom dan om drie uur. Dan kunt u nog helpen met het drinken."
+    },
+    {
+     "s": "D",
+     "t": "Goed, dat doe ik."
+    },
+    {
+     "s": "B",
+     "t": "En hoe laat is het feest afgelopen?"
+    },
+    {
+     "s": "A",
+     "t": "Om zeven uur. Aan het einde dansen de kinderen van alle groepen samen voor de school. Alle ouders mogen komen kijken."
+    },
+    {
+     "s": "D",
+     "t": "Moeten wij voor het eten betalen?"
+    },
+    {
+     "s": "A",
+     "t": "Nee, het eten is gratis. Maar de kinderen verkopen ook kaartjes voor leuke activiteiten. Het geld is voor nieuwe boeken voor de bibliotheek van school."
+    },
+    {
+     "s": "B",
+     "t": "Mooi. Dan zie ik u op vijf juli."
+    }
+   ],
+   "vragen": [
+    {
+     "v": "Wat moeten de ouders meenemen naar het feest?",
+     "o": [
+      "Eten voor ongeveer tien personen.",
+      "Stoelen voor buiten.",
+      "Geld voor de kaartjes."
+     ]
+    },
+    {
+     "sit": "Fatima wil helpen op het feest.",
+     "v": "Hoe laat moet zij op school zijn?",
+     "o": [
+      "Om 15.00 uur.",
+      "Om 14.00 uur.",
+      "Om 16.00 uur.",
+      "Om 19.00 uur."
+     ]
+    },
+    {
+     "v": "Hoe eindigt het feest?",
+     "o": [
+      "De kinderen dansen voor de school.",
+      "De ouders eten samen buiten.",
+      "De kinderen verkopen kaartjes."
      ]
     }
    ]

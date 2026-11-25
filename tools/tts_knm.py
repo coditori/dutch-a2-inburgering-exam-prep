@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """De teksten met een luidspreker-knop van KNM (knm/audio/<stem>/): de woorden van de thema's (woord + zin), de vragen van
-de weetjes en de situaties, en de vragen van de toetsen (de knop "Luister" leest daar de situatie en de vraag voor).
+de weetjes en de situaties, en de vragen en de antwoorden van de toetsen (de knop "Luister" leest daar de situatie, de vraag en elk antwoord voor, zoals DUO).
 
 Dit script maakt zelf geen opnamen: dat doet tools/tts_stemmen.py, voor elke stem uit shared/stemmen.json.
 Elke tekst met een luidspreker-knop moet hier staan: de site gebruikt nooit de stem van de browser.
@@ -32,6 +32,8 @@ def teksten():
             continue
         toets = json.loads(p.read_text(encoding="utf-8"))
         if isinstance(toets, dict):
-            teksten += [" ".join(x for x in [v.get("sit"), v.get("v")] if x) for v in toets.get("vragen", [])]
+            for v in toets.get("vragen", []):
+                teksten.append(" ".join(x for x in [v.get("sit"), v.get("v")] if x))
+                teksten += v.get("o", [])  # zoals bij DUO wordt ook elk antwoord voorgelezen
     return [t for t in dict.fromkeys(teksten) if t and t.strip()]
 

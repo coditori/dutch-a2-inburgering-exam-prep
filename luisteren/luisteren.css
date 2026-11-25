@@ -14,3 +14,7 @@ input.typ { font: inherit; font-size: 1.4rem; width: 9em; max-width: 100%; paddi
 @media (max-width: 560px) { .speler { gap: 8px; } .speler .knop { flex: 1 1 56px; min-width: 56px; } }
 /* met Engels aan: het Engels staat onder het teken, de knop wordt hoger in plaats van breder */
 body.en .speler .knop[data-en] { padding: 6px 12px; border-radius: 22px; min-height: 54px; }
+.fragment-beeld { font-size: 3rem; text-align: center; border-radius: var(--rond); }
+.speelt { outline: 3px solid #f08c00; outline-offset: 3px; border-radius: 10px; }
+/* de foto bij een fragment (zoals de video of de foto bij DUO) */
+.fragment-beeld .met-foto img { max-width: 100%; max-height: 40vh; width: auto; margin: 0 auto; border-radius: 12px; }

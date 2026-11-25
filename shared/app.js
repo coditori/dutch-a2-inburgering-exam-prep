@@ -3,18 +3,17 @@
 window.App = (() => {
   // De versie van de site (onder aan elke pagina). Niet met de hand veranderen: de CI verhoogt haar bij elke pull request (tools/versie.py).
   const NAAM = window.SITE_NAAM || ''; // de naam van de site staat op één plek: shared/thema.js
-  const VERSIE = '1.26.0';
+  const VERSIE = '1.27.0';
   const W = window.WOORDEN || { lijst: [], vormen: {} };
   const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’-][A-Za-zÀ-ÿ]+)*/g;
 
   const WORTEL = new URL('../', document.currentScript.src).href; // de hoofdmap van de site
   const EXAMENS = ['lezen', 'luisteren', 'schrijven', 'spreken', 'knm'];
   const ruw = (k, d) => { try { const v = JSON.parse(localStorage.getItem('dutch-exam:' + k)); return v == null ? d : v; } catch (e) { return d; } };
-  // Instellingen gelden voor alle examens (pagina instellingen.html). "open" = alle lessen zonder slot.
+  // Instellingen gelden voor alle examens (pagina instellingen.html). "open" = alle lessen zonder slot: dat is nu altijd zo.
+  // De leerling kiest zelf: elke les, trainer en toets is open (de volgende les staat wel voorop, met de klasse "nu").
   // "door" = na een goed antwoord gaat de pagina vanzelf naar de volgende vraag.
-  // Een gedeelde link (knop Delen) heeft ?deel=1: dan is die les of toets open, ook als de ontvanger de lessen ervoor niet deed. Dit wordt niet bewaard.
-  const GEDEELD = new URLSearchParams(location.search).has('deel');
-  const instellingen = () => { const i = Object.assign({ open: false, door: true }, ruw('instellingen', {})); if (GEDEELD) i.open = true; return i; };
+  const instellingen = () => { const i = Object.assign({ door: true }, ruw('instellingen', {})); i.open = true; return i; };
   const lees = (k, d) => {
     const v = ruw(k, d);
     if (EXAMENS.includes(k) && v && typeof v === 'object') v.open = instellingen().open;
@@ -23,7 +22,10 @@ window.App = (() => {
   const werk = (v) => JSON.stringify([(v && v.lessen) || {}, (v && v.toets) || {}, (v && v.trainers) || {}]); // wat de leerling deed in een examen
   const schrijf = (k, v) => {
     // een les, een trainer of een oefenexamen erbij? Dan is vandaag een dag waarop u oefende (Dagen, verderop)
-    if (EXAMENS.includes(k) && werk(v) !== werk(ruw(k, null))) telDag();
+    if (EXAMENS.includes(k) && werk(v) !== werk(ruw(k, null))) {
+      telDag();
+      try { localStorage.setItem('dutch-exam:laatst', JSON.stringify(k)); } catch (e) { /* geen opslag */ } // het examen waar de leerling het laatst aan werkte
+    }
     try { localStorage.setItem('dutch-exam:' + k, JSON.stringify(v)); } catch (e) { /* geen opslag */ }
   };
   // Hulptaal: 'en' (Engels) of 'fa' (Perzisch). De hulp staat bij knoppen en uitleg (knop EN / FA in de kop) en achter de knop Vertaling bij een woord.
@@ -275,6 +277,15 @@ window.App = (() => {
     bewaar: '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
     zoek: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
     kruis: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    // het oefenexamen: de klok en de vlag (een vraag markeren om later terug te komen)
+    klok: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/>',
+    zacht: '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/>',
+    vlag: '<path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/>',
+    speel: '<path d="M8 5v14l11-7z" fill="currentColor"/>',
+    pauze: '<path d="M8 5v14M16 5v14" stroke-width="3.2"/>',
+    terug10: '<path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 3.5v4.5h4.5"/><text x="12.4" y="15.3" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" stroke="none">10</text>',
+    verder10: '<path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5v4.5h-4.5"/><text x="11.6" y="15.3" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" stroke="none">10</text>',
+    raster: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
     const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -313,6 +324,7 @@ window.App = (() => {
       kopMenu = el('div', { class: 'taalmenu kopmenu', role: 'menu' },
         el('a', { role: 'menuitem', href: WORTEL + 'profiel.html' }, regel(kan ? 'Profiel: log in' : 'Profiel', 'mens', kan ? 'profile: log in with Google' : 'profile')),
         el('a', { role: 'menuitem', href: WORTEL + 'mijn-woorden.html' }, regel('Mijn woorden', 'bewaar', 'my words'), Mijn.tel() ? el('span', { class: 'menu-tel' }, String(Mijn.tel())) : null),
+        el('a', { role: 'menuitem', href: WORTEL + 'mijn-vragen.html' }, regel('Mijn vragen', 'vlag', 'my questions'), MijnVragen.tel() ? el('span', { class: 'menu-tel' }, String(MijnVragen.tel())) : null),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html' }, regel('Instellingen', 'instel', 'settings')),
         el('a', { role: 'menuitem', href: WORTEL + 'instellingen.html#stem' }, regel('Stem kiezen', 'stem', 'choose the voice')),
         el('button', { type: 'button', role: 'menuitem', onclick: () => { sluitKopMenu(); zetThema(isDonker() ? 'licht' : 'donker'); } },
@@ -386,7 +398,7 @@ window.App = (() => {
   // ---------- melding "Goed antwoord!" ----------
   // actie (mag weg) = { naam, en, doe } of { naam, en, href }: een knop in de melding, zoals "Ongedaan maken". De melding blijft dan langer staan.
   let toastEl = null, toastTik = 0;
-  function toast(tekst, en, actie) {
+  function toast(tekst, en, actie, ms) {
     if (!toastEl) { toastEl = el('div', { id: 'toast', role: 'status', 'aria-live': 'polite' }); document.body.append(toastEl); }
     const weg = () => toastEl.classList.remove('aan');
     toastEl.textContent = '';
@@ -400,7 +412,7 @@ window.App = (() => {
     toastEl.classList.remove('pop', 'vuur');
     toastEl.classList.add('aan');
     clearTimeout(toastTik);
-    toastTik = setTimeout(weg, actie ? 5000 : 1400);
+    toastTik = setTimeout(weg, ms || (actie ? 5000 : 1400));
   }
   // Na een goed antwoord: groene melding, en de knop "Verder" wordt na een korte tijd vanzelf ingedrukt
   // (instelling "door"; staat de knop niet meer op de pagina, dan gebeurt er niets). Fout antwoord: niets, de leerling leest eerst.
@@ -623,6 +635,43 @@ window.App = (() => {
   const honderd = (deel) => Math.floor(deel * 100 + 1e-9);
   const cijfer = (goed, totaal) => (totaal ? honderd(goed / totaal) / 10 : 0).toFixed(1).replace('.', ',');
 
+  // ---------- het cijfer zoals op het echte examen ----------
+  // U slaagt met een 6. Maar een 6 is niet 60% goed: DUO legt de grens (de cesuur) per examen vast, en die ligt hoger.
+  // De oefenexamens van DUO laten de grens zien: KNM "minimaal 28 van de 40 goed"; bij Lezen begint "een redelijke kans" bij 17 van de 25,
+  // bij Luisteren "een kans" bij 19 van de 25. Schrijven en Spreken: het niveau "voldoende" op elk punt van het beoordelingsmodel van DUO
+  // (Schrijven: 22 van de 37 punten; Spreken: 7 van de 12 punten per vraag). Die grens is hier een 6,0. Daaronder loopt het cijfer van 1 tot 6,
+  // daarboven van 6 tot 10. Bronnen: research_notes/ (niet in git) en plans/0-masterplan.md.
+  const CESUUR = { lezen: [17, 25], luisteren: [19, 25], knm: [28, 40], schrijven: [22, 37], spreken: [7, 12] };
+  const grens = (map) => (CESUUR[map] ? CESUUR[map][0] / CESUUR[map][1] : 0.6);
+  // het cijfer als deel van 1 (0,6 = 6,0): daarmee werken de medailles, de lijn en het profiel
+  function cijferDeel(map, goed, totaal) {
+    if (!totaal) return 0;
+    const p = Math.max(0, Math.min(1, goed / totaal)), c = grens(map);
+    return p + 1e-9 >= c ? 0.6 + 0.4 * Math.max(0, p - c) / (1 - c) : 0.1 + 0.5 * p / c;
+  }
+  const cijferVan = (map, goed, totaal) => cijfer(cijferDeel(map, goed, totaal), 1);
+  // het beste cijfer (deel van 1) uit een lijst pogingen [{ score, totaal }], of null als er nog geen poging is
+  const besteDeel = (map, lijst, totaal) => ((lijst || []).length ? Math.max(...lijst.map((x) => cijferDeel(map, x.score, x.totaal || totaal || 1))) : null);
+  const nodigVoor = (map, totaal) => Math.ceil(grens(map) * totaal - 1e-9); // zoveel goed (of punten) is een 6,0
+  // De oefenexamens van DUO zeggen na afloop hoe groot de kans is dat u slaagt voor het echte examen. Dezelfde stappen, bij 25 vragen.
+  const KANS = {
+    lezen: [0, 13, 17, 23],
+    luisteren: [0, 16, 19, 22],
+  };
+  const KANS_TEKST = [['geen kans', 'no chance'], ['een kleine kans', 'a small chance'], ['een redelijke kans', 'a fair chance'], ['een grote kans', 'a good chance']];
+  function kansBalk(map, goed, totaal) {
+    if (map === 'knm') return el('p', { class: 'midden kans-zin', en: 'DUO practice exam: you need at least 28 of the 40 right.' },
+      `Op het oefenexamen van DUO hebt u minimaal 28 van de 40 vragen goed nodig. U had er ${Math.round(goed * 40 / (totaal || 40))} goed.`);
+    if (!KANS[map]) return null;
+    const n = (x) => Math.round(x * 25 / (totaal || 25)), g = n(goed), stap = KANS[map].filter((v) => g >= v).length - 1;
+    const van = (i) => KANS[map][i] / 25, tot = (i) => (i < 3 ? KANS[map][i + 1] / 25 : 1);
+    return el('div', { class: 'kans' },
+      el('p', { class: 'midden', en: `DUO practice exam: with this score you have ${KANS_TEKST[stap][1]} to pass the real exam.` },
+        'Volgens DUO hebt u met deze score ', el('b', {}, KANS_TEKST[stap][0]), ' om te slagen voor het echte examen.'),
+      el('div', { class: 'kans-balk', dir: 'ltr', role: 'img', 'aria-label': `kans om te slagen: ${KANS_TEKST[stap][0]}` },
+        KANS_TEKST.map((t, i) => el('span', { class: `kans-${i}` + (i === stap ? ' nu' : ''), style: `flex:${tot(i) - van(i)}` }, el('small', {}, `${KANS[map][i]}${i < 3 ? '-' + (KANS[map][i + 1] - 1) : '-25'}`)))));
+  }
+
   // ---------- medailles voor de oefenexamens ----------
   // Geslaagd is 6,0 of hoger (60% goed), net als op het echte examen: dat is brons. Zilver vanaf 7,5 en goud vanaf 9,0.
   // deel = het deel goed, van 0 tot 1 (0,75 = cijfer 7,5). Antwoord: 'brons' | 'zilver' | 'goud', of null: (nog) niet geslaagd.
@@ -746,19 +795,25 @@ window.App = (() => {
   // Eronder de knop naar het profiel: daar deelt de leerling het cijfer met vrienden.
   // Erboven de medaille (of een lege plek), eronder de lijn met de streep bij 6: zo ziet u zonder te lezen of u geslaagd bent.
   // o (mag weg) = { eerder: [delen van eerdere pogingen], zelf: true als de leerling zelf nakeek (Schrijven, Spreken) }
+  // o.map = het examen: het cijfer volgt de grens van DUO (CESUUR). o.beantwoord = hoeveel vragen de leerling beantwoordde (zoals bij DUO).
+  // o.eerder = de eerdere pogingen, al als cijfer (deel van 1).
   function cijferBlok(goed, totaal, wat, o) {
     o = o || {};
-    const deel = totaal ? goed / totaal : 0, m = medaille(deel), eerder = (o.eerder || []).filter((d) => d != null && isFinite(d));
-    const nodig = Math.max(1, Math.ceil(0.6 * totaal - 1e-9) - goed);
+    const deel = cijferDeel(o.map, goed, totaal), m = medaille(deel), eerder = (o.eerder || []).filter((d) => d != null && isFinite(d));
+    const nodig = Math.max(1, nodigVoor(o.map, totaal) - goed);
     const naam = m ? MEDAILLES.find((x) => x[0] === m) : null;
     return [
       el('div', { class: 'medaille-groot midden' }, medailleTeken(m)),
-      el('div', { class: 'groot midden' }, cijfer(goed, totaal), el('span', { class: 'cijfer-van' }, ' / 10')),
+      el('div', { class: 'groot midden' }, cijfer(deel, 1), el('span', { class: 'cijfer-van' }, ' / 10')),
       slaagBalk(deel, eerder),
       m ? el('p', { class: 'midden uitslag goed', en: `Congratulations, you passed! Your medal: ${naam[2]}.` }, `Gefeliciteerd, u bent geslaagd! Uw medaille: ${m}.`)
-        : el('p', { class: 'midden uitslag fout', en: 'Not passed yet. You pass with a 6.0. Look at what went wrong and try again later.' }, `Nog niet geslaagd. U slaagt met een 6,0: nog ${nodig} erbij.`),
+        : el('p', { class: 'midden uitslag fout', en: `Not passed yet. You pass with a 6.0: ${nodig} more ${wat === 'punten' ? 'points' : 'right'}.` }, `Nog niet geslaagd. U slaagt met een 6,0: nog ${nodig} ${wat === 'punten' ? (nodig === 1 ? 'punt' : 'punten') : 'goed'} erbij.`),
       eerder.length && deel > Math.max(...eerder) + 1e-9 ? el('p', { class: 'midden record', en: 'your best mark so far' }, '★ Uw beste cijfer tot nu toe!') : null,
-      el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
+      o.beantwoord != null ? el('p', { class: 'midden zacht', en: 'answered / right, as on the DUO practice exam' }, `U hebt ${o.beantwoord} van de ${totaal} vragen beantwoord. U hebt er ${goed} goed.`)
+        : el('p', { class: 'midden zacht' }, `${goed} van de ${totaal} ${wat || 'vragen goed'}`),
+      kansBalk(o.map, goed, totaal),
+      el('p', { class: 'midden zacht klein', en: `You pass with a 6.0. Here a 6.0 is ${nodigVoor(o.map, totaal)} of ${totaal}: the pass line of DUO, not 60%.` },
+        `Een 6,0 is hier ${nodigVoor(o.map, totaal)} van de ${totaal} ${wat === 'punten' ? 'punten' : 'goed'}: de grens van DUO.`),
       o.zelf ? el('p', { class: 'midden zacht klein', en: 'You checked this yourself. In the real exam a person marks it.' }, 'U keek dit zelf na. Op het examen kijkt een mens het na.') : null,
       el('p', { class: 'midden' }, el('a', { class: 'knop licht klein', href: WORTEL + 'profiel.html', en: 'share your mark with friends' }, teken('deel'), 'Deel uw cijfer'))].filter(Boolean);
   }
@@ -781,13 +836,308 @@ window.App = (() => {
       const n = lessen.length || 4 * themas.length;
       const gedaan = Math.min(n, Object.values(P.lessen || {}).filter((r) => r && r.beste / r.totaal >= 0.8).length);
       // per toets het beste resultaat als deel van 1 (0,75 = cijfer 7,5); null = nog niet gedaan
-      const beste = (t) => { const r = (P.toets || {})[t.id] || []; return r.length ? Math.max(...r.map((y) => y.score / (y.totaal || t.vragen || 1))) : null; };
+      const beste = (t) => { const r = (P.toets || {})[t.id] || []; return r.length ? Math.max(...r.map((y) => cijferDeel(map, y.score, y.totaal || t.vragen || 1))) : null; };
       return { naam: NAMEN[map], map, href: `${map}/index.html`, klaar, n, gedaan, lessen, toetsen: toetsen.map((t) => Object.assign({ beste: beste(t) }, t)) };
     }));
   }
 
   const schud = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 
+  // ---------- het oefenexamen: zoals de oefenexamens van DUO ----------
+  // De volgorde van de antwoorden. Bij DUO staan getallen, prijzen, tijden, dagen en datums op volgorde, van klein naar groot;
+  // "niets" of "geen" staat dan achteraan. Bij KNM staan de andere antwoorden op alfabet. Anders: door elkaar, elke keer anders.
+  // Geeft de nummers van de antwoorden (0 = het goede antwoord in de data) in de volgorde op het scherm.
+  const DAGEN = ['maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'];
+  const MAANDEN = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+  const TELWOORD = { een: 1, twee: 2, drie: 3, vier: 4, vijf: 5, zes: 6, zeven: 7, acht: 8, negen: 9, tien: 10, elf: 11, twaalf: 12, dertien: 13, veertien: 14,
+    vijftien: 15, zestien: 16, zeventien: 17, achttien: 18, negentien: 19, twintig: 20, dertig: 30, veertig: 40, vijftig: 50, zestig: 60, zeventig: 70, tachtig: 80, negentig: 90, honderd: 100 };
+  const telwoord = (w) => {
+    if (TELWOORD[w] != null && w !== 'een') return TELWOORD[w];
+    const m = /^(een|twee|drie|vier|vijf|zes|zeven|acht|negen)en(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)$/.exec(w);
+    return m ? TELWOORD[m[1]] + TELWOORD[m[2]] : null;
+  };
+  const RESTJE = /^(niets|niks|geen|geen van (deze|allen)|nooit|niemand|nergens)\b/;
+  // [soort, waarde] van één antwoord, of null als het geen getal, tijd, dag of datum is
+  function ordeWaarde(tekst) {
+    const t = kaal(String(tekst)).replace(/\[\[[a-z-]+\]\]/g, '').trim();
+    if (RESTJE.test(t)) return ['rest', Infinity];
+    let m = /\b(\d{1,2})[.:](\d{2})\b/.exec(t);
+    if (m && !/€|euro/.test(t)) return ['tijd', +m[1] * 60 + +m[2]];
+    m = /\b(\d{1,2}) (januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\b/.exec(t);
+    if (m) return ['datum', MAANDEN.indexOf(m[2]) * 32 + +m[1]];
+    const dag = DAGEN.findIndex((d) => new RegExp('\\b' + d + '\\b').test(t));
+    if (dag >= 0 && t.split(/\s+/).length <= 3) return ['dag', dag];
+    m = /\d+(?:[.,]\d+)?/.exec(t.replace(/(\d)\.(\d{3})\b/g, '$1$2'));
+    if (m) return ['getal', parseFloat(m[0].replace(',', '.'))];
+    for (const w of t.split(/[^a-z]+/)) { const n = telwoord(w); if (n != null) return ['getal', n]; }
+    return null;
+  }
+  function volgorde(opties, o) {
+    const nrs = opties.map((_, i) => i);
+    const w = opties.map(ordeWaarde);
+    const soorten = new Set(w.filter((x) => x && x[0] !== 'rest').map((x) => x[0]));
+    if (w.every(Boolean) && soorten.size === 1 && w.filter((x) => x[0] !== 'rest').length >= 2) return nrs.sort((a, b) => w[a][1] - w[b][1]);
+    // op alfabet; maar "Ja ..." altijd eerst en "Nee ..." altijd laatst, zoals bij DUO (Ja / Alleen als ... / Nee)
+    const plek = (t) => (/^ja\b/.test(kaal(t)) ? 0 : /^nee\b/.test(kaal(t)) ? 2 : 1);
+    if (o && o.alfabet) return nrs.sort((a, b) => plek(opties[a]) - plek(opties[b]) || kaal(opties[a]).localeCompare(kaal(opties[b]), 'nl'));
+    return schud(nrs);
+  }
+
+  // De klok van een oefenexamen, zoals bij DUO: alleen een wekker. Met de muis erop ziet u de tijd in hele minuten ("44 min");
+  // een klik (ook op een telefoon) laat de tijd blijven staan, nog een klik verbergt hem. Een melding bij nog 15 en nog 1 minuut.
+  // verborgen: false = de tijd staat er meteen (Schrijven: het werk is op papier). o = { kop, minuten, start (ms), verborgen, op0() }.
+  function examenKlok(o) {
+    let vast = !o.verborgen, zweef = false, vorige = null;
+    const tijd = el('span', { class: 'klok-tijd' });
+    const knop = el('button', { type: 'button', class: 'klok', title: 'Klik voor continue tijdsweergave', 'aria-label': 'de tijd: klik om hem te laten staan of te verbergen', en: 'time left: hover, or click to keep it' }, teken('klok'), tijd);
+    knop.addEventListener('click', () => { vast = !vast; toon(); });
+    knop.addEventListener('mouseenter', () => { zweef = true; toon(); });
+    knop.addEventListener('mouseleave', () => { zweef = false; toon(); });
+    const rest = () => Math.max(0, o.minuten * 60 - Math.floor((Date.now() - o.start) / 1000));
+    function toon() {
+      const s = rest();
+      tijd.textContent = vast || zweef ? `${Math.ceil(s / 60)} min` : '';
+      knop.classList.toggle('bijna', s <= 60);
+      if (vorige != null) for (const m of [15, 1]) {
+        if (vorige > m * 60 && s <= m * 60) toast(m === 1 ? 'Let op: nog 1 minuut.' : 'Let op: nog 15 minuten.', m === 1 ? 'one minute left' : '15 minutes left', null, 6000);
+      }
+      vorige = s;
+      if (s <= 0) { clearInterval(tik); if (o.op0) o.op0(); }
+    }
+    const h1 = o.kop.querySelector('h1');
+    o.kop.insertBefore(knop, h1 ? h1.nextSibling : o.kop.lastChild); // in het midden van de balk (CSS), zoals bij DUO
+    const tik = setInterval(toon, 1000);
+    toon();
+    return { stop() { clearInterval(tik); knop.remove(); } };
+  }
+
+  // Het volume van een oefenexamen, zoals bij DUO: een zachte en een harde luidspreker met 7 blokjes ertussen.
+  // Geldt voor elk geluid van de site (ook new Audio()): play() zet eerst het gekozen volume. Bewaard in deze browser.
+  const VOLUME_STAPPEN = 7;
+  let volumeStap = Math.max(0, Math.min(VOLUME_STAPPEN, Number(ruw('volume', VOLUME_STAPPEN))));
+  const spelers = new Set();
+  if (window.HTMLMediaElement) {
+    const speelOrigineel = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function (...a) {
+      try { this.volume = volumeStap / VOLUME_STAPPEN; } catch (e) { /* geen volume */ }
+      spelers.add(this);
+      return speelOrigineel.apply(this, a);
+    };
+  }
+  function volumeKnop(kop) {
+    const blokjes = el('span', { class: 'vol-blokjes', 'aria-hidden': 'true' }, Array.from({ length: VOLUME_STAPPEN }, () => el('i')));
+    const zet = (n) => {
+      volumeStap = Math.max(0, Math.min(VOLUME_STAPPEN, n));
+      try { localStorage.setItem('dutch-exam:volume', JSON.stringify(volumeStap)); } catch (e) { /* geen opslag */ }
+      [...blokjes.children].forEach((b, i) => b.classList.toggle('aan', i < volumeStap));
+      for (const m of spelers) { if (m.paused) spelers.delete(m); else m.volume = volumeStap / VOLUME_STAPPEN; }
+      vak.setAttribute('aria-label', `volume ${volumeStap} van ${VOLUME_STAPPEN}`);
+    };
+    const vak = el('span', { class: 'volume', role: 'group' },
+      el('button', { type: 'button', class: 'vol-knop', title: 'zachter', 'aria-label': 'zachter', onclick: () => zet(volumeStap - 1) }, teken('zacht')),
+      blokjes,
+      el('button', { type: 'button', class: 'vol-knop', title: 'harder', 'aria-label': 'harder', onclick: () => zet(volumeStap + 1) }, teken('luid')));
+    zet(volumeStap);
+    kop.insertBefore(vak, kop.querySelector('.deel') || kop.lastChild); // links van delen, profiel en taal: die staan op elke pagina op dezelfde plek
+    return vak;
+  }
+  // Een vraag markeren (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
+  // mv = { map, toets, v } (Lezen, Luisteren, KNM): de gemarkeerde vraag staat meteen ook in Mijn vragen, en gaat eraf als de vlag weg is.
+  function vlagKnop(vlaggen, nr, bewaar, mv) {
+    const k = el('button', { type: 'button', class: 'voet-icoon vlag-knop', title: mv ? 'Markeer deze vraag: u ziet hem in het overzicht en in Mijn vragen' : 'Markeer deze vraag: u ziet hem in het overzicht', 'aria-label': 'markeer deze vraag', 'aria-pressed': String(!!vlaggen[nr]) }, teken('bewaar'));
+    k.addEventListener('click', () => {
+      if (vlaggen[nr]) delete vlaggen[nr]; else vlaggen[nr] = true;
+      k.setAttribute('aria-pressed', String(!!vlaggen[nr]));
+      bewaar();
+      if (mv) {
+        MijnVragen.zet(mv.map, mv.toets, nr, mv.v, !!vlaggen[nr]);
+        if (vlaggen[nr]) toast('Gemarkeerd: ook in Mijn vragen', 'marked: also in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+      }
+    });
+    return k;
+  }
+  // ---------- Mijn vragen: vragen uit de oefenexamens die de leerling bewaarde, om later te oefenen (pagina mijn-vragen.html) ----------
+  // Uit elk examen samen in één lijst. Sleutel "map|toets|nummer"; v = de tekst van de vraag, zodat de pagina ziet of de vraag nog dezelfde is.
+  // Alleen in deze browser (net als de voortgang zonder account).
+  const MijnVragen = {
+    alle() { const v = ruw('mijn-vragen', {}); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; },
+    sleutel: (map, toets, nr) => `${map}|${toets}|${nr}`,
+    heeft(map, toets, nr) { return !!this.alle()[this.sleutel(map, toets, nr)]; },
+    zet(map, toets, nr, v, aan) {
+      const a = this.alle(), k = this.sleutel(map, toets, nr);
+      if (aan) a[k] = { map, toets, nr, v, d: window.SRS.vandaag() }; else delete a[k];
+      schrijf('mijn-vragen', a);
+      document.dispatchEvent(new CustomEvent('mijn-vragen'));
+    },
+    // meer vragen tegelijk (de foute vragen, of de gemarkeerde): lijst = [[nr, vraagtekst], ...]; geeft hoeveel er nieuw bij kwamen
+    zetVeel(map, toets, lijst) {
+      const a = this.alle(); let nieuw = 0;
+      for (const [nr, v] of lijst) { const k = this.sleutel(map, toets, nr); if (!a[k]) { a[k] = { map, toets, nr, v, d: window.SRS.vandaag() }; nieuw++; } }
+      schrijf('mijn-vragen', a);
+      document.dispatchEvent(new CustomEvent('mijn-vragen'));
+      return nieuw;
+    },
+    tel() { return Object.keys(this.alle()).length; },
+  };
+  // de bladwijzer bij een vraag na het oefenexamen: bewaar de vraag in Mijn vragen, of haal hem eraf
+  function bewaarVraagKnop(map, toets, nr, v) {
+    const k = el('button', { type: 'button', class: 'knop licht klein bewaar-vraag' });
+    const zet = () => {
+      const aan = MijnVragen.heeft(map, toets, nr);
+      k.textContent = '';
+      k.setAttribute('aria-pressed', String(aan));
+      k.append(teken('bewaar'), el('span', { en: aan ? 'saved in My questions' : 'save in My questions, to practise later' }, aan ? 'Bewaard in Mijn vragen' : 'Bewaar in Mijn vragen'));
+    };
+    k.addEventListener('click', () => {
+      const aan = !MijnVragen.heeft(map, toets, nr);
+      MijnVragen.zet(map, toets, nr, v, aan);
+      zet();
+      if (aan) toast('Bewaard in Mijn vragen', 'saved in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+    });
+    zet();
+    return k;
+  }
+  // op de uitslag: de foute vragen in één klik bewaren. De gemarkeerde vragen staan al in Mijn vragen (bij het inleveren, gemarkeerd = aantal).
+  // fout = [[nr, vraagtekst], ...]
+  function bewaarVragenRij(map, toets, fout, gemarkeerd) {
+    if (!fout.length && !gemarkeerd) return null;
+    const bekijk = el('a', { href: WORTEL + 'mijn-vragen.html', en: 'view' }, 'Bekijk');
+    return el('div', { class: 'bewaar-rij' },
+      gemarkeerd ? el('p', { class: 'bewaar-gemarkeerd', en: 'The questions you marked are now in My questions.' }, teken('bewaar'),
+        `Uw ${gemarkeerd === 1 ? 'gemarkeerde vraag staat' : `${gemarkeerd} gemarkeerde vragen staan`} nu in Mijn vragen. `, bekijk) : null,
+      fout.length ? el('p', { class: 'zacht klein', en: 'Save questions to practise them again later, together with questions from the other exams.' }, 'Bewaar vragen om ze later nog een keer te oefenen, samen met vragen uit de andere examens.') : null,
+      fout.length ? el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { type: 'button', class: 'knop licht', en: 'save the questions you got wrong', onclick: (e) => {
+        const n = MijnVragen.zetVeel(map, toets, fout);
+        e.currentTarget.disabled = true;
+        toast(n ? `${n} ${n === 1 ? 'vraag' : 'vragen'} bewaard in Mijn vragen` : 'Deze vragen stonden al in Mijn vragen', 'saved in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+      } }, teken('bewaar'), `Bewaar de foute vragen (${fout.length})`)) : null);
+  }
+  // ---------- de speler van een oefenexamen, zoals bij DUO ----------
+  // Speelt opnamen na elkaar (bij Luisteren: inleiding, opdracht, fragment, vraag, antwoorden; bij KNM: de vraag en elk antwoord;
+  // bij Spreken: de vraag). Knoppen zoals bij DUO: 10 seconden terug, spelen of pauze in een ring die laat zien hoe ver het is,
+  // 10 seconden verder. Geen snelheid en geen tekst; opnieuw spelen mag zo vaak als u wilt. Alleen tekens, zonder hulptekst.
+  // delen = [{ sleutel, vast, anders: [{ sleutel, vast }] }] (anders = de delen als de sleutel geen opname heeft)
+  // o = { opDeel(i): licht op wat nu speelt (-1 = niets), klaar: een belofte waarop eerst gewacht wordt (de mappen met opnamen) }
+  let huidigeReeks = null;
+  const stopReeks = () => { if (huidigeReeks) huidigeReeks.pauze(); };
+  function reeksSpeler(delen, o) {
+    o = o || {};
+    stopReeks();
+    let lijst = null, nu = 0, speelt = false;
+    const R = 20, OMTREK = 2 * Math.PI * R;
+    const ns = 'http://www.w3.org/2000/svg';
+    const boog = document.createElementNS(ns, 'circle');
+    boog.setAttribute('cx', '24'); boog.setAttribute('cy', '24'); boog.setAttribute('r', String(R)); boog.setAttribute('class', 'ring-voor');
+    boog.style.strokeDasharray = `0 ${OMTREK}`;
+    const ring = document.createElementNS(ns, 'svg');
+    ring.setAttribute('viewBox', '0 0 48 48'); ring.setAttribute('class', 'speel-ring'); ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = `<circle cx="24" cy="24" r="${R}" class="ring-achter"/>`;
+    ring.append(boog);
+    const speelTeken = el('span', { class: 'speel-teken' }, teken('speel'));
+    const knop = el('button', { type: 'button', class: 'speel-knop', 'aria-label': 'spelen of pauze', title: 'spelen / pauze', onclick: () => (speelt ? pauze() : speel()) }, ring, speelTeken);
+    const terug = el('button', { type: 'button', class: 'spring-knop', 'aria-label': '10 seconden terug', title: '10 seconden terug', onclick: () => spring(-10) }, teken('terug10'));
+    const verder = el('button', { type: 'button', class: 'spring-knop', 'aria-label': '10 seconden verder', title: '10 seconden verder', onclick: () => spring(10) }, teken('verder10'));
+    const vak = el('div', { class: 'examen-speler' }, terug, knop, verder);
+    async function adresVan(d) { return window.Spraak.adres(d.sleutel, d.vast ? { vast: true } : undefined); }
+    async function laad() {
+      if (lijst) return lijst;
+      if (o.klaar) await o.klaar;
+      const uit = [];
+      for (const [i, d] of delen.entries()) {
+        const url = await adresVan(d);
+        if (url) uit.push({ url, deel: i });
+        else for (const x of d.anders || []) { const u = await adresVan(x); if (u) uit.push({ url: u, deel: i }); }
+      }
+      for (const x of uit) {
+        x.a = new Audio(x.url);
+        x.a.preload = 'auto';
+        x.duur = 0;
+        x.a.addEventListener('loadedmetadata', () => { x.duur = x.a.duration || 0; toon(); });
+        x.a.addEventListener('timeupdate', toon);
+        x.a.addEventListener('ended', () => { if (lijst[nu] !== x) return; if (nu < lijst.length - 1) { nu++; lijst[nu].a.currentTime = 0; start(); } else klaarMet(); });
+      }
+      lijst = uit;
+      return lijst;
+    }
+    const totaal = () => (lijst || []).reduce((t, x) => t + x.duur, 0);
+    const plek = () => (lijst || []).slice(0, nu).reduce((t, x) => t + x.duur, 0) + (lijst && lijst[nu] ? lijst[nu].a.currentTime : 0);
+    function toon() {
+      const t = totaal(), deel = t ? Math.min(1, plek() / t) : 0;
+      boog.style.strokeDasharray = `${deel * OMTREK} ${OMTREK}`;
+      speelTeken.textContent = ''; speelTeken.append(teken(speelt ? 'pauze' : 'speel'));
+      if (o.opDeel) o.opDeel(speelt && lijst && lijst[nu] ? lijst[nu].deel : -1);
+    }
+    function start() { if (!lijst[nu]) return; speelt = true; lijst[nu].a.play().catch(() => { speelt = false; toon(); }); toon(); }
+    function klaarMet() { speelt = false; nu = 0; toon(); boog.style.strokeDasharray = `${OMTREK} ${OMTREK}`; }
+    async function speel() {
+      if (!window.Spraak.magSpelen()) return; // de pagina is net geopend: geen geluid tot de leerling zelf klikt
+      stopReeks(); spraakStop();
+      huidigeReeks = api;
+      await laad();
+      if (!lijst.length || huidigeReeks !== api) return;
+      start();
+    }
+    function pauze() { speelt = false; if (lijst && lijst[nu]) lijst[nu].a.pause(); toon(); }
+    async function spring(sec) {
+      await laad();
+      if (!lijst.length) return;
+      const was = speelt;
+      if (lijst[nu]) lijst[nu].a.pause();
+      let doel = Math.max(0, Math.min(totaal() - 0.1, plek() + sec));
+      nu = 0;
+      while (nu < lijst.length - 1 && doel >= lijst[nu].duur) { doel -= lijst[nu].duur; nu++; }
+      lijst[nu].a.currentTime = Math.max(0, doel);
+      if (was) start(); else toon();
+    }
+    const api = { vak, speel, pauze };
+    return api;
+  }
+  // Spraak.stop() stopt ook een speler van een oefenexamen (een andere vraag, het overzicht, inleveren)
+  const spraakStop = window.Spraak ? window.Spraak.stop.bind(window.Spraak) : () => {};
+  if (window.Spraak) window.Spraak.stop = () => { spraakStop(); stopReeks(); };
+  // het overzicht van alle vragen: een raster, zoals de knop van DUO
+  const overzichtKnop = (op) => el('button', { type: 'button', class: 'voet-icoon', title: 'Overzicht', 'aria-label': 'overzicht van alle vragen', onclick: op }, teken('raster'));
+  // Foto's bij de oefenexamens, zoals DUO echte foto's gebruikt (gemaakt door tools/plaatjes.py, in shared/fotos/).
+  // foto(beschrijving, reserve): een plek met het plaatje van emoji (reserve); is er een foto bij de beschrijving, dan komt die ervoor in de plaats.
+  let fotoLijst = null;
+  const fotoIndex = () => (fotoLijst = fotoLijst || fetch(WORTEL + 'shared/fotos/index.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+  function foto(beschrijving, reserve) {
+    const vak = el('span', { class: 'foto-plek' }, reserve || '');
+    if (beschrijving) fotoIndex().then((l) => {
+      if (!l[beschrijving]) return;
+      vak.textContent = ''; vak.classList.add('met-foto');
+      vak.append(el('img', { src: WORTEL + 'shared/fotos/' + l[beschrijving], alt: '', draggable: 'false' }));
+    });
+    return vak;
+  }
+  // Wat vraagt een vraag? Uit de vraagwoorden: een tijd, een getal of prijs, een reden, wat iemand moet doen, wie, waar, of de rest.
+  const VRAAGSOORT = [
+    ['tijd', /\b(wanneer|hoe laat|welke dag|welke datum|hoe lang|vanaf wanneer|tot wanneer|welk uur)\b/, 'een tijd of dag', 'a time or day'],
+    ['getal', /\b(hoeveel|wat kost|hoe duur|welk nummer|welk telefoonnummer|hoe oud)\b/, 'een getal of prijs', 'a number or price'],
+    ['reden', /\bwaarom\b/, 'een reden: waarom?', 'a reason: why?'],
+    ['doen', /\bwat (moet|moeten|kan|kunnen|mag|mogen|gaat|gaan|wil|willen|doet|doen)\b/, 'wat moet of gaat iemand doen?', 'what must or will someone do?'],
+    ['wie', /\b(wie|met wie|voor wie|aan wie)\b/, 'wie?', 'who?'],
+    ['waar', /\b(waar|waarheen|naar welke|in welke|op welke plek)\b/, 'waar?', 'where?'],
+  ];
+  function vraagSoort(tekst) {
+    const t = kaal(String(tekst || ''));
+    const r = VRAAGSOORT.find(([, re]) => re.test(t));
+    return r ? { id: r[0], naam: r[2], en: r[3] } : { id: 'rest', naam: 'de tekst begrijpen', en: 'understand the text' };
+  }
+  // Na het oefenexamen: per soort vraag hoeveel goed. rijen = [{ naam, en, goed, totaal, href, hrefNaam }]. De zwakste soort krijgt een knop.
+  function perSoort(rijen, titel) {
+    rijen = rijen.filter((r) => r.totaal);
+    if (rijen.length < 2) return null;
+    const zwak = rijen.slice().sort((a, b) => a.goed / a.totaal - b.goed / b.totaal)[0];
+    return el('div', { class: 'per-soort' },
+      el('h3', { en: 'where did your points go?' }, titel || 'Waar gingen de punten heen?'),
+      rijen.map((r) => el('div', { class: 'ps-rij' + (r === zwak && r.goed < r.totaal ? ' zwak' : '') },
+        el('span', { class: 'ps-naam', en: r.en }, r.naam),
+        el('span', { class: 'ps-balk', role: 'img', 'aria-label': `${r.goed} van ${r.totaal} goed` }, Array.from({ length: r.totaal }, (_, i) => el('i', { class: i < r.goed ? 'goed' : '' }))),
+        el('span', { class: 'ps-tel' }, `${r.goed}/${r.totaal}`))),
+      zwak.goed < zwak.totaal && zwak.href ? el('p', { class: 'knoppen' }, el('a', { class: 'knop licht', href: zwak.href, en: 'practise this' }, zwak.hrefNaam || `Oefen: ${zwak.naam}`)) : null);
+  }
+
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, overzichtKnop, reeksSpeler, stopReeks, MijnVragen, bewaarVraagKnop, bewaarVragenRij, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

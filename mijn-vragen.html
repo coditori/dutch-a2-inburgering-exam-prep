@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mijn vragen</title>
+<link rel="stylesheet" href="shared/app.css">
+<link rel="stylesheet" href="luisteren/luisteren.css">
+<link rel="stylesheet" href="knm/knm.css">
+<script src="shared/thema.js"></script>
+</head>
+<body>
+<div id="pagina"><main><p class="zacht">Even wachten...</p></main></div>
+<script src="shared/woorden.js"></script>
+<script src="shared/srs.js"></script>
+<script src="shared/audio.js"></script>
+<script src="shared/app.js"></script>
+<script src="lezen/lezen.js"></script>
+<script src="luisteren/luisteren.js"></script>
+<script>
+// Mijn vragen: de vragen die de leerling na een oefenexamen bewaarde (App.MijnVragen), uit alle examens samen in één lijst.
+// Per examen filteren, één vraag oefenen of alle vragen achter elkaar, en een vraag van de lijst halen.
+// Oefenen telt niet mee voor het cijfer van een oefenexamen. Na een goed antwoord kan de vraag van de lijst af.
+(async () => {
+  const { el, teken, MijnVragen } = App;
+  App.kop('Mijn vragen', 'index.html');
+  Spraak.map('knm/audio/');
+  const pagina = document.getElementById('pagina');
+  const NAAM = { lezen: 'Lezen', luisteren: 'Luisteren', knm: 'KNM' };
+  const THEMA = { gezondheid: 'gezondheid en gezondheidszorg', wonen: 'wonen', werk: 'werk en inkomen', onderwijs: 'onderwijs en opvoeding', instanties: 'instanties', omgang: 'omgangsvormen, waarden en normen', staat: 'staatsinrichting en rechtsstaat', geschiedenis: 'geschiedenis en geografie' };
+
+  // de toetsen ophalen (één keer per toets) en de vraag zelf vinden
+  const toetsen = {};
+  const haal = (map, t) => (toetsen[map + t] = toetsen[map + t] || fetch(`${map}/toets/${t}.json`, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).catch(() => null));
+  async function vraagVan(x) {
+    const d = await haal(x.map, x.toets);
+    if (!d) return null;
+    if (x.map === 'knm') { const v = d.vragen[x.nr]; return v ? { v, toets: d } : null; }
+    if (x.map === 'lezen') { const l = d.teksten.flatMap((t) => t.vragen.map((v) => ({ v, t }))); return l[x.nr] ? Object.assign({ toets: d }, l[x.nr]) : null; }
+    const l = d.items.flatMap((it) => it.vragen.map((v) => ({ v, it }))); return l[x.nr] ? Object.assign({ toets: d }, l[x.nr]) : null;
+  }
+
+  let filter = 'alle';
+  const lijst = () => Object.values(MijnVragen.alle()).filter((x) => NAAM[x.map]).sort((a, b) => (b.d || 0) - (a.d || 0) || a.map.localeCompare(b.map) || a.toets.localeCompare(b.toets) || a.nr - b.nr);
+  const zichtbaar = () => lijst().filter((x) => filter === 'alle' || x.map === filter);
+
+  // ---------- de lijst ----------
+  async function toonLijst() {
+    window.scrollTo(0, 0);
+    Spraak.stop(); Luister.stop();
+    const alle = lijst();
+    pagina.textContent = '';
+    const main = el('main');
+    pagina.append(main);
+    main.append(el('div', { class: 'mw-kop' }, el('h2', {}, 'Mijn vragen'), el('span', { class: 'zacht' }, `${alle.length} ${alle.length === 1 ? 'vraag' : 'vragen'}`)));
+    if (!alle.length) {
+      main.append(el('div', { class: 'kaart mv-leeg' },
+        el('p', { class: 'mv-leeg-teken', 'aria-hidden': 'true' }, teken('bewaar')),
+        el('h3', { en: 'you have not saved any questions yet' }, 'U hebt nog geen vragen bewaard'),
+        el('p', { en: 'After a practice exam you can save questions: the ones you got wrong, the ones you marked, or one by one when you look at a question. Here you practise them again, from all exams together.' },
+          'Na een oefenexamen kunt u vragen bewaren: de foute vragen, de vragen die u markeerde, of één vraag als u die bekijkt. Hier oefent u ze nog een keer, uit alle examens samen.'),
+        el('div', { class: 'knoppen' }, ...['lezen', 'luisteren', 'knm'].map((m) => el('a', { class: 'knop licht', href: `${m}/index.html` }, el('span', { class: 'mv-icoon', 'aria-hidden': 'true' }, teken(m)), NAAM[m])))));
+      return;
+    }
+    // filter per examen, met het aantal
+    const tel = (m) => alle.filter((x) => x.map === m).length;
+    main.append(el('div', { class: 'mw-filters mv-filters', role: 'group', 'aria-label': 'filter per examen' },
+      ['alle', 'lezen', 'luisteren', 'knm'].filter((m) => m === 'alle' || tel(m)).map((m) => el('button', { type: 'button', class: `mv-chip k-${m}` + (filter === m ? ' aan' : ''), 'aria-pressed': String(filter === m),
+        onclick: () => { filter = m; toonLijst(); } }, m === 'alle' ? null : el('span', { class: 'mv-icoon', 'aria-hidden': 'true' }, teken(m)), m === 'alle' ? 'Alle' : NAAM[m], el('b', {}, String(m === 'alle' ? alle.length : tel(m)))))));
+    const z = zichtbaar();
+    main.append(el('div', { class: 'knoppen' }, el('button', { class: 'knop', en: 'practise all these questions, one after the other', onclick: () => oefen(z, 0, []) }, `Oefen ${z.length === 1 ? 'deze vraag' : `alle ${z.length} vragen`}`)));
+    const vak = el('div', { class: 'mv-lijst' });
+    main.append(vak);
+    for (const x of z) {
+      const kaart = el('div', { class: `kaart mv-kaart k-${x.map}` });
+      vak.append(kaart);
+      const q = await vraagVan(x);
+      const veranderd = !q || q.v.v !== x.v;
+      kaart.append(
+        el('div', { class: 'mv-kaart-kop' }, el('span', { class: 'mv-icoon', 'aria-hidden': 'true' }, teken(x.map)),
+          el('span', { class: 'klein zacht' }, `${NAAM[x.map]}, toets ${x.toets}, vraag ${x.nr + 1}` + (x.map === 'knm' && q ? `, ${THEMA[q.v.thema] || q.v.thema}` : ''))),
+        el('p', { class: 'mv-vraag' }, veranderd ? el('span', { class: 'zacht', en: 'this question was changed or removed' }, 'Deze vraag is veranderd of bestaat niet meer.') : [q.v.sit ? q.v.sit + ' ' : '', el('b', {}, q.v.v)]),
+        el('div', { class: 'knoppen' },
+          veranderd ? null : el('button', { class: 'knop licht klein', en: 'practise this question', onclick: () => oefen([x], 0, []) }, 'Oefen'),
+          el('button', { class: 'knop tekst klein', en: 'remove from My questions', onclick: () => { MijnVragen.zet(x.map, x.toets, x.nr, x.v, false); toonLijst(); } }, teken('kruis'), 'Haal van de lijst')));
+    }
+    main.append(el('p', { class: 'zacht klein', en: 'Your questions are kept in this browser.' }, 'Uw vragen staan in deze browser.'));
+  }
+
+  // ---------- oefenen: de vragen een voor een, met het goede antwoord en de uitleg ----------
+  async function oefen(rij, i, uitslag) {
+    window.scrollTo(0, 0);
+    Spraak.stop(); Luister.stop();
+    pagina.textContent = '';
+    if (i >= rij.length) return einde(rij, uitslag);
+    const x = rij[i], q = await vraagVan(x);
+    if (!q || q.v.v !== x.v) return oefen(rij, i + 1, uitslag);
+    const links = el('section'), rechts = el('section'), vraagDoel = el('div'), na = el('div');
+    const verder = el('button', { class: 'knop', hidden: true, en: 'next', onclick: () => oefen(rij, i + 1, uitslag) }, i < rij.length - 1 ? 'Volgende vraag' : 'Klaar');
+    const kop = el('p', { class: 'zacht klein' }, `${i + 1} / ${rij.length}: ${NAAM[x.map]}, toets ${x.toets}, vraag ${x.nr + 1}`);
+    const volgorde = App.volgorde(q.v.o, { alfabet: x.map === 'knm' });
+    let blok = null;
+    const op = (keuze) => {
+      if (uitslag.length > i) return; // al beantwoord
+      const goed = keuze === 0;
+      uitslag.push(goed);
+      blok.teken(keuze, true);
+      na.textContent = '';
+      na.append(el('p', { class: 'uitslag ' + (goed ? 'goed' : 'fout') }, goed ? '✔ Goed!' : '✘ Niet goed. Het goede antwoord is groen.'));
+      if (x.map === 'knm' && q.v.w) na.append(el('div', { class: 'waarom' }, el('b', {}, 'Waarom? '), App.woorden(q.v.w)));
+      if (x.map === 'lezen' && q.v.b) Lezen.markeer(links, q.v.b);
+      if (x.map === 'luisteren') { const tr = Luister.transcript(q.it.regels); links.append(tr.vak); }
+      if (goed) na.append(el('p', {}, el('button', { class: 'knop tekst klein', en: 'remove from My questions: I know it now', onclick: (e) => { MijnVragen.zet(x.map, x.toets, x.nr, x.v, false); e.currentTarget.replaceWith(el('span', { class: 'zacht klein' }, '✔ Van de lijst gehaald')); } }, teken('kruis'), 'Ik weet het nu: haal van de lijst')));
+      verder.hidden = false;
+      if (goed) App.goed(verder); else verder.focus();
+    };
+    if (x.map === 'lezen') {
+      Lezen.tekst(links, q.t, { leesEerst: true });
+    } else if (x.map === 'luisteren') {
+      links.append(el('p', { class: 'intro' }, q.it.context), el('div', { class: 'fragment-beeld' }, App.foto(q.it.foto, '🗣️')), Luister.speler(q.it.regels, {}));
+    } else {
+      links.append(el('div', { class: 'kplaat' }, App.foto(q.v.foto, q.v.beeld || '🇳🇱')),
+        App.reeksSpeler([{ sleutel: [q.v.sit, q.v.v].filter(Boolean).join(' ') }, ...volgorde.map((n) => ({ sleutel: q.v.o[n] }))]).vak);
+    }
+    blok = Lezen.vraag(vraagDoel, q.v, { volgorde, op });
+    rechts.append(kop, vraagDoel, na, el('div', { class: 'knoppen' }, verder, el('button', { class: 'knop tekst klein', onclick: toonLijst }, 'Stop')));
+    pagina.append(el('div', { class: 'examen' + (x.map === 'knm' ? ' knm-examen' : '') }, links, rechts));
+  }
+
+  function einde(rij, uitslag) {
+    const goed = uitslag.filter(Boolean).length;
+    pagina.append(el('main', {}, el('div', { class: 'kaart midden' },
+      el('div', { class: 'groot' }, `${goed} / ${uitslag.length}`),
+      el('p', { en: goed === uitslag.length ? 'All right!' : 'The questions you got wrong stay on your list.' }, goed === uitslag.length ? 'Alles goed!' : 'De vragen die u fout had, blijven op uw lijst.'),
+      el('div', { class: 'knoppen', style: 'justify-content:center' },
+        el('button', { class: 'knop', en: 'back to My questions', onclick: toonLijst }, 'Naar Mijn vragen'),
+        el('a', { class: 'knop licht', href: 'index.html' }, 'Naar de startpagina')))));
+  }
+
+  document.addEventListener('mijn-vragen', () => {});
+  toonLijst();
+})();
+</script>
+</body>
+</html>

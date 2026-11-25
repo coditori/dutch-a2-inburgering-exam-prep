@@ -16,8 +16,12 @@
 <script src="../../shared/app.js"></script>
 <script src="../schrijven.js"></script>
 <script>
-// Een hele set zoals het examen: 4 opdrachten, 40 minuten, met pen en papier. toets.html?t=A laadt A.json
-// Daarna kijkt u zelf na met het voorbeeld en de lijst. Met &les=S23 telt de uitslag ook voor die les.
+// Een hele set zoals het echte examen en de oefenexamens van DUO: 4 opdrachten, 40 minuten, met pen en papier. toets.html?t=A laadt A.json
+// Het papier ziet eruit als bij DUO: een voorblad, elke opdracht op een eigen blad, geen lijnen. Een e-mail staat in een venster met Van,
+// Aan en Onderwerp; de aanhef en de afsluiting staan er al. Een tekst en een briefje: een leeg vak. Een formulier: vakjes.
+// Nakijken met de beoordelingsmodellen van DUO: een formulier 7 punten (antwoord 0-3, spelling 0-2, woorden 0-2),
+// een andere opdracht 10 punten (antwoord 0-3, grammatica 0-2, spelling 0-2, woorden 0-2, samenhang 0-1).
+// Antwoord 0 (leeg, niet te lezen of niet op de opdracht) = 0 punten voor die opdracht. Met &les=S23 telt de uitslag ook voor die les.
 (async () => {
   const { el } = App;
   const MINUTEN = 40;
@@ -28,98 +32,140 @@
   let set;
   try { set = await Schrijven.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze set bestaat niet: ' + id; return; }
   const kop = App.kop(`Schrijven: ${set.titel}`, '../index.html');
-  const klok = el('b', {});
-  kop.insertBefore(klok, kop.lastChild);
   let stand = App.lees('schrijven-toets-bezig', null);
   if (!stand || stand.id !== id) stand = null;
   const bewaar = () => App.schrijf('schrijven-toets-bezig', stand);
-  let tik = null;
+  let klok = null;
+  const stopKlok = () => { if (klok) klok.stop(); klok = null; };
 
-  const lijnen = (n) => el('div', { class: 'lijnen' }, Array.from({ length: n }, () => el('i')));
+  // de beoordelingsmodellen van DUO, in eenvoudige woorden: [sleutel, naam, en, [[punten, tekst, en], ...]]
+  const ANTWOORD = ['a', 'Antwoord op de opdracht', 'answer to the task', [[0, 'Leeg, niet te lezen, of niet op de opdracht', 'empty, cannot be read, or not about the task'], [1, 'Niet alle punten, of niet duidelijk', 'not all points, or not clear'], [2, 'Alle punten: een goed antwoord', 'all points: a good answer'], [3, 'Alle punten, heel duidelijk en goed', 'all points, very clear and very good']]];
+  const GRAMMATICA = ['g', 'Grammatica', 'grammar', [[0, 'Veel fouten', 'many mistakes'], [1, 'Een paar fouten', 'some mistakes'], [2, 'Bijna geen fouten', 'almost no mistakes']]];
+  const SPELLING = ['s', 'Spelling', 'spelling', [[0, 'Veel woorden fout geschreven', 'many words spelled wrong'], [1, 'Woorden uit de opdracht goed overgeschreven, korte woorden bijna goed', 'words from the task copied right, short words almost right'], [2, 'Bijna alles goed geschreven', 'almost everything spelled right']]];
+  const SPELLING_F = ['s', 'Spelling', 'spelling', [[0, 'Veel woorden fout geschreven', 'many words spelled wrong'], [1, 'Mijn eigen gegevens goed geschreven, de rest bijna goed', 'my own details spelled right, the rest almost right'], [2, 'Bijna alles goed geschreven', 'almost everything spelled right']]];
+  const WOORDEN = ['w', 'Woorden', 'words', [[0, 'Bijna alleen woorden uit de opdracht', 'almost only words from the task'], [1, 'Eenvoudige eigen woorden', 'simple words of my own'], [2, 'Veel verschillende woorden', 'many different words']]];
+  const SAMEN = ['c', 'Samenhang', 'coherence', [[0, 'Losse zinnen', 'loose sentences'], [1, 'Met en, maar, want, omdat of hij, zij, die, dat', 'with en, maar, want, omdat, or hij, zij, die, dat']]];
+  const model = (t) => (t.soort === 'formulier' ? [ANTWOORD, SPELLING_F, WOORDEN] : [ANTWOORD, GRAMMATICA, SPELLING, WOORDEN, SAMEN]);
+  const maxVan = (t) => model(t).reduce((n, [, , , rij]) => n + rij[rij.length - 1][0], 0);
+  const TOTAAL = set.items.reduce((n, t) => n + maxVan(t), 0);
+  const puntenVan = (nr) => { const p = (stand.punten || {})[nr] || {}; return !p.a ? 0 : model(set.items[nr]).reduce((n, [k]) => n + (p[k] || 0), 0); };
+
+  // ---------- het papier ----------
   function blad(t, nr) {
+    const vak = el('div', { class: 'taak blad' }, el('p', { class: 'zacht klein' }, `Opdracht ${nr + 1}`), el('h3', {}, t.kop), el('p', {}, t.situatie));
+    if (t.plaatjes) vak.append(el('div', { class: 'plaatjes' }, t.plaatjes.map((p) => el('span', {}, p))));
     if (t.soort === 'formulier') {
-      return el('div', { class: 'taak' }, el('p', { class: 'zacht klein' }, `Opdracht ${nr + 1} van ${set.items.length}`), el('h3', {}, t.kop), el('p', {}, t.situatie),
-        t.plaatjes ? el('div', { class: 'plaatjes' }, t.plaatjes.map((p) => el('span', {}, p))) : null,
-        el('p', {}, el('b', {}, 'Vul het formulier in. Sommige gegevens moet u zelf bedenken.')),
-        t.velden.map((v) => el('div', { class: 'veld' }, el('span', {}, v.label), v.soort === 'keuze' ? el('div', {}, v.opties.map((o) => el('div', {}, '☐ ' + o))) : el('div', { style: 'border-bottom:1px solid var(--zacht);height:1.8em' }))));
+      vak.append(el('p', {}, el('b', {}, 'Vul het formulier in. Sommige gegevens moet u zelf bedenken.')),
+        el('div', { class: 'formulier-papier' }, t.velden.map((v) => el('div', { class: 'f-rij' + (v.soort === 'open' ? ' open' : '') }, el('span', { class: 'f-label' }, v.label),
+          v.soort === 'keuze' ? el('div', { class: 'f-keuze' }, v.opties.map((o) => el('span', {}, '☐ ', o))) : el('span', { class: 'f-vak' })))));
+      return vak;
     }
-    const k = Schrijven.taakKaart(t);
-    k.prepend(el('p', { class: 'zacht klein' }, `Opdracht ${nr + 1} van ${set.items.length}`));
-    if (t.aanhef) k.append(el('p', {}, t.aanhef));
-    if (t.begin) k.append(el('p', {}, t.begin));
-    k.append(lijnen(t.aanhef ? 7 : 8));
-    if (t.afsluiting) k.append(el('p', {}, t.afsluiting));
-    return k;
+    if (t.punten[0].p) vak.append(t.soort === 'tekst' ? el('p', {}, el('b', {}, 'Denk aan:')) : null, el('ul', {}, t.punten.map((p) => el('li', {}, p.p))));
+    vak.append(el('p', {}, el('b', {}, t.opdracht || 'Schrijf in hele zinnen.')));
+    if (t.soort === 'email') {
+      // het venster van de e-mail, zoals op het papier van DUO
+      vak.append(el('div', { class: 'mailvenster' },
+        el('div', { class: 'mail-balk' }, 'E-mail'),
+        el('div', { class: 'mail-rij' }, el('span', {}, 'Van:'), 'kandidaat@mail.nl'),
+        el('div', { class: 'mail-rij' }, el('span', {}, 'Aan:'), t.aan || ''),
+        el('div', { class: 'mail-rij' }, el('span', {}, 'Onderwerp:'), t.onderwerp || t.kop),
+        el('div', { class: 'mail-tekst' }, el('p', {}, t.aanhef), el('div', { class: 'leeg-vak' }), el('p', {}, t.afsluiting), el('p', { class: 'zacht' }, '...'))));
+    } else {
+      if (t.begin) vak.append(el('p', {}, el('b', {}, t.begin)));
+      vak.append(el('div', { class: 'schrijfpapier' }, t.aanhef ? el('p', {}, t.aanhef) : null, el('div', { class: 'leeg-vak' + (t.aanhef ? '' : ' hoog') }), t.afsluiting ? el('p', {}, t.afsluiting) : null));
+    }
+    return vak;
   }
 
   function welkom() {
     const eerder = Schrijven.P.toets[id] || [];
-    pagina.textContent = '';
+    pagina.textContent = ''; stopKlok();
     pagina.append(el('div', { class: 'kaart' },
       el('h2', { style: 'margin-top:0' }, `Welkom bij ${set.titel}`),
       el('p', {}, `U moet ${set.items.length} opdrachten maken. U hebt ${MINUTEN} minuten.`),
-      el('p', { en: 'The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. The aanhef and afsluiting are already on the paper, as in the real exam.' },
-        'Het echte examen is met pen en papier. Druk de opdrachten af, of lees ze hier en schrijf op uw eigen papier. De aanhef en de afsluiting staan al op het papier, net als op het echte examen.'),
-      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijfer(r.score, r.totaal)} (${r.datum}, ${r.minuten} min)`).join('; ')) : null,
+      el('p', { en: 'The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. As in the exam: one task per page, no lines, and the greeting and closing of an e-mail are already on the paper.' },
+        'Het echte examen is met pen en papier. Druk de opdrachten af, of lees ze hier en schrijf op uw eigen papier. Net als op het examen: elke opdracht op een eigen blad, geen lijnen, en de aanhef en de afsluiting van een e-mail staan er al.'),
+      el('p', { class: 'zacht klein', en: 'In the exam you get a blue pen and paper. You may cross out a mistake and write it again. You cannot bring anything.' }, 'Op het examen krijgt u een blauwe pen en papier. Een fout mag u doorstrepen en opnieuw schrijven. U mag niets meenemen.'),
+      eerder.length ? el('p', { class: 'zacht klein' }, 'Eerder: ' + eerder.map((r) => `${App.cijferVan('schrijven', r.score, r.totaal)} (${r.datum}, ${r.minuten} min)`).join('; ')) : null,
       el('div', { class: 'knoppen' }, el('button', { class: 'knop', onclick: () => { stand = { id, start: Date.now() }; bewaar(); werk(); } }, 'Start'))));
   }
 
   function werk() {
     pagina.textContent = '';
-    clearInterval(tik);
-    const teken = () => { const s = Math.max(0, MINUTEN * 60 - Math.floor((Date.now() - stand.start) / 1000)); klok.textContent = `⏱ ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; klok.style.color = s === 0 ? 'var(--fout)' : ''; };
-    tik = setInterval(teken, 1000); teken();
+    stopKlok();
+    klok = App.examenKlok({ kop, minuten: MINUTEN, start: stand.start });
     pagina.append(el('div', { class: 'knoppen niet-print' },
       el('button', { class: 'knop licht', en: 'print the tasks', onclick: () => window.print() }, '🖨 Afdrukken'),
-      el('button', { class: 'knop', en: 'I am done: check my work', onclick: () => { stand.minuten = Math.round((Date.now() - stand.start) / 60000); stand.klaar = true; stand.vinken = {}; bewaar(); nakijken(); } }, 'Ik ben klaar: nakijken')),
+      el('button', { class: 'knop', en: 'I am done: check my work', onclick: () => { stand.minuten = Math.round((Date.now() - stand.start) / 60000); stand.klaar = true; stand.punten = {}; bewaar(); nakijken(); } }, 'Ik ben klaar: nakijken')),
+      // het voorblad, zoals bij DUO
+      el('div', { class: 'taak blad voorblad' }, el('h3', {}, `Schrijven A2: ${set.titel}`),
+        el('p', {}, `U beantwoordt ${set.items.length} opdrachten. Elke opdracht staat op een eigen blad.`),
+        el('p', {}, el('b', {}, 'Vul de opgave in met de blauwe pen.')),
+        el('p', { class: 'naamregel' }, 'Naam: ')),
       ...set.items.map(blad));
   }
 
-  const PUNTEN = {
-    tekst: ['alle punten staan erin', 'minimaal drie hele zinnen', 'hoofdletter en punt bij elke zin', 'ik kan mijn eigen handschrift goed lezen'],
-    formulier: ['alle vakken zijn ingevuld', 'postcode, telefoonnummer en datum zien er goed uit', 'één hokje gekozen (als er hokjes zijn)', 'bij een open vraag staat een hele zin'],
-  };
-  PUNTEN.email = PUNTEN.briefje = PUNTEN.tekst;
+  // knoppen met punten
+  function keuze(rij, gekozen, op) {
+    const knoppen = rij.map(([p, t, en]) => el('button', { type: 'button', class: 'pnt' + (gekozen === p ? ' aan' : ''), 'aria-pressed': String(gekozen === p), en, onclick: () => {
+      knoppen.forEach((k, i) => { const aan = rij[i][0] === p; k.classList.toggle('aan', aan); k.setAttribute('aria-pressed', String(aan)); });
+      op(p);
+    } }, el('b', {}, String(p)), el('span', {}, t)));
+    return el('div', { class: 'pnt-rij' }, knoppen);
+  }
+
   function nakijken() {
-    clearInterval(tik); klok.textContent = '';
+    stopKlok();
     pagina.textContent = '';
-    const totaal = set.items.reduce((n, t) => n + PUNTEN[t.soort].length, 0);
+    stand.punten = stand.punten || {};
     const uitslag = el('div', { class: 'kaart midden' });
-    const tel = () => Object.values(stand.vinken).filter(Boolean).length;
+    const klaar = () => set.items.every((t, nr) => { const p = stand.punten[nr] || {}; return p.a === 0 || model(t).every(([k]) => p[k] != null); });
     function tekenUitslag() {
       uitslag.textContent = '';
-      uitslag.append(...App.cijferBlok(tel(), totaal, 'punten', { zelf: true, eerder: (Schrijven.P.toets[id] || []).map((r) => r.score / (r.totaal || totaal)) }),
+      if (!klaar()) { uitslag.append(el('p', { class: 'zacht', en: 'Choose the points for every task. Then you see your mark.' }, 'Kies bij elke opdracht de punten. Dan ziet u uw cijfer.')); return; }
+      const score = set.items.reduce((n, _, nr) => n + puntenVan(nr), 0);
+      uitslag.append(...App.cijferBlok(score, TOTAAL, 'punten', { map: 'schrijven', zelf: true, eerder: (Schrijven.P.toets[id] || []).map((r) => App.cijferDeel('schrijven', r.score, r.totaal || TOTAAL)) }),
         el('p', { class: 'zacht' }, `Tijd: ${stand.minuten} minuten` + (stand.minuten > MINUTEN ? ' (te lang: het examen is 40 minuten)' : '')),
+        App.perSoort(set.items.map((t, nr) => ({ naam: `${nr + 1}. ${t.kop}`, goed: puntenVan(nr), totaal: maxVan(t) })), 'Punten per opdracht'),
         el('div', { class: 'knoppen', style: 'justify-content:center' },
           el('button', { class: 'knop', en: 'save the result', onclick: (e) => {
             e.currentTarget.disabled = true; // één keer bewaren, ook bij twee klikken
-            (Schrijven.P.toets[id] = Schrijven.P.toets[id] || []).push({ score: tel(), totaal, minuten: stand.minuten, datum: new Date().toISOString().slice(0, 10) });
-            if (les) { const oud = Schrijven.P.lessen[les] || { beste: 0, keer: 0 }; Schrijven.P.lessen[les] = { score: tel(), beste: Math.max(oud.beste, tel()), totaal, keer: oud.keer + 1, datum: new Date().toISOString().slice(0, 10) }; }
+            const datum = new Date().toISOString().slice(0, 10), deel = App.cijferDeel('schrijven', score, TOTAAL);
+            (Schrijven.P.toets[id] = Schrijven.P.toets[id] || []).push({ score, totaal: TOTAAL, minuten: stand.minuten, datum });
+            // de les telt als gehaald als de set gehaald is (een 6,0)
+            if (les) { const oud = Schrijven.P.lessen[les] || { beste: 0, keer: 0 }; const ok = App.medaille(deel) ? 1 : 0; Schrijven.P.lessen[les] = { score: ok, beste: Math.max(oud.beste || 0, ok), totaal: 1, keer: (oud.keer || 0) + 1, datum }; }
             Schrijven.bewaar(); App.schrijf('schrijven-toets-bezig', null);
-            const deel = tel() / totaal; App.vier(deel); // een medaille? Dan eerst het feest, daarna naar het overzicht
+            App.vier(deel); // een medaille? Dan eerst het feest, daarna naar het overzicht
             setTimeout(() => { location.href = '../index.html'; }, App.medaille(deel) ? 1900 : 0);
           } }, 'Bewaar de uitslag'),
           el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('schrijven-toets-bezig', null); welkom(); } }, 'Nog een keer')));
     }
-    pagina.append(el('p', { en: 'Put your paper next to the screen. Compare with the model answer and tick what is right. Be honest.' }, 'Leg uw papier naast het scherm. Vergelijk met het voorbeeld en zet een vinkje bij wat goed is. Wees eerlijk.'));
+    pagina.append(el('p', { en: 'Put your paper next to the screen. Compare with the model answer and choose the points, as an examiner of DUO does. Be honest.' },
+      'Leg uw papier naast het scherm. Vergelijk met het voorbeeld en kies de punten, zoals een beoordelaar van DUO dat doet. Wees eerlijk.'),
+      el('p', { class: 'zacht klein', en: 'In the exam: answer 0 (empty, unreadable or not about the task) = 0 points for that whole task.' }, 'Let op: geeft u 0 punten voor het antwoord, dan krijgt de hele opdracht 0 punten. Zo doet DUO het ook.'));
     set.items.forEach((t, nr) => {
+      const p = stand.punten[nr] = stand.punten[nr] || {};
       const vak = el('div', { class: 'taak' }, el('h3', {}, `Opdracht ${nr + 1}: ${t.kop}`), el('p', {}, App.woorden(t.situatie)));
       if (t.soort === 'formulier') {
         vak.append(el('p', { class: 'zacht' }, 'Voorbeeld:'), el('div', { class: 'brief' }, t.velden.map((v) => `${v.label}: ${v.model}`).join('\n')));
       } else {
-        if (t.punten[0].p) vak.append(el('ul', {}, t.punten.map((p, i) => el('li', {}, el('span', { class: Schrijven.kleur(i) }, p.p)))));
+        if (t.punten[0].p) vak.append(el('ul', {}, t.punten.map((x, i) => el('li', {}, el('span', { class: Schrijven.kleur(i) }, x.p)))));
         vak.append(el('p', { class: 'zacht' }, 'Voorbeeld (uw antwoord mag anders zijn):'), Schrijven.modelKaart(t, true));
-        const typ = el('details', {}, el('summary', { en: 'optional: type your answer for an automatic check' }, 'Typ uw antwoord over voor een controle'));
+        const typ = el('details', {}, el('summary', { en: 'optional: type your answer for an automatic check of the points' }, 'Typ uw antwoord over: de computer kijkt of alle punten erin staan'));
         Schrijven.schrijfvak(typ, t, { voorgedrukt: true });
         vak.append(typ);
       }
-      vak.append(el('div', { class: 'vinklijst' }, PUNTEN[t.soort].map((p, i) => {
-        const sleutel = nr + ':' + i;
-        const c = el('input', { type: 'checkbox' });
-        c.checked = !!stand.vinken[sleutel];
-        c.addEventListener('change', () => { stand.vinken[sleutel] = c.checked; bewaar(); tekenUitslag(); });
-        return el('label', {}, c, ' ', p);
-      })));
+      const rijen = el('div', { class: 'beoordeling' });
+      const teken = () => {
+        rijen.textContent = '';
+        model(t).forEach(([k, naam, en, rij]) => {
+          if (k !== 'a' && p.a === 0) return; // antwoord 0: de rest telt niet
+          rijen.append(el('h4', { en }, naam), keuze(rij, p[k] == null ? null : p[k], (x) => { p[k] = x; bewaar(); if (k === 'a') teken(); tekenUitslag(); }));
+        });
+        rijen.append(el('p', { class: 'midden zacht' }, p.a === 0 ? '0 punten' : `${puntenVan(nr)} van ${maxVan(t)} punten`));
+      };
+      teken();
+      vak.append(rijen);
       pagina.append(vak);
     });
     pagina.append(uitslag);

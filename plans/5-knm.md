@@ -57,7 +57,8 @@ Order of themes, easiest Dutch first: Gezondheid → Wonen → Werk → Onderwij
 People who took the real exam say it is harder than the two DUO practice exams: the answers are close in meaning, and since 1 July 2025 the exam asks for facts (which organisation, which rule, which condition) more than for polite behaviour. So:
 
 - The wrong answers of 110 existing questions (themes, Toets A and B) are now real organisations, rules or numbers from the same area.
-- **Toets C and D** (40 questions each): two answers often start with the same true rule and differ only in the second half. They cover the topics of the new curriculum. `tools/controleer_knm.py` checks that at least 15 questions per test have a wrong answer that shares half its words with the right one.
+- **Toets C and D** (40 questions each), rewritten on 25 November 2026 in the format of DUO's 2025 practice exams: about 14 words per question, mostly a named person in a situation, three short answers (about 3 words), no "Wat is waar?", one photo per question, the question and every answer read aloud. They cover the end terms the DUO practice exams leave out (Holocaust, Keti Koti, self-determination, MAP, DigiD, organ donation, voting rights). `tools/controleer_knm.py` checks this format for every test.
+- The pass line follows DUO's KNM practice exam: at least 28 of 40 is a 6,0.
 - **De vraag lezen** (trainer, always open): the small words that flip an answer — niet, hoeft niet, alleen als, uiterlijk, tot, minstens.
 - **Verwarparen** (trainer): 24 pairs that are easy to mix up — WW/bijstand, kinderbijslag/kinderopvangtoeslag, eigen risico/premie.
 - Ready when: 32/40 or better on A, B, C and D and on both DUO practice exams.

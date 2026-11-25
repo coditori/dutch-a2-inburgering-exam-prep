@@ -1,19 +1,26 @@
 #!/usr/bin/env python3
-"""Maakt de mp3's van de vragen van spreken/ (Piper).
+"""Maakt de mp3's van de vragen van spreken/ met stemmen van Google.
 
-    tools/.venv/bin/python tools/tts_spreken.py
+    python3 tools/tts_spreken.py          # laat zien wat er te maken is
+    python3 tools/tts_spreken.py --ja     # maakt het (dit kost tegoed bij Google; sleutel in tools/google-sleutel.txt)
 
-Vragen krijgen om en om een mannenstem en een vrouwenstem (op het examen vraagt een man of een vrouw iets). Uitvoer:
-spreken/audio/*.mp3 + index.json (tekst -> bestand). De voorbeeldantwoorden, nazeg-zinnen, woorden en patronen leest de
-verteller voor: die opnamen maakt tools/tts_stemmen.py, per stem in spreken/audio/<stem>/.
+Elke vraag krijgt een vaste stem: twee mannen en twee vrouwen, gekozen uit de tekst zelf (op het examen vraagt een man of een vrouw
+iets in een video). Uitvoer: spreken/audio/*.mp3 + index.json (tekst -> bestand). Met --opruimen gaan opnamen weg die niet meer
+gebruikt worden.
+De voorbeeldantwoorden, nazeg-zinnen, woorden en patronen leest de verteller voor: die opnamen maakt tools/tts_stemmen.py,
+per stem in spreken/audio/<stem>/.
 """
+import hashlib
 import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from ttslib import ROOT, maak  # noqa: E402
+from ttslib import ROOT, maak_google  # noqa: E402
 
+MANNEN = ["nl-NL-Chirp3-HD-Schedar", "nl-NL-Chirp3-HD-Achird"]
+VROUWEN = ["nl-NL-Chirp3-HD-Despina", "nl-NL-Chirp3-HD-Sulafat"]
+STEMMEN = MANNEN + VROUWEN
 MAP = ROOT / "spreken" / "audio"
 
 
@@ -42,11 +49,50 @@ def verzamel():
     return vragen, rest
 
 
+def sprekers():
+    """vraag -> 'man' of 'vrouw': in onderdeel 1 van een toets zegt een persoon de vraag; de stem past bij de foto van die persoon"""
+    uit = {}
+    for pad in sorted((ROOT / "spreken" / "toets").glob("[A-Z].json")):
+        for it in json.loads(pad.read_text(encoding="utf-8"))["items"]:
+            foto = (it.get("foto") or "").lower()
+            if it.get("deel") == 1 and foto:
+                vrouw = any(w in foto for w in ("woman", "girl", "female", "lady", "mother"))
+                uit[" ".join(x for x in (it.get("sit"), it["vraag"]) if x)] = "vrouw" if vrouw else "man"
+    return uit
+
+
+_SPREKERS = None
+
+
+def stem_van(tekst):
+    """altijd dezelfde stem voor dezelfde vraag; bij een persoon in een video: een man of een vrouw, zoals op de foto"""
+    global _SPREKERS
+    if _SPREKERS is None:
+        _SPREKERS = sprekers()
+    lijst = {"man": MANNEN, "vrouw": VROUWEN}.get(_SPREKERS.get(tekst), STEMMEN)
+    return lijst[int(hashlib.sha1(tekst.encode("utf-8")).hexdigest(), 16) % len(lijst)]
+
+
 def main():
-    vragen, rest = verzamel()
-    n = maak(vragen[0::2], MAP, stem="nl_NL-pim-medium")
-    n += maak(vragen[1::2], MAP, stem="nl_BE-nathalie-medium")
-    print(f"{n} nieuwe mp3's; {len(vragen)} vragen in {MAP}")
+    vragen, _ = verzamel()
+    index_pad = MAP / "index.json"
+    index = json.loads(index_pad.read_text(encoding="utf-8")) if index_pad.exists() else {}
+    naam = lambda t: hashlib.sha1(f"{stem_van(t)}|{t}".encode("utf-8")).hexdigest()[:12] + ".mp3"  # noqa: E731 (zoals ttslib)
+    open_ = [t for t in vragen if index.get(t) != naam(t) or not (MAP / naam(t)).exists()]
+    print(f"te maken: {len(open_)} vragen, {sum(map(len, open_))} tekens")
+    if "--ja" not in sys.argv:
+        sys.exit("Dit kost tegoed bij Google. Draai met --ja om de opnamen te maken.")
+    n = sum(maak_google([t], MAP, stem_van(t)) for t in open_)
+    if "--opruimen" not in sys.argv:
+        print(f"{n} nieuwe mp3's; oude opnamen blijven staan (weg met --opruimen)")
+        return
+    # opruimen: alleen de vragen die er nog zijn, en hun mp3's
+    index = {k: v for k, v in json.loads(index_pad.read_text(encoding="utf-8")).items() if k in set(vragen)}
+    index_pad.write_text(json.dumps(index, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
+    weg = [p for p in MAP.glob("*.mp3") if p.name not in set(index.values())]
+    for p in weg:
+        p.unlink()
+    print(f"{n} nieuwe mp3's; {len(vragen)} vragen in {MAP}; {len(weg)} oude mp3's weg")
 
 
 if __name__ == "__main__":
