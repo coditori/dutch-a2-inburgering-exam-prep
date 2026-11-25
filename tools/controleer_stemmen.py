@@ -57,7 +57,9 @@ for s in lijst["stemmen"]:
 gewoon, langzaam = tts_luisteren.rollen()
 vast = {
     "shared": set(), "knm": set(), "spreken": set(tts_spreken.verzamel()[0]),
-    "luisteren": {f"{tts_luisteren.STEM[s]}|{t}" for s in gewoon for t in gewoon[s]} | {f"{tts_luisteren.STEM[s]}|langzaam|{t}" for s in langzaam for t in langzaam[s]},
+    "luisteren": {f"{tts_luisteren.STEM[s]}|{t}" for s in gewoon for t in gewoon[s]} | {f"{tts_luisteren.STEM[s]}|langzaam|{t}" for s in langzaam for t in langzaam[s]}
+    # een heel fragment van een toets in één mp3 (luisteren/audio/fragment/)
+    | {tts_luisteren.fragment_sleutel(it["regels"]) for _, toets in tts_luisteren.toetsen() for it in toets.get("items", [])},
 }
 for map_, sleutels_ in vast.items():
     pad = ROOT / map_ / "audio"

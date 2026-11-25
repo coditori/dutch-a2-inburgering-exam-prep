@@ -55,10 +55,13 @@ def item_fouten(it, toets=False):
 
 def main():
     totaal = 0
+    # de vragen hebben vaste stemmen (spreken/audio/index.json); de voorbeelden en nazeg-zinnen leest de verteller
+    # (spreken/audio/<stem>/index.json, hier de standaard-stem uit shared/stemmen.json)
     index = {}
-    ipad = ROOT / "audio" / "index.json"
-    if ipad.exists():
-        index = json.loads(ipad.read_text(encoding="utf-8"))
+    standaard = json.loads((ROOT.parent / "shared" / "stemmen.json").read_text(encoding="utf-8"))["standaard"]
+    for ipad in (ROOT / "audio" / "index.json", ROOT / "audio" / standaard / "index.json"):
+        if ipad.exists():
+            index.update(json.loads(ipad.read_text(encoding="utf-8")))
     zonder_geluid = 0
     lessen = sorted((ROOT / "lessons").glob("P*.json"))
     for pad in lessen + sorted(p for p in (ROOT / "toets").glob("*.json") if p.name != "index.json"):
