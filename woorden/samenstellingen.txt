@@ -1,0 +1,117 @@
+# SAMENSTELLINGEN - woorden die uit losse woorden bestaan: ziekenhuis = zieken + huis
+# De site laat de delen zien bij een klik op het woord en in Mijn woorden. tools/bouw.py vindt de meeste zelf
+# (als de delen in woorden.txt staan). Hier staat alleen wat het zelf niet of fout vindt.
+# Formaat:  woord | de delen, met een spatie ertussen   (samen precies het woord)
+#           woord | -                                    (geen samenstelling: niet splitsen)
+# Meervoud en andere vormen gaan vanzelf mee: huisartsen = huis + artsen.
+# Eén keer splitsen is genoeg, in de grootste delen: kinderopvangtoeslag = kinderopvang + toeslag.
+
+# ---------- niet splitsen ----------
+bijzonder | -
+bijdrage | -
+meteen | -
+volwassene | -
+vrijdag | -
+zondag | -
+gelderland | -
+
+# ---------- de delen staan niet (allebei) in woorden.txt ----------
+aardappel | aard appel
+afspraak | af spraak
+allemaal | alle maal
+arbeidscontract | arbeids contract
+arbeidsongeschikt | arbeids ongeschikt
+aansprakelijkheidsverzekering | aansprakelijkheids verzekering
+bankpas | bank pas
+basisschool | basis school
+basisverzekering | basis verzekering
+bedrijfsarts | bedrijfs arts
+belangrijk | belang rijk
+beltegoed | bel tegoed
+beroepsgeheim | beroeps geheim
+bijeenkomst | bijeen komst
+buitenschoolse | buiten schoolse
+burgerservicenummer | burger service nummer
+buurland | buur land
+buurman | buur man
+buurvrouw | buur vrouw
+consultatiebureau | consultatie bureau
+daarmee | daar mee
+eerwraak | eer wraak
+gastarbeider | gast arbeider
+gastouder | gast ouder
+geboortedatum | geboorte datum
+gemeenteraad | gemeente raad
+goedkoop | goed koop
+grondwet | grond wet
+handdoek | hand doek
+handtekening | hand tekening
+hetzelfde | het zelfde
+huisarts | huis arts
+huisartsenpost | huisartsen post
+identificatieplicht | identificatie plicht
+identiteitsbewijs | identiteits bewijs
+identiteitskaart | identiteits kaart
+iedereen | ieder een
+inboedelverzekering | inboedel verzekering
+kerstvakantie | kerst vakantie
+kinderbijslag | kinder bijslag
+kinderdagverblijf | kinder dagverblijf
+klantenservice | klanten service
+koelkast | koel kast
+koninkrijk | konink rijk
+kraamhulp | kraam hulp
+kraamvisite | kraam visite
+kwijtschelding | kwijt schelding
+leerplicht | leer plicht
+leidinggevende | leiding gevende
+loonstrook | loon strook
+mantelzorg | mantel zorg
+meestal | meest al
+meterstand | meter stand
+minimumloon | minimum loon
+naartoe | naar toe
+oliebol | olie bol
+onderdeel | onder deel
+ondernemingsraad | ondernemings raad
+onderzoek | onder zoek
+openingstijden | openings tijden
+opzegtermijn | opzeg termijn
+peuterspeelzaal | peuter speelzaal
+polikliniek | poli kliniek
+postcode | post code
+samenlevingscontract | samenlevings contract
+servicekosten | service kosten
+slachtoffer | slacht offer
+spoedeisende | spoed eisende
+staatshoofd | staats hoofd
+statiegeld | statie geld
+stempas | stem pas
+studiefinanciering | studie financiering
+supermarkt | super markt
+tandarts | tand arts
+thuiszorg | thuis zorg
+toeslag | toe slag
+troonrede | troon rede
+tweedehands | tweede hands
+uitgang | uit gang
+uitslag | uit slag
+uitzendbureau | uitzend bureau
+vakbond | vak bond
+verblijfsvergunning | verblijfs vergunning
+verjaardag | verjaar dag
+verwijsbrief | verwijs brief
+verzorgingshuis | verzorgings huis
+voedselbank | voedsel bank
+voetbal | voet bal
+volkslied | volks lied
+voorbeeld | voor beeld
+vuurwerk | vuur werk
+waarmee | waar mee
+wachtlijst | wacht lijst
+wasmachine | was machine
+website | web site
+weekend | week end
+woningcorporatie | woning corporatie
+woonhuisverzekering | woonhuis verzekering
+zwembad | zwem bad

@@ -201,7 +201,7 @@
       uit.textContent = '';
       uit.append(
         el('p', { class: 'uitslag ' + (ok ? 'goed' : 'fout') }, ok ? '✔ Goed!' : '✘ Het goede woord: ' + woord),
-        el('p', {}, voor, el('span', { class: 'gatwoord' }, woord), na, ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(voor + woord + na) }, App.teken('luid'))),
+        el('p', {}, App.woorden(voor), el('span', { class: 'gatwoord' }, App.woorden(woord)), App.woorden(na), ' ', el('button', { class: 'rond', title: 'luister', onclick: () => Spraak.zeg(voor + woord + na) }, App.teken('luid'))),
         el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { class: 'knop', en: 'next', onclick: () => klaar(ok) }, 'Verder')));
       uit.querySelector('.knop').focus();
       if (ok) App.goed(uit.querySelector('.knop'));
