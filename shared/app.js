@@ -279,6 +279,7 @@ window.App = (() => {
     kruis: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     // het oefenexamen: de klok en de vlag (een vraag markeren om later terug te komen)
     klok: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/>',
+    zacht: '<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/>',
     vlag: '<path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/>',
   };
   function teken(naam) { // vaste tekst uit TEKENS, geen invoer van buiten
@@ -874,18 +875,20 @@ window.App = (() => {
     return schud(nrs);
   }
 
-  // De klok van een oefenexamen. Zoals bij DUO: een melding als er nog 15 minuten en nog 1 minuut over zijn.
-  // verborgen = de tijd staat achter de knop met de klok (DUO Luisteren en KNM); een klik laat de tijd zien of verbergt hem.
-  // o = { kop, minuten, start (ms), verborgen, op0() }. Geeft { stop() }.
+  // De klok van een oefenexamen, zoals bij DUO: alleen een wekker. Met de muis erop ziet u de tijd in hele minuten ("44 min");
+  // een klik (ook op een telefoon) laat de tijd blijven staan, nog een klik verbergt hem. Een melding bij nog 15 en nog 1 minuut.
+  // verborgen: false = de tijd staat er meteen (Schrijven: het werk is op papier). o = { kop, minuten, start (ms), verborgen, op0() }.
   function examenKlok(o) {
-    let zien = !o.verborgen, vorige = null;
+    let vast = !o.verborgen, zweef = false, vorige = null;
     const tijd = el('span', { class: 'klok-tijd' });
-    const knop = el('button', { type: 'button', class: 'klok', title: 'tijd', 'aria-label': 'laat de tijd zien of verberg de tijd', en: 'time left: click to show or hide' }, teken('klok'), tijd);
-    knop.addEventListener('click', () => { zien = !zien; toon(); });
+    const knop = el('button', { type: 'button', class: 'klok', title: 'Klik voor continue tijdsweergave', 'aria-label': 'de tijd: klik om hem te laten staan of te verbergen', en: 'time left: hover, or click to keep it' }, teken('klok'), tijd);
+    knop.addEventListener('click', () => { vast = !vast; toon(); });
+    knop.addEventListener('mouseenter', () => { zweef = true; toon(); });
+    knop.addEventListener('mouseleave', () => { zweef = false; toon(); });
     const rest = () => Math.max(0, o.minuten * 60 - Math.floor((Date.now() - o.start) / 1000));
     function toon() {
       const s = rest();
-      tijd.textContent = zien ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : '';
+      tijd.textContent = vast || zweef ? `${Math.ceil(s / 60)} min` : '';
       knop.classList.toggle('bijna', s <= 60);
       if (vorige != null) for (const m of [15, 1]) {
         if (vorige > m * 60 && s <= m * 60) toast(m === 1 ? 'Let op: nog 1 minuut.' : 'Let op: nog 15 minuten.', m === 1 ? 'one minute left' : '15 minutes left', null, 6000);
@@ -897,6 +900,37 @@ window.App = (() => {
     const tik = setInterval(toon, 1000);
     toon();
     return { stop() { clearInterval(tik); knop.remove(); } };
+  }
+
+  // Het volume van een oefenexamen, zoals bij DUO: een zachte en een harde luidspreker met 7 blokjes ertussen.
+  // Geldt voor elk geluid van de site (ook new Audio()): play() zet eerst het gekozen volume. Bewaard in deze browser.
+  const VOLUME_STAPPEN = 7;
+  let volumeStap = Math.max(0, Math.min(VOLUME_STAPPEN, Number(ruw('volume', VOLUME_STAPPEN))));
+  const spelers = new Set();
+  if (window.HTMLMediaElement) {
+    const speelOrigineel = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function (...a) {
+      try { this.volume = volumeStap / VOLUME_STAPPEN; } catch (e) { /* geen volume */ }
+      spelers.add(this);
+      return speelOrigineel.apply(this, a);
+    };
+  }
+  function volumeKnop(kop) {
+    const blokjes = el('span', { class: 'vol-blokjes', 'aria-hidden': 'true' }, Array.from({ length: VOLUME_STAPPEN }, () => el('i')));
+    const zet = (n) => {
+      volumeStap = Math.max(0, Math.min(VOLUME_STAPPEN, n));
+      try { localStorage.setItem('dutch-exam:volume', JSON.stringify(volumeStap)); } catch (e) { /* geen opslag */ }
+      [...blokjes.children].forEach((b, i) => b.classList.toggle('aan', i < volumeStap));
+      for (const m of spelers) { if (m.paused) spelers.delete(m); else m.volume = volumeStap / VOLUME_STAPPEN; }
+      vak.setAttribute('aria-label', `volume ${volumeStap} van ${VOLUME_STAPPEN}`);
+    };
+    const vak = el('span', { class: 'volume', role: 'group' },
+      el('button', { type: 'button', class: 'vol-knop', title: 'zachter', 'aria-label': 'zachter', onclick: () => zet(volumeStap - 1) }, teken('zacht')),
+      blokjes,
+      el('button', { type: 'button', class: 'vol-knop', title: 'harder', 'aria-label': 'harder', onclick: () => zet(volumeStap + 1) }, teken('luid')));
+    zet(volumeStap);
+    kop.insertBefore(vak, kop.lastChild);
+    return vak;
   }
   // Een vraag markeren, om er later naar terug te gaan (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
   function vlagKnop(vlaggen, nr, bewaar) {
@@ -950,5 +984,5 @@ window.App = (() => {
   }
 
   return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
-    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, vlagKnop, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
+    cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

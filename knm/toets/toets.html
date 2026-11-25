@@ -28,6 +28,7 @@
   let toets;
   try { toets = await Lezen.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
   const kop = App.kop(`KNM: ${toets.titel}`, '../index.html');
+  App.volumeKnop(kop); // het volume rechtsboven, zoals bij DUO
   Spraak.map('../audio/'); // de opnamen van de vragen staan in knm/audio/
   // de klok staat achter een knop, zoals bij DUO: klik op de klok om de tijd te zien
   let klok = null;

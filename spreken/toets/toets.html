@@ -48,6 +48,7 @@
   let toets;
   try { toets = await Spreken.json(`${id}.json`); } catch (e) { pagina.textContent = 'Deze toets bestaat niet: ' + id; return; }
   const kop = App.kop(`Spreken: ${toets.titel}`, '../index.html');
+  App.volumeKnop(kop); // het volume rechtsboven, zoals bij DUO
   const vragen = toets.items;
   const opnames = {}; // nr -> { url, tekst, sec } (alleen in het geheugen)
   const TOTAAL = vragen.length * 12;
@@ -179,8 +180,8 @@
       el('h2', { style: 'margin-top:0' }, 'Overzicht'),
       el('p', {}, open ? `U hebt op ${open} ${open === 1 ? 'vraag' : 'vragen'} nog geen antwoord gegeven.` : 'U hebt op alle vragen antwoord gegeven.'),
       Object.keys(stand.vlag).length ? el('p', { class: 'zacht klein', en: 'a dot = a question you marked' }, 'Een stip: een vraag die u markeerde.') : null,
-      el('div', { class: 'raster' }, [1, 2, 3, 4].flatMap((d) => [el('p', { class: 'raster-kop' }, ONDERDEEL[d][0]),
-        ...vragen.map((it, i) => (it.deel !== d ? null : el('button', { class: (stand.gedaan[i] ? 'af' : '') + (stand.vlag[i] ? ' vlag' : ''), onclick: () => ga(i) }, String(i + 1))))])),
+      el('div', { class: 'raster-groepen' }, [1, 2, 3, 4].map((d) => el('div', { class: 'raster-groep' }, el('p', { class: 'raster-kop' }, `Onderdeel ${d}`),
+        el('div', { class: 'raster' }, vragen.map((it, i) => (it.deel !== d ? null : el('button', { class: (stand.gedaan[i] ? 'af' : '') + (stand.vlag[i] ? ' vlag' : ''), onclick: () => ga(i) }, String(i + 1)))))))),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', onclick: teken }, 'Terug naar de vraag'), el('button', { class: 'knop', en: 'hand in and check your answers', onclick: inleveren }, 'Inleveren')))));
   }
 
