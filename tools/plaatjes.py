@@ -95,10 +95,13 @@ def maak(naam, soort, beschrijving):
         return base64.b64decode(d["predictions"][0]["bytesBase64Encoded"])
     d = vraag(f"/{naam}:generateContent", {"contents": [{"parts": [{"text": prompt}]}],
                                            "generationConfig": {"responseModalities": ["IMAGE"], "imageConfig": {"aspectRatio": "4:3"}}})
-    for deel in d["candidates"][0]["content"]["parts"]:
+    # Soms geeft het model geen beeld (bijvoorbeeld een veiligheidsfilter): dan None, en deze foto wordt overgeslagen
+    for deel in ((d.get("candidates") or [{}])[0].get("content") or {}).get("parts", []):
         if "inlineData" in deel:
             return base64.b64decode(deel["inlineData"]["data"])
-    sys.exit(f"Geen beeld gekregen bij: {beschrijving}")
+    reden = (d.get("candidates") or [{}])[0].get("finishReason") or (d.get("promptFeedback") or {}).get("blockReason") or "onbekend"
+    print(f"  geen beeld ({reden}): {beschrijving[:80]}", flush=True)
+    return None
 
 
 def beschrijvingen():
@@ -130,8 +133,11 @@ def main():
     print(f"model: {naam}")
     for n, b in enumerate(open_[:proef] if proef else open_, 1):
         code = hashlib.sha1(b.encode("utf-8")).hexdigest()[:12] + ".jpg"
+        png = maak(naam, soort, b)
+        if png is None:
+            continue  # overgeslagen; bij de volgende keer opnieuw geprobeerd
         with tempfile.NamedTemporaryFile(suffix=".png") as tmp:
-            Path(tmp.name).write_bytes(maak(naam, soort, b))
+            Path(tmp.name).write_bytes(png)
             subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", tmp.name, "-vf", "scale=640:-2", "-q:v", "5", str(UIT / code)], check=True)
         index[b] = code
         index_pad.write_text(json.dumps(index, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
