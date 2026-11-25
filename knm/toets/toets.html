@@ -114,6 +114,9 @@
     stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000));
     stand.score = vragen.filter((_, i) => stand.antwoorden[i] === 0).length;
     (KNM.P.toets[id] = KNM.P.toets[id] || []).push({ score: stand.score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
+    // de gemarkeerde vragen gaan vanzelf naar Mijn vragen: daar vindt de leerling ze later terug
+    stand.gemarkeerd = Object.keys(stand.vlag || {}).map(Number).filter((i) => vragen[i]);
+    if (stand.gemarkeerd.length) App.MijnVragen.zetVeel('knm', id, stand.gemarkeerd.map((i) => [i, vragen[i].v]));
     KNM.bewaar(); bewaar(); uitslag(); App.vier(App.cijferDeel('knm', stand.score, vragen.length));
   }
   function uitslag(kijk) {
@@ -124,7 +127,7 @@
       ...App.cijferBlok(stand.score, vragen.length, null, { map: 'knm', beantwoord: vragen.filter((_, i) => stand.antwoorden[i] != null).length,
         eerder: (KNM.P.toets[id] || []).slice(0, -1).map((r) => App.cijferDeel('knm', r.score, r.totaal || vragen.length)) }),
       perThema(),
-      App.bewaarVragenRij('knm', id, vragen.map((v, i) => [i, v.v]).filter(([i]) => stand.antwoorden[i] !== 0), vragen.map((v, i) => [i, v.v]).filter(([i]) => (stand.vlag || {})[i])),
+      App.bewaarVragenRij('knm', id, vragen.map((v, i) => [i, v.v]).filter(([i]) => stand.antwoorden[i] !== 0), (stand.gemarkeerd || []).length),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en waarom.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('knm-toets-bezig', null); welkom(); } }, 'Nog een keer'), el('a', { class: 'knop', href: '../index.html' }, 'Naar de thema\'s')))));

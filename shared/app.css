@@ -1013,3 +1013,5 @@ body.en .wkaart .rond[title=vertaling] { display: none; }
 .mv-leeg { text-align: center; }
 .mv-leeg-teken .icoon { width: 48px; height: 48px; margin: 0 auto; color: var(--zacht); }
 .mv-leeg .knoppen { justify-content: center; }
+.bewaar-gemarkeerd { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; font-weight: 600; color: var(--nieuw); }
+.bewaar-gemarkeerd .icoon { width: 20px; height: 20px; fill: currentColor; }

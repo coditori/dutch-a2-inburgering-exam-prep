@@ -109,6 +109,9 @@
     stand.sec = Math.min(MINUTEN * 60, Math.floor((Date.now() - stand.start) / 1000));
     stand.score = vragen.filter((_, i) => stand.antwoorden[i] === 0).length;
     (Luister.P.toets[id] = Luister.P.toets[id] || []).push({ score: stand.score, totaal: vragen.length, datum: new Date().toISOString().slice(0, 10), sec: stand.sec });
+    // de gemarkeerde vragen gaan vanzelf naar Mijn vragen: daar vindt de leerling ze later terug
+    stand.gemarkeerd = Object.keys(stand.vlag || {}).map(Number).filter((i) => vragen[i]);
+    if (stand.gemarkeerd.length) App.MijnVragen.zetVeel('luisteren', id, stand.gemarkeerd.map((i) => [i, vragen[i].v.v]));
     Luister.bewaar(); bewaar(); uitslag(); App.vier(App.cijferDeel('luisteren', stand.score, vragen.length));
   }
   function uitslag(kijk) {
@@ -119,7 +122,7 @@
       ...App.cijferBlok(stand.score, vragen.length, null, { map: 'luisteren', beantwoord: vragen.filter((_, i) => stand.antwoorden[i] != null).length,
         eerder: (Luister.P.toets[id] || []).slice(0, -1).map((r) => App.cijferDeel('luisteren', r.score, r.totaal || vragen.length)) }),
       perSoort(),
-      App.bewaarVragenRij('luisteren', id, vragen.map((q, i) => [i, q.v.v]).filter(([i]) => stand.antwoorden[i] !== 0), vragen.map((q, i) => [i, q.v.v]).filter(([i]) => (stand.vlag || {})[i])),
+      App.bewaarVragenRij('luisteren', id, vragen.map((q, i) => [i, q.v.v]).filter(([i]) => stand.antwoorden[i] !== 0), (stand.gemarkeerd || []).length),
       el('p', { class: 'midden zacht klein' }, `Tijd: ${Math.floor(stand.sec / 60)} minuten. Klik op een nummer: u ziet de vraag, het goede antwoord en de tekst van het gesprek.`),
       el('div', { class: 'raster' }, vragen.map((_, i) => el('button', { class: (stand.antwoorden[i] === 0 ? 'goed' : 'fout') + (kijk === i ? ' nu' : ''), onclick: () => uitslag(i) }, String(i + 1)))),
       el('div', { class: 'knoppen' }, el('button', { class: 'knop licht', en: 'again', onclick: () => { stand = null; App.schrijf('luisteren-toets-bezig', null); welkom(); } }, 'Nog een keer'),

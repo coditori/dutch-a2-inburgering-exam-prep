@@ -1288,6 +1288,7 @@ window.FA = {
 "the official DUO practice exams (PDF): do these last": "آزمون‌های تمرینی رسمی DUO (PDF): این‌ها را آخر از همه انجام دهید",
 "the parts of this word": "بخش‌های این کلمه",
 "The questions you got wrong stay on your list.": "سؤال‌هایی که غلط جواب دادید در فهرست‌تان می‌مانند.",
+"The questions you marked are now in My questions.": "سؤال‌هایی که علامت زدید حالا در «سؤال‌های من» هستند.",
 "The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. As in the exam: one task per page, no lines, and the greeting and closing of an e-mail are already on the paper.": "آزمون واقعی با قلم و کاغذ است. تکلیف‌ها را چاپ کنید، یا اینجا بخوانید و روی کاغذ خودتان بنویسید. مثل آزمون: هر تکلیف روی یک صفحه، بدون خط، و سلام و پایان ایمیل از قبل روی کاغذ نوشته شده است.",
 "The real exam is with pen and paper. Print the tasks, or read them here and write on your own paper. The aanhef and afsluiting are already on the paper, as in the real exam.": "آزمون واقعی با قلم و کاغذ است. تکلیف‌ها را چاپ کنید، یا اینجا بخوانید و روی کاغذ خودتان بنویسید. aanhef و afsluiting مثل آزمون واقعی از قبل روی کاغذ هستند.",
 "The recording is gone (page reloaded) or you answered without microphone.": "صدای ضبط‌شده از بین رفته است (صفحه دوباره بارگذاری شده) یا بدون میکروفون جواب داده‌اید.",

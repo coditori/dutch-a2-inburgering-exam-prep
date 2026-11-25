@@ -943,7 +943,7 @@ window.App = (() => {
   }
   // Een vraag markeren, om er later naar terug te gaan (DUO: een bladwijzer). vlaggen = { nummer: true } in de stand van de toets.
   function vlagKnop(vlaggen, nr, bewaar) {
-    const k = el('button', { type: 'button', class: 'voet-icoon vlag-knop', title: 'Markeer deze vraag', 'aria-label': 'markeer deze vraag', 'aria-pressed': String(!!vlaggen[nr]) }, teken('bewaar'));
+    const k = el('button', { type: 'button', class: 'voet-icoon vlag-knop', title: 'Markeer deze vraag: u ziet hem in het overzicht, en na het inleveren in Mijn vragen', 'aria-label': 'markeer deze vraag', 'aria-pressed': String(!!vlaggen[nr]) }, teken('bewaar'));
     k.addEventListener('click', () => {
       if (vlaggen[nr]) delete vlaggen[nr]; else vlaggen[nr] = true;
       k.setAttribute('aria-pressed', String(!!vlaggen[nr]));
@@ -992,19 +992,20 @@ window.App = (() => {
     zet();
     return k;
   }
-  // op de uitslag: in één klik de foute vragen, of de gemarkeerde vragen bewaren. fout / gemarkeerd = [[nr, vraagtekst], ...]
+  // op de uitslag: de foute vragen in één klik bewaren. De gemarkeerde vragen staan al in Mijn vragen (bij het inleveren, gemarkeerd = aantal).
+  // fout = [[nr, vraagtekst], ...]
   function bewaarVragenRij(map, toets, fout, gemarkeerd) {
-    if (!fout.length && !gemarkeerd.length) return null;
-    const knop = (lijst, tekst, en) => (lijst.length ? el('button', { type: 'button', class: 'knop licht', en, onclick: (e) => {
-      const n = MijnVragen.zetVeel(map, toets, lijst);
-      e.currentTarget.disabled = true;
-      toast(n ? `${n} ${n === 1 ? 'vraag' : 'vragen'} bewaard in Mijn vragen` : 'Deze vragen stonden al in Mijn vragen', 'saved in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
-    } }, teken('bewaar'), `${tekst} (${lijst.length})`) : null);
+    if (!fout.length && !gemarkeerd) return null;
+    const bekijk = el('a', { href: WORTEL + 'mijn-vragen.html', en: 'view' }, 'Bekijk');
     return el('div', { class: 'bewaar-rij' },
-      el('p', { class: 'zacht klein', en: 'Save questions to practise them again later, together with questions from the other exams.' }, 'Bewaar vragen om ze later nog een keer te oefenen, samen met vragen uit de andere examens.'),
-      el('div', { class: 'knoppen', style: 'justify-content:center' },
-        knop(fout, 'Bewaar de foute vragen', 'save the questions you got wrong'),
-        knop(gemarkeerd, 'Bewaar de gemarkeerde vragen', 'save the questions you marked')));
+      gemarkeerd ? el('p', { class: 'bewaar-gemarkeerd', en: 'The questions you marked are now in My questions.' }, teken('bewaar'),
+        `Uw ${gemarkeerd === 1 ? 'gemarkeerde vraag staat' : `${gemarkeerd} gemarkeerde vragen staan`} nu in Mijn vragen. `, bekijk) : null,
+      fout.length ? el('p', { class: 'zacht klein', en: 'Save questions to practise them again later, together with questions from the other exams.' }, 'Bewaar vragen om ze later nog een keer te oefenen, samen met vragen uit de andere examens.') : null,
+      fout.length ? el('div', { class: 'knoppen', style: 'justify-content:center' }, el('button', { type: 'button', class: 'knop licht', en: 'save the questions you got wrong', onclick: (e) => {
+        const n = MijnVragen.zetVeel(map, toets, fout);
+        e.currentTarget.disabled = true;
+        toast(n ? `${n} ${n === 1 ? 'vraag' : 'vragen'} bewaard in Mijn vragen` : 'Deze vragen stonden al in Mijn vragen', 'saved in My questions', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-vragen.html' });
+      } }, teken('bewaar'), `Bewaar de foute vragen (${fout.length})`)) : null);
   }
   // ---------- de speler van een oefenexamen, zoals bij DUO ----------
   // Speelt opnamen na elkaar (bij Luisteren: inleiding, opdracht, fragment, vraag, antwoorden; bij KNM: de vraag en elk antwoord;
