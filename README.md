@@ -23,7 +23,7 @@ It covers all five exams: **Lezen, Luisteren, Schrijven, Spreken and KNM**.
 - Word review with spaced repetition. Progress is saved in your browser, there is no account.
 - After a practice exam, save the questions you got wrong or marked (or one by one) in My questions (`mijn-vragen.html`): one list for all exams, to practise them again, together or per exam.
 - Click any word for its card: listen, translation, save to your own list (My words). A compound word also shows its parts: ziekenhuis = zieken + huis.
-- The card shows the meaning that fits the sentence: "bel" in "Ik bel je morgen op" is opbellen, "Hoe laat is het?" is the whole phrase. Other meanings are one click away under "Ook". A word you save keeps the sentence you saved it from, and My words shows that sentence.
+- The card shows the meaning that fits the sentence: "bel" in "Ik bel je morgen op" is opbellen, "Hoe laat is het?" is the whole phrase. Other meanings are one click away under "Ook". A word you save keeps the sentence you saved it from, and My words shows that sentence. A long My words list shows 25 words at a time (More words adds the next 25); search and the filters always look through all of them.
 - With the help language on (EN or FA in the header), the card shows the translation of the word at once; with help off it waits for a click on the translation button.
 - Dutch audio for every word, sentence and listening text (already included as mp3).
 - Level and vocabulary are calibrated on the official DUO practice exams.
