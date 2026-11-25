@@ -263,11 +263,11 @@
   {
    "thema": "staat",
    "sit": "Nederland is lid van de Europese Unie.",
-   "v": "Wat betekent dat voor geld?",
+   "v": "Met welk geld betaalt u in de meeste landen van de Europese Unie?",
    "o": [
-    "U betaalt in veel landen met de euro.",
-    "U moet in elk land ander geld kopen.",
-    "U mag geen geld meenemen."
+    "Met de euro.",
+    "Met de dollar.",
+    "Met de gulden."
    ],
    "w": "In de meeste landen van de Europese Unie betaalt u met de euro.",
    "beeld": "🇪🇺",
@@ -547,12 +547,12 @@
   },
   {
    "thema": "omgang",
-   "sit": "Kiki zit in de trein op een plek waar 'stilte' staat.",
-   "v": "Wat betekent dat?",
+   "sit": "Kiki zit in de trein in een stiltecoupé.",
+   "v": "Wat mag zij daar niet doen?",
    "o": [
-    "Zij mag daar niet bellen of hard praten.",
-    "Zij moet daar extra betalen.",
-    "Zij mag daar niet zitten zonder kind."
+    "Bellen.",
+    "Een boek lezen.",
+    "Slapen."
    ],
    "w": "In een stiltecoupé is het rustig: niet bellen en niet praten.",
    "beeld": "🤫",

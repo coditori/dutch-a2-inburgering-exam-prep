@@ -53,7 +53,8 @@ def vraag(pad, lijf=None):
             if e.code == 429 and "free_tier" in tekst and "limit: 0" in tekst:
                 sys.exit("Het project van deze sleutel staat op de gratis laag van Google: daar mag geen enkel beeld (limiet 0). "
                          "Zet facturering (billing) aan voor dit project in AI Studio, of koppel uw tegoed van Google AI Pro, en probeer opnieuw.")
-            if e.code in (429, 500, 502, 503) and poging < 7:
+            # 402 = het tegoed is (even) op: bij Google soms een korte storing van de facturering, dus ook wachten en opnieuw
+            if e.code in (402, 429, 500, 502, 503) and poging < 7:
                 time.sleep(30 * (poging + 1))
                 continue
             sys.exit(f"Google weigert ({e.code}): {tekst}")

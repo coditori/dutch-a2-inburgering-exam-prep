@@ -1,4 +1,4 @@
-# KNM – bronnen van de feiten
+# KNM: bronnen van de feiten
 
 Gecontroleerd op 24 november 2026. Feiten met een getal of een naam kunnen veranderen: kijk elk jaar opnieuw.
 
@@ -6,38 +6,38 @@ Gecontroleerd op 24 november 2026. Feiten met een getal of een naam kunnen veran
 
 | Feit in de lessen | Bron |
 |---|---|
-| Eigen risico: het eerste deel van de zorgkosten betaalt u zelf (2026: € 385, het bedrag staat niet in de lessen). Kinderen tot 18 jaar: geen eigen risico. Vrijwillig hoger eigen risico geeft lagere premie. | rijksoverheid.nl – eigen risico zorgverzekering |
-| Zorgverzekering nemen binnen 4 maanden na aankomst in Nederland. | rijksoverheid.nl – zorgverzekering als ik in Nederland ga werken; ind.nl – wonen in Nederland |
-| Overstappen: oude verzekering opzeggen vóór 1 januari, nieuwe kiezen uiterlijk 31 januari. | rijksoverheid.nl – overstappen zorgverzekeraar; juridischloket.nl |
-| Tandarts: kinderen tot 18 jaar in de basisverzekering; volwassenen niet. | rijksoverheid.nl – krijg ik tandartskosten vergoed |
-| Prikken voor kinderen zijn gratis; tot ongeveer 4 jaar bij het consultatiebureau. | rijksoverheid.nl – zijn vaccinaties gratis |
-| Leerplicht vanaf 5 jaar tot het einde van het schooljaar waarin een kind 16 wordt; daarna tot 18 jaar zonder startkwalificatie. | rijksoverheid.nl – leerplicht en kwalificatieplicht |
-| Groep 8: schooladvies en doorstroomtoets (niet meer "Cito-toets"). | rijksoverheid.nl – verplichte doorstroomtoets |
-| Studiefinanciering: basisbeurs (sinds 2023-2024 terug), aanvullende beurs, reisproduct, lening. | rijksoverheid.nl – studiefinanciering hbo en universiteit |
-| Kinderopvangtoeslag alleen als de ouders werken, een opleiding of een inburgeringscursus volgen. | belastingdienst.nl – kan ik kinderopvangtoeslag krijgen |
-| Gezag van de ouders tot 18 jaar. Schade: kind jonger dan 14 jaar → de ouders; 14 en 15 jaar → soms ook de ouders; vanaf 16 jaar → het kind zelf. | rijksoverheid.nl – rechten en plichten ouderlijk gezag; schulden van kinderen |
-| Verhuizing doorgeven: uiterlijk 5 dagen na de verhuizing. | rijksoverheid.nl – verhuizing doorgeven aan de gemeente |
-| Geboorte melden bij de gemeente binnen 3 dagen. | rijksoverheid.nl – aangifte geboorte |
-| Identificatieplicht vanaf 14 jaar; in het openbaar vervoer vanaf 12 jaar bij reizen zonder geldig kaartje. | rijksoverheid.nl – geldt de identificatieplicht ook voor minderjarigen |
-| Paspoort en identiteitskaart: 10 jaar geldig voor volwassenen, 5 jaar tot 18 jaar. | rijksoverheid.nl – duur geldigheid paspoort |
-| Verblijfsvergunning voor onbepaalde tijd na 5 jaar, aanvragen bij de IND. | ind.nl – verblijfsvergunning onbepaalde tijd |
-| Naturalisatie: meestal 5 jaar wonen in Nederland; inburgering. | ind.nl – naturalisatie |
-| Bezwaar bij de Belastingdienst binnen 6 weken. | belastingdienst.nl – hoe maak ik bezwaar |
-| Aangifte inkomstenbelasting tussen 1 maart en 1 mei. | ondernemersplein.overheid.nl / Belastingdienst – aangifte inkomstenbelasting |
-| Btw: algemeen tarief 21%. | belastingdienst.nl – btw |
-| Hypotheekrente mag worden afgetrokken bij een eigen woning. | belastingdienst.nl – eigen woning |
-| Zorgtoeslag, huurtoeslag, kinderopvangtoeslag: Dienst Toeslagen (Belastingdienst). | belastingdienst.nl – toeslagen 2026 |
-| AOW-leeftijd in 2026: 67 jaar. De SVB betaalt AOW en kinderbijslag. | rijksoverheid.nl – AOW; wat verandert er op 1 januari 2026 |
-| WW: aanvragen uiterlijk 1 week na de eerste werkloosheidsdag; minstens 26 van de laatste 36 weken gewerkt. | uwv.nl – WW aanvragen; rijksoverheid.nl – WW-uitkering aanvragen |
-| Proeftijd: beide kanten mogen meteen stoppen. | rijksoverheid.nl – regels bij proeftijd |
-| Ondernemingsraad verplicht bij 50 of meer werknemers. | rijksoverheid.nl – wanneer is een ondernemingsraad verplicht |
-| Politie zonder spoed 0900 - 8844; Meld Misdaad Anoniem 0800 - 7000; Veilig Thuis 0800 - 2000; storingsnummer gas en stroom 0800 - 9009. | rijksoverheid.nl – wanneer 112 bellen; politie.nl – contact |
-| Tweede Kamer 150 leden, direct gekozen, in principe elke 4 jaar; Eerste Kamer 75 leden, gekozen door de Provinciale Staten. | rijksoverheid.nl – zetelverdeling parlement; eerstekamer.nl |
-| Prinsjesdag: derde dinsdag van september, de koning leest de troonrede. | rijksoverheid.nl – wat is Prinsjesdag; tweedekamer.nl |
-| Minister-president: Rob Jetten (kabinet beëdigd op 23 februari 2026). **Verandert na verkiezingen.** | rijksoverheid.nl – kabinet-Jetten |
-| Huwelijk voor twee mannen of twee vrouwen sinds 1 april 2001; geregistreerd partnerschap bijna gelijk aan huwelijk. | rijksoverheid.nl – verschil trouwen en geregistreerd partnerschap |
-| Vuurwerk: landelijk verbod voor consumenten vanaf de jaarwisseling 2026-2027. | rijksoverheid.nl – landelijk vuurwerkverbod |
-| Koninkrijk: 4 landen (Nederland, Aruba, Curaçao, Sint Maarten); Bonaire, Sint Eustatius en Saba zijn bijzondere gemeenten. | rijksoverheid.nl – waaruit bestaat het Koninkrijk |
+| Eigen risico: het eerste deel van de zorgkosten betaalt u zelf (2026: € 385, het bedrag staat niet in de lessen). Kinderen tot 18 jaar: geen eigen risico. Vrijwillig hoger eigen risico geeft lagere premie. | rijksoverheid.nl: eigen risico zorgverzekering |
+| Zorgverzekering nemen binnen 4 maanden na aankomst in Nederland. | rijksoverheid.nl: zorgverzekering als ik in Nederland ga werken; ind.nl: wonen in Nederland |
+| Overstappen: oude verzekering opzeggen vóór 1 januari, nieuwe kiezen uiterlijk 31 januari. | rijksoverheid.nl: overstappen zorgverzekeraar; juridischloket.nl |
+| Tandarts: kinderen tot 18 jaar in de basisverzekering; volwassenen niet. | rijksoverheid.nl: krijg ik tandartskosten vergoed |
+| Prikken voor kinderen zijn gratis; tot ongeveer 4 jaar bij het consultatiebureau. | rijksoverheid.nl: zijn vaccinaties gratis |
+| Leerplicht vanaf 5 jaar tot het einde van het schooljaar waarin een kind 16 wordt; daarna tot 18 jaar zonder startkwalificatie. | rijksoverheid.nl: leerplicht en kwalificatieplicht |
+| Groep 8: schooladvies en doorstroomtoets (niet meer "Cito-toets"). | rijksoverheid.nl: verplichte doorstroomtoets |
+| Studiefinanciering: basisbeurs (sinds 2023-2024 terug), aanvullende beurs, reisproduct, lening. | rijksoverheid.nl: studiefinanciering hbo en universiteit |
+| Kinderopvangtoeslag alleen als de ouders werken, een opleiding of een inburgeringscursus volgen. | belastingdienst.nl: kan ik kinderopvangtoeslag krijgen |
+| Gezag van de ouders tot 18 jaar. Schade: kind jonger dan 14 jaar → de ouders; 14 en 15 jaar → soms ook de ouders; vanaf 16 jaar → het kind zelf. | rijksoverheid.nl: rechten en plichten ouderlijk gezag; schulden van kinderen |
+| Verhuizing doorgeven: uiterlijk 5 dagen na de verhuizing. | rijksoverheid.nl: verhuizing doorgeven aan de gemeente |
+| Geboorte melden bij de gemeente binnen 3 dagen. | rijksoverheid.nl: aangifte geboorte |
+| Identificatieplicht vanaf 14 jaar; in het openbaar vervoer vanaf 12 jaar bij reizen zonder geldig kaartje. | rijksoverheid.nl: geldt de identificatieplicht ook voor minderjarigen |
+| Paspoort en identiteitskaart: 10 jaar geldig voor volwassenen, 5 jaar tot 18 jaar. | rijksoverheid.nl: duur geldigheid paspoort |
+| Verblijfsvergunning voor onbepaalde tijd na 5 jaar, aanvragen bij de IND. | ind.nl: verblijfsvergunning onbepaalde tijd |
+| Naturalisatie: meestal 5 jaar wonen in Nederland; inburgering. | ind.nl: naturalisatie |
+| Bezwaar bij de Belastingdienst binnen 6 weken. | belastingdienst.nl: hoe maak ik bezwaar |
+| Aangifte inkomstenbelasting tussen 1 maart en 1 mei. | ondernemersplein.overheid.nl / Belastingdienst: aangifte inkomstenbelasting |
+| Btw: algemeen tarief 21%. | belastingdienst.nl: btw |
+| Hypotheekrente mag worden afgetrokken bij een eigen woning. | belastingdienst.nl: eigen woning |
+| Zorgtoeslag, huurtoeslag, kinderopvangtoeslag: Dienst Toeslagen (Belastingdienst). | belastingdienst.nl: toeslagen 2026 |
+| AOW-leeftijd in 2026: 67 jaar. De SVB betaalt AOW en kinderbijslag. | rijksoverheid.nl: AOW; wat verandert er op 1 januari 2026 |
+| WW: aanvragen uiterlijk 1 week na de eerste werkloosheidsdag; minstens 26 van de laatste 36 weken gewerkt. | uwv.nl: WW aanvragen; rijksoverheid.nl: WW-uitkering aanvragen |
+| Proeftijd: beide kanten mogen meteen stoppen. | rijksoverheid.nl: regels bij proeftijd |
+| Ondernemingsraad verplicht bij 50 of meer werknemers. | rijksoverheid.nl: wanneer is een ondernemingsraad verplicht |
+| Politie zonder spoed 0900 - 8844; Meld Misdaad Anoniem 0800 - 7000; Veilig Thuis 0800 - 2000; storingsnummer gas en stroom 0800 - 9009. | rijksoverheid.nl: wanneer 112 bellen; politie.nl: contact |
+| Tweede Kamer 150 leden, direct gekozen, in principe elke 4 jaar; Eerste Kamer 75 leden, gekozen door de Provinciale Staten. | rijksoverheid.nl: zetelverdeling parlement; eerstekamer.nl |
+| Prinsjesdag: derde dinsdag van september, de koning leest de troonrede. | rijksoverheid.nl: wat is Prinsjesdag; tweedekamer.nl |
+| Minister-president: Rob Jetten (kabinet beëdigd op 23 februari 2026). **Verandert na verkiezingen.** | rijksoverheid.nl: kabinet-Jetten |
+| Huwelijk voor twee mannen of twee vrouwen sinds 1 april 2001; geregistreerd partnerschap bijna gelijk aan huwelijk. | rijksoverheid.nl: verschil trouwen en geregistreerd partnerschap |
+| Vuurwerk: landelijk verbod voor consumenten vanaf de jaarwisseling 2026-2027. | rijksoverheid.nl: landelijk vuurwerkverbod |
+| Koninkrijk: 4 landen (Nederland, Aruba, Curaçao, Sint Maarten); Bonaire, Sint Eustatius en Saba zijn bijzondere gemeenten. | rijksoverheid.nl: waaruit bestaat het Koninkrijk |
 | Slavernij afgeschaft in 1863 (Keti Koti op 1 juli); Indonesië onafhankelijk erkend in 1949, Suriname in 1975; overstroming 1953. | canonvannederland.nl; prodemos.nl |
 | OV: inchecken met OV-chipkaart, bankpas of telefoon; de OV-chipkaart stopt naar verwachting in 2027 (opvolger: OV-pas). | antwoord aan de Tweede Kamer (nov. 2026); ovpay.nl |
 | Examenvorm: 40 vragen, 45 minuten, drie antwoorden, per thema. Stemrecht gemeenteraad voor niet-Nederlanders na 5 jaar; kinderbijslag bij de SVB; huurtoeslag bij de Belastingdienst; DigiD. | De twee voorbeeldexamens KNM 2025 van DUO (alle 80 vragen) |
@@ -55,16 +55,26 @@ Gecontroleerd op 24 november 2026. Feiten met een getal of een naam kunnen veran
 
 ## Toets C en D, de trainers "De vraag lezen" en "Verwarparen" (november 2026)
 
-Waarom: mensen die het echte examen deden, zeggen dat het moeilijker is dan de twee oefenexamens van DUO. De antwoorden lijken op elkaar: twee antwoorden beginnen met dezelfde regel en alleen het tweede deel is anders. Sinds 1 juli 2025 vraagt het examen meer naar kennis (welke instantie, welke regel, welke voorwaarde) en minder naar gewenst gedrag.
+Toets C en D zijn op 25 november 2026 opnieuw geschreven, in de vorm van de twee oefenexamens van DUO (2025): korte vragen
+(ongeveer 14 woorden) over een persoon in een situatie, drie korte antwoorden (ongeveer 3 woorden), geen "Wat is waar?", en de
+nieuwe eindtermen sinds 1 juli 2025 (Staatscourant 2024, 15802). De moeilijkheid zit in de feiten en de namen van de instanties,
+niet in lange antwoorden die op elkaar lijken: zo zijn de oefenexamens van DUO ook. Onderzoek: research_notes/ en reports/ (niet in git).
 
-Gelezen op 24 november 2026 (niets is overgenomen):
+Online gecontroleerd voor de nieuwe toetsen C en D:
+
+- MAP doet u bij de gemeente: inburgeren.nl/inburgeren-betalen/index.jsp.
+- Wie niets invult in het Donorregister, staat op "geen bezwaar": rijksoverheid.nl, orgaandonatie en weefseldonatie, actieve donorregistratie.
+- Uw DigiD geeft u nooit aan een ander; gebruik DigiD Machtigen: digid.nl/machtigen.
+- Alleen in zoekresultaten gezien (de pagina zelf niet geopend): naturalisatie aanvragen bij de gemeente, de IND beslist (ind.nl);
+  voor de Tweede Kamer stemmen alleen Nederlanders vanaf 18 jaar (rijksoverheid.nl, verkiezingen); seksuele diversiteit is verplicht
+  op elke school (rijksoverheid.nl, relationele en seksuele vorming; eindterm 8.1.5); u mag uw eigen gegevens laten verbeteren
+  (autoriteitpersoonsgegevens.nl, rechten van betrokkenen).
+
+Gelezen op 24 november 2026 voor de eerste versie van toets C en D (niets is overgenomen):
 
 - DUO Voorbeeldexamen KNM 1 en 2 (2025), alle 80 vragen, in de online examenomgeving.
 - harfchat.me/knm (studieboek in het Perzisch, 303 vragen): de lijst met paren die op elkaar lijken en de lijst met kleine woorden in de vraag gaven het idee voor de twee trainers.
-- inburgering.org, KNM practice exam guide: 40 vragen; de foute antwoorden daar zijn te makkelijk.
 - dutchreview.com en nt2.nl over de nieuwe eindtermen: nieuw zijn onder andere de Holocaust en antisemitisme, de wet gaat boven regels van een geloof, zelfbeschikking van vrouwen, DigiD en privacy, de praktijkondersteuner (POH) bij de huisarts, Keti Koti en het Suikerfeest.
-- Een voorbeeldvraag van iemand die het examen deed (zorgverzekering uit een ander land).
-- NIET gelezen: twee draden op Reddit (r/learndutch). Reddit is geblokkeerd voor de gebruikte hulpmiddelen.
 
 Feiten in toets C en D die NIET online zijn gecontroleerd (algemene kennis; zelf nakijken vóór het examen):
 
