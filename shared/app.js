@@ -61,11 +61,141 @@ window.App = (() => {
     return f;
   }
 
-  // woord -> regels uit de woordenlijst
+  // woord -> alle regels uit de woordenlijst waar het bij kan horen (zonder te kijken naar de zin)
+  const vormVan = (s) => kaal(s).replace(/^'+|'+$/g, '');
+  // W.vormen: een nummer past altijd, [nummer, soort] alleen in de goede zin (tools/woordenlib.py, Lijst.soort)
+  const regelsVan = (vorm) => (W.vormen[vorm] || []).map((r) => (typeof r === 'number' ? { nr: r, soort: '' } : { nr: r[0], soort: r[1] }));
   function zoek(vorm) {
-    const nrs = W.vormen[kaal(vorm).replace(/^'+|'+$/g, '')] || [];
-    return nrs.map((i) => ({ nr: i, trede: W.lijst[i][0], nl: W.lijst[i][1], en: W.lijst[i][2], thema: W.lijst[i][3], beeld: W.lijst[i][4], extra: W.lijst[i][5] }));
+    return regelsVan(vormVan(vorm)).map((r) => ({ nr: r.nr, trede: W.lijst[r.nr][0], nl: W.lijst[r.nr][1], en: W.lijst[r.nr][2], thema: W.lijst[r.nr][3], beeld: W.lijst[r.nr][4], extra: W.lijst[r.nr][5] }));
   }
+
+  // ---------- welke betekenis past in deze zin ----------
+  // "Neem uw afval dan weer mee" -> meenemen, niet meebrengen. "Hoe laat is het?" -> de woordgroep eerst, dan zijn.
+  // Een zin: de woorden met hun plek. zinRond zoekt de zin waar een plek in een tekst in valt.
+  function woordenIn(tekst) {
+    const uit = [];
+    let m;
+    TOKEN.lastIndex = 0;
+    while ((m = TOKEN.exec(tekst))) uit.push({ t: vormVan(m[0]), a: m.index, b: m.index + m[0].length });
+    return uit;
+  }
+  function zinRond(tekst, plek) {
+    const eind = /[.!?]+["'’”)\]]*(?:\s+|$)/g; // 17.00 uur is geen einde: na de punt komt geen spatie
+    let begin = 0, m;
+    while ((m = eind.exec(tekst))) {
+      const e = m.index + m[0].length;
+      if (plek < e) return [begin, e];
+      begin = e;
+      if (!m[0].length) eind.lastIndex++;
+    }
+    return [begin, tekst.length];
+  }
+  // de zin rond een plek in een tekst: { zin, toks, deel, i } (i = het hoeveelste woord van de zin het geklikte woord is)
+  // deel = per woord het stuk van de zin: een komma of een woord als "en" begint een nieuw stuk.
+  // Zo hoort "mee" in "Een fiets die u klein kunt maken, mag mee." niet bij maken.
+  // "en" en "of" alleen als er een nieuwe zin achter begint ("en sta op", "en ik bel"), niet in "de keuken en de badkamer" of "'s nachts of op zondag".
+  const NIEUW_STUK = new Set('maar want dus omdat als wanneer toen terwijl nadat voordat zodat hoewel'.split(' '));
+  const ONDERWERP = new Set('ik jij je u hij zij ze wij we jullie men dan daarna nu'.split(' '));
+  const isWerkwoord = (t) => regelsVan(t).some((r) => r.soort !== 'q' && W.lijst[r.nr][3] === 'werkwoord');
+  function context(tekst, plek) {
+    const [a, b] = zinRond(tekst, plek);
+    const zin = tekst.slice(a, b), toks = woordenIn(zin);
+    const i = toks.findIndex((w) => plek - a >= w.a && plek - a < w.b);
+    let stuk = 0;
+    const nieuw = (w, j) => /[,;:()–—]|\s-\s/.test(zin.slice(toks[j - 1].b, w.a)) || NIEUW_STUK.has(w.t)
+      || ((toks[j - 1].t === 'en' || toks[j - 1].t === 'of') && (ONDERWERP.has(w.t) || isWerkwoord(w.t)));
+    const deel = toks.map((w, j) => (j && nieuw(w, j) ? ++stuk : stuk));
+    const na = toks.map((w, j) => zin.slice(w.b, j + 1 < toks.length ? toks[j + 1].a : zin.length)); // wat er na elk woord staat: een getal, "..."
+    return { zin: zin.trim(), toks: toks.map((w) => w.t), deel, na, i: Math.max(0, i) };
+  }
+  // de zin rond een woord op de pagina. Zo telt de hele zin mee, ook als hij in stukjes op het scherm staat (een gat, een cel).
+  function contextBij(span) {
+    const blok = span.closest('.zin, p, li, td, th, h1, h2, h3, h4, h5, h6, label, button, div') || span.parentNode;
+    const r = document.createRange();
+    r.selectNodeContents(blok);
+    r.setEnd(span, 0);
+    return context(blok.textContent, r.toString().length);
+  }
+
+  // Een los deel (op, mee, aan) is pas een los deel als er geen zelfstandig naamwoord, lidwoord of naam achter staat:
+  // "Ik bel je morgen op." en "Neem uw afval mee naar huis" wel, "Hij gaat op vakantie", "op de fiets" en "uit Nederland" niet.
+  const BEPALERS = new Set(('de het een mijn je jouw uw zijn haar ons onze hun deze die dit dat elke elk alle geen dezelfde hetzelfde '
+    + 'welke welk ieder iedere veel weinig meer minder enkele sommige beide').split(' '));
+  const isNaamwoord = (t) => {
+    const r = regelsVan(t);
+    return BEPALERS.has(t) || !r.length || r.some((x) => lidwoord(W.lijst[x.nr][1])[0] || W.lijst[x.nr][3] === 'getal' || W.lijst[x.nr][3] === 'tijd'); // !r.length: een naam
+  };
+  // mee, toe, weg, terug ... zijn nooit een voorzetsel (dat is met, tot): "Emma gaat mee het water in"
+  const ALTIJD_LOS = new Set('mee toe weg terug thuis neer open schoon kennis plaats deel bekend eruit mede'.split(' '));
+  const losDeel = (ctx, j) => !/^\s*(\d|\.\.\.|…)/.test((ctx.na || [])[j] || '') // "op 0900 - 8844", "Ik ga in ...": een voorzetsel
+    && (ALTIJD_LOS.has(ctx.toks[j]) || j + 1 >= ctx.toks.length || ctx.deel[j + 1] !== ctx.deel[j] || ctx.toks[j + 1] === 'te' || !isNaamwoord(ctx.toks[j + 1]));
+  // "Ik vind jouw idee niet goed" is een mening, geen goedvinden: deze delen tellen alleen aan elkaar (goedvinden, goedgevonden)
+  const ALLEEN_VAST = new Set(['goed']);
+  // werkwoord (i) en los deel (j) in hetzelfde stuk van de zin: het deel erna ("Ik bel je op"), ervoor met te ("om het op te lossen"),
+  // of ervoor met het hele werkwoord aan het eind ("weer mee naar huis nemen"). "daar ... op" is daarop: dan telt het niet.
+  function losPast(ctx, i, j, nr) {
+    const { toks, deel } = ctx;
+    if (ALLEEN_VAST.has(toks[j]) || deel[i] !== deel[j]) return false;
+    if (j === i - 2 && toks[i - 1] === 'te') return true;
+    if (j < i) return toks[i] === kaal(W.lijst[nr][1]).slice(toks[j].length) && (i + 1 >= toks.length || deel[i + 1] !== deel[i]) && losDeel(ctx, j);
+    return losDeel(ctx, j) && !toks.slice(i + 1, j).some((t) => t === 'daar' || t === 'hier' || t === 'waar');
+  }
+  // de andere woorden van een woordgroep staan ook in de zin, in hetzelfde stuk en in dezelfde volgorde.
+  // Een werkwoord (*) mag overal in dat stuk staan: "Ik heb een pen nodig". "Als dat niet kan, leg ik ..." is geen "Kan ik ... ?".
+  function samenPast(nr, ctx, i) {
+    const toks = ctx.toks.map((t, j) => (ctx.deel[j] === ctx.deel[i] ? t : '')); // woorden uit een ander stuk tellen niet
+    return ((W.samen || {})[nr] || []).some((groep) => {
+      const g = groep.map((s) => ({ ww: s[0] === '*', vormen: s.replace(/^\*/, '').split(' ') }));
+      const k = g.findIndex((x) => x.vormen.includes(toks[i]));
+      if (k < 0) return false;
+      const ergens = (x) => toks.some((t, j) => j !== i && x.vormen.includes(t));
+      let j = i - 1;
+      for (let a = k - 1; a >= 0; a--) {
+        if (g[a].ww || g[k].ww) { if (!ergens(g[a])) return false; continue; }
+        while (j >= 0 && !g[a].vormen.includes(toks[j])) j--;
+        if (j < 0) return false;
+        j--;
+      }
+      j = i + 1;
+      for (let a = k + 1; a < g.length; a++) {
+        if (g[a].ww || g[k].ww) { if (!ergens(g[a])) return false; continue; }
+        while (j < toks.length && !g[a].vormen.includes(toks[j])) j++;
+        if (j >= toks.length) return false;
+        j++;
+      }
+      return true;
+    });
+  }
+  // Past de regel bij de zin? Geeft de afstand (0 = woordgroep; bij een los deel: hoe ver werkwoord en deel uit elkaar staan), of -1.
+  // "Emma gaat mee het water in": mee staat dichter bij gaat dan in, dus meegaan.
+  function past(r, ctx, i) {
+    const los = (W.los || {})[r.nr] || [], { toks } = ctx;
+    const dichtst = (js) => (js.length ? Math.min(...js.map((j) => Math.abs(j - i))) : -1);
+    if (r.soort === 'p') return samenPast(r.nr, ctx, i) ? 0 : -1;
+    if (r.soort === 's') return dichtst(toks.map((t, j) => j).filter((j) => los.includes(toks[j]) && losPast(ctx, i, j, r.nr))); // "bel": staat "op" er los bij?
+    if (r.soort === 'q') return dichtst(toks.map((t, j) => j).filter((j) => regelsVan(toks[j]).some((x) => x.nr === r.nr && x.soort === 's') && losPast(ctx, j, i, r.nr))); // "op": staat "bel" erbij?
+    return -1;
+  }
+  // De betekenissen van een woord in een zin: { hoofd: [nummers], ook: [nummers] }.
+  // hoofd = wat bij deze zin past (een samengesteld woord: alle delen), ook = de andere betekenissen (achter "Ook" op het kaartje).
+  // Wat niet bij de zin past, staat er niet bij: "komt" is komen, niet ook aankomen, afkomen en binnenkomen.
+  function betekenis(vorm, ctx) {
+    const alle = regelsVan(vorm);
+    if (!alle.length) return { hoofd: [], ook: [] };
+    const delen = alle.filter((r) => r.soort === 'd');
+    if (delen.length) return { hoofd: delen.map((r) => r.nr), ook: [] };
+    const c = ctx && ctx.toks.length ? ctx : { toks: [vorm], deel: [0], i: 0 };
+    const zeker = alle.filter((r) => r.soort && r.soort !== 'x').map((r) => ({ nr: r.nr, af: past(r, c, c.i) }))
+      .filter((x) => x.af >= 0).sort((a, b) => a.af - b.af).map((x) => x.nr);
+    const gewoon = alle.filter((r) => !r.soort).map((r) => r.nr);
+    let lijst = [...zeker, ...gewoon];
+    if (!lijst.length) lijst = alle.filter((r) => r.soort === 'x').slice(0, 1).map((r) => r.nr);
+    if (!lijst.length) lijst = alle.map((r) => r.nr); // niets past bij de zin: dan alles, zoals het woord in de lijst staat
+    lijst = [...new Set(lijst)];
+    return { hoofd: lijst.slice(0, 1), ook: lijst.slice(1) };
+  }
+  // de betekenis van een woord op de pagina, met de zin eromheen
+  const betekenisBij = (span) => { const ctx = contextBij(span); return Object.assign(betekenis(vormVan(span.textContent), ctx), { ctx }); };
 
   // 'de koffie' -> nummer van de regel 'de koffie / de thee'
   let lemmas = null;
@@ -86,18 +216,20 @@ window.App = (() => {
   }
 
   // tekst -> stukjes met klikbare woorden. nieuw = Set met regelnummers van de nieuwe woorden van de les
+  // Oranje (nieuw) als een betekenis die bij de zin past een nieuw woord is; een streep (bewaard) als de betekenis hier bewaard is.
   function woorden(tekst, nieuw) {
     const f = document.createDocumentFragment();
-    let vorige = 0, m;
-    TOKEN.lastIndex = 0;
-    while ((m = TOKEN.exec(tekst))) {
-      if (m.index > vorige) f.append(tekst.slice(vorige, m.index));
-      const nrs = W.vormen[kaal(m[0])] || [];
-      if (nrs.length) {
-        const s = el('span', { class: 'w' + (nieuw && nrs.some((n) => nieuw.has(n)) ? ' nieuw' : '') + (nrs.some((n) => Mijn.heeft(W.lijst[n][1])) ? ' bewaard' : '') }, m[0]);
-        f.append(s);
-      } else f.append(m[0]);
-      vorige = m.index + m[0].length;
+    let vorige = 0;
+    for (const w of woordenIn(tekst)) {
+      if (w.a > vorige) f.append(tekst.slice(vorige, w.a));
+      const stuk = tekst.slice(w.a, w.b);
+      if (regelsVan(w.t).length) {
+        const b = betekenis(w.t, context(tekst, w.a));
+        const isNieuw = nieuw && [...b.hoofd, ...b.ook].some((n) => nieuw.has(n));
+        // data-n: de betekenis die bij de zin past, zodat streepjes() na het bewaren niet alles opnieuw hoeft uit te zoeken
+        f.append(el('span', { class: 'w' + (isNieuw ? ' nieuw' : '') + (b.hoofd.some((n) => Mijn.heeft(W.lijst[n][1])) ? ' bewaard' : ''), 'data-n': b.hoofd.join(',') }, stuk));
+      } else f.append(stuk);
+      vorige = w.b;
     }
     if (vorige < tekst.length) f.append(tekst.slice(vorige));
     return f;
@@ -118,8 +250,10 @@ window.App = (() => {
   }
 
   // ---------- Mijn woorden: de lijst die de leerling zelf maakt (pagina mijn-woorden.html) ----------
-  // Bewaard als { "het huis": { t, sinds, n, weg } }. De sleutel is het woord uit de woordenlijst, dus met de of het erbij.
+  // Bewaard als { "het huis": { t, sinds, n, weg, z, v, b } }. De sleutel is het woord uit de woordenlijst, dus met de of het erbij.
   //   sinds = wanneer bewaard, n = de notitie van de leerling, t = de laatste verandering, weg = van de lijst gehaald.
+  //   Bewaard vanuit een tekst: z = de zin, v = het woord zoals het in de zin stond (komt), b = de pagina (lezen/les.html?les=L16).
+  //   Zo weten we later ook welke betekenis de leerling bedoelde, als een woord er een betekenis bij krijgt.
   // Een weggehaald woord blijft als regel staan (weg: true): zo komt het niet terug van een ander apparaat (shared/account.js).
   // Ingelogd met Google? Dan gaat de lijst mee naar het account. "Wis alle voortgang" laat de lijst staan: het zijn uw eigen aantekeningen.
   const MAX_NOTITIE = 500;
@@ -135,10 +269,13 @@ window.App = (() => {
     return {
       heeft,
       // aan = true: op de lijst (en bij de woordkaarten van Herhalen). aan = false: van de lijst; de notitie blijft bewaard voor "Ongedaan maken".
-      zet(nl, aan) {
+      // bron = { z, v, b }: waar het woord bewaard werd (de zin, het woord in de zin, de pagina). Geen bron: wat er al stond, blijft staan.
+      zet(nl, aan, bron) {
         const a = alle(), nu = Date.now(), r = a[nl] || {};
         if (aan === heeft(nl)) return;
-        a[nl] = aan ? { t: nu, sinds: nu, n: r.n || '' } : { t: nu, sinds: r.sinds || nu, n: r.n || '', weg: true };
+        const waar = {};
+        for (const k of ['z', 'v', 'b']) { const x = bron && bron.z ? bron[k] : r[k]; if (x) waar[k] = x; }
+        a[nl] = Object.assign(aan ? { t: nu, sinds: nu, n: r.n || '' } : { t: nu, sinds: r.sinds || nu, n: r.n || '', weg: true }, waar);
         if (aan) window.SRS.voegToe('w:' + nl, { soort: 'w', nl });
         bewaar();
       },
@@ -149,12 +286,12 @@ window.App = (() => {
         if (!r || r.weg || r.n === n) return;
         r.n = n; r.t = Date.now(); bewaar();
       },
-      // de lijst, nieuwste eerst: [{ nl, sinds, n, regel }]  regel = de regel uit de woordenlijst (of null: het woord staat er niet meer in)
+      // de lijst, nieuwste eerst: [{ nl, sinds, n, z, v, b, regel }]  regel = de regel uit de woordenlijst (of null: het woord staat er niet meer in)
       lijst() {
         const a = alle();
         return Object.keys(a).filter((nl) => !a[nl].weg).map((nl) => {
           const nr = lijstNr(nl);
-          return { nl, sinds: a[nl].sinds || 0, n: a[nl].n || '', regel: nr < 0 || W.lijst[nr][1] !== nl ? null : zoekNr(nr) };
+          return { nl, sinds: a[nl].sinds || 0, n: a[nl].n || '', z: a[nl].z || '', v: a[nl].v || '', b: a[nl].b || '', regel: nr < 0 || W.lijst[nr][1] !== nl ? null : zoekNr(nr) };
         }).sort((x, y) => y.sinds - x.sinds);
       },
       tel: () => { const a = alle(); return Object.keys(a).filter((nl) => !a[nl].weg).length; },
@@ -167,7 +304,10 @@ window.App = (() => {
   const metLidwoord = (nl) => { const [lw, rest] = lidwoord(nl); return lw ? [el('span', { class: 'lw lw-' + lw }, lw), ' ', rest] : [nl]; };
   // zet het streepje onder de bewaarde woorden in de teksten van deze pagina opnieuw
   function streepjes() {
-    document.querySelectorAll('.w').forEach((w) => w.classList.toggle('bewaard', (W.vormen[kaal(w.textContent)] || []).some((n) => Mijn.heeft(W.lijst[n][1]))));
+    document.querySelectorAll('.w').forEach((w) => {
+      const nrs = w.dataset.n ? w.dataset.n.split(',').map(Number) : betekenisBij(w).hoofd;
+      w.classList.toggle('bewaard', nrs.some((n) => Mijn.heeft(W.lijst[n][1])));
+    });
   }
   document.addEventListener('mijn-woorden', streepjes);
   document.addEventListener('mijn-woorden-anders', streepjes);
@@ -175,7 +315,8 @@ window.App = (() => {
   // ---------- drie knoppen die op veel plekken staan: luister, vertaling, bewaar ----------
   // luisterKnop(doe)        een rondje met een luidspreker. doe = wat er gebeurt bij een klik.
   // vertaalKnop(doel)       laat het element met de vertaling zien, of haalt het weer weg.
-  // bewaarKnop(nl, metTekst) zet het woord op de lijst Mijn woorden, of haalt het eraf. null als het woord niet in de woordenlijst staat.
+  // bewaarKnop(nl, metTekst, bron) zet het woord op de lijst Mijn woorden, of haalt het eraf. null als het woord niet in de woordenlijst staat.
+  //   bron = { z, v, b }: de zin waar het woord in stond (alleen bij het kaartje van een woord in een tekst).
   const stil = (doe) => (e) => { e.stopPropagation(); doe(e); }; // een klik op de knop is geen klik op de kaart eromheen
   const luisterKnop = (doe, naam) => el('button', { type: 'button', class: 'rond', title: 'luister', 'aria-label': naam || 'luister', onclick: stil(doe) }, teken('luid'));
   function vertaalKnop(doel) {
@@ -183,14 +324,14 @@ window.App = (() => {
       onclick: stil(() => { doel.hidden = !doel.hidden; k.setAttribute('aria-pressed', String(!doel.hidden)); }) }, teken('vertaal'));
     return k;
   }
-  function bewaarKnop(woord, metTekst) {
+  function bewaarKnop(woord, metTekst, bron) {
     const nr = lijstNr(woord);
     if (nr < 0) return null; // niet in de woordenlijst: geen vertaling en geen geluid, dus niet te bewaren
     const nl = W.lijst[nr][1];
     const tekst = metTekst ? el('span', {}) : null;
     const k = el('button', { type: 'button', class: metTekst ? 'knop licht klein bewaarknop' : 'rond bewaarknop', onclick: stil(() => {
       const aan = !Mijn.heeft(nl);
-      Mijn.zet(nl, aan);
+      Mijn.zet(nl, aan, bron);
       if (metTekst) return; // de knop zegt zelf "Bewaard"; een melding erbij is te veel
       if (aan) toast('Bewaard in Mijn woorden', 'saved in My words', { naam: 'Bekijk', en: 'view', href: WORTEL + 'mijn-woorden.html' });
       else toast('Van uw lijst gehaald', 'removed from your list', { naam: 'Ongedaan maken', en: 'undo', doe: () => Mijn.terug(nl) });
@@ -211,23 +352,35 @@ window.App = (() => {
   // Het woord met de of het, het plaatje, en drie knoppen: luister, vertaling, bewaar. De vertaling staat er pas na een klik.
   // Een samengesteld woord (ziekenhuis, fietsenwinkel) heeft bovenaan de losse delen: zieken + huis.
   // Breed scherm: het kaartje staat bij het woord (eronder, of erboven als daar geen plek is). Telefoon: een blad onder aan het scherm.
+  // Het kaartje toont de betekenis die bij de zin past. Heeft het woord nog een betekenis, dan staat eronder "Ook: het weer";
+  // een klik daarop zet de andere betekenissen eronder, net zo als de eerste. Bewaar bewaart de betekenis met de zin erbij.
   let pop = null, popDoel = null;
   function sluitPop() { if (pop) { pop.remove(); pop = null; } if (popDoel) { popDoel.classList.remove('open'); popDoel = null; } }
   function toonPop(doel) {
     if (popDoel === doel) return sluitPop(); // nog een klik op hetzelfde woord: weg
     sluitPop();
-    const regels = zoek(doel.textContent);
-    if (!regels.length) return;
-    pop = el('div', { id: 'wpop', role: 'dialog', 'aria-label': 'woord: ' + doel.textContent }, regels.map((r) => {
+    const b = betekenisBij(doel);
+    if (!b.hoofd.length) return;
+    const pagina = location.href.split('#')[0].slice(WORTEL.length);
+    const bron = b.ctx.zin && b.ctx.zin.length <= 300
+      ? { z: b.ctx.zin, v: vormVan(doel.textContent), b: location.href.startsWith(WORTEL) && pagina !== 'mijn-woorden.html' ? pagina : '' } : null;
+    const rij = (nr) => {
+      const r = zoekNr(nr);
       const en = el('div', { class: 'en', hidden: true, hulp: r.en });
-      window.SRS.voegToe('w:' + r.nl, { soort: 'w', nl: r.nl });
+      window.SRS.voegToe('w:' + r.nl, { soort: 'w', nl: r.nl }); // alleen wat de leerling ziet, komt bij Herhalen
       return el('div', { class: 'rij' },
         el('div', { class: 'wpop-kop' },
           r.beeld ? el('span', { class: 'beeld', 'aria-hidden': 'true' }, r.beeld) : null,
           el('div', { class: 'wpop-woord' }, el('b', {}, metLidwoord(r.nl)), el('span', { class: 'klein zacht' }, [r.extra, r.thema].filter(Boolean).join(', ')))),
         en,
-        el('div', { class: 'wpop-knoppen' }, luisterKnop(() => window.Spraak.zeg(r.nl), 'luister naar ' + r.nl), vertaalKnop(en), bewaarKnop(r.nl, true)));
-    }));
+        el('div', { class: 'wpop-knoppen' }, luisterKnop(() => window.Spraak.zeg(r.nl), 'luister naar ' + r.nl), vertaalKnop(en), bewaarKnop(r.nl, true, bron)));
+    };
+    pop = el('div', { id: 'wpop', role: 'dialog', 'aria-label': 'woord: ' + doel.textContent }, b.hoofd.map(rij));
+    if (b.ook.length) {
+      const ook = el('button', { type: 'button', class: 'wpop-ook', 'aria-expanded': 'false', onclick: stil(() => { ook.replaceWith(...b.ook.map(rij)); plaats(); }) },
+        el('span', { class: 'wpop-ook-tekst' }, el('span', { en: 'also' }, 'Ook'), ': ', el('span', { lang: 'nl' }, b.ook.map((n) => W.lijst[n][1]).join(', '))), teken('open'));
+      pop.append(ook);
+    }
     const losseDelen = delenRegel(doel.textContent);
     if (losseDelen) pop.prepend(losseDelen);
     // onderaan: de weg naar de lijst, zodra er iets op staat
@@ -239,11 +392,14 @@ window.App = (() => {
     pop.append(naarLijst);
     document.body.append(pop);
     popDoel = doel; doel.classList.add('open');
-    if (window.matchMedia('(max-width: 560px)').matches) return; // telefoon: het blad onderaan (shared/app.css)
-    const b = doel.getBoundingClientRect(), hoog = pop.offsetHeight;
-    const boven = b.bottom + 6 + hoog > window.innerHeight && b.top - 6 - hoog > 0;
-    pop.style.top = (window.scrollY + (boven ? b.top - 6 - hoog : b.bottom + 6)) + 'px';
-    pop.style.left = Math.max(8, Math.min(window.scrollX + b.left, window.scrollX + document.documentElement.clientWidth - pop.offsetWidth - 8)) + 'px';
+    function plaats() { // opnieuw na "Ook": het kaartje is dan hoger
+      if (!pop || window.matchMedia('(max-width: 560px)').matches) return; // telefoon: het blad onderaan (shared/app.css)
+      const r = doel.getBoundingClientRect(), hoog = pop.offsetHeight;
+      const boven = r.bottom + 6 + hoog > window.innerHeight && r.top - 6 - hoog > 0;
+      pop.style.top = (window.scrollY + (boven ? r.top - 6 - hoog : r.bottom + 6)) + 'px';
+      pop.style.left = Math.max(8, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - pop.offsetWidth - 8)) + 'px';
+    }
+    plaats();
   }
   document.addEventListener('click', (e) => {
     if (pop && pop.contains(e.target)) return;
@@ -269,6 +425,7 @@ window.App = (() => {
     spreken: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
     knm: '<path d="M3 21h18"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/><path d="M12 3 2.5 8.5V10h19V8.5z"/>',
     pijl: '<path d="m9 18 6-6-6-6"/>',
+    open: '<path d="m6 9 6 6 6-6"/>', // een pijl omlaag: er komt meer onder (Ook op het kaartje van een woord)
     mens: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.01"/>',
     // bij een woord of een zin: luister, vertaling, bewaar in Mijn woorden
@@ -1138,6 +1295,6 @@ window.App = (() => {
       zwak.goed < zwak.totaal && zwak.href ? el('p', { class: 'knoppen' }, el('a', { class: 'knop licht', href: zwak.href, en: 'practise this' }, zwak.hrefNaam || `Oefen: ${zwak.naam}`)) : null);
   }
 
-  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
+  return { NAAM, VERSIE, W, lees, schrijf, kaal, el, teken, Mijn, MAX_NOTITIE, lidwoord, metLidwoord, delen, delenRegel, luisterKnop, vertaalKnop, bewaarKnop, hulp, hulptaal, hulpAan, kiesHulp, zoek, betekenis, context, lemmaNr, woorden, kop, tredeStand, schud, sluitPop, instellingen, WORTEL, EXAMENS,
     cijfer, cijferBlok, cijferDeel, cijferVan, besteDeel, nodigVoor, kansBalk, volgorde, examenKlok, volumeKnop, vlagKnop, overzichtKnop, reeksSpeler, stopReeks, MijnVragen, bewaarVraagKnop, bewaarVragenRij, perSoort, vraagSoort, foto, medaille, medailleTeken, slaagBalk, vier, lesVoortgang, klaarProcent, Dagen, aanmoediging, sectieKop, uitleg, overzicht, profielNu, profielRij, profielUit, schoneNaam, deel, deelLink, thema, zetThema, tekst, zetTekst, isDonker, toast, goed, balk, vraagKnoppen, foutKnoppen, opnieuwKnop, vrijTot, lesGehaald, sprong, bladert, alGehaald, bevestig, wis };
 })();

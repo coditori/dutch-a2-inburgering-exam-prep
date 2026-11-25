@@ -59,6 +59,11 @@ window.Account = (() => {
     if (sleutel === 'mijn-woorden') { // per woord de regel die het laatst veranderd is (bewaard, notitie, of van de lijst gehaald)
       const uit = Object.assign({}, b, a);
       for (const nl of Object.keys(b)) if (a[nl] && ((b[nl] && b[nl].t) || 0) > ((a[nl] && a[nl].t) || 0)) uit[nl] = b[nl];
+      // de zin waar het woord bewaard werd (z, v, b) gaat niet verloren als het andere apparaat een oudere versie van de site had
+      for (const nl of Object.keys(uit)) {
+        const ander = uit[nl] === a[nl] ? b[nl] : a[nl];
+        if (uit[nl] && ander && !uit[nl].z && ander.z) uit[nl] = Object.assign({}, uit[nl], { z: ander.z, v: ander.v, b: ander.b });
+      }
       return JSON.stringify(uit);
     }
     if (sleutel === 'dagen') return JSON.stringify([...new Set([...(Array.isArray(a) ? a : []), ...(Array.isArray(b) ? b : [])])].sort((x, y) => x - y).slice(-400)); // de dagen waarop u oefende: van beide apparaten
