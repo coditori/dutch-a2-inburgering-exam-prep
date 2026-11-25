@@ -67,10 +67,15 @@ def model():
         pagina = d.get("nextPageToken")
         if not pagina:
             break
+    if os.environ.get("BEELDMODEL"):  # zelf kiezen, bijvoorbeeld BEELDMODEL=models/gemini-3-pro-image
+        n = os.environ["BEELDMODEL"]
+        return n, "predict" if "imagen" in n else "generateContent"
     imagen = sorted((n for n, m in namen if "imagen" in n and "predict" in m), reverse=True)
     if imagen:
         return imagen[0], "predict"
-    gemini = sorted((n for n, m in namen if "image" in n and "generateContent" in m), reverse=True)
+    # Gemini: liefst het gewone Flash-model (goed en niet duur); geen "lite" en geen "preview" als het anders kan
+    gemini = [n for n, m in namen if "image" in n and "generateContent" in m]
+    gemini.sort(key=lambda n: ("lite" in n, "preview" in n, "pro" in n, [-int(x) if x.isdigit() else 0 for x in n.replace("-", ".").split(".")]))
     if gemini:
         return gemini[0], "generateContent"
     sys.exit("Deze sleutel mag geen beelden maken (geen Imagen- of beeldmodel gevonden).")
@@ -82,7 +87,8 @@ def maak(naam, soort, beschrijving):
     if soort == "predict":
         d = vraag(f"/{naam}:predict", {"instances": [{"prompt": prompt}], "parameters": {"sampleCount": 1, "aspectRatio": "4:3"}})
         return base64.b64decode(d["predictions"][0]["bytesBase64Encoded"])
-    d = vraag(f"/{naam}:generateContent", {"contents": [{"parts": [{"text": prompt + " Aspect ratio 4:3."}]}]})
+    d = vraag(f"/{naam}:generateContent", {"contents": [{"parts": [{"text": prompt}]}],
+                                           "generationConfig": {"responseModalities": ["IMAGE"], "imageConfig": {"aspectRatio": "4:3"}}})
     for deel in d["candidates"][0]["content"]["parts"]:
         if "inlineData" in deel:
             return base64.b64decode(deel["inlineData"]["data"])

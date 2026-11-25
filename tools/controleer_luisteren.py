@@ -3,7 +3,7 @@
 
     python3 tools/controleer_luisteren.py
 
-- elke les: minstens 5 vragen; elke vraag heeft 3 of 4 verschillende antwoorden of een "typ"-antwoord; elke regel heeft een stem A, B of C
+- elke les: minstens 5 vragen; elke vraag heeft 3 of 4 verschillende antwoorden of een "typ"-antwoord; elke regel heeft een stem A, B, C of D
 - elke les: 2 dictee-zinnen
 - elke toets: 25 vragen
 - bij elke regel van een gesprek hoort een mp3 in luisteren/audio/index.json (draai anders tools/tts_luisteren.py);
@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from woordenlib import ROOT, lessen, overig  # noqa: E402
 
-STEM = {"A": "nl_NL-ronnie-medium", "B": "nl_BE-nathalie-medium", "C": "nl_NL-pim-medium"}
+from tts_luisteren import STEM  # noqa: E402  (de stemmen van de rollen: één tabel, in tools/tts_luisteren.py)
 index_pad = ROOT / "luisteren" / "audio" / "index.json"
 audio = json.loads(index_pad.read_text(encoding="utf-8")) if index_pad.exists() else {}
 fouten = []
@@ -42,9 +42,7 @@ def controleer_item(naam, i, it, langzaam):
         if r.get("s", "A") not in STEM:
             fouten.append(f"{naam} deel {i + 1}: onbekende stem {r.get('s')}")
             continue
-        heeft_audio(r.get("s", "A"), r["t"])
-        if langzaam:
-            heeft_audio(r.get("s", "A"), r["t"], True)
+        heeft_audio(r.get("s", "A"), r["t"])  # geen langzame opname nodig: de pagina speelt de gewone trager af
     for v in vragen_van(it):
         n += 1
         o = v.get("o") or []

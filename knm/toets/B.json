@@ -121,7 +121,8 @@
     "In 1945."
    ],
    "w": "In 1953 was de grote overstroming. Daarna zijn de Deltawerken gebouwd.",
-   "beeld": "🌊"
+   "beeld": "🌊",
+   "foto": "Flooded farmland with only rooftops and treetops above the water under a grey sky."
   },
   {
    "thema": "geschiedenis",
@@ -132,7 +133,8 @@
     "Duitsland"
    ],
    "w": "De oorlog met Spanje was van 1568 tot 1648.",
-   "beeld": "🗺️"
+   "beeld": "🗺️",
+   "foto": "Old cannons stand on the grassy walls of a star-shaped fortress town surrounded by a moat."
   },
   {
    "thema": "geschiedenis",
@@ -143,7 +145,8 @@
     "Een polder in Flevoland."
    ],
    "w": "Door de Afsluitdijk werd de zee een meer: het IJsselmeer.",
-   "beeld": "💧"
+   "beeld": "💧",
+   "foto": "A long dike with a road runs straight across wide water, with the sea on one side and a calm lake on the other."
   },
   {
    "thema": "geschiedenis",
@@ -154,7 +157,8 @@
     "In Gelderland."
    ],
    "w": "Maastricht is de hoofdstad van de provincie Limburg.",
-   "beeld": "🗺️"
+   "beeld": "🗺️",
+   "foto": "Old stone houses and a historic bridge cross a wide river in a hilly southern city."
   },
   {
    "thema": "geschiedenis",
@@ -165,19 +169,21 @@
     "De eerste Koningsdag."
    ],
    "w": "Op 5 mei 1945 was de oorlog in Nederland voorbij. Daarom is 5 mei Bevrijdingsdag.",
-   "beeld": "🕊️"
+   "beeld": "🕊️",
+   "foto": "Cheerful crowds wave flags as old military trucks drive through a street in a 1945 style scene."
   },
   {
    "thema": "wonen",
    "sit": "Juul betaalt elke maand een bedrag voor energie. Na een jaar krijgt zij de jaarrekening.",
    "v": "Wat kan er dan gebeuren?",
    "o": [
-    "Zij krijgt geld terug of zij moet extra betalen.",
+    "Zij krijgt geld terug of betaalt bij.",
     "Zij krijgt altijd geld terug.",
     "Haar contract stopt."
    ],
    "w": "Op de jaarrekening staat hoeveel energie u echt hebt gebruikt.",
-   "beeld": "⚡"
+   "beeld": "⚡",
+   "foto": "A woman sits at her kitchen table reading a long letter, a radiator visible behind her."
   },
   {
    "thema": "wonen",
@@ -189,7 +195,8 @@
     "Het melden aan de buren."
    ],
    "w": "Voor grote veranderingen in een huurwoning vraagt u eerst de verhuurder.",
-   "beeld": "🏠"
+   "beeld": "🏠",
+   "foto": "A man holds a sledgehammer and looks at a wall in the living room of his rented flat."
   },
   {
    "thema": "wonen",
@@ -201,18 +208,20 @@
     "Een hypotheek."
    ],
    "w": "Met een urgentieverklaring krijgt u sneller een woning.",
-   "beeld": "🏠"
+   "beeld": "🏠",
+   "foto": "A man on crutches stands at the bottom of a steep staircase in an old apartment building."
   },
   {
    "thema": "staat",
    "v": "Wat is een rechtsstaat?",
    "o": [
-    "Een land waar iedereen zich aan de wet moet houden, ook de regering.",
+    "Een land waar niemand boven de wet staat.",
     "Een land zonder politie.",
     "Een land waar de koning alles beslist."
    ],
    "w": "In een rechtsstaat staat niemand boven de wet.",
-   "beeld": "⚖️"
+   "beeld": "⚖️",
+   "foto": "The front of a classic courthouse with tall columns and wide stone steps."
   },
   {
    "thema": "staat",
@@ -223,7 +232,8 @@
     "Vijftien."
    ],
    "w": "Nederland heeft twaalf provincies.",
-   "beeld": "🗺️"
+   "beeld": "🗺️",
+   "foto": "A blank outline map of the Netherlands lies on a desk next to a magnifying glass."
   },
   {
    "thema": "staat",
@@ -235,7 +245,8 @@
     "Nee, alleen mannen mogen dat."
    ],
    "w": "Vanaf 18 jaar mag u stemmen en zelf gekozen worden.",
-   "beeld": "🗳️"
+   "beeld": "🗳️",
+   "foto": "A young woman speaks into a microphone during a meeting in a municipal council chamber."
   },
   {
    "thema": "staat",
@@ -246,19 +257,21 @@
     "De burgemeester van Amsterdam."
    ],
    "w": "De koning is het staatshoofd. De minister-president is de baas van de ministers.",
-   "beeld": "👑"
+   "beeld": "👑",
+   "foto": "A royal palace with a grand facade and a flag flying on the roof under a blue sky."
   },
   {
    "thema": "staat",
    "sit": "Nederland is lid van de Europese Unie.",
    "v": "Wat betekent dat voor geld?",
    "o": [
-    "In veel landen van de Unie betaalt u met de euro.",
+    "U betaalt in veel landen met de euro.",
     "U moet in elk land ander geld kopen.",
     "U mag geen geld meenemen."
    ],
    "w": "In de meeste landen van de Europese Unie betaalt u met de euro.",
-   "beeld": "🇪🇺"
+   "beeld": "🇪🇺",
+   "foto": "A hand pays with cash at a market stall on a sunny European town square."
   },
   {
    "thema": "werk",
@@ -270,19 +283,21 @@
     "Zwart werken."
    ],
    "w": "Wie minder dan de hele week werkt, werkt in deeltijd.",
-   "beeld": "💼"
+   "beeld": "💼",
+   "foto": "A woman picks up her child from school in the afternoon, her work bag over her shoulder."
   },
   {
    "thema": "werk",
    "sit": "Koen werkt zonder contract. Hij krijgt het geld in de hand en betaalt geen belasting.",
-   "v": "Wat is waar?",
+   "v": "Mag dat?",
    "o": [
-    "Dat is zwart werken en dat is verboden.",
-    "Dat is normaal bij een eerste baan.",
-    "Dat mag in het weekend."
+    "Nee, dat is zwart werken.",
+    "Ja, bij een eerste baan.",
+    "Alleen in het weekend."
    ],
    "w": "Over loon betaalt u belasting. Zwart werken is verboden.",
-   "beeld": "💼"
+   "beeld": "💼",
+   "foto": "A man on a ladder painting a house receives cash in an envelope from the homeowner."
   },
   {
    "thema": "werk",
@@ -294,7 +309,8 @@
     "Het UWV bellen."
    ],
    "w": "Bent u ziek? Meld het meteen bij uw werkgever.",
-   "beeld": "🤒"
+   "beeld": "🤒",
+   "foto": "A woman lies in bed with a cold and calls her employer on her phone."
   },
   {
    "thema": "werk",
@@ -306,7 +322,8 @@
     "Bijstand."
    ],
    "w": "De AOW is het pensioen van de overheid voor oudere mensen.",
-   "beeld": "👴"
+   "beeld": "👴",
+   "foto": "A smiling older man waters plants in his garden on a sunny morning after retiring."
   },
   {
    "thema": "werk",
@@ -318,7 +335,8 @@
     "Een brief en een uittreksel van de gemeente."
    ],
    "w": "Bij een sollicitatie stuurt u een brief en een cv.",
-   "beeld": "✉️"
+   "beeld": "✉️",
+   "foto": "A young woman types a letter on a laptop at a desk with a printed CV next to it."
   },
   {
    "thema": "werk",
@@ -330,7 +348,8 @@
     "In de vakbond."
    ],
    "w": "Een bedrijf met 50 of meer werknemers heeft een ondernemingsraad.",
-   "beeld": "💼"
+   "beeld": "💼",
+   "foto": "A group of employees sits around a meeting table with the company director and discusses plans."
   },
   {
    "thema": "werk",
@@ -342,7 +361,8 @@
     "Ja, van het UWV."
    ],
    "w": "Vrijwilligerswerk is werk zonder loon. Het is wel goed voor uw taal en uw cv.",
-   "beeld": "🙋"
+   "beeld": "🙋",
+   "foto": "A volunteer serves coffee to older people at tables in a neighbourhood community centre."
   },
   {
    "thema": "werk",
@@ -354,19 +374,21 @@
     "Het UWV."
    ],
    "w": "IDW (Internationale Diplomawaardering) vergelijkt uw diploma met Nederlandse diploma's.",
-   "beeld": "🎓"
+   "beeld": "🎓",
+   "foto": "A man holds a framed foreign university diploma while sitting at a desk with a laptop."
   },
   {
    "thema": "instanties",
    "sit": "Het identiteitsbewijs van Fenna is gestolen.",
    "v": "Wat doet zij?",
    "o": [
-    "Aangifte doen bij de politie en een nieuw bewijs aanvragen bij de gemeente.",
-    "Aangifte doen bij de gemeente en een nieuw bewijs aanvragen bij de politie.",
+    "Aangifte bij de politie, aanvragen bij de gemeente.",
+    "Aangifte bij de gemeente, aanvragen bij de politie.",
     "Niets: zij wacht tot het terugkomt."
    ],
    "w": "Bij een gestolen paspoort of identiteitsbewijs doet u aangifte en vraagt u een nieuw aan.",
-   "beeld": "🪪"
+   "beeld": "🪪",
+   "foto": "A woman stands on a busy shopping street and looks into her open, empty handbag in shock."
   },
   {
    "thema": "instanties",
@@ -378,7 +400,8 @@
     "Of het UWV de rekening betaalt."
    ],
    "w": "Kunt u niet alles in één keer betalen? Vraag dan om te betalen in termijnen.",
-   "beeld": "💶"
+   "beeld": "💶",
+   "foto": "A man sits at a table with a large pile of bills and holds his head in his hands."
   },
   {
    "thema": "instanties",
@@ -390,19 +413,21 @@
     "Een machtiging."
    ],
    "w": "Voor bouwen hebt u vaak een vergunning van de gemeente nodig.",
-   "beeld": "🏗️"
+   "beeld": "🏗️",
+   "foto": "A woman stands in her back garden with a measuring tape, marking out space for a new garage."
   },
   {
    "thema": "instanties",
    "sit": "Een andere auto rijdt tegen de auto van Joep. Joep heeft schade.",
    "v": "Wie betaalt meestal de schade?",
    "o": [
-    "De autoverzekering van de persoon die de fout maakte.",
+    "De verzekering van wie de fout maakte.",
     "De autoverzekering van Joep zelf, altijd.",
     "De inboedelverzekering van Joep."
    ],
    "w": "Daarom is een autoverzekering verplicht voor iedereen met een auto.",
-   "beeld": "🚗"
+   "beeld": "🚗",
+   "foto": "Two cars with dented bumpers stand at a crossroads while the drivers exchange details."
   },
   {
    "thema": "instanties",
@@ -414,7 +439,8 @@
     "Een autoverzekering."
    ],
    "w": "Een reisverzekering is niet verplicht, maar wel handig op vakantie.",
-   "beeld": "🧳"
+   "beeld": "🧳",
+   "foto": "A woman looks around in panic on a busy tourist square abroad after her bag has gone."
   },
   {
    "thema": "instanties",
@@ -426,7 +452,8 @@
     "De IND geeft paspoorten aan Nederlanders."
    ],
    "w": "De IND is de dienst voor verblijfsvergunningen en naturalisatie.",
-   "beeld": "📨"
+   "beeld": "📨",
+   "foto": "A man opens an envelope at his front door and looks hopeful."
   },
   {
    "thema": "instanties",
@@ -438,7 +465,8 @@
     "Alleen met een advocaat."
    ],
    "w": "U hebt het recht om uw eigen gegevens bij de overheid te zien.",
-   "beeld": "🗂️"
+   "beeld": "🗂️",
+   "foto": "A woman asks a question at the information desk of a town hall."
   },
   {
    "thema": "onderwijs",
@@ -449,7 +477,8 @@
     "Tot 21 jaar."
    ],
    "w": "Het gezag van de ouders stopt als een kind 18 jaar wordt.",
-   "beeld": "🎒"
+   "beeld": "🎒",
+   "foto": "A father and his teenage son sit side by side on a garden wall and talk."
   },
   {
    "thema": "onderwijs",
@@ -461,19 +490,21 @@
     "Naar het kinderdagverblijf."
    ],
    "w": "De buitenschoolse opvang is voor kinderen van de basisschool, vóór en na school.",
-   "beeld": "🎒"
+   "beeld": "🎒",
+   "foto": "Primary school children play board games with a supervisor in an after-school care room."
   },
   {
    "thema": "onderwijs",
    "sit": "Stef is 16 jaar en heeft geen diploma. Hij wil stoppen met school.",
    "v": "Mag dat?",
    "o": [
-    "Nee, hij moet tot 18 jaar naar school of een diploma halen.",
+    "Nee, hij moet tot 18 jaar naar school.",
     "Ja, na 16 jaar mag alles.",
     "Ja, als hij een uitkering aanvraagt."
    ],
    "w": "Jongeren zonder diploma moeten tot 18 jaar onderwijs volgen.",
-   "beeld": "🎒"
+   "beeld": "🎒",
+   "foto": "A sixteen-year-old boy sits on a school bench looking bored, a backpack at his feet."
   },
   {
    "thema": "onderwijs",
@@ -485,7 +516,8 @@
     "Alleen als de school in hun straat staat."
    ],
    "w": "In Nederland is er vrijheid van onderwijs.",
-   "beeld": "🎒"
+   "beeld": "🎒",
+   "foto": "Children walk into a primary school building with a small church tower in the background."
   },
   {
    "thema": "omgang",
@@ -497,7 +529,8 @@
     "De gemeente bellen."
    ],
    "w": "Bij een baby stuurt u een kaart of gaat u, na een afspraak, op kraamvisite.",
-   "beeld": "👶"
+   "beeld": "👶",
+   "foto": "Visitors sit around a living room table with a new mother holding her baby, a plate of rusks on the table."
   },
   {
    "thema": "omgang",
@@ -509,7 +542,8 @@
     "De ouders kiezen tot hij 21 jaar is."
    ],
    "w": "Niemand mag u dwingen om te trouwen.",
-   "beeld": "💍"
+   "beeld": "💍",
+   "foto": "A young woman and her parents sit at a dining table during a tense conversation."
   },
   {
    "thema": "omgang",
@@ -521,7 +555,8 @@
     "Zij mag daar niet zitten zonder kind."
    ],
    "w": "In een stiltecoupé is het rustig: niet bellen en niet praten.",
-   "beeld": "🤫"
+   "beeld": "🤫",
+   "foto": "Passengers sit quietly in a calm train carriage while one woman is about to answer her phone."
   },
   {
    "thema": "gezondheid",
@@ -533,7 +568,8 @@
     "Naar de tandarts."
    ],
    "w": "Er is altijd een apotheek in de buurt die 's nachts en in het weekend open is.",
-   "beeld": "💊"
+   "beeld": "💊",
+   "foto": "A man in a winter coat rings the bell at the door of a pharmacy at night."
   },
   {
    "thema": "gezondheid",
@@ -545,7 +581,8 @@
     "Met de bedrijfsarts."
    ],
    "w": "Ook met problemen in uw hoofd gaat u eerst naar de huisarts.",
-   "beeld": "🩺"
+   "beeld": "🩺",
+   "foto": "A young woman with a sad face talks to a doctor in a GP's consulting room."
   },
   {
    "thema": "gezondheid",
@@ -557,7 +594,8 @@
     "De basisverzekering, na het eigen risico."
    ],
    "w": "Een aanvullende verzekering betaalt zorg die niet in de basisverzekering zit.",
-   "beeld": "🩺"
+   "beeld": "🩺",
+   "foto": "A physiotherapist helps a man stretch his shoulder on a treatment table."
   },
   {
    "thema": "gezondheid",
@@ -569,19 +607,21 @@
     "Bij de apotheek."
    ],
    "w": "Baby's en kleine kinderen krijgen hun prikken gratis bij het consultatiebureau.",
-   "beeld": "💉"
+   "beeld": "💉",
+   "foto": "A nurse gives a vaccination in the thigh of a baby held by its mother in a child health clinic."
   },
   {
    "thema": "gezondheid",
    "sit": "Rik krijgt op het werk iets in zijn oog. Het doet veel pijn en hij ziet bijna niets.",
    "v": "Wat doet hij?",
    "o": [
-    "Meteen de huisarts bellen of naar de spoedeisende hulp gaan.",
+    "Meteen de huisarts bellen.",
     "Een week wachten.",
     "Naar de drogist gaan."
    ],
    "w": "Bij iets ernstigs belt u meteen de huisarts. Die zegt of u naar de spoedeisende hulp moet.",
-   "beeld": "👁️"
+   "beeld": "👁️",
+   "foto": "A worker in a workshop holds his hand over one eye while a colleague helps him."
   }
  ]
 }
