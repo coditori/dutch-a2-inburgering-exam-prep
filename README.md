@@ -125,6 +125,12 @@ python3 tools/controleer_fa.py -v  # list English help texts that have no Persia
 
 Compound words (ziekenhuis = zieken + huis) are split by `tools/bouw.py` when both parts are in the word list. A split that is missing or wrong goes in `woorden/samenstellingen.txt`.
 
+A word with two meanings (weer: het weer or weer, zijn: to be or his) gets a line per meaning in `woorden/woorden.txt`, and `woorden/betekenis.txt` says which meaning fits in which sentence, with short patterns like `het [weer]`. A new lesson with such a word: check what the word card will show:
+
+```bash
+python3 tools/controleer.py --betekenis weer   # every sentence with "weer" and the meaning the card picks
+```
+
 ## Version
 
 The version is one line in `shared/app.js` (`const VERSIE`) and is shown at the bottom of every page. You do not change it by hand: the workflow `.github/workflows/versie.yml` bumps it once per pull request and commits it to the PR branch. A branch named `feat/...` gives a minor bump, `major/...` a major bump, any other name a patch bump. By hand: `python3 tools/versie.py --verhoog patch`.

@@ -1,0 +1,44 @@
+# BETEKENIS: een woord met meer betekenissen. Welke past in welke zin?
+# Het kaartje bij een woord (shared/app.js) kiest zo:
+#   1. een regel hieronder waarvan een patroon in de zin past (de eerste die past, telt)
+#   2. wat zeker past: een woordgroep (hoe laat is het?) of een werkwoord met een los deel (Ik bel je op)
+#   3. de standaard van het woord hieronder
+# De andere betekenissen staan op het kaartje onder "Ook".
+#
+#   woord = regel uit woorden.txt                         de standaard
+#   woord = regel uit woorden.txt: patroon | patroon      in deze stukjes zin
+#
+# Een patroon is een stukje zin met het woord tussen [ ]. Zonder hoofdletters en leestekens; het past niet over een komma heen.
+# In een patroon:
+#   *    = elk woord
+#   NW   = een zelfstandig naamwoord (een woord dat in woorden.txt met de of het staat, ook samengesteld; geen lidwoord)
+#   NAAM = een woord dat niet in woorden.txt staat (een naam, of een woord als DigiD)
+#   MV   = een zelfstandig naamwoord in het meervoud (kasten, medewerkers)
+#   ^    = het begin van de zin (alleen vooraan)
+#
+# Na een verandering: python3 tools/bouw.py, en dan
+#   python3 tools/controleer.py                  # klopt dit bestand?
+#   python3 tools/controleer.py --betekenis weer # elke zin met "weer" en de betekenis die het kaartje kiest
+
+# weer: "Neem uw afval dan weer mee" (again, back), maar "het weer is slecht", "mooi weer" (weather)
+weer = weer
+weer = het weer: het [weer] | mooi [weer] | slecht [weer] | beter [weer] | goed [weer] | lekker [weer] | koud [weer] | warm [weer] | nat [weer]
+
+# pas: "Ik ben pas om drie uur klaar" (not until), maar "je pas van school", "een gestolen pas" (card).
+# "zijn pas" alleen met "en" erbij: "Wij zijn pas om negen uur klaar" is het werkwoord zijn.
+pas = pas
+pas = de pas: de [pas] | een [pas] | je [pas] | uw [pas] | zijn [pas] en | en zijn [pas] | haar [pas] | mijn [pas] | gestolen [pas] | verloren [pas] | nieuwe [pas]
+
+# eens: "Bent u het niet eens met ...?" (agree), maar "Maakt u wel eens muziek?" (ever)
+eens = het eens zijn
+eens = eens: wel [eens] | nog [eens] | [eens] per
+
+# zijn: "zijn fiets", "op zijn werk", "zijn nieuwe adres" (his), maar "Er zijn ...", "Dit zijn Anna en Bas", "in de kamer zijn" (to be).
+# Eerst de regels voor het werkwoord: "Wij zijn vrienden" en "In de kleedkamers zijn kasten" (MV) is geen "zijn vrienden".
+# "Ik hoor dat zijn buurman ..." is wel his (^ dat). Een voorzetsel ervoor: his, maar niet aan het eind ("tot de medicijnen op zijn").
+# Lastig, en hier fout: "In het centrum van Rotterdam zijn werkzaamheden" en "RTL en SBS zijn zenders" (het werkwoord, maar
+# NAAM zijn NW is ook "meneer Smit zijn fiets"), "Groente, fruit en afval uit de tuin zijn gft-afval",
+# en de vraag "Zijn kinderen en werknemers vrij op 5 december?".
+zijn = zijn
+zijn = zijn: er [zijn] | ^ dit [zijn] | ^ dat [zijn] | alle * [zijn] | MV [zijn] | wij [zijn] NW | we [zijn] NW | zij [zijn] NW | ze [zijn] NW | jullie [zijn] NW
+zijn = zijn / haar: [zijn] NW | [zijn] eigen | [zijn] nieuwe | [zijn] oude | [zijn] eerste | [zijn] vorige | ^ [zijn] NAAM | in [zijn] * | op [zijn] * | van [zijn] * | met [zijn] * | aan [zijn] * | naar [zijn] * | voor [zijn] * | bij [zijn] * | uit [zijn] * | om [zijn] * | over [zijn] * | zonder [zijn] *
