@@ -30,3 +30,10 @@ audio { max-width: 100%; height: 36px; vertical-align: middle; }
 .pnt b { flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--vlak2); font-variant-numeric: tabular-nums; }
 .pnt.aan { border-color: var(--accent); background: var(--accent-zacht); color: var(--op-accent-zacht); }
 .pnt.aan b { background: var(--accent); color: var(--op-accent); }
+/* foto's zoals bij DUO: onderdeel 2 een grote foto, onderdeel 3 twee naast elkaar, onderdeel 4 drie op een rij */
+.scene:has(.met-foto) { align-items: flex-start; gap: 10px; }
+.scene .plaat:has(.met-foto) { flex: 1 1 0; min-width: 0; max-width: 460px; padding: 0; background: none; text-align: center; }
+.scene:has(> .plaat:nth-child(2)) .plaat:has(.met-foto) { max-width: 390px; }
+.scene:has(> .plaat:nth-child(3)) .plaat:has(.met-foto) { max-width: 290px; }
+.scene .plaat .met-foto img { max-width: 100%; border-radius: 10px; }
+.scene .plaat:has(.met-foto) small { margin-top: 4px; }

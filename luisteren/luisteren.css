@@ -24,3 +24,7 @@ body.en .speler .knop[data-en] { padding: 6px 12px; border-radius: 22px; min-hei
 .speel-teken { position: relative; }
 .fragment-beeld { font-size: 3rem; text-align: center; border-radius: var(--rond); }
 .speelt { outline: 3px solid #f08c00; outline-offset: 3px; border-radius: 10px; }
+/* de foto bij een fragment (zoals de video of de foto bij DUO) */
+.fragment-beeld .met-foto img { max-width: 100%; max-height: 40vh; width: auto; margin: 0 auto; border-radius: 12px; }
+/* de ronde speelknop is te klein voor de hulptekst: die staat in de titel */
+body.en .speel-knop[data-en]::after { display: none; }

@@ -70,7 +70,7 @@
   async function leesVoor(v, nr) {
     const mijn = ++leesNr;
     Spraak.stop();
-    const doelen = [document.querySelector('.toetsvak .vraag'), ...document.querySelectorAll('.toetsvak .optie')];
+    const doelen = [document.querySelector('.knm-stam'), ...document.querySelectorAll('.knm-antwoorden .optie')];
     const teksten = [voorlezen(v), ...stand.volgorde[nr].map((i) => v.o[i])];
     for (const [i, t] of teksten.entries()) {
       if (mijn !== leesNr) break;
@@ -94,10 +94,15 @@
       stand.nu < schermen.length - 1 ? el('button', { class: 'knop', onclick: () => ga(stand.nu + 1) }, 'Volgende') : el('button', { class: 'knop', en: 'hand in', onclick: overzicht }, 'Inleveren')));
     if (s.intro) { vak.append(el('div', { class: 'kaart' }, el('p', { style: 'font-size:1.15rem' }, `De volgende vragen gaan over het thema '${THEMA[s.intro] || s.intro}'.`), el('p', { class: 'zacht' }, "Klik op 'Volgende'."))); return; }
     const v = vragen[s.nr];
+    // zoals het KNM-examen van DUO: links de foto, de knop om te luisteren en de vraag; rechts de drie antwoorden
     const vraagDoel = el('div');
-    vak.append(el('div', { class: 'kaart' }, el('div', { class: 'kplaat' }, App.foto(v.foto, v.beeld || '🇳🇱')),
-      el('p', { class: 'midden' }, el('button', { class: 'knop licht klein', en: 'listen to the question and the answers', onclick: () => leesVoor(v, s.nr) }, App.teken('luid'), 'Luister')), vraagDoel));
     const blok = Lezen.vraag(vraagDoel, v, { volgorde: stand.volgorde[s.nr], gekozen: stand.antwoorden[s.nr], op: (keuze) => { stand.antwoorden[s.nr] = keuze; bewaar(); blok.teken(keuze, false); } });
+    const stam = el('div', { class: 'vraag knm-stam' }, ...vraagDoel.querySelectorAll('.vraag > .sit, .vraag > .v'));
+    vak.className = 'examen knm-examen';
+    vak.append(
+      el('section', {}, el('div', { class: 'kplaat' }, App.foto(v.foto, v.beeld || '🇳🇱')),
+        el('p', { class: 'midden' }, el('button', { class: 'knop licht klein', en: 'listen to the question and the answers', onclick: () => leesVoor(v, s.nr) }, App.teken('luid'), 'Luister')), stam),
+      el('section', { class: 'knm-antwoorden' }, vraagDoel));
     window.scrollTo(0, 0);
     leesVoor(v, s.nr); // zoals bij DUO: de vraag en elk antwoord worden voorgelezen
   }

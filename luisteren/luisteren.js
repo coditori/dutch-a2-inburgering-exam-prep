@@ -83,7 +83,7 @@ window.Luister = (() => {
     ring.innerHTML = `<circle cx="24" cy="24" r="${R}" class="ring-achter"/>`;
     ring.append(boog);
     const teken = el('span', { class: 'speel-teken' }, '▶');
-    const knop = el('button', { type: 'button', class: 'speel-knop', 'aria-label': 'spelen of pauze', en: 'play / pause', onclick: () => (speelt ? pauze() : speel()) }, ring, teken);
+    const knop = el('button', { type: 'button', class: 'speel-knop', 'aria-label': 'spelen of pauze', title: 'spelen / pauze', en: 'play / pause', onclick: () => (speelt ? pauze() : speel()) }, ring, teken);
     const terug = el('button', { type: 'button', class: 'knop licht klein', 'aria-label': '10 seconden terug', en: '10 seconds back', onclick: () => spring(-10) }, '↺ 10');
     const verder = el('button', { type: 'button', class: 'knop licht klein', 'aria-label': '10 seconden verder', en: '10 seconds forward', onclick: () => spring(10) }, '10 ↻');
     const vak = el('div', { class: 'examen-speler' }, terug, knop, verder);
