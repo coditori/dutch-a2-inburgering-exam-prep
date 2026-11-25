@@ -17,7 +17,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from ttslib import ROOT, maak_google  # noqa: E402
 
-STEMMEN = ["nl-NL-Chirp3-HD-Schedar", "nl-NL-Chirp3-HD-Despina", "nl-NL-Chirp3-HD-Achird", "nl-NL-Chirp3-HD-Sulafat"]
+MANNEN = ["nl-NL-Chirp3-HD-Schedar", "nl-NL-Chirp3-HD-Achird"]
+VROUWEN = ["nl-NL-Chirp3-HD-Despina", "nl-NL-Chirp3-HD-Sulafat"]
+STEMMEN = MANNEN + VROUWEN
 MAP = ROOT / "spreken" / "audio"
 
 
@@ -46,9 +48,28 @@ def verzamel():
     return vragen, rest
 
 
+def sprekers():
+    """vraag -> 'man' of 'vrouw': in onderdeel 1 van een toets zegt een persoon de vraag; de stem past bij de foto van die persoon"""
+    uit = {}
+    for pad in sorted((ROOT / "spreken" / "toets").glob("[A-Z].json")):
+        for it in json.loads(pad.read_text(encoding="utf-8"))["items"]:
+            foto = (it.get("foto") or "").lower()
+            if it.get("deel") == 1 and foto:
+                vrouw = any(w in foto for w in ("woman", "girl", "female", "lady", "mother"))
+                uit[" ".join(x for x in (it.get("sit"), it["vraag"]) if x)] = "vrouw" if vrouw else "man"
+    return uit
+
+
+_SPREKERS = None
+
+
 def stem_van(tekst):
-    """altijd dezelfde stem voor dezelfde vraag"""
-    return STEMMEN[int(hashlib.sha1(tekst.encode("utf-8")).hexdigest(), 16) % len(STEMMEN)]
+    """altijd dezelfde stem voor dezelfde vraag; bij een persoon in een video: een man of een vrouw, zoals op de foto"""
+    global _SPREKERS
+    if _SPREKERS is None:
+        _SPREKERS = sprekers()
+    lijst = {"man": MANNEN, "vrouw": VROUWEN}.get(_SPREKERS.get(tekst), STEMMEN)
+    return lijst[int(hashlib.sha1(tekst.encode("utf-8")).hexdigest(), 16) % len(lijst)]
 
 
 def main():

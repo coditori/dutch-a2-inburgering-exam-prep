@@ -1,0 +1,587 @@
+{
+ "id": "C",
+ "trede": 4,
+ "na": "P26",
+ "titel": "Toets C",
+ "namen": [
+  "Hassan",
+  "Ilse",
+  "Jesse",
+  "Mia",
+  "Demir",
+  "Jamal",
+  "Yusuf",
+  "Sanne",
+  "Peter"
+ ],
+ "items": [
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "foto": "A young man of about 20 with dark curly hair and a denim jacket, seen from the shoulders up, looks into the camera; behind him is a city street with a tram stop.",
+   "sit": "Ik ga elke dinsdag met de tram naar mijn cursus.",
+   "vraag": "Hoe gaat u naar uw les? Vertel ook hoe lang dat duurt.",
+   "model": [
+    "Ik ga met de fiets naar mijn les.",
+    "Dat duurt een kwartier."
+   ],
+   "sleutel": [
+    [
+     "fiets",
+     "bus",
+     "tram",
+     "trein",
+     "auto",
+     "lopen",
+     "loop"
+    ],
+    [
+     "minuut",
+     "minuten",
+     "kwartier",
+     "uur",
+     "half",
+     "lang",
+     "duurt"
+    ]
+   ],
+   "les": "P11:4"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "foto": "A woman of about 50 with short red hair and a dark blue work shirt, seen from the shoulders up, looks into the camera; behind her is a clean factory hall with machines.",
+   "sit": "Ik werk in een fabriek. Ik heb heel leuke collega's.",
+   "vraag": "Wat vindt u belangrijk op uw werk? Vertel ook waarom.",
+   "model": [
+    "Ik vind leuke collega's belangrijk.",
+    "Dan ga ik graag naar mijn werk."
+   ],
+   "sleutel": [
+    [
+     "belangrijk",
+     "collega",
+     "baas",
+     "geld",
+     "salaris",
+     "loon",
+     "tijd",
+     "vrij"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "dan",
+     "graag",
+     "leuk",
+     "fijn"
+    ]
+   ],
+   "les": "P15:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "foto": "A woman of about 70 with short white hair and a lilac blouse, seen from the shoulders up, looks into the camera; behind her is a living room with a sofa on which a cat is sleeping.",
+   "sit": "Ik heb een kat. Zij slaapt de hele dag op de bank.",
+   "vraag": "Hebt u een dier in huis? Vertel ook waarom.",
+   "model": [
+    "Nee, ik heb geen dier.",
+    "Mijn huis is te klein."
+   ],
+   "sleutel": [
+    [
+     "hond",
+     "kat",
+     "dier",
+     "dieren",
+     "geen",
+     "vis"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "te klein",
+     "tijd",
+     "leuk",
+     "rustig",
+     "werk"
+    ]
+   ],
+   "les": "P26:5"
+  },
+  {
+   "soort": "vraag",
+   "deel": 1,
+   "foto": "A man of about 45 with a dark moustache and a brown jacket, seen from the shoulders up, looks into the camera; behind him is a small kitchen with a smartphone on the table.",
+   "sit": "Ik bel elke week met mijn familie in mijn land.",
+   "vraag": "Hoe vaak praat u met uw familie? Vertel ook hoe u dat doet.",
+   "model": [
+    "Ik praat elke dag met mijn moeder.",
+    "Ik bel haar met mijn telefoon."
+   ],
+   "sleutel": [
+    [
+     "keer",
+     "elke",
+     "elk",
+     "vaak",
+     "soms",
+     "nooit",
+     "dag",
+     "week",
+     "maand"
+    ],
+    [
+     "bel",
+     "bellen",
+     "telefoon",
+     "computer",
+     "internet",
+     "bezoek",
+     "brief",
+     "e-mail"
+    ]
+   ],
+   "les": "P11:9"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👨👧📓✏️"
+   ],
+   "fotos": [
+    "A father of about 40 sits next to his daughter of about 9 at the kitchen table at home and points at her exercise book while she writes with a pencil."
+   ],
+   "sit": "Dit zijn Hassan en zijn dochter.",
+   "vraag": "Vertel wat over Hassan en zijn dochter. Noem drie dingen.",
+   "model": [
+    "Hassan en zijn dochter zitten aan tafel.",
+    "Hij helpt haar met haar huiswerk.",
+    "Ik denk dat het huiswerk moeilijk is."
+   ],
+   "drie": true,
+   "les": "P20:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👩📦🚚"
+   ],
+   "fotos": [
+    "A young woman in a dark blue work jacket carries a cardboard box from a small white delivery van to the front door of a terraced house."
+   ],
+   "sit": "Dit is Ilse.",
+   "vraag": "Vertel wat Ilse doet. Vertel ook wat u van dit werk vindt.",
+   "model": [
+    "Ilse brengt een pakje naar een huis.",
+    "Ik vind dat leuk werk, want zij is veel buiten."
+   ],
+   "sleutel": [
+    [
+     "pakje",
+     "brengt",
+     "bezorgt",
+     "doos",
+     "draagt"
+    ],
+    [
+     "ik vind",
+     "leuk",
+     "saai",
+     "zwaar",
+     "moeilijk",
+     "druk",
+     "makkelijk",
+     "goed"
+    ]
+   ],
+   "les": "P18:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👫☔🚏"
+   ],
+   "fotos": [
+    "A young man and a young woman of about 25 stand close together under one umbrella at a bus stop on a rainy day; the street is wet and they look down the road."
+   ],
+   "sit": "Dit zijn Jesse en Mia.",
+   "vraag": "Vertel wat over Jesse en Mia. Noem drie dingen.",
+   "model": [
+    "Jesse en Mia staan bij de bushalte.",
+    "Het regent.",
+    "Ik denk dat zij op de bus wachten."
+   ],
+   "drie": true,
+   "les": "P20:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
+    "👴🩺👩‍⚕️"
+   ],
+   "fotos": [
+    "A female family doctor of about 45 listens with a stethoscope to the chest of a man of about 70 who sits on the edge of the examination table in her practice."
+   ],
+   "sit": "Dit is meneer Demir.",
+   "vraag": "Vertel wat over meneer Demir. Noem drie dingen.",
+   "model": [
+    "Meneer Demir is bij de huisarts.",
+    "De huisarts helpt meneer Demir.",
+    "Ik denk dat hij ziek is."
+   ],
+   "drie": true,
+   "les": "P20:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "📖✏️",
+    "📱"
+   ],
+   "fotos": [
+    "A woman sits at a table with an open book and writes words on a sheet of paper with a pen.",
+    "A man sits on a park bench and practises words on his smartphone; the screen is not readable."
+   ],
+   "sit": "U leert nieuwe woorden.",
+   "vraag": "Hoe leert u liever: met een boek of met uw telefoon? Vertel ook waarom.",
+   "model": [
+    "Ik leer liever met mijn telefoon.",
+    "Dan kan ik ook in de bus leren."
+   ],
+   "sleutel": [
+    [
+     "boek",
+     "telefoon",
+     "mobiel",
+     "papier",
+     "computer"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "makkelijk",
+     "handig",
+     "altijd",
+     "bus"
+    ]
+   ],
+   "les": "P23:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "👵🧑‍⚕️",
+    "🚲🔧"
+   ],
+   "fotos": [
+    "A care worker in a light blue uniform helps an older woman walk with a walking frame in the hallway of a care home.",
+    "A bicycle mechanic in a dark apron repairs the wheel of a bicycle in a bicycle shop."
+   ],
+   "sit": "U zoekt een nieuwe baan.",
+   "vraag": "Welk werk vindt u leuker? Vertel ook waarom.",
+   "model": [
+    "Ik vind het werk met de fietsen leuker.",
+    "Ik repareer graag dingen."
+   ],
+   "sleutel": [
+    [
+     "zorg",
+     "oude",
+     "ouderen",
+     "mensen",
+     "fiets",
+     "fietsen",
+     "repareren",
+     "fietsenmaker",
+     "monteur"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "graag",
+     "leuk",
+     "help",
+     "helpen",
+     "repareer"
+    ]
+   ],
+   "les": "P22:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "⛺🌳",
+    "🏨🛏️"
+   ],
+   "fotos": [
+    "A small tent stands on the grass of a campsite between trees on a sunny evening.",
+    "A clean, simple hotel room with a large bed, white sheets and a window with a view of a city."
+   ],
+   "sit": "U gaat op vakantie.",
+   "vraag": "Waar slaapt u liever? Vertel ook waarom.",
+   "model": [
+    "Ik slaap liever in een hotel.",
+    "Dat is makkelijk en ik heb een goed bed."
+   ],
+   "sleutel": [
+    [
+     "hotel",
+     "tent",
+     "camping",
+     "kamer"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "makkelijk",
+     "goedkoop",
+     "duur",
+     "koud",
+     "lekker",
+     "buiten"
+    ]
+   ],
+   "les": "P21:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🎬🍿",
+    "🚶‍♀️🌳"
+   ],
+   "fotos": [
+    "A group of people sit in a dark cinema hall and watch a film on a big screen.",
+    "A couple walks on a path through a green park with tall trees on a sunny afternoon."
+   ],
+   "sit": "Het is zaterdag en u hebt vrij.",
+   "vraag": "Wat doet u liever? Vertel ook met wie u dat doet.",
+   "model": [
+    "Ik ga liever naar de film.",
+    "Ik ga met mijn vrienden."
+   ],
+   "sleutel": [
+    [
+     "film",
+     "wandel",
+     "wandelen",
+     "park",
+     "buiten"
+    ],
+    [
+     "met mijn",
+     "met een",
+     "met de",
+     "alleen",
+     "samen",
+     "vriend",
+     "vriendin",
+     "vrienden",
+     "familie",
+     "kinderen",
+     "man",
+     "vrouw",
+     "zus",
+     "broer",
+     "moeder"
+    ]
+   ],
+   "les": "P13:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "💻🔎",
+    "📝🏫",
+    "🧑‍🏫👥"
+   ],
+   "fotos": [
+    "A man of about 35 sits at a desk at home and looks at a computer screen; the screen is not readable.",
+    "The same man stands at the reception desk of a language school and fills in a paper form while a receptionist watches.",
+    "The same man sits in a classroom with other adult students and listens to a teacher at the front."
+   ],
+   "sit": "Jamal wil beter Nederlands leren. Hij zoekt een cursus.",
+   "vraag": "Vertel wat Jamal doet.",
+   "model": [
+    "Jamal zoekt een cursus op de computer.",
+    "Hij vult een formulier in bij de balie.",
+    "Nu zit hij in de les."
+   ],
+   "sleutel": [
+    [
+     "computer",
+     "internet",
+     "website",
+     "zoekt",
+     "kijkt"
+    ],
+    [
+     "formulier",
+     "vult",
+     "invullen",
+     "balie",
+     "inschrijven"
+    ],
+    [
+     "les",
+     "klas",
+     "lokaal",
+     "docent",
+     "luistert"
+    ]
+   ],
+   "les": "P25:1"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🛏️",
+    "🚿🧽",
+    "🧺🛏️"
+   ],
+   "fotos": [
+    "A man of about 30 in a grey work tunic makes a double bed with clean white sheets in a hotel room.",
+    "The same man cleans the washbasin in the hotel bathroom with a cloth.",
+    "The same man puts folded white towels on the end of the made bed."
+   ],
+   "sit": "Yusuf werkt in een hotel. Hij maakt een kamer klaar voor nieuwe gasten.",
+   "vraag": "Vertel wat Yusuf doet.",
+   "model": [
+    "Yusuf maakt het bed op.",
+    "Hij maakt de badkamer schoon.",
+    "Hij legt schone handdoeken op het bed."
+   ],
+   "sleutel": [
+    [
+     "bed"
+    ],
+    [
+     "badkamer",
+     "douche",
+     "wc",
+     "wastafel",
+     "schoon"
+    ],
+    [
+     "handdoek",
+     "handdoeken",
+     "legt"
+    ]
+   ],
+   "les": "P25:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🧥👧👦",
+    "🚶‍♀️👧👦",
+    "🛝"
+   ],
+   "fotos": [
+    "A mother of about 30 helps her two young children put on their coats in the hall of their home.",
+    "The same mother walks on the pavement and holds the hands of her two children.",
+    "The two children play on a slide in a playground while their mother sits on a bench and watches them."
+   ],
+   "sit": "Het is mooi weer. Sanne gaat met haar kinderen naar buiten.",
+   "vraag": "Vertel wat Sanne doet.",
+   "model": [
+    "Sanne helpt de kinderen met hun jas.",
+    "Zij lopen samen naar de speeltuin.",
+    "De kinderen spelen en Sanne zit op een bank."
+   ],
+   "sleutel": [
+    [
+     "jas",
+     "jassen",
+     "helpt",
+     "aan"
+    ],
+    [
+     "lopen",
+     "loopt",
+     "straat",
+     "samen"
+    ],
+    [
+     "speeltuin",
+     "spelen",
+     "bank",
+     "zit"
+    ]
+   ],
+   "les": "P25:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🍎",
+    "🍌",
+    "🥕"
+   ],
+   "fotos": [
+    "A paper bag full of red apples on a plain light background.",
+    "A bunch of yellow bananas on a plain light background.",
+    "A small pile of fresh carrots with green leaves on a plain light background."
+   ],
+   "sit": "Dit koopt Peter op de markt.",
+   "vraag": "Vertel wat Peter koopt. Vertel ook wat u vaak op de markt koopt.",
+   "model": [
+    "Peter koopt appels.",
+    "Hij koopt ook bananen.",
+    "En hij koopt groente. Ik koop vaak vis op de markt."
+   ],
+   "sleutel": [
+    [
+     "appel",
+     "appels"
+    ],
+    [
+     "bananen",
+     "fruit"
+    ],
+    [
+     "groente"
+    ]
+   ],
+   "les": "P24:1"
+  }
+ ]
+}

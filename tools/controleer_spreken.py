@@ -38,6 +38,11 @@ def item_fouten(it, toets=False):
                 f.append(f"sleutel: {n} delen (moet {3 if deel == 4 else 2} zijn, geen lege)")
             if deel == 4 and len(it["model"]) != 3:
                 f.append("onderdeel 4 moet 3 voorbeeldzinnen hebben (één per plaatje)")
+        # toets: een Engelse beschrijving per foto (voor het maken van de foto's); onderdeel 1: de spreker in de video
+        if toets and deel == 1 and not it.get("foto"):
+            f.append("onderdeel 1 zonder foto (beschrijving van de spreker)")
+        if toets and deel > 1 and len(it.get("fotos", [])) != PLAATJES[deel]:
+            f.append(f"fotos: {len(it.get('fotos', []))} beschrijvingen (moet {PLAATJES[deel]} zijn, één per plaatje)")
         if toets and it.get("les"):
             les, _, nr = it["les"].partition(":")
             pad = ROOT / "lessons" / f"{les}.json"

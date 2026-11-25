@@ -399,7 +399,7 @@ class Lijst:
 
 # ---------- inhoud (JSON) ----------
 
-SLA_OVER = {"id", "soort", "en", "thema", "beeld", "na", "vormen", "goed", "trede", "namen", "val"}
+SLA_OVER = {"id", "soort", "en", "thema", "beeld", "na", "vormen", "goed", "trede", "namen", "val", "foto", "fotos"}  # foto(s): Engelse beschrijving voor het maken van de foto's
 
 
 def strings(obj, pad=""):

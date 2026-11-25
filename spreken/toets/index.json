@@ -8,5 +8,10 @@
   "id": "B",
   "titel": "Toets B",
   "vragen": 16
+ },
+ {
+  "id": "C",
+  "titel": "Toets C",
+  "vragen": 16
  }
 ]

@@ -5,11 +5,11 @@
  "titel": "Toets A",
  "namen": [
   "Utrecht",
-  "Bas",
-  "Anna",
   "Lisa",
   "Emma",
-  "Sam",
+  "Bas",
+  "Anna",
+  "Ali",
   "Tom",
   "Mila",
   "Smit"
@@ -18,51 +18,52 @@
   {
    "soort": "vraag",
    "deel": 1,
-   "vraag": "Waar gaat u het liefst winkelen? Vertel ook wanneer u het liefst gaat winkelen.",
+   "foto": "A woman of about 35 with short dark hair and a green cardigan, seen from the shoulders up, looks into the camera; behind her is a bright, empty classroom with tables, chairs and a blank whiteboard.",
+   "sit": "Ik leer Nederlands op school en thuis met de televisie.",
+   "vraag": "Hoe leert u Nederlands? Vertel ook wat u moeilijk vindt.",
    "model": [
-    "Ik ga het liefst in het centrum winkelen.",
-    "Ik ga het liefst op zaterdag."
+    "Ik leer Nederlands op school en met een boek.",
+    "Ik vind spreken moeilijk."
    ],
    "sleutel": [
     [
-     "centrum",
-     "stad",
-     "winkel",
-     "markt",
-     "online"
+     "school",
+     "cursus",
+     "les",
+     "boek",
+     "thuis",
+     "televisie",
+     "tv",
+     "computer",
+     "telefoon",
+     "online",
+     "internet"
     ],
     [
-     "maandag",
-     "dinsdag",
-     "woensdag",
-     "donderdag",
-     "vrijdag",
-     "zaterdag",
-     "zondag",
-     "ochtend",
-     "middag",
-     "avond",
-     "weekend"
+     "moeilijk",
+     "spreken",
+     "schrijven",
+     "lezen",
+     "luisteren",
+     "woorden"
     ]
    ],
-   "les": "P13:0"
+   "les": "P11:0"
   },
   {
    "soort": "vraag",
    "deel": 1,
-   "vraag": "Ik schilder graag in mijn vrije tijd. Wat doet u in uw vrije tijd? Vertel ook waarom.",
+   "foto": "A man of about 50 with a grey beard and a green work jacket, seen from the shoulders up, looks into the camera; behind him is a city park with tall trees, grass and a path.",
+   "sit": "Ik werk in een groot park. Ik werk graag buiten.",
+   "vraag": "Werkt u liever binnen of buiten? Vertel ook waarom.",
    "model": [
-    "In mijn vrije tijd wandel ik.",
-    "Dat is gezond."
+    "Ik werk liever binnen.",
+    "Buiten is het vaak koud en het regent veel."
    ],
    "sleutel": [
     [
-     "vrije tijd",
-     "ik wandel",
-     "ik fiets",
-     "ik lees",
-     "ik kook",
-     "ik sport"
+     "binnen",
+     "buiten"
     ],
     [
      "omdat",
@@ -72,37 +73,61 @@
      "kan ik",
      "ik vind",
      "het is",
-     "gezond",
-     "leuk"
+     "koud",
+     "warm",
+     "regen",
+     "regent",
+     "zon",
+     "fijn",
+     "lekker"
     ]
    ],
-   "les": "P13:2"
+   "les": "P15:2"
   },
   {
    "soort": "vraag",
    "deel": 1,
-   "vraag": "Wat kunt u goed en van wie heeft u dat geleerd?",
+   "foto": "A young woman of about 25 with long curly hair and a yellow coat, seen from the shoulders up, looks into the camera; behind her is a busy shopping street with shop windows but no readable signs.",
+   "sit": "Ik ga graag met mijn zus winkelen in de stad.",
+   "vraag": "Waar gaat u het liefst winkelen? Vertel ook waarom.",
    "model": [
-    "Ik kan goed koken.",
-    "Ik heb dat van mijn moeder geleerd."
+    "Ik ga het liefst naar de markt.",
+    "Daar is het goedkoop en gezellig."
    ],
    "sleutel": [
     [
-     "ik kan",
-     "goed"
+     "centrum",
+     "stad",
+     "winkel",
+     "markt",
+     "online",
+     "winkelcentrum",
+     "supermarkt",
+     "internet"
     ],
     [
-     "van mijn",
-     "geleerd",
-     "school"
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "daar",
+     "goedkoop",
+     "gezellig",
+     "dichtbij",
+     "makkelijk"
     ]
    ],
-   "les": "P16:0"
+   "les": "P11:2"
   },
   {
    "soort": "vraag",
    "deel": 1,
-   "vraag": "In welke plaats woont u nu? Vertel ook wat u leuk vindt aan deze plaats.",
+   "foto": "A man of about 65 with white hair and glasses, wearing a blue jumper, seen from the shoulders up, looks into the camera; behind him is a quiet village street with small brick houses.",
+   "sit": "Ik woon al vijf jaar in een klein dorp.",
+   "vraag": "In welke plaats woont u nu? Vertel ook wat u daar leuk vindt.",
    "model": [
     "Ik woon in Utrecht.",
     "Ik vind het centrum mooi."
@@ -110,14 +135,18 @@
    "sleutel": [
     [
      "ik woon",
-     "woon in"
+     "woon in",
+     "wonen"
     ],
     [
      "leuk",
      "mooi",
      "vind",
      "rustig",
-     "gezellig"
+     "gezellig",
+     "park",
+     "winkels",
+     "buren"
     ]
    ],
    "les": "P14:5"
@@ -126,7 +155,29 @@
    "soort": "vraag",
    "deel": 2,
    "beelden": [
+    "👩‍🦰👩📚✏️"
+   ],
+   "fotos": [
+    "Two young women of about 20 sit side by side at a wooden table in a public library; open books and notebooks lie in front of them, one points at a page while the other writes, and there are bookshelves behind them."
+   ],
+   "sit": "Dit zijn Lisa en Emma.",
+   "vraag": "Vertel wat over Lisa en Emma. Noem drie dingen.",
+   "model": [
+    "Lisa en Emma zitten in de bibliotheek.",
+    "Zij leren samen.",
+    "Ik denk dat zij een toets hebben."
+   ],
+   "drie": true,
+   "les": "P20:0"
+  },
+  {
+   "soort": "vraag",
+   "deel": 2,
+   "beelden": [
     "🧑‍🍳🍲🔥"
+   ],
+   "fotos": [
+    "A man of about 30 in a white cook's jacket stirs a large pan on a gas stove in a busy restaurant kitchen; steam rises from the pan and plates stand ready on the counter."
    ],
    "sit": "Dit is Bas.",
    "vraag": "Vertel waar Bas is. Vertel ook wat zijn werk is.",
@@ -142,6 +193,8 @@
     [
      "kookt",
      "koken",
+     "eten",
+     "klanten",
      "werk"
     ]
    ],
@@ -153,6 +206,9 @@
    "beelden": [
     "👩🚄⌚😟"
    ],
+   "fotos": [
+    "A woman of about 40 with a backpack stands on a crowded train platform and looks worried at her wristwatch; many people are waiting and the track next to the platform is empty."
+   ],
    "sit": "Anna staat op het station.",
    "vraag": "Vertel wat het probleem is. Vertel ook wat Anna nu kan doen.",
    "model": [
@@ -163,13 +219,15 @@
     [
      "vertraging",
      "laat",
-     "trein"
+     "trein",
+     "komt niet"
     ],
     [
      "bellen",
      "wachten",
      "bus",
-     "kan"
+     "kan",
+     "taxi"
     ]
    ],
    "les": "P19:0"
@@ -180,6 +238,9 @@
    "beelden": [
     "👨🧒🏊💦"
    ],
+   "fotos": [
+    "A father of about 35 and his son of about 7 swim together in an indoor swimming pool; the boy holds on to his father's shoulders and both are smiling."
+   ],
    "vraag": "Wat doen de vader en zijn zoon? Vertel ook hoe vaak u dat doet.",
    "model": [
     "Zij zwemmen in het zwembad.",
@@ -187,7 +248,9 @@
    ],
    "sleutel": [
     [
-     "zwem"
+     "zwem",
+     "zwembad",
+     "water"
     ],
     [
      "keer",
@@ -202,73 +265,27 @@
   },
   {
    "soort": "vraag",
-   "deel": 2,
-   "beelden": [
-    "👩‍🦰👩📚☕"
-   ],
-   "sit": "Dit zijn Lisa en Emma.",
-   "vraag": "Vertel wat over Lisa en Emma. Noem drie dingen.",
-   "model": [
-    "Lisa en Emma zitten in de bibliotheek.",
-    "Zij leren samen.",
-    "Zij drinken koffie."
-   ],
-   "drie": true,
-   "les": "P20:0"
-  },
-  {
-   "soort": "vraag",
    "deel": 3,
    "beelden": [
-    "🏫🏢",
-    "🏡🌳"
+    "👩‍💻🏫",
+    "🏊‍♀️🧑‍🏫"
    ],
-   "sit": "U doet een cursus.",
-   "vraag": "In welk gebouw hebt u liever les? Vertel ook waarom.",
+   "fotos": [
+    "Five adults of different ages sit at computers in a classroom while a teacher bends over to help one of them.",
+    "A swimming teacher stands in the shallow end of an indoor pool and shows three adult beginners how to move their arms."
+   ],
+   "sit": "U wilt een cursus doen.",
+   "vraag": "Welke cursus doet u liever? Vertel ook waarom.",
    "model": [
-    "Ik heb liever les in het grote gebouw.",
-    "Dat is in het centrum."
+    "Ik doe liever de computercursus.",
+    "Dat is handig voor mijn werk."
    ],
    "sleutel": [
     [
-     "gebouw",
-     "groot",
-     "grote",
-     "klein",
-     "kleine",
-     "huis",
-     "tuin"
-    ],
-    [
-     "omdat",
-     "want",
-     "dat is",
-     "dan kan",
-     "kan ik",
-     "ik vind",
-     "het is"
-    ]
-   ],
-   "les": "P22:0"
-  },
-  {
-   "soort": "vraag",
-   "deel": 3,
-   "beelden": [
-    "🍗🍚",
-    "🥗"
-   ],
-   "sit": "Kijk naar de plaatjes.",
-   "vraag": "Wat eet u liever? Vertel ook waarom.",
-   "model": [
-    "Ik eet liever kip met rijst.",
-    "Dat vind ik lekker."
-   ],
-   "sleutel": [
-    [
-     "kip",
-     "rijst",
-     "salade"
+     "computer",
+     "zwem",
+     "zwemmen",
+     "zwemles"
     ],
     [
      "omdat",
@@ -278,35 +295,13 @@
      "kan ik",
      "ik vind",
      "het is",
-     "lekker",
-     "gezond"
+     "handig",
+     "gezond",
+     "werk",
+     "leuk"
     ]
    ],
-   "les": "P21:3"
-  },
-  {
-   "soort": "vraag",
-   "deel": 3,
-   "beelden": [
-    "🚗",
-    "🚌"
-   ],
-   "sit": "Kijk naar de plaatjes.",
-   "vraag": "Hoe reist u vaker? Vertel ook waar u dan naartoe gaat.",
-   "model": [
-    "Ik reis vaker met de bus.",
-    "Ik ga dan naar mijn werk."
-   ],
-   "sleutel": [
-    [
-     "bus",
-     "auto"
-    ],
-    [
-     "naar"
-    ]
-   ],
-   "les": "P21:0"
+   "les": "P22:2"
   },
   {
    "soort": "vraag",
@@ -314,6 +309,10 @@
    "beelden": [
     "🏠💻",
     "🏢👥"
+   ],
+   "fotos": [
+    "A woman works on a laptop at the kitchen table in her home, with a cup of tea next to her.",
+    "Several colleagues work at desks with computers in a bright, open office."
    ],
    "sit": "U zoekt werk.",
    "vraag": "Waar werkt u liever: thuis of op een kantoor? Vertel ook waarom.",
@@ -334,38 +333,145 @@
      "kan ik",
      "ik vind",
      "het is",
-     "daar"
+     "daar",
+     "collega"
     ]
    ],
    "les": "P22:3"
   },
   {
    "soort": "vraag",
-   "deel": 4,
+   "deel": 3,
    "beelden": [
-    "🥛",
-    "🍞",
-    "🥚"
+    "🧥❄️",
+    "🧥🌧️"
    ],
-   "sit": "Dit eet en drinkt Sam in de ochtend.",
-   "vraag": "Vertel wat u ziet. Vertel ook wat u in de ochtend eet.",
+   "fotos": [
+    "A thick, warm winter coat with a hood hangs on a clothes rail in a clothes shop.",
+    "A thin rain jacket with a hood hangs on a clothes rail in a clothes shop."
+   ],
+   "sit": "U koopt een nieuwe jas.",
+   "vraag": "Welke jas koopt u liever? Vertel ook waarom.",
    "model": [
-    "Ik zie melk.",
-    "Ik zie brood.",
-    "Ik zie een ei. Ik eet in de ochtend brood met kaas."
+    "Ik koop liever de winterjas.",
+    "In de winter is het hier koud."
    ],
    "sleutel": [
     [
-     "melk"
+     "winterjas",
+     "regenjas",
+     "warm",
+     "warme",
+     "eerste",
+     "tweede",
+     "links",
+     "rechts",
+     "lang",
+     "lange",
+     "kort",
+     "korte"
     ],
     [
-     "brood"
-    ],
-    [
-     "ei"
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "koud",
+     "regen",
+     "regent",
+     "warm",
+     "mooi",
+     "handig"
     ]
    ],
-   "les": "P24:1"
+   "les": "P16:3"
+  },
+  {
+   "soort": "vraag",
+   "deel": 3,
+   "beelden": [
+    "🦒🐘",
+    "🏖️☀️"
+   ],
+   "fotos": [
+    "A family walks along a path in a zoo and looks at giraffes behind a fence.",
+    "A wide sandy beach on a sunny summer day, with families sitting on towels and children playing near the sea."
+   ],
+   "sit": "U gaat een dag weg met uw familie.",
+   "vraag": "Waar gaat u liever naartoe? Vertel ook waarom.",
+   "model": [
+    "Ik ga liever naar de dierentuin.",
+    "Mijn kinderen vinden dieren heel leuk."
+   ],
+   "sleutel": [
+    [
+     "dierentuin",
+     "dieren",
+     "strand",
+     "zee"
+    ],
+    [
+     "omdat",
+     "want",
+     "dat is",
+     "dan kan",
+     "kan ik",
+     "ik vind",
+     "het is",
+     "leuk",
+     "mooi",
+     "warm",
+     "zon",
+     "kinderen"
+    ]
+   ],
+   "les": "P21:2"
+  },
+  {
+   "soort": "vraag",
+   "deel": 4,
+   "beelden": [
+    "🚲🧑‍🏫",
+    "🚲🐢",
+    "🚲😀"
+   ],
+   "fotos": [
+    "A man of about 40 sits on a bicycle on a quiet, empty square while a female cycling teacher holds the back of the bike.",
+    "The same man cycles slowly across the square while the teacher walks next to him.",
+    "The same man cycles alone on a quiet street and smiles."
+   ],
+   "sit": "Ali kan nog niet fietsen. Hij volgt een cursus.",
+   "vraag": "Vertel wat Ali doet.",
+   "model": [
+    "Ali stapt op de fiets. De docent houdt de fiets vast.",
+    "Ali fietst langzaam. De docent loopt mee.",
+    "Daarna fietst Ali alleen op straat."
+   ],
+   "sleutel": [
+    [
+     "stapt",
+     "zit",
+     "op de fiets",
+     "houdt",
+     "vast"
+    ],
+    [
+     "langzaam",
+     "loopt",
+     "mee",
+     "naast",
+     "helpt"
+    ],
+    [
+     "alleen",
+     "zelf",
+     "straat"
+    ]
+   ],
+   "les": "P25:2"
   },
   {
    "soort": "vraag",
@@ -375,27 +481,36 @@
     "⏰😱",
     "🏃🚌"
    ],
-   "sit": "Tom moet naar zijn werk. Kijk naar de plaatjes.",
-   "vraag": "Vertel wat er gebeurt. Vertel iets over alle plaatjes.",
+   "fotos": [
+    "A man of about 30 sleeps in bed in a dim bedroom; an alarm clock stands on the bedside table.",
+    "The same man sits up in bed, holds the alarm clock and looks shocked.",
+    "The same man, now dressed and carrying a bag, runs along the pavement towards a city bus at a bus stop."
+   ],
+   "sit": "Tom moet om acht uur op zijn werk zijn.",
+   "vraag": "Vertel wat Tom doet.",
    "model": [
-    "Tom slaapt.",
-    "Hij ziet dat het laat is.",
+    "Tom slaapt nog.",
+    "Hij ziet dat het al laat is.",
     "Hij rent naar de bus."
    ],
    "sleutel": [
     [
      "slaapt",
-     "bed"
+     "bed",
+     "slapen"
     ],
     [
      "laat",
      "tijd",
-     "ziet"
+     "ziet",
+     "wekker",
+     "klok"
     ],
     [
      "rent",
      "bus",
-     "loopt"
+     "loopt",
+     "snel"
     ]
    ],
    "les": "P25:0"
@@ -408,12 +523,17 @@
     "🧹🛋️",
     "🪟✨"
    ],
-   "sit": "Mila maakt haar huis schoon. Kijk naar de plaatjes.",
-   "vraag": "Vertel wat Mila doet. Vertel iets over alle plaatjes.",
+   "fotos": [
+    "A woman of about 45 with her hair in a ponytail cleans the kitchen counter and the sink with a cloth.",
+    "The same woman sweeps the floor of her living room with a broom; a sofa and a low table stand behind her.",
+    "The same woman cleans a large living room window with a cloth."
+   ],
+   "sit": "Mila krijgt vanavond bezoek. Zij maakt haar huis schoon.",
+   "vraag": "Vertel wat Mila doet.",
    "model": [
     "Mila maakt de keuken schoon.",
-    "Zij maakt de kamer schoon.",
-    "Zij maakt de ramen schoon."
+    "Zij veegt de woonkamer.",
+    "Daarna maakt zij de ramen schoon."
    ],
    "sleutel": [
     [
@@ -421,7 +541,9 @@
      "wast"
     ],
     [
-     "kamer"
+     "veegt",
+     "kamer",
+     "woonkamer"
     ],
     [
      "ramen",
@@ -434,30 +556,39 @@
    "soort": "vraag",
    "deel": 4,
    "beelden": [
-    "🎫",
     "🧳",
-    "🚄"
+    "🛂",
+    "🎫"
    ],
-   "sit": "De familie Smit gaat op vakantie. Dit hebben zij nodig.",
-   "vraag": "Vertel wat u ziet. Vertel ook waar u het liefst naartoe gaat op vakantie.",
+   "fotos": [
+    "A large dark blue travel bag with a shoulder strap on a plain light grey background.",
+    "Two closed passports with plain dark red covers on a plain light grey background; no country name or emblem is visible.",
+    "Two paper train tickets on a plain light grey background; the print is not readable."
+   ],
+   "sit": "De familie Smit gaat op vakantie. Dit nemen zij mee.",
+   "vraag": "Vertel welke spullen dat zijn. Vertel ook waarvoor zij die nodig hebben.",
    "model": [
-    "Ik zie kaartjes.",
-    "Ik zie een tas.",
-    "Ik zie een trein. Ik ga het liefst naar het strand."
+    "Ik zie een grote tas. Daar doen zij hun kleren in.",
+    "Ik zie paspoorten. Die hebben zij nodig voor de reis.",
+    "Ik zie kaartjes. Daarmee gaan zij met de trein."
    ],
    "sleutel": [
     [
+     "tas",
+     "koffer",
+     "kleren"
+    ],
+    [
+     "paspoort",
+     "paspoorten"
+    ],
+    [
      "kaartje",
-     "kaartjes"
-    ],
-    [
-     "tas"
-    ],
-    [
+     "kaartjes",
      "trein"
     ]
    ],
-   "les": "P24:4"
+   "les": "P24:3"
   }
  ]
 }
