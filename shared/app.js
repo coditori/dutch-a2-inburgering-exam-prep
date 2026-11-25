@@ -407,7 +407,8 @@ window.App = (() => {
   }
 
   // ---------- het kaartje bij een woord in een tekst ----------
-  // Het woord met de of het, het plaatje, en drie knoppen: luister, vertaling, bewaar. De vertaling staat er pas na een klik.
+  // Het woord met de of het, het plaatje, en drie knoppen: luister, vertaling, bewaar.
+  // De vertaling: staat de hulp aan (Engels of Perzisch, knop in de kop), dan staat ze er meteen. Hulp uit: pas na een klik op Vertaling.
   // Een samengesteld woord (ziekenhuis, fietsenwinkel) heeft bovenaan de losse delen: zieken + huis.
   // Breed scherm: het kaartje staat bij het woord (eronder, of erboven als daar geen plek is). Telefoon: een blad onder aan het scherm.
   // Het kaartje toont de betekenis die bij de zin past. Heeft het woord nog een betekenis, dan staat eronder "Ook: het weer";
@@ -424,7 +425,7 @@ window.App = (() => {
       ? { z: b.ctx.zin, v: vormVan(doel.textContent), b: location.href.startsWith(WORTEL) && pagina !== 'mijn-woorden.html' ? pagina : '' } : null;
     const rij = (nr) => {
       const r = zoekNr(nr);
-      const en = el('div', { class: 'en', hidden: true, hulp: r.en });
+      const en = el('div', { class: 'en', hidden: !hulpAan(), hulp: r.en }); // hulp aan: de vertaling meteen in de gekozen taal
       window.SRS.voegToe('w:' + r.nl, { soort: 'w', nl: r.nl }); // alleen wat de leerling ziet, komt bij Herhalen
       return el('div', { class: 'rij' },
         el('div', { class: 'wpop-kop' },
