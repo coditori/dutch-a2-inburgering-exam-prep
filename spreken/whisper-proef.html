@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proef: Whisper in de browser</title>
+<link rel="stylesheet" href="../shared/app.css">
+<script src="../shared/thema.js"></script>
+<link rel="stylesheet" href="spreken.css">
+<style>
+  .wp-rij { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+  .wp-balk { height: 10px; border-radius: 5px; background: var(--vlak2); overflow: hidden; margin: 8px 0; }
+  .wp-balk i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+  .wp-tabel { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .wp-tabel td, .wp-tabel th { padding: 6px 8px; border-bottom: 1px solid var(--lijn); text-align: start; vertical-align: top; }
+  .wp-goed { color: var(--goed); font-weight: 700; } .wp-matig { color: #c98a05; font-weight: 700; } .wp-slecht { color: var(--fout); font-weight: 700; }
+  .wp-samen { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; }
+  .wp-samen b { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<main id="pagina"></main>
+<script src="../shared/woorden.js"></script>
+<script src="../shared/srs.js"></script>
+<script src="../shared/audio.js"></script>
+<script src="../shared/app.js"></script>
+<script type="module">
+// PROEF (niet gelinkt vanaf de site): kan Whisper in de browser zelf de spraak controleren, zonder server?
+// Zo zou het ook op GitHub Pages en op een iPhone werken. Deze pagina meet:
+//   - hoe groot de download is en hoe lang het laden duurt (de tweede keer komt het model uit de cache van de browser)
+//   - hoe snel het een zin herkent, en hoeveel woorden goed zijn: 5 zinnen van Zeg na (de stem van de site), en uw eigen opname
+// Het model komt van Hugging Face (onnx-community/whisper-tiny of -base), de bibliotheek van jsdelivr (transformers.js 4.3.2).
+// De opname blijft op het apparaat: er gaat geen geluid naar een server.
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2';
+
+const { el } = App;
+App.kop('Proef: Whisper in de browser', 'index.html');
+const pagina = document.getElementById('pagina');
+const MODELLEN = {
+  tiny: { id: 'onnx-community/whisper-tiny', naam: 'Klein (tiny)', mb: { q8: 41, fp16: 76 } },
+  base: { id: 'onnx-community/whisper-base', naam: 'Groter (base)', mb: { q8: 77, fp16: 146 } },
+};
+const ZINNEN = [['Het huis heeft een tuin.', 'vindemiatrix'], ['Ik kom uit een warm land.', 'puck'], ['De deur van de keuken is open.', 'vindemiatrix'],
+  ['Het brood is twee euro.', 'puck'], ['Ik vind de tuin leuk.', 'vindemiatrix']];
+const keuze = { model: 'tiny', apparaat: navigator.gpu ? 'webgpu' : 'wasm' };
+let asr = null, geladen = null;
+const meting = {}; // alles wat de pagina meet (ook voor de test op afstand: window.__proef)
+window.__proef = meting;
+
+const woordenVan = (s) => App.kaal(s).replace(/[^a-z' -]/g, ' ').split(/\s+/).filter(Boolean);
+const deelGoed = (doel, tekst) => { const a = woordenVan(doel), b = new Set(woordenVan(tekst)); return a.length ? a.filter((w) => b.has(w)).length / a.length : 0; };
+const sec = (ms) => (ms / 1000).toFixed(1).replace('.', ',') + ' s';
+const pct = (d) => Math.round(d * 100) + '%';
+const kleur = (d) => (d >= 0.9 ? 'wp-goed' : d >= 0.6 ? 'wp-matig' : 'wp-slecht');
+
+// ---------- geluid naar 16 kHz mono (wat Whisper wil) ----------
+async function naar16k(bron) {
+  const buf = bron instanceof Blob ? await bron.arrayBuffer() : await (await fetch(bron)).arrayBuffer();
+  const C = window.AudioContext || window.webkitAudioContext, ctx = new C();
+  const geluid = await new Promise((af, fout) => ctx.decodeAudioData(buf, af, fout));
+  ctx.close();
+  const off = new OfflineAudioContext(1, Math.ceil(geluid.duration * 16000), 16000);
+  const src = off.createBufferSource(); src.buffer = geluid; src.connect(off.destination); src.start();
+  return { data: (await off.startRendering()).getChannelData(0), duur: geluid.duration };
+}
+
+// ---------- het model laden ----------
+const balk = el('i'), laadTekst = el('span', { class: 'zacht klein' });
+async function laad() {
+  const m = MODELLEN[keuze.model];
+  const probeer = async (apparaat) => {
+    const dtype = apparaat === 'webgpu' ? 'fp16' : 'q8', bestanden = {}, t0 = performance.now();
+    const pijp = await pipeline('automatic-speech-recognition', m.id, { device: apparaat, dtype, progress_callback: (p) => {
+      if (p.status === 'progress' && p.total) {
+        bestanden[p.file] = [p.loaded, p.total];
+        const [l, t] = Object.values(bestanden).reduce((a, [x, y]) => [a[0] + x, a[1] + y], [0, 0]);
+        balk.style.width = `${Math.round(100 * l / t)}%`;
+        laadTekst.textContent = `${(l / 1e6).toFixed(0)} van ${(t / 1e6).toFixed(0)} MB`;
+      }
+    } });
+    const mb = Object.values(bestanden).reduce((a, [, y]) => a + y, 0) / 1e6;
+    return { pijp, apparaat, dtype, ms: performance.now() - t0, mb };
+  };
+  laadTekst.textContent = 'Laden...';
+  let r;
+  try { r = await probeer(keuze.apparaat); } catch (e) {
+    if (keuze.apparaat !== 'webgpu') throw e;
+    laadTekst.textContent = `WebGPU lukt niet (${e.message || e}). Nu met WASM...`;
+    r = await probeer('wasm');
+  }
+  asr = r.pijp;
+  geladen = { model: keuze.model, apparaat: r.apparaat, dtype: r.dtype };
+  Object.assign(meting, { model: m.id, apparaat: r.apparaat, dtype: r.dtype, laadMs: Math.round(r.ms), downloadMb: +r.mb.toFixed(1),
+    uitCache: r.mb < 1, threads: !!window.crossOriginIsolated });
+  balk.style.width = '100%';
+  laadTekst.textContent = r.mb < 1 ? `Uit de cache van de browser, in ${sec(r.ms)}.` : `${r.mb.toFixed(0)} MB gedownload en geladen in ${sec(r.ms)}.`;
+  toonSamen();
+}
+
+// ---------- herkennen ----------
+async function herken(audio) {
+  const t0 = performance.now();
+  const uit = await asr(audio, { language: 'dutch', task: 'transcribe' });
+  return { tekst: (uit.text || '').trim(), ms: performance.now() - t0 };
+}
+
+// ---------- 5 zinnen van de site ----------
+const tabel = el('table', { class: 'wp-tabel' });
+async function testZinnen() {
+  const index = {};
+  for (const stem of new Set(ZINNEN.map((z) => z[1]))) index[stem] = await (await fetch(`audio/${stem}/index.json`)).json();
+  tabel.textContent = '';
+  tabel.append(el('tr', {}, el('th', {}, 'Zin'), el('th', {}, 'Whisper hoorde'), el('th', {}, 'Woorden'), el('th', {}, 'Tijd')));
+  meting.zinnen = [];
+  for (const [zin, stem] of ZINNEN) {
+    const { data, duur } = await naar16k(`audio/${stem}/${index[stem][zin]}`);
+    const r = await herken(data), d = deelGoed(zin, r.tekst);
+    meting.zinnen.push({ zin, stem, gehoord: r.tekst, goed: +d.toFixed(2), ms: Math.round(r.ms), duur: +duur.toFixed(1) });
+    tabel.append(el('tr', {}, el('td', {}, zin), el('td', {}, r.tekst || '(niets)'), el('td', { class: kleur(d) }, pct(d)), el('td', {}, sec(r.ms))));
+  }
+  toonSamen();
+}
+
+// ---------- zelf opnemen ----------
+let rec = null;
+const opnKnop = el('button', { type: 'button', class: 'knop licht' }, '⏺ Neem zelf op');
+const eigen = el('div');
+opnKnop.addEventListener('click', async () => {
+  if (rec) { rec.stop(); return; }
+  try {
+    const stroom = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const stukken = [];
+    rec = new MediaRecorder(stroom);
+    rec.addEventListener('dataavailable', (e) => stukken.push(e.data));
+    rec.addEventListener('stop', async () => {
+      stroom.getTracks().forEach((t) => t.stop());
+      rec = null; opnKnop.textContent = '⏺ Neem zelf op'; opnKnop.classList.remove('rood');
+      eigen.textContent = 'Even wachten...';
+      const { data, duur } = await naar16k(new Blob(stukken, { type: stukken[0] && stukken[0].type }));
+      const r = await herken(data);
+      meting.eigen = { gehoord: r.tekst, ms: Math.round(r.ms), duur: +duur.toFixed(1) };
+      eigen.textContent = '';
+      eigen.append(el('p', {}, el('span', { class: 'zacht' }, 'Whisper hoorde: '), el('b', {}, r.tekst || '(niets)')), el('p', { class: 'zacht klein' }, `${sec(duur * 1000)} opname, herkend in ${sec(r.ms)}.`));
+    });
+    rec.start();
+    opnKnop.textContent = '⏹ Stop'; opnKnop.classList.add('rood');
+  } catch (e) { eigen.textContent = 'Geen microfoon: ' + (e.message || e) + (window.isSecureContext ? '' : ' (opnemen kan alleen op https)'); }
+});
+
+// ---------- samenvatting ----------
+const samen = el('div', { class: 'wp-samen' });
+function toonSamen() {
+  samen.textContent = '';
+  const z = meting.zinnen || [];
+  const regels = [
+    ['Apparaat', `${meting.apparaat || '-'}${meting.dtype ? ' (' + meting.dtype + ')' : ''}${meting.threads ? ', met threads' : ', één thread (zoals op GitHub Pages)'}`],
+    ['Model', meting.model ? `${MODELLEN[geladen.model].naam}, ${meting.uitCache ? 'uit de cache' : meting.downloadMb + ' MB'}` : '-'],
+    ['Laden', meting.laadMs != null ? sec(meting.laadMs) : '-'],
+  ];
+  if (z.length) {
+    regels.push(['Eerste zin', sec(z[0].ms) + ' (met opwarmen)']);
+    if (z.length > 1) regels.push(['Daarna gemiddeld', sec(z.slice(1).reduce((a, x) => a + x.ms, 0) / (z.length - 1)) + ' per zin']);
+    regels.push(['Woorden goed', pct(z.reduce((a, x) => a + x.goed, 0) / z.length)]);
+  }
+  regels.forEach(([a, b]) => samen.append(el('span', { class: 'zacht' }, a), el('b', {}, b)));
+}
+
+// ---------- de pagina ----------
+const knopModel = (k) => el('button', { type: 'button', class: 'mw-chip', 'aria-pressed': String(keuze.model === k), onclick: () => { keuze.model = k; teken(); } }, `${MODELLEN[k].naam}, ${MODELLEN[k].mb.q8} MB`);
+const knopApp = (k, naam) => el('button', { type: 'button', class: 'mw-chip', disabled: k === 'webgpu' && !navigator.gpu, 'aria-pressed': String(keuze.apparaat === k), onclick: () => { keuze.apparaat = k; teken(); } }, naam);
+const laadKnop = el('button', { type: 'button', class: 'knop', onclick: async () => {
+  laadKnop.disabled = true;
+  try { await laad(); testKnop.disabled = false; opnKnop.disabled = false; } catch (e) { laadTekst.textContent = 'Fout bij laden: ' + (e.message || e); meting.fout = String(e.message || e); }
+  laadKnop.disabled = false;
+} }, 'Laad het model');
+const testKnop = el('button', { type: 'button', class: 'knop', disabled: true, onclick: async () => {
+  testKnop.disabled = true;
+  try { await testZinnen(); } catch (e) { tabel.textContent = 'Fout: ' + (e.message || e); meting.fout = String(e.message || e); }
+  testKnop.disabled = false; meting.klaar = true;
+} }, 'Test 5 zinnen');
+opnKnop.disabled = true;
+const keuzes = el('div');
+function teken() {
+  keuzes.textContent = '';
+  keuzes.append(el('div', { class: 'wp-rij' }, knopModel('tiny'), knopModel('base')),
+    el('div', { class: 'wp-rij' }, knopApp('webgpu', 'WebGPU (grafische chip)'), knopApp('wasm', 'WASM (processor)')));
+}
+teken();
+pagina.append(
+  el('div', { class: 'kaart' },
+    el('h2', { style: 'margin-top:0' }, 'Kan de browser zelf luisteren?'),
+    el('p', { class: 'zacht' }, 'Een proef: Whisper draait hier in de browser, zonder server. Uw opname blijft op dit apparaat. Het model wordt één keer gedownload en daarna bewaard door de browser.'),
+    keuzes, el('div', { class: 'wp-rij' }, laadKnop, laadTekst), el('div', { class: 'wp-balk' }, balk)),
+  el('div', { class: 'kaart' }, el('h3', { style: 'margin-top:0' }, '1. Vijf zinnen van de site'), el('div', { class: 'wp-rij' }, testKnop), tabel),
+  el('div', { class: 'kaart' }, el('h3', { style: 'margin-top:0' }, '2. Uw eigen stem'), el('p', { class: 'zacht klein' }, 'Zeg een zin, bijvoorbeeld: Het huis heeft een tuin.'), opnKnop, eigen),
+  el('div', { class: 'kaart' }, el('h3', { style: 'margin-top:0' }, 'Samen'), samen));
+toonSamen();
+</script>
+</body>
+</html>
