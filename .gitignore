@@ -10,6 +10,9 @@ tools/voices/
 # build lock file
 tools/.bouw.lock
 
+# the own certificate of the test server with --https (tools/dienst.py)
+tools/.dienst-tls/
+
 # editor and OS files
 .DS_Store
 .idea/

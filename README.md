@@ -54,6 +54,19 @@ Open http://localhost:8000. Opening `index.html` as a file does not work, becaus
 
 Any static file server works too.
 
+### Test on your phone or another computer
+
+`tools/dienst.py` serves the site to the other devices on your network too, and tells the browser never to keep old files:
+
+```bash
+python3 tools/dienst.py 8000          # http://<this computer>:8000 on the phone
+python3 tools/dienst.py 8443 --https  # https://<this computer>:8443: needed to record in Spreken on a phone
+```
+
+A browser only gives the microphone to a page on `https` or on `localhost`. On a phone you open the site by the address of your computer, so recording needs `--https`. The script then makes its own certificate once (in `tools/.dienst-tls/`, not in git). The first time, the phone warns that it does not know the certificate: it is your own, so go on to the site. On an iPhone: "Show Details", "visit this website", then "Visit Website" once more.
+
+To have the speaking checked on the phone too, start the speech server (see Optional: speech tools) next to it: `tools/dienst.py` passes `/_stt/` on to it, so the phone uses the speech recognition on your computer.
+
 ## Online version (GitHub Pages)
 
 The site also runs online, without installing anything: https://ariogrey.com/dutch-a2-inburgering-exam-prep/
