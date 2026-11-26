@@ -8,6 +8,9 @@
 Het verschil met "python3 -m http.server": dit zegt tegen de browser dat hij niets mag bewaren. Na een verandering
 is een gewone verversing genoeg; u hoort of ziet nooit een oud bestand. Alleen om te testen, niet voor de echte site.
 
+Spraak -> tekst (Spreken): draait tools/stt_server.py op deze computer, dan stuurt dit script /_stt/ daarheen. Zo controleert
+ook een telefoon de spraak met die server (de pagina vraagt het aan haar eigen adres, dus geen http in een https-pagina).
+
 Waarom --https? Een browser geeft de microfoon alleen aan een pagina op https of op localhost. Op een telefoon opent u
 de site via het adres van deze computer (http://192.168.x.x:...): dan is er geen microfoon. Met --https maakt dit script
 één keer een eigen certificaat (in tools/.dienst-tls/, niet in git). De telefoon waarschuwt de eerste keer dat hij het
@@ -21,10 +24,13 @@ import socket
 import ssl
 import subprocess
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TLS = ROOT / "tools" / ".dienst-tls"
+STT = "http://127.0.0.1:8787"  # tools/stt_server.py: spraak -> tekst. /_stt/... op deze server gaat daarheen.
 
 
 class Dienst(http.server.SimpleHTTPRequestHandler):
@@ -41,8 +47,33 @@ class Dienst(http.server.SimpleHTTPRequestHandler):
             del self.headers[kop]
 
     def do_GET(self):
+        if self.path.startswith("/_stt/"):
+            return self._stt()
         self._altijd_vers()
         super().do_GET()
+
+    def do_POST(self):
+        if self.path.startswith("/_stt/"):
+            return self._stt()
+        self.send_error(405)
+
+    def _stt(self):
+        """/_stt/ping en /_stt/stt door naar de spraakserver op deze computer. Zo kan een telefoon (op https, via het
+        adres van deze computer) de spraak laten controleren: de pagina vraagt het aan haar eigen adres."""
+        lengte = int(self.headers.get("Content-Length", 0))
+        data = self.rfile.read(lengte) if self.command == "POST" else None
+        vraag = urllib.request.Request(STT + self.path[len("/_stt"):], data=data, method=self.command,
+                                       headers={"Content-Type": self.headers.get("Content-Type", "application/octet-stream")})
+        try:
+            with urllib.request.urlopen(vraag, timeout=120) as r:
+                code, soort, inhoud = r.status, r.headers.get("Content-Type", "text/plain"), r.read()
+        except (urllib.error.URLError, OSError):
+            code, soort, inhoud = 502, "text/plain; charset=utf-8", "De spraakserver draait niet: tools/.venv/bin/python tools/stt_server.py".encode()
+        self.send_response(code)
+        self.send_header("Content-Type", soort)
+        self.send_header("Content-Length", str(len(inhoud)))
+        self.end_headers()
+        self.wfile.write(inhoud)
 
     def do_HEAD(self):
         self._altijd_vers()

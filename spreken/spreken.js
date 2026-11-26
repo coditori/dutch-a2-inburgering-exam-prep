@@ -1,7 +1,12 @@
 // Gedeeld door alle pagina's van spreken: voortgang, vragen die terugkomen, opnemen, spraak -> tekst, controle.
 window.Spreken = (() => {
   const { el } = App;
-  const STT = 'http://127.0.0.1:8787'; // tools/stt_server.py (faster-whisper). Draait die niet: Chrome Web Speech, anders zelf controleren.
+  // Spraak -> tekst met tools/stt_server.py (faster-whisper, op uw eigen computer). Twee wegen naar die server:
+  //   1. via de testserver van de site (tools/dienst.py stuurt /_stt/ door): zo werkt het ook op een telefoon, op hetzelfde https-adres
+  //   2. rechtstreeks: http://127.0.0.1:8787 (de site op deze computer)
+  // Antwoordt geen van beide: de spraakherkenning van de browser, anders controleert de leerling zelf.
+  const STT_ADRESSEN = [App.WORTEL + '_stt', 'http://127.0.0.1:8787'];
+  let STT = STT_ADRESSEN[1]; // het adres dat antwoordde (server() zet het)
   const DAGEN = [1, 2, 4, 8, 16];
 
   // ---------- voortgang ----------
@@ -44,9 +49,16 @@ window.Spreken = (() => {
   let serverAan = null;
   function server() {
     if (serverAan === null) {
-      const c = new AbortController();
-      setTimeout(() => c.abort(), 900);
-      serverAan = fetch(STT + '/ping', { signal: c.signal }).then((r) => r.ok).catch(() => false);
+      serverAan = (async () => {
+        for (const adres of STT_ADRESSEN) {
+          const c = new AbortController(), klok = setTimeout(() => c.abort(), 900);
+          try {
+            const r = await fetch(adres + '/ping', { signal: c.signal, cache: 'no-store' });
+            if (r.ok && (await r.text()).trim() === 'ok') { STT = adres; return true; } // een 404-pagina van de echte site telt niet
+          } catch (e) { /* niet bereikbaar: de volgende */ } finally { clearTimeout(klok); }
+        }
+        return false;
+      })();
     }
     return serverAan;
   }

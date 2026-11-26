@@ -3,7 +3,7 @@
 
 Eén keer klaarzetten:
     uv pip install --python tools/.venv/bin/python faster-whisper
-Starten (naast `python3 -m http.server`):
+Starten (naast `python3 -m http.server` of `python3 tools/dienst.py`; dienst.py stuurt /_stt/ door, ook voor een telefoon):
     tools/.venv/bin/python tools/stt_server.py
 De eerste keer wordt het model gedownload (ongeveer 500 MB). Nodig: ffmpeg (staat al op deze computer).
 
@@ -14,6 +14,7 @@ Draait deze server niet, dan gebruikt de pagina de spraakherkenning van Chrome, 
 import json
 import subprocess
 import sys
+import tempfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import numpy as np
@@ -25,9 +26,13 @@ model = WhisperModel(MODEL, device="cpu", compute_type="int8")
 
 
 def naar_geluid(data):
-    """opname uit de browser (webm/ogg/wav) -> 16 kHz mono, met ffmpeg"""
-    uit = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", "pipe:0", "-f", "f32le", "-ac", "1", "-ar", "16000", "pipe:1"],
-                         input=data, capture_output=True, check=True).stdout
+    """opname uit de browser (webm/ogg/wav, of mp4 van een iPhone) -> 16 kHz mono, met ffmpeg.
+    Via een tijdelijk bestand: een mp4 heeft zijn inhoudsopgave soms aan het eind, en die vindt ffmpeg niet in een stroom."""
+    with tempfile.NamedTemporaryFile(suffix=".opname") as f:
+        f.write(data)
+        f.flush()
+        uit = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", f.name, "-f", "f32le", "-ac", "1", "-ar", "16000", "pipe:1"],
+                             capture_output=True, check=True).stdout
     return np.frombuffer(uit, dtype=np.float32)
 
 
