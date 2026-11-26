@@ -136,9 +136,12 @@ window.Spreken = (() => {
   // Een rode bol die meebeweegt met de stem, een golf van de laatste seconden, de tijd, en wat er gebeurt:
   //   "Spreek maar." -> "Ik luister." -> "Klaar? De opname stopt zo." Een ring om de bol loopt vol tijdens de stilte;
   //   weer praten zet hem terug. Stilte aan het begin telt nooit (spreken/stilte.js). Na 1 minuut stopt het altijd.
-  // Stop en Annuleer; Esc = annuleer. Kan de browser het geluid niet meten: de bol klopt rustig en de leerling klikt op Stop.
-  // opnameScherm(rec, ctx, o) -> Promise: { url, tekst, bron } na Stop, of null na Annuleer.
-  //   o.stil = ms stilte voor de automatische stop
+  // Drie sterren lopen vol met de spreektijd (o.doel ms): zo ziet u dat u genoeg zegt.
+  // Na Stop luistert de computer; dan staat de uitslag hier, waar u kijkt: de medaille, "Goed gezegd!", de woorden die
+  // oplichten (o.uitslag(res) maakt die). Met "Opnieuw" neemt u meteen opnieuw op, met "Klaar" gaat het scherm dicht.
+  // Stop en Annuleer; Esc = annuleer (en bij de uitslag: Klaar). Zonder Web Audio: de bol klopt rustig, de leerling klikt op Stop.
+  // opnameScherm(rec, ctx, o) -> Promise { res, opnieuw, alles }: res = de opname (null na Annuleer), opnieuw = een nieuwe
+  //   AudioContext als de leerling "Opnieuw" koos, alles = alles goed (voor de melding "goed op rij").
   const MAX_MS = 60000;
   const tijdTekst = (ms) => { const s = Math.floor(ms / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
   function opnameScherm(rec, ctx, o) {
@@ -147,13 +150,17 @@ window.Spreken = (() => {
       const bol = el('div', { class: 'opn-bol', 'aria-hidden': 'true' }, el('i', {}, App.teken('microfoon')));
       const strepen = Array.from({ length: STREPEN }, () => el('i'));
       const golf = el('div', { class: 'opn-golf', 'aria-hidden': 'true' }, strepen);
+      const sterren = [0, 1, 2].map(() => el('span', { class: 'opn-ster' }, App.teken('ster')));
+      const sterRij = el('div', { class: 'opn-sterren', 'aria-hidden': 'true' }, sterren);
       const status = el('p', { class: 'opn-status', 'aria-live': 'polite' });
       const tijd = el('span', { class: 'opn-tijd' });
       const stop = el('button', { type: 'button', class: 'knop rood', en: 'stop recording', onclick: () => klaar(true) }, '⏹ Stop');
       const weg = el('button', { type: 'button', class: 'knop licht', en: 'cancel', onclick: () => klaar(false) }, 'Annuleer');
+      const knoppen = el('div', { class: 'opn-knoppen' }, weg, stop);
+      const onder = el('div', { class: 'opn-onder' }, tijd, knoppen);
       const scherm = el('div', { class: 'opn-scherm', role: 'dialog', 'aria-modal': 'false', 'aria-label': 'opname' },
-        bol, el('div', { class: 'opn-midden' }, status, golf), el('div', { class: 'opn-onder' }, tijd, el('div', { class: 'opn-knoppen' }, weg, stop)));
-      let staat = '', begin = performance.now(), dicht = false;
+        bol, el('div', { class: 'opn-midden' }, status, golf, sterRij), onder);
+      let staat = '', begin = performance.now(), dicht = false, gesloten = false;
       const toonStaat = (s) => {
         if (s === staat) return;
         staat = s;
@@ -170,9 +177,10 @@ window.Spreken = (() => {
         App.zetHulp(status, tekst.en); // de hulp (EN of FA) bij de tekst
       };
       const zetTijd = () => { tijd.textContent = `${tijdTekst(Math.min(MAX_MS, performance.now() - begin))} / ${tijdTekst(MAX_MS)}`; };
-      // het geluid: de bol, de golf en de ring. Zonder Web Audio: alleen de tijd (en Stop).
+      // het geluid: de bol, de golf, de ring en de sterren. Zonder Web Audio: alleen de tijd (en Stop).
       // Een korte stilte tussen twee woorden is nog praten: pas na RUST ms stilte zegt het scherm "Klaar? ..." en loopt de ring.
-      const niveaus = new Array(STREPEN).fill(0), STIL = o.stil || 3000, RUST = 700;
+      const niveaus = new Array(STREPEN).fill(0), STIL = o.stil || 3000, RUST = 700, DOEL = o.doel || 4000;
+      let gesproken = 0, vorigeTijd = 0, aan = 0;
       const meting = Stilte.meet(rec.stroom, ctx, {
         stil: STIL, max: MAX_MS,
         elk: (u) => {
@@ -182,33 +190,76 @@ window.Spreken = (() => {
           bol.style.setProperty('--stil', echtStil ? ((stilMs - RUST) / (STIL - RUST)).toFixed(3) : '0');
           niveaus.shift(); niveaus.push(u.niveau);
           strepen.forEach((s, i) => s.style.setProperty('--h', niveaus[i].toFixed(3)));
+          // de sterren: elke derde van de spreektijd licht er een op (met een kleine sprong). Spreektijd = praten, met de
+          // korte stiltes tussen de woorden erbij (minder dan RUST ms), niet de stilte voor of na het antwoord.
+          if (u.staat === 'praat' || (u.staat === 'stil' && !echtStil)) gesproken += u.tijd - vorigeTijd;
+          vorigeTijd = u.tijd;
+          while (aan < 3 && gesproken >= DOEL * (aan + 1) / 3) sterren[aan++].classList.add('aan');
           toonStaat(u.nietsGehoord ? 'niets' : u.staat === 'stil' && !echtStil ? 'praat' : u.staat);
           if (u.klaar) klaar(true);
         },
       });
-      if (!meting) { scherm.classList.add('zonder-meter'); toonStaat('los'); } else toonStaat('wacht');
+      if (!meting) { scherm.classList.add('zonder-meter'); sterRij.hidden = true; toonStaat('los'); } else toonStaat('wacht');
       zetTijd();
       const klok = setInterval(() => { zetTijd(); if (performance.now() - begin >= MAX_MS) klaar(true); }, 250);
-      const toets = (e) => { if (e.key === 'Escape') { e.preventDefault(); klaar(false); } };
+      let naEsc = () => klaar(false);
+      const toets = (e) => { if (e.key === 'Escape') { e.preventDefault(); naEsc(); } };
+      function sluit(uitkomst) {
+        if (gesloten) return;
+        gesloten = true;
+        document.removeEventListener('keydown', toets);
+        if (ctx) ctx.close().catch(() => {});
+        scherm.remove();
+        document.body.classList.remove('opname-open');
+        af(uitkomst);
+      }
       async function klaar(bewaar) {
         if (dicht) return;
         dicht = true;
         clearInterval(klok);
         if (meting) meting.stop();
-        document.removeEventListener('keydown', toets);
         stop.disabled = true; weg.disabled = true;
-        let uit = null;
-        if (bewaar) { toonStaat('bezig'); scherm.classList.add('bezig'); uit = await rec.stop(); } else await rec.stop({ weg: true });
-        if (ctx) ctx.close().catch(() => {});
-        scherm.remove();
-        document.body.classList.remove('opname-open');
-        af(uit);
+        if (!bewaar) { await rec.stop({ weg: true }); return sluit({ res: null }); }
+        toonStaat('bezig'); scherm.classList.add('bezig');
+        const res = await rec.stop();
+        const u = res && o.uitslag ? o.uitslag(res) : null;
+        if (!u) return sluit({ res }); // de computer kon niets lezen: zelf controleren, in de les
+        // de uitslag, hier waar de leerling kijkt
+        scherm.classList.remove('bezig');
+        scherm.classList.add('met-uitslag');
+        const opnieuw = el('button', { type: 'button', class: 'knop licht', en: 'record again', onclick: () => sluit({ res, opnieuw: Stilte.context(), alles: u.alles }) }, '↻ Opnieuw');
+        const ok = el('button', { type: 'button', class: 'knop', en: 'done', onclick: () => sluit({ res, alles: u.alles }) }, 'Klaar');
+        naEsc = () => sluit({ res, alles: u.alles });
+        scherm.textContent = '';
+        scherm.append(u.kaart, el('div', { class: 'opn-onder' }, el('span'), el('div', { class: 'opn-knoppen' }, opnieuw, ok)));
+        if (u.medaille === 'goud') App.confetti(18);
+        ok.focus();
       }
       document.addEventListener('keydown', toets);
       document.body.classList.add('opname-open');
       document.body.append(scherm);
       stop.focus();
     });
+  }
+
+  // ---------- de uitslag van een opname ----------
+  // Zoals bij de oefenexamens: brons vanaf 60%, zilver vanaf 75%, goud vanaf 90% (App.medaille). Minder: een lege medaille.
+  // u = { deel, sub, subEn, record, beste, woorden: [{ w, raak }] of null, gehoord: [{ w, raak }] of null }
+  const KOPPEN = [[0.9, 'Goed gezegd!', 'well said!'], [0.75, 'Goed zo!', 'well done!'], [0.6, 'Bijna!', 'almost!'], [0, 'Nog een keer?', 'try again?']];
+  function uitslagKaart(u) {
+    const [, kop, kopEn] = KOPPEN.find(([d]) => u.deel + 1e-9 >= d);
+    const m = App.medaille(u.deel);
+    return el('div', { class: 'opn-uitslag m-' + (m || 'geen'), role: 'status' },
+      el('div', { class: 'opn-medaille' }, App.medailleTeken(m)),
+      el('div', { class: 'opn-uitslag-tekst' },
+        el('b', { class: 'opn-kop', en: kopEn }, kop),
+        el('span', { class: 'opn-sub' }, el('span', { en: u.subEn }, u.sub),
+          u.record ? el('b', { class: 'opn-record', en: 'new personal best!' }, 'Nieuw record!') : null,
+          !u.record && u.beste ? el('span', { class: 'zacht', en: 'your best' }, `Uw beste: ${u.beste}`) : null)),
+      // Zeg na: de woorden van de zin lichten op (groen = gehoord). Een vraag: wat de computer hoorde, de sleutelwoorden groen.
+      u.woorden ? el('div', { class: 'opn-woorden' }, u.woorden.map((x, i) => el('span', { class: x.raak ? 'raak' : 'mis', style: `--i:${i}` }, x.w))) : null,
+      u.gehoord ? el('p', { class: 'opn-gehoord' }, el('span', { class: 'zacht klein', en: 'the computer heard' }, 'De computer hoorde: '),
+        u.gehoord.flatMap((x, i) => [i ? ' ' : null, x.raak ? el('span', { class: 'raak', style: `--i:${i}` }, x.w) : x.w])) : null);
   }
 
   // ---------- het opname-blok ----------
@@ -225,27 +276,52 @@ window.Spreken = (() => {
       el('button', { class: 'knop licht klein', en: 'listen to the model', onclick: () => speel(o.model) }, App.teken('luid'), 'Luister'),
       ' ', el('button', { class: 'knop licht klein', en: 'slow', onclick: () => speel(o.model, 0.75) }, '🐢 Langzaam'));
     const verder = el('button', { class: 'knop', hidden: true, en: 'next', onclick: () => { Spraak.stop(); o.klaar(vakjes.every((v) => v.i.checked), laatste); } }, 'Verder');
-    const zelf = el('button', { class: 'knop licht klein', en: 'no microphone: say it aloud and check yourself', onclick: toonCheck }, 'Zonder microfoon');
+    const zelf = el('button', { class: 'knop licht klein', en: 'no microphone: say it aloud and check yourself', onclick: () => toonCheck(null, null) }, 'Zonder microfoon');
 
-    function toonCheck(res) {
+    // de uitslag in de les: de kaart met de medaille (als de computer iets hoorde), uw opname, de vakjes
+    function toonCheck(res, u) {
       lijst.hidden = false; modelVak.hidden = false; verder.hidden = false; zelf.hidden = true;
       uit.textContent = '';
+      if (u) { const k = uitslagKaart(u); k.classList.add('in-les'); k.removeAttribute('role'); uit.append(k); } // role=status alleen in het scherm: één keer voorlezen
       if (res && res.url) uit.append(el('p', {}, el('span', { en: 'your recording' }, 'Uw opname: '), el('audio', { controls: true, src: res.url })));
-      if (res && res.tekst) {
-        uit.append(el('div', { class: 'gehoord' }, el('span', { class: 'zacht klein', en: 'the computer heard' }, 'De computer hoorde: '), res.tekst));
-        o.auto(res.tekst).forEach((ok, i) => { vakjes[i].i.checked = ok; });
-      } else if (res && res.url) {
+      if (res && res.tekst && !u) uit.append(el('div', { class: 'gehoord' }, el('span', { class: 'zacht klein', en: 'the computer heard' }, 'De computer hoorde: '), res.tekst));
+      else if (res && res.url && !res.tekst) {
         uit.append(el('p', { class: 'tip', en: 'No speech-to-text available: listen to your recording and check yourself.' }, 'De computer kan uw opname nu niet lezen. Luister zelf en zet de vinkjes.'));
       }
       knop.textContent = '⏺ Nog een keer opnemen';
     }
 
-    // Opnemen opent het opnamescherm onder in beeld. Stop (of vanzelf, na de stilte): de uitslag komt hier.
-    // Annuleer: er verandert niets. De AudioContext nu al, tijdens de klik: anders blijft hij op een iPhone stil.
-    knop.addEventListener('click', async () => {
-      if (rec) return;
-      Spraak.stop();
-      const ctx = Stilte.context();
+    // Na Stop: hoe goed was het? Zet de vakjes, houd uw beste bij (Spreken.P.beste, per oefening) en maak de uitslag.
+    // Geeft { kaart, alles, medaille } voor het opnamescherm, of null als de computer niets kon lezen.
+    function beoordeel(res) {
+      if (!res || !res.tekst) { laatste = res; toonCheck(res, null); return null; }
+      laatste = res;
+      const ok = o.auto(res.tekst);
+      ok.forEach((v, i) => { vakjes[i].i.checked = v; });
+      const gehoord = new Set(woordenVan(res.tekst));
+      let deel, sub, subEn, n, woorden = null, gehoordRij = null;
+      if (o.zin) { // zeg na: welke woorden van de zin hoorde de computer?
+        woorden = o.zin.split(/\s+/).filter(Boolean).map((w) => ({ w, raak: woordenVan(w).every((x) => gehoord.has(x)) }));
+        n = woorden.length; deel = gelijk(o.zin, res.tekst);
+        sub = `${woorden.filter((x) => x.raak).length} van ${n} woorden`; subEn = 'words heard';
+      } else { // een vraag: de vakjes; de sleutelwoorden licht op in wat de computer hoorde
+        n = ok.length; deel = ok.filter(Boolean).length / n;
+        sub = `${ok.filter(Boolean).length} van ${n} punten`; subEn = 'points';
+        const sleutel = new Set((o.sleutels || []).flatMap((a) => woordenVan(a)));
+        gehoordRij = res.tekst.split(/\s+/).filter(Boolean).map((w) => ({ w, raak: woordenVan(w).some((x) => sleutel.has(x)) }));
+      }
+      P.beste = P.beste || {};
+      const oud = o.id != null ? P.beste[o.id] : undefined;
+      const record = oud != null && deel > oud + 1e-9;
+      if (o.id != null && (oud == null || deel > oud)) { P.beste[o.id] = deel; bewaar(); }
+      const u = { deel, sub, subEn, record, beste: oud != null ? `${Math.round(oud * n)} van ${n}` : null, woorden, gehoord: gehoordRij };
+      toonCheck(res, u);
+      return { kaart: uitslagKaart(u), alles: ok.every(Boolean), medaille: App.medaille(deel) };
+    }
+
+    // Opnemen opent het opnamescherm onder in beeld. Stop (of vanzelf, na de stilte): de uitslag staat in het scherm en hier.
+    // Annuleer: er verandert niets. De AudioContext tijdens de klik (ook bij "Opnieuw"): anders blijft hij op een iPhone stil.
+    async function neemOp(ctx) {
       knop.disabled = true; status.textContent = '';
       try {
         rec = await opnemer();
@@ -253,14 +329,17 @@ window.Spreken = (() => {
         if (ctx) ctx.close().catch(() => {});
         knop.disabled = false;
         status.textContent = 'Geen microfoon. Zeg het antwoord hardop en controleer zelf.';
-        toonCheck(null);
+        toonCheck(null, null);
         return;
       }
-      const res = await opnameScherm(rec, ctx, { stil: o.stil });
+      const r = await opnameScherm(rec, ctx, { stil: o.stil, doel: o.doel, uitslag: beoordeel });
       rec = null; knop.disabled = false;
-      if (res) { laatste = res; toonCheck(res); }
+      if (r.alles) App.goed(); // de melding "Goed antwoord!", of "3 goed op rij!"
+      if (r.opnieuw) return neemOp(r.opnieuw);
       knop.focus(); // terug waar u was: de knop (nu "Nog een keer opnemen"), de uitslag staat eronder
-    });
+      if (r.res) uit.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+    knop.addEventListener('click', () => { if (rec || knop.disabled) return; Spraak.stop(); neemOp(Stilte.context()); });
     doel.append(el('div', { class: 'opname' }, knop, zelf, status), uit, lijst, modelVak, el('div', { class: 'knoppen' }, verder));
   }
 
@@ -268,13 +347,15 @@ window.Spreken = (() => {
   function punten(item) {
     if (item.soort === 'zegna') {
       // na een korte zin is 2 s stilte genoeg; bij een eigen antwoord denkt de leerling langer na: 3 s (zie opnameScherm)
-      return { punten: [{ tekst: 'Ik zeg de zin goed na.', en: 'I repeat the sentence correctly.' }], auto: (t) => [gelijk(item.tekst, t) >= 0.7], model: [item.tekst], stil: 2000 };
+      // doel = de spreektijd voor drie sterren: ongeveer 0,33 s per woord (de zin zoals de stem hem zegt)
+      return { punten: [{ tekst: 'Ik zeg de zin goed na.', en: 'I repeat the sentence correctly.' }], auto: (t) => [gelijk(item.tekst, t) >= 0.7], model: [item.tekst],
+        stil: 2000, doel: Math.max(1000, woordenVan(item.tekst).length * 330), zin: item.tekst };
     }
     if (item.drie) { // "Noem drie dingen": drie zinnen = drie werkwoorden
       return {
         punten: [1, 2, 3].map((k) => ({ tekst: `Ik noem ding ${k}.`, en: `I mention thing ${k}.` })),
         auto: (t) => { const w = controle(item, t).werkwoorden; return [w >= 1, w >= 2, w >= 3]; },
-        model: item.model, stil: 3000,
+        model: item.model, stil: 3000, doel: 5000, sleutels: (item.sleutel || []).flat(), // drie zinnen
       };
     }
     const n = (item.sleutel || [[], []]).length;
@@ -285,7 +366,7 @@ window.Spreken = (() => {
     return {
       punten: namen,
       auto: (t) => { const c = controle(item, t); return [...c.delen, c.werkwoorden >= c.delen.length]; },
-      model: item.model, stil: 3000,
+      model: item.model, stil: 3000, doel: Math.min(6000, 1800 * n), sleutels: (item.sleutel || []).flat(), // ongeveer een korte zin per deel
     };
   }
 

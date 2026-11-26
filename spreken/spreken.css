@@ -93,3 +93,40 @@ body.opname-open main { padding-bottom: 240px; }
 .opn-niveau { display: inline-flex; align-items: center; gap: 2px; height: 22px; }
 .opn-niveau i { width: 4px; height: calc(15% + var(--h, 0) * 85%); border-radius: 2px; background: var(--fout); transition: height .08s linear; }
 @media (prefers-reduced-motion: reduce) { .opn-niveau i { transition: none; } }
+
+/* ---------- spelen met de opname: sterren tijdens het praten, een medaille na de controle ---------- */
+/* drie sterren lopen vol met de spreektijd; elke ster springt als hij oplicht */
+.opn-sterren { display: flex; gap: 6px; }
+.opn-ster .icoon { width: 22px; height: 22px; fill: var(--vlak2); stroke: var(--omtrek); stroke-width: 1.3; }
+.opn-ster.aan .icoon { fill: #f2b21b; stroke: #c98a05; animation: ster-pop .45s cubic-bezier(.2, 1.7, .4, 1) both; }
+@keyframes ster-pop { from { transform: scale(.3) rotate(-35deg); } to { transform: none; } }
+/* de uitslag, in het opnamescherm en in de les: de medaille zoals bij de oefenexamens */
+.opn-uitslag { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 16px; align-items: center; animation: op .25s ease both; }
+.opn-medaille .medaille { width: 64px; height: 64px; animation: m-spring .75s cubic-bezier(.2, 1.7, .4, 1) both; }
+.opn-uitslag-tekst { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.opn-kop { font-size: 1.3rem; line-height: 1.25; }
+.opn-uitslag.m-goud .opn-kop, .opn-uitslag.m-zilver .opn-kop { color: var(--goed); }
+.opn-sub { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.opn-record { color: #c98a05; animation: spring .6s ease 2 .5s; }
+:root:not([data-theme="light"]) .opn-record { color: #f2b21b; }
+:root[data-theme="light"] .opn-record { color: #b07800; }
+/* de woorden lichten een voor een op: groen = gehoord, grijs met stippellijn = niet gehoord */
+.opn-woorden { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+.opn-woorden span { padding: 4px 12px; border-radius: 999px; font-weight: 600; animation: woord-aan .32s ease both; animation-delay: calc(.35s + var(--i, 0) * 110ms); }
+.opn-woorden .raak { background: var(--goed-zacht); color: var(--goed); }
+.opn-woorden .mis { background: transparent; color: var(--zacht); border: 1.5px dashed var(--omtrek); font-weight: 500; }
+@keyframes woord-aan { from { opacity: 0; transform: translateY(6px) scale(.85); } }
+.opn-gehoord { grid-column: 1 / -1; margin: 0; line-height: 1.6; }
+.opn-gehoord .raak { padding: 1px 6px; border-radius: 6px; background: var(--goed-zacht); color: var(--goed); font-weight: 700; animation: woord-aan .32s ease both; animation-delay: calc(.35s + var(--i, 0) * 60ms); }
+/* in de les: dezelfde kaart, als een vak boven uw opname */
+.opn-uitslag.in-les { padding: 14px 16px; margin: 6px 0 12px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: var(--rond); box-shadow: var(--schaduw1); }
+/* het opnamescherm met de uitslag */
+.opn-scherm.met-uitslag { grid-template-columns: 1fr; }
+.opn-scherm.met-uitslag .opn-onder { justify-content: flex-end; }
+@media (max-width: 560px) {
+  .opn-scherm.met-uitslag { text-align: start; justify-items: stretch; }
+  .opn-medaille .medaille { width: 56px; height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .opn-ster.aan .icoon, .opn-medaille .medaille, .opn-woorden span, .opn-gehoord .raak, .opn-record, .opn-uitslag { animation: none; }
+}

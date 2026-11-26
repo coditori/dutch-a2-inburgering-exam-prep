@@ -80,7 +80,7 @@
           el('button', { class: 'knop licht', en: 'listen', onclick: () => Spreken.speel(it.tekst) }, App.teken('luid'), 'Luister'),
           el('button', { class: 'knop licht', en: 'slow', onclick: () => Spreken.speel(it.tekst, 0.75) }, '🐢 Langzaam'))));
       Spreken.speel(it.tekst);
-      Spreken.opnameBlok(onder, Object.assign(Spreken.punten(it), { klaar: (ok) => klaarMetItem(i, ok) }));
+      Spreken.opnameBlok(onder, Object.assign(Spreken.punten(it), { id: `${les.id}:${i}`, klaar: (ok) => klaarMetItem(i, ok) }));
       return;
     }
 
@@ -123,7 +123,7 @@
         it.deel === 1 ? el('button', { class: 'knop licht', en: 'show the text', onclick: () => { tekst.hidden = !tekst.hidden; } }, '👁 Tekst') : null),
       it.en ? (() => { const t = el('p', { class: 'tip', hidden: true, hulp: it.en }); return el('div', {}, el('button', { class: 'knop licht klein', title: 'tip (Engels)', onclick: () => { t.hidden = !t.hidden; } }, App.teken('vertaal'), 'Tip'), t); })() : null));
     Spreken.speel(Spreken.vraagTekst(it));
-    Spreken.opnameBlok(onder, Object.assign(Spreken.punten(it), { klaar: (ok) => klaarMetItem(i, ok) }));
+    Spreken.opnameBlok(onder, Object.assign(Spreken.punten(it), { id: `${les.id}:${i}`, klaar: (ok) => klaarMetItem(i, ok) }));
   }
 
   function toonKlaar() {
