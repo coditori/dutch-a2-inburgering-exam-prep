@@ -42,7 +42,11 @@ const MODELLEN = {
 };
 const ZINNEN = [['Het huis heeft een tuin.', 'vindemiatrix'], ['Ik kom uit een warm land.', 'puck'], ['De deur van de keuken is open.', 'vindemiatrix'],
   ['Het brood is twee euro.', 'puck'], ['Ik vind de tuin leuk.', 'vindemiatrix']];
-const keuze = { model: 'tiny', apparaat: navigator.gpu ? 'webgpu' : 'wasm' };
+// Automatisch: met WebGPU (de grafische chip) het betere model (base), want dat is daar snel genoeg; zonder WebGPU het kleine
+// model (tiny), want base op de processor duurt te lang. De knoppen zijn er alleen om te vergelijken.
+const keuze = { model: navigator.gpu ? 'base' : 'tiny', apparaat: navigator.gpu ? 'webgpu' : 'wasm' };
+const automatisch = navigator.gpu ? 'Automatisch gekozen: Groter (base) op WebGPU, want deze browser heeft WebGPU.'
+  : 'Automatisch gekozen: Klein (tiny) op WASM, want deze browser heeft geen WebGPU (base zou te traag zijn).';
 let asr = null, geladen = null;
 const meting = {}; // alles wat de pagina meet (ook voor de test op afstand: window.__proef)
 window.__proef = meting;
@@ -182,7 +186,7 @@ opnKnop.disabled = true;
 const keuzes = el('div');
 function teken() {
   keuzes.textContent = '';
-  keuzes.append(el('div', { class: 'wp-rij' }, knopModel('tiny'), knopModel('base')),
+  keuzes.append(el('p', { class: 'zacht klein' }, automatisch), el('div', { class: 'wp-rij' }, knopModel('tiny'), knopModel('base')),
     el('div', { class: 'wp-rij' }, knopApp('webgpu', 'WebGPU (grafische chip)'), knopApp('wasm', 'WASM (processor)')));
 }
 teken();
