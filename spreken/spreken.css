@@ -43,3 +43,53 @@ audio { max-width: 100%; height: 36px; vertical-align: middle; }
 /* foto en opname samen op het scherm, zoals bij DUO: de foto's niet hoger dan ongeveer een derde van het scherm */
 .examen.boven-onder .scene .plaat .met-foto img { max-height: 34vh; width: auto; max-width: 100%; }
 .examen.boven-onder .lees-eerst p { margin: 4px 0 0; }
+
+/* ---------- het opnamescherm (lessen): onder in beeld, zodat de vraag te zien blijft ----------
+   De rode bol groeit en gloeit met de stem (--niveau 0..1). De ring eromheen loopt vol tijdens de stilte (--stil 0..1):
+   dan stopt de opname vanzelf. De golf: hoe hard de laatste seconden waren. */
+.opn-scherm { position: fixed; z-index: 30; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  width: min(540px, calc(100vw - 16px)); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 18px; align-items: center;
+  padding: 18px 20px; background: var(--vlak); border-radius: 24px; box-shadow: var(--schaduw3), 0 0 0 1px var(--lijn); animation: opn-op .18s ease both; }
+@keyframes opn-op { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.opn-bol { --niveau: 0; --stil: 0; position: relative; width: 88px; height: 88px; display: grid; place-items: center; }
+.opn-bol::before { content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(var(--accent) calc(var(--stil) * 1turn), var(--vlak2) 0);
+  -webkit-mask: radial-gradient(circle, transparent 60%, #000 61%); mask: radial-gradient(circle, transparent 60%, #000 61%); }
+.opn-bol i { position: relative; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: var(--fout); color: var(--vlak);
+  transform: scale(calc(1 + var(--niveau) * .3)); box-shadow: 0 0 0 calc(var(--niveau) * 12px) color-mix(in srgb, var(--fout) 22%, transparent);
+  transition: transform .08s linear, box-shadow .08s linear; }
+.opn-bol .icoon { width: 28px; height: 28px; }
+.opn-midden { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.opn-status { margin: 0; font-weight: 600; line-height: 1.35; }
+.opn-golf { display: flex; align-items: center; gap: 2px; height: 34px; }
+.opn-golf i { flex: 1; min-width: 2px; height: calc(10% + var(--h, 0) * 90%); border-radius: 2px; background: var(--accent); opacity: .8; transition: height .08s linear; }
+.opn-onder { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.opn-scherm .opn-tijd { color: var(--zacht); font-size: .95rem; }
+.opn-knoppen { display: flex; gap: 8px; }
+/* stil na het praten: de bol wordt blauw, net als de ring */
+.opn-scherm[data-staat="stil"] .opn-bol i { background: var(--accent); color: var(--op-accent); }
+/* geen Web Audio (geen meting): de bol klopt rustig; na Stop: de computer luistert */
+.opn-scherm.zonder-meter .opn-bol i, .opn-scherm.bezig .opn-bol i { animation: opn-klop 1.2s ease-in-out infinite; }
+.opn-scherm.bezig .opn-bol i { background: var(--accent); color: var(--op-accent); }
+.opn-scherm.bezig .opn-golf i { height: 10%; }
+@keyframes opn-klop { 50% { transform: scale(1.12); } }
+/* de vraag kan omhoog gerold worden, boven het opnamescherm */
+body.opname-open main { padding-bottom: 240px; }
+@media (max-width: 560px) {
+  .opn-scherm { grid-template-columns: 1fr; justify-items: center; text-align: center; bottom: calc(8px + env(safe-area-inset-bottom)); padding: 18px 16px; }
+  body.met-nav .opn-scherm { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .opn-midden, .opn-golf, .opn-onder { width: 100%; }
+  .opn-onder { flex-direction: column; }
+  .opn-knoppen { width: 100%; }
+  .opn-knoppen .knop { flex: 1 1 0; min-height: 48px; }
+  body.opname-open main { padding-bottom: 340px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .opn-scherm { animation: none; }
+  .opn-bol i, .opn-golf i { transition: none; }
+  .opn-scherm.zonder-meter .opn-bol i, .opn-scherm.bezig .opn-bol i { animation: none; }
+}
+/* het oefenexamen: een klein niveau naast de tijd, zodat u ziet dat de microfoon u hoort (geen automatische stop, zoals bij DUO) */
+.opn-niveau { display: inline-flex; align-items: center; gap: 2px; height: 22px; }
+.opn-niveau i { width: 4px; height: calc(15% + var(--h, 0) * 85%); border-radius: 2px; background: var(--fout); transition: height .08s linear; }
+@media (prefers-reduced-motion: reduce) { .opn-niveau i { transition: none; } }
