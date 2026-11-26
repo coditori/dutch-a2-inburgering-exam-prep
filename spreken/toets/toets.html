@@ -14,6 +14,7 @@
 <script src="../../shared/srs.js"></script>
 <script src="../../shared/audio.js"></script>
 <script src="../../shared/app.js"></script>
+<script src="../../spreken/stilte.js"></script>
 <script src="../../spreken/spreken.js"></script>
 <script>
 // Toets in de vorm van het examen, zoals de oefenexamens van DUO: 16 vragen in 4 onderdelen, 35 minuten.
@@ -83,10 +84,15 @@
   // de opname van één vraag: zoals de opnemer van DUO. Opnemen, de tijd loopt (tot 1:00), stop, beluister, verwijder en opnieuw.
   function opnemer(nr) {
     const vak = el('div', { class: 'opnemer' });
-    let rec = null, tik = null, begin = 0;
+    let rec = null, tik = null, begin = 0, meting = null, ctx = null;
     const teller = el('span', { class: 'opn-tijd', 'aria-live': 'off' });
     const balk = el('i');
-    function stopTik() { clearInterval(tik); tik = null; }
+    // een klein niveau naast de tijd: zo ziet u dat de microfoon u hoort. Geen automatische stop: zoals bij DUO.
+    const strepen = Array.from({ length: 12 }, () => el('i'));
+    const niveau = el('span', { class: 'opn-niveau', 'aria-hidden': 'true' }, strepen);
+    const niveaus = new Array(strepen.length).fill(0);
+    function stopMeting() { if (meting) meting.stop(); meting = null; if (ctx) ctx.close().catch(() => {}); ctx = null; }
+    function stopTik() { clearInterval(tik); tik = null; stopMeting(); }
     async function stop() {
       if (!rec) return;
       stopTik();
@@ -100,7 +106,12 @@
     }
     async function start() {
       Spraak.stop();
-      try { rec = await Spreken.opnemer(); } catch (e) { toon('geen'); return; }
+      ctx = Stilte.context(); // tijdens de klik: anders blijft hij op een iPhone stil
+      try { rec = await Spreken.opnemer(); } catch (e) { stopMeting(); toon('geen'); return; }
+      meting = Stilte.meet(rec.stroom, ctx, { stil: Infinity, max: Infinity, elk: (u) => {
+        niveaus.shift(); niveaus.push(u.niveau);
+        strepen.forEach((s, i) => s.style.setProperty('--h', niveaus[i].toFixed(3)));
+      } });
       begin = Date.now();
       toon('loopt');
       tik = setInterval(() => {
@@ -115,7 +126,7 @@
       const o = opnames[nr];
       if (staat === 'loopt') {
         teller.textContent = `${tijd(0)} / ${tijd(MAX_SEC)}`; balk.style.width = '0%';
-        vak.append(el('div', { class: 'opname' }, el('button', { class: 'knop rood bezig', en: 'stop recording', onclick: stop }, '⏹ Stop'), teller),
+        vak.append(el('div', { class: 'opname' }, el('button', { class: 'knop rood bezig', en: 'stop recording', onclick: stop }, '⏹ Stop'), meting ? niveau : null, teller),
           el('div', { class: 'opn-balk' }, balk));
         return;
       }
